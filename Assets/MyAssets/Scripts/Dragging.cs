@@ -62,19 +62,30 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     //Cuando termina el arrastre pone la carta en donde guardamos
     public void OnEndDrag(PointerEventData eventData)
     {
-        this.transform.SetParent(parentToReturnTo);
-        this.transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());//Posiciona la carta en el espacio
-        //Desactiva la penetracion de la carta para que podamos arrastrarla de nuevo
-        GetComponent<CanvasGroup>().blocksRaycasts=true;
-        //Destruye el espacio creado
-        Destroy(placeholder);
-        if(this.transform.parent!=hand.transform){//Si el objeto sale de la mano quita el script dragging de la carta
-        if(whichField==fields.MyField){
-            P1TotalFieldForce.P1ForceValue+=DisplayCard.pow;
+        if(TurnManager.CardsPlayed<1){
+            this.transform.SetParent(parentToReturnTo);
+            this.transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());//Posiciona la carta en el espacio
+            //Desactiva la penetracion de la carta para que podamos arrastrarla de nuevo
+            GetComponent<CanvasGroup>().blocksRaycasts=true;
+            //Destruye el espacio creado
+            Destroy(placeholder);
+            if(this.transform.parent!=hand.transform){//Si el objeto sale de la mano quita el script dragging de la carta
+            if(whichField==fields.MyField){
+                P1TotalFieldForce.P1ForceValue+=DisplayCard.pow;
+            }else{
+                P2TotalFieldForce.P2ForceValue+=DisplayCard.pow;
+            }
+            TurnManager.PlayCard();
+                Destroy(this);
+            }
         }else{
-            P2TotalFieldForce.P2ForceValue+=DisplayCard.pow;
-        }
-            Destroy(this);
+            Debug.Log("No puedes jugar dos cartas en el mismo turno!!");
+            this.transform.SetParent(hand.transform);
+            this.transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());//Posiciona la carta en el espacio
+            //Desactiva la penetracion de la carta para que podamos arrastrarla de nuevo
+            GetComponent<CanvasGroup>().blocksRaycasts=true;
+            //Destruye el espacio creado
+            Destroy(placeholder);
         }
     }
 }
