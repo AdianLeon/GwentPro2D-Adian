@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86927c0ef6ddbd54aa2546f0ede00273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 1072672301799576032}
+  card: {fileID: 0}
 --- !u!114 &-8809635103287773785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,6 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentToReturnTo: {fileID: 0}
+  hand: {fileID: 2311447886571139348, guid: b67b0eb5e889e5f4e98c8623a820d6e9, type: 3}
   cardType: 0
 --- !u!114 &-223858019359444234
 MonoBehaviour:

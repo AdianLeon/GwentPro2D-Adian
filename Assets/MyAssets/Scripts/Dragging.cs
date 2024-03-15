@@ -8,11 +8,18 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 {
     //Variables que guardan en donde se queda la carta y su espacio
     public Transform parentToReturnTo=null;
+    public GameObject hand;
     GameObject placeholder=null;
+    GameObject thisCard;
     //Crea tipos de rango para cada carta
     public enum rank{Melee,Ranged,Siege,Aumento,Clima,Despeje,Senuelo,Dead};//********Vincular con la prop de la carta////
     public rank cardType;
+    public enum fields{MyField,EnemyField,Clima};
+    public fields whichField;
     //Detecta cuando empieza el arrastre de las cartas
+    public void Start(){
+        thisCard=gameObject;
+    }
     public void OnBeginDrag(PointerEventData eventData)
     {
         //Guarda la posicion a la que volver si soltamos en lugar invalido y crea un espacio en el lugar de la carta
@@ -61,8 +68,13 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         GetComponent<CanvasGroup>().blocksRaycasts=true;
         //Destruye el espacio creado
         Destroy(placeholder);
-        //if(parentToReturnTo!=Hand){
-            //DisplayCard.card.PlayCard();
-        //}
+        if(this.transform.parent!=hand.transform){//Si el objeto sale de la mano quita el script dragging de la carta
+        if(whichField==fields.MyField){
+            P1TotalFieldForce.P1ForceValue+=DisplayCard.pow;
+        }else{
+            P2TotalFieldForce.P2ForceValue+=DisplayCard.pow;
+        }
+            Destroy(this);
+        }
     }
 }
