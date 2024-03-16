@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c713933e1748f5d4da14f1b7a099daba, type: 3}
   m_Name: Bob
   m_EditorClassIdentifier: 
+  id: 4
   name: Bob
   description: BANANAA!!!
   artwork: {fileID: 21300000, guid: 6b3a87112cc7cdb4896b21d94dc54c8c, type: 3}

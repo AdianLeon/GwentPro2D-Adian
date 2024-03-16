@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c713933e1748f5d4da14f1b7a099daba, type: 3}
-  m_Name: Banana
+  m_Name: Inyeccion de minion purpura
   m_EditorClassIdentifier: 
-  id: 2
-  name: Banana
-  description: Vuelve locos a los minions
-  artwork: {fileID: 21300000, guid: b62ebd4d694f11b4eba1941e34b44f29, type: 3}
+  id: 8
+  name: 
+  description: 
+  artwork: {fileID: 0}
   power: 1
   cRank: 3
   cQuality: 2

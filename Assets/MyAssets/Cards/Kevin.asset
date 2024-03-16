@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c713933e1748f5d4da14f1b7a099daba, type: 3}
   m_Name: Kevin
   m_EditorClassIdentifier: 
+  id: 9
   name: Kevin
   description: Belo papaguera churepera con la papaya
   artwork: {fileID: 21300000, guid: 0e0ee9c730326cc47a8b606bd445a9f7, type: 3}

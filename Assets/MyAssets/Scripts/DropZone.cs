@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
     //Accede a la propiedad de Dragging de los rangos y los campos
+    public static int droppedCount; 
     public Dragging.rank cardType;
     public Dragging.fields whichField;
     //Funciones necesarias para controlar si el puntero esta encima de la carta
@@ -23,6 +24,7 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
             //Solo si coincide el tipo de carta con el tipo de dropzone y es en el campo correspondiente
             if(cardType==d.cardType && whichField==d.whichField)
             {
+                droppedCount++;//Tratando de hacer que el graveyard funcione
                 d.parentToReturnTo=this.transform;
             }
         }

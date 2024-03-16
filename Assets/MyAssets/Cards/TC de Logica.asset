@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c713933e1748f5d4da14f1b7a099daba, type: 3}
   m_Name: TC de Logica
   m_EditorClassIdentifier: 
+  id: 16
   name: TC de Logica
   description: 'Efecto: Deprime a todos los minions y les resta 1 de poder'
   artwork: {fileID: 21300000, guid: 3aac10f916a72274a942e56531c142ec, type: 3}

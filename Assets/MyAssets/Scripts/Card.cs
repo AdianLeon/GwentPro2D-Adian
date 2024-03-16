@@ -12,8 +12,6 @@ public class Card : ScriptableObject
     public int power;
     public enum rank{Melee,Ranged,Siege,Aumento,Clima,Despeje,Senuelo,Dead}
     public rank cRank;
-    public enum fields{MyField,EnemyField,neutral};
-    public fields cField;
     public enum quality{Gold,Silver,None}
     public quality cQuality;
     public bool isPlayed=false;

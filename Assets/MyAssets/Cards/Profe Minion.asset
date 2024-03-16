@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c713933e1748f5d4da14f1b7a099daba, type: 3}
   m_Name: Profe Minion
   m_EditorClassIdentifier: 
+  id: 11
   name: Profe Minion
   description: 'Efecto: Aplica el TC cuando es jugada'
   artwork: {fileID: 21300000, guid: 76b0d39b28ac2fb4fb68ad44f7deda2f, type: 3}
