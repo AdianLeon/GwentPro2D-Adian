@@ -24,7 +24,7 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
             //Solo si coincide el tipo de carta con el tipo de dropzone y es en el campo correspondiente
             if(cardType==d.cardType && whichField==d.whichField)
             {
-                droppedCount++;//Tratando de hacer que el graveyard funcione
+                droppedCount++;
                 d.parentToReturnTo=this.transform;
             }
         }

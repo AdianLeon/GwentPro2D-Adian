@@ -7,6 +7,8 @@ public class TurnManager : MonoBehaviour
     public static int PlayerTurn;
     public static int CardsPlayed;
     static int countPass;
+    public static List<GameObject> PlayedCards=new List<GameObject>();
+
     void Start()
     {
         countPass=0;
@@ -30,15 +32,16 @@ public class TurnManager : MonoBehaviour
             }
         }
     }
-    public static void PlayCard(){
+    public static void PlayCard(GameObject card){
             CardsPlayed++;
+            PlayedCards.Add(card);
             DisplayCard.played=true;
     }
     public static void NextRound(){
-        AllToGraveyard();
+        Graveyard.AllToGraveyard();
         CardsPlayed=0;
         countPass=0;
-        if(P1TotalFieldForce.P1ForceValue>P2TotalFieldForce.P2ForceValue){//Ganador de ronda P1
+        if(P1TotalFieldForce.P1ForceValue>P2TotalFieldForce.P2ForceValue){
             PlayerTurn=1;
             PlayerCondition.Wins("P1");
         }else if(P2TotalFieldForce.P2ForceValue>P1TotalFieldForce.P1ForceValue){
@@ -48,11 +51,7 @@ public class TurnManager : MonoBehaviour
             PlayerCondition.Wins("P1");
             PlayerCondition.Wins("P2");
         }
-    }
-    public static void AllToGraveyard(){
-        ToGraveyard();
-    }
-    public static void ToGraveyard(){
-        
+        P1TotalFieldForce.P1ForceValue=0;
+        P2TotalFieldForce.P2ForceValue=0;
     }
 }
