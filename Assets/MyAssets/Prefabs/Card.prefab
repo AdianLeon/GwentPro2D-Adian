@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -5481795835510925122}
   - component: {fileID: 2784469696071589718}
   - component: {fileID: -8809635103287773785}
-  - component: {fileID: -223858019359444234}
+  - component: {fileID: -7070421257807693507}
   m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86927c0ef6ddbd54aa2546f0ede00273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
+  card: {fileID: 1072672301799576032}
 --- !u!114 &-8809635103287773785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +145,7 @@ MonoBehaviour:
   isDraggable: 0
   cardType: 0
   whichField: 0
---- !u!114 &-223858019359444234
+--- !u!114 &-7070421257807693507
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,8 +154,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1072672301799576032}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c003789b85a00da4dae43a82b7a4c2da, type: 3}
+  m_Script: {fileID: 11500000, guid: c4868f4be6b435343a07e86d1f748b15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 11400000, guid: e3cdfe9a624803048a2cb98a91e915a6, type: 2}
-  thisCard: {fileID: 1072672301799576032}
+  Picked: {fileID: 1072672301799576032}
+  power: 0
+  isPlayed: 0
+  wRank: 0
+  wQuality: 0
+  wField: 0

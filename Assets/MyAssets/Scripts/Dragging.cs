@@ -15,7 +15,7 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     //Crea tipos de rango para cada carta
     public enum rank{Melee,Ranged,Siege,Aumento,Clima,Despeje,Senuelo,Dead};//********Vincular con la prop de la carta////
     public rank cardType;
-    public enum fields{MyField,EnemyField};
+    public enum fields{None,P1,P2};
     public fields whichField;
     //Detecta cuando empieza el arrastre de las cartas
     public void Start(){
@@ -68,29 +68,38 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public void OnEndDrag(PointerEventData eventData)
     {
     if(isDraggable){
-            if(TurnManager.CardsPlayed<1){
+            if(TurnManager.CardsPlayed<1){//Solo una carta por turno
+
                 this.transform.SetParent(parentToReturnTo);
                 this.transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());//Posiciona la carta en el espacio
-                //Desactiva la penetracion de la carta para que podamos arrastrarla de nuevo
-                GetComponent<CanvasGroup>().blocksRaycasts=true;
-                //Destruye el espacio creado
-                Destroy(placeholder);
-                if(this.transform.parent!=hand.transform){//Si el objeto sale de la mano quita la propiedad isDraggable de la carta
-                isDraggable=false;
-                if(whichField==fields.MyField){
-                    P1TotalFieldForce.P1ForceValue+=DisplayCard.pow;
-                }else{
-                    P2TotalFieldForce.P2ForceValue+=DisplayCard.pow;
-                }
-                TurnManager.PlayCard(thisCard);
+                
+                GetComponent<CanvasGroup>().blocksRaycasts=true;//Desactiva la penetracion de la carta para que podamos arrastrarla de nuevo
+                
+                Destroy(placeholder);//Destruye el espacio creado
+                
+                if(this.transform.parent!=hand.transform){//Si el objeto sale de la mano
+                    Debug.Log("Ya entro");
+
+                    isDraggable=false;//Quita la propiedad isDraggable de la carta
+
+                    if(whichField==fields.P1){//Si es campo de P1 anade puntos a P1
+                        TotalFieldForce.P1ForceValue+=thisCard.GetComponent<Card>().power;
+                        Debug.Log("Added: "+thisCard.GetComponent<Card>().power);
+                    }else if(whichField==fields.P2){//Si es campo de P2 anade puntos a P2
+                        Debug.Log("Added: "+thisCard.GetComponent<Card>().power);
+                        TotalFieldForce.P2ForceValue+=thisCard.GetComponent<Card>().power;
+                    }
+
+                    TurnManager.PlayCard(thisCard);//En cualquier caso juega la carta
                 }
             }else{
-                this.transform.SetParent(hand.transform);
+                this.transform.SetParent(hand.transform);//Devuelve la carta a la mano
+
                 this.transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());//Posiciona la carta en el espacio
-                //Desactiva la penetracion de la carta para que podamos arrastrarla de nuevo
-                GetComponent<CanvasGroup>().blocksRaycasts=true;
-                //Destruye el espacio creado
-                Destroy(placeholder);
+                
+                GetComponent<CanvasGroup>().blocksRaycasts=true;//Desactiva la penetracion de la carta para que podamos arrastrarla de nuevo
+                
+                Destroy(placeholder);//Destruye el espacio creado
             }
         }
     }
