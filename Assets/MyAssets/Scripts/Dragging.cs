@@ -78,15 +78,12 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 Destroy(placeholder);//Destruye el espacio creado
                 
                 if(this.transform.parent!=hand.transform){//Si el objeto sale de la mano
-                    Debug.Log("Ya entro");
 
                     isDraggable=false;//Quita la propiedad isDraggable de la carta
 
                     if(whichField==fields.P1){//Si es campo de P1 anade puntos a P1
                         TotalFieldForce.P1ForceValue+=thisCard.GetComponent<Card>().power;
-                        Debug.Log("Added: "+thisCard.GetComponent<Card>().power);
                     }else if(whichField==fields.P2){//Si es campo de P2 anade puntos a P2
-                        Debug.Log("Added: "+thisCard.GetComponent<Card>().power);
                         TotalFieldForce.P2ForceValue+=thisCard.GetComponent<Card>().power;
                     }
 

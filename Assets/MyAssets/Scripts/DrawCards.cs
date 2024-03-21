@@ -14,6 +14,7 @@ public class DrawCards : MonoBehaviour
     List <GameObject> cards = new List <GameObject>();
     void Start()
     {
+        GameObject.Find("Deck").GetComponent<Button>().onClick.Invoke();
         //Anadiendo cartas al deck
         cards.Add(Card1);
         cards.Add(Card2);
