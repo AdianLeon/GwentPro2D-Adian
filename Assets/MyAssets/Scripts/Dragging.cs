@@ -13,18 +13,19 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public GameObject thisCard;
     public bool isDraggable;
     //Crea tipos de rango para cada carta
-    public enum rank{Melee,Ranged,Siege,Aumento,Clima,Despeje,Senuelo,Dead};//********Vincular con la prop de la carta////
+    public enum rank{Melee,Ranged,Siege,Aumento,Clima,Despeje,Senuelo};//********Vincular con la prop de la carta////
     public rank cardType;
     public enum fields{None,P1,P2};
     public fields whichField;
-    //Detecta cuando empieza el arrastre de las cartas
+
     public void Start(){
         isDraggable=true;
     }
+    //Detecta cuando empieza el arrastre de las cartas
     public void OnBeginDrag(PointerEventData eventData)
     {
         if(isDraggable){
-                //Guarda la posicion a la que volver si soltamos en lugar invalido y crea un espacio en el lugar de la carta
+            //Guarda la posicion a la que volver si soltamos en lugar invalido y crea un espacio en el lugar de la carta
             placeholder=new GameObject();//Crea el placeholder y le asigna los mismos valores que a la carta y la posicion de la carta
             placeholder.transform.SetParent(this.transform.parent);
 
