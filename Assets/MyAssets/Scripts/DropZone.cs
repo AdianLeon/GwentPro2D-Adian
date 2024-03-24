@@ -21,7 +21,7 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
         Dragging d=eventData.pointerDrag.GetComponent<Dragging>();
         if(d!=null){
             //Solo si coincide el tipo de carta con el tipo de dropzone y es en el campo correspondiente
-            if(cardType==d.cardType && whichField==d.whichField)
+            if(cardType==d.cardType && (whichField==d.whichField || whichField==Dragging.fields.None))
             {
                 d.parentToReturnTo=this.transform;
             }

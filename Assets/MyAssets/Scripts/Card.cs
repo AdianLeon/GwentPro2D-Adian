@@ -6,6 +6,7 @@ public class Card : MonoBehaviour
 {//Propiedades de todas las cartas
     public int id;//Identificador unico de cada carta
     public int power;//Poder
+    public int addedPower;
     public bool isPlayed;//Si esta jugada o no
     public bool hasEffect;//Si tiene efecto o no
     
@@ -19,6 +20,7 @@ public class Card : MonoBehaviour
     public field wField;*/
 
     public void Start(){
+        addedPower=0;
         isPlayed=false;
     }
 }

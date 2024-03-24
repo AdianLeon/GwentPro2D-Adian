@@ -21,16 +21,12 @@ public class Graveyard : MonoBehaviour
                 card.transform.SetParent(GameObject.Find("Graveyard").transform);
                 gCount++;
                 GameObject.Find("GText").GetComponent<TextMeshProUGUI>().text=gCount.ToString();
-                Destroy(card.GetComponent<Dragging>());
-
-
             }else if(d.whichField==Dragging.fields.P2){//Si el campo es de P2 manda la carta al cementerio de P2
                 card.transform.SetParent(GameObject.Find("EnemyGraveyard").transform);
                 egCount++;
                 GameObject.Find("EGText").GetComponent<TextMeshProUGUI>().text=egCount.ToString();
-                Destroy(card.GetComponent<Dragging>());
             }
         }
-        
+        Destroy(card.GetComponent<Dragging>());
     }
 }

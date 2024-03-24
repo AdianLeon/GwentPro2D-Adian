@@ -13,7 +13,7 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public GameObject thisCard;
     public bool isDraggable;
     //Crea tipos de rango para cada carta
-    public enum rank{Melee,Ranged,Siege,Aumento,Clima,Despeje,Senuelo};//********Vincular con la prop de la carta////
+    public enum rank{Melee,Ranged,Siege,Aumento,Clima,Senuelo};//********Vincular con la prop de la carta////
     public rank cardType;
     public enum fields{None,P1,P2};
     public fields whichField;
@@ -82,13 +82,14 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
                     isDraggable=false;//Quita la propiedad isDraggable de la carta
 
-                    if(whichField==fields.P1){//Si es campo de P1 anade puntos a P1
-                        TotalFieldForce.P1ForceValue+=thisCard.GetComponent<Card>().power;
-                    }else if(whichField==fields.P2){//Si es campo de P2 anade puntos a P2
-                        TotalFieldForce.P2ForceValue+=thisCard.GetComponent<Card>().power;
+                    if(whichField==fields.P1){//Si es campo de P1 anade la carta a la lista de cartas del campo del P2
+                        TotalFieldForce.P1PlayedCards.Add(thisCard);
+                    }else if(whichField==fields.P2){//Si es campo de P2 anade la carta a la lista de cartas del campo del P2
+                        TotalFieldForce.P2PlayedCards.Add(thisCard);
                     }
 
                     TurnManager.PlayCard(thisCard);//En cualquier caso juega la carta
+                    
                 }
             }else{
                 this.transform.SetParent(hand.transform);//Devuelve la carta a la mano
@@ -99,6 +100,7 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 
                 Destroy(placeholder);//Destruye el espacio creado
             }
+            TotalFieldForce.UpdateForce();
         }
     }
 }

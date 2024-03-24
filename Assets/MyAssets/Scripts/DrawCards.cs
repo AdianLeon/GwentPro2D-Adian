@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class DrawCards : MonoBehaviour
 {
     public GameObject Card1,Card2,Card3,Card4,Card5,Card6,Card7,Card8,Card9,Card10,Card11,Card12,Card13,Card14,Card15,
-    Card16,Card17,Card18,Card19,Card20,Card21,Card22,Card23,Card24,Card25,Card26;
+    Card16,Card17,Card18,Card19,Card20,Card21,Card22,Card23,Card24,Card25;
     public GameObject PlayerArea;
     List <GameObject> cards = new List <GameObject>();//Lista de cartas
     static int n=0;
@@ -17,7 +17,7 @@ public class DrawCards : MonoBehaviour
         cards.Add(Card1);cards.Add(Card2);cards.Add(Card3);cards.Add(Card4);cards.Add(Card5);cards.Add(Card6);cards.Add(Card7);
         cards.Add(Card8);cards.Add(Card9);cards.Add(Card10);cards.Add(Card11);cards.Add(Card12);cards.Add(Card13);cards.Add(Card14);
         cards.Add(Card15);cards.Add(Card16);cards.Add(Card17);cards.Add(Card18);cards.Add(Card19);cards.Add(Card20);cards.Add(Card21);
-        cards.Add(Card22);cards.Add(Card23);cards.Add(Card24);cards.Add(Card25);cards.Add(Card26);
+        cards.Add(Card22);cards.Add(Card23);cards.Add(Card24);cards.Add(Card25);
         if(n==2){//Este Start es ejecutado por dos decks, por eso se reparten las cartas la segunda vez porque es entonces cuando
         //ambos tienen todas sus cartas
             for(int i=0;i<10;i++){

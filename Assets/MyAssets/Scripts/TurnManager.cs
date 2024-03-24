@@ -43,6 +43,9 @@ Debug.Log("Turno de P"+PlayerTurn);
 
     public static void NextRound(){//Proxima ronda
         Graveyard.AllToGraveyard();//Manda todas las cartas al cementerio
+        TotalFieldForce.P1PlayedCards.Clear();
+        TotalFieldForce.P2PlayedCards.Clear();
+        TotalFieldForce.UpdateForce();
         
         if(TotalFieldForce.P1ForceValue>TotalFieldForce.P2ForceValue){//Si P1 tiene mas poder que P2
             if(PlayerTurn==2){//P1 comienza el proximo turno
