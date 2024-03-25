@@ -39,13 +39,11 @@ Debug.Log("Turno de P"+PlayerTurn);
         card.GetComponent<Card>().isPlayed=true;
 
         Effects.CheckForEffect(card);
+        Effects.UpdateClima();
     }
 
     public static void NextRound(){//Proxima ronda
         Graveyard.AllToGraveyard();//Manda todas las cartas al cementerio
-        TotalFieldForce.P1PlayedCards.Clear();
-        TotalFieldForce.P2PlayedCards.Clear();
-        TotalFieldForce.UpdateForce();
         
         if(TotalFieldForce.P1ForceValue>TotalFieldForce.P2ForceValue){//Si P1 tiene mas poder que P2
             if(PlayerTurn==2){//P1 comienza el proximo turno
@@ -72,6 +70,9 @@ Debug.Log("P1=P2");
             PlayerCondition.rPointsP1++;
             PlayerCondition.rPointsP2++;
         }
+        TotalFieldForce.P1PlayedCards.Clear();
+        TotalFieldForce.P2PlayedCards.Clear();
+        TotalFieldForce.UpdateForce();
         CardsPlayed=0;
         countPass=0;
         TotalFieldForce.P1ForceValue=0;

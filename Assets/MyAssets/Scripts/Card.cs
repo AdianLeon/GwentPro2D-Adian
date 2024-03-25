@@ -9,6 +9,8 @@ public class Card : MonoBehaviour
     public int addedPower;
     public bool isPlayed;//Si esta jugada o no
     public bool hasEffect;//Si tiene efecto o no
+    public bool[] affected=new bool[4];//Un array que describe si la carta esta siendo afectada por un clima, la posicion del true es
+    //el id de la carta que la afecta
     
     public enum quality{None,Silver,Gold}//Quality
     public quality wQuality;
@@ -18,9 +20,4 @@ public class Card : MonoBehaviour
     
     public enum field{None,P1,P2}//Campo
     public field wField;*/
-
-    public void Start(){
-        addedPower=0;
-        isPlayed=false;
-    }
 }

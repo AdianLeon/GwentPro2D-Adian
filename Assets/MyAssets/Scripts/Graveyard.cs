@@ -15,6 +15,9 @@ public class Graveyard : MonoBehaviour
     }
     public static void ToGraveyard(GameObject card){//Manda la carta al cementerio
         card.GetComponent<Card>().isPlayed=false;
+        for(int i=0;i<4;i++){
+            card.GetComponent<Card>().affected[i]=false;
+        }
         Dragging d=card.GetComponent<Dragging>();
         if(d!=null){
             if(d.whichField==Dragging.fields.P1){//Si el campo es de P1 manda la carta al cementerio de P1
