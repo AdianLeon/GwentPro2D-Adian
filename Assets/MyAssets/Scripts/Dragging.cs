@@ -78,7 +78,7 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 
                 Destroy(placeholder);//Destruye el espacio creado
                 
-                if(this.transform.parent!=hand.transform){//Si el objeto sale de la mano
+                if(this.transform.parent!=hand.transform && this.transform.parent!=GameObject.Find("Trash").transform){//Si el objeto sale de la mano y no esta en la basura
 
                     isDraggable=false;//Quita la propiedad isDraggable de la carta
 
@@ -87,9 +87,9 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                     }else if(whichField==fields.P2){//Si es campo de P2 anade la carta a la lista de cartas del campo del P2
                         TotalFieldForce.P2PlayedCards.Add(thisCard);
                     }
-
                     TurnManager.PlayCard(thisCard);//En cualquier caso juega la carta
-                    
+                }else{
+                    GetComponent<CanvasGroup>().blocksRaycasts=true;//Desactiva la penetracion de la carta para que podamos arrastrarla de nuevo
                 }
             }else{
                 this.transform.SetParent(hand.transform);//Devuelve la carta a la mano

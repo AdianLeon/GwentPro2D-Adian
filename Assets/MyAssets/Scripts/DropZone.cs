@@ -15,8 +15,7 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
     public void OnPointerExit(PointerEventData eventData)
     {}
     //Detecta cuando se suelta una carta en una zona valida
-    public void OnDrop(PointerEventData eventData)
-    {
+    public void OnDrop(PointerEventData eventData){
         //Cambia donde se queda la carta, en vez de quedarse en la mano ahora se queda en la zona soltada si es valida
         Dragging d=eventData.pointerDrag.GetComponent<Dragging>();
         if(d!=null){

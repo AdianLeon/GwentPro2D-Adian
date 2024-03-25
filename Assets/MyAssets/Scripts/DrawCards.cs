@@ -8,7 +8,7 @@ public class DrawCards : MonoBehaviour
     public GameObject Card1,Card2,Card3,Card4,Card5,Card6,Card7,Card8,Card9,Card10,Card11,Card12,Card13,Card14,Card15,
     Card16,Card17,Card18,Card19,Card20,Card21,Card22,Card23,Card24,Card25;
     public GameObject PlayerArea;
-    List <GameObject> cards = new List <GameObject>();//Lista de cartas
+    public List <GameObject> cards = new List <GameObject>();//Lista de cartas
     static int n=0;
     void Start()
     {

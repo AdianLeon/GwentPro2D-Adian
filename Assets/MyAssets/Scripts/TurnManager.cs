@@ -91,6 +91,7 @@ Debug.Log("P1=P2");
         }else{
             PlayerTurn=1;
             CardsPlayed=0;
+            ExtraDrawCard.firstTurn=false;
         }
     }
 }
