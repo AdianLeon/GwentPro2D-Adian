@@ -69,7 +69,7 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public void OnEndDrag(PointerEventData eventData)
     {
     if(isDraggable){
-            if(TurnManager.CardsPlayed<1){//Solo una carta por turno
+            if(TurnManager.CardsPlayed<1 || TurnManager.lastTurn){//Solo una carta por turno
 
                 this.transform.SetParent(parentToReturnTo);
                 this.transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());//Posiciona la carta en el espacio
@@ -77,8 +77,37 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 GetComponent<CanvasGroup>().blocksRaycasts=true;//Desactiva la penetracion de la carta para que podamos arrastrarla de nuevo
                 
                 Destroy(placeholder);//Destruye el espacio creado
-                
-                if(this.transform.parent!=hand.transform && this.transform.parent!=GameObject.Find("Trash").transform){//Si el objeto sale de la mano y no esta en la basura
+                if(cardType==rank.Senuelo){
+                    //Obteniendo el objeto al que el mouse apunta
+                    GameObject Choosed=null;
+                    if(whichField==fields.P1){
+                        for(int i=0;i<TotalFieldForce.P1PlayedCards.Count;i++){
+                            if(CardView.cardName==TotalFieldForce.P1PlayedCards[i].name){
+                                Choosed=TotalFieldForce.P1PlayedCards[i];
+                                Effects.SwapObjects(this.gameObject,Choosed);
+                                Choosed.GetComponent<Dragging>().isDraggable=true;
+                                isDraggable=false;
+                                TotalFieldForce.P1PlayedCards.Add(thisCard);
+                                TotalFieldForce.P1PlayedCards.Remove(Choosed);
+                                TurnManager.PlayCard(thisCard);
+                                break;
+                            }
+                        }
+                    }else if(whichField==fields.P2){
+                        for(int i=0;i<TotalFieldForce.P2PlayedCards.Count;i++){
+                            if(CardView.cardName==TotalFieldForce.P2PlayedCards[i].name){
+                                Choosed=TotalFieldForce.P2PlayedCards[i];
+                                Effects.SwapObjects(this.gameObject,Choosed);
+                                Choosed.GetComponent<Dragging>().isDraggable=true;
+                                isDraggable=false;
+                                TotalFieldForce.P2PlayedCards.Add(thisCard);
+                                TotalFieldForce.P2PlayedCards.Remove(Choosed);
+                                TurnManager.PlayCard(thisCard);
+                                break;
+                            }
+                        }
+                    }
+                }else if(this.transform.parent!=hand.transform && this.transform.parent!=GameObject.Find("Trash").transform){//Si el objeto sale de la mano y no esta en la basura
 
                     isDraggable=false;//Quita la propiedad isDraggable de la carta
 
@@ -87,7 +116,7 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                     }else if(whichField==fields.P2){//Si es campo de P2 anade la carta a la lista de cartas del campo del P2
                         TotalFieldForce.P2PlayedCards.Add(thisCard);
                     }
-                    TurnManager.PlayCard(thisCard);//En cualquier caso juega la carta
+                    TurnManager.PlayCard(thisCard);//Independientemente del campo juega la carta
                 }else{
                     GetComponent<CanvasGroup>().blocksRaycasts=true;//Desactiva la penetracion de la carta para que podamos arrastrarla de nuevo
                 }

@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 public class ExtraDrawCard : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {//Script para intercambiar hasta 2 cartas de la mano con una random del deck
     public static bool firstTurn=true;//Solo es valido el intercambio para los primeros turnos
+    public static bool firstAction=true;
     int twice;//Para controlar cuantas cartas lleva el jugador
     public Dragging.fields whichField;//Campos de dragging
     //Funciones necesarias para controlar si el puntero esta encima de la carta
@@ -16,7 +17,7 @@ public class ExtraDrawCard : MonoBehaviour, IDropHandler, IPointerEnterHandler, 
     {}
     //Detecta cuando se suelta una carta en una zona valida
     public void OnDrop(PointerEventData eventData){
-        if(twice<2 && firstTurn){//Solo se ejecuta si han sido menos de 2 y si es el primer turno
+        if(twice<2 && firstTurn && firstAction){//Solo se ejecuta si han sido menos de 2 y si es el primer turno
             Dragging d=eventData.pointerDrag.GetComponent<Dragging>();//Componente Dragging de la carta
             if(d!=null){//Si el componente se encuentra
                 if(whichField==d.whichField)//Si se esta soltando en el deck del campo correcto
@@ -54,7 +55,7 @@ public class ExtraDrawCard : MonoBehaviour, IDropHandler, IPointerEnterHandler, 
                         Card.transform.SetParent(playerDeck.GetComponent<DrawCards>().PlayerArea.transform,false);//Se pone en la mano
                         Card.GetComponent<CanvasGroup>().blocksRaycasts=true;//Esto es importante, permite asegurar que se puede arrastrar la carta
                         playerDeck.GetComponent<DrawCards>().cards.Remove(picked);//Se quita de la lista
-                        twice++;//Controla cuantas veces has intercambaido
+                        twice++;//Controla cuantas veces has intercambiado
 
                     }
 

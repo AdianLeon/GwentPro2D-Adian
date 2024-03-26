@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Effects : MonoBehaviour
 {
@@ -120,5 +122,21 @@ public class Effects : MonoBehaviour
             Graveyard.ToGraveyard(cardsInSlot[i].gameObject);//Mandando las cartas del slot para el cementerio
         }
         Debug.Log("After: "+cardsInSlot.Length+" y "+card.transform.parent.childCount);
+    }
+    public static void SwapObjects(GameObject Card1,GameObject Card2){
+        GameObject placehold=new GameObject();//Creamos un objeto auxiliar
+        placehold.transform.SetParent(Card1.transform.parent);
+        LayoutElement le=placehold.AddComponent<LayoutElement>();//Crea un espacio para saber donde esta el placeholder
+        le.preferredWidth=Card1.GetComponent<LayoutElement>().preferredWidth;
+        le.preferredHeight=Card1.GetComponent<LayoutElement>().preferredHeight;
+        placehold.transform.SetSiblingIndex(Card1.transform.GetSiblingIndex());
+
+        Card1.transform.SetParent(Card2.transform.parent);
+        Card1.transform.SetSiblingIndex(Card2.transform.GetSiblingIndex());
+
+        Card2.transform.SetParent(placehold.transform.parent);
+        Card2.transform.SetSiblingIndex(placehold.transform.GetSiblingIndex());
+
+        Destroy(placehold);
     }
 }
