@@ -39,6 +39,14 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
             //Activa la penetracion de la carta por el puntero para que podamos soltarla
             GetComponent<CanvasGroup>().blocksRaycasts=false;
+
+            DropZone[] zones=GameObject.FindObjectsOfType<DropZone>();
+            for(int i=0;i<zones.Length;i++){
+                if((zones[i].cardType==this.cardType && zones[i].whichField==this.whichField) || (rank.Clima==this.cardType) && (rank.Clima==zones[i].cardType)){
+                    //El condicional solo se ejecuta si la carta y la dropzone son del mismo tipo y campo, o si son de clima
+                    zones[i].GetComponent<Image>().color=new Color (1,1,0,0.1f);
+                }
+            }
         }
     }
 
@@ -130,6 +138,14 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 Destroy(placeholder);//Destruye el espacio creado
             }
             TotalFieldForce.UpdateForce();
+
+            DropZone[] zones=GameObject.FindObjectsOfType<DropZone>();
+            for(int i=0;i<zones.Length;i++){
+                if((zones[i].cardType==this.cardType && zones[i].whichField==this.whichField) || (rank.Clima==this.cardType) && (rank.Clima==zones[i].cardType)){
+                    //El condicional solo se ejecuta si la carta y la dropzone son del mismo tipo y campo, o si son de clima
+                    zones[i].GetComponent<Image>().color=new Color (0,0,0,0);
+                }
+            }
         }
     }
 }

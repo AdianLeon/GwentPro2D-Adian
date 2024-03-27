@@ -157,9 +157,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4868f4be6b435343a07e86d1f748b15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Picked: {fileID: 1072672301799576032}
+  id: 0
   power: 0
+  addedPower: 0
   isPlayed: 0
-  wRank: 0
+  hasEffect: 0
+  affected: 00000000
   wQuality: 0
-  wField: 0

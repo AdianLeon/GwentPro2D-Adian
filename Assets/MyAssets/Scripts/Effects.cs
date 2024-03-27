@@ -41,7 +41,8 @@ public class Effects : MonoBehaviour
         }
         if(target!=null){
             for(int i=0;i<target.transform.childCount;i++){
-                        target.transform.GetChild(i).GetComponent<Card>().addedPower++;//Aumenta el poder en 1
+                if(target.transform.GetChild(i).GetComponent<Card>().wQuality!=Card.quality.Gold)     
+                    target.transform.GetChild(i).GetComponent<Card>().addedPower++;//Aumenta el poder en 1
             }
             Graveyard.ToGraveyard(card);//Envia la carta usada al cementerio
         }
@@ -61,13 +62,13 @@ public class Effects : MonoBehaviour
         }
         if(target1!=null && target2!=null ){
             for(int i=0;i<target1.transform.childCount;i++){//Disminuye en 1 el poder de la fila seleccionada y lo marca
-                if(target1.transform.GetChild(i).GetComponent<Card>().affected[card.GetComponent<Card>().id]==false){
+                if(target1.transform.GetChild(i).GetComponent<Card>().affected[card.GetComponent<Card>().id]==false && target1.transform.GetChild(i).GetComponent<Card>().wQuality!=Card.quality.Gold){
                     target1.transform.GetChild(i).GetComponent<Card>().addedPower--;
                     target1.transform.GetChild(i).GetComponent<Card>().affected[card.GetComponent<Card>().id]=true;
                 }
             }
             for(int i=0;i<target2.transform.childCount;i++){
-                if(target2.transform.GetChild(i).GetComponent<Card>().affected[card.GetComponent<Card>().id]==false){
+                if(target2.transform.GetChild(i).GetComponent<Card>().affected[card.GetComponent<Card>().id]==false && target2.transform.GetChild(i).GetComponent<Card>().wQuality!=Card.quality.Gold){
                     target2.transform.GetChild(i).GetComponent<Card>().addedPower--;
                     target2.transform.GetChild(i).GetComponent<Card>().affected[card.GetComponent<Card>().id]=true;
                 }
@@ -108,10 +109,13 @@ public class Effects : MonoBehaviour
         if((target1!=null && target2!=null) && parent!=null){
             for(int j=0;j<card.transform.parent.childCount-1;j++){//Deshaciendo el efecto de clima
                 for(int i=0;i<target1.transform.childCount;i++){
-                    target1.transform.GetChild(i).GetComponent<Card>().addedPower++;
+                    if(target1.transform.GetChild(i).GetComponent<Card>().wQuality!=Card.quality.Gold)
+                        target1.transform.GetChild(i).GetComponent<Card>().addedPower++;
+                        //Como la carta  de clima solo puede afectar una sola vez por partida no reiniciaremos el array affected a false
                 }
                 for(int i=0;i<target2.transform.childCount;i++){
-                    target2.transform.GetChild(i).GetComponent<Card>().addedPower++;
+                    if(target2.transform.GetChild(i).GetComponent<Card>().wQuality!=Card.quality.Gold)
+                        target2.transform.GetChild(i).GetComponent<Card>().addedPower++;
                 }
             }
         }
