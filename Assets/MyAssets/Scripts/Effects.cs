@@ -12,7 +12,7 @@ public class Effects : MonoBehaviour
         }
     }
     public static void Effect(GameObject card){
-        if(card.GetComponent<Card>().id==8 || card.GetComponent<Card>().id==9 || card.GetComponent<Card>().id==10){//Carta aumento
+        if(card.GetComponent<Dragging>().cardType==Dragging.rank.Aumento){//Carta aumento
             AumEffect(card);
         }
 
@@ -121,11 +121,9 @@ public class Effects : MonoBehaviour
         }
         Card[] cardsInSlot=parent.GetComponentsInChildren<Card>();//Lista de los componenetes Card en el slot que sea
         for(int i=card.transform.parent.childCount-1;i>=0;i--){//Se recorre esa lista de atras hacia adelante para que la ultima en
-            Debug.Log("Iteracion#: "+i);//enviarse al cementerio sea la carta despeje
-            Debug.Log(cardsInSlot[i]);
+            Debug.Log(cardsInSlot[i]);//enviarse al cementerio sea la carta despeje
             Graveyard.ToGraveyard(cardsInSlot[i].gameObject);//Mandando las cartas del slot para el cementerio
         }
-        Debug.Log("After: "+cardsInSlot.Length+" y "+card.transform.parent.childCount);
     }
     public static void SwapObjects(GameObject Card1,GameObject Card2){
         GameObject placehold=new GameObject();//Creamos un objeto auxiliar
@@ -142,5 +140,52 @@ public class Effects : MonoBehaviour
         Card2.transform.SetSiblingIndex(placehold.transform.GetSiblingIndex());
 
         Destroy(placehold);
+    }
+    public static void Senuelo(GameObject thisCard){
+        GameObject choosed=null;//Guarda el objeto escogido para ser intercambiado con el senuelo
+        Dragging.fields whichField=thisCard.GetComponent<Dragging>().whichField;//campo del senuelo
+        if(whichField==Dragging.fields.P1){//Si el senuelo es de P1
+            for(int i=0;i<TotalFieldForce.P1PlayedCards.Count;i++){//Se busca en las cartas jugadas por P1
+                if(CardView.cardName==TotalFieldForce.P1PlayedCards[i].name){//La que coincida en nombre con la ultima carta que se le paso el mouse por encima
+                    if(TotalFieldForce.P1PlayedCards[i].GetComponent<Dragging>().cardType!=Dragging.rank.Clima){ //Si ademas no es de clima
+                        choosed=TotalFieldForce.P1PlayedCards[i];//La carta es valida para cambiar por el senuelo
+                        Effects.SwapObjects(thisCard,choosed);//Se cambian de posicion
+                        choosed.GetComponent<Dragging>().isDraggable=true;//La escogida ahora es arrastrable como cualquier otra de la mano
+                        TotalFieldForce.P1PlayedCards.Add(thisCard);//Se anade el senuelo a las cartas jugadas de P1
+                        TotalFieldForce.P1PlayedCards.Remove(choosed);//Se quita choosed de las cartas jugadas de P1
+                        for(int j=0;j<choosed.GetComponent<Card>().affected.Length;j++){//Deshace el efecto de clima cuando la carta vuelve a 
+                        //la mano, el senuelo recibira el clima como consecuencia de la llamada de UpdateClima
+                            if(choosed.GetComponent<Card>().affected[j]){//Si esta afectado, se deshace
+                                choosed.GetComponent<Card>().affected[j]=false;
+                                choosed.GetComponent<Card>().addedPower++;
+                            }
+                        }
+                        TurnManager.PlayCard(thisCard);//Se juega el senuelo como cualquier otra carta
+                        break;//Se sale del bucle pues ya cambiamos el senuelo por la carta indicada
+                    }
+                }
+            }
+        }else if(whichField==Dragging.fields.P2){//Si el senuelo es de P2
+            for(int i=0;i<TotalFieldForce.P2PlayedCards.Count;i++){//Se busca en las cartas jugadas por P2
+                if(CardView.cardName==TotalFieldForce.P2PlayedCards[i].name){//La que coincida en nombre con la ultima carta que se le paso el mouse por encima
+                    if(TotalFieldForce.P2PlayedCards[i].GetComponent<Dragging>().cardType!=Dragging.rank.Clima){ //Si ademas no es de clima
+                        choosed=TotalFieldForce.P2PlayedCards[i];//La carta es valida para cambiar por el senuelo
+                        Effects.SwapObjects(thisCard,choosed);//Se cambian de posicion
+                        choosed.GetComponent<Dragging>().isDraggable=true;//La escogida ahora es arrastrable como cualquier otra de la mano
+                        TotalFieldForce.P2PlayedCards.Add(thisCard);//Se anade el senuelo a las cartas jugadas de P2
+                        TotalFieldForce.P2PlayedCards.Remove(choosed);//Se quita choosed de las cartas jugadas de P2
+                        for(int j=0;j<choosed.GetComponent<Card>().affected.Length;j++){//Deshace el efecto de clima cuando la carta vuelve a 
+                        //la mano, el senuelo recibira el clima como consecuencia de la llamada de UpdateClima
+                            if(choosed.GetComponent<Card>().affected[j]){//Si esta afectado, se deshace
+                                choosed.GetComponent<Card>().affected[j]=false;
+                                choosed.GetComponent<Card>().addedPower++;
+                            }
+                        }                
+                        TurnManager.PlayCard(thisCard);//Se juega el senuelo como cualquier otra carta
+                        break;//Se sale del bucle pues ya cambiamos el senuelo por la carta indicada
+                    }
+                }
+            }
+        }
     }
 }

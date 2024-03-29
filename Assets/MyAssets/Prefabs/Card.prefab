@@ -144,7 +144,7 @@ MonoBehaviour:
   thisCard: {fileID: 1072672301799576032}
   isDraggable: 0
   cardType: 0
-  whichField: 0
+  whichField: 1
 --- !u!114 &-7070421257807693507
 MonoBehaviour:
   m_ObjectHideFlags: 0

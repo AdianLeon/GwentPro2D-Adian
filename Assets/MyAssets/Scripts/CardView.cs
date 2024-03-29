@@ -10,6 +10,7 @@ public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public GameObject card;
     public static string cardName;
     void Start(){
+        card=this.gameObject;
     }
     //Funciones necesarias para controlar si el puntero esta encima de la carta
     public void OnPointerEnter(PointerEventData eventData)

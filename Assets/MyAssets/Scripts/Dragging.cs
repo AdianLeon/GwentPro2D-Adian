@@ -13,7 +13,7 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public GameObject thisCard;
     public bool isDraggable;
     //Crea tipos de rango para cada carta
-    public enum rank{Melee,Ranged,Siege,Aumento,Clima,Senuelo};//********Vincular con la prop de la carta////
+    public enum rank{Melee,Ranged,Siege,Aumento,Clima,Senuelo,Despeje};//********Vincular con la prop de la carta////
     public rank cardType;
     public enum fields{None,P1,P2};
     public fields whichField;
@@ -42,9 +42,12 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
             DropZone[] zones=GameObject.FindObjectsOfType<DropZone>();
             for(int i=0;i<zones.Length;i++){
-                if((zones[i].cardType==this.cardType && zones[i].whichField==this.whichField) || (rank.Clima==this.cardType) && (rank.Clima==zones[i].cardType)){
-                    //El condicional solo se ejecuta si la carta y la dropzone son del mismo tipo y campo, o si son de clima
-                    zones[i].GetComponent<Image>().color=new Color (1,1,0,0.1f);
+                bool generalCase=(zones[i].cardType==this.cardType) && (zones[i].whichField==this.whichField);//Caso general es cualquier carta que no sea de clima, debe coincidir en tipo y campo
+                bool climaCase=(rank.Clima==this.cardType) && (rank.Clima==zones[i].cardType);//Caso clima es que tanto la carta como la zona sean tipo clima
+                bool usualCase=(generalCase || climaCase) && TurnManager.CardsPlayed==0;//El caso usual es cuando solo se puede jugar una carta y esta carta puede ser de caso general o clima
+                bool afterPassCase=(generalCase || climaCase) && TurnManager.lastTurn;//El caso afterPass es cuando un jugador pasa y ahora el otro puede jugar tantas cartas como quiera de caso general o clima
+                if(afterPassCase || usualCase){//Para cualquiera de los dos casos usual o afterPass iluminaremos la(s) zona(s) donde el jugador puede poner la carta
+                    zones[i].GetComponent<Image>().color=new Color (1,1,1,0.1f);
                 }
             }
         }
@@ -77,7 +80,7 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public void OnEndDrag(PointerEventData eventData)
     {
     if(isDraggable){
-            if(TurnManager.CardsPlayed<1 || TurnManager.lastTurn){//Solo una carta por turno
+            if(TurnManager.CardsPlayed<1 || TurnManager.lastTurn){//Solo cuando no se ha jugado una carta o si es el ultimo turno
 
                 this.transform.SetParent(parentToReturnTo);
                 this.transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());//Posiciona la carta en el espacio
@@ -85,40 +88,11 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 GetComponent<CanvasGroup>().blocksRaycasts=true;//Desactiva la penetracion de la carta para que podamos arrastrarla de nuevo
                 
                 Destroy(placeholder);//Destruye el espacio creado
-                if(cardType==rank.Senuelo){
-                    //Obteniendo el objeto al que el mouse apunta
-                    GameObject Choosed=null;
-                    if(whichField==fields.P1){
-                        for(int i=0;i<TotalFieldForce.P1PlayedCards.Count;i++){
-                            if(CardView.cardName==TotalFieldForce.P1PlayedCards[i].name){
-                                Choosed=TotalFieldForce.P1PlayedCards[i];
-                                Effects.SwapObjects(this.gameObject,Choosed);
-                                Choosed.GetComponent<Dragging>().isDraggable=true;
-                                isDraggable=false;
-                                TotalFieldForce.P1PlayedCards.Add(thisCard);
-                                TotalFieldForce.P1PlayedCards.Remove(Choosed);
-                                TurnManager.PlayCard(thisCard);
-                                break;
-                            }
-                        }
-                    }else if(whichField==fields.P2){
-                        for(int i=0;i<TotalFieldForce.P2PlayedCards.Count;i++){
-                            if(CardView.cardName==TotalFieldForce.P2PlayedCards[i].name){
-                                Choosed=TotalFieldForce.P2PlayedCards[i];
-                                Effects.SwapObjects(this.gameObject,Choosed);
-                                Choosed.GetComponent<Dragging>().isDraggable=true;
-                                isDraggable=false;
-                                TotalFieldForce.P2PlayedCards.Add(thisCard);
-                                TotalFieldForce.P2PlayedCards.Remove(Choosed);
-                                TurnManager.PlayCard(thisCard);
-                                break;
-                            }
-                        }
-                    }
+                if(cardType==rank.Senuelo){//Efecto del senuelo
+                    //Obteniendo el objeto al que el mouse apunta, una vez le pases por encima lo habras seleccionado, si se desea cancelar la accion del senuelo se debe retornar el senuelo a la mano
+                    Effects.Senuelo(this.gameObject);
                 }else if(this.transform.parent!=hand.transform && this.transform.parent!=GameObject.Find("Trash").transform){//Si el objeto sale de la mano y no esta en la basura
-
-                    isDraggable=false;//Quita la propiedad isDraggable de la carta
-
+                //CAMBIAR ESTOOOOOO
                     if(whichField==fields.P1){//Si es campo de P1 anade la carta a la lista de cartas del campo del P2
                         TotalFieldForce.P1PlayedCards.Add(thisCard);
                     }else if(whichField==fields.P2){//Si es campo de P2 anade la carta a la lista de cartas del campo del P2
@@ -139,12 +113,10 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             }
             TotalFieldForce.UpdateForce();
 
+            //Cada vez que se suelte una carta necesitamos desactivar el glow de cualquier zona que hayamos iluminado
             DropZone[] zones=GameObject.FindObjectsOfType<DropZone>();
             for(int i=0;i<zones.Length;i++){
-                if((zones[i].cardType==this.cardType && zones[i].whichField==this.whichField) || (rank.Clima==this.cardType) && (rank.Clima==zones[i].cardType)){
-                    //El condicional solo se ejecuta si la carta y la dropzone son del mismo tipo y campo, o si son de clima
-                    zones[i].GetComponent<Image>().color=new Color (0,0,0,0);
-                }
+                zones[i].GetComponent<Image>().color=new Color (1,1,1,0);
             }
         }
     }

@@ -5,29 +5,20 @@ using UnityEngine.UI;
 //Script para el deck
 public class DrawCards : MonoBehaviour
 {
-    public GameObject Card1,Card2,Card3,Card4,Card5,Card6,Card7,Card8,Card9,Card10,Card11,Card12,Card13,Card14,Card15,
-    Card16,Card17,Card18,Card19,Card20,Card21,Card22,Card23,Card24,Card25;
     public GameObject PlayerArea;
     public List <GameObject> cards = new List <GameObject>();//Lista de cartas
-    static int n=0;
-    void Start()
-    {
-        //Anadiendo cartas al deck
-        n++;
-        cards.Add(Card1);cards.Add(Card2);cards.Add(Card3);cards.Add(Card4);cards.Add(Card5);cards.Add(Card6);cards.Add(Card7);
-        cards.Add(Card8);cards.Add(Card9);cards.Add(Card10);cards.Add(Card11);cards.Add(Card12);cards.Add(Card13);cards.Add(Card14);
-        cards.Add(Card15);cards.Add(Card16);cards.Add(Card17);cards.Add(Card18);cards.Add(Card19);cards.Add(Card20);cards.Add(Card21);
-        cards.Add(Card22);cards.Add(Card23);cards.Add(Card24);cards.Add(Card25);
-        if(n==2){//Este Start es ejecutado por dos decks, por eso se reparten las cartas la segunda vez porque es entonces cuando
-        //ambos tienen todas sus cartas
+    static int timesStarted=0;
+    static bool[] used=new bool[2];
+    void Start(){
+        timesStarted++;
+        if(timesStarted==2){//Este Start es ejecutado por dos decks, por eso se reparten las cartas la segunda vez porque es entonces cuando ambos tienen todas sus cartas
             for(int i=0;i<10;i++){
                 GameObject.Find("Deck").GetComponent<Button>().onClick.Invoke();
                 GameObject.Find("EnemyDeck").GetComponent<Button>().onClick.Invoke();
             }
         }
     }
-    //Toma una carta aleatoria y la coloca en la mano del jugador
-    public void OnClickP1()
+    public void OnClickP1()//Toma una carta aleatoria y la coloca en la mano de P1
     {
         PlayerArea=GameObject.Find("Hand");
         if(PlayerArea.transform.childCount<10 && cards.Count!=0)//Solo si el deck no esta vacio y si hay menos de 10 cartas en la mano
@@ -36,22 +27,18 @@ public class DrawCards : MonoBehaviour
             GameObject Card = Instantiate(picked,new Vector3(0,0,0),Quaternion.identity);//Se instancia un objeto de esa escogida
             Card.transform.SetParent(PlayerArea.transform,false);//Se pone en la mano
             cards.Remove(picked);//Se quita de la lista
-            TotalFieldForce.P1CardsLeft--;//Se reduce en uno el total de cartas en el deck
-            TotalFieldForce.UpdateP1Deck();//Asigna cuantas quedan al texto debajo del deck(P1)
 
         }else if(PlayerArea.transform.childCount>=10 && cards.Count!=0){
-            Debug.Log("Has robado una carta, pero como tienes la mano llena se ha enviado al cementerio (P1)");
+            RoundPoints.URWrite("Has robado una carta, pero como tienes la mano llena se ha enviado al cementerio");
             GameObject picked=cards[Random.Range(0,cards.Count)];//La escogida es aleatoria
             GameObject Card = Instantiate(picked,new Vector3(0,0,0),Quaternion.identity);//Se instancia un objeto de esa escogida
             Card.transform.SetParent(PlayerArea.transform,false);//Se pone en la mano para que tenga el tamano establecido
             Graveyard.ToGraveyard(Card);//Se envia al cementerio
             cards.Remove(picked);//Se quita de la lista
-            TotalFieldForce.P1CardsLeft--;//Se reduce en uno el total de cartas en el deck
-            TotalFieldForce.UpdateP1Deck();//Asigna cuantas quedan al texto debajo del deck(P1)
         }
     }
 
-    public void OnClickP2()
+    public void OnClickP2()//Toma una carta aleatoria y la coloca en la mano de P2
     {
         PlayerArea=GameObject.Find("EnemyHand");
         if(PlayerArea.transform.childCount<10 && cards.Count!=0)//Solo si el deck no esta vacio y si hay menos de 10 cartas en la mano
@@ -60,17 +47,97 @@ public class DrawCards : MonoBehaviour
             GameObject Card = Instantiate(picked,new Vector3(0,0,0),Quaternion.identity);//Se instancia un objeto de esa escogida
             Card.transform.SetParent(PlayerArea.transform,false);//Se pone en la mano
             cards.Remove(picked);//Se quita de la lista
-            TotalFieldForce.P2CardsLeft--;//Se reduce en uno el total de cartas en el deck
-            TotalFieldForce.UpdateP2Deck();//Asigna cuantas quedan al texto debajo del deck(P2)
         }else if(PlayerArea.transform.childCount>=10 && cards.Count!=0){
-            Debug.Log("Has robado una carta, pero como tienes la mano llena se ha enviado al cementerio (P2)");
+            RoundPoints.URWrite("Has robado una carta, pero como tienes la mano llena se ha enviado al cementerio");
             GameObject picked=cards[Random.Range(0,cards.Count)];//La escogida es aleatoria
             GameObject Card = Instantiate(picked,new Vector3(0,0,0),Quaternion.identity);//Se instancia un objeto de esa escogida
             Card.transform.SetParent(PlayerArea.transform,false);//Se pone en la mano para que tenga el tamano establecido
             Graveyard.ToGraveyard(Card);//Se envia al cementerio
             cards.Remove(picked);//Se quita de la lista
-            TotalFieldForce.P2CardsLeft--;//Se reduce en uno el total de cartas en el deck
-            TotalFieldForce.UpdateP2Deck();//Asigna cuantas quedan al texto debajo del deck(P2)
         }
+    }
+    public static void LeaderP1(){//Habilidad de lider, intento de robo
+        if(!used[0] && TurnManager.CardsPlayed==0){//Si la habilidad no ha sido usada aun en la partida
+            if(GameObject.Find("Hand").transform.childCount<9 && TurnManager.CardsPlayed==0){//Solo si las cartas de la mano son 8 o menos y es la primera carta que se juega 
+                if(GameObject.Find("EnemyHand").transform.childCount<3){//Si el enemigo tiene dos cartas
+                    RoundPoints.URWrite("Los minions intentaron robar dos cartas de la mano enemiga, pero como no tenia y les dio lastima las regresaron y le pidieron disculpas");
+                    TurnManager.CardsPlayed++;//Esta accion cuenta como carta jugada
+                    ExtraDrawCard.firstAction=false;//Ya no se puede intercambiar cartas con el deck propio si es el primer turno de la partida
+                }else{
+                    LeaderSkill("P1");//Activa la habilidad de lider para P1
+                    TurnManager.CardsPlayed++;//Esta accion cuenta como carta jugada
+                    ExtraDrawCard.firstAction=false;//Ya no se puede intercambiar cartas con el deck propio si es el primer turno de la partida
+                }
+            }else if(GameObject.Find("Hand").transform.childCount>8){//En el caso en que es la primera carta que se juega pero no hay espacio en la mano
+                RoundPoints.URWrite("Los minions robaron dos cartas pero no tienes suficiente espacio en la mano asi que las devolvieron y le pidieron disculpas al enemigo");
+                TurnManager.CardsPlayed++;//Esta accion cuenta como carta jugada
+                ExtraDrawCard.firstAction=false;//Ya no se puede intercambiar cartas si es el primer turno de la partida
+            }
+        }else if(used[0] && TurnManager.CardsPlayed==0){//Si la habilidad ha sido usada
+            RoundPoints.URWrite("Gru solo puede ordenarle a los minions que roben dos cartas enemigas una vez por partida");
+        }
+    }
+    public static void LeaderP2(){//Habilidad de lider, intento de robo
+        if(!used[1] && TurnManager.CardsPlayed==0){//Si la habilidad no ha sido usada aun en la partida
+            if(GameObject.Find("EnemyHand").transform.childCount<9 && TurnManager.CardsPlayed==0){//Solo si las cartas de la mano son 8 o menos y es la primera carta que se juega
+                if(GameObject.Find("Hand").transform.childCount<3){
+                    RoundPoints.URWrite("Los minions intentaron robar dos cartas de la mano enemiga, pero como no tenia y les dio lastima las regresaron y le pidieron disculpas");
+                    TurnManager.CardsPlayed++;//Esta accion cuenta como carta jugada
+                    ExtraDrawCard.firstAction=false;//Ya no se puede intercambiar cartas con el deck propio si es el primer turno de la partida
+                }else{
+                    LeaderSkill("P2");//Activa la habilidad de lider para P2
+                    TurnManager.CardsPlayed++;//Esta accion cuenta como carta jugada
+                    ExtraDrawCard.firstAction=false;//Ya no se puede intercambiar cartas con el deck propio si es el primer turno de la partida
+                }
+            }else if(GameObject.Find("EnemyHand").transform.childCount>8){//En el caso en que es la primera carta que se juega pero no hay espacio en la mano
+                RoundPoints.URWrite("Los minions robaron dos cartas pero no tienes suficiente espacio en la mano asi que las devolvieron y le pidieron disculpas al enemigo");
+                TurnManager.CardsPlayed++;//Esta accion cuenta como carta jugada
+                ExtraDrawCard.firstAction=false;//Ya no se puede intercambiar cartas si es el primer turno de la partida
+            }
+        }else if(used[1] && TurnManager.CardsPlayed==0){//Si la habilidad ha sido usada
+            RoundPoints.URWrite("Gru solo puede ordenarle a los minions que roben dos cartas enemigas una vez por partida");
+        }
+    }
+    public static void LeaderSkill(string whichPlayer){//Se pasa un string que identifica que jugador esta llamando la funcion
+        string playerToStealFrom;
+        int posInUsed;
+        if(whichPlayer=="P1"){
+            playerToStealFrom="P2";
+            posInUsed=0;
+        }else{
+            playerToStealFrom="P1";
+            posInUsed=1;
+        }
+        if(!used[posInUsed]){
+            int r=Random.Range(0,4);
+            if(r==0 || r==1){//Se roba 2 cartas al enemigo
+                StealFrom(playerToStealFrom);
+                StealFrom(playerToStealFrom);
+                RoundPoints.URWrite("Los minions han robado dos cartas de la mano enemiga");
+            }else if(r==2){//Se roba una carta de la mano enemiga
+                StealFrom(playerToStealFrom);
+                RoundPoints.URWrite("Los minions han intentado robar dos cartas al enemigo, pero ha logrado recuperar una");
+            }else{//No pasa nada
+                RoundPoints.URWrite("Los minions intentaron robar dos cartas al enemigo, pero salio mal y recupero ambas");
+            }
+        }
+        used[posInUsed]=true;
+    }
+    public static void StealFrom(string playerToStealFrom){
+        GameObject stealArea=null;
+        GameObject stealerArea=null;
+        Dragging.fields stealerField;
+        if(playerToStealFrom=="P1"){
+            stealArea=GameObject.Find("Hand");
+            stealerArea=GameObject.Find("EnemyHand");
+            stealerField=Dragging.fields.P2;
+        }else{
+            stealArea=GameObject.Find("EnemyHand");
+            stealerArea=GameObject.Find("Hand");
+            stealerField=Dragging.fields.P1;
+        }
+            GameObject stolenCard=stealArea.transform.GetChild(Random.Range(0,stealArea.transform.childCount)).gameObject;//Escoge una carta aleatoria de la mano
+            stolenCard.transform.SetParent(stealerArea.transform);//Pone la carta robada en la mano del ladron
+            stolenCard.GetComponent<Dragging>().whichField=stealerField;//Cambia el campo de la carta
     }
 }

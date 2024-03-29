@@ -22,7 +22,7 @@ public class PlayerCondition : MonoBehaviour
         }
     }
     public static void GameWin(string player){//El jugador gana la partida
-        Debug.Log("Felicidades "+player+". Has ganado la partida!!");
+        RoundPoints.URWrite("Felicidades "+player+". Has ganado la partida!!");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex-1);
     }
 }
