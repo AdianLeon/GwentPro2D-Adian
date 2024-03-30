@@ -13,8 +13,7 @@ public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         card=this.gameObject;
     }
     //Funciones necesarias para controlar si el puntero esta encima de la carta
-    public void OnPointerEnter(PointerEventData eventData)
-    {
+    public void OnPointerEnter(PointerEventData eventData){
         //Poniendo el sprite de la carta en el objeto gigante de la izquierda de la pantalla
         GameObject.Find("CardPreview").GetComponent<Image>().sprite=card.GetComponent<Image>().sprite;
         cardName=card.name;
@@ -23,6 +22,7 @@ public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         //else{GameObject.Find("AddedPower").GetComponent<Testrapro>().text=card.GetComponent<Card>().addedPower.ToString();}
     }
     //Esta funcion es necesaria, no hace nada pero es necesaria
-    public void OnPointerExit(PointerEventData eventData)
-    {}
+    public void OnPointerExit(PointerEventData eventData){
+        cardName="None";
+    }
 }

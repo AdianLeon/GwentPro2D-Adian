@@ -28,7 +28,6 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             //Guarda la posicion a la que volver si soltamos en lugar invalido y crea un espacio en el lugar de la carta
             placeholder=new GameObject();//Crea el placeholder y le asigna los mismos valores que a la carta y la posicion de la carta
             placeholder.transform.SetParent(this.transform.parent);
-
             LayoutElement le=placeholder.AddComponent<LayoutElement>();//Crea un espacio para saber donde esta el placeholder
             le.preferredWidth=this.GetComponent<LayoutElement>().preferredWidth;
             le.preferredHeight=this.GetComponent<LayoutElement>().preferredHeight;
@@ -40,6 +39,7 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             //Activa la penetracion de la carta por el puntero para que podamos soltarla
             GetComponent<CanvasGroup>().blocksRaycasts=false;
 
+            //Haciendo que las zonas donde se pueda soltar la carta "brillen"
             DropZone[] zones=GameObject.FindObjectsOfType<DropZone>();
             for(int i=0;i<zones.Length;i++){
                 bool generalCase=(zones[i].cardType==this.cardType) && (zones[i].whichField==this.whichField);//Caso general es cualquier carta que no sea de clima, debe coincidir en tipo y campo
@@ -58,15 +58,11 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         if(isDraggable){
             this.transform.position=eventData.position;//Actualiza la posicion de la carta con la del puntero
-
             int newSiblingIndex=parentToReturnTo.childCount;//Guarda el indice del espacio de la derecha
-            for(int i=0;i<parentToReturnTo.childCount;i++)//Chequeando constantemente si se ha pasado de la posicion de otra carta
-            {   
-                if(this.transform.position.x<parentToReturnTo.GetChild(i).position.x)
-                {
+            for(int i=0;i<parentToReturnTo.childCount;i++){//Chequeando constantemente si se ha pasado de la posicion de otra carta   
+                if(this.transform.position.x<parentToReturnTo.GetChild(i).position.x){
                     newSiblingIndex=i;//Actualiza el valor guardado con el actual
-                    if(placeholder.transform.GetSiblingIndex()<newSiblingIndex)//Si la posicion del espacio es menor que la guardada
-                    {
+                    if(placeholder.transform.GetSiblingIndex()<newSiblingIndex){//Si la posicion del espacio es menor que la guardada
                         newSiblingIndex--;
                     }
                     break;
@@ -74,22 +70,31 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             }
             placeholder.transform.SetSiblingIndex(newSiblingIndex);//Pone el espacio debajo de la carta
         }
+        //Si la carta es senuelo la zona que "brilla" es la de la carta seleccionada
+        if(this.cardType==rank.Senuelo){
+            for(int i=0;i<TurnManager.PlayedCards.Count;i++){
+                if(TurnManager.PlayedCards[i].name!=CardView.cardName){
+                    TurnManager.PlayedCards[i].transform.parent.GetComponent<Image>().color=new Color (1,1,1,0);
+                }
+            }
+            for(int i=0;i<TurnManager.PlayedCards.Count;i++){
+                if(TurnManager.PlayedCards[i].name==CardView.cardName){
+                    TurnManager.PlayedCards[i].transform.parent.GetComponent<Image>().color=new Color (1,1,1,0.1f);
+                    break;
+                }
+            }
+        }
     }
 
     //Cuando termina el arrastre pone la carta en donde guardamos
-    public void OnEndDrag(PointerEventData eventData)
-    {
-    if(isDraggable){
+    public void OnEndDrag(PointerEventData eventData){
+        if(isDraggable){
             if(TurnManager.CardsPlayed<1 || TurnManager.lastTurn){//Solo cuando no se ha jugado una carta o si es el ultimo turno
-
                 this.transform.SetParent(parentToReturnTo);
                 this.transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());//Posiciona la carta en el espacio
-                
                 GetComponent<CanvasGroup>().blocksRaycasts=true;//Desactiva la penetracion de la carta para que podamos arrastrarla de nuevo
-                
                 Destroy(placeholder);//Destruye el espacio creado
                 if(cardType==rank.Senuelo){//Efecto del senuelo
-                    //Obteniendo el objeto al que el mouse apunta, una vez le pases por encima lo habras seleccionado, si se desea cancelar la accion del senuelo se debe retornar el senuelo a la mano
                     Effects.Senuelo(this.gameObject);
                 }else if(this.transform.parent!=hand.transform && this.transform.parent!=GameObject.Find("Trash").transform){//Si el objeto sale de la mano y no esta en la basura
                 //CAMBIAR ESTOOOOOO
@@ -104,15 +109,11 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 }
             }else{
                 this.transform.SetParent(hand.transform);//Devuelve la carta a la mano
-
                 this.transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());//Posiciona la carta en el espacio
-                
                 GetComponent<CanvasGroup>().blocksRaycasts=true;//Desactiva la penetracion de la carta para que podamos arrastrarla de nuevo
-                
                 Destroy(placeholder);//Destruye el espacio creado
             }
             TotalFieldForce.UpdateForce();
-
             //Cada vez que se suelte una carta necesitamos desactivar el glow de cualquier zona que hayamos iluminado
             DropZone[] zones=GameObject.FindObjectsOfType<DropZone>();
             for(int i=0;i<zones.Length;i++){

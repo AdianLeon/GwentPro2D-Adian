@@ -110,11 +110,11 @@ public class DrawCards : MonoBehaviour
         }
         if(!used[posInUsed]){
             int r=Random.Range(0,4);
-            if(r==0 || r==1){//Se roba 2 cartas al enemigo
+            if(r==0){//Se roba 2 cartas al enemigo
                 StealFrom(playerToStealFrom);
                 StealFrom(playerToStealFrom);
                 RoundPoints.URWrite("Los minions han robado dos cartas de la mano enemiga");
-            }else if(r==2){//Se roba una carta de la mano enemiga
+            }else if(r==1 || r==2){//Se roba una carta de la mano enemiga
                 StealFrom(playerToStealFrom);
                 RoundPoints.URWrite("Los minions han intentado robar dos cartas al enemigo, pero ha logrado recuperar una");
             }else{//No pasa nada

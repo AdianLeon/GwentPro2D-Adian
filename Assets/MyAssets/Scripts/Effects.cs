@@ -47,7 +47,7 @@ public class Effects : MonoBehaviour
             Graveyard.ToGraveyard(card);//Envia la carta usada al cementerio
         }
     }
-    public static void ClimaEffect(GameObject card){//Esto es una idea, hay que hacerlo de efecto constante
+    public static void ClimaEffect(GameObject card){
         GameObject target1=null;//Objetivos a los que quitarle 1 de poder a los hijos
         GameObject target2=null;
         if(card.transform.parent==GameObject.Find("ClimaZoneM").transform){//Si la zona en la que esta la carta es x, afecta a tales zonas
