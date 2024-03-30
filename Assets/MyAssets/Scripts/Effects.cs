@@ -14,15 +14,48 @@ public class Effects : MonoBehaviour
     public static void Effect(GameObject card){
         if(card.GetComponent<Dragging>().cardType==Dragging.rank.Aumento){//Carta aumento
             AumEffect(card);
-        }
-
-        if(card.GetComponent<Card>().id==0 || card.GetComponent<Card>().id==1 || card.GetComponent<Card>().id==2 || card.GetComponent<Card>().id==3){//Carta clima
+        }else if(card.GetComponent<Card>().id==0 || card.GetComponent<Card>().id==1 || card.GetComponent<Card>().id==2 || card.GetComponent<Card>().id==3){//Carta clima
             ClimaEffect(card);
+        }else if(card.GetComponent<Card>().id==4 || card.GetComponent<Card>().id==5){//Carta despeje
+            DespejeEffect(card);
+        }else if(card.GetComponent<Card>().id==6){//El macho
+            MostPowerEffect(card);
+        }else if(card.GetComponent<Card>().id==7){//Vector
+            LessPowerEffect(card);
+        }else if(card.GetComponent<Card>().id==8){//Scarlet Overkill
+            DrawCardEffect(card);
+        }else{
+            Debug.Log(card+" tiene hasEffect activado pero no tiene efecto");
+        }
+    }
+    public static void ZonesGlow(GameObject thisCard){
+        DropZone[] zones=GameObject.FindObjectsOfType<DropZone>();
+        for(int i=0;i<zones.Length;i++){
+            bool generalCase=(zones[i].GetComponent<DropZone>().cardType==thisCard.GetComponent<Dragging>().cardType) && (zones[i].GetComponent<DropZone>().whichField==thisCard.GetComponent<Dragging>().whichField);//Caso general es cualquier carta que no sea de clima, debe coincidir en tipo y campo
+            bool climaCase=(Dragging.rank.Clima==thisCard.GetComponent<Dragging>().cardType) && (Dragging.rank.Clima==zones[i].GetComponent<DropZone>().cardType);//Caso clima es que tanto la carta como la zona sean tipo clima
+            bool usualCase=(generalCase || climaCase) && TurnManager.CardsPlayed==0;//El caso usual es cuando solo se puede jugar una carta y esta carta puede ser de caso general o clima
+            bool afterPassCase=(generalCase || climaCase) && TurnManager.lastTurn;//El caso afterPass es cuando un jugador pasa y ahora el otro puede jugar tantas cartas como quiera de caso general o clima
+            if(afterPassCase || usualCase){//Para cualquiera de los dos casos usual o afterPass iluminaremos la(s) zona(s) donde el jugador puede poner la carta
+                zones[i].GetComponent<Image>().color=new Color (1,1,1,0.1f);
+            }
         }
 
-        if(card.GetComponent<Card>().id==4 || card.GetComponent<Card>().id==5){//Carta despeje
-            DespejeEffect(card);
+        ExtraDrawCard.UpdateRedraw();//Se actualiza si se puede intercambiar cartas con el deck
+        if(ExtraDrawCard.redrawable){//Si se puede
+            if(thisCard.GetComponent<Dragging>().whichField==Dragging.fields.P1){//La carta es de P1
+                GameObject.Find("UntouchableMyDeck").GetComponent<Image>().color=new Color (1,1,1,0.1f);//El deck de P1 "brilla"
+            }else if(thisCard.GetComponent<Dragging>().whichField==Dragging.fields.P2){//La carta es de P2
+                GameObject.Find("UntouchableEnemyDeck").GetComponent<Image>().color=new Color (1,1,1,0.1f);//El deck de P2 "brilla"
+            }
         }
+    }
+    public static void OffZonesGlow(){
+        DropZone[] zones=GameObject.FindObjectsOfType<DropZone>();
+        for(int i=0;i<zones.Length;i++){
+            zones[i].GetComponent<Image>().color=new Color (1,1,1,0);
+        }
+        GameObject.Find("UntouchableMyDeck").GetComponent<Image>().color=new Color (1,1,1,0);
+        GameObject.Find("UntouchableEnemyDeck").GetComponent<Image>().color=new Color (1,1,1,0);
     }
     public static void AumEffect(GameObject card){
         GameObject target=null;//Objetivo al que anadirle 1 de poder a los hijos
@@ -186,6 +219,60 @@ public class Effects : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+    public static void MostPowerEffect(GameObject card){//Elimina la carta con mas poder del campo
+        TurnManager.PlayedCards.Remove(card);
+        if(TurnManager.PlayedCards.Count!=0){
+            GameObject Card=TurnManager.PlayedCards[TurnManager.PlayedCards.Count-1];
+            int maxTotalPower=Card.GetComponent<Card>().power+Card.GetComponent<Card>().addedPower;
+            for(int i=0;i<TurnManager.PlayedCards.Count-1;i++){
+                if(TurnManager.PlayedCards[i].GetComponent<Card>().power+TurnManager.PlayedCards[i].GetComponent<Card>().addedPower>maxTotalPower){
+                    Card=TurnManager.PlayedCards[i];
+                    maxTotalPower=Card.GetComponent<Card>().power+Card.GetComponent<Card>().addedPower;
+                }
+            }
+            Graveyard.ToGraveyard(Card);
+        }
+        TurnManager.PlayedCards.Add(card);
+    }
+    public static void LessPowerEffect(GameObject card){//Elimina la carta con menos poder del campo enemigo
+        List <GameObject> targetField=new List <GameObject>();//Una lista del campo enemigo
+        if(card.GetComponent<Dragging>().whichField==Dragging.fields.P1){//Si el Vector jugado es de P1
+            targetField=TotalFieldForce.P2PlayedCards;//El campo P2 es el enemigo
+        }else if(card.GetComponent<Dragging>().whichField==Dragging.fields.P2){//Si el Vector jugado es de P2
+            targetField=TotalFieldForce.P1PlayedCards;//El campo P1 es el enemigo
+        }
+        targetField.Remove(card);//Se quita Vector para que no se elimine a si mismo
+        if(targetField.Count!=0){//Si la lista del campo enemigo tiene elementos
+            GameObject Card=targetField[targetField.Count-1];//Se empieza a comparar por la ultima carta
+            //Si todas las cartas tienen el mismo poder la carta eliminada es la ultima jugada
+            int minTotalPower=Card.GetComponent<Card>().power+Card.GetComponent<Card>().addedPower;//Poder total minimo
+            for(int i=0;i<targetField.Count-1;i++){//Se recorre la lista excepto el ultimo elemento pues ya lo consideramos
+                if(targetField[i].GetComponent<Card>().power+targetField[i].GetComponent<Card>().addedPower<minTotalPower){//Si el poder total de la carta es menor que el que tenemos guardada
+                    Card=targetField[i];//Esta sera nuestra nueva carta de menor poder
+                    minTotalPower=Card.GetComponent<Card>().power+Card.GetComponent<Card>().addedPower;//Este sera nuestro nuevo menor poder
+                }
+            }
+            Graveyard.ToGraveyard(Card);//Se envia al cementerio la carta resultante(la de menor poder)
+        }
+        targetField.Add(card);//Se anade a Vector
+    }
+    public static void DrawCardEffect(GameObject card){
+        GameObject PlayerArea=null;
+        GameObject PlayerDeck=null;
+        if(card.GetComponent<Dragging>().whichField==Dragging.fields.P1){
+            PlayerArea=GameObject.Find("Hand");
+            PlayerDeck=GameObject.Find("Deck");
+        }else if(card.GetComponent<Dragging>().whichField==Dragging.fields.P2){
+            PlayerArea=GameObject.Find("EnemyHand");
+            PlayerDeck=GameObject.Find("EnemyDeck");
+        }
+        if(PlayerArea!=null && PlayerDeck!=null){
+            GameObject picked=PlayerDeck.GetComponent<DrawCards>().cards[Random.Range(0,PlayerDeck.GetComponent<DrawCards>().cards.Count)];//La escogida es aleatoria
+            GameObject Card = Instantiate(picked,new Vector3(0,0,0),Quaternion.identity);//Se instancia un objeto de esa escogida
+            Card.transform.SetParent(PlayerArea.transform,false);//Se pone en la mano
+            PlayerDeck.GetComponent<DrawCards>().cards.Remove(picked);//Se quita de la lista
         }
     }
 }

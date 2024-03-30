@@ -9,10 +9,17 @@ public class TurnManager : MonoBehaviour
     public static int CardsPlayed;//Cant de cartas jugadas en el turno
     public static bool lastTurn;//Si es o no el ultimo turno antes de que acabe la ronda
     public static List<GameObject> PlayedCards=new List<GameObject>();//Lista de las cartas jugadas
+    public static float lastClickTime=0;
 
     void Start(){
         PlayerTurn=1;//El Player 1 inicia la partida siempre
         RoundPoints.URWrite("Turno de P1");
+    }
+    void Update(){
+        if((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(1)) && Time.time-lastClickTime>0.5f){
+            GameObject.Find("PassButton").GetComponent<Button>().onClick.Invoke();
+            lastClickTime=Time.time;
+        }
     }
 
     public static void EndTurn(){//Se llama con cada pass
@@ -35,6 +42,7 @@ public class TurnManager : MonoBehaviour
 
         Effects.CheckForEffect(card);
         Effects.UpdateClima();
+        RoundPoints.URWrite("Presiona espacio para pasar el turno");
     }
 
     public static void NextRound(){//Proxima ronda
@@ -80,6 +88,7 @@ public class TurnManager : MonoBehaviour
             GameObject.Find("PassButtonWithoutEndTurn").GetComponent<Button>().onClick.Invoke();
     }
     public static void SwitchTurn(){//Se cambia de turno
+        ExtraDrawCard.twice=0;
         ExtraDrawCard.firstAction=true;//Siempre que comienza un nuevo turno se hace posible una primera accion
         if(PlayerTurn==1){
                PlayerTurn=2;

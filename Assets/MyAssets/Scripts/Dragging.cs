@@ -10,8 +10,9 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public Transform parentToReturnTo=null;
     public GameObject hand;
     public GameObject placeholder=null;
-    public GameObject thisCard;
+    //public GameObject thisCard;
     public bool isDraggable;
+    public static bool onDrag;
     //Crea tipos de rango para cada carta
     public enum rank{Melee,Ranged,Siege,Aumento,Clima,Senuelo,Despeje};//********Vincular con la prop de la carta////
     public rank cardType;
@@ -19,12 +20,18 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public fields whichField;
 
     public void Start(){
+        if(whichField==fields.P1){
+            hand=GameObject.Find("Hand");
+        }else if(whichField==fields.P2){
+            hand=GameObject.Find("EnemyHand");
+        }
         isDraggable=true;
     }
     //Detecta cuando empieza el arrastre de las cartas
     public void OnBeginDrag(PointerEventData eventData)
     {
         if(isDraggable){
+            onDrag=true;
             //Guarda la posicion a la que volver si soltamos en lugar invalido y crea un espacio en el lugar de la carta
             placeholder=new GameObject();//Crea el placeholder y le asigna los mismos valores que a la carta y la posicion de la carta
             placeholder.transform.SetParent(this.transform.parent);
@@ -40,16 +47,7 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             GetComponent<CanvasGroup>().blocksRaycasts=false;
 
             //Haciendo que las zonas donde se pueda soltar la carta "brillen"
-            DropZone[] zones=GameObject.FindObjectsOfType<DropZone>();
-            for(int i=0;i<zones.Length;i++){
-                bool generalCase=(zones[i].cardType==this.cardType) && (zones[i].whichField==this.whichField);//Caso general es cualquier carta que no sea de clima, debe coincidir en tipo y campo
-                bool climaCase=(rank.Clima==this.cardType) && (rank.Clima==zones[i].cardType);//Caso clima es que tanto la carta como la zona sean tipo clima
-                bool usualCase=(generalCase || climaCase) && TurnManager.CardsPlayed==0;//El caso usual es cuando solo se puede jugar una carta y esta carta puede ser de caso general o clima
-                bool afterPassCase=(generalCase || climaCase) && TurnManager.lastTurn;//El caso afterPass es cuando un jugador pasa y ahora el otro puede jugar tantas cartas como quiera de caso general o clima
-                if(afterPassCase || usualCase){//Para cualquiera de los dos casos usual o afterPass iluminaremos la(s) zona(s) donde el jugador puede poner la carta
-                    zones[i].GetComponent<Image>().color=new Color (1,1,1,0.1f);
-                }
-            }
+            Effects.ZonesGlow(this.gameObject);
         }
     }
 
@@ -78,7 +76,7 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 }
             }
             for(int i=0;i<TurnManager.PlayedCards.Count;i++){
-                if(TurnManager.PlayedCards[i].name==CardView.cardName){
+                if(TurnManager.PlayedCards[i].name==CardView.cardName && TurnManager.PlayedCards[i].GetComponent<Dragging>().whichField==whichField){
                     TurnManager.PlayedCards[i].transform.parent.GetComponent<Image>().color=new Color (1,1,1,0.1f);
                     break;
                 }
@@ -97,13 +95,8 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 if(cardType==rank.Senuelo){//Efecto del senuelo
                     Effects.Senuelo(this.gameObject);
                 }else if(this.transform.parent!=hand.transform && this.transform.parent!=GameObject.Find("Trash").transform){//Si el objeto sale de la mano y no esta en la basura
-                //CAMBIAR ESTOOOOOO
-                    if(whichField==fields.P1){//Si es campo de P1 anade la carta a la lista de cartas del campo del P2
-                        TotalFieldForce.P1PlayedCards.Add(thisCard);
-                    }else if(whichField==fields.P2){//Si es campo de P2 anade la carta a la lista de cartas del campo del P2
-                        TotalFieldForce.P2PlayedCards.Add(thisCard);
-                    }
-                    TurnManager.PlayCard(thisCard);//Independientemente del campo juega la carta
+                    TotalFieldForce.AddCard(this.gameObject);//Anade la carta segun el campo y el tipo
+                    TurnManager.PlayCard(this.gameObject);//Independientemente del campo juega la carta
                 }else{
                     GetComponent<CanvasGroup>().blocksRaycasts=true;//Desactiva la penetracion de la carta para que podamos arrastrarla de nuevo
                 }
@@ -115,10 +108,9 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             }
             TotalFieldForce.UpdateForce();
             //Cada vez que se suelte una carta necesitamos desactivar el glow de cualquier zona que hayamos iluminado
-            DropZone[] zones=GameObject.FindObjectsOfType<DropZone>();
-            for(int i=0;i<zones.Length;i++){
-                zones[i].GetComponent<Image>().color=new Color (1,1,1,0);
-            }
+            Effects.OffZonesGlow();
+            
+            onDrag=false;
         }
     }
 }

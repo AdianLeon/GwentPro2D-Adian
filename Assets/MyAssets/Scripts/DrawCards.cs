@@ -20,8 +20,8 @@ public class DrawCards : MonoBehaviour
     }
     public void OnClickP1()//Toma una carta aleatoria y la coloca en la mano de P1
     {
-        PlayerArea=GameObject.Find("Hand");
-        if(PlayerArea.transform.childCount<10 && cards.Count!=0)//Solo si el deck no esta vacio y si hay menos de 10 cartas en la mano
+        DrawCard(GameObject.Find("Hand"),this.gameObject);
+        /*if(PlayerArea.transform.childCount<10 && cards.Count!=0)//Solo si el deck no esta vacio y si hay menos de 10 cartas en la mano
         {
             GameObject picked=cards[Random.Range(0,cards.Count)];//La escogida es aleatoria
             GameObject Card = Instantiate(picked,new Vector3(0,0,0),Quaternion.identity);//Se instancia un objeto de esa escogida
@@ -35,13 +35,13 @@ public class DrawCards : MonoBehaviour
             Card.transform.SetParent(PlayerArea.transform,false);//Se pone en la mano para que tenga el tamano establecido
             Graveyard.ToGraveyard(Card);//Se envia al cementerio
             cards.Remove(picked);//Se quita de la lista
-        }
+        }*/
     }
 
     public void OnClickP2()//Toma una carta aleatoria y la coloca en la mano de P2
     {
-        PlayerArea=GameObject.Find("EnemyHand");
-        if(PlayerArea.transform.childCount<10 && cards.Count!=0)//Solo si el deck no esta vacio y si hay menos de 10 cartas en la mano
+        DrawCard(GameObject.Find("EnemyHand"),this.gameObject);
+        /*if(PlayerArea.transform.childCount<10 && cards.Count!=0)//Solo si el deck no esta vacio y si hay menos de 10 cartas en la mano
         {
             GameObject picked=cards[Random.Range(0,cards.Count)];//La escogida es aleatoria
             GameObject Card = Instantiate(picked,new Vector3(0,0,0),Quaternion.identity);//Se instancia un objeto de esa escogida
@@ -54,6 +54,22 @@ public class DrawCards : MonoBehaviour
             Card.transform.SetParent(PlayerArea.transform,false);//Se pone en la mano para que tenga el tamano establecido
             Graveyard.ToGraveyard(Card);//Se envia al cementerio
             cards.Remove(picked);//Se quita de la lista
+        }*/
+    }
+    public static void DrawCard(GameObject PlayerArea,GameObject PlayerDeck){
+        if(PlayerArea.transform.childCount<10 && PlayerDeck.GetComponent<DrawCards>().cards.Count!=0){//Solo si el deck no esta vacio y si hay menos de 10 cartas en la mano
+            GameObject picked=PlayerDeck.GetComponent<DrawCards>().cards[Random.Range(0,PlayerDeck.GetComponent<DrawCards>().cards.Count)];//La escogida es aleatoria
+            GameObject Card = Instantiate(picked,new Vector3(0,0,0),Quaternion.identity);//Se instancia un objeto de esa escogida
+            Card.transform.SetParent(PlayerArea.transform,false);//Se pone en la mano
+            PlayerDeck.GetComponent<DrawCards>().cards.Remove(picked);//Se quita de la lista
+
+        }else if(PlayerArea.transform.childCount>=10 && PlayerDeck.GetComponent<DrawCards>().cards.Count!=0){
+            RoundPoints.URWrite("Has robado una carta, pero como tienes la mano llena se ha enviado al cementerio");
+            GameObject picked=PlayerDeck.GetComponent<DrawCards>().cards[Random.Range(0,PlayerDeck.GetComponent<DrawCards>().cards.Count)];//La escogida es aleatoria
+            GameObject Card = Instantiate(picked,new Vector3(0,0,0),Quaternion.identity);//Se instancia un objeto de esa escogida
+            Card.transform.SetParent(PlayerArea.transform,false);//Se pone en la mano para que tenga el tamano establecido
+            Graveyard.ToGraveyard(Card);//Se envia al cementerio
+            PlayerDeck.GetComponent<DrawCards>().cards.Remove(picked);//Se quita de la lista
         }
     }
     public static void LeaderP1(){//Habilidad de lider, intento de robo

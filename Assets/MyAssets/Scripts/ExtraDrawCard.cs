@@ -8,16 +8,20 @@ public class ExtraDrawCard : MonoBehaviour, IDropHandler, IPointerEnterHandler, 
 {//Script para intercambiar hasta 2 cartas de la mano con una random del deck
     public static bool firstTurn=true;//Solo es valido el intercambio para los primeros turnos
     public static bool firstAction=true;
-    int twice;//Para controlar cuantas cartas lleva el jugador
+    public static int twice;//Para controlar cuantas cartas lleva el jugador
+    public static bool redrawable=true;
     public Dragging.fields whichField;//Campos de dragging
     //Funciones necesarias para controlar si el puntero esta encima de la carta
     public void OnPointerEnter(PointerEventData eventData)
     {}
     public void OnPointerExit(PointerEventData eventData)
     {}
+    public static void UpdateRedraw(){
+        redrawable=firstAction && firstTurn && twice<2;
+    }
     //Detecta cuando se suelta una carta en una zona valida
     public void OnDrop(PointerEventData eventData){
-        if(twice<2 && firstTurn && firstAction){//Solo se ejecuta si han sido menos de 2 y si es el primer turno
+        if(redrawable){//Solo se ejecuta si han sido menos de 2 y si es el primer turno
             Dragging d=eventData.pointerDrag.GetComponent<Dragging>();//Componente Dragging de la carta
             if(d!=null){//Si el componente se encuentra
                 if(whichField==d.whichField)//Si se esta soltando en el deck del campo correcto

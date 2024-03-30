@@ -26,6 +26,15 @@ public class TotalFieldForce : MonoBehaviour
         P2ForceValue=sum;
         GameObject.Find("EnemyPoints").GetComponent<TextMeshProUGUI>().text=P2ForceValue.ToString();
     }
+    public static void AddCard(GameObject thisCard){//Anade la carta segun el campo y el tipo (Excluye a los climas)
+        if(thisCard.GetComponent<Dragging>().cardType!=Dragging.rank.Clima){
+            if(thisCard.GetComponent<Dragging>().whichField==Dragging.fields.P1){//Si es campo de P1 anade la carta a la lista de cartas del campo del P2
+                P1PlayedCards.Add(thisCard);
+            }else if(thisCard.GetComponent<Dragging>().whichField==Dragging.fields.P2){//Si es campo de P2 anade la carta a la lista de cartas del campo del P2
+                P2PlayedCards.Add(thisCard);
+            }
+        }
+    }
     public static void Empty(){
         TotalFieldForce.P1PlayedCards.Clear();
         TotalFieldForce.P2PlayedCards.Clear();

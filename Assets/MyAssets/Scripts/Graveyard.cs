@@ -16,20 +16,20 @@ public class Graveyard : MonoBehaviour
     public static void ToGraveyard(GameObject card){//Manda la carta al cementerio
         card.GetComponent<Card>().isPlayed=false;//La carta ya no esta jugada
         for(int i=0;i<4;i++){//Deshace el efecto clima
-            if(card.GetComponent<Card>().affected[i]){
                 card.GetComponent<Card>().affected[i]=false;
-                card.GetComponent<Card>().addedPower++;
-            }
         }
+        card.GetComponent<Card>().addedPower=0;
         if(card.GetComponent<Dragging>()!=null){
             if(card.GetComponent<Dragging>().whichField==Dragging.fields.P1){//Si el campo es de P1 manda la carta al cementerio de P1
                 card.transform.SetParent(GameObject.Find("Graveyard").transform);
                 gCount++;
                 GameObject.Find("GText").GetComponent<TextMeshProUGUI>().text=gCount.ToString();
+                TotalFieldForce.P1PlayedCards.Remove(card);
             }else if(card.GetComponent<Dragging>().whichField==Dragging.fields.P2){//Si el campo es de P2 manda la carta al cementerio de P2
                 card.transform.SetParent(GameObject.Find("EnemyGraveyard").transform);
                 egCount++;
                 GameObject.Find("EGText").GetComponent<TextMeshProUGUI>().text=egCount.ToString();
+                TotalFieldForce.P2PlayedCards.Remove(card);
             }
             Destroy(card.GetComponent<Dragging>());//No necesitaremos esto de nuevo
         }
