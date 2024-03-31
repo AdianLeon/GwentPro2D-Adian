@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+//Script que controla los puntos de ronda
 public class RoundPoints : MonoBehaviour
 {
     static int p1AmountOfX;//Puntos de ronda de cada jugador

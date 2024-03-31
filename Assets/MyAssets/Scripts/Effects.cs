@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
+//Script que contiene los efectos de las cartas y algunos efectos visuales
 public class Effects : MonoBehaviour
 {
     public static void CheckForEffect(GameObject card){
@@ -28,7 +28,7 @@ public class Effects : MonoBehaviour
             Debug.Log(card+" tiene hasEffect activado pero no tiene efecto");
         }
     }
-    public static void ZonesGlow(GameObject thisCard){
+    public static void ZonesGlow(GameObject thisCard){//Encuentra las zonas del mismo tipo y campo que la carta y las ilumina
         DropZone[] zones=GameObject.FindObjectsOfType<DropZone>();
         for(int i=0;i<zones.Length;i++){
             bool generalCase=(zones[i].GetComponent<DropZone>().cardType==thisCard.GetComponent<Dragging>().cardType) && (zones[i].GetComponent<DropZone>().whichField==thisCard.GetComponent<Dragging>().whichField);//Caso general es cualquier carta que no sea de clima, debe coincidir en tipo y campo
@@ -43,9 +43,9 @@ public class Effects : MonoBehaviour
         ExtraDrawCard.UpdateRedraw();//Se actualiza si se puede intercambiar cartas con el deck
         if(ExtraDrawCard.redrawable){//Si se puede
             if(thisCard.GetComponent<Dragging>().whichField==Dragging.fields.P1){//La carta es de P1
-                GameObject.Find("UntouchableMyDeck").GetComponent<Image>().color=new Color (1,1,1,0.1f);//El deck de P1 "brilla"
+                GameObject.Find("UntouchableMyDeck").GetComponent<Image>().color=new Color (0,1,0,0.1f);//El deck de P1 "brilla"
             }else if(thisCard.GetComponent<Dragging>().whichField==Dragging.fields.P2){//La carta es de P2
-                GameObject.Find("UntouchableEnemyDeck").GetComponent<Image>().color=new Color (1,1,1,0.1f);//El deck de P2 "brilla"
+                GameObject.Find("UntouchableEnemyDeck").GetComponent<Image>().color=new Color (0,1,0,0.1f);//El deck de P2 "brilla"
             }
         }
     }
@@ -186,6 +186,7 @@ public class Effects : MonoBehaviour
                         choosed.GetComponent<Dragging>().isDraggable=true;//La escogida ahora es arrastrable como cualquier otra de la mano
                         TotalFieldForce.P1PlayedCards.Add(thisCard);//Se anade el senuelo a las cartas jugadas de P1
                         TotalFieldForce.P1PlayedCards.Remove(choosed);//Se quita choosed de las cartas jugadas de P1
+                        TurnManager.PlayedCards.Remove(choosed);
                         for(int j=0;j<choosed.GetComponent<Card>().affected.Length;j++){//Deshace el efecto de clima cuando la carta vuelve a 
                         //la mano, el senuelo recibira el clima como consecuencia de la llamada de UpdateClima
                             if(choosed.GetComponent<Card>().affected[j]){//Si esta afectado, se deshace
@@ -207,6 +208,7 @@ public class Effects : MonoBehaviour
                         choosed.GetComponent<Dragging>().isDraggable=true;//La escogida ahora es arrastrable como cualquier otra de la mano
                         TotalFieldForce.P2PlayedCards.Add(thisCard);//Se anade el senuelo a las cartas jugadas de P2
                         TotalFieldForce.P2PlayedCards.Remove(choosed);//Se quita choosed de las cartas jugadas de P2
+                        TurnManager.PlayedCards.Remove(choosed);
                         for(int j=0;j<choosed.GetComponent<Card>().affected.Length;j++){//Deshace el efecto de clima cuando la carta vuelve a 
                         //la mano, el senuelo recibira el clima como consecuencia de la llamada de UpdateClima
                             if(choosed.GetComponent<Card>().affected[j]){//Si esta afectado, se deshace
@@ -233,17 +235,20 @@ public class Effects : MonoBehaviour
                 }
             }
             Graveyard.ToGraveyard(Card);
+            TotalFieldForce.UpdateForce();
         }
         TurnManager.PlayedCards.Add(card);
     }
     public static void LessPowerEffect(GameObject card){//Elimina la carta con menos poder del campo enemigo
+        //Determinando el campo a afectar
         List <GameObject> targetField=new List <GameObject>();//Una lista del campo enemigo
         if(card.GetComponent<Dragging>().whichField==Dragging.fields.P1){//Si el Vector jugado es de P1
             targetField=TotalFieldForce.P2PlayedCards;//El campo P2 es el enemigo
         }else if(card.GetComponent<Dragging>().whichField==Dragging.fields.P2){//Si el Vector jugado es de P2
             targetField=TotalFieldForce.P1PlayedCards;//El campo P1 es el enemigo
         }
-        targetField.Remove(card);//Se quita Vector para que no se elimine a si mismo
+
+        //Hallando la carta de menor poder y eliminandola
         if(targetField.Count!=0){//Si la lista del campo enemigo tiene elementos
             GameObject Card=targetField[targetField.Count-1];//Se empieza a comparar por la ultima carta
             //Si todas las cartas tienen el mismo poder la carta eliminada es la ultima jugada
@@ -255,8 +260,8 @@ public class Effects : MonoBehaviour
                 }
             }
             Graveyard.ToGraveyard(Card);//Se envia al cementerio la carta resultante(la de menor poder)
+            TotalFieldForce.UpdateForce();
         }
-        targetField.Add(card);//Se anade a Vector
     }
     public static void DrawCardEffect(GameObject card){
         GameObject PlayerArea=null;

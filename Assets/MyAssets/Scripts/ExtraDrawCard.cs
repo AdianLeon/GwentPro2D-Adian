@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-
+//Script para el intercambio de cartas con el deck propio al inicio de la partida
 public class ExtraDrawCard : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {//Script para intercambiar hasta 2 cartas de la mano con una random del deck
     public static bool firstTurn=true;//Solo es valido el intercambio para los primeros turnos

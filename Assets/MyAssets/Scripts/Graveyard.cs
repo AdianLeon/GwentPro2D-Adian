@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+//Script para la funcionalidad de los cementerios
 public class Graveyard : MonoBehaviour
 {
     public static int gCount=0,egCount=0;
@@ -14,7 +14,7 @@ public class Graveyard : MonoBehaviour
         }
     }
     public static void ToGraveyard(GameObject card){//Manda la carta al cementerio
-        card.GetComponent<Card>().isPlayed=false;//La carta ya no esta jugada
+        //card.GetComponent<Card>().isPlayed=false;//La carta ya no esta jugada
         for(int i=0;i<4;i++){//Deshace el efecto clima
                 card.GetComponent<Card>().affected[i]=false;
         }

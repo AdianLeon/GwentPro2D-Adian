@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+//Script para llevar la logica de la fuerza del campo
 public class TotalFieldForce : MonoBehaviour
 {
     public static int P1ForceValue=0;//Total de poder de cada jugador en la ronda
@@ -20,6 +20,7 @@ public class TotalFieldForce : MonoBehaviour
         P1ForceValue=sum;
         sum=0;
         GameObject.Find("Points").GetComponent<TextMeshProUGUI>().text=P1ForceValue.ToString();//Asigna el valor al puntaje
+
         for(int i=0;i<P2PlayedCards.Count;i++){
             sum+=P2PlayedCards[i].GetComponent<Card>().power+P2PlayedCards[i].GetComponent<Card>().addedPower;
         }

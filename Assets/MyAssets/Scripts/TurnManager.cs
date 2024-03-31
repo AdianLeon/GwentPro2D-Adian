@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+//Script para la logica de los turnos
 public class TurnManager : MonoBehaviour
 {
     public static int PlayerTurn;//Turno de jugador
@@ -16,6 +16,10 @@ public class TurnManager : MonoBehaviour
         RoundPoints.URWrite("Turno de P1");
     }
     void Update(){
+        if((Input.GetMouseButtonDown(0) && DropZone.pointerInZone) && Time.time-DropZone.lastClickTime>0.5f){//Cuando se presiona el boton del mouse y el puntero esta dentro de una dropzone
+            RoundPoints.URWrite("Esta zona es de tipo "+DropZone.zoneEntered.GetComponent<DropZone>().cardType);//Se muestra su nombre en el UserRead
+            DropZone.lastClickTime=Time.time;
+        }
         if((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(1)) && Time.time-lastClickTime>0.5f){
             GameObject.Find("PassButton").GetComponent<Button>().onClick.Invoke();
             lastClickTime=Time.time;
@@ -28,21 +32,22 @@ public class TurnManager : MonoBehaviour
         }else if(CardsPlayed==0){//Detecta caundo un jugador pasa sin jugar
             SwitchTurn();
             lastTurn=true;//Activa el modo ultimo turno, cuando se presione el pass de nuevo se acabara la ronda
+            RoundPoints.URWrite("Turno de P"+PlayerTurn+", es el ultimo turno antes de que se acabe la ronda");
         }else{
             SwitchTurn();
         }
-    RoundPoints.URWrite("Turno de P"+PlayerTurn);
     }
     public static void PlayCard(GameObject card){//Juega la carta y anade la carta a la lista de cartas jugadas
         card.GetComponent<Dragging>().isDraggable=false;
         ExtraDrawCard.firstAction=false;
         CardsPlayed++;
         PlayedCards.Add(card);
-        card.GetComponent<Card>().isPlayed=true;
+        //card.GetComponent<Card>().isPlayed=true;
 
         Effects.CheckForEffect(card);
         Effects.UpdateClima();
-        RoundPoints.URWrite("Presiona espacio para pasar el turno");
+        if(!lastTurn)
+            RoundPoints.URWrite("Presiona espacio para pasar el turno");
     }
 
     public static void NextRound(){//Proxima ronda
@@ -61,7 +66,8 @@ public class TurnManager : MonoBehaviour
                 ClickPassB();//En este caso hay que clickear el passbutton porque esto deshace el cambio de campo
             }
 
-            PlayerCondition.Wins("P1");//P1 gana la ronda y obtiene un punto de ronda
+            PlayerCondition.rPointsP1++;//P1 gana la ronda y obtiene un punto de ronda
+            PlayerCondition.WinCheck();
         }
         else if(TotalFieldForce.P2ForceValue>TotalFieldForce.P1ForceValue){//Si P2 tiene mas poder que P1
             if(PlayerTurn==1){//P2 comienza el proximo turno
@@ -70,12 +76,14 @@ public class TurnManager : MonoBehaviour
                 ClickPassB();//En este caso hay que clickear el passbutton porque esto deshace el cambio de campo
             }
 
-            PlayerCondition.Wins("P2");//P2 gana la ronda y obtiene un punto de ronda
+            PlayerCondition.rPointsP2++;//P2 gana la ronda y obtiene un punto de ronda
+            PlayerCondition.WinCheck();
         }
         else{//Si ambos tienen igual poder ambos ganan 1 punto y la ronda continua sin afectarse
             SwitchTurn();
             PlayerCondition.rPointsP1++;
             PlayerCondition.rPointsP2++;
+            PlayerCondition.WinCheck();
         }
         CardsPlayed=0;
         TotalFieldForce.Empty();
@@ -98,5 +106,6 @@ public class TurnManager : MonoBehaviour
             CardsPlayed=0;
             ExtraDrawCard.firstTurn=false;//Esto es para desactivar el uso del intercambio de cartas con el mazo al inicio del juego
         }
+        RoundPoints.URWrite("Turno de P"+PlayerTurn);
     }
 }

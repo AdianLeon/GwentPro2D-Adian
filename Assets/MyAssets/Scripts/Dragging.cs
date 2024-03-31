@@ -3,19 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
+//Script para el arrastre de las cartas y muchas otras cosas que se ejecutan junto con el arrastre
 public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     //Variables que guardan en donde se queda la carta y su espacio
     public Transform parentToReturnTo=null;
     public GameObject hand;
     public GameObject placeholder=null;
-    //public GameObject thisCard;
+
+    //Si la carta es arrastrable
     public bool isDraggable;
+
+    //Si se esta arrastrando una carta
     public static bool onDrag;
-    //Crea tipos de rango para cada carta
+
+    //Tipo de carta
     public enum rank{Melee,Ranged,Siege,Aumento,Clima,Senuelo,Despeje};//********Vincular con la prop de la carta////
     public rank cardType;
+    //Campo de la carta
     public enum fields{None,P1,P2};
     public fields whichField;
 
@@ -28,8 +33,7 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         isDraggable=true;
     }
     //Detecta cuando empieza el arrastre de las cartas
-    public void OnBeginDrag(PointerEventData eventData)
-    {
+    public void OnBeginDrag(PointerEventData eventData){
         if(isDraggable){
             onDrag=true;
             //Guarda la posicion a la que volver si soltamos en lugar invalido y crea un espacio en el lugar de la carta
@@ -52,8 +56,7 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     }
 
     //Mientras se arrastra
-    public void OnDrag(PointerEventData eventData)
-    {
+    public void OnDrag(PointerEventData eventData){
         if(isDraggable){
             this.transform.position=eventData.position;//Actualiza la posicion de la carta con la del puntero
             int newSiblingIndex=parentToReturnTo.childCount;//Guarda el indice del espacio de la derecha
@@ -68,23 +71,9 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             }
             placeholder.transform.SetSiblingIndex(newSiblingIndex);//Pone el espacio debajo de la carta
         }
-        //Si la carta es senuelo la zona que "brilla" es la de la carta seleccionada
-        if(this.cardType==rank.Senuelo){
-            for(int i=0;i<TurnManager.PlayedCards.Count;i++){
-                if(TurnManager.PlayedCards[i].name!=CardView.cardName){
-                    TurnManager.PlayedCards[i].transform.parent.GetComponent<Image>().color=new Color (1,1,1,0);
-                }
-            }
-            for(int i=0;i<TurnManager.PlayedCards.Count;i++){
-                if(TurnManager.PlayedCards[i].name==CardView.cardName && TurnManager.PlayedCards[i].GetComponent<Dragging>().whichField==whichField){
-                    TurnManager.PlayedCards[i].transform.parent.GetComponent<Image>().color=new Color (1,1,1,0.1f);
-                    break;
-                }
-            }
-        }
     }
 
-    //Cuando termina el arrastre pone la carta en donde guardamos
+    //Cuando termina el arrastre
     public void OnEndDrag(PointerEventData eventData){
         if(isDraggable){
             if(TurnManager.CardsPlayed<1 || TurnManager.lastTurn){//Solo cuando no se ha jugado una carta o si es el ultimo turno
