@@ -6,12 +6,15 @@ using TMPro;
 //Script para llevar la logica de la fuerza del campo
 public class TotalFieldForce : MonoBehaviour
 {
-    public static int P1ForceValue=0;//Total de poder de cada jugador en la ronda
-    public static int P2ForceValue=0;
+    public static int P1ForceValue;//Total de poder de cada jugador en la ronda
+    public static int P2ForceValue;
 
     public static List <GameObject> P1PlayedCards=new List <GameObject>();
     public static List <GameObject> P2PlayedCards=new List <GameObject>();
     
+    void Start(){
+        Empty();
+    }
     public static void UpdateForce(){
         int sum=0;
         for(int i=0;i<P1PlayedCards.Count;i++){

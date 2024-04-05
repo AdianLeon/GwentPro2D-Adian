@@ -6,11 +6,17 @@ using UnityEngine.EventSystems;
 //Script para el intercambio de cartas con el deck propio al inicio de la partida
 public class ExtraDrawCard : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {//Script para intercambiar hasta 2 cartas de la mano con una random del deck
-    public static bool firstTurn=true;//Solo es valido el intercambio para los primeros turnos
-    public static bool firstAction=true;
+    public static bool firstTurn;//Solo es valido el intercambio para los primeros turnos
+    public static bool firstAction;
     public static int twice;//Para controlar cuantas cartas lleva el jugador
-    public static bool redrawable=true;
+    public static bool redrawable;
     public Dragging.fields whichField;//Campos de dragging
+    void Start(){
+        firstTurn=true;
+        firstAction=true;
+        twice=0;
+        redrawable=true;
+    }
     //Funciones necesarias para controlar si el puntero esta encima de la carta
     public void OnPointerEnter(PointerEventData eventData)
     {}

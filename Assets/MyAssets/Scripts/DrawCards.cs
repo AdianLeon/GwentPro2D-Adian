@@ -11,11 +11,13 @@ public class DrawCards : MonoBehaviour
     static bool[] used=new bool[2];
     void Start(){
         timesStarted++;
-        if(timesStarted==2){//Este Start es ejecutado por dos decks, por eso se reparten las cartas la segunda vez porque es entonces cuando ambos tienen todas sus cartas
+        if(timesStarted%2==0){//Este Start es ejecutado por dos decks, por eso se reparten las cartas la segunda vez porque es entonces cuando ambos tienen todas sus cartas
             for(int i=0;i<10;i++){
                 GameObject.Find("Deck").GetComponent<Button>().onClick.Invoke();
                 GameObject.Find("EnemyDeck").GetComponent<Button>().onClick.Invoke();
             }
+            used[0]=false;
+            used[1]=false;
         }
     }
     public void OnClickP1()//Toma una carta aleatoria y la coloca en la mano de P1

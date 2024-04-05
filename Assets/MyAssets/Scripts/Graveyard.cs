@@ -6,7 +6,13 @@ using TMPro;
 //Script para la funcionalidad de los cementerios
 public class Graveyard : MonoBehaviour
 {
-    public static int gCount=0,egCount=0;
+    public static int gCount,egCount;
+    void Start(){
+        gCount=0;
+        GameObject.Find("GText").GetComponent<TextMeshProUGUI>().text=gCount.ToString();
+        egCount=0;
+        GameObject.Find("EGText").GetComponent<TextMeshProUGUI>().text=egCount.ToString();
+    }
     public static void AllToGraveyard(){//Manda una por una todas las cartas jugadas al cementerio
         for(int i=0;i<TurnManager.PlayedCards.Count;i++){
             if(TurnManager.PlayedCards[i]!=null)//Si se ha jugado cartas

@@ -11,8 +11,11 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
     public Dragging.fields whichField;
     public static GameObject zoneEntered=null;
     public static bool pointerInZone;
-    public static float lastClickTime=0;
+    public static float lastClickTime;
 
+    void Start(){
+        lastClickTime=0;
+    }
     public void OnPointerEnter(PointerEventData eventData){//Cuando el mouse esta en la zona
         pointerInZone=true;
         zoneEntered=gameObject;

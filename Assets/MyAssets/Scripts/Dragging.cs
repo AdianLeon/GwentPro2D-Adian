@@ -40,12 +40,9 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             placeholder=new GameObject();//Crea el placeholder y le asigna los mismos valores que a la carta y la posicion de la carta
             placeholder.transform.SetParent(this.transform.parent);
             LayoutElement le=placeholder.AddComponent<LayoutElement>();//Crea un espacio para saber donde esta el placeholder
-            le.preferredWidth=this.GetComponent<LayoutElement>().preferredWidth;
-            le.preferredHeight=this.GetComponent<LayoutElement>().preferredHeight;
-
-            placeholder.transform.SetSiblingIndex(this.transform.GetSiblingIndex());
-            parentToReturnTo=this.transform.parent;
-            this.transform.SetParent(this.transform.parent.parent);
+            placeholder.transform.SetSiblingIndex(this.transform.GetSiblingIndex());//Hace que ese espacio este en el indice correspondiente a donde estaba la carta
+            parentToReturnTo=this.transform.parent;//Padre al que volver, aqui guardaremos a donde la carta va cuando la soltemos
+            this.transform.SetParent(this.transform.parent.parent);//Cambia el padre de la carta al canvas para que podamos moverla libremente
 
             //Activa la penetracion de la carta por el puntero para que podamos soltarla
             GetComponent<CanvasGroup>().blocksRaycasts=false;

@@ -179,7 +179,8 @@ public class Effects : MonoBehaviour
         Dragging.fields whichField=thisCard.GetComponent<Dragging>().whichField;//campo del senuelo
         if(whichField==Dragging.fields.P1){//Si el senuelo es de P1
             for(int i=0;i<TotalFieldForce.P1PlayedCards.Count;i++){//Se busca en las cartas jugadas por P1
-                if(CardView.cardName==TotalFieldForce.P1PlayedCards[i].name){//La que coincida en nombre con la ultima carta que se le paso el mouse por encima
+                //La que coincida en nombre con la ultima carta que se le paso el mouse por encima y que no sea de oro
+                if(CardView.cardName==TotalFieldForce.P1PlayedCards[i].name && TotalFieldForce.P1PlayedCards[i].GetComponent<Card>().wQuality!=Card.quality.Gold){
                     if(TotalFieldForce.P1PlayedCards[i].GetComponent<Dragging>().cardType!=Dragging.rank.Clima){ //Si ademas no es de clima
                         choosed=TotalFieldForce.P1PlayedCards[i];//La carta es valida para cambiar por el senuelo
                         Effects.SwapObjects(thisCard,choosed);//Se cambian de posicion
@@ -197,11 +198,14 @@ public class Effects : MonoBehaviour
                         TurnManager.PlayCard(thisCard);//Se juega el senuelo como cualquier otra carta
                         break;//Se sale del bucle pues ya cambiamos el senuelo por la carta indicada
                     }
+                }else{
+                    RoundPoints.URWrite(TotalFieldForce.P1PlayedCards[i].GetComponent<Card>().cardRealName+" es una carta heroe, no es afectada por ningun efecto de carta especial");
                 }
             }
         }else if(whichField==Dragging.fields.P2){//Si el senuelo es de P2
             for(int i=0;i<TotalFieldForce.P2PlayedCards.Count;i++){//Se busca en las cartas jugadas por P2
-                if(CardView.cardName==TotalFieldForce.P2PlayedCards[i].name){//La que coincida en nombre con la ultima carta que se le paso el mouse por encima
+                //La que coincida en nombre con la ultima carta que se le paso el mouse por encima y que no sea de oro
+                if(CardView.cardName==TotalFieldForce.P2PlayedCards[i].name && TotalFieldForce.P2PlayedCards[i].GetComponent<Card>().wQuality!=Card.quality.Gold){
                     if(TotalFieldForce.P2PlayedCards[i].GetComponent<Dragging>().cardType!=Dragging.rank.Clima){ //Si ademas no es de clima
                         choosed=TotalFieldForce.P2PlayedCards[i];//La carta es valida para cambiar por el senuelo
                         Effects.SwapObjects(thisCard,choosed);//Se cambian de posicion

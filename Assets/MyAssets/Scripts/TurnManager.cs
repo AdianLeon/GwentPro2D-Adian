@@ -9,11 +9,15 @@ public class TurnManager : MonoBehaviour
     public static int CardsPlayed;//Cant de cartas jugadas en el turno
     public static bool lastTurn;//Si es o no el ultimo turno antes de que acabe la ronda
     public static List<GameObject> PlayedCards=new List<GameObject>();//Lista de las cartas jugadas
-    public static float lastClickTime=0;
+    public static float lastClickTime;
 
     void Start(){
+        lastClickTime=0;
+        CardsPlayed=0;
+        lastTurn=false;
+        PlayedCards.Clear();
         PlayerTurn=1;//El Player 1 inicia la partida siempre
-        RoundPoints.URWrite("Turno de P1");
+        RoundPoints.URWrite("Ha comenzado una nueva partida, es el turno de P1");
     }
     void Update(){
         if((Input.GetMouseButtonDown(0) && DropZone.pointerInZone) && Time.time-DropZone.lastClickTime>0.5f){//Cuando se presiona el boton del mouse y el puntero esta dentro de una dropzone
@@ -67,6 +71,7 @@ public class TurnManager : MonoBehaviour
             }
 
             PlayerCondition.rPointsP1++;//P1 gana la ronda y obtiene un punto de ronda
+            RoundPoints.URWrite("Jugador 1 gano la ronda");
             PlayerCondition.WinCheck();
         }
         else if(TotalFieldForce.P2ForceValue>TotalFieldForce.P1ForceValue){//Si P2 tiene mas poder que P1
@@ -77,6 +82,7 @@ public class TurnManager : MonoBehaviour
             }
 
             PlayerCondition.rPointsP2++;//P2 gana la ronda y obtiene un punto de ronda
+            RoundPoints.URWrite("Jugador 2 gano la ronda");
             PlayerCondition.WinCheck();
         }
         else{//Si ambos tienen igual poder ambos ganan 1 punto y la ronda continua sin afectarse

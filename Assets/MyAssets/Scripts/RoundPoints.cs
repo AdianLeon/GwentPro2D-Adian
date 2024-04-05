@@ -8,6 +8,10 @@ public class RoundPoints : MonoBehaviour
 {
     static int p1AmountOfX;//Puntos de ronda de cada jugador
     static int p2AmountOfX;
+    void Start(){
+        p1AmountOfX=0;
+        p2AmountOfX=0;
+    }
     public static void UpdatePoints(){//Hace que la cantidad de marcas sea igual a los puntos de cada jugador, si llega un nuevo punto de ronda se hace una nueva marca
         if(p1AmountOfX<PlayerCondition.rPointsP1){
             p1AmountOfX++;
@@ -20,8 +24,5 @@ public class RoundPoints : MonoBehaviour
     }
     public static void URWrite(string message){
         GameObject.Find("UserRead").GetComponent<TextMeshProUGUI>().text=message;
-    }
-    public static void CleanUserRead(){
-        GameObject.Find("UserRead").GetComponent<TextMeshProUGUI>().text="";
     }
 }
