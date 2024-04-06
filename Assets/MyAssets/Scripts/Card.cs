@@ -16,6 +16,8 @@ public class Card : MonoBehaviour
     public string effectDescription;
 
     public Sprite artwork;
+    public Sprite qualitySprite;
+    public Color cardColor;
 
     public bool[] affected=new bool[4];//Un array que describe si la carta esta siendo afectada por un clima, la posicion del true es el id de la carta clima que la afecta
     

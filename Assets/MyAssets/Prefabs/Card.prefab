@@ -141,7 +141,6 @@ MonoBehaviour:
   parentToReturnTo: {fileID: 0}
   hand: {fileID: 2311447886571139348, guid: b67b0eb5e889e5f4e98c8623a820d6e9, type: 3}
   placeholder: {fileID: 0}
-  thisCard: {fileID: 1072672301799576032}
   isDraggable: 0
   cardType: 0
   whichField: 1
@@ -160,7 +159,12 @@ MonoBehaviour:
   id: 0
   power: 0
   addedPower: 0
-  isPlayed: 0
+  cardRealName: 
+  description: 
   hasEffect: 0
+  effectDescription: 
+  artwork: {fileID: 0}
+  qualitySprite: {fileID: 0}
+  cardColor: {r: 0, g: 0, b: 0, a: 0}
   affected: 00000000
   wQuality: 0

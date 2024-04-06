@@ -160,7 +160,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 36
+  m_RootOrder: 50
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -375,7 +375,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 15
+  m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -395,14 +395,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.17621933, g: 0.8301887, b: 0.19150713, a: 1}
+  m_Color: {r: 0.50980395, g: 0.27058825, b: 0.10588236, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6703ceb009adfd1489c99e492521b3a9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a7912b383a75d8e438b495c4f6c9e4ff, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -451,7 +451,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 17
+  m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -478,7 +478,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 857b27bf305c140dab35e3de694fcfbc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -532,13 +532,34 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.b
+      value: 0.8679245
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.g
+      value: 0.82923055
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.r
+      value: 0.7737629
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: description
-      value: RELLENAR
+      value: Es la mascota de Gru, mitad "perro", mitad piranha, puedes jugar un
+        poco con el, solo asegurate de que no tenga hambre
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: cardRealName
       value: Kyle
       objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: qualitySprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
     - target: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Name
       value: Kyle
@@ -704,7 +725,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 13
+  m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -735,11 +756,8 @@ MonoBehaviour:
   - {fileID: 643585122}
   - {fileID: 1116841694}
   - {fileID: 1116841694}
-  - {fileID: 1116841694}
   - {fileID: 1639431362}
   - {fileID: 1639431362}
-  - {fileID: 1639431362}
-  - {fileID: 1763262955}
   - {fileID: 1763262955}
   - {fileID: 1763262955}
   - {fileID: 88705036}
@@ -830,7 +848,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 776026a3317101449a0a0977e7e691d2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 778a1afa6cbe3114f8a0cbe99ea08314, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -993,6 +1011,82 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 169692196}
   m_CullTransparentMesh: 1
+--- !u!1 &245762358
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 245762359}
+  - component: {fileID: 245762361}
+  - component: {fileID: 245762360}
+  m_Layer: 5
+  m_Name: PlayedLightMiddle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &245762359
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245762358}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1.1657552, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1071480984}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 235.26746, y: -4.0359836}
+  m_SizeDelta: {x: 563.9997, y: 1.9438}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &245762360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245762358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 1, b: 0, a: 0.101960786}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &245762361
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245762358}
+  m_CullTransparentMesh: 1
 --- !u!1001 &262611662
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1030,7 +1124,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 46
+      value: 61
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1050,11 +1144,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -1298.5797
+      value: -1302.6033
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_SizeDelta.y
       value: -511.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.99999994
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1074,19 +1180,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -217.20996
+      value: -217.20995
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1139,7 +1245,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2311447886571139349, guid: b67b0eb5e889e5f4e98c8623a820d6e9, type: 3}
       propertyPath: m_RootOrder
-      value: 27
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 2311447886571139349, guid: b67b0eb5e889e5f4e98c8623a820d6e9, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1211,7 +1317,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2311447886571139349, guid: b67b0eb5e889e5f4e98c8623a820d6e9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 248.96002
+      value: 248.96005
       objectReference: {fileID: 0}
     - target: {fileID: 2311447886571139349, guid: b67b0eb5e889e5f4e98c8623a820d6e9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1277,13 +1383,34 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.b
+      value: 0.8679245
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.g
+      value: 0.82923055
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.r
+      value: 0.7737629
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: description
-      value: RELLENAR
+      value: Edith, Margo y Agnes. Fueron adoptadas por Gru y desde entonces le han
+        hecho la vida un infierno, pero por lo menos saben usar un rifle
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: cardRealName
       value: Ninas
       objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: qualitySprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
     - target: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Name
       value: Ninas (1)
@@ -1449,6 +1576,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: artwork
+      value: 
+      objectReference: {fileID: 21300000, guid: 3da2059eb9ba797409387d9bafaff558, type: 3}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: wQuality
       value: 1
       objectReference: {fileID: 0}
@@ -1457,12 +1588,37 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.b
+      value: 0.8679245
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.g
+      value: 0.82923055
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.r
+      value: 0.7737629
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: description
-      value: RELLENAR
+      value: Cientifico "loco" ayudante de Gru desde que se creo la maldad, inventor
+        del rayo congelador , el algebra lineal y la gravedad
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: cardRealName
       value: Doctor Nefario
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: qualitySprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: effectDescription
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Name
@@ -1471,7 +1627,7 @@ PrefabInstance:
     - target: {fileID: 2561653655594927260, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 77e34e866e22caa42925ca3108fbbd4a, type: 3}
+      objectReference: {fileID: 21300000, guid: 4a8c3b4afb169c145af35b96c6108496, type: 3}
     - target: {fileID: 2561653655594927260, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -1533,6 +1689,18 @@ PrefabInstance:
       value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 8552482594983753551, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 8552482594983753551, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 8552482594983753551, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 8552482594983753551, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -1562,7 +1730,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8552482594983753551, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1992
+      value: 1991.9999
       objectReference: {fileID: 0}
     - target: {fileID: 8552482594983753551, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1613,11 +1781,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: id
-      value: -1
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: power
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: artwork
@@ -1628,12 +1796,41 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: hasEffect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.b
+      value: 0.8679245
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.g
+      value: 0.82923055
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.r
+      value: 0.7737629
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: description
       value: Esta un poco loco, le gusta que lo catapulten contra enemigos, muy conveniente
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: cardRealName
       value: Stuart
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: qualitySprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: effectDescription
+      value: Cuando esta carta es jugada su poder se convierte en el promedio del
+        poder total de todas las cartas del campo
       objectReference: {fileID: 0}
     - target: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Name
@@ -1798,7 +1995,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 18
+  m_RootOrder: 35
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1825,7 +2022,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Gru
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -1902,6 +2099,82 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 321572044}
   m_CullTransparentMesh: 1
+--- !u!1 &329738324
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 329738325}
+  - component: {fileID: 329738327}
+  - component: {fileID: 329738326}
+  m_Layer: 5
+  m_Name: BGAddedPower
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &329738325
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 329738324}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 12.208382, y: 17.55783, z: 13.213875}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1071480984}
+  m_RootOrder: 42
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -582.1799, y: 167.99998}
+  m_SizeDelta: {x: 4.4077, y: 2.4479}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &329738326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 329738324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 662dde2f5e71c4d47aadb2a90334c7c8, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &329738327
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 329738324}
+  m_CullTransparentMesh: 1
 --- !u!1001 &330225638
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1932,10 +2205,26 @@ PrefabInstance:
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: artwork
       value: 
-      objectReference: {fileID: 21300000, guid: 2edb502c347b4254ab4564411ab846f7, type: 3}
+      objectReference: {fileID: 21300000, guid: dc03cc05d9a1a2245bcf77ae676c1e42, type: 3}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: hasEffect
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.g
+      value: 0.8206932
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.r
+      value: 0.3726415
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: description
@@ -1947,6 +2236,10 @@ PrefabInstance:
       value: Muchas Bananas
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: qualitySprite
+      value: 
+      objectReference: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: effectDescription
       value: Se deshace de todas las cartas de clima en la fila seleccionada
       objectReference: {fileID: 0}
@@ -1957,7 +2250,7 @@ PrefabInstance:
     - target: {fileID: 2561653655594927260, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 34cce4dd6c46f3742b429f10d91a0433, type: 3}
+      objectReference: {fileID: 21300000, guid: b1e81587dbf89ed40b5a99ed7bef4673, type: 3}
     - target: {fileID: 2561653655594927260, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -2078,6 +2371,198 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8552482594983753551, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
   m_PrefabInstance: {fileID: 330225638}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &343975503
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 343975504}
+  - component: {fileID: 343975506}
+  - component: {fileID: 343975505}
+  m_Layer: 5
+  m_Name: PlayedLightLeft
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &343975504
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343975503}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1.1657552, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1071480984}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -102.98233, y: -1.220084}
+  m_SizeDelta: {x: 5.0277, y: 360.5867}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &343975505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343975503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 1, b: 0, a: 0.101960786}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &343975506
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343975503}
+  m_CullTransparentMesh: 1
+--- !u!1 &373339262
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 373339263}
+  - component: {fileID: 373339265}
+  - component: {fileID: 373339264}
+  - component: {fileID: 373339266}
+  - component: {fileID: 373339267}
+  m_Layer: 5
+  m_Name: Guard1E
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &373339263
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373339262}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.30174, y: 0.30174, z: 0.30174}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1071480984}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -285.94, y: 99.025}
+  m_SizeDelta: {x: 100, y: 127.82}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &373339264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373339262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: b6ac0e9b841fb35478b6e9d373666997, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &373339265
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373339262}
+  m_CullTransparentMesh: 1
+--- !u!114 &373339266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373339262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4868f4be6b435343a07e86d1f748b15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: -2
+  power: 0
+  addedPower: 0
+  cardRealName: Guardia
+  description: Este es un guardia, su trabajo es quedarse ahi aburrido, ni siquiera
+    le pagan bien, todo el dia ahi parado, pobre lastimoso
+  hasEffect: 0
+  effectDescription: 
+  artwork: {fileID: 21300000, guid: 09b66a14c40b5c744bb75993fa05c85c, type: 3}
+  qualitySprite: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  cardColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 0.101960786}
+  affected: 00000000
+  wQuality: 0
+--- !u!114 &373339267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373339262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86927c0ef6ddbd54aa2546f0ede00273, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  card: {fileID: 0}
 --- !u!1 &401695424
 GameObject:
   m_ObjectHideFlags: 0
@@ -2112,7 +2597,7 @@ RectTransform:
   m_Children:
   - {fileID: 2015754910}
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 11
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2266,6 +2751,82 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
   m_PrefabInstance: {fileID: 939096330}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &432129186
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 432129187}
+  - component: {fileID: 432129189}
+  - component: {fileID: 432129188}
+  m_Layer: 5
+  m_Name: BGType
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &432129187
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432129186}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 3.8052216, y: 5.5409946, z: 4.1701055}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1071480984}
+  m_RootOrder: 38
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -621.50995, y: -46.011}
+  m_SizeDelta: {x: 27.03, y: 16.312}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &432129188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432129186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 1c8013ef5a0c147a5a059fde439f12b6, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &432129189
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432129186}
+  m_CullTransparentMesh: 1
 --- !u!224 &485448397 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
@@ -2312,7 +2873,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 19
+  m_RootOrder: 36
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2339,7 +2900,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Besto villano de todos los tiempos, mi favorito
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -2456,6 +3017,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: artwork
+      value: 
+      objectReference: {fileID: 21300000, guid: 252d43dfcdab7b34e89775370a6f1a51, type: 3}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: wQuality
       value: 2
       objectReference: {fileID: 0}
@@ -2464,13 +3029,33 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.b
+      value: 0.23629406
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.g
+      value: 0.6897384
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.r
+      value: 0.8490566
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: description
-      value: RELLENAR
+      value: Mente maestra del crimen, archienemiga de Gru, experta ladrona de cartas
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: cardRealName
       value: Scarlet Overkill
       objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: qualitySprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d01b0b4f13e044d0c83c424e542ddcbf, type: 3}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: effectDescription
       value: Cuando esta carta es jugada se roba una carta del deck propio
@@ -2637,7 +3222,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 7
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2751,7 +3336,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   card: {fileID: 532834795}
-  qualitySprite: {fileID: 21300000, guid: 857b27bf305c140dab35e3de694fcfbc, type: 3}
 --- !u!114 &532834801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2774,6 +3358,8 @@ MonoBehaviour:
     aunque conociendo a los minions eso puede salir mal (Solo se puede activar una
     vez por partida)
   artwork: {fileID: 21300000, guid: 0c25efb6be7db3d43a0793023468ca41, type: 3}
+  qualitySprite: {fileID: 21300000, guid: d1c3b6a233b524474899f14a81d5c3b5, type: 3}
+  cardColor: {r: 0.7264151, g: 0.18845676, b: 0.4861619, a: 1}
   affected: 00000000
   wQuality: 0
 --- !u!1 &540849617
@@ -2810,7 +3396,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 8
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2924,7 +3510,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   card: {fileID: 540849617}
-  qualitySprite: {fileID: 21300000, guid: 857b27bf305c140dab35e3de694fcfbc, type: 3}
 --- !u!114 &540849623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2947,6 +3532,8 @@ MonoBehaviour:
     aunque conociendo a los minions eso puede salir mal (Solo se puede activar una
     vez por partida)
   artwork: {fileID: 21300000, guid: 0c25efb6be7db3d43a0793023468ca41, type: 3}
+  qualitySprite: {fileID: 21300000, guid: d1c3b6a233b524474899f14a81d5c3b5, type: 3}
+  cardColor: {r: 0.7264151, g: 0.18845676, b: 0.4861619, a: 1}
   affected: 00000000
   wQuality: 0
 --- !u!1 &556206759
@@ -2976,15 +3563,15 @@ RectTransform:
   m_GameObject: {fileID: 556206759}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2452849, y: 1.2452849, z: 1.2452849}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 21
+  m_RootOrder: 41
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -626.07, y: 150.74}
+  m_AnchoredPosition: {x: -616.8, y: 150.74}
   m_SizeDelta: {x: 47.937, y: 73.689}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &556206761
@@ -3016,9 +3603,9 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 1
+    rgba: 16777215
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
+  m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
     topLeft: {r: 0, g: 0, b: 0, a: 1}
@@ -3034,8 +3621,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 35
+  m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
@@ -3084,6 +3671,122 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556206759}
   m_CullTransparentMesh: 1
+--- !u!1 &588232790
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 588232791}
+  - component: {fileID: 588232793}
+  - component: {fileID: 588232792}
+  - component: {fileID: 588232794}
+  - component: {fileID: 588232795}
+  m_Layer: 5
+  m_Name: Guard2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &588232791
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 588232790}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.35703567, y: 0.35703567, z: 0.35703567}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1071480984}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -150.47, y: -99.883}
+  m_SizeDelta: {x: 100, y: 113.61}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &588232792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 588232790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: b6ac0e9b841fb35478b6e9d373666997, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &588232793
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 588232790}
+  m_CullTransparentMesh: 1
+--- !u!114 &588232794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 588232790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4868f4be6b435343a07e86d1f748b15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: -2
+  power: 0
+  addedPower: 0
+  cardRealName: Guardia
+  description: Este es un guardia, su trabajo es quedarse ahi aburrido, ni siquiera
+    le pagan bien, todo el dia ahi parado, pobre lastimoso
+  hasEffect: 0
+  effectDescription: 
+  artwork: {fileID: 21300000, guid: 09b66a14c40b5c744bb75993fa05c85c, type: 3}
+  qualitySprite: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  cardColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 0.101960786}
+  affected: 00000000
+  wQuality: 0
+--- !u!114 &588232795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 588232790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86927c0ef6ddbd54aa2546f0ede00273, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  card: {fileID: 0}
 --- !u!1001 &613794926
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3128,6 +3831,22 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.b
+      value: 0.23629406
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.g
+      value: 0.6897384
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.r
+      value: 0.8490566
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: description
       value: Comparado al macho, este es muy gay, no muere de la manera mas macha
         posible, solo se quedo botado en la luna
@@ -3136,6 +3855,10 @@ PrefabInstance:
       propertyPath: cardRealName
       value: Vector
       objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: qualitySprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d01b0b4f13e044d0c83c424e542ddcbf, type: 3}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: effectDescription
       value: Cuando esta carta es jugada manda al cementerio a la carta de menor
@@ -3294,7 +4017,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 52
+      value: 66
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -3321,6 +4044,18 @@ PrefabInstance:
       value: -511.9525
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -3338,15 +4073,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -3354,7 +4089,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 32.100006
+      value: 32.09998
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3408,7 +4143,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 55
+      value: 69
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -3428,11 +4163,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -1299.3319
+      value: -1299.3318
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_SizeDelta.y
       value: -511.9525
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.99999994
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3452,15 +4199,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -3524,7 +4271,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 33
+  m_RootOrder: 47
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3640,6 +4387,82 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ab0c6f9f4594094a94a6b0121e80148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &638360661
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 638360662}
+  - component: {fileID: 638360664}
+  - component: {fileID: 638360663}
+  m_Layer: 5
+  m_Name: PlayedLightRight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &638360662
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638360661}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1.1657552, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1071480984}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 572.84326, y: 0.020019531}
+  m_SizeDelta: {x: 5.601, y: 358.462}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &638360663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638360661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 1, b: 0, a: 0.101960786}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &638360664
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638360661}
+  m_CullTransparentMesh: 1
 --- !u!1 &640041618
 GameObject:
   m_ObjectHideFlags: 0
@@ -3671,7 +4494,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 41
+  m_RootOrder: 55
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3698,9 +4521,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '
-
-'
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -3805,8 +4626,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: artwork
+      value: 
+      objectReference: {fileID: 21300000, guid: ca1d3e6b20b6d454c99fa08751b0a289, type: 3}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: hasEffect
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.b
+      value: 0.3254717
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.r
+      value: 0.44320938
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: description
@@ -3816,6 +4657,10 @@ PrefabInstance:
       propertyPath: cardRealName
       value: Inyeccion de minion purpura
       objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: qualitySprite
+      value: 
+      objectReference: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: effectDescription
       value: Aumenta el poder de las cartas de la fila seleccionada en 1
@@ -3827,7 +4672,7 @@ PrefabInstance:
     - target: {fileID: 2561653655594927260, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: ae8de5960fc797e4786d3a4a45247f34, type: 3}
+      objectReference: {fileID: 21300000, guid: 3390b0cc28828254a9f389a7d42212aa, type: 3}
     - target: {fileID: 2561653655594927260, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -3989,7 +4834,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 47
+      value: 62
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4009,11 +4854,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -1306.5
+      value: -1304.5
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_SizeDelta.y
       value: -511.9525
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.99999994
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4033,19 +4890,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -159.74991
+      value: -160.76
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4104,11 +4961,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 24
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -183, y: 248.96}
+  m_AnchoredPosition: {x: -183, y: 248.96005}
   m_SizeDelta: {x: 100, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &677752211
@@ -4180,7 +5037,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 3
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4253,17 +5110,41 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: artwork
+      value: 
+      objectReference: {fileID: 21300000, guid: 651d728b51c9354499d634bd585eb504, type: 3}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: hasEffect
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.b
+      value: 0.3254717
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.r
+      value: 0.44320938
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: description
-      value: RELLENAR
+      value: Vuelve locos a los minions
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: cardRealName
       value: Banana
       objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: qualitySprite
+      value: 
+      objectReference: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: effectDescription
       value: Aumenta el poder de las cartas de la fila seleccionada en 1
@@ -4275,7 +5156,7 @@ PrefabInstance:
     - target: {fileID: 2561653655594927260, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 6d1ab4d56377cc64d8e59c0cffc3056f, type: 3}
+      objectReference: {fileID: 21300000, guid: cb270adc795048d4098b5b1e04997443, type: 3}
     - target: {fileID: 2561653655594927260, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -4418,7 +5299,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 45
+  m_RootOrder: 56
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4489,6 +5370,122 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &748548211
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 748548212}
+  - component: {fileID: 748548214}
+  - component: {fileID: 748548213}
+  - component: {fileID: 748548215}
+  - component: {fileID: 748548216}
+  m_Layer: 5
+  m_Name: Guard1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &748548212
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748548211}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.30174, y: 0.30174, z: 0.30174}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1071480984}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -288.23, y: -100.29}
+  m_SizeDelta: {x: 112.93, y: 137.9}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &748548213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748548211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: b6ac0e9b841fb35478b6e9d373666997, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &748548214
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748548211}
+  m_CullTransparentMesh: 1
+--- !u!114 &748548215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748548211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4868f4be6b435343a07e86d1f748b15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: -2
+  power: 0
+  addedPower: 0
+  cardRealName: Guardia
+  description: Este es un guardia, su trabajo es quedarse ahi aburrido, ni siquiera
+    le pagan bien, todo el dia ahi parado, pobre lastimoso
+  hasEffect: 0
+  effectDescription: 
+  artwork: {fileID: 21300000, guid: 09b66a14c40b5c744bb75993fa05c85c, type: 3}
+  qualitySprite: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  cardColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 0.101960786}
+  affected: 00000000
+  wQuality: 0
+--- !u!114 &748548216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748548211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86927c0ef6ddbd54aa2546f0ede00273, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  card: {fileID: 0}
 --- !u!224 &793406274 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
@@ -4525,7 +5522,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 35
+  m_RootOrder: 49
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4654,7 +5651,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 53
+      value: 67
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4681,6 +5678,18 @@ PrefabInstance:
       value: -511.9525
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -4698,15 +5707,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -4791,6 +5800,22 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.b
+      value: 0.20536669
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.g
+      value: 0.20536669
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.r
+      value: 0.6698113
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: description
       value: Los minions se vuelven pasivos cuando les das un peluche
       objectReference: {fileID: 0}
@@ -4798,6 +5823,10 @@ PrefabInstance:
       propertyPath: cardRealName
       value: Peluche
       objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: qualitySprite
+      value: 
+      objectReference: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: effectDescription
       value: Reduce el poder de las cartas de la fila seleccionada en 1
@@ -4809,7 +5838,7 @@ PrefabInstance:
     - target: {fileID: 2561653655594927260, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: b5542e277df7c984bb958ea2df5e4678, type: 3}
+      objectReference: {fileID: 21300000, guid: 4133a83a1ed954448beb6cc4c4ab8a0a, type: 3}
     - target: {fileID: 2561653655594927260, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -4950,7 +5979,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 50
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4977,6 +6006,18 @@ PrefabInstance:
       value: -511.9525
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -4994,15 +6035,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -5010,7 +6051,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -176.78003
+      value: -176.78004
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -5064,7 +6105,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: id
-      value: -1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: artwork
@@ -5075,6 +6116,22 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.b
+      value: 0.7100926
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.g
+      value: 0.45612317
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.r
+      value: 0.7735849
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: description
       value: Demasiado pequeno para pelear, Gru le hallo otra utilidad
       objectReference: {fileID: 0}
@@ -5082,6 +6139,10 @@ PrefabInstance:
       propertyPath: cardRealName
       value: Minion Bebe
       objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: qualitySprite
+      value: 
+      objectReference: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: effectDescription
       value: Esta carta se puede intercambiar con otra en el campo (solo con unidades)
@@ -5242,17 +6303,41 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: artwork
+      value: 
+      objectReference: {fileID: 21300000, guid: 651d728b51c9354499d634bd585eb504, type: 3}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: hasEffect
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.b
+      value: 0.3254717
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.r
+      value: 0.44320938
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: description
-      value: RELLENAR
+      value: Vuelve locos a los minions
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: cardRealName
       value: Banana
       objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: qualitySprite
+      value: 
+      objectReference: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: effectDescription
       value: Aumenta el poder de las cartas de la fila seleccionada en 1
@@ -5264,7 +6349,7 @@ PrefabInstance:
     - target: {fileID: 2561653655594927260, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 6d1ab4d56377cc64d8e59c0cffc3056f, type: 3}
+      objectReference: {fileID: 21300000, guid: cb270adc795048d4098b5b1e04997443, type: 3}
     - target: {fileID: 2561653655594927260, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -5415,7 +6500,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 54
+      value: 68
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -5442,6 +6527,18 @@ PrefabInstance:
       value: -511.9525
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -5459,15 +6556,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -5540,6 +6637,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: artwork
+      value: 
+      objectReference: {fileID: 21300000, guid: 252d43dfcdab7b34e89775370a6f1a51, type: 3}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: wQuality
       value: 2
       objectReference: {fileID: 0}
@@ -5548,13 +6649,33 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.b
+      value: 0.23629406
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.g
+      value: 0.6897384
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.r
+      value: 0.8490566
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: description
-      value: RELLENAR
+      value: Mente maestra del crimen, archienemiga de Gru, experta ladrona de cartas
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: cardRealName
       value: Scarlet Overkill
       objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: qualitySprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d01b0b4f13e044d0c83c424e542ddcbf, type: 3}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: effectDescription
       value: Cuando esta carta es jugada se roba una carta del deck propio
@@ -5716,7 +6837,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 59
+      value: 73
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -5736,11 +6857,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -1299.3319
+      value: -1299.3318
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_SizeDelta.y
       value: -511.9525
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.99999994
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5760,15 +6893,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -5776,7 +6909,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 102.20001
+      value: 102.200035
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -5800,6 +6933,82 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+--- !u!1 &966296658
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 966296659}
+  - component: {fileID: 966296661}
+  - component: {fileID: 966296660}
+  m_Layer: 5
+  m_Name: PlayedLightUpper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &966296659
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966296658}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1.1657552, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1071480984}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -34.54795, y: 100.720184}
+  m_SizeDelta: {x: 15.6482, y: 174.0624}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &966296660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966296658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 1, b: 0, a: 0.101960786}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &966296661
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966296658}
+  m_CullTransparentMesh: 1
 --- !u!1 &971488403
 GameObject:
   m_ObjectHideFlags: 0
@@ -5870,7 +7079,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 9
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5925,7 +7134,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: id
-      value: -1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: artwork
@@ -5936,6 +7145,22 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.b
+      value: 0.7100926
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.g
+      value: 0.45612317
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.r
+      value: 0.7735849
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: description
       value: Demasiado pequeno para pelear, Gru le hallo otra utilidad
       objectReference: {fileID: 0}
@@ -5943,6 +7168,10 @@ PrefabInstance:
       propertyPath: cardRealName
       value: Minion Bebe
       objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: qualitySprite
+      value: 
+      objectReference: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: effectDescription
       value: Esta carta se puede intercambiar con otra en el campo (solo con unidades)
@@ -6093,8 +7322,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: artwork
+      value: 
+      objectReference: {fileID: 21300000, guid: ca1d3e6b20b6d454c99fa08751b0a289, type: 3}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: hasEffect
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.b
+      value: 0.3254717
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.r
+      value: 0.44320938
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: description
@@ -6104,6 +7353,10 @@ PrefabInstance:
       propertyPath: cardRealName
       value: Inyeccion de minion purpura
       objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: qualitySprite
+      value: 
+      objectReference: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: effectDescription
       value: Aumenta el poder de las cartas de la fila seleccionada en 1
@@ -6115,7 +7368,7 @@ PrefabInstance:
     - target: {fileID: 2561653655594927260, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: ae8de5960fc797e4786d3a4a45247f34, type: 3}
+      objectReference: {fileID: 21300000, guid: 3390b0cc28828254a9f389a7d42212aa, type: 3}
     - target: {fileID: 2561653655594927260, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -6266,10 +7519,26 @@ PrefabInstance:
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: artwork
       value: 
-      objectReference: {fileID: 21300000, guid: 2edb502c347b4254ab4564411ab846f7, type: 3}
+      objectReference: {fileID: 21300000, guid: dc03cc05d9a1a2245bcf77ae676c1e42, type: 3}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: hasEffect
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.g
+      value: 0.8206932
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.r
+      value: 0.3726415
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: description
@@ -6281,6 +7550,10 @@ PrefabInstance:
       value: Muchas Bananas
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: qualitySprite
+      value: 
+      objectReference: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: effectDescription
       value: Se deshace de todas las cartas de clima en la fila seleccionada
       objectReference: {fileID: 0}
@@ -6291,7 +7564,7 @@ PrefabInstance:
     - target: {fileID: 2561653655594927260, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 34cce4dd6c46f3742b429f10d91a0433, type: 3}
+      objectReference: {fileID: 21300000, guid: b1e81587dbf89ed40b5a99ed7bef4673, type: 3}
     - target: {fileID: 2561653655594927260, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -6437,11 +7710,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: id
-      value: -1
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: power
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: artwork
@@ -6452,12 +7725,41 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: hasEffect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.b
+      value: 0.8679245
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.g
+      value: 0.82923055
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.r
+      value: 0.7737629
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: description
       value: Solia ser un aventurero justo como tu, pero lo bananearon en la rodilla
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: cardRealName
       value: Bob
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: qualitySprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: effectDescription
+      value: Cuando esta carta es jugada su poder se convierte en el promedio del
+        poder total de todas las cartas del campo
       objectReference: {fileID: 0}
     - target: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Name
@@ -6609,7 +7911,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 39
+  m_RootOrder: 53
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6908,16 +8210,33 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1947402712}
+  - {fileID: 2099023915}
   - {fileID: 1580820472}
+  - {fileID: 748548212}
+  - {fileID: 588232791}
+  - {fileID: 373339263}
+  - {fileID: 1775964368}
+  - {fileID: 966296659}
+  - {fileID: 2067022166}
+  - {fileID: 245762359}
+  - {fileID: 343975504}
+  - {fileID: 638360662}
   - {fileID: 1990513172}
   - {fileID: 681124729}
   - {fileID: 1845967589}
   - {fileID: 1194172541}
   - {fileID: 983662789}
-  - {fileID: 532834796}
-  - {fileID: 540849618}
   - {fileID: 971488406}
   - {fileID: 1391710912}
+  - {fileID: 1848283486}
+  - {fileID: 677752210}
+  - {fileID: 2044138537}
+  - {fileID: 1829186320}
+  - {fileID: 270863343}
+  - {fileID: 1091907234}
+  - {fileID: 1767920636}
+  - {fileID: 532834796}
+  - {fileID: 540849618}
   - {fileID: 401695425}
   - {fileID: 1723134402}
   - {fileID: 108452092}
@@ -6927,16 +8246,13 @@ RectTransform:
   - {fileID: 81295669}
   - {fileID: 321572045}
   - {fileID: 528515577}
+  - {fileID: 1978192766}
+  - {fileID: 432129187}
   - {fileID: 1888564622}
+  - {fileID: 1889871525}
   - {fileID: 556206760}
+  - {fileID: 329738325}
   - {fileID: 1851510347}
-  - {fileID: 1848283486}
-  - {fileID: 677752210}
-  - {fileID: 2044138537}
-  - {fileID: 1829186320}
-  - {fileID: 270863343}
-  - {fileID: 1091907234}
-  - {fileID: 1767920636}
   - {fileID: 1857397646}
   - {fileID: 1479294793}
   - {fileID: 1649212436}
@@ -6949,16 +8265,16 @@ RectTransform:
   - {fileID: 1054376735}
   - {fileID: 1469341215}
   - {fileID: 640041619}
+  - {fileID: 733295119}
   - {fileID: 2019767594}
   - {fileID: 1821130397}
+  - {fileID: 1819720627}
   - {fileID: 485448397}
-  - {fileID: 733295119}
   - {fileID: 904060569}
   - {fileID: 287957410}
   - {fileID: 3831248092945592189}
   - {fileID: 1400037310}
   - {fileID: 878779096}
-  - {fileID: 1819720627}
   - {fileID: 614105095}
   - {fileID: 862226931}
   - {fileID: 915025858}
@@ -7010,11 +8326,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 28
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 147, y: 248.95998}
+  m_AnchoredPosition: {x: 147, y: 248.95996}
   m_SizeDelta: {x: 100, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1091907235
@@ -7124,6 +8440,22 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.b
+      value: 0.23629406
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.g
+      value: 0.6897384
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.r
+      value: 0.8490566
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: description
       value: :o El Macho!! Pidele un autografo antes de que muera montando un tiburon
         vivo y saltando dentro de la boca de un volcan activo con 250 libras de dinamita
@@ -7133,6 +8465,10 @@ PrefabInstance:
       propertyPath: cardRealName
       value: El Macho
       objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: qualitySprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d01b0b4f13e044d0c83c424e542ddcbf, type: 3}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: effectDescription
       value: Cuando esta carta es jugada manda al cementerio a la carta de mayor
@@ -7145,7 +8481,7 @@ PrefabInstance:
     - target: {fileID: 2561653655594927260, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: d9fc7f1afc35140459fb9a5f7acad93e, type: 3}
+      objectReference: {fileID: 21300000, guid: 477de7fc47ed8984ca7092c5c2575f30, type: 3}
     - target: {fileID: 2561653655594927260, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -7301,7 +8637,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: id
-      value: -1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: artwork
@@ -7312,13 +8648,33 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.b
+      value: 0.7100926
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.g
+      value: 0.45612317
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.r
+      value: 0.7735849
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: description
-      value: RELLENAR
+      value: Le encantan los unicornios, cree que Kyle es adorable
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: cardRealName
       value: Agnes
       objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: qualitySprite
+      value: 
+      objectReference: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: effectDescription
       value: Esta carta se puede intercambiar con otra en el campo (solo con unidades)
@@ -7483,7 +8839,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 37
+  m_RootOrder: 51
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7630,7 +8986,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 5
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7711,6 +9067,22 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.b
+      value: 0.20536669
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.g
+      value: 0.20536669
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.r
+      value: 0.6698113
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: description
       value: 'Aviso: Esta carta solo se puede utilizar cuando no hay apagones'
       objectReference: {fileID: 0}
@@ -7718,6 +9090,10 @@ PrefabInstance:
       propertyPath: cardRealName
       value: Rayo Congelador
       objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: qualitySprite
+      value: 
+      objectReference: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: effectDescription
       value: Reduce el poder de las cartas de la fila seleccionada en 1
@@ -7729,7 +9105,7 @@ PrefabInstance:
     - target: {fileID: 2561653655594927260, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: aeff85b463140334891c89d98eeee48f, type: 3}
+      objectReference: {fileID: 21300000, guid: 1693cef5881f9974b808ce3b759a960f, type: 3}
     - target: {fileID: 2561653655594927260, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -7883,7 +9259,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 14
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7914,11 +9290,8 @@ MonoBehaviour:
   - {fileID: 1025535554}
   - {fileID: 1283005646}
   - {fileID: 1283005646}
-  - {fileID: 1283005646}
   - {fileID: 1727463696}
   - {fileID: 1727463696}
-  - {fileID: 1727463696}
-  - {fileID: 320111378}
   - {fileID: 320111378}
   - {fileID: 320111378}
   - {fileID: 2033373378}
@@ -8009,7 +9382,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 776026a3317101449a0a0977e7e691d2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 778a1afa6cbe3114f8a0cbe99ea08314, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8060,11 +9433,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: id
-      value: -1
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: power
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: artwork
@@ -8075,6 +9448,26 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: hasEffect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.b
+      value: 0.8679245
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.g
+      value: 0.82923055
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.r
+      value: 0.7737629
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: description
       value: 'Famoso filosofo autor de la frase: "Belo papaguera, churepera con la
         papaya"'
@@ -8082,6 +9475,15 @@ PrefabInstance:
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: cardRealName
       value: Kevin
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: qualitySprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: effectDescription
+      value: Cuando esta carta es jugada su poder se convierte en el promedio del
+        poder total de todas las cartas del campo
       objectReference: {fileID: 0}
     - target: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Name
@@ -8236,7 +9638,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: id
-      value: -1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: artwork
@@ -8247,13 +9649,33 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.b
+      value: 0.7100926
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.g
+      value: 0.45612317
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.r
+      value: 0.7735849
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: description
-      value: RELLENAR
+      value: Le encantan los unicornios, cree que Kyle es adorable
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: cardRealName
       value: Agnes
       objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: qualitySprite
+      value: 
+      objectReference: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: effectDescription
       value: Esta carta se puede intercambiar con otra en el campo (solo con unidades)
@@ -8419,11 +9841,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: id
-      value: -1
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: power
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: artwork
@@ -8434,6 +9856,26 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: hasEffect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.b
+      value: 0.8679245
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.g
+      value: 0.82923055
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.r
+      value: 0.7737629
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: description
       value: 'Famoso filosofo autor de la frase: "Belo papaguera, churepera con la
         papaya"'
@@ -8441,6 +9883,15 @@ PrefabInstance:
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: cardRealName
       value: Kevin
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: qualitySprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: effectDescription
+      value: Cuando esta carta es jugada su poder se convierte en el promedio del
+        poder total de todas las cartas del campo
       objectReference: {fileID: 0}
     - target: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Name
@@ -8591,7 +10042,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 16
+  m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -8611,14 +10062,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.96470594, g: 0.9490197, b: 0.92549026, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0c25efb6be7db3d43a0793023468ca41, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8802,7 +10253,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 34
+  m_RootOrder: 48
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -8950,6 +10401,22 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.b
+      value: 0.23629406
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.g
+      value: 0.6897384
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.r
+      value: 0.8490566
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: description
       value: Comparado al macho, este es muy gay, no muere de la manera mas macha
         posible, solo se quedo botado en la luna
@@ -8958,6 +10425,10 @@ PrefabInstance:
       propertyPath: cardRealName
       value: Vector
       objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: qualitySprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d01b0b4f13e044d0c83c424e542ddcbf, type: 3}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: effectDescription
       value: Cuando esta carta es jugada manda al cementerio a la carta de menor
@@ -9161,11 +10632,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 10
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 496.99976, y: -248.96}
+  m_AnchoredPosition: {x: 496.99966, y: -248.96004}
   m_SizeDelta: {x: 100, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1391710913
@@ -9206,7 +10677,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 49
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -9233,6 +10704,18 @@ PrefabInstance:
       value: -511.9525
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -9250,15 +10733,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -9266,7 +10749,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -107.8
+      value: -107.800026
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -9332,7 +10815,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 38
+  m_RootOrder: 52
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9421,7 +10904,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 40
+  m_RootOrder: 54
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9448,7 +10931,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -9556,7 +11039,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 31
+  m_RootOrder: 45
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9689,7 +11172,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 56
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -9709,11 +11192,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -1299.3319
+      value: -1299.3318
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_SizeDelta.y
       value: -511.9525
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.99999994
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9733,15 +11228,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -9749,7 +11244,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -107.00001
+      value: -107.000015
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -9943,7 +11438,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9970,7 +11465,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 1826a0814e4b10e4cb3220f54761f58d, type: 3}
+  m_Texture: {fileID: 2800000, guid: 2f3e0fd44bc165d42a4ab178bcf61f99, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -10014,7 +11509,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 60
+      value: 74
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -10034,11 +11529,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -1299.3319
+      value: -1299.3318
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_SizeDelta.y
       value: -511.9525
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.99999994
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10058,15 +11565,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -10131,6 +11638,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: artwork
+      value: 
+      objectReference: {fileID: 21300000, guid: 2de768fe42a8094409f225922975b10a, type: 3}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: wQuality
       value: 0
       objectReference: {fileID: 0}
@@ -10139,13 +11650,33 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.b
+      value: 0.3254717
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.r
+      value: 0.44320938
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: description
-      value: Rellenar
+      value: Vuelve locos a los minions
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: cardRealName
       value: Manzana
       objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: qualitySprite
+      value: 
+      objectReference: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: effectDescription
       value: Aumenta el poder de las cartas de la fila seleccionada en 1
@@ -10157,7 +11688,7 @@ PrefabInstance:
     - target: {fileID: 2561653655594927260, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: f4202641f6eac55429789e3d238eb49e, type: 3}
+      objectReference: {fileID: 21300000, guid: a11b038027c7c494c8ae2cdb04f7e0f4, type: 3}
     - target: {fileID: 2561653655594927260, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -10320,7 +11851,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 32
+  m_RootOrder: 46
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10577,7 +12108,7 @@ RectTransform:
   m_Children:
   - {fileID: 169692197}
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 12
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10763,11 +12294,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: id
-      value: -1
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: power
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: artwork
@@ -10778,12 +12309,41 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: hasEffect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.b
+      value: 0.8679245
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.g
+      value: 0.82923055
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.r
+      value: 0.7737629
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: description
       value: Solia ser un aventurero justo como tu, pero lo bananearon en la rodilla
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: cardRealName
       value: Bob
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: qualitySprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: effectDescription
+      value: Cuando esta carta es jugada su poder se convierte en el promedio del
+        poder total de todas las cartas del campo
       objectReference: {fileID: 0}
     - target: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Name
@@ -10942,7 +12502,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 57
+      value: 71
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -10962,11 +12522,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -1299.3319
+      value: -1299.3318
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_SizeDelta.y
       value: -511.9525
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.99999994
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10986,15 +12558,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -11068,11 +12640,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 29
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 497, y: 248.96}
+  m_AnchoredPosition: {x: 497, y: 248.96005}
   m_SizeDelta: {x: 100, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1767920637
@@ -11136,6 +12708,122 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8552482594983753551, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
   m_PrefabInstance: {fileID: 2120797348}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1775964367
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1775964368}
+  - component: {fileID: 1775964370}
+  - component: {fileID: 1775964369}
+  - component: {fileID: 1775964371}
+  - component: {fileID: 1775964372}
+  m_Layer: 5
+  m_Name: Guard2E
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1775964368
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775964367}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.3885976, y: 0.3885976, z: 0.3885976}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1071480984}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -150.43, y: 101.4}
+  m_SizeDelta: {x: 89.688, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1775964369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775964367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: b6ac0e9b841fb35478b6e9d373666997, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1775964370
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775964367}
+  m_CullTransparentMesh: 1
+--- !u!114 &1775964371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775964367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4868f4be6b435343a07e86d1f748b15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: -2
+  power: 0
+  addedPower: 0
+  cardRealName: Guardia
+  description: Este es un guardia, su trabajo es quedarse ahi aburrido, ni siquiera
+    le pagan bien, todo el dia ahi parado, pobre lastimoso
+  hasEffect: 0
+  effectDescription: 
+  artwork: {fileID: 21300000, guid: 09b66a14c40b5c744bb75993fa05c85c, type: 3}
+  qualitySprite: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  cardColor: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 1}
+  affected: 00000000
+  wQuality: 0
+--- !u!114 &1775964372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775964367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86927c0ef6ddbd54aa2546f0ede00273, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  card: {fileID: 0}
 --- !u!1 &1819720626
 GameObject:
   m_ObjectHideFlags: 0
@@ -11167,7 +12855,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 51
+  m_RootOrder: 59
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11300,7 +12988,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 43
+      value: 58
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -11433,11 +13121,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 26
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 497, y: 248.96}
+  m_AnchoredPosition: {x: 497, y: 248.96005}
   m_SizeDelta: {x: 100, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1829186321
@@ -11509,7 +13197,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 4
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11585,11 +13273,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 23
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -523.02014, y: 248.96}
+  m_AnchoredPosition: {x: -523.0201, y: 248.96005}
   m_SizeDelta: {x: 100, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1848283487
@@ -11657,16 +13345,16 @@ RectTransform:
   m_GameObject: {fileID: 1851510346}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.4243, y: 1.4243, z: 1.4243}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 22
+  m_RootOrder: 43
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -561.69, y: 166.67}
-  m_SizeDelta: {x: 80.8192, y: 24.1121}
+  m_AnchoredPosition: {x: -555.7, y: 168}
+  m_SizeDelta: {x: 63.779, y: 20.1253}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1851510348
 MonoBehaviour:
@@ -11697,8 +13385,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294902016
-  m_fontColor: {r: 0, g: 0.004989147, b: 1, a: 1}
+    rgba: 16777215
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -11715,7 +13403,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 23.65
+  m_fontSize: 19.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -11796,7 +13484,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 30
+  m_RootOrder: 44
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11936,6 +13624,22 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.b
+      value: 0.20536669
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.g
+      value: 0.20536669
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.r
+      value: 0.6698113
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: description
       value: 'Aviso: Esta carta solo se puede utilizar cuando no hay apagones'
       objectReference: {fileID: 0}
@@ -11943,6 +13647,10 @@ PrefabInstance:
       propertyPath: cardRealName
       value: Rayo Congelador
       objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: qualitySprite
+      value: 
+      objectReference: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: effectDescription
       value: Reduce el poder de las cartas de la fila seleccionada en 1
@@ -11954,7 +13662,7 @@ PrefabInstance:
     - target: {fileID: 2561653655594927260, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: aeff85b463140334891c89d98eeee48f, type: 3}
+      objectReference: {fileID: 21300000, guid: 1693cef5881f9974b808ce3b759a960f, type: 3}
     - target: {fileID: 2561653655594927260, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -12112,7 +13820,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 44
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -12132,11 +13840,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -1303.7867
+      value: -1303.121
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -511.9525
+      value: -511.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.99999994
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12156,19 +13876,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -276.02664
+      value: -274.35956
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -12235,16 +13955,16 @@ RectTransform:
   m_GameObject: {fileID: 1888564621}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.0354697, y: 1.1505219, z: 1.1505219}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 20
+  m_RootOrder: 39
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -626.07, y: 57.511}
-  m_SizeDelta: {x: 47.937, y: 73.689}
+  m_AnchoredPosition: {x: -622.35, y: -50.434}
+  m_SizeDelta: {x: 62.0634, y: 83.447}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1888564623
 MonoBehaviour:
@@ -12266,7 +13986,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: L
+  m_text: '[L]'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -12275,9 +13995,9 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 1
+    rgba: 16777215
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
+  m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
     topLeft: {r: 1, g: 0.8581352, b: 0, a: 1}
@@ -12293,8 +14013,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
@@ -12343,6 +14063,82 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1888564621}
   m_CullTransparentMesh: 1
+--- !u!1 &1889871524
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1889871525}
+  - component: {fileID: 1889871527}
+  - component: {fileID: 1889871526}
+  m_Layer: 5
+  m_Name: BGPower
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1889871525
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889871524}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 5.2865734, y: 6.447137, z: 5.793505}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1071480984}
+  m_RootOrder: 40
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -615.33, y: 157.52}
+  m_SizeDelta: {x: 14.395, y: 12.238}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1889871526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889871524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: eec3312b68dc24bacb68c6f19907ddcd, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1889871527
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889871524}
+  m_CullTransparentMesh: 1
 --- !u!224 &1890420675 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
@@ -12380,7 +14176,7 @@ RectTransform:
   m_Children:
   - {fileID: 1570595591}
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 61
+  m_RootOrder: 75
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12489,14 +14285,13 @@ RectTransform:
   - {fileID: 1363485775}
   - {fileID: 924736176}
   - {fileID: 530372377}
-  - {fileID: 2099023915}
   m_Father: {fileID: 1071480984}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 146.99997, y: -105.200005}
-  m_SizeDelta: {x: 2500, y: 2000}
+  m_AnchoredPosition: {x: 365.62604, y: -105.200005}
+  m_SizeDelta: {x: 2937.252, y: 2000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1947402713
 MonoBehaviour:
@@ -12557,11 +14352,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: id
-      value: -1
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: power
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: artwork
@@ -12572,12 +14367,41 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: hasEffect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.b
+      value: 0.8679245
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.g
+      value: 0.82923055
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.r
+      value: 0.7737629
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: description
       value: Esta un poco loco, le gusta que lo catapulten contra enemigos, muy conveniente
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: cardRealName
       value: Stuart
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: qualitySprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: effectDescription
+      value: Cuando esta carta es jugada su poder se convierte en el promedio del
+        poder total de todas las cartas del campo
       objectReference: {fileID: 0}
     - target: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Name
@@ -12701,6 +14525,82 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+--- !u!1 &1978192765
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1978192766}
+  - component: {fileID: 1978192768}
+  - component: {fileID: 1978192767}
+  m_Layer: 5
+  m_Name: Death
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1978192766
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1978192765}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 3.9883516, y: 5.8076606, z: 4.370796}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1071480984}
+  m_RootOrder: 37
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -615.73, y: -41.039}
+  m_SizeDelta: {x: 17.0879, y: 10.821}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1978192767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1978192765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: a86fabb3151544d25b4310ff397f732a, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1978192768
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1978192765}
+  m_CullTransparentMesh: 1
 --- !u!1 &1990513171
 GameObject:
   m_ObjectHideFlags: 0
@@ -12732,7 +14632,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 2
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12949,7 +14849,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 42
+      value: 57
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -13087,13 +14987,34 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.b
+      value: 0.8679245
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.g
+      value: 0.82923055
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.r
+      value: 0.7737629
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: description
-      value: RELLENAR
+      value: Es la mascota de Gru, mitad "perro", mitad piranha, puedes jugar un
+        poco con el, solo asegurate de que no tenga hambre
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: cardRealName
       value: Kyle
       objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: qualitySprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
     - target: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Name
       value: Kyle (1)
@@ -13257,11 +15178,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 25
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 146.99998, y: 248.96}
+  m_AnchoredPosition: {x: 146.99998, y: 248.96005}
   m_SizeDelta: {x: 100, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2044138538
@@ -13335,7 +15256,7 @@ RectTransform:
   m_Children:
   - {fileID: 1325665075}
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 62
+  m_RootOrder: 76
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -13436,6 +15357,82 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2051672427}
   m_CullTransparentMesh: 1
+--- !u!1 &2067022165
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2067022166}
+  - component: {fileID: 2067022168}
+  - component: {fileID: 2067022167}
+  m_Layer: 5
+  m_Name: PlayedLightLower
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2067022166
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067022165}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1.1657552, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1071480984}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -34.54795, y: -108.522705}
+  m_SizeDelta: {x: 15.6482, y: 174.293}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2067022167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067022165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 1, b: 0, a: 0.101960786}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &2067022168
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067022165}
+  m_CullTransparentMesh: 1
 --- !u!1001 &2079493769
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13472,13 +15469,34 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.b
+      value: 0.8679245
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.g
+      value: 0.82923055
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.r
+      value: 0.7737629
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: description
-      value: RELLENAR
+      value: Edith, Margo y Agnes. Fueron adoptadas por Gru y desde entonces le han
+        hecho la vida un infierno, pero por lo menos saben usar un rifle
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: cardRealName
       value: Ninas
       objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: qualitySprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
     - target: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Name
       value: Ninas
@@ -13647,6 +15665,22 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.b
+      value: 0.20536669
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.g
+      value: 0.20536669
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.r
+      value: 0.6698113
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: description
       value: Los minions se vuelven pasivos cuando les das un peluche
       objectReference: {fileID: 0}
@@ -13654,6 +15688,10 @@ PrefabInstance:
       propertyPath: cardRealName
       value: Peluche
       objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: qualitySprite
+      value: 
+      objectReference: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: effectDescription
       value: Reduce el poder de las cartas de la fila seleccionada en 1
@@ -13665,7 +15703,7 @@ PrefabInstance:
     - target: {fileID: 2561653655594927260, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: b5542e277df7c984bb958ea2df5e4678, type: 3}
+      objectReference: {fileID: 21300000, guid: 4133a83a1ed954448beb6cc4c4ab8a0a, type: 3}
     - target: {fileID: 2561653655594927260, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -13832,6 +15870,22 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.b
+      value: 0.23629406
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.g
+      value: 0.6897384
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.r
+      value: 0.8490566
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: description
       value: :o El Macho!! Pidele un autografo antes de que muera montando un tiburon
         vivo y saltando dentro de la boca de un volcan activo con 250 libras de dinamita
@@ -13841,6 +15895,10 @@ PrefabInstance:
       propertyPath: cardRealName
       value: El Macho
       objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: qualitySprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d01b0b4f13e044d0c83c424e542ddcbf, type: 3}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: effectDescription
       value: Cuando esta carta es jugada manda al cementerio a la carta de mayor
@@ -13853,7 +15911,7 @@ PrefabInstance:
     - target: {fileID: 2561653655594927260, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: d9fc7f1afc35140459fb9a5f7acad93e, type: 3}
+      objectReference: {fileID: 21300000, guid: 477de7fc47ed8984ca7092c5c2575f30, type: 3}
     - target: {fileID: 2561653655594927260, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -14005,12 +16063,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1947402712}
-  m_RootOrder: 34
+  m_Father: {fileID: 1071480984}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -112, y: 90}
+  m_AnchoredPosition: {x: 34.999893, y: -15.199982}
   m_SizeDelta: {x: 46.687, y: 58.96}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2099023916
@@ -14136,7 +16194,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 58
+      value: 72
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -14156,11 +16214,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -1299.3319
+      value: -1299.3318
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_SizeDelta.y
       value: -511.9525
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.99999994
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14180,15 +16250,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -14196,7 +16266,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 32.899994
+      value: 32.90002
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -14248,6 +16318,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: artwork
+      value: 
+      objectReference: {fileID: 21300000, guid: 2de768fe42a8094409f225922975b10a, type: 3}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: wQuality
       value: 0
       objectReference: {fileID: 0}
@@ -14256,13 +16330,33 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.b
+      value: 0.3254717
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.r
+      value: 0.44320938
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: description
-      value: RELLENAR
+      value: Vuelve locos a los minions
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: cardRealName
       value: Manzana
       objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: qualitySprite
+      value: 
+      objectReference: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: effectDescription
       value: Aumenta el poder de las cartas de la fila seleccionada en 1
@@ -14274,7 +16368,7 @@ PrefabInstance:
     - target: {fileID: 2561653655594927260, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: f4202641f6eac55429789e3d238eb49e, type: 3}
+      objectReference: {fileID: 21300000, guid: a11b038027c7c494c8ae2cdb04f7e0f4, type: 3}
     - target: {fileID: 2561653655594927260, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -14413,16 +16507,45 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: artwork
+      value: 
+      objectReference: {fileID: 21300000, guid: 3da2059eb9ba797409387d9bafaff558, type: 3}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: wQuality
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.b
+      value: 0.8679245
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.g
+      value: 0.82923055
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: cardColor.r
+      value: 0.7737629
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: description
-      value: RELLENAR
+      value: Cientifico "loco" ayudante de Gru desde que se creo la maldad, inventor
+        del rayo congelador , el algebra lineal y la gravedad
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: cardRealName
       value: Doctor Nefario
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: qualitySprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: effectDescription
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Name
@@ -14431,7 +16554,7 @@ PrefabInstance:
     - target: {fileID: 2561653655594927260, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 77e34e866e22caa42925ca3108fbbd4a, type: 3}
+      objectReference: {fileID: 21300000, guid: 4a8c3b4afb169c145af35b96c6108496, type: 3}
     - target: {fileID: 2561653655594927260, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -14609,7 +16732,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2311447886571139349, guid: b67b0eb5e889e5f4e98c8623a820d6e9, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 2311447886571139349, guid: b67b0eb5e889e5f4e98c8623a820d6e9, type: 3}
       propertyPath: m_AnchorMax.x
@@ -14714,7 +16837,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 48
+      value: 63
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -14741,6 +16864,18 @@ PrefabInstance:
       value: -511.9525
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -14758,15 +16893,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchoredPosition.x

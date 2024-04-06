@@ -24,6 +24,8 @@ public class Effects : MonoBehaviour
             LessPowerEffect(card);
         }else if(card.GetComponent<Card>().id==8){//Scarlet Overkill
             DrawCardEffect(card);
+        }else if(card.GetComponent<Card>().id==9){//Minions Kevin||Bob||Stuart
+            PowerPromedio(card);
         }else{
             Debug.Log(card+" tiene hasEffect activado pero no tiene efecto");
         }
@@ -39,7 +41,6 @@ public class Effects : MonoBehaviour
                 zones[i].GetComponent<Image>().color=new Color (1,1,1,0.1f);
             }
         }
-
         ExtraDrawCard.UpdateRedraw();//Se actualiza si se puede intercambiar cartas con el deck
         if(ExtraDrawCard.redrawable){//Si se puede
             if(thisCard.GetComponent<Dragging>().whichField==Dragging.fields.P1){//La carta es de P1
@@ -56,6 +57,22 @@ public class Effects : MonoBehaviour
         }
         GameObject.Find("UntouchableMyDeck").GetComponent<Image>().color=new Color (1,1,1,0);
         GameObject.Find("UntouchableEnemyDeck").GetComponent<Image>().color=new Color (1,1,1,0);
+    }
+    public static void PlayedLightsOn(){
+        Color green=new Color(0,1,0,0.15f);
+        GameObject.Find("PlayedLightUpper").GetComponent<Image>().color=green;
+        GameObject.Find("PlayedLightLower").GetComponent<Image>().color=green;
+        GameObject.Find("PlayedLightMiddle").GetComponent<Image>().color=green;
+        GameObject.Find("PlayedLightLeft").GetComponent<Image>().color=green;
+        GameObject.Find("PlayedLightRight").GetComponent<Image>().color=green;
+    }
+    public static void PlayedLightsOff(){
+        Color red=new Color(1,0,0,0.15f);
+        GameObject.Find("PlayedLightUpper").GetComponent<Image>().color=red;
+        GameObject.Find("PlayedLightLower").GetComponent<Image>().color=red;
+        GameObject.Find("PlayedLightMiddle").GetComponent<Image>().color=red;
+        GameObject.Find("PlayedLightLeft").GetComponent<Image>().color=red;
+        GameObject.Find("PlayedLightRight").GetComponent<Image>().color=red;
     }
     public static void AumEffect(GameObject card){
         GameObject target=null;//Objetivo al que anadirle 1 de poder a los hijos
@@ -153,8 +170,7 @@ public class Effects : MonoBehaviour
             }
         }
         Card[] cardsInSlot=parent.GetComponentsInChildren<Card>();//Lista de los componenetes Card en el slot que sea
-        for(int i=card.transform.parent.childCount-1;i>=0;i--){//Se recorre esa lista de atras hacia adelante para que la ultima en
-            Debug.Log(cardsInSlot[i]);//enviarse al cementerio sea la carta despeje
+        for(int i=card.transform.parent.childCount-1;i>=0;i--){//Se recorre esa lista de atras hacia adelante para que la ultima en enviarse al cementerio sea el despeje
             Graveyard.ToGraveyard(cardsInSlot[i].gameObject);//Mandando las cartas del slot para el cementerio
         }
     }
@@ -246,9 +262,9 @@ public class Effects : MonoBehaviour
     public static void LessPowerEffect(GameObject card){//Elimina la carta con menos poder del campo enemigo
         //Determinando el campo a afectar
         List <GameObject> targetField=new List <GameObject>();//Una lista del campo enemigo
-        if(card.GetComponent<Dragging>().whichField==Dragging.fields.P1){//Si el Vector jugado es de P1
+        if(card.GetComponent<Dragging>().whichField==Dragging.fields.P1){//Si Vector es jugado por P1
             targetField=TotalFieldForce.P2PlayedCards;//El campo P2 es el enemigo
-        }else if(card.GetComponent<Dragging>().whichField==Dragging.fields.P2){//Si el Vector jugado es de P2
+        }else if(card.GetComponent<Dragging>().whichField==Dragging.fields.P2){//Si Vector es jugado por P2
             targetField=TotalFieldForce.P1PlayedCards;//El campo P1 es el enemigo
         }
 
@@ -282,6 +298,24 @@ public class Effects : MonoBehaviour
             GameObject Card = Instantiate(picked,new Vector3(0,0,0),Quaternion.identity);//Se instancia un objeto de esa escogida
             Card.transform.SetParent(PlayerArea.transform,false);//Se pone en la mano
             PlayerDeck.GetComponent<DrawCards>().cards.Remove(picked);//Se quita de la lista
+        }
+    }
+    public static void PowerPromedio(GameObject card){
+        int total=0;
+        Debug.Log("Calculando prom de:::");
+        for(int i=0;i<TotalFieldForce.P1PlayedCards.Count;i++){
+            Debug.Log(TotalFieldForce.P1PlayedCards[i]);
+        }
+        total+=TotalFieldForce.P1ForceValue;
+        for(int i=0;i<TotalFieldForce.P2PlayedCards.Count;i++){
+            Debug.Log(TotalFieldForce.P2PlayedCards[i]);
+        }
+        total+=TotalFieldForce.P2ForceValue;
+        int divisor=TotalFieldForce.P1PlayedCards.Count+TotalFieldForce.P2PlayedCards.Count;
+        if(divisor==0){
+            card.GetComponent<Card>().power=0;
+        }else{
+            card.GetComponent<Card>().power=total/divisor;
         }
     }
 }

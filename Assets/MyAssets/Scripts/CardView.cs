@@ -10,7 +10,7 @@ public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     //Objetos a utilizar
     public GameObject card;
     public static string cardName;
-    public Sprite qualitySprite;
+    
     void Start(){
         card=this.gameObject;
         cardName="None";
@@ -22,7 +22,7 @@ public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 Effects.ZonesGlow(card);
         }
         cardName=card.name;
-        card.GetComponent<Image>().color=new Color (0.75f,0.75f,0.75f,1);
+        card.GetComponent<Image>().color=new Color (0.75f,0.75f,0.75f,1);//La carta se sombrea cuando pasamos por encima
     }
 
     public void OnPointerExit(PointerEventData eventData){//Se activa cuando el mouse sale de la carta
@@ -30,77 +30,78 @@ public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             if(card.GetComponent<CanvasGroup>().blocksRaycasts==true)
                 Effects.OffZonesGlow();
         }
-        cardName="None";
-        card.GetComponent<Image>().color=new Color (1,1,1,1);
+        cardName="None";//Se pierde el nombre
+        card.GetComponent<Image>().color=new Color (1,1,1,1);//La carta se dessombrea
     }
     public void LoadInfo(){
         //Poniendo el sprite de la carta en el objeto gigante de la izquierda de la pantalla
         Card c=card.GetComponent<Card>();
         Dragging d=card.GetComponent<Dragging>();
         if(d!=null){
+            GameObject.Find("BGType").GetComponent<Image>().color=new Color(0.2f,0.2f,0.2f,0.8f);
+            GameObject.Find("Death").GetComponent<Image>().color=new Color(1,1,1,0);
             if(d.cardType==Dragging.rank.Melee){
-                GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="M";
+                GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="[M]";
             }else if(d.cardType==Dragging.rank.Ranged){
-                GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="R";
+                GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="[R]";
             }else if(d.cardType==Dragging.rank.Siege){
-                GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="S";
+                GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="[S]";
             }else if(d.cardType==Dragging.rank.Aumento){
-                GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="A";
+                GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="[A]";
             }else if(d.cardType==Dragging.rank.Clima){
-                GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="C";
+                GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="[C]";
             }else if(d.cardType==Dragging.rank.Despeje){
-                GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="D";
+                GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="[D]";
             }else if(d.cardType==Dragging.rank.Senuelo){
-                GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="S";
-            }else if(c.cardRealName=="Gru"){
-                GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="L";
-            }else{
-                GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="";
+                GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="[S]";
             }
+        }else if(c.cardRealName=="Gru"){
+                GameObject.Find("Death").GetComponent<Image>().color=new Color(1,1,1,0);
+                GameObject.Find("BGType").GetComponent<Image>().color=new Color(0.2f,0.2f,0.2f,0.8f);
+                GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="[L]";
+        }else if(c.id==-2){//Guardias
+            GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="";
+            GameObject.Find("BGType").GetComponent<Image>().color=new Color(0.2f,0.2f,0.2f,0);
+            GameObject.Find("Death").GetComponent<Image>().color=new Color(1,1,1,0);
+        }else{
+            GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="";
+            GameObject.Find("BGType").GetComponent<Image>().color=new Color(0.2f,0.2f,0.2f,0);
+            GameObject.Find("Death").GetComponent<Image>().color=new Color(1,1,1,0.8f);
         }
         if(c!=null){
             //Quality y Image
-            GameObject.Find("Quality").GetComponent<Image>().sprite=qualitySprite;
+            GameObject.Find("Quality").GetComponent<Image>().sprite=c.qualitySprite;
             GameObject.Find("CardPreview").GetComponent<Image>().sprite=c.artwork;
 
             //Colors
-            if(c.wQuality==Card.quality.Silver){
-                GameObject.Find("BackGroundCard").GetComponent<Image>().color=new Color(0.8f,0.8f,0.8f,1);
-                GameObject.Find("Type").GetComponent<TextMeshProUGUI>().color=new Color(0.8f,0.8f,0.8f,1);
-                GameObject.Find("Power").GetComponent<TextMeshProUGUI>().color=new Color(0.8f,0.8f,0.8f,1);
-            }else if(c.wQuality==Card.quality.Gold){
-                GameObject.Find("BackGroundCard").GetComponent<Image>().color=new Color(1,0.8f,0,1);
-                GameObject.Find("Type").GetComponent<TextMeshProUGUI>().color=new Color(1,0.8f,0,1);
-                GameObject.Find("Power").GetComponent<TextMeshProUGUI>().color=new Color(1,0.8f,0,1);
-            }else if(c.cardRealName=="Gru"){
-                GameObject.Find("BackGroundCard").GetComponent<Image>().color=new Color(0.3f,0.2f,0.4f,1);
-                GameObject.Find("Type").GetComponent<TextMeshProUGUI>().color=new Color(0.3f,0.2f,0.4f,1);
-            }else if(d.cardType==Dragging.rank.Aumento){
-                GameObject.Find("BackGroundCard").GetComponent<Image>().color=new Color(0.2f,0.8f,0.2f,1);
-                GameObject.Find("Type").GetComponent<TextMeshProUGUI>().color=new Color(0.2f,0.8f,0.2f,1);
-            }else if(d.cardType==Dragging.rank.Clima){
-                GameObject.Find("BackGroundCard").GetComponent<Image>().color=new Color(0.8f,0.2f,0.2f,1);
-                GameObject.Find("Type").GetComponent<TextMeshProUGUI>().color=new Color(0.8f,0.2f,0.2f,1);
-            }else if(d.cardType==Dragging.rank.Senuelo){
-                GameObject.Find("BackGroundCard").GetComponent<Image>().color=new Color(0.5f,0.5f,1,1);
-                GameObject.Find("Type").GetComponent<TextMeshProUGUI>().color=new Color(0.5f,0.5f,1,1);
-            }
-
+            GameObject.Find("BackGroundCard").GetComponent<Image>().color=c.cardColor;
+            GameObject.Find("Type").GetComponent<TextMeshProUGUI>().color=c.cardColor;
+            GameObject.Find("Power").GetComponent<TextMeshProUGUI>().color=c.cardColor;
+    
             //Power
             if(c.power!=0){
                 GameObject.Find("Power").GetComponent<TextMeshProUGUI>().text=c.power.ToString();
+                GameObject.Find("BGPower").GetComponent<Image>().color=new Color(0.2f,0.2f,0.2f,0.8f);
             }else{
                 GameObject.Find("Power").GetComponent<TextMeshProUGUI>().text="";
+                GameObject.Find("BGPower").GetComponent<Image>().color=new Color(0.2f,0.2f,0.2f,0);
+            }
+            if(c.id==9 || c.id==10){//Senuelo o Minion
+                GameObject.Find("Power").GetComponent<TextMeshProUGUI>().text=c.power.ToString();
+                GameObject.Find("BGPower").GetComponent<Image>().color=new Color(0.2f,0.2f,0.2f,0.8f);
             }
 
             //AddedPower
             if(c.addedPower>0){
                 GameObject.Find("AddedPower").GetComponent<TextMeshProUGUI>().text="+"+c.addedPower.ToString();
-                GameObject.Find("AddedPower").GetComponent<TextMeshProUGUI>().color=new Color(0,0,1,1);
+                GameObject.Find("BGAddedPower").GetComponent<Image>().color=new Color(0.2f,0.2f,0.2f,0.8f);
+                GameObject.Find("AddedPower").GetComponent<TextMeshProUGUI>().color=new Color(0,1,0,1);
             }else if(c.addedPower<0){
                 GameObject.Find("AddedPower").GetComponent<TextMeshProUGUI>().text=c.addedPower.ToString();
+                GameObject.Find("BGAddedPower").GetComponent<Image>().color=new Color(0.2f,0.2f,0.2f,0.8f);
                 GameObject.Find("AddedPower").GetComponent<TextMeshProUGUI>().color=new Color(1,0,0,1);
             }else{
+                GameObject.Find("BGAddedPower").GetComponent<Image>().color=new Color(1,1,1,0);
                 GameObject.Find("AddedPower").GetComponent<TextMeshProUGUI>().text="";
             }
 

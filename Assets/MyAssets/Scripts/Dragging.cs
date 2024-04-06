@@ -81,8 +81,8 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 if(cardType==rank.Senuelo){//Efecto del senuelo
                     Effects.Senuelo(this.gameObject);
                 }else if(this.transform.parent!=hand.transform && this.transform.parent!=GameObject.Find("Trash").transform){//Si el objeto sale de la mano y no esta en la basura
-                    TotalFieldForce.AddCard(this.gameObject);//Anade la carta segun el campo y el tipo
                     TurnManager.PlayCard(this.gameObject);//Independientemente del campo juega la carta
+                    TotalFieldForce.AddCard(this.gameObject);//Anade la carta segun el campo y el tipo
                 }else{
                     GetComponent<CanvasGroup>().blocksRaycasts=true;//Desactiva la penetracion de la carta para que podamos arrastrarla de nuevo
                 }

@@ -28,6 +28,11 @@ public class TurnManager : MonoBehaviour
             GameObject.Find("PassButton").GetComponent<Button>().onClick.Invoke();
             lastClickTime=Time.time;
         }
+        if(CardsPlayed==0){
+            Effects.PlayedLightsOn();
+        }else{
+            Effects.PlayedLightsOff();
+        }
     }
 
     public static void EndTurn(){//Se llama con cada pass
@@ -46,8 +51,6 @@ public class TurnManager : MonoBehaviour
         ExtraDrawCard.firstAction=false;
         CardsPlayed++;
         PlayedCards.Add(card);
-        //card.GetComponent<Card>().isPlayed=true;
-
         Effects.CheckForEffect(card);
         Effects.UpdateClima();
         if(!lastTurn)
