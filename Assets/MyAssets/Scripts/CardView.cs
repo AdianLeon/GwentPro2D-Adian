@@ -32,6 +32,11 @@ public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
         cardName="None";//Se pierde el nombre
         card.GetComponent<Image>().color=new Color (1,1,1,1);//La carta se dessombrea
+        if(TurnManager.CardsPlayed!=0){
+            if(!TurnManager.lastTurn){
+                RoundPoints.URWrite("Presiona espacio para pasar de turno");
+            }
+        }
     }
     public void LoadInfo(){
         //Poniendo el sprite de la carta en el objeto gigante de la izquierda de la pantalla

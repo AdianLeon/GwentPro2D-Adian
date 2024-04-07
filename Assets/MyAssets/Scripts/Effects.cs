@@ -59,7 +59,7 @@ public class Effects : MonoBehaviour
         GameObject.Find("UntouchableEnemyDeck").GetComponent<Image>().color=new Color (1,1,1,0);
     }
     public static void PlayedLightsOn(){
-        Color green=new Color(0,1,0,0.15f);
+        Color green=new Color(0,1,0,0.2f);
         GameObject.Find("PlayedLightUpper").GetComponent<Image>().color=green;
         GameObject.Find("PlayedLightLower").GetComponent<Image>().color=green;
         GameObject.Find("PlayedLightMiddle").GetComponent<Image>().color=green;
@@ -67,7 +67,7 @@ public class Effects : MonoBehaviour
         GameObject.Find("PlayedLightRight").GetComponent<Image>().color=green;
     }
     public static void PlayedLightsOff(){
-        Color red=new Color(1,0,0,0.15f);
+        Color red=new Color(1,0,0,0.2f);
         GameObject.Find("PlayedLightUpper").GetComponent<Image>().color=red;
         GameObject.Find("PlayedLightLower").GetComponent<Image>().color=red;
         GameObject.Find("PlayedLightMiddle").GetComponent<Image>().color=red;

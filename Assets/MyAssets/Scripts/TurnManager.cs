@@ -28,7 +28,7 @@ public class TurnManager : MonoBehaviour
             GameObject.Find("PassButton").GetComponent<Button>().onClick.Invoke();
             lastClickTime=Time.time;
         }
-        if(CardsPlayed==0){
+        if(CardsPlayed==0 || lastTurn){
             Effects.PlayedLightsOn();
         }else{
             Effects.PlayedLightsOff();
@@ -60,7 +60,7 @@ public class TurnManager : MonoBehaviour
     public static void NextRound(){//Proxima ronda
         lastTurn=false;
         Graveyard.AllToGraveyard();//Manda todas las cartas al cementerio
-
+        PlayedCards.Clear();
         for(int i=0;i<2;i++){
             GameObject.Find("Deck").GetComponent<Button>().onClick.Invoke();
             GameObject.Find("EnemyDeck").GetComponent<Button>().onClick.Invoke();
