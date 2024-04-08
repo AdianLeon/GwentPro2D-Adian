@@ -10,8 +10,8 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
     public Dragging.rank cardType;
     public Dragging.fields whichField;
     public static GameObject zoneEntered=null;
-    public static bool pointerInZone;
-    public static float lastClickTime;
+    public static bool pointerInZone;//Si el puntero esta sobre una zona o no
+    public static float lastClickTime;//Necesario para que funcione correctamente el click sobre zonas
 
     void Start(){
         lastClickTime=0;

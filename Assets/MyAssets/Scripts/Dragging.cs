@@ -34,7 +34,7 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     }
     //Detecta cuando empieza el arrastre de las cartas
     public void OnBeginDrag(PointerEventData eventData){
-        if(isDraggable){
+        if(isDraggable && (TurnManager.CardsPlayed==0 || TurnManager.lastTurn)){
             onDrag=true;
             //Guarda la posicion a la que volver si soltamos en lugar invalido y crea un espacio en el lugar de la carta
             placeholder=new GameObject();//Crea el placeholder y le asigna los mismos valores que a la carta y la posicion de la carta
@@ -54,7 +54,7 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     //Mientras se arrastra
     public void OnDrag(PointerEventData eventData){
-        if(isDraggable){
+        if(isDraggable && (TurnManager.CardsPlayed==0 || TurnManager.lastTurn)){
             this.transform.position=eventData.position;//Actualiza la posicion de la carta con la del puntero
             int newSiblingIndex=parentToReturnTo.childCount;//Guarda el indice del espacio de la derecha
             for(int i=0;i<parentToReturnTo.childCount;i++){//Chequeando constantemente si se ha pasado de la posicion de otra carta   
@@ -72,7 +72,7 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     //Cuando termina el arrastre
     public void OnEndDrag(PointerEventData eventData){
-        if(isDraggable){
+        if(isDraggable && (TurnManager.CardsPlayed==0 || TurnManager.lastTurn)){
             if(TurnManager.CardsPlayed<1 || TurnManager.lastTurn){//Solo cuando no se ha jugado una carta o si es el ultimo turno
                 this.transform.SetParent(parentToReturnTo);
                 this.transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());//Posiciona la carta en el espacio

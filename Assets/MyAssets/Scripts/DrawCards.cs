@@ -8,10 +8,10 @@ public class DrawCards : MonoBehaviour
     public GameObject PlayerArea;
     public List <GameObject> cards = new List <GameObject>();//Lista de cartas
     static int timesStarted=0;
-    static bool[] used=new bool[2];
+    static bool[] used=new bool[2];//Array de booleanos para determinar si se ha usado o no la habilidad de lider
     void Start(){
         timesStarted++;
-        if(timesStarted%2==0){//Este Start es ejecutado por dos decks, por eso se reparten las cartas la segunda vez porque es entonces cuando ambos tienen todas sus cartas
+        if(timesStarted%2==0){//Este Start es ejecutado por dos decks, por eso se reparten las cartas la segunda vez
             for(int i=0;i<10;i++){
                 GameObject.Find("Deck").GetComponent<Button>().onClick.Invoke();
                 GameObject.Find("EnemyDeck").GetComponent<Button>().onClick.Invoke();
@@ -49,8 +49,12 @@ public class DrawCards : MonoBehaviour
         if(TurnManager.PlayerTurn==1){
             if(!used[0] && TurnManager.CardsPlayed==0){//Si la habilidad no ha sido usada aun en la partida
                 if(GameObject.Find("Hand").transform.childCount<9 && TurnManager.CardsPlayed==0){//Solo si las cartas de la mano son 8 o menos y es la primera carta que se juega 
-                    if(GameObject.Find("EnemyHand").transform.childCount<3){//Si el enemigo tiene dos cartas
-                        RoundPoints.URWrite("Los minions intentaron robar dos cartas de la mano enemiga, pero como no tenia y les dio lastima las regresaron y le pidieron disculpas");
+                    if(GameObject.Find("EnemyHand").transform.childCount<2){//Si el enemigo tiene dos cartas o menos
+                        if(GameObject.Find("EnemyHand").transform.childCount==1)//Si tiene una
+                            RoundPoints.URWrite("Los minions intentaron robar dos cartas de la mano enemiga, pero solo tenia una y les dio lastima, se la regresaron y le pidieron disculpas");
+                        if(GameObject.Find("EnemyHand").transform.childCount==0)//Si no tiene
+                            RoundPoints.URWrite("Los minions intentaron robar dos cartas de la mano enemiga, pero no tenia ni una y se rieron de el, pero volvieron con las manos vacias");
+                        
                         TurnManager.CardsPlayed++;//Esta accion cuenta como carta jugada
                         used[0]=true;
                         ExtraDrawCard.firstAction=false;//Ya no se puede intercambiar cartas con el deck propio si es el primer turno de la partida
@@ -76,8 +80,12 @@ public class DrawCards : MonoBehaviour
         if(TurnManager.PlayerTurn==2){
             if(!used[1] && TurnManager.CardsPlayed==0){//Si la habilidad no ha sido usada aun en la partida
                 if(GameObject.Find("EnemyHand").transform.childCount<9 && TurnManager.CardsPlayed==0){//Solo si las cartas de la mano son 8 o menos y es la primera carta que se juega
-                    if(GameObject.Find("Hand").transform.childCount<3){
-                        RoundPoints.URWrite("Los minions intentaron robar dos cartas de la mano enemiga, pero como no tenia y les dio lastima las regresaron y le pidieron disculpas");
+                    if(GameObject.Find("Hand").transform.childCount<2){//Si el enemigo tiene dos cartas o menos
+                        if(GameObject.Find("Hand").transform.childCount==1)//Si tiene una
+                            RoundPoints.URWrite("Los minions intentaron robar dos cartas de la mano enemiga, pero solo tenia una y les dio lastima, se la regresaron y le pidieron disculpas");
+                        if(GameObject.Find("Hand").transform.childCount==0)//Si no tiene
+                            RoundPoints.URWrite("Los minions intentaron robar dos cartas de la mano enemiga, pero no tenia ni una y se rieron de el, pero volvieron con las manos vacias");
+                        
                         TurnManager.CardsPlayed++;//Esta accion cuenta como carta jugada
                         used[1]=true;
                         ExtraDrawCard.firstAction=false;//Ya no se puede intercambiar cartas con el deck propio si es el primer turno de la partida
@@ -102,14 +110,14 @@ public class DrawCards : MonoBehaviour
     public static void LeaderSkill(string whichPlayer){//Se pasa un string que identifica que jugador esta llamando la funcion
         string playerToStealFrom;
         int posInUsed;
-        if(whichPlayer=="P1"){
+        if(whichPlayer=="P1"){//Determinando a quien robar
             playerToStealFrom="P2";
             posInUsed=0;
         }else{
             playerToStealFrom="P1";
             posInUsed=1;
         }
-        if(!used[posInUsed]){
+        if(!used[posInUsed]){//Si no hemos usado la habilidad en la partida
             int r=Random.Range(0,4);
             if(r==0){//Se roba 2 cartas al enemigo
                 StealFrom(playerToStealFrom);
@@ -122,13 +130,13 @@ public class DrawCards : MonoBehaviour
                 RoundPoints.URWrite("Los minions intentaron robar dos cartas al enemigo, pero salio mal y recupero ambas");
             }
         }
-        used[posInUsed]=true;
+        used[posInUsed]=true;//Usamos la habilidad asi que no la usaremos mas
     }
-    public static void StealFrom(string playerToStealFrom){
+    public static void StealFrom(string playerToStealFrom){//Robar de Px
         GameObject stealArea=null;
         GameObject stealerArea=null;
         Dragging.fields stealerField;
-        if(playerToStealFrom=="P1"){
+        if(playerToStealFrom=="P1"){//En dependencia de que argumento se le pasa a la funcion se roba de un jugador u otro
             stealArea=GameObject.Find("Hand");
             stealerArea=GameObject.Find("EnemyHand");
             stealerField=Dragging.fields.P2;

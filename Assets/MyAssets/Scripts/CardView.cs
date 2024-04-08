@@ -39,10 +39,10 @@ public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
     }
     public void LoadInfo(){
-        //Poniendo el sprite de la carta en el objeto gigante de la izquierda de la pantalla
-        Card c=card.GetComponent<Card>();
-        Dragging d=card.GetComponent<Dragging>();
-        if(d!=null){
+        //Poniendo informacion de la carta en el objeto gigante de la izquierda de la pantalla
+        Card c=card.GetComponent<Card>();//Componente Card de la carta
+        Dragging d=card.GetComponent<Dragging>();//Componente Dragging de la carta
+        if(d!=null){//Si no esta en el cementerio
             GameObject.Find("BGType").GetComponent<Image>().color=new Color(0.2f,0.2f,0.2f,0.8f);
             GameObject.Find("Death").GetComponent<Image>().color=new Color(1,1,1,0);
             if(d.cardType==Dragging.rank.Melee){
@@ -60,15 +60,15 @@ public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             }else if(d.cardType==Dragging.rank.Senuelo){
                 GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="[S]";
             }
-        }else if(c.cardRealName=="Gru"){
+        }else if(c.cardRealName=="Gru"){//Si es la carta lider
                 GameObject.Find("Death").GetComponent<Image>().color=new Color(1,1,1,0);
                 GameObject.Find("BGType").GetComponent<Image>().color=new Color(0.2f,0.2f,0.2f,0.8f);
                 GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="[L]";
-        }else if(c.id==-2){//Guardias
+        }else if(c.id==-2){//Si es alguno de los Guardias
             GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="";
             GameObject.Find("BGType").GetComponent<Image>().color=new Color(0.2f,0.2f,0.2f,0);
             GameObject.Find("Death").GetComponent<Image>().color=new Color(1,1,1,0);
-        }else{
+        }else{//Si esta en el cementerio
             GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="";
             GameObject.Find("BGType").GetComponent<Image>().color=new Color(0.2f,0.2f,0.2f,0);
             GameObject.Find("Death").GetComponent<Image>().color=new Color(1,1,1,0.8f);
@@ -115,10 +115,10 @@ public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             //Description
             GameObject.Find("CardDescription").GetComponent<TextMeshProUGUI>().text=c.description;
             //EffectDescription
-            if(c.effectDescription.Length>0){
+            if(c.effectDescription.Length>0){//Si hay descripcion de efecto
                 RoundPoints.URWrite("Efecto: "+c.effectDescription);
             }else{
-                //Cuando no tiene efecto en el URWrite se pone info sobre la ronda
+                //Cuando no hay descripcion de efecto en el URWrite se pone info sobre la ronda
                 if(TurnManager.CardsPlayed==0 && TurnManager.lastTurn){
                     RoundPoints.URWrite("Turno de P"+TurnManager.PlayerTurn+", es el ultimo turno antes de que se acabe la ronda");
                     

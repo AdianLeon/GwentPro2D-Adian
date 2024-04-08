@@ -22,7 +22,7 @@ public class RoundPoints : MonoBehaviour
             GameObject.Find("RP2").GetComponent<TextMeshProUGUI>().text=GameObject.Find("RP2").GetComponent<TextMeshProUGUI>().text+"X";
         }
     }
-    public static void URWrite(string message){
+    public static void URWrite(string message){//Mausqueherrameinta misteriosa que nos ayudara mas tarde
         GameObject.Find("UserRead").GetComponent<TextMeshProUGUI>().text=message;
     }
 }

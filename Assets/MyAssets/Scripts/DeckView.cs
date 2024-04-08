@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
-//Script para mostrar la carta en grande en el menu deck
+//Script copia de CardView pero para mostrar las cartas en grande en el menu Deck
 public class DeckView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public GameObject card;   
@@ -15,7 +15,7 @@ public class DeckView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         Card c=card.GetComponent<Card>();
         Dragging d=card.GetComponent<Dragging>();
         
-        if(d!=null){
+        if(d!=null){//Si no es la de lider
             d.isDraggable=false;
             GameObject.Find("BGType").GetComponent<Image>().color=new Color(0.2f,0.2f,0.2f,0.8f);
             if(d.cardType==Dragging.rank.Melee){
@@ -33,7 +33,7 @@ public class DeckView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             }else if(d.cardType==Dragging.rank.Senuelo){
                 GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="[S]";
             }
-        }else if(c.cardRealName=="Gru"){
+        }else if(c.cardRealName=="Gru"){//Si la carta es el lider
                 GameObject.Find("BGType").GetComponent<Image>().color=new Color(0.2f,0.2f,0.2f,0.8f);
                 GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="[L]";
         }
@@ -64,9 +64,9 @@ public class DeckView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             //Description
             GameObject.Find("CardDescription").GetComponent<TextMeshProUGUI>().text=c.description;
             //EffectDescription
-            if(c.effectDescription.Length>0){
+            if(c.effectDescription.Length>0){//Si tiene descripcion de efecto
                 GameObject.Find("Effect Description").GetComponent<TextMeshProUGUI>().text=c.effectDescription;
-            }else{
+            }else{//Caso contrario para evitar dejar el efecto escrito en el objeto; se escribe que no tiene efecto
                 GameObject.Find("Effect Description").GetComponent<TextMeshProUGUI>().text="Esta carta no tiene efecto";
             }
         }

@@ -24,11 +24,11 @@ public class TurnManager : MonoBehaviour
             RoundPoints.URWrite("Esta zona es de tipo "+DropZone.zoneEntered.GetComponent<DropZone>().cardType);//Se muestra su nombre en el UserRead
             DropZone.lastClickTime=Time.time;
         }
-        if((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(1)) && Time.time-lastClickTime>0.5f){
+        if(Input.GetKeyDown(KeyCode.Space) && Time.time-lastClickTime>0.5f){//Clickea el passbutton cuando se presiona espacio, pero con una diferencia de tiempo de 0.5s
             GameObject.Find("PassButton").GetComponent<Button>().onClick.Invoke();
             lastClickTime=Time.time;
         }
-        if(CardsPlayed==0 || lastTurn){
+        if(CardsPlayed==0 || lastTurn){//Pone las luces del campo verdes cuando se puede jugar una carta o rojas cuando se tiene que pasar 
             Effects.PlayedLightsOn();
         }else{
             Effects.PlayedLightsOff();
