@@ -52,6 +52,7 @@ public class DrawCards : MonoBehaviour
                     if(GameObject.Find("EnemyHand").transform.childCount<3){//Si el enemigo tiene dos cartas
                         RoundPoints.URWrite("Los minions intentaron robar dos cartas de la mano enemiga, pero como no tenia y les dio lastima las regresaron y le pidieron disculpas");
                         TurnManager.CardsPlayed++;//Esta accion cuenta como carta jugada
+                        used[0]=true;
                         ExtraDrawCard.firstAction=false;//Ya no se puede intercambiar cartas con el deck propio si es el primer turno de la partida
                     }else{
                         LeaderSkill("P1");//Activa la habilidad de lider para P1
@@ -61,6 +62,7 @@ public class DrawCards : MonoBehaviour
                 }else if(GameObject.Find("Hand").transform.childCount>8){//En el caso en que es la primera carta que se juega pero no hay espacio en la mano
                     RoundPoints.URWrite("Los minions robaron dos cartas pero no tienes suficiente espacio en la mano asi que las devolvieron y le pidieron disculpas al enemigo");
                     TurnManager.CardsPlayed++;//Esta accion cuenta como carta jugada
+                    used[0]=true;
                     ExtraDrawCard.firstAction=false;//Ya no se puede intercambiar cartas si es el primer turno de la partida
                 }
             }else if(used[0] && TurnManager.CardsPlayed==0){//Si la habilidad ha sido usada
@@ -77,6 +79,7 @@ public class DrawCards : MonoBehaviour
                     if(GameObject.Find("Hand").transform.childCount<3){
                         RoundPoints.URWrite("Los minions intentaron robar dos cartas de la mano enemiga, pero como no tenia y les dio lastima las regresaron y le pidieron disculpas");
                         TurnManager.CardsPlayed++;//Esta accion cuenta como carta jugada
+                        used[1]=true;
                         ExtraDrawCard.firstAction=false;//Ya no se puede intercambiar cartas con el deck propio si es el primer turno de la partida
                     }else{
                         LeaderSkill("P2");//Activa la habilidad de lider para P2
@@ -86,6 +89,7 @@ public class DrawCards : MonoBehaviour
                 }else if(GameObject.Find("EnemyHand").transform.childCount>8){//En el caso en que es la primera carta que se juega pero no hay espacio en la mano
                     RoundPoints.URWrite("Los minions robaron dos cartas pero no tienes suficiente espacio en la mano asi que las devolvieron y le pidieron disculpas al enemigo");
                     TurnManager.CardsPlayed++;//Esta accion cuenta como carta jugada
+                    used[1]=true;
                     ExtraDrawCard.firstAction=false;//Ya no se puede intercambiar cartas si es el primer turno de la partida
                 }
             }else if(used[1] && TurnManager.CardsPlayed==0){//Si la habilidad ha sido usada

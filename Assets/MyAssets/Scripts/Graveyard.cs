@@ -9,8 +9,8 @@ public class Graveyard : MonoBehaviour
     public static int gCount,egCount;
     void Start(){
         gCount=0;
-        GameObject.Find("GText").GetComponent<TextMeshProUGUI>().text=gCount.ToString();
         egCount=0;
+        GameObject.Find("GText").GetComponent<TextMeshProUGUI>().text=gCount.ToString();
         GameObject.Find("EGText").GetComponent<TextMeshProUGUI>().text=egCount.ToString();
     }
     public static void AllToGraveyard(){//Manda una por una todas las cartas jugadas al cementerio

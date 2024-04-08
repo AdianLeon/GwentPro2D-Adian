@@ -156,7 +156,7 @@ RectTransform:
   m_GameObject: {fileID: 64627402}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.73281246, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
@@ -164,7 +164,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -213.2, y: -180.62}
+  m_AnchoredPosition: {x: -213.2, y: -179.2}
   m_SizeDelta: {x: 199.4752, y: 22.765}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &64627405
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -1.9449081, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2547,7 +2547,7 @@ MonoBehaviour:
   effectDescription: 
   artwork: {fileID: 21300000, guid: b6ac0e9b841fb35478b6e9d373666997, type: 3}
   qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
-  cardColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 0.101960786}
+  cardColor: {r: 1, g: 1, b: 1, a: 1}
   affected: 00000000
   wQuality: 0
 --- !u!114 &373339267
@@ -3771,7 +3771,7 @@ MonoBehaviour:
   effectDescription: 
   artwork: {fileID: 21300000, guid: b6ac0e9b841fb35478b6e9d373666997, type: 3}
   qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
-  cardColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 0.101960786}
+  cardColor: {r: 1, g: 1, b: 1, a: 1}
   affected: 00000000
   wQuality: 0
 --- !u!114 &588232795
@@ -5471,7 +5471,7 @@ MonoBehaviour:
   effectDescription: 
   artwork: {fileID: 21300000, guid: b6ac0e9b841fb35478b6e9d373666997, type: 3}
   qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
-  cardColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 0.101960786}
+  cardColor: {r: 1, g: 1, b: 1, a: 1}
   affected: 00000000
   wQuality: 0
 --- !u!114 &748548216
@@ -6147,7 +6147,8 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: effectDescription
-      value: Esta carta se puede intercambiar con otra en el campo (solo con unidades)
+      value: Esta carta se puede intercambiar con otra en el campo propio (solo con
+        unidades de plata)
       objectReference: {fileID: 0}
     - target: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Name
@@ -6330,9 +6331,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: description
-      value: 'Este minion vendera bananas a todo el que pueda. Supongo que no tengo
-        que explicarte lo que las bananas le hacen a los minions Spoiler: Los vuelve
-        locos'
+      value: 'Supongo que no tengo que explicarte lo que las bananas le hacen a los
+        minions Spoiler: Los vuelve locos'
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: cardRealName
@@ -7178,7 +7178,8 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: effectDescription
-      value: Esta carta se puede intercambiar con otra en el campo (solo con unidades)
+      value: Esta carta se puede intercambiar con otra en el campo propio (solo con
+        unidades de plata)
       objectReference: {fileID: 0}
     - target: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Name
@@ -7326,11 +7327,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 12c74623ee5f053419881971fb0c8126, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -7425,7 +7426,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicSource: {fileID: 1006469160}
-  backgroundMusic: {fileID: 8300000, guid: 12c74623ee5f053419881971fb0c8126, type: 3}
+  backgroundMusic: {fileID: 8300000, guid: 596e0f53d0760684897f73aa6d85324a, type: 3}
 --- !u!4 &1006469162
 Transform:
   m_ObjectHideFlags: 0
@@ -7439,7 +7440,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1025535553
 PrefabInstance:
@@ -8315,7 +8316,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1360, y: 1024}
+  m_ReferenceResolution: {x: 1366, y: 768}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -8434,7 +8435,7 @@ RectTransform:
   - {fileID: 1934036166}
   - {fileID: 2051672428}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -8824,7 +8825,8 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: effectDescription
-      value: Esta carta se puede intercambiar con otra en el campo (solo con unidades)
+      value: Esta carta se puede intercambiar con otra en el campo propio (solo con
+        unidades de plata)
       objectReference: {fileID: 0}
     - target: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Name
@@ -8982,7 +8984,7 @@ RectTransform:
   m_GameObject: {fileID: 1156043806}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.78749, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
@@ -8990,7 +8992,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -213.2, y: 176.2}
+  m_AnchoredPosition: {x: -215.4, y: 166.68}
   m_SizeDelta: {x: 199.4752, y: 22.765}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1156043809
@@ -9137,8 +9139,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 497, y: -248.96}
-  m_SizeDelta: {x: 100, y: 80}
+  m_AnchoredPosition: {x: 488.5, y: -251.46}
+  m_SizeDelta: {x: 95.75, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1194172542
 MonoBehaviour:
@@ -9826,7 +9828,8 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: effectDescription
-      value: Esta carta se puede intercambiar con otra en el campo (solo con unidades)
+      value: Esta carta se puede intercambiar con otra en el campo propio (solo con
+        unidades de plata)
       objectReference: {fileID: 0}
     - target: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Name
@@ -10784,8 +10787,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 496.99966, y: -248.96004}
-  m_SizeDelta: {x: 100, y: 80}
+  m_AnchoredPosition: {x: 488.49988, y: -251.46002}
+  m_SizeDelta: {x: 95.75, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1391710913
 MonoBehaviour:
@@ -12151,7 +12154,7 @@ Camera:
   m_GameObject: {fileID: 1650406297}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -12169,7 +12172,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 160.75336
+  orthographic size: 300.02557
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -12179,10 +12182,10 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
+  m_AllowMSAA: 0
+  m_AllowDynamicResolution: 1
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!4 &1650406300
@@ -12193,8 +12196,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1650406297}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 376, y: 160, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 362, y: 173, z: -10}
+  m_LocalScale: {x: 2.0518, y: 2.0518, z: 2.0518}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -12792,8 +12795,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 497, y: 248.96005}
-  m_SizeDelta: {x: 100, y: 80}
+  m_AnchoredPosition: {x: 488.50003, y: 248.96005}
+  m_SizeDelta: {x: 95.75, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1767920637
 MonoBehaviour:
@@ -12956,7 +12959,7 @@ MonoBehaviour:
   effectDescription: 
   artwork: {fileID: 21300000, guid: b6ac0e9b841fb35478b6e9d373666997, type: 3}
   qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
-  cardColor: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 1}
+  cardColor: {r: 1, g: 1, b: 1, a: 1}
   affected: 00000000
   wQuality: 0
 --- !u!114 &1775964372
@@ -13273,8 +13276,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 497, y: 248.96005}
-  m_SizeDelta: {x: 100, y: 80}
+  m_AnchoredPosition: {x: 488.5, y: 248.96005}
+  m_SizeDelta: {x: 95.75, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1829186321
 MonoBehaviour:
@@ -13425,8 +13428,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -523.0201, y: 248.96005}
-  m_SizeDelta: {x: 100, y: 80}
+  m_AnchoredPosition: {x: -501.51004, y: 248.96005}
+  m_SizeDelta: {x: 89.245, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1848283487
 MonoBehaviour:
@@ -14381,6 +14384,7 @@ GameObject:
   - component: {fileID: 1947402712}
   - component: {fileID: 1947402714}
   - component: {fileID: 1947402713}
+  - component: {fileID: 1947402715}
   m_Layer: 5
   m_Name: BoxBg
   m_TagString: Untagged
@@ -14455,7 +14459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -14480,6 +14484,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1947402711}
   m_CullTransparentMesh: 1
+--- !u!114 &1947402715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947402711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bbe899339c54184cb8206432fbd5efe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1954749810
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14785,8 +14801,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -523, y: -248.96}
-  m_SizeDelta: {x: 100, y: 80}
+  m_AnchoredPosition: {x: -501.50003, y: -249.96}
+  m_SizeDelta: {x: 89.25, y: 82}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1990513173
 MonoBehaviour:

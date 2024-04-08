@@ -6,12 +6,12 @@ using UnityEngine.UI;
 //Script que contiene los efectos de las cartas y algunos efectos visuales
 public class Effects : MonoBehaviour
 {
-    public static void CheckForEffect(GameObject card){
-        if(card.GetComponent<Card>().hasEffect){
-            Effect(card);
+    public static void CheckForEffect(GameObject card){//Chequea si la carta tiene efecto
+        if(card.GetComponent<Card>().hasEffect){//Si la carta tiene efecto
+            Effect(card);//Se activa el efecto
         }
     }
-    public static void Effect(GameObject card){
+    public static void Effect(GameObject card){//Activa el efecto de la carta dependiendo de que carta es
         if(card.GetComponent<Dragging>().cardType==Dragging.rank.Aumento){//Carta aumento
             AumEffect(card);
         }else if(card.GetComponent<Card>().id==0 || card.GetComponent<Card>().id==1 || card.GetComponent<Card>().id==2 || card.GetComponent<Card>().id==3){//Carta clima
@@ -26,8 +26,6 @@ public class Effects : MonoBehaviour
             DrawCardEffect(card);
         }else if(card.GetComponent<Card>().id==9){//Minions Kevin||Bob||Stuart
             PowerPromedio(card);
-        }else{
-            Debug.Log(card+" tiene hasEffect activado pero no tiene efecto");
         }
     }
     public static void ZonesGlow(GameObject thisCard){//Encuentra las zonas del mismo tipo y campo que la carta y las ilumina
@@ -50,15 +48,15 @@ public class Effects : MonoBehaviour
             }
         }
     }
-    public static void OffZonesGlow(){
+    public static void OffZonesGlow(){//Resetea la invisibilidad de todas las dropzone del campo
         DropZone[] zones=GameObject.FindObjectsOfType<DropZone>();
         for(int i=0;i<zones.Length;i++){
             zones[i].GetComponent<Image>().color=new Color (1,1,1,0);
         }
-        GameObject.Find("UntouchableMyDeck").GetComponent<Image>().color=new Color (1,1,1,0);
+        GameObject.Find("UntouchableMyDeck").GetComponent<Image>().color=new Color (1,1,1,0);//Incluye los decks
         GameObject.Find("UntouchableEnemyDeck").GetComponent<Image>().color=new Color (1,1,1,0);
     }
-    public static void PlayedLightsOn(){
+    public static void PlayedLightsOn(){//Afecta a unos objetos del campo y los pone verdes
         Color green=new Color(0,1,0,0.2f);
         GameObject.Find("PlayedLightUpper").GetComponent<Image>().color=green;
         GameObject.Find("PlayedLightLower").GetComponent<Image>().color=green;
@@ -66,7 +64,7 @@ public class Effects : MonoBehaviour
         GameObject.Find("PlayedLightLeft").GetComponent<Image>().color=green;
         GameObject.Find("PlayedLightRight").GetComponent<Image>().color=green;
     }
-    public static void PlayedLightsOff(){
+    public static void PlayedLightsOff(){//Afecta a unos objetos del campo y los pone rojos
         Color red=new Color(1,0,0,0.2f);
         GameObject.Find("PlayedLightUpper").GetComponent<Image>().color=red;
         GameObject.Find("PlayedLightLower").GetComponent<Image>().color=red;
@@ -204,8 +202,7 @@ public class Effects : MonoBehaviour
                         TotalFieldForce.P1PlayedCards.Add(thisCard);//Se anade el senuelo a las cartas jugadas de P1
                         TotalFieldForce.P1PlayedCards.Remove(choosed);//Se quita choosed de las cartas jugadas de P1
                         TurnManager.PlayedCards.Remove(choosed);
-                        for(int j=0;j<choosed.GetComponent<Card>().affected.Length;j++){//Deshace el efecto de clima cuando la carta vuelve a 
-                        //la mano, el senuelo recibira el clima como consecuencia de la llamada de UpdateClima
+                        for(int j=0;j<choosed.GetComponent<Card>().affected.Length;j++){//Deshace el efecto de clima cuando la carta vuelve a la mano, el senuelo recibira el clima como consecuencia de la llamada de UpdateClima
                             if(choosed.GetComponent<Card>().affected[j]){//Si esta afectado, se deshace
                                 choosed.GetComponent<Card>().affected[j]=false;
                                 choosed.GetComponent<Card>().addedPower++;
@@ -214,8 +211,6 @@ public class Effects : MonoBehaviour
                         TurnManager.PlayCard(thisCard);//Se juega el senuelo como cualquier otra carta
                         break;//Se sale del bucle pues ya cambiamos el senuelo por la carta indicada
                     }
-                }else{
-                    RoundPoints.URWrite(TotalFieldForce.P1PlayedCards[i].GetComponent<Card>().cardRealName+" es una carta heroe, no es afectada por ningun efecto de carta especial");
                 }
             }
         }else if(whichField==Dragging.fields.P2){//Si el senuelo es de P2
@@ -244,20 +239,49 @@ public class Effects : MonoBehaviour
         }
     }
     public static void MostPowerEffect(GameObject card){//Elimina la carta con mas poder del campo
-        TurnManager.PlayedCards.Remove(card);
-        if(TurnManager.PlayedCards.Count!=0){
-            GameObject Card=TurnManager.PlayedCards[TurnManager.PlayedCards.Count-1];
-            int maxTotalPower=Card.GetComponent<Card>().power+Card.GetComponent<Card>().addedPower;
-            for(int i=0;i<TurnManager.PlayedCards.Count-1;i++){
-                if(TurnManager.PlayedCards[i].GetComponent<Card>().power+TurnManager.PlayedCards[i].GetComponent<Card>().addedPower>maxTotalPower){
-                    Card=TurnManager.PlayedCards[i];
-                    maxTotalPower=Card.GetComponent<Card>().power+Card.GetComponent<Card>().addedPower;
+        
+        //La carta todavia no se ha anadido a TotalFieldForce
+        GameObject Card=null;
+        GameObject CardP1=null;//Esta sera la carta de mayor poder de P1
+        GameObject CardP2=null;//Esta sera la carta de mayor poder de P2
+        int cardP1TotalPower=int.MinValue;//Este sera el poder de P1
+        int cardP2TotalPower=int.MinValue;//Este sera el poder de P2
+        
+        if(TotalFieldForce.P1PlayedCards.Count!=0){//Si se han jugado cartas en el campo 1
+            CardP1=TotalFieldForce.P1PlayedCards[TotalFieldForce.P1PlayedCards.Count-1];//La carta de mayor poder es la ultima jugada
+            cardP1TotalPower=CardP1.GetComponent<Card>().power+CardP1.GetComponent<Card>().addedPower;//Poder de la ultima carta jugada
+            for(int i=0;i<TotalFieldForce.P1PlayedCards.Count-1;i++){//Comparamos todas las cartas excepto la ultima pues ya la consideramos
+                if(TotalFieldForce.P1PlayedCards[i].GetComponent<Card>().power+TotalFieldForce.P1PlayedCards[i].GetComponent<Card>().addedPower>cardP1TotalPower){//Si el poder es mayor
+                    CardP1=TotalFieldForce.P1PlayedCards[i];//Tenemos una nueva carta de mayor poder
+                    cardP1TotalPower=CardP1.GetComponent<Card>().power+CardP1.GetComponent<Card>().addedPower;//Actualizamos el mayor poder
                 }
             }
-            Graveyard.ToGraveyard(Card);
-            TotalFieldForce.UpdateForce();
         }
-        TurnManager.PlayedCards.Add(card);
+        if(TotalFieldForce.P2PlayedCards.Count!=0){//Si se han jugado cartas en el campo 2
+            CardP2=TotalFieldForce.P2PlayedCards[TotalFieldForce.P2PlayedCards.Count-1];//La carta de mayor poder es la ultima jugada
+            cardP2TotalPower=CardP2.GetComponent<Card>().power+CardP2.GetComponent<Card>().addedPower;//Poder de la ultima carta jugada
+            for(int i=0;i<TotalFieldForce.P2PlayedCards.Count-1;i++){//Comparamos todas las cartas excepto la ultima pues ya la consideramos
+                if(TotalFieldForce.P2PlayedCards[i].GetComponent<Card>().power+TotalFieldForce.P2PlayedCards[i].GetComponent<Card>().addedPower>cardP2TotalPower){//Si el poder es mayor
+                    CardP2=TotalFieldForce.P2PlayedCards[i];//Tenemos una nueva carta de mayor poder
+                    cardP2TotalPower=CardP2.GetComponent<Card>().power+CardP2.GetComponent<Card>().addedPower;//Actualizamos el mayor poder
+                }
+            }
+        }
+        //Tenemos las cartas de mayor poder de ambos campos
+        if(cardP1TotalPower>cardP2TotalPower){//Si la de mayor poder es de P1
+            Card=CardP1;//La carta elegida es la de P1
+        }else if(cardP1TotalPower<cardP2TotalPower){//Si la de mayor poder es de P2
+            Card=CardP2;//La carta elegida es la de P2
+        }else{//Si tienen igual poder la carta elegida es la del rival
+            if(card.GetComponent<Dragging>().whichField==Dragging.fields.P1){//Si el Macho jugado es de P1
+                Card=CardP2;//La carta elegida es la de P2
+            }else if(card.GetComponent<Dragging>().whichField==Dragging.fields.P2){//Si el Macho jugado es de P2
+                Card=CardP1;//La carta elegida es la de P1
+            }
+        }
+        if(Card!=null)//Si elegimos una carta
+            Graveyard.ToGraveyard(Card);//Se envia al cementerio
+        TotalFieldForce.UpdateForce();//Se actualiza la fuerza del campo
     }
     public static void LessPowerEffect(GameObject card){//Elimina la carta con menos poder del campo enemigo
         //Determinando el campo a afectar
@@ -283,13 +307,13 @@ public class Effects : MonoBehaviour
             TotalFieldForce.UpdateForce();
         }
     }
-    public static void DrawCardEffect(GameObject card){
-        GameObject PlayerArea=null;
-        GameObject PlayerDeck=null;
-        if(card.GetComponent<Dragging>().whichField==Dragging.fields.P1){
+    public static void DrawCardEffect(GameObject card){//Roba una carta del deck propio
+        GameObject PlayerArea=null;//Mano del jugador
+        GameObject PlayerDeck=null;//Deck del jugador
+        if(card.GetComponent<Dragging>().whichField==Dragging.fields.P1){//Si la Scarlett Overkill jugada es de P1
             PlayerArea=GameObject.Find("Hand");
             PlayerDeck=GameObject.Find("Deck");
-        }else if(card.GetComponent<Dragging>().whichField==Dragging.fields.P2){
+        }else if(card.GetComponent<Dragging>().whichField==Dragging.fields.P2){//Si la Scarlett Overkill jugada es de P2
             PlayerArea=GameObject.Find("EnemyHand");
             PlayerDeck=GameObject.Find("EnemyDeck");
         }
@@ -300,22 +324,16 @@ public class Effects : MonoBehaviour
             PlayerDeck.GetComponent<DrawCards>().cards.Remove(picked);//Se quita de la lista
         }
     }
-    public static void PowerPromedio(GameObject card){
-        int total=0;
-        Debug.Log("Calculando prom de:::");
-        for(int i=0;i<TotalFieldForce.P1PlayedCards.Count;i++){
-            Debug.Log(TotalFieldForce.P1PlayedCards[i]);
-        }
-        total+=TotalFieldForce.P1ForceValue;
-        for(int i=0;i<TotalFieldForce.P2PlayedCards.Count;i++){
-            Debug.Log(TotalFieldForce.P2PlayedCards[i]);
-        }
-        total+=TotalFieldForce.P2ForceValue;
-        int divisor=TotalFieldForce.P1PlayedCards.Count+TotalFieldForce.P2PlayedCards.Count;
-        if(divisor==0){
-            card.GetComponent<Card>().power=0;
-        }else{
-            card.GetComponent<Card>().power=total/divisor;
+    public static void PowerPromedio(GameObject card){//Iguala el poder de la carta jugada al promedio del poder total de todas las cartas del campo (Solo las unidades, no se incluyen climas)
+        int total=0;//Total de poder de todas las cartas del campo
+        
+        total+=TotalFieldForce.P1ForceValue;//Se anade el poder del P1
+        total+=TotalFieldForce.P2ForceValue;//Se anade el poder del P2
+        int divisor=TotalFieldForce.P1PlayedCards.Count+TotalFieldForce.P2PlayedCards.Count;//El divisor es el total de cartas en el campo
+        if(divisor==0){//Si no hay cartas en el campo
+            card.GetComponent<Card>().power=0;//El poder es 0
+        }else{//Si hay cartas en el campo
+            card.GetComponent<Card>().power=total/divisor;//El poder de la carta jugada es el promedio del total de poder de todas las cartas en el campo
         }
     }
 }
