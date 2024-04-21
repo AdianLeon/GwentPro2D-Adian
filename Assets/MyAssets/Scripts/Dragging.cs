@@ -18,24 +18,24 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public static bool onDrag;
 
     //Tipo de carta
-    public enum rank{Melee,Ranged,Siege,Aumento,Clima,Senuelo,Despeje};//********Vincular con la prop de la carta////
+    public enum rank{Melee,Ranged,Siege,Aumento,Clima,Senuelo};
     public rank cardType;
     //Campo de la carta
     public enum fields{None,P1,P2};
     public fields whichField;
 
-    public void Start(){
+    public void Start(){//Al inicio del juego se define cual es la mano propia
         if(whichField==fields.P1){
             hand=GameObject.Find("Hand");
         }else if(whichField==fields.P2){
             hand=GameObject.Find("EnemyHand");
         }
-        isDraggable=true;
+        isDraggable=true;//Todas las cartas son arrastrables al inicio
     }
     //Detecta cuando empieza el arrastre de las cartas
     public void OnBeginDrag(PointerEventData eventData){
-        if(isDraggable && (TurnManager.CardsPlayed==0 || TurnManager.lastTurn)){
-            onDrag=true;
+        if(isDraggable && (TurnManager.CardsPlayed==0 || TurnManager.lastTurn)){//Solo si es arrastrable y si se puede jugar
+            onDrag=true;//Comenzamos el arrastre
             //Guarda la posicion a la que volver si soltamos en lugar invalido y crea un espacio en el lugar de la carta
             placeholder=new GameObject();//Crea el placeholder y le asigna los mismos valores que a la carta y la posicion de la carta
             placeholder.transform.SetParent(this.transform.parent);
@@ -54,7 +54,7 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     //Mientras se arrastra
     public void OnDrag(PointerEventData eventData){
-        if(isDraggable && (TurnManager.CardsPlayed==0 || TurnManager.lastTurn)){
+        if(isDraggable && (TurnManager.CardsPlayed==0 || TurnManager.lastTurn)){//Solo si es arrastrable y si se puede jugar
             this.transform.position=eventData.position;//Actualiza la posicion de la carta con la del puntero
             int newSiblingIndex=parentToReturnTo.childCount;//Guarda el indice del espacio de la derecha
             for(int i=0;i<parentToReturnTo.childCount;i++){//Chequeando constantemente si se ha pasado de la posicion de otra carta   
@@ -72,7 +72,7 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     //Cuando termina el arrastre
     public void OnEndDrag(PointerEventData eventData){
-        if(isDraggable && (TurnManager.CardsPlayed==0 || TurnManager.lastTurn)){
+        if(isDraggable && (TurnManager.CardsPlayed==0 || TurnManager.lastTurn)){//Solo si es arrastrable y si se puede jugar
             if(TurnManager.CardsPlayed<1 || TurnManager.lastTurn){//Solo cuando no se ha jugado una carta o si es el ultimo turno
                 this.transform.SetParent(parentToReturnTo);
                 this.transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());//Posiciona la carta en el espacio
@@ -96,7 +96,7 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             //Cada vez que se suelte una carta necesitamos desactivar el glow de cualquier zona que hayamos iluminado
             Effects.OffZonesGlow();
             
-            onDrag=false;
+            onDrag=false;//Terminamos el arrastre
         }
     }
 }

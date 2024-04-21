@@ -15,8 +15,8 @@ public class DeckView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         Card c=card.GetComponent<Card>();
         Dragging d=card.GetComponent<Dragging>();
         
-        if(d!=null){//Si no es la de lider
-            d.isDraggable=false;
+        if(d!=null){//Si posee componente dragging (no es el lider)
+            d.isDraggable=false;//Desactivamos que se pueda arrastrar
             GameObject.Find("BGType").GetComponent<Image>().color=new Color(0.2f,0.2f,0.2f,0.8f);
             if(d.cardType==Dragging.rank.Melee){
                 GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="[M]";
@@ -28,8 +28,9 @@ public class DeckView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="[A]";
             }else if(d.cardType==Dragging.rank.Clima){
                 GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="[C]";
-            }else if(d.cardType==Dragging.rank.Despeje){
-                GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="[D]";
+                if(c.id==4 || c.id==5){//Si es despeje
+                    GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="[D]";
+                }
             }else if(d.cardType==Dragging.rank.Senuelo){
                 GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="[S]";
             }

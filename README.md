@@ -1,5 +1,12 @@
 # GwentPro2D-Adian
- -Cuando se inicie el juego es obligatorio que la resolucion de la ventana en la que este se ejecuta sea de prporcion 16/9, esto pasa porque hay algunos objetos que modifican su propio tamano segun la resolucion, si se altera la resolucion fuera esa proporcion se notaran algunos fallos sobre todo en el tamano de las "dropzones"
- -Todos los assets del juego estan en Assets/MyAssets, tambien se usaron algunos de un paquete descargado de las librerias de Unity en Assets/SunnyLand Artwork
- -Todos los Scripts del juego (Assets/MyAssets/Scripts) estan comentados y todos explican en detalle su funcionalidad
- -Dentro del juego se explica como jugar y las reglas, asi como una descripcion de la interfaz de usuario
+ -Cuando se inicia la aplicacion se abre la primera escena (Main Menu), el menu principal, desde aqui se puede ajustar el volumen del juego y se puede acceder a varios menus diferentes.
+ -Si se entra a Deck se accede a un apartado donde se ven todas las cartas y sus efectos. 
+ -Cuando se presiona en Instrucciones se accede a otro menu donde se explica detalladamente como jugar y las reglas del juego, desde aqui tambien se puede acceder a otro submenu que describe la interfaz grafica del juego.
+ -El boton de salir termina la ejecucion de la aplicacion.
+ -Si se hace click en el boton Jugar se cargara la proxima escena (Game), en esta se desarrolla el juego.
+ -El primer turno siempre es del jugador con el campo inferior (P1). Mas detalles del inicio del juego y de las reglas del mismo se describen en el menu Instrucciones.
+ -Si se hace click en el boton MENU de la parte inferior de la pantalla se regresara al menu principal cargandose la escena anterior (tambien se pierde el progreso de la partida).
+ -Para pasar el turno se debe hacer click en el boton PASAR a la derecha del boton MENU o presionar la barra espaciadora en el teclado.
+ -Cuando la partida acabe con un ganador se anunciara en la esquina superior izquierda y se detendra la ejecucion del juego, solo sera posible hacer click en un boton del centro de la pantalla para cargar una nueva partida o volver al menu principal.
+ -Todos los assets del juego estan en Assets/MyAssets, tambien se usaron algunos de un paquete descargado de las librerias de Unity en Assets/SunnyLand Artwork.
+ -Todos los Scripts del juego (Assets/MyAssets/Scripts) estan comentados y explican en detalle su funcionalidad.

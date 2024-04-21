@@ -12,36 +12,33 @@ public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public static string cardName;
     
     void Start(){
-        card=this.gameObject;
-        cardName="None";
+        cardName="None";//Inicializamos la referencia del nombre de la carta a nada
     }
     public void OnPointerEnter(PointerEventData eventData){//Se activa cuando el mouse entra en la carta
-        LoadInfo();
-        if(card.GetComponent<Dragging>()!=null){
-            if(!Dragging.onDrag && card.transform.parent==card.GetComponent<Dragging>().hand.transform)
-                Effects.ZonesGlow(card);
+        LoadInfo();//Se carga toda la informacion de esta carta en el CardView
+        if(this.gameObject.GetComponent<Dragging>()!=null){
+            if(!Dragging.onDrag && this.gameObject.transform.parent==this.gameObject.GetComponent<Dragging>().hand.transform)//Si no se esta arrastrando ninguna carta y ademas esta en la mano
+                Effects.ZonesGlow(this.gameObject);//Se ilumina la zona donde se puede soltar
         }
-        cardName=card.name;
-        card.GetComponent<Image>().color=new Color (0.75f,0.75f,0.75f,1);//La carta se sombrea cuando pasamos por encima
+        cardName=this.gameObject.name;//Obtenemos la referencia a esta carta para usarla luego
+        this.gameObject.GetComponent<Image>().color=new Color (0.75f,0.75f,0.75f,1);//La carta se sombrea cuando pasamos por encima
     }
 
     public void OnPointerExit(PointerEventData eventData){//Se activa cuando el mouse sale de la carta
-        if(!Dragging.onDrag && card.GetComponent<Dragging>()!=null){
-            if(card.GetComponent<CanvasGroup>().blocksRaycasts==true)
-                Effects.OffZonesGlow();
+        if(!Dragging.onDrag && this.gameObject.GetComponent<Dragging>()!=null){//Si no se esta arrastrando ninguna carta y el objeto tiene dragging
+            if(this.gameObject.GetComponent<CanvasGroup>().blocksRaycasts==true)//Si el objecto bloquea los raycasts
+                Effects.OffZonesGlow();//Se desactivan la iluminacion de todas las zonas
         }
         cardName="None";//Se pierde el nombre
-        card.GetComponent<Image>().color=new Color (1,1,1,1);//La carta se dessombrea
-        if(TurnManager.CardsPlayed!=0){
-            if(!TurnManager.lastTurn){
-                RoundPoints.URWrite("Presiona espacio para pasar de turno");
-            }
+        this.gameObject.GetComponent<Image>().color=new Color (1,1,1,1);//La carta se dessombrea
+        if(TurnManager.CardsPlayed!=0 && !TurnManager.lastTurn){//Si se han jugado cartas y no es el ultimo turno
+            RoundPoints.URWrite("Presiona espacio para pasar de turno");
         }
     }
     public void LoadInfo(){
         //Poniendo informacion de la carta en el objeto gigante de la izquierda de la pantalla
-        Card c=card.GetComponent<Card>();//Componente Card de la carta
-        Dragging d=card.GetComponent<Dragging>();//Componente Dragging de la carta
+        Card c=this.gameObject.GetComponent<Card>();//Componente Card de la carta
+        Dragging d=this.gameObject.GetComponent<Dragging>();//Componente Dragging de la carta
         if(d!=null){//Si no esta en el cementerio
             GameObject.Find("BGType").GetComponent<Image>().color=new Color(0.2f,0.2f,0.2f,0.8f);
             GameObject.Find("Death").GetComponent<Image>().color=new Color(1,1,1,0);
@@ -55,8 +52,9 @@ public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="[A]";
             }else if(d.cardType==Dragging.rank.Clima){
                 GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="[C]";
-            }else if(d.cardType==Dragging.rank.Despeje){
-                GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="[D]";
+                if(c.id==4 || c.id==5){//Si es despeje
+                    GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="[D]";
+                }
             }else if(d.cardType==Dragging.rank.Senuelo){
                 GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="[S]";
             }

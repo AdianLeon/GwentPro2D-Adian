@@ -5,20 +5,15 @@ using UnityEngine.SceneManagement;
 //Script para la funcionalidad del menu principal
 public class MainMenu : MonoBehaviour
 {
-    //Cambia la escena a la siguiente (Accede a la escena Game)
-    public void Play()
-    {
+    public void Play(){//Cambia la escena a la siguiente (Accede a la escena Game)
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
-    //Cambia la escena a la anterior (Regresa al Menu)
-    public void Menu()
-    {
+    
+    public void Menu(){//Cambia la escena a la anterior (Regresa al Menu)
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex-1);
     }
-    //Para salir del juego
-    public void Quit()
-    {
-        Debug.Log("Salir");
+    
+    public void Quit(){//Para salir del juego
         Application.Quit();
     }
 }
