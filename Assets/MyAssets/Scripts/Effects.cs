@@ -26,6 +26,8 @@ public class Effects : MonoBehaviour
             DrawCardEffect(card);
         }else if(card.GetComponent<Card>().id==9){//Minions Kevin||Bob||Stuart
             PowerPromedio(card);
+        }else if(card.GetComponent<Card>().id==11){//Kyle
+            MultiplyEffect(card);
         }
     }
     public static void ZonesGlow(GameObject thisCard){//Encuentra las zonas del mismo tipo y campo que la carta y las ilumina
@@ -335,5 +337,14 @@ public class Effects : MonoBehaviour
         }else{//Si hay cartas en el campo
             card.GetComponent<Card>().power=total/divisor;//El poder de la carta jugada es el promedio del total de poder de todas las cartas en el campo
         }
+    }
+    public static void MultiplyEffect(GameObject card){//Multiplica por n su ataque, siendo n la cantidad de cartas iguales a ella en el campo.
+        int n=0;//Contador de cuantas cartas del mismo tipo hay
+        for(int i=0;i<TurnManager.PlayedCards.Count;i++){
+            if(TurnManager.PlayedCards[i].GetComponent<Card>().id==card.GetComponent<Card>().id){//Si se encuentra una carta igual, se cuenta
+                n++;
+            }
+        }
+        card.GetComponent<Card>().power=card.GetComponent<Card>().power*n;//Se iguala el poder de la carta jugada a n veces su propio poder 
     }
 }

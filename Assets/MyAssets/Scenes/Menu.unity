@@ -13934,11 +13934,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: id
-      value: -1
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: power
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: artwork
@@ -13946,6 +13946,10 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 7874904ebd7bc9148bd1a0dd9ca9134f, type: 3}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: wQuality
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: hasEffect
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
@@ -13977,6 +13981,11 @@ PrefabInstance:
       propertyPath: qualitySprite
       value: 
       objectReference: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
+    - target: {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+      propertyPath: effectDescription
+      value: Cuando esta carta es jugada su poder es multiplicado por la cantidad
+        de Kyles jugados en el campo (contandose a si misma)
+      objectReference: {fileID: 0}
     - target: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Name
       value: Kyle
