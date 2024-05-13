@@ -31,14 +31,13 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
     
     public void OnDrop(PointerEventData eventData){//Detecta cuando se suelta una carta en una zona valida
         //Cambia donde se queda la carta, en vez de quedarse en la mano ahora se queda en la zona soltada si es valida
-        Dragging d=eventData.pointerDrag.GetComponent<Dragging>();
-        if(d!=null){
+        Dragging draggingComponent=eventData.pointerDrag.GetComponent<Dragging>();
+        if(draggingComponent!=null){
             //Solo si coincide el tipo de carta con el tipo de dropzone y es en el campo correspondiente
-            if(cardType==d.cardType && (whichField==d.whichField || whichField==Dragging.fields.None))
+            if(cardType==draggingComponent.cardType && (whichField==draggingComponent.whichField || whichField==Dragging.fields.None))
             {
-                d.parentToReturnTo=this.transform;
+                draggingComponent.parentToReturnTo=this.transform;
             }
         }
-
     }
 }

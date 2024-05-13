@@ -18,7 +18,7 @@ public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         LoadInfo();//Se carga toda la informacion de esta carta en el CardView
         if(this.gameObject.GetComponent<Dragging>()!=null){
             if(!Dragging.onDrag && this.gameObject.transform.parent==this.gameObject.GetComponent<Dragging>().hand.transform)//Si no se esta arrastrando ninguna carta y ademas esta en la mano
-                Effects.ZonesGlow(this.gameObject);//Se ilumina la zona donde se puede soltar
+                VisualEffects.ZonesGlow(this.gameObject);//Se ilumina la zona donde se puede soltar
         }
         cardName=this.gameObject.name;//Obtenemos la referencia a esta carta para usarla luego
         this.gameObject.GetComponent<Image>().color=new Color (0.75f,0.75f,0.75f,1);//La carta se sombrea cuando pasamos por encima
@@ -27,7 +27,7 @@ public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerExit(PointerEventData eventData){//Se activa cuando el mouse sale de la carta
         if(!Dragging.onDrag && this.gameObject.GetComponent<Dragging>()!=null){//Si no se esta arrastrando ninguna carta y el objeto tiene dragging
             if(this.gameObject.GetComponent<CanvasGroup>().blocksRaycasts==true)//Si el objecto bloquea los raycasts
-                Effects.OffZonesGlow();//Se desactivan la iluminacion de todas las zonas
+                VisualEffects.OffZonesGlow();//Se desactivan la iluminacion de todas las zonas
         }
         cardName="None";//Se pierde el nombre
         this.gameObject.GetComponent<Image>().color=new Color (1,1,1,1);//La carta se dessombrea
@@ -55,7 +55,7 @@ public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 if(c.id==4 || c.id==5){//Si es despeje
                     GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="[D]";
                 }
-            }else if(d.cardType==Dragging.rank.Senuelo){
+            }else if(d.cardType==Dragging.rank.Bait){
                 GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="[S]";
             }
         }else if(c.cardRealName=="Gru"){//Si es la carta lider

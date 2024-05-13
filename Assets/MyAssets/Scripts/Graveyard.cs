@@ -27,17 +27,23 @@ public class Graveyard : MonoBehaviour
         card.GetComponent<Card>().addedPower=0;
         
         if(card.GetComponent<Dragging>()!=null){
+            string GraveyardName="";
+            string GraveyardCounterName="";
+            List<GameObject> Field=new List<GameObject>();
             if(card.GetComponent<Dragging>().whichField==Dragging.fields.P1){//Si el campo es de P1 manda la carta al cementerio de P1
-                card.transform.SetParent(GameObject.Find("Graveyard").transform);
+                GraveyardName="Graveyard";
+                GraveyardCounterName="GText";
+                Field=TotalFieldForce.P1PlayedCards;
                 gCount++;
-                GameObject.Find("GText").GetComponent<TextMeshProUGUI>().text=gCount.ToString();
-                TotalFieldForce.P1PlayedCards.Remove(card);
             }else if(card.GetComponent<Dragging>().whichField==Dragging.fields.P2){//Si el campo es de P2 manda la carta al cementerio de P2
-                card.transform.SetParent(GameObject.Find("EnemyGraveyard").transform);
+                GraveyardName="EnemyGraveyard";
+                GraveyardCounterName="EGText";
+                Field=TotalFieldForce.P2PlayedCards;
                 egCount++;
-                GameObject.Find("EGText").GetComponent<TextMeshProUGUI>().text=egCount.ToString();
-                TotalFieldForce.P2PlayedCards.Remove(card);
             }
+            card.transform.SetParent(GameObject.Find(GraveyardName).transform);
+            GameObject.Find(GraveyardCounterName).GetComponent<TextMeshProUGUI>().text=egCount.ToString();
+            Field.Remove(card);
             Destroy(card.GetComponent<Dragging>());//No necesitaremos esto de nuevo
         }
     }

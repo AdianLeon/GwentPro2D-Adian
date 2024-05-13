@@ -31,7 +31,7 @@ public class DeckView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 if(c.id==4 || c.id==5){//Si es despeje
                     GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="[D]";
                 }
-            }else if(d.cardType==Dragging.rank.Senuelo){
+            }else if(d.cardType==Dragging.rank.Bait){
                 GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="[S]";
             }
         }else if(c.cardRealName=="Gru"){//Si la carta es el lider

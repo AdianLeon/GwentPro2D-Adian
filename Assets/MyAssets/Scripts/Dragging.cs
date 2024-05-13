@@ -10,7 +10,6 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public Transform parentToReturnTo=null;
     public GameObject hand;
     public GameObject placeholder=null;
-
     //Si la carta es arrastrable
     public bool isDraggable;
 
@@ -18,7 +17,7 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public static bool onDrag;
 
     //Tipo de carta
-    public enum rank{Melee,Ranged,Siege,Aumento,Clima,Senuelo};
+    public enum rank{Melee,Ranged,Siege,Aumento,Clima,Bait};
     public rank cardType;
     //Campo de la carta
     public enum fields{None,P1,P2};
@@ -48,7 +47,7 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             GetComponent<CanvasGroup>().blocksRaycasts=false;
 
             //Haciendo que las zonas donde se pueda soltar la carta "brillen"
-            Effects.ZonesGlow(this.gameObject);
+            VisualEffects.ZonesGlow(this.gameObject);
         }
     }
 
@@ -78,8 +77,8 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 this.transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());//Posiciona la carta en el espacio
                 GetComponent<CanvasGroup>().blocksRaycasts=true;//Desactiva la penetracion de la carta para que podamos arrastrarla de nuevo
                 Destroy(placeholder);//Destruye el espacio creado
-                if(cardType==rank.Senuelo){//Efecto del senuelo
-                    Effects.Senuelo(this.gameObject);
+                if(cardType==rank.Bait){//Efecto del senuelo
+                    this.GetComponent<CardEffect>().TriggerEffect();
                 }else if(this.transform.parent!=hand.transform && this.transform.parent!=GameObject.Find("Trash").transform){//Si el objeto sale de la mano y no esta en la basura
                     TurnManager.PlayCard(this.gameObject);//Independientemente del campo juega la carta
                     TotalFieldForce.AddCard(this.gameObject);//Anade la carta segun el campo y el tipo
@@ -94,7 +93,7 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             }
             TotalFieldForce.UpdateForce();
             //Cada vez que se suelte una carta necesitamos desactivar el glow de cualquier zona que hayamos iluminado
-            Effects.OffZonesGlow();
+            VisualEffects.OffZonesGlow();
             
             onDrag=false;//Terminamos el arrastre
         }

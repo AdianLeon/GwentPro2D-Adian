@@ -29,9 +29,9 @@ public class TurnManager : MonoBehaviour
             lastClickTime=Time.time;
         }
         if(CardsPlayed==0 || lastTurn){//Pone las luces del campo verdes cuando se puede jugar una carta o rojas cuando se tiene que pasar 
-            Effects.PlayedLightsOn();
+            VisualEffects.PlayedLightsOn();
         }else{
-            Effects.PlayedLightsOff();
+            VisualEffects.PlayedLightsOff();
         }
     }
 
@@ -51,8 +51,10 @@ public class TurnManager : MonoBehaviour
         ExtraDrawCard.firstAction=false;
         CardsPlayed++;
         PlayedCards.Add(card);
-        Effects.CheckForEffect(card);
-        Effects.UpdateClima();
+        if(card.GetComponent<Card>().hasEffect){//Si la carta tiene efecto
+            card.GetComponent<CardEffect>().TriggerEffect();//Activa el efecto ya que debe poseer un componente que hereda de CardEffect
+        }
+        WeatherEffect.UpdateWeather();
         if(!lastTurn)
             RoundPoints.URWrite("Presiona espacio para pasar el turno");
     }
