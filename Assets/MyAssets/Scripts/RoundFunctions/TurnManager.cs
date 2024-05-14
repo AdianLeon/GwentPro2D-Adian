@@ -8,7 +8,7 @@ public class TurnManager : MonoBehaviour
     public static int PlayerTurn;//Turno de jugador
     public static int CardsPlayed;//Cant de cartas jugadas en el turno
     public static bool lastTurn;//Si es o no el ultimo turno antes de que acabe la ronda
-    public static List<GameObject> PlayedCards=new List<GameObject>();//Lista de las cartas jugadas
+    public static List<GameObject> PlayedCards=new List<GameObject>();//Lista de las cartas jugadas para enviarlas al cementerio
     public static float lastClickTime;
 
     void Start(){
@@ -47,10 +47,12 @@ public class TurnManager : MonoBehaviour
         }
     }
     public static void PlayCard(GameObject card){//Juega la carta y anade la carta a la lista de cartas jugadas
+        Debug.Log("Carta jugada: "+card);
         card.GetComponent<Dragging>().isDraggable=false;
         DeckTrade.firstAction=false;
         CardsPlayed++;
-        PlayedCards.Add(card);
+        TotalFieldForce.AddCard(card);//Anade la carta segun el campo y el tipo
+        PlayedCards.Add(card);//Anade la carta a la lista de cartas jugadas
         if(card.GetComponent<CardEffect>()!=null){//Si la carta tiene efecto
             card.GetComponent<CardEffect>().TriggerEffect();//Activa el efecto
         }

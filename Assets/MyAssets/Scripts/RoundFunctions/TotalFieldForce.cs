@@ -32,11 +32,18 @@ public class TotalFieldForce : MonoBehaviour
     }
     public static void AddCard(GameObject thisCard){//Anade la carta segun el campo y el tipo (Excluye a los climas, aumentos y despejes)
         if(thisCard.GetComponent<Card>().whichZone!=Card.zones.Weather && thisCard.GetComponent<Card>().whichZone!=Card.zones.Boost){
-            if(thisCard.GetComponent<Card>().whichField==Card.fields.P1){//Si es campo de P1 anade la carta a la lista de cartas del campo del P2
+            if(thisCard.GetComponent<Card>().whichField==Card.fields.P1){//Si es campo de P1 anade la carta a la lista de cartas del campo del P1
                 P1PlayedCards.Add(thisCard);
             }else if(thisCard.GetComponent<Card>().whichField==Card.fields.P2){//Si es campo de P2 anade la carta a la lista de cartas del campo del P2
                 P2PlayedCards.Add(thisCard);
             }
+        }
+    }
+    public static void RemoveCard(GameObject thisCard){//Quita la carta de la lista en la que se encuentra
+        if(thisCard.GetComponent<Card>().whichField==Card.fields.P1){//Si es del campo de P1 quita la carta de la lista de cartas del campo del P1
+            P1PlayedCards.Remove(thisCard);
+        }else if(thisCard.GetComponent<Card>().whichField==Card.fields.P2){//Si es del campo de P2 quita la carta de la lista de cartas del campo del P2
+            P2PlayedCards.Remove(thisCard);
         }
     }
     public static void ResetPlayedCards(){//Reinicia todos los valores relativos al script

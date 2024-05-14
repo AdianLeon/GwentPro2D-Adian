@@ -5,51 +5,32 @@ using UnityEngine.UI;
 
 public class BaitEffect : CardEffect
 {
-    override public void TriggerEffect(){
-        GameObject choosed=null;//Guarda el objeto escogido para ser intercambiado con el senuelo
-        List<GameObject> FieldList=new List<GameObject>();
-        if(this.GetComponent<Card>().whichField==Card.fields.P1){//Si el senuelo es de P1
-            FieldList=TotalFieldForce.P1PlayedCards;
-        }else if(this.GetComponent<Card>().whichField==Card.fields.P2){//Si el senuelo es de P2
-            FieldList=TotalFieldForce.P2PlayedCards;
-        }
-        for(int i=0;i<FieldList.Count;i++){//Se busca en las cartas jugadas
-            //La que coincida en nombre con la ultima carta que se le paso el mouse por encima y que no sea de oro
-            if(CardView.cardName==FieldList[i].name && FieldList[i].GetComponent<UnitCard>().wichQuality!=UnitCard.quality.Gold){
-                if(FieldList[i].GetComponent<Card>().whichZone!=Card.zones.Weather){ //Si ademas no es un clima
-                    choosed=FieldList[i];//La carta es valida para cambiar por el senuelo
-                    SwapWith(choosed);//Se cambian de posicion
-                    choosed.GetComponent<Dragging>().isDraggable=true;//La escogida ahora es arrastrable como cualquier otra de la mano
-                    FieldList.Add(this.gameObject);//Se anade el senuelo a las cartas jugadas
-                    FieldList.Remove(choosed);//Se quita choosed de las cartas jugadas
-                    TurnManager.PlayedCards.Remove(choosed);
-                    for(int j=0;j<choosed.GetComponent<UnitCard>().affected.Length;j++){//Deshace el efecto de clima cuando la carta vuelve a la mano, el senuelo recibira el clima como consecuencia de la llamada de UpdateClima
-                        if(choosed.GetComponent<UnitCard>().affected[j]){//Si esta afectado, se deshace
-                            choosed.GetComponent<UnitCard>().affected[j]=false;
-                            choosed.GetComponent<UnitCard>().addedPower++;
-                        }
-                    }
-                    TurnManager.PlayCard(this.gameObject);//Se juega el senuelo como cualquier otra carta
-                    break;//Se sale del bucle pues ya cambiamos el senuelo por la carta indicada
+    public void SwapEffect(){
+        //La carta con la que debemos intercambiar el senuelo esta guardada en CardView.selectedCard
+        //Si esta carta no es de clima ni de oro
+        if(CardView.selectedCard.GetComponent<Card>().whichZone!=Card.zones.Weather && CardView.selectedCard.GetComponent<UnitCard>().wichQuality!=UnitCard.quality.Gold){
+            GameObject placehold=new GameObject();//Creamos un objeto auxiliar para saber donde esta el senuelo
+            placehold.transform.SetParent(this.transform.parent);
+            LayoutElement le=placehold.AddComponent<LayoutElement>();
+            placehold.transform.SetSiblingIndex(this.transform.GetSiblingIndex());
+
+            this.transform.SetParent(CardView.selectedCard.transform.parent);//El senuelo se pone donde esta la carta seleccionada
+            this.transform.SetSiblingIndex(CardView.selectedCard.transform.GetSiblingIndex());
+
+            CardView.selectedCard.transform.SetParent(placehold.transform.parent);//La carta seleccionada se pone donde esta el objeto auxiliar
+            CardView.selectedCard.transform.SetSiblingIndex(placehold.transform.GetSiblingIndex());
+            Destroy(placehold);//Se destruye
+
+            CardView.selectedCard.GetComponent<Dragging>().isDraggable=true;//La escogida ahora es arrastrable como cualquier otra de la mano
+            TotalFieldForce.RemoveCard(CardView.selectedCard);//Se quita selectedCard de las cartas jugadas
+            TurnManager.PlayedCards.Remove(CardView.selectedCard);
+            for(int j=0;j<CardView.selectedCard.GetComponent<UnitCard>().affected.Length;j++){
+            //Deshace el efecto de clima cuando la carta vuelve a la mano, el senuelo recibira el clima como consecuencia de la llamada de UpdateClima
+                if(CardView.selectedCard.GetComponent<UnitCard>().affected[j]){//Si esta afectado, se deshace
+                    CardView.selectedCard.GetComponent<UnitCard>().affected[j]=false;
+                    CardView.selectedCard.GetComponent<UnitCard>().addedPower++;
                 }
             }
         }
-    }
-
-    private void SwapWith(GameObject choosed){
-        GameObject placehold=new GameObject();//Creamos un objeto auxiliar
-        placehold.transform.SetParent(this.transform.parent);
-        LayoutElement le=placehold.AddComponent<LayoutElement>();//Crea un espacio para saber donde esta el placeholder
-        le.preferredWidth=this.GetComponent<LayoutElement>().preferredWidth;
-        le.preferredHeight=this.GetComponent<LayoutElement>().preferredHeight;
-        placehold.transform.SetSiblingIndex(this.transform.GetSiblingIndex());
-
-        this.transform.SetParent(choosed.transform.parent);
-        this.transform.SetSiblingIndex(choosed.transform.GetSiblingIndex());
-
-        choosed.transform.SetParent(placehold.transform.parent);
-        choosed.transform.SetSiblingIndex(placehold.transform.GetSiblingIndex());
-
-        Destroy(placehold);
     }
 }
