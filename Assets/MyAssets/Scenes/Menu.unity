@@ -591,6 +591,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2784469696071589718, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+    - {fileID: -8809635103287773785, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+    - {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
 --- !u!224 &122827589 stripped
 RectTransform:
@@ -1538,7 +1540,6 @@ GameObject:
   - component: {fileID: 318091034}
   - component: {fileID: 318091039}
   - component: {fileID: 318091038}
-  - component: {fileID: 318091035}
   - component: {fileID: 318091040}
   m_Layer: 5
   m_Name: Leader
@@ -1567,34 +1568,6 @@ RectTransform:
   m_AnchoredPosition: {x: -152, y: -143}
   m_SizeDelta: {x: 45, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &318091035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 318091033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4868f4be6b435343a07e86d1f748b15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardRealName: Gru
-  description: Besto villano de todos los tiempos, mi favorito
-  hasEffect: 0
-  effectDescription: Ordena a los minions que roben dos cartas de la mano enemiga
-    aunque conociendo a los minions eso puede salir mal (Solo se puede activar una
-    vez por partida)
-  artwork: {fileID: 21300000, guid: 0c25efb6be7db3d43a0793023468ca41, type: 3}
-  qualitySprite: {fileID: 21300000, guid: d1c3b6a233b524474899f14a81d5c3b5, type: 3}
-  cardColor: {r: 0.7264151, g: 0.18845676, b: 0.4861619, a: 1}
-  wichQuality: 0
-  whichField: 0
-  whichZone: 0
-  power: 0
-  addedPower: 0
-  affected: 00000000
-  id: -1
 --- !u!114 &318091038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1645,7 +1618,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21935e347df60e84098992708fd8c0e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
+  cardRealName: Gru
+  description: Besto villano de todos los tiempos, mi favorito
+  effectDescription: Ordena a los minions que roben dos cartas de la mano enemiga
+    aunque conociendo a los minions eso puede salir mal (Solo se puede activar una
+    vez por partida)
+  artwork: {fileID: 21300000, guid: 0c25efb6be7db3d43a0793023468ca41, type: 3}
+  qualitySprite: {fileID: 21300000, guid: d1c3b6a233b524474899f14a81d5c3b5, type: 3}
+  cardColor: {r: 0.7254902, g: 0.1882353, b: 0.4862745, a: 1}
+  power: 0
+  playableZone: L
+  showPower: 0
 --- !u!1 &326835688
 GameObject:
   m_ObjectHideFlags: 0
@@ -4015,6 +3998,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2784469696071589718, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+    - {fileID: -8809635103287773785, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+    - {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
 --- !u!224 &556241740 stripped
 RectTransform:
@@ -4038,7 +4023,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21935e347df60e84098992708fd8c0e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
+  cardRealName: El Macho
+  description: :o El Macho!! Pidele un autografo antes de que muera montando un tiburon
+    vivo y saltando dentro de la boca de un volcan activo con 250 libras de dinamita
+    atadas a su pecho
+  effectDescription: Cuando esta carta es jugada manda al cementerio a la carta de
+    mayor poder (no se incluye a si misma)
+  artwork: {fileID: 21300000, guid: 4c1d686790b76b249b95c18fad488267, type: 3}
+  qualitySprite: {fileID: 21300000, guid: d01b0b4f13e044d0c83c424e542ddcbf, type: 3}
+  cardColor: {r: 0.8509804, g: 0.6901961, b: 0.23529412, a: 1}
+  power: 3
+  playableZone: M
+  showPower: 1
 --- !u!1 &616639742
 GameObject:
   m_ObjectHideFlags: 0
@@ -4600,6 +4596,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2784469696071589718, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+    - {fileID: -8809635103287773785, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+    - {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
 --- !u!224 &649095067 stripped
 RectTransform:
@@ -4623,7 +4621,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21935e347df60e84098992708fd8c0e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
+  cardRealName: Scarlet Overkill
+  description: Mente maestra del crimen, archienemiga de Gru, experta ladrona de
+    cartas
+  effectDescription: Cuando esta carta es jugada se roba una carta del deck propio
+  artwork: {fileID: 21300000, guid: 252d43dfcdab7b34e89775370a6f1a51, type: 3}
+  qualitySprite: {fileID: 21300000, guid: d01b0b4f13e044d0c83c424e542ddcbf, type: 3}
+  cardColor: {r: 0.8509804, g: 0.6901961, b: 0.23529412, a: 1}
+  power: 3
+  playableZone: S
+  showPower: 1
 --- !u!1 &652733481
 GameObject:
   m_ObjectHideFlags: 0
@@ -5175,6 +5182,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2784469696071589718, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+    - {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+    - {fileID: -8809635103287773785, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
 --- !u!224 &771696591 stripped
 RectTransform:
@@ -5841,6 +5850,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2784469696071589718, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+    - {fileID: -8809635103287773785, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+    - {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
 --- !u!224 &849998678 stripped
 RectTransform:
@@ -5864,7 +5875,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21935e347df60e84098992708fd8c0e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
+  cardRealName: Ninas
+  description: Edith, Margo y Agnes. Fueron adoptadas por Gru y desde entonces le
+    han hecho la vida un infierno, pero por lo menos saben usar un rifle
+  effectDescription: 
+  artwork: {fileID: 21300000, guid: 2550495ff82ead044bb5f52124d5fe00, type: 3}
+  qualitySprite: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
+  cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
+  power: 2
+  playableZone: R
+  showPower: 1
 --- !u!1 &854174227 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
@@ -5887,7 +5907,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21935e347df60e84098992708fd8c0e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
+  cardRealName: Rayo Congelador
+  description: 'Aviso: Esta carta solo se puede utilizar cuando no hay apagones'
+  effectDescription: Reduce el poder de las cartas de la fila seleccionada en 1 (Para
+    ambos campos)
+  artwork: {fileID: 21300000, guid: 103ae41a9973a814abe6445ffc3e3b48, type: 3}
+  qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
+  cardColor: {r: 0.67058825, g: 0.20392157, b: 0.20392157, a: 1}
+  power: 0
+  playableZone: C
+  showPower: 0
 --- !u!1 &871125527
 GameObject:
   m_ObjectHideFlags: 0
@@ -6189,6 +6218,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2784469696071589718, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+    - {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+    - {fileID: -8809635103287773785, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
 --- !u!224 &885911573 stripped
 RectTransform:
@@ -6207,7 +6238,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21935e347df60e84098992708fd8c0e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
+  cardRealName: Bob
+  description: Solia ser un aventurero justo como tu, pero lo bananearon en la rodilla
+  effectDescription: Cuando esta carta es jugada su poder se convierte en el promedio
+    del poder total de todas las cartas del campo
+  artwork: {fileID: 21300000, guid: e004fb109ad42b14ba6e09e5913f62b9, type: 3}
+  qualitySprite: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
+  cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
+  power: 0
+  playableZone: R
+  showPower: 1
 --- !u!1 &965990266
 GameObject:
   m_ObjectHideFlags: 0
@@ -6634,6 +6674,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2784469696071589718, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+    - {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+    - {fileID: -8809635103287773785, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
 --- !u!224 &979022504 stripped
 RectTransform:
@@ -6657,7 +6699,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21935e347df60e84098992708fd8c0e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
+  cardRealName: Kevin
+  description: 'Famoso filosofo autor de la frase: "Belo papaguera, churepera con
+    la papaya"'
+  effectDescription: Cuando esta carta es jugada su poder se convierte en el promedio
+    del poder total de todas las cartas del campo
+  artwork: {fileID: 21300000, guid: d4688a7ca3271264d8f7eb171d47ed48, type: 3}
+  qualitySprite: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
+  cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
+  power: 0
+  playableZone: M
+  showPower: 1
 --- !u!1 &988724536
 GameObject:
   m_ObjectHideFlags: 0
@@ -6991,6 +7043,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2784469696071589718, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+    - {fileID: -8809635103287773785, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+    - {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
 --- !u!224 &992412057 stripped
 RectTransform:
@@ -7476,6 +7530,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2784469696071589718, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+    - {fileID: -8809635103287773785, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+    - {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
 --- !u!224 &1033374815 stripped
 RectTransform:
@@ -7499,7 +7555,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21935e347df60e84098992708fd8c0e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
+  cardRealName: Agnes
+  description: Le encantan los unicornios, cree que Kyle es adorable
+  effectDescription: Esta carta se puede intercambiar con otra en el campo (solo
+    con unidades)
+  artwork: {fileID: 21300000, guid: 5c666fcad0d9f6e4499ac9ec21e79280, type: 3}
+  qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
+  cardColor: {r: 0.77254903, g: 0.45490196, b: 0.70980394, a: 1}
+  power: 0
+  playableZone: S
+  showPower: 1
 --- !u!1 &1033671593
 GameObject:
   m_ObjectHideFlags: 0
@@ -8482,6 +8547,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2784469696071589718, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+    - {fileID: -8809635103287773785, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+    - {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
 --- !u!224 &1123395516 stripped
 RectTransform:
@@ -8685,6 +8752,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2784469696071589718, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+    - {fileID: -8809635103287773785, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+    - {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
 --- !u!224 &1135987683 stripped
 RectTransform:
@@ -8703,7 +8772,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21935e347df60e84098992708fd8c0e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
+  cardRealName: Inyeccion de minion purpura
+  description: Vuelve a los minions mas malvados
+  effectDescription: Aumenta el poder de las cartas de la fila seleccionada en 1
+  artwork: {fileID: 21300000, guid: ca1d3e6b20b6d454c99fa08751b0a289, type: 3}
+  qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
+  cardColor: {r: 0.44313726, g: 1, b: 0.3254902, a: 1}
+  power: 0
+  playableZone: A
+  showPower: 0
 --- !u!1 &1140698966 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
@@ -8721,7 +8798,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21935e347df60e84098992708fd8c0e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
+  cardRealName: Peluche
+  description: Los minions se vuelven pasivos cuando les das un peluche
+  effectDescription: Reduce el poder de las cartas de la fila seleccionada en 1 (Para
+    ambos campos)
+  artwork: {fileID: 21300000, guid: d302e393351410340bd68cd85788861d, type: 3}
+  qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
+  cardColor: {r: 0.67058825, g: 0.20392157, b: 0.20392157, a: 1}
+  power: 0
+  playableZone: C
+  showPower: 0
 --- !u!1 &1143640879
 GameObject:
   m_ObjectHideFlags: 0
@@ -9856,6 +9942,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2784469696071589718, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+    - {fileID: -8809635103287773785, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+    - {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
 --- !u!224 &1353251592 stripped
 RectTransform:
@@ -9874,7 +9962,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21935e347df60e84098992708fd8c0e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
+  cardRealName: Manzana
+  description: Similar efecto a las bananas, no es necesaria una explicacion no?
+  effectDescription: Aumenta el poder de las cartas de la fila seleccionada en 1
+  artwork: {fileID: 21300000, guid: 2de768fe42a8094409f225922975b10a, type: 3}
+  qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
+  cardColor: {r: 0.44313726, g: 1, b: 0.3254902, a: 1}
+  power: 0
+  playableZone: A
+  showPower: 0
 --- !u!1 &1379523763
 GameObject:
   m_ObjectHideFlags: 0
@@ -11726,6 +11822,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2784469696071589718, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+    - {fileID: -8809635103287773785, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+    - {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
 --- !u!224 &1554011056 stripped
 RectTransform:
@@ -11744,7 +11842,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21935e347df60e84098992708fd8c0e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
+  cardRealName: Vector
+  description: Comparado al macho, este es muy gay, no muere de la manera mas macha
+    posible, solo se quedo botado en la luna
+  effectDescription: Cuando esta carta es jugada manda al cementerio a la carta de
+    menor poder del rival
+  artwork: {fileID: 21300000, guid: 22a89c1a1da600b41b143578b088c325, type: 3}
+  qualitySprite: {fileID: 21300000, guid: d01b0b4f13e044d0c83c424e542ddcbf, type: 3}
+  cardColor: {r: 0.8509804, g: 0.6901961, b: 0.23529412, a: 1}
+  power: 3
+  playableZone: R
+  showPower: 1
 --- !u!1 &1575607781
 GameObject:
   m_ObjectHideFlags: 0
@@ -12090,6 +12198,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2784469696071589718, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+    - {fileID: -8809635103287773785, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+    - {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
 --- !u!224 &1580323350 stripped
 RectTransform:
@@ -12108,7 +12218,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21935e347df60e84098992708fd8c0e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
+  cardRealName: Doctor Nefario
+  description: Cientifico "loco" ayudante de Gru desde que se creo la maldad, inventor
+    del rayo congelador , el algebra lineal y la gravedad
+  effectDescription: 
+  artwork: {fileID: 21300000, guid: 3da2059eb9ba797409387d9bafaff558, type: 3}
+  qualitySprite: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
+  cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
+  power: 2
+  playableZone: S
+  showPower: 1
 --- !u!1 &1648934547
 GameObject:
   m_ObjectHideFlags: 0
@@ -12732,6 +12851,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2784469696071589718, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+    - {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+    - {fileID: -8809635103287773785, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
 --- !u!224 &1769955813 stripped
 RectTransform:
@@ -12755,7 +12876,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21935e347df60e84098992708fd8c0e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
+  cardRealName: Minion Bebe
+  description: Demasiado pequeno para pelear, Gru le hallo otra utilidad
+  effectDescription: Esta carta se puede intercambiar con otra en el campo (solo
+    con unidades)
+  artwork: {fileID: 21300000, guid: a4bca80268b6ecb44b3ad5040fd61971, type: 3}
+  qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
+  cardColor: {r: 0.77254903, g: 0.45490196, b: 0.70980394, a: 1}
+  power: 0
+  playableZone: S
+  showPower: 1
 --- !u!1 &1772217401
 GameObject:
   m_ObjectHideFlags: 0
@@ -13097,6 +13227,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2784469696071589718, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+    - {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+    - {fileID: -8809635103287773785, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
 --- !u!224 &1788714119 stripped
 RectTransform:
@@ -13120,7 +13252,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21935e347df60e84098992708fd8c0e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
+  cardRealName: Stuart
+  description: Esta un poco loco, le gusta que lo catapulten contra enemigos, muy
+    conveniente
+  effectDescription: Cuando esta carta es jugada su poder se convierte en el promedio
+    del poder total de todas las cartas del campo
+  artwork: {fileID: 21300000, guid: 31d81447e18602340a7f8e59d53bfdd9, type: 3}
+  qualitySprite: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
+  cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
+  power: 0
+  playableZone: S
+  showPower: 1
 --- !u!1 &1800003856
 GameObject:
   m_ObjectHideFlags: 0
@@ -13272,7 +13414,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1811656503
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14122,6 +14264,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2784469696071589718, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+    - {fileID: -8809635103287773785, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+    - {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
 --- !u!224 &1958269042 stripped
 RectTransform:
@@ -14145,7 +14289,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21935e347df60e84098992708fd8c0e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
+  cardRealName: Kyle
+  description: Es la mascota de Gru, mitad "perro", mitad piranha, puedes jugar un
+    poco con el, solo asegurate de que no tenga hambre
+  effectDescription: Cuando esta carta es jugada su poder es multiplicado por la
+    cantidad de Kyles jugados en el campo (contandose a si misma)
+  artwork: {fileID: 21300000, guid: 7874904ebd7bc9148bd1a0dd9ca9134f, type: 3}
+  qualitySprite: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
+  cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
+  power: 1
+  playableZone: M
+  showPower: 1
 --- !u!1 &1991754956
 GameObject:
   m_ObjectHideFlags: 0
@@ -15101,7 +15255,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21935e347df60e84098992708fd8c0e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
+  cardRealName: Banana
+  description: 'Supongo que no tengo que explicarte lo que las bananas le hacen a
+    los minions Spoiler: Los vuelve locos'
+  effectDescription: Aumenta el poder de las cartas de la fila seleccionada en 1
+  artwork: {fileID: 21300000, guid: 651d728b51c9354499d634bd585eb504, type: 3}
+  qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
+  cardColor: {r: 0.44313726, g: 1, b: 0.3254902, a: 1}
+  power: 0
+  playableZone: A
+  showPower: 0
 --- !u!1 &2091117990 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
@@ -15119,7 +15282,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21935e347df60e84098992708fd8c0e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
+  cardRealName: Muchas Bananas
+  description: Para un minion cualquier problema tiene solucion, si tienes suficientes
+    bananas
+  effectDescription: Se deshace de todas las cartas de clima en la fila seleccionada
+  artwork: {fileID: 21300000, guid: dc03cc05d9a1a2245bcf77ae676c1e42, type: 3}
+  qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
+  cardColor: {r: 0.37254903, g: 0.81960785, b: 1, a: 1}
+  power: 0
+  playableZone: D
+  showPower: 0
 --- !u!1 &2107199055
 GameObject:
   m_ObjectHideFlags: 0

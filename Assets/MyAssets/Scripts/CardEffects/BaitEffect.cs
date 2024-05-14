@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class BaitEffect : CardEffect
 {
+    //Este efecto funciona un poco diferente al resto de efectos, en vez de llamar a TriggerEffect
+    //es mucho mas conveniente que desde que se suelta la carta en el campo, vuelva a su lugar correspondiente
+    //en la mano y desde ahi que se llame a SwapEffect con la carta que esta debajo del puntero (CardView.selectedCard)
     public void SwapEffect(){
         //La carta con la que debemos intercambiar el senuelo esta guardada en CardView.selectedCard
         //Si esta carta no es de clima ni de oro
@@ -24,6 +27,9 @@ public class BaitEffect : CardEffect
             CardView.selectedCard.GetComponent<Dragging>().isDraggable=true;//La escogida ahora es arrastrable como cualquier otra de la mano
             TotalFieldForce.RemoveCard(CardView.selectedCard);//Se quita selectedCard de las cartas jugadas
             TurnManager.PlayedCards.Remove(CardView.selectedCard);
+            if(CardView.selectedCard.GetComponent<MultiplyEffect>()!=null){//Si la carta tiene efecto de multiplicar
+                CardView.selectedCard.GetComponent<UnitCard>().power=CardView.selectedCard.GetComponent<MultiplyEffect>().originalPower;
+            }
             for(int j=0;j<CardView.selectedCard.GetComponent<UnitCard>().affected.Length;j++){
             //Deshace el efecto de clima cuando la carta vuelve a la mano, el senuelo recibira el clima como consecuencia de la llamada de UpdateClima
                 if(CardView.selectedCard.GetComponent<UnitCard>().affected[j]){//Si esta afectado, se deshace

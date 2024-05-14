@@ -47,15 +47,14 @@ public class TurnManager : MonoBehaviour
         }
     }
     public static void PlayCard(GameObject card){//Juega la carta y anade la carta a la lista de cartas jugadas
-        Debug.Log("Carta jugada: "+card);
         card.GetComponent<Dragging>().isDraggable=false;
         DeckTrade.firstAction=false;
         CardsPlayed++;
-        TotalFieldForce.AddCard(card);//Anade la carta segun el campo y el tipo
-        PlayedCards.Add(card);//Anade la carta a la lista de cartas jugadas
         if(card.GetComponent<CardEffect>()!=null){//Si la carta tiene efecto
             card.GetComponent<CardEffect>().TriggerEffect();//Activa el efecto
         }
+        TotalFieldForce.AddCard(card);//Anade la carta segun el campo y el tipo
+        PlayedCards.Add(card);//Anade la carta a la lista de cartas jugadas
         WeatherEffect.UpdateWeather();
         if(!lastTurn)
             RoundPoints.URWrite("Presiona espacio para pasar el turno");

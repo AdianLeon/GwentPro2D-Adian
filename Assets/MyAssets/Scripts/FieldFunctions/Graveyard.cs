@@ -15,8 +15,7 @@ public class Graveyard : MonoBehaviour
     }
     public static void AllToGraveyard(){//Manda una por una todas las cartas jugadas al cementerio
         for(int i=0;i<TurnManager.PlayedCards.Count;i++){
-            if(TurnManager.PlayedCards[i]!=null)//Si se ha jugado cartas
-                ToGraveyard(TurnManager.PlayedCards[i]);
+            ToGraveyard(TurnManager.PlayedCards[i]);
         }
     }
     public static void ToGraveyard(GameObject card){//Manda la carta al cementerio

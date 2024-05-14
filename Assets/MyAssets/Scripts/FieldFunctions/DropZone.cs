@@ -9,7 +9,7 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
     //Obtiene la propiedad de Dragging de los rangos y los campos
     public Card.zones validZone;
     public Card.fields validPlayer;
-    public static GameObject zoneEntered=null;
+    public static GameObject zoneEntered;
     public static bool pointerInZone;//Si el puntero esta sobre una zona o no
     public static float lastClickTime;//Necesario para que funcione correctamente el click sobre zonas
 

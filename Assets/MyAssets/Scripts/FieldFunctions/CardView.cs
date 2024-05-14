@@ -8,7 +8,7 @@ using TMPro;
 public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     //Objetos a utilizar
-    public static GameObject selectedCard;
+    public static GameObject selectedCard;//En esta variable se guarda el objeto debajo del puntero el cual mostramos en CardView
     public void OnPointerEnter(PointerEventData eventData){//Se activa cuando el mouse entra en la carta
         selectedCard=this.gameObject;
         selectedCard.GetComponent<Image>().color=new Color (0.75f,0.75f,0.75f,1);//La carta se sombrea cuando pasamos por encima
