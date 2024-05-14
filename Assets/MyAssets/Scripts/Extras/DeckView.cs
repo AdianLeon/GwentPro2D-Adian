@@ -5,15 +5,11 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 //Script copia de CardView pero para mostrar las cartas en grande en el menu Deck
-public class DeckView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class DeckView : MonoBehaviour//, IPointerEnterHandler, IPointerExitHandler
 {
-    public GameObject card;   
-    void Start(){
-        card=this.gameObject;
-    }
-    public void OnPointerEnter(PointerEventData eventData){//Se activa cuando el mouse entra en la carta
-        Card c=card.GetComponent<Card>();
-        Dragging d=card.GetComponent<Dragging>();
+    /*public void OnPointerEnter(PointerEventData eventData){//Se activa cuando el mouse entra en la carta
+        Card c=this.GetComponent<UnitCard>();
+        Dragging d=this.GetComponent<Dragging>();
         
         if(d!=null){//Si posee componente dragging (no es el lider)
             d.isDraggable=false;//Desactivamos que se pueda arrastrar
@@ -49,8 +45,8 @@ public class DeckView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             GameObject.Find("Power").GetComponent<TextMeshProUGUI>().color=c.cardColor;
     
             //Power
-            if(c.power!=0){
-                GameObject.Find("Power").GetComponent<TextMeshProUGUI>().text=c.power.ToString();
+            if(power!=0){
+                GameObject.Find("Power").GetComponent<TextMeshProUGUI>().text=power.ToString();
                 GameObject.Find("BGPower").GetComponent<Image>().color=new Color(0.2f,0.2f,0.2f,0.8f);
             }else{
                 GameObject.Find("Power").GetComponent<TextMeshProUGUI>().text="";
@@ -76,5 +72,5 @@ public class DeckView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerExit(PointerEventData eventData){
         card.GetComponent<Image>().color=new Color (1,1,1,1);//La carta se dessombrea cuando salimos de encima de ella
-    }
+    }*/
 }

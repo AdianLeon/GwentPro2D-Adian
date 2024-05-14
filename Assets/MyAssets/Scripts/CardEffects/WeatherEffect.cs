@@ -18,15 +18,15 @@ public class WeatherEffect : CardEffect
             target2=GameObject.Find("EnemySiegeDropZone");
         }
         for(int i=0;i<target1.transform.childCount;i++){//Disminuye en 1 el poder de la fila seleccionada y lo marca
-            if(target1.transform.GetChild(i).GetComponent<Card>().affected[this.GetComponent<Card>().id]==false && target1.transform.GetChild(i).GetComponent<Card>().wQuality!=Card.quality.Gold){
-                target1.transform.GetChild(i).GetComponent<Card>().addedPower--;
-                target1.transform.GetChild(i).GetComponent<Card>().affected[this.GetComponent<Card>().id]=true;
+            if(target1.transform.GetChild(i).GetComponent<UnitCard>().affected[this.GetComponent<WeatherCard>().id]==false && target1.transform.GetChild(i).GetComponent<UnitCard>().wichQuality!=UnitCard.quality.Gold){
+                target1.transform.GetChild(i).GetComponent<UnitCard>().addedPower--;
+                target1.transform.GetChild(i).GetComponent<UnitCard>().affected[this.GetComponent<WeatherCard>().id]=true;
             }
         }
         for(int i=0;i<target2.transform.childCount;i++){
-            if(target2.transform.GetChild(i).GetComponent<Card>().affected[this.GetComponent<Card>().id]==false && target2.transform.GetChild(i).GetComponent<Card>().wQuality!=Card.quality.Gold){
-                target2.transform.GetChild(i).GetComponent<Card>().addedPower--;
-                target2.transform.GetChild(i).GetComponent<Card>().affected[this.GetComponent<Card>().id]=true;
+            if(target2.transform.GetChild(i).GetComponent<UnitCard>().affected[this.GetComponent<WeatherCard>().id]==false && target2.transform.GetChild(i).GetComponent<UnitCard>().wichQuality!=UnitCard.quality.Gold){
+                target2.transform.GetChild(i).GetComponent<UnitCard>().addedPower--;
+                target2.transform.GetChild(i).GetComponent<UnitCard>().affected[this.GetComponent<WeatherCard>().id]=true;
             }
         }
     }

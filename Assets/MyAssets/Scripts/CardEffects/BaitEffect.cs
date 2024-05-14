@@ -8,25 +8,25 @@ public class BaitEffect : CardEffect
     override public void TriggerEffect(){
         GameObject choosed=null;//Guarda el objeto escogido para ser intercambiado con el senuelo
         List<GameObject> FieldList=new List<GameObject>();
-        if(this.GetComponent<Dragging>().whichField==Dragging.fields.P1){//Si el senuelo es de P1
+        if(this.GetComponent<Card>().whichField==Card.fields.P1){//Si el senuelo es de P1
             FieldList=TotalFieldForce.P1PlayedCards;
-        }else if(this.GetComponent<Dragging>().whichField==Dragging.fields.P2){//Si el senuelo es de P2
+        }else if(this.GetComponent<Card>().whichField==Card.fields.P2){//Si el senuelo es de P2
             FieldList=TotalFieldForce.P2PlayedCards;
         }
         for(int i=0;i<FieldList.Count;i++){//Se busca en las cartas jugadas
             //La que coincida en nombre con la ultima carta que se le paso el mouse por encima y que no sea de oro
-            if(CardView.cardName==FieldList[i].name && FieldList[i].GetComponent<Card>().wQuality!=Card.quality.Gold){
-                if(FieldList[i].GetComponent<Dragging>().cardType!=Dragging.rank.Clima){ //Si ademas no es de clima
+            if(CardView.cardName==FieldList[i].name && FieldList[i].GetComponent<UnitCard>().wichQuality!=UnitCard.quality.Gold){
+                if(FieldList[i].GetComponent<Card>().whichZone!=Card.zones.Weather){ //Si ademas no es un clima
                     choosed=FieldList[i];//La carta es valida para cambiar por el senuelo
                     SwapWith(choosed);//Se cambian de posicion
                     choosed.GetComponent<Dragging>().isDraggable=true;//La escogida ahora es arrastrable como cualquier otra de la mano
                     FieldList.Add(this.gameObject);//Se anade el senuelo a las cartas jugadas
                     FieldList.Remove(choosed);//Se quita choosed de las cartas jugadas
                     TurnManager.PlayedCards.Remove(choosed);
-                    for(int j=0;j<choosed.GetComponent<Card>().affected.Length;j++){//Deshace el efecto de clima cuando la carta vuelve a la mano, el senuelo recibira el clima como consecuencia de la llamada de UpdateClima
-                        if(choosed.GetComponent<Card>().affected[j]){//Si esta afectado, se deshace
-                            choosed.GetComponent<Card>().affected[j]=false;
-                            choosed.GetComponent<Card>().addedPower++;
+                    for(int j=0;j<choosed.GetComponent<UnitCard>().affected.Length;j++){//Deshace el efecto de clima cuando la carta vuelve a la mano, el senuelo recibira el clima como consecuencia de la llamada de UpdateClima
+                        if(choosed.GetComponent<UnitCard>().affected[j]){//Si esta afectado, se deshace
+                            choosed.GetComponent<UnitCard>().affected[j]=false;
+                            choosed.GetComponent<UnitCard>().addedPower++;
                         }
                     }
                     TurnManager.PlayCard(this.gameObject);//Se juega el senuelo como cualquier otra carta

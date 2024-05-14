@@ -16,17 +16,10 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     //Si se esta arrastrando una carta
     public static bool onDrag;
 
-    //Tipo de carta
-    public enum rank{Melee,Ranged,Siege,Aumento,Clima,Bait};
-    public rank cardType;
-    //Campo de la carta
-    public enum fields{None,P1,P2};
-    public fields whichField;
-
     public void Start(){//Al inicio del juego se define cual es la mano propia
-        if(whichField==fields.P1){
+        if(this.GetComponent<Card>().whichField==Card.fields.P1){
             hand=GameObject.Find("Hand");
-        }else if(whichField==fields.P2){
+        }else if(this.GetComponent<Card>().whichField==Card.fields.P2){
             hand=GameObject.Find("EnemyHand");
         }
         isDraggable=true;//Todas las cartas son arrastrables al inicio
@@ -77,9 +70,10 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 this.transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());//Posiciona la carta en el espacio
                 GetComponent<CanvasGroup>().blocksRaycasts=true;//Desactiva la penetracion de la carta para que podamos arrastrarla de nuevo
                 Destroy(placeholder);//Destruye el espacio creado
-                if(cardType==rank.Bait){//Efecto del senuelo
-                    this.GetComponent<CardEffect>().TriggerEffect();
-                }else if(this.transform.parent!=hand.transform && this.transform.parent!=GameObject.Find("Trash").transform){//Si el objeto sale de la mano y no esta en la basura
+                if(this.GetComponent<Card>().whichZone==Card.zones.Bait){
+                    this.GetComponent<BaitEffect>().TriggerEffect();
+                }
+                if(this.transform.parent!=hand.transform && this.transform.parent!=GameObject.Find("Trash").transform){//Si el objeto sale de la mano y no esta en la basura
                     TurnManager.PlayCard(this.gameObject);//Independientemente del campo juega la carta
                     TotalFieldForce.AddCard(this.gameObject);//Anade la carta segun el campo y el tipo
                 }else{

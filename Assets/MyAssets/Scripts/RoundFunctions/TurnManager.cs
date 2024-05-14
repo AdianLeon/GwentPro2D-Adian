@@ -21,7 +21,7 @@ public class TurnManager : MonoBehaviour
     }
     void Update(){
         if((Input.GetMouseButtonDown(0) && DropZone.pointerInZone) && Time.time-DropZone.lastClickTime>0.5f){//Cuando se presiona el boton del mouse y el puntero esta dentro de una dropzone
-            RoundPoints.URWrite("Esta zona es de tipo "+DropZone.zoneEntered.GetComponent<DropZone>().cardType);//Se muestra su nombre en el UserRead
+            RoundPoints.URWrite("Esta zona es de tipo "+DropZone.zoneEntered.GetComponent<DropZone>().validZone);//Se muestra su nombre en el UserRead
             DropZone.lastClickTime=Time.time;
         }
         if(Input.GetKeyDown(KeyCode.Space) && Time.time-lastClickTime>0.5f){//Clickea el passbutton cuando se presiona espacio, pero con una diferencia de tiempo de 0.5s
@@ -48,11 +48,13 @@ public class TurnManager : MonoBehaviour
     }
     public static void PlayCard(GameObject card){//Juega la carta y anade la carta a la lista de cartas jugadas
         card.GetComponent<Dragging>().isDraggable=false;
-        ExtraDrawCard.firstAction=false;
+        DeckTrade.firstAction=false;
         CardsPlayed++;
         PlayedCards.Add(card);
-        if(card.GetComponent<Card>().hasEffect){//Si la carta tiene efecto
-            card.GetComponent<CardEffect>().TriggerEffect();//Activa el efecto ya que debe poseer un componente que hereda de CardEffect
+        Debug.Log("Se juega la carta");
+        if(card.GetComponent<CardEffect>()!=null){//Si la carta tiene efecto
+            Debug.Log("Se detecta componente CardEffect");
+            card.GetComponent<CardEffect>().TriggerEffect();//Activa el efecto ya que posee un componente que hereda de CardEffect
         }
         WeatherEffect.UpdateWeather();
         if(!lastTurn)
@@ -97,7 +99,7 @@ public class TurnManager : MonoBehaviour
             PlayerCondition.WinCheck();
         }
         CardsPlayed=0;
-        TotalFieldForce.Empty();
+        TotalFieldForce.ResetPlayedCards();
         RoundPoints.UpdatePoints();
     }
     public static void ClickPassB(){//Clickea una copia de PassButton pero sin la funcion EndTurn
@@ -107,15 +109,15 @@ public class TurnManager : MonoBehaviour
             GameObject.Find("PassButtonWithoutEndTurn").GetComponent<Button>().onClick.Invoke();
     }
     public static void SwitchTurn(){//Se cambia de turno
-        ExtraDrawCard.twice=0;
-        ExtraDrawCard.firstAction=true;//Siempre que comienza un nuevo turno se hace posible una primera accion
+        DeckTrade.twice=0;
+        DeckTrade.firstAction=true;//Siempre que comienza un nuevo turno se hace posible una primera accion
         if(PlayerTurn==1){
                PlayerTurn=2;
                 CardsPlayed=0;
         }else{
             PlayerTurn=1;
             CardsPlayed=0;
-            ExtraDrawCard.firstTurn=false;//Esto es para desactivar el uso del intercambio de cartas con el mazo al inicio del juego
+            DeckTrade.firstTurn=false;//Esto es para desactivar el uso del intercambio de cartas con el mazo al inicio del juego
         }
         RoundPoints.URWrite("Turno de P"+PlayerTurn);
     }

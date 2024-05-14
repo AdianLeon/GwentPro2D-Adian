@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DespejeEffect : CardEffect
+public class ClearWeatherEffect : CardEffect
 {
     override public void TriggerEffect(){
         GameObject parent=null;
@@ -24,13 +24,13 @@ public class DespejeEffect : CardEffect
         if((target1!=null && target2!=null) && parent!=null){
             for(int j=0;j<this.transform.parent.childCount-1;j++){//Deshaciendo el efecto de clima
                 for(int i=0;i<target1.transform.childCount;i++){
-                    if(target1.transform.GetChild(i).GetComponent<Card>().wQuality!=Card.quality.Gold)
-                        target1.transform.GetChild(i).GetComponent<Card>().addedPower++;
+                    if(target1.transform.GetChild(i).GetComponent<UnitCard>().wichQuality!=UnitCard.quality.Gold)
+                        target1.transform.GetChild(i).GetComponent<UnitCard>().addedPower++;
                         //Como la carta  de clima solo puede afectar una sola vez por partida no reiniciaremos el array affected a false
                 }
                 for(int i=0;i<target2.transform.childCount;i++){
-                    if(target2.transform.GetChild(i).GetComponent<Card>().wQuality!=Card.quality.Gold)
-                        target2.transform.GetChild(i).GetComponent<Card>().addedPower++;
+                    if(target2.transform.GetChild(i).GetComponent<UnitCard>().wichQuality!=UnitCard.quality.Gold)
+                        target2.transform.GetChild(i).GetComponent<UnitCard>().addedPower++;
                 }
             }
         }

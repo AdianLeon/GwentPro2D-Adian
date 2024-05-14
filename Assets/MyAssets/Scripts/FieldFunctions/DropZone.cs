@@ -7,8 +7,8 @@ using UnityEngine.EventSystems;
 public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
     //Obtiene la propiedad de Dragging de los rangos y los campos
-    public Dragging.rank cardType;
-    public Dragging.fields whichField;
+    public Card.zones validZone;
+    public Card.fields validPlayer;
     public static GameObject zoneEntered=null;
     public static bool pointerInZone;//Si el puntero esta sobre una zona o no
     public static float lastClickTime;//Necesario para que funcione correctamente el click sobre zonas
@@ -31,12 +31,12 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
     
     public void OnDrop(PointerEventData eventData){//Detecta cuando se suelta una carta en una zona valida
         //Cambia donde se queda la carta, en vez de quedarse en la mano ahora se queda en la zona soltada si es valida
-        Dragging draggingComponent=eventData.pointerDrag.GetComponent<Dragging>();
-        if(draggingComponent!=null){
+        Card c=eventData.pointerDrag.GetComponent<Card>();
+        if(c!=null){
             //Solo si coincide el tipo de carta con el tipo de dropzone y es en el campo correspondiente
-            if(cardType==draggingComponent.cardType && (whichField==draggingComponent.whichField || whichField==Dragging.fields.None))
+            if(validZone==c.whichZone && (validPlayer==c.whichField || validPlayer==Card.fields.None))
             {
-                draggingComponent.parentToReturnTo=this.transform;
+                c.gameObject.GetComponent<Dragging>().parentToReturnTo=this.transform;
             }
         }
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AumentoEffect : CardEffect
+public class BoostEffect : CardEffect
 {
     override public void TriggerEffect(){
         GameObject target=null;//Objetivo al que anadirle 1 de poder a los hijos
@@ -21,8 +21,8 @@ public class AumentoEffect : CardEffect
         }
         if(target!=null){
             for(int i=0;i<target.transform.childCount;i++){
-                if(target.transform.GetChild(i).GetComponent<Card>().wQuality!=Card.quality.Gold)     
-                    target.transform.GetChild(i).GetComponent<Card>().addedPower++;//Aumenta el poder en 1
+                if(target.transform.GetChild(i).GetComponent<UnitCard>().wichQuality!=UnitCard.quality.Gold)     
+                    target.transform.GetChild(i).GetComponent<UnitCard>().addedPower++;//Aumenta el poder en 1
             }
             Graveyard.ToGraveyard(this.gameObject);//Envia la carta usada al cementerio
         }

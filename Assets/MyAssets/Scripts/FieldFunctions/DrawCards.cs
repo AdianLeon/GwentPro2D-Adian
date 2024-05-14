@@ -57,17 +57,17 @@ public class DrawCards : MonoBehaviour
                         
                         TurnManager.CardsPlayed++;//Esta accion cuenta como carta jugada
                         used[0]=true;
-                        ExtraDrawCard.firstAction=false;//Ya no se puede intercambiar cartas con el deck propio si es el primer turno de la partida
+                        DeckTrade.firstAction=false;//Ya no se puede intercambiar cartas con el deck propio si es el primer turno de la partida
                     }else{
                         LeaderSkill("P1");//Activa la habilidad de lider para P1
                         TurnManager.CardsPlayed++;//Esta accion cuenta como carta jugada
-                        ExtraDrawCard.firstAction=false;//Ya no se puede intercambiar cartas con el deck propio si es el primer turno de la partida
+                        DeckTrade.firstAction=false;//Ya no se puede intercambiar cartas con el deck propio si es el primer turno de la partida
                     }
                 }else if(GameObject.Find("Hand").transform.childCount>8){//En el caso en que es la primera carta que se juega pero no hay espacio en la mano
                     RoundPoints.URWrite("Los minions robaron dos cartas pero no tienes suficiente espacio en la mano asi que las devolvieron y le pidieron disculpas al enemigo");
                     TurnManager.CardsPlayed++;//Esta accion cuenta como carta jugada
                     used[0]=true;
-                    ExtraDrawCard.firstAction=false;//Ya no se puede intercambiar cartas si es el primer turno de la partida
+                    DeckTrade.firstAction=false;//Ya no se puede intercambiar cartas si es el primer turno de la partida
                 }
             }else if(used[0] && TurnManager.CardsPlayed==0){//Si la habilidad ha sido usada
                 RoundPoints.URWrite("Gru solo puede ordenarle a los minions que roben dos cartas enemigas una vez por partida");
@@ -88,17 +88,17 @@ public class DrawCards : MonoBehaviour
                         
                         TurnManager.CardsPlayed++;//Esta accion cuenta como carta jugada
                         used[1]=true;
-                        ExtraDrawCard.firstAction=false;//Ya no se puede intercambiar cartas con el deck propio si es el primer turno de la partida
+                        DeckTrade.firstAction=false;//Ya no se puede intercambiar cartas con el deck propio si es el primer turno de la partida
                     }else{
                         LeaderSkill("P2");//Activa la habilidad de lider para P2
                         TurnManager.CardsPlayed++;//Esta accion cuenta como carta jugada
-                        ExtraDrawCard.firstAction=false;//Ya no se puede intercambiar cartas con el deck propio si es el primer turno de la partida
+                        DeckTrade.firstAction=false;//Ya no se puede intercambiar cartas con el deck propio si es el primer turno de la partida
                     }
                 }else if(GameObject.Find("EnemyHand").transform.childCount>8){//En el caso en que es la primera carta que se juega pero no hay espacio en la mano
                     RoundPoints.URWrite("Los minions robaron dos cartas pero no tienes suficiente espacio en la mano asi que las devolvieron y le pidieron disculpas al enemigo");
                     TurnManager.CardsPlayed++;//Esta accion cuenta como carta jugada
                     used[1]=true;
-                    ExtraDrawCard.firstAction=false;//Ya no se puede intercambiar cartas si es el primer turno de la partida
+                    DeckTrade.firstAction=false;//Ya no se puede intercambiar cartas si es el primer turno de la partida
                 }
             }else if(used[1] && TurnManager.CardsPlayed==0){//Si la habilidad ha sido usada
                 RoundPoints.URWrite("Gru solo puede ordenarle a los minions que roben dos cartas enemigas una vez por partida");
@@ -135,18 +135,18 @@ public class DrawCards : MonoBehaviour
     public static void StealFrom(string playerToStealFrom){//Robar de Px
         GameObject stealArea=null;
         GameObject stealerArea=null;
-        Dragging.fields stealerField;
+        Card.fields stealerField;
         if(playerToStealFrom=="P1"){//En dependencia de que argumento se le pasa a la funcion se roba de un jugador u otro
             stealArea=GameObject.Find("Hand");
             stealerArea=GameObject.Find("EnemyHand");
-            stealerField=Dragging.fields.P2;
+            stealerField=Card.fields.P2;
         }else{
             stealArea=GameObject.Find("EnemyHand");
             stealerArea=GameObject.Find("Hand");
-            stealerField=Dragging.fields.P1;
+            stealerField=Card.fields.P1;
         }
             GameObject stolenCard=stealArea.transform.GetChild(Random.Range(0,stealArea.transform.childCount)).gameObject;//Escoge una carta aleatoria de la mano
             stolenCard.transform.SetParent(stealerArea.transform);//Pone la carta robada en la mano del ladron
-            stolenCard.GetComponent<Dragging>().whichField=stealerField;//Cambia el campo de la carta
+            stolenCard.GetComponent<Card>().whichField=stealerField;//Cambia el campo de la carta
     }
 }

@@ -8,7 +8,7 @@ public class MultiplyEffect : CardEffect
         int n=1;//Contador de cuantas cartas del mismo tipo hay (se inicializa en 1 ya que aun no hemos jugado esta carta y debemos contarla)
         n+=CountSelfIn(TotalFieldForce.P1PlayedCards);//Se cuenta en el campo de P1 
         n+=CountSelfIn(TotalFieldForce.P2PlayedCards);//Se cuenta en el campo de P2
-        this.GetComponent<Card>().power=this.GetComponent<Card>().power*n;//Se iguala el poder de la carta jugada a n veces su propio poder 
+        this.GetComponent<UnitCard>().power*=n;//Se iguala el poder de la carta jugada a n veces su propio poder 
     }
     private int CountSelfIn(List<GameObject> PlayedCardsList){//Devuelve el conteo de cuantas veces se encuentra la carta en la lista
         int n=0;

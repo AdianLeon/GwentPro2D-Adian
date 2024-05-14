@@ -11,9 +11,9 @@ public class PromEffect : CardEffect
         total+=TotalFieldForce.P2ForceValue;//Se anade el poder del P2
         int divisor=TotalFieldForce.P1PlayedCards.Count+TotalFieldForce.P2PlayedCards.Count;//El divisor es el total de cartas en el campo
         if(divisor==0){//Si no hay cartas en el campo
-            this.GetComponent<Card>().power=0;//El poder es 0
+            this.GetComponent<UnitCard>().power=0;//El poder es 0
         }else{//Si hay cartas en el campo
-            this.GetComponent<Card>().power=total/divisor;//El poder de la carta jugada es el promedio del total de poder de todas las cartas en el campo
+            this.GetComponent<UnitCard>().power=total/divisor;//El poder de la carta jugada es el promedio del total de poder de todas las cartas en el campo
         }
     }
 }
