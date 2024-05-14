@@ -15,13 +15,13 @@ public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         cardName="None";//Inicializamos la referencia del nombre de la carta a nada
     }
     public void OnPointerEnter(PointerEventData eventData){//Se activa cuando el mouse entra en la carta
+        this.gameObject.GetComponent<Image>().color=new Color (0.75f,0.75f,0.75f,1);//La carta se sombrea cuando pasamos por encima
         this.gameObject.GetComponent<Card>().LoadInfo();//Se carga toda la informacion de esta carta en el CardView
         if(this.gameObject.GetComponent<Dragging>()!=null){
             if(!Dragging.onDrag && this.gameObject.transform.parent==this.gameObject.GetComponent<Dragging>().hand.transform)//Si no se esta arrastrando ninguna carta y ademas esta en la mano
                 VisualEffects.ZonesGlow(this.gameObject);//Se ilumina la zona donde se puede soltar
         }
         cardName=this.gameObject.name;//Obtenemos la referencia a esta carta para usarla luego
-        this.gameObject.GetComponent<Image>().color=new Color (0.75f,0.75f,0.75f,1);//La carta se sombrea cuando pasamos por encima
     }
 
     public void OnPointerExit(PointerEventData eventData){//Se activa cuando el mouse sale de la carta

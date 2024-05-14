@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PromEffect : CardEffect
 {
@@ -15,5 +16,6 @@ public class PromEffect : CardEffect
         }else{//Si hay cartas en el campo
             this.GetComponent<UnitCard>().power=total/divisor;//El poder de la carta jugada es el promedio del total de poder de todas las cartas en el campo
         }
+        GameObject.Find("Power").GetComponent<TextMeshProUGUI>().text=this.GetComponent<UnitCard>().power.ToString();//Actualizamos el poder en el CardView
     }
 }

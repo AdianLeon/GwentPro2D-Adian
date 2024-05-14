@@ -51,10 +51,8 @@ public class TurnManager : MonoBehaviour
         DeckTrade.firstAction=false;
         CardsPlayed++;
         PlayedCards.Add(card);
-        Debug.Log("Se juega la carta");
         if(card.GetComponent<CardEffect>()!=null){//Si la carta tiene efecto
-            Debug.Log("Se detecta componente CardEffect");
-            card.GetComponent<CardEffect>().TriggerEffect();//Activa el efecto ya que posee un componente que hereda de CardEffect
+            card.GetComponent<CardEffect>().TriggerEffect();//Activa el efecto
         }
         WeatherEffect.UpdateWeather();
         if(!lastTurn)

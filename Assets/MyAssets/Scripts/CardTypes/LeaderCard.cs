@@ -15,5 +15,9 @@ public class LeaderCard : Card
 
         GameObject.Find("AddedPower").GetComponent<TextMeshProUGUI>().text="";
         GameObject.Find("BGAddedPower").GetComponent<Image>().color=new Color(1,1,1,0);
+
+        if(this.GetComponent<LeaderEffect>().used){
+            this.GetComponent<Image>().color=new Color(0.3f,0.3f,0.3f,1);
+        }
     }
 }
