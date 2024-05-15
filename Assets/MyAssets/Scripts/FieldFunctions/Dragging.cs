@@ -67,8 +67,12 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         if(isDraggable && (TurnManager.CardsPlayed==0 || TurnManager.lastTurn)){//Solo si es arrastrable y si se puede jugar
             if(TurnManager.CardsPlayed<1 || TurnManager.lastTurn){//Solo cuando no se ha jugado una carta o si es el ultimo turno
                 this.transform.SetParent(parentToReturnTo);
-                this.transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());//Posiciona la carta en el espacio
-                GetComponent<CanvasGroup>().blocksRaycasts=true;//Desactiva la penetracion de la carta para que podamos arrastrarla de nuevo
+                if(this.transform.parent==hand){
+                    this.transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());//Posiciona la carta en la mano
+                }
+                this.GetComponent<CanvasGroup>().blocksRaycasts=true;//Desactiva la penetracion de la carta para que podamos arrastrarla de nuevo
+                placeholder.transform.SetParent(GameObject.Find("Trash").transform);//Mueve el placeholder para que al destruirlo
+                //no deje rastros y no cuente como objeto perteneciente a hand, esto es necesario para arreglar un bug referente a DrawCards.DrawCard()
                 Destroy(placeholder);//Destruye el espacio creado
                 if(this.GetComponent<Card>().whichZone==Card.zones.Bait){
                     if(CardView.selectedCard.GetComponent<Card>().whichField==this.GetComponent<Card>().whichField){
@@ -77,13 +81,12 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 }
                 if(this.transform.parent!=hand.transform && this.transform.parent!=GameObject.Find("Trash").transform){//Si el objeto sale de la mano y no esta en la basura
                     TurnManager.PlayCard(this.gameObject);//Independientemente del campo juega la carta
-                }else{
-                    GetComponent<CanvasGroup>().blocksRaycasts=true;//Desactiva la penetracion de la carta para que podamos arrastrarla de nuevo
                 }
             }else{
                 this.transform.SetParent(hand.transform);//Devuelve la carta a la mano
                 this.transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());//Posiciona la carta en el espacio
                 GetComponent<CanvasGroup>().blocksRaycasts=true;//Desactiva la penetracion de la carta para que podamos arrastrarla de nuevo
+                placeholder.transform.SetParent(GameObject.Find("Trash").transform);
                 Destroy(placeholder);//Destruye el espacio creado
             }
             TotalFieldForce.UpdateForce();
