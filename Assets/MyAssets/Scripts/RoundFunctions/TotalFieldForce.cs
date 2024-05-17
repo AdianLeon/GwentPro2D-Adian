@@ -30,8 +30,8 @@ public class TotalFieldForce : MonoBehaviour
         P2ForceValue=sum;//Esta suma se guarda
         GameObject.Find("EnemyPoints").GetComponent<TextMeshProUGUI>().text=P2ForceValue.ToString();//Asigna el valor al puntaje
     }
-    public static void AddCard(GameObject thisCard){//Anade la carta segun el campo y el tipo (Excluye a los climas, aumentos y despejes)
-        if(thisCard.GetComponent<Card>().whichZone!=Card.zones.Weather && thisCard.GetComponent<Card>().whichZone!=Card.zones.Boost){
+    public static void AddCard(GameObject thisCard){//Anade la carta segun el campo y el tipo (Solo cartas de unidad)
+        if(thisCard.GetComponent<UnitCard>()!=null){
             if(thisCard.GetComponent<Card>().whichField==Card.fields.P1){//Si es campo de P1 anade la carta a la lista de cartas del campo del P1
                 P1PlayedCards.Add(thisCard);
             }else if(thisCard.GetComponent<Card>().whichField==Card.fields.P2){//Si es campo de P2 anade la carta a la lista de cartas del campo del P2

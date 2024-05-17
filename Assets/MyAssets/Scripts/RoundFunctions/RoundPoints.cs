@@ -28,7 +28,7 @@ public class RoundPoints : MonoBehaviour
         }else if(TurnManager.cardsPlayed==0){
             RoundPoints.URWrite("Turno de P"+TurnManager.playerTurn);
         }else if(TurnManager.lastTurn){
-            RoundPoints.URWrite("Presiona espacio para acabar la ronda");
+            RoundPoints.URWrite("Puedes seguir jugando mas cartas. Presiona espacio cuando desees acabar la ronda");
         }else{
             RoundPoints.URWrite("Presiona espacio para pasar de turno");
         }

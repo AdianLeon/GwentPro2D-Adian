@@ -76,7 +76,7 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 placeholder.transform.SetParent(GameObject.Find("Trash").transform);//Mueve el placeholder para que al destruirlo
                 //no deje rastros y no cuente como objeto perteneciente a hand, esto es necesario para arreglar un bug referente a DrawCards.DrawCard()
                 Destroy(placeholder);//Destruye el espacio creado
-                if(this.GetComponent<Card>().whichZone==Card.zones.Bait && CardView.selectedCard!=null){
+                if(this.GetComponent<UnitCard>()!=null && this.GetComponent<UnitCard>().whichZone==UnitCard.zones.Bait && CardView.selectedCard!=null){
                     if(CardView.selectedCard.GetComponent<Card>().whichField==this.GetComponent<Card>().whichField){
                         this.GetComponent<BaitEffect>().SwapEffect();
                     }

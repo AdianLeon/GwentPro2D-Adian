@@ -12,6 +12,9 @@ public class UnitCard : Card
     
     public enum quality{Bait,Silver,Gold}//Calidad de la carta, si es plata tendra hasta 3 copias, si es oro no sera afectada por ningun efecto durante el juego
     public quality wichQuality;
+    public enum zones{Melee,Ranged,Siege,Bait};
+    public zones whichZone;
+
     public override void LoadInfo(){
         base.LoadInfo();
         if(whichZone==zones.Melee){

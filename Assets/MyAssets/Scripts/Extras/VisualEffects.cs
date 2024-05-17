@@ -8,22 +8,22 @@ public class VisualEffects : MonoBehaviour
 {
     public static void ZonesGlow(GameObject card){//Encuentra las zonas del mismo tipo y campo que la carta y las ilumina
         if(TurnManager.cardsPlayed==0 || TurnManager.lastTurn){//Si el jugador puede jugar
-            if(card.GetComponent<Card>().whichZone==Card.zones.Weather){//Si la carta es de clima
+            if(card.GetComponent<WeatherCard>()!=null){//Si la carta es de clima
                 DZWeather[] zones=GameObject.FindObjectsOfType<DZWeather>();//Se crea un array de todas las zonas de clima
                 for(int i=0;i<zones.Length;i++){
                     zones[i].GetComponent<Image>().color=new Color (1,1,1,0.1f);//Se iluminan
                 }
-            }else if(card.GetComponent<Card>().whichZone==Card.zones.Boost){//Si la carta es de aumento
+            }else if(card.GetComponent<BoostCard>()!=null){//Si la carta es de aumento
                 DZBoost[] zones=GameObject.FindObjectsOfType<DZBoost>();//Se crea un array de todas las zonas de aumento
                 for(int i=0;i<zones.Length;i++){
                     if(zones[i].validPlayer==card.GetComponent<Card>().whichField){//Si la zona es del jugador
                         zones[i].GetComponent<Image>().color=new Color (1,1,1,0.1f);//Se ilumina
                     }
                 }
-            }else{//Si la carta es de unidad
+            }else if(card.GetComponent<UnitCard>()!=null){//Si la carta es de unidad
                 DZUnits[] zones=GameObject.FindObjectsOfType<DZUnits>();//Se crea un array con todas las zonas de cartas de unidad
                 for(int i=0;i<zones.Length;i++){
-                    if(zones[i].validZone==card.GetComponent<Card>().whichZone && zones[i].validPlayer==card.GetComponent<Card>().whichField){
+                    if(zones[i].validZone==card.GetComponent<UnitCard>().whichZone && zones[i].validPlayer==card.GetComponent<Card>().whichField){
                         //La zona se ilumina solo si coincide con la zona jugable y el campo de la carta
                         zones[i].GetComponent<Image>().color=new Color (1,1,1,0.1f);
                     }

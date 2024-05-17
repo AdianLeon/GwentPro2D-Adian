@@ -14,8 +14,6 @@ public class Card : MonoBehaviour
     public Color cardColor;//Color determinado de la carta
     public enum fields{P1,P2};
     public fields whichField;
-    public enum zones{Melee,Ranged,Siege,Boost,Weather,Bait};
-    public zones whichZone;
     public virtual void LoadInfo(){//Esta funcion es especifica para cada tipo de carta, pero todas comparten lo siguiente
         //Name
         GameObject.Find("CardName").GetComponent<TextMeshProUGUI>().text=cardRealName;

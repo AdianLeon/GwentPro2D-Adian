@@ -9,10 +9,10 @@ public class DZBoost : DropZone
     public Card.fields validPlayer;//Jugador valido
     public override void OnDrop(PointerEventData eventData){//Detecta cuando se suelta una carta en una zona valida
         //Cambia donde se queda la carta, en vez de quedarse en la mano ahora se queda en la zona soltada si es valida
-        Card c=eventData.pointerDrag.GetComponent<Card>();
+        BoostCard c=eventData.pointerDrag.GetComponent<BoostCard>();
         if(c!=null){
             //Solo si son cartas de aumento del jugador correspondiente
-            if(Card.zones.Boost==c.whichZone && validPlayer==c.whichField){
+            if(validPlayer==c.whichField){
                 c.gameObject.GetComponent<Dragging>().parentToReturnTo=this.transform;
             }
         }
