@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+//Script para las cartas de aumento
 public class BoostCard : Card
 {
     public override void LoadInfo(){

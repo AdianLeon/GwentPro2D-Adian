@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+//Script para la carta Lider
 public class LeaderCard : Card
 {
     public override void LoadInfo(){

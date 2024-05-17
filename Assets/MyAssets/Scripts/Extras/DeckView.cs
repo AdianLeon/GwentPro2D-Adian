@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
-//Script copia de CardView pero para mostrar las cartas en grande en el menu Deck
+//Script clon de CardView pero para mostrar las cartas en el menu Deck
 public class DeckView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public string cardRealName;//Nombre a mostrar en el objeto gigante a la izquierda del campo
@@ -13,9 +13,9 @@ public class DeckView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public Sprite artwork;//Imagen relacionada con la carta para mostrar en grande en el objeto gigante a la izquierda del campo
     public Sprite qualitySprite;//Otra imagen que representa al enum quality
     public Color cardColor;//Color determinado de la carta
-    public int power;
-    public string playableZone;
-    public bool showPower;
+    public int power;//Poder de la carta
+    public string playableZone;//Zona jugable de la carta
+    public bool showPower;//Si se muestra el poder de la carta o no
     public void OnPointerEnter(PointerEventData eventData){//Se activa cuando el mouse entra en la carta
         //Playable zone
         GameObject.Find("BGType").GetComponent<Image>().color=new Color(0.2f,0.2f,0.2f,0.8f);

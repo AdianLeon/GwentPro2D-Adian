@@ -7,14 +7,27 @@ using UnityEngine.UI;
 public class VisualEffects : MonoBehaviour
 {
     public static void ZonesGlow(GameObject card){//Encuentra las zonas del mismo tipo y campo que la carta y las ilumina
-        DropZone[] zones=GameObject.FindObjectsOfType<DropZone>();
-        for(int i=0;i<zones.Length;i++){
-            bool generalCase=(zones[i].GetComponent<DropZone>().validZone==card.GetComponent<Card>().whichZone) && (zones[i].GetComponent<DropZone>().validPlayer==card.GetComponent<Card>().whichField);//Caso general es cualquier carta que no sea de clima, debe coincidir en tipo y campo
-            bool climaCase=(Card.zones.Weather==card.GetComponent<Card>().whichZone) && (Card.zones.Weather==zones[i].GetComponent<DropZone>().validZone);//Caso clima es que tanto la carta como la zona sean tipo clima
-            bool usualCase=(generalCase || climaCase) && TurnManager.CardsPlayed==0;//El caso usual es cuando solo se puede jugar una carta y esta carta puede ser de caso general o clima
-            bool afterPassCase=(generalCase || climaCase) && TurnManager.lastTurn;//El caso afterPass es cuando un jugador pasa y ahora el otro puede jugar tantas cartas como quiera de caso general o clima
-            if(afterPassCase || usualCase){//Para cualquiera de los dos casos usual o afterPass iluminaremos la(s) zona(s) donde el jugador puede poner la carta
-                zones[i].GetComponent<Image>().color=new Color (1,1,1,0.1f);
+        if(TurnManager.cardsPlayed==0 || TurnManager.lastTurn){//Si el jugador puede jugar
+            if(card.GetComponent<Card>().whichZone==Card.zones.Weather){//Si la carta es de clima
+                DZWeather[] zones=GameObject.FindObjectsOfType<DZWeather>();//Se crea un array de todas las zonas de clima
+                for(int i=0;i<zones.Length;i++){
+                    zones[i].GetComponent<Image>().color=new Color (1,1,1,0.1f);//Se iluminan
+                }
+            }else if(card.GetComponent<Card>().whichZone==Card.zones.Boost){//Si la carta es de aumento
+                DZBoost[] zones=GameObject.FindObjectsOfType<DZBoost>();//Se crea un array de todas las zonas de aumento
+                for(int i=0;i<zones.Length;i++){
+                    if(zones[i].validPlayer==card.GetComponent<Card>().whichField){//Si la zona es del jugador
+                        zones[i].GetComponent<Image>().color=new Color (1,1,1,0.1f);//Se ilumina
+                    }
+                }
+            }else{//Si la carta es de unidad
+                DZUnits[] zones=GameObject.FindObjectsOfType<DZUnits>();//Se crea un array con todas las zonas de cartas de unidad
+                for(int i=0;i<zones.Length;i++){
+                    if(zones[i].validZone==card.GetComponent<Card>().whichZone && zones[i].validPlayer==card.GetComponent<Card>().whichField){
+                        //La zona se ilumina solo si coincide con la zona jugable y el campo de la carta
+                        zones[i].GetComponent<Image>().color=new Color (1,1,1,0.1f);
+                    }
+                }
             }
         }
         DeckTrade.UpdateRedraw();//Se actualiza si se puede intercambiar cartas con el deck
@@ -41,6 +54,12 @@ public class VisualEffects : MonoBehaviour
         GameObject.Find("PlayedLightMiddle").GetComponent<Image>().color=green;
         GameObject.Find("PlayedLightLeft").GetComponent<Image>().color=green;
         GameObject.Find("PlayedLightRight").GetComponent<Image>().color=green;
+        if(!GameObject.Find("Leader").GetComponent<LeaderEffect>().used){
+            GameObject.Find("PlayedLightLeaderSkillP1").GetComponent<Image>().color=green;
+        }
+        if(!GameObject.Find("EnemyLeader").GetComponent<LeaderEffect>().used){
+            GameObject.Find("PlayedLightLeaderSkillP2").GetComponent<Image>().color=green;
+        }
     }
     public static void PlayedLightsOff(){//Afecta a unos objetos del campo y los pone rojos
         Color red=new Color(1,0,0,0.2f);
@@ -49,5 +68,7 @@ public class VisualEffects : MonoBehaviour
         GameObject.Find("PlayedLightMiddle").GetComponent<Image>().color=red;
         GameObject.Find("PlayedLightLeft").GetComponent<Image>().color=red;
         GameObject.Find("PlayedLightRight").GetComponent<Image>().color=red;
+        GameObject.Find("PlayedLightLeaderSkillP1").GetComponent<Image>().color=red;
+        GameObject.Find("PlayedLightLeaderSkillP2").GetComponent<Image>().color=red;
     }
 }

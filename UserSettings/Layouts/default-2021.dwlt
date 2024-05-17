@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 1991
+  controlID: 16
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 1992
+  controlID: 17
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 1993
+  controlID: 18
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -242,8 +242,8 @@ MonoBehaviour:
     y: 428
     width: 1010
     height: 207
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 15}
@@ -400,10 +400,10 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 176}
-      m_SelectedIDs: 3c0f0000
-      m_LastClickedID: 0
-      m_ExpandedIDs: 2cfbffff90660000b2660000
+      scrollPos: {x: 0, y: 942}
+      m_SelectedIDs: 1426ffff
+      m_LastClickedID: -55788
+      m_ExpandedIDs: 0ef9ffff2cfbffffda660000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -708,9 +708,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 326.01337, y: 214.3599, z: -10.776622}
+    m_Target: {x: 331.94165, y: 191.60188, z: -10.272858}
     speed: 2
-    m_Value: {x: 326.01337, y: 214.3599, z: -10.776622}
+    m_Value: {x: 331.94165, y: 191.60188, z: -10.272858}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -761,9 +761,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 208.45526
+    m_Target: 180.4633
     speed: 2
-    m_Value: 208.45526
+    m_Value: 180.4633
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -830,23 +830,23 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/MyAssets/Scripts/CardEffects
+    - Assets/MyAssets/Scripts/RoundFunctions
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 68
   m_LastFolders:
-  - Assets/MyAssets/Scripts/CardEffects
+  - Assets/MyAssets/Scripts/RoundFunctions
   m_LastFoldersGridSize: 68
   m_LastProjectPath: C:\Users\Adian\Documents\CC\Primero\1er semestre\Programacion\Proyectos\YunitiProllekts\Gwent
     Pro 2D\GwentPro2D Adian
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 95}
-    m_SelectedIDs: c66a0000
-    m_LastClickedID: 27334
-    m_ExpandedIDs: 000000004c6a00004e6a0000506a0000526a0000546a0000566a000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 106}
+    m_SelectedIDs: 02820000
+    m_LastClickedID: 33282
+    m_ExpandedIDs: 00000000a06a0000a26a0000a46a0000a66a0000a86a0000aa6a00004c6f0000c473000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -874,7 +874,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000004c6a00004e6a0000506a0000526a0000546a0000566a000000ca9a3bffffff7f
+    m_ExpandedIDs: 00000000a06a0000a26a0000a46a0000a66a0000a86a0000aa6a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -899,8 +899,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 3c0f0000
-    m_LastClickedInstanceID: 3900
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000d2840000d26400005a66000000000000e664000002770000d8650000e6780100e8670000de670000e2670000ea670000f0670000dc670000d8670000f4670000886800007e70000056680000e2680000f26800005625ffff62690000fa68000038690000
     m_RenameOverlay:
@@ -995,7 +995,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 0
+  m_LastVerticalScrollValue: 541.8
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:

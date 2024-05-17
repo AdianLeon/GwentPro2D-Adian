@@ -7557,8 +7557,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardRealName: Agnes
   description: Le encantan los unicornios, cree que Kyle es adorable
-  effectDescription: Esta carta se puede intercambiar con otra en el campo (solo
-    con unidades)
+  effectDescription: Esta carta se puede intercambiar con otra en el campo propio
+    (solo con unidades de plata)
   artwork: {fileID: 21300000, guid: 5c666fcad0d9f6e4499ac9ec21e79280, type: 3}
   qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
   cardColor: {r: 0.77254903, g: 0.45490196, b: 0.70980394, a: 1}
@@ -9963,7 +9963,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardRealName: Manzana
-  description: Similar efecto a las bananas, no es necesaria una explicacion no?
+  description: 'Similar efecto a las bananas, no es necesaria una explicacion no?
+    Spoiler: Los vuelve locos'
   effectDescription: Aumenta el poder de las cartas de la fila seleccionada en 1
   artwork: {fileID: 21300000, guid: 2de768fe42a8094409f225922975b10a, type: 3}
   qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
@@ -12878,8 +12879,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardRealName: Minion Bebe
   description: Demasiado pequeno para pelear, Gru le hallo otra utilidad
-  effectDescription: Esta carta se puede intercambiar con otra en el campo (solo
-    con unidades)
+  effectDescription: Esta carta se puede intercambiar con otra en el campo propio
+    (solo con unidades de plata)
   artwork: {fileID: 21300000, guid: a4bca80268b6ecb44b3ad5040fd61971, type: 3}
   qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
   cardColor: {r: 0.77254903, g: 0.45490196, b: 0.70980394, a: 1}
@@ -15283,8 +15284,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardRealName: Muchas Bananas
-  description: Para un minion cualquier problema tiene solucion, si tienes suficientes
-    bananas
+  description: Para un minion cualquier problema tiene solucion, si tienes suficiente
+    dinero, digo bananas
   effectDescription: Se deshace de todas las cartas de clima en la fila seleccionada
   artwork: {fileID: 21300000, guid: dc03cc05d9a1a2245bcf77ae676c1e42, type: 3}
   qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}

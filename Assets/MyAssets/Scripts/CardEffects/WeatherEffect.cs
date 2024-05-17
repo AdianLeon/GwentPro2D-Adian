@@ -1,42 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//Script para las cartas de clima
 public class WeatherEffect : CardEffect
 {
     override public void TriggerEffect(){
-        GameObject target1=null;//Objetivos a los que quitarle 1 de poder a los hijos
-        GameObject target2=null;
-        if(this.transform.parent==GameObject.Find("ClimaZoneM").transform){//Si la zona en la que esta la carta es x, afecta a tales zonas
-            target1=GameObject.Find("MyMeleeDropZone");
-            target2=GameObject.Find("EnemyMeleeDropZone");
-        }else if(this.transform.parent==GameObject.Find("ClimaZoneR").transform){
-            target1=GameObject.Find("MyRangedDropZone");
-            target2=GameObject.Find("EnemyRangedDropZone");
-        }else if(this.transform.parent==GameObject.Find("ClimaZoneS").transform){
-            target1=GameObject.Find("MySiegeDropZone");
-            target2=GameObject.Find("EnemySiegeDropZone");
-        }
-        for(int i=0;i<target1.transform.childCount;i++){//Disminuye en 1 el poder de la fila seleccionada y lo marca
-            if(target1.transform.GetChild(i).GetComponent<UnitCard>().affected[this.GetComponent<WeatherCard>().id]==false && target1.transform.GetChild(i).GetComponent<UnitCard>().wichQuality!=UnitCard.quality.Gold){
-                target1.transform.GetChild(i).GetComponent<UnitCard>().addedPower--;
-                target1.transform.GetChild(i).GetComponent<UnitCard>().affected[this.GetComponent<WeatherCard>().id]=true;
-            }
-        }
-        for(int i=0;i<target2.transform.childCount;i++){
-            if(target2.transform.GetChild(i).GetComponent<UnitCard>().affected[this.GetComponent<WeatherCard>().id]==false && target2.transform.GetChild(i).GetComponent<UnitCard>().wichQuality!=UnitCard.quality.Gold){
-                target2.transform.GetChild(i).GetComponent<UnitCard>().addedPower--;
-                target2.transform.GetChild(i).GetComponent<UnitCard>().affected[this.GetComponent<WeatherCard>().id]=true;
+        GameObject target1=this.transform.parent.GetComponent<DZWeather>().target1;//Objetivos a los que quitarle 1 de poder a los hijos
+        GameObject target2=this.transform.parent.GetComponent<DZWeather>().target2;
+        //GetWeatherTargets(this.gameObject,out target1,out target2);
+        //Afecta a las zonas
+        AffectZoneWithWeather(target1);//La de P1
+        AffectZoneWithWeather(target2);//La de P2
+    }
+    private void AffectZoneWithWeather(GameObject zoneTarget){//Afecta la zona determinada con el efecto clima
+        for(int i=0;i<zoneTarget.transform.childCount;i++){//Itera por todos los hijos
+            if(zoneTarget.transform.GetChild(i).GetComponent<UnitCard>().affected[this.GetComponent<WeatherCard>().id]==false){//Si no han sido afectados
+                if(zoneTarget.transform.GetChild(i).GetComponent<UnitCard>().wichQuality!=UnitCard.quality.Gold){//Ademas si no son heroes
+                    zoneTarget.transform.GetChild(i).GetComponent<UnitCard>().addedPower--;
+                    zoneTarget.transform.GetChild(i).GetComponent<UnitCard>().affected[this.GetComponent<WeatherCard>().id]=true;
+                }
             }
         }
     }
     public static void UpdateWeather(){//Esta funcion se llama cada vez que se juega una nueva carta
-        UpdateWeatherByZones("ClimaZoneM");//Actualiza el clima por zonas
-        UpdateWeatherByZones("ClimaZoneR");
-        UpdateWeatherByZones("ClimaZoneS");
+        RectivateWeathersInZone("ClimaZoneM");//Actualiza el clima por zonas
+        RectivateWeathersInZone("ClimaZoneR");
+        RectivateWeathersInZone("ClimaZoneS");
     }
-    public static void UpdateWeatherByZones(string zoneToUpdate){//Reactiva los efectos de las cartas clima en una zona especifica
-        CardEffect[] cardsInZone=GameObject.Find(zoneToUpdate).GetComponentsInChildren<CardEffect>();//Se acceden a todos los hijos de esa zona
+    private static void RectivateWeathersInZone(string zoneToUpdate){//Reactiva los efectos de las cartas clima en una zona especifica
+        WeatherEffect[] cardsInZone=GameObject.Find(zoneToUpdate).GetComponentsInChildren<WeatherEffect>();//Se acceden a todos los hijos de esa zona
         for(int i=0;i<cardsInZone.Length;i++){//Itera por cada uno de esos hijos
             cardsInZone[i].TriggerEffect();//Hace que activen el efecto de clima otra vez
         }

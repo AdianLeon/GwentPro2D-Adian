@@ -160,7 +160,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 49
+  m_RootOrder: 51
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -375,7 +375,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 32
+  m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -451,7 +451,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 34
+  m_RootOrder: 36
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -714,6 +714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e42f7b0661f0d314b90eb4dfa718270a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  originalPower: 0
 --- !u!114 &88705053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -734,7 +735,7 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: 7874904ebd7bc9148bd1a0dd9ca9134f, type: 3}
   qualitySprite: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
   cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
-  whichField: 1
+  whichField: 0
   whichZone: 0
   power: 1
   addedPower: 0
@@ -773,7 +774,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 30
+  m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -914,6 +915,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 108452091}
   m_CullTransparentMesh: 1
+--- !u!1 &117318777 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+  m_PrefabInstance: {fileID: 1400037309}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &139736689 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
@@ -955,7 +961,7 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: d302e393351410340bd68cd85788861d, type: 3}
   qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
   cardColor: {r: 0.67058825, g: 0.20392157, b: 0.20392157, a: 1}
-  whichField: 1
+  whichField: 0
   whichZone: 4
   id: 0
 --- !u!1001 &166180177
@@ -1174,7 +1180,7 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: 2550495ff82ead044bb5f52124d5fe00, type: 3}
   qualitySprite: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
   cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
-  whichField: 2
+  whichField: 1
   whichZone: 1
   power: 2
   addedPower: 0
@@ -1541,7 +1547,7 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: 7874904ebd7bc9148bd1a0dd9ca9134f, type: 3}
   qualitySprite: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
   cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
-  whichField: 2
+  whichField: 1
   whichZone: 0
   power: 1
   addedPower: 0
@@ -1559,6 +1565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e42f7b0661f0d314b90eb4dfa718270a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  originalPower: 0
 --- !u!1001 &182915512
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1783,7 +1790,7 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: e004fb109ad42b14ba6e09e5913f62b9, type: 3}
   qualitySprite: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
   cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
-  whichField: 2
+  whichField: 1
   whichZone: 1
   power: 0
   addedPower: 0
@@ -1918,7 +1925,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 60
+      value: 62
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2012,7 +2019,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: ClimaZoneR
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3496806270160727607, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
 --- !u!1001 &270863341
 PrefabInstance:
@@ -2039,7 +2047,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2311447886571139349, guid: b67b0eb5e889e5f4e98c8623a820d6e9, type: 3}
       propertyPath: m_RootOrder
-      value: 23
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2311447886571139349, guid: b67b0eb5e889e5f4e98c8623a820d6e9, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2378,12 +2386,17 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: 3da2059eb9ba797409387d9bafaff558, type: 3}
   qualitySprite: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
   cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
-  whichField: 1
+  whichField: 0
   whichZone: 2
   power: 2
   addedPower: 0
   affected: 00000000
   wichQuality: 1
+--- !u!1 &305557593 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+  m_PrefabInstance: {fileID: 862226930}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &321572044
 GameObject:
   m_ObjectHideFlags: 0
@@ -2415,7 +2428,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 35
+  m_RootOrder: 37
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2550,7 +2563,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 41
+  m_RootOrder: 43
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2817,13 +2830,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardRealName: Muchas Bananas
-  description: Para un minion cualquier problema tiene solucion, si tienes suficientes
-    bananas
+  description: Para un minion cualquier problema tiene solucion, si tienes suficiente
+    dinero, digo bananas
   effectDescription: Se deshace de todas las cartas de clima en la fila seleccionada
   artwork: {fileID: 21300000, guid: dc03cc05d9a1a2245bcf77ae676c1e42, type: 3}
   qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
   cardColor: {r: 0.37254903, g: 0.81960785, b: 1, a: 1}
-  whichField: 1
+  whichField: 0
   whichZone: 4
   id: 4
 --- !u!1 &343975503
@@ -3118,7 +3131,7 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: 651d728b51c9354499d634bd585eb504, type: 3}
   qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
   cardColor: {r: 0.44313726, g: 1, b: 0.3254902, a: 1}
-  whichField: 2
+  whichField: 1
   whichZone: 3
 --- !u!114 &347881586
 MonoBehaviour:
@@ -3229,7 +3242,7 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: b6ac0e9b841fb35478b6e9d373666997, type: 3}
   qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
   cardColor: {r: 1, g: 1, b: 1, a: 1}
-  whichField: 0
+  whichField: 1
   whichZone: 0
 --- !u!114 &373339267
 MonoBehaviour:
@@ -3243,7 +3256,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86927c0ef6ddbd54aa2546f0ede00273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
 --- !u!1 &401695424
 GameObject:
   m_ObjectHideFlags: 0
@@ -3256,7 +3268,6 @@ GameObject:
   - component: {fileID: 401695429}
   - component: {fileID: 401695428}
   - component: {fileID: 401695427}
-  - component: {fileID: 401695426}
   m_Layer: 5
   m_Name: PassButtonWithoutEndTurn
   m_TagString: Untagged
@@ -3278,25 +3289,13 @@ RectTransform:
   m_Children:
   - {fileID: 2015754910}
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 28
+  m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -413.21, y: -304.41}
   m_SizeDelta: {x: 177.66, y: 75.003}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &401695426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 401695424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29807a4df244f654899a3ac96982cd87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &401695427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3463,7 +3462,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 37
+  m_RootOrder: 39
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3729,7 +3728,7 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: d302e393351410340bd68cd85788861d, type: 3}
   qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
   cardColor: {r: 0.67058825, g: 0.20392157, b: 0.20392157, a: 1}
-  whichField: 2
+  whichField: 1
   whichZone: 4
   id: 1
 --- !u!114 &504113003
@@ -3785,7 +3784,7 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: a4bca80268b6ecb44b3ad5040fd61971, type: 3}
   qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
   cardColor: {r: 0.77254903, g: 0.45490196, b: 0.70980394, a: 1}
-  whichField: 1
+  whichField: 0
   whichZone: 5
   power: 0
   addedPower: 0
@@ -3822,7 +3821,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 36
+  m_RootOrder: 38
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3961,7 +3960,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 26
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4074,7 +4073,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86927c0ef6ddbd54aa2546f0ede00273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 532834795}
 --- !u!114 &532834801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4095,7 +4093,7 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: 0c25efb6be7db3d43a0793023468ca41, type: 3}
   qualitySprite: {fileID: 21300000, guid: d1c3b6a233b524474899f14a81d5c3b5, type: 3}
   cardColor: {r: 0.7254902, g: 0.1882353, b: 0.4862745, a: 1}
-  whichField: 1
+  whichField: 0
   whichZone: 0
 --- !u!114 &532834802
 MonoBehaviour:
@@ -4342,7 +4340,7 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: 3da2059eb9ba797409387d9bafaff558, type: 3}
   qualitySprite: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
   cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
-  whichField: 2
+  whichField: 1
   whichZone: 2
   power: 2
   addedPower: 0
@@ -4364,7 +4362,7 @@ GameObject:
   - component: {fileID: 540849623}
   - component: {fileID: 540849624}
   m_Layer: 5
-  m_Name: Enemy Leader
+  m_Name: EnemyLeader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4383,7 +4381,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 27
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4496,7 +4494,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86927c0ef6ddbd54aa2546f0ede00273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 540849617}
 --- !u!114 &540849623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4517,7 +4514,7 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: 0c25efb6be7db3d43a0793023468ca41, type: 3}
   qualitySprite: {fileID: 21300000, guid: d1c3b6a233b524474899f14a81d5c3b5, type: 3}
   cardColor: {r: 0.7254902, g: 0.1882353, b: 0.4862745, a: 1}
-  whichField: 2
+  whichField: 1
   whichZone: 0
 --- !u!114 &540849624
 MonoBehaviour:
@@ -4563,7 +4560,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 40
+  m_RootOrder: 42
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4666,6 +4663,82 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556206759}
+  m_CullTransparentMesh: 1
+--- !u!1 &579331480
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 579331481}
+  - component: {fileID: 579331483}
+  - component: {fileID: 579331482}
+  m_Layer: 5
+  m_Name: PlayedLightLeaderSkillP1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &579331481
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 579331480}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.0088, y: 1.4023964, z: 1.0088}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1071480984}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -219.70705, y: -74.86406}
+  m_SizeDelta: {x: 32.3288, y: 19.1655}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &579331482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 579331480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 1, b: 0, a: 0.101960786}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &579331483
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 579331480}
   m_CullTransparentMesh: 1
 --- !u!1 &588232790
 GameObject:
@@ -4778,7 +4851,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86927c0ef6ddbd54aa2546f0ede00273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
 --- !u!1001 &613794926
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5017,7 +5089,7 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: 22a89c1a1da600b41b143578b088c325, type: 3}
   qualitySprite: {fileID: 21300000, guid: d01b0b4f13e044d0c83c424e542ddcbf, type: 3}
   cardColor: {r: 0.8509804, g: 0.6901961, b: 0.23529412, a: 1}
-  whichField: 1
+  whichField: 0
   whichZone: 1
   power: 3
   addedPower: 0
@@ -5052,7 +5124,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 65
+      value: 67
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -5142,7 +5214,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyMeleeDropZone
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3496806270160727607, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
 --- !u!224 &614105095 stripped
 RectTransform:
@@ -5186,7 +5259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 69
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -5280,7 +5353,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: MyAumentoZoneM
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3496806270160727607, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
 --- !u!1 &631647592
 GameObject:
@@ -5314,7 +5388,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 46
+  m_RootOrder: 48
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5537,7 +5611,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 54
+  m_RootOrder: 56
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5867,8 +5941,13 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: ca1d3e6b20b6d454c99fa08751b0a289, type: 3}
   qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
   cardColor: {r: 0.44313726, g: 1, b: 0.3254902, a: 1}
-  whichField: 1
+  whichField: 0
   whichZone: 3
+--- !u!1 &661334087 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+  m_PrefabInstance: {fileID: 3831248092945592188}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &675595465
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5914,7 +5993,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 61
+      value: 63
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -6008,7 +6087,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: ClimaZoneS
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3496806270160727607, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
 --- !u!1 &677752209
 GameObject:
@@ -6041,7 +6121,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 20
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6117,7 +6197,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 13
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6381,7 +6461,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 55
+  m_RootOrder: 57
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6563,7 +6643,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86927c0ef6ddbd54aa2546f0ede00273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
 --- !u!1001 &754466210
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6774,13 +6853,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardRealName: Muchas Bananas
-  description: Para un minion cualquier problema tiene solucion, si tienes suficientes
-    bananas
+  description: Para un minion cualquier problema tiene solucion, si tienes suficiente
+    dinero, digo bananas
   effectDescription: Se deshace de todas las cartas de clima en la fila seleccionada
   artwork: {fileID: 21300000, guid: dc03cc05d9a1a2245bcf77ae676c1e42, type: 3}
   qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
   cardColor: {r: 0.37254903, g: 0.81960785, b: 1, a: 1}
-  whichField: 2
+  whichField: 1
   whichZone: 4
   id: 4
 --- !u!114 &754466214
@@ -7040,7 +7119,7 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: 4c1d686790b76b249b95c18fad488267, type: 3}
   qualitySprite: {fileID: 21300000, guid: d01b0b4f13e044d0c83c424e542ddcbf, type: 3}
   cardColor: {r: 0.8509804, g: 0.6901961, b: 0.23529412, a: 1}
-  whichField: 2
+  whichField: 1
   whichZone: 0
   power: 3
   addedPower: 0
@@ -7058,6 +7137,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23f3139dee0168140aee38cdb7c813f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &841587830 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+  m_PrefabInstance: {fileID: 262611662}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &849915184
 GameObject:
   m_ObjectHideFlags: 0
@@ -7089,7 +7173,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 48
+  m_RootOrder: 50
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7226,7 +7310,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 66
+      value: 68
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -7332,12 +7416,32 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyRangedDropZone
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3496806270160727607, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
 --- !u!224 &862226931 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
   m_PrefabInstance: {fileID: 862226930}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &862226936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305557593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22021d1679e8bc5469bba85dcd63e71d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  validZone: 1
+  validPlayer: 1
+--- !u!1 &877941343 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+  m_PrefabInstance: {fileID: 1498120546}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &878779095
 PrefabInstance:
@@ -7372,7 +7476,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 64
+      value: 66
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -7466,7 +7570,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: MySiegeDropZone
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3496806270160727607, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
 --- !u!224 &878779096 stripped
 RectTransform:
@@ -7478,6 +7583,20 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
   m_PrefabInstance: {fileID: 262611662}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &904060574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841587830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46916d5f18643754cabf09539e04c6e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target1: {fileID: 117318777}
+  target2: {fileID: 305557593}
 --- !u!1001 &915025857
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7511,7 +7630,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 67
+      value: 69
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -7601,7 +7720,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySiegeDropZone
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3496806270160727607, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
 --- !u!224 &915025858 stripped
 RectTransform:
@@ -7851,7 +7971,7 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: 252d43dfcdab7b34e89775370a6f1a51, type: 3}
   qualitySprite: {fileID: 21300000, guid: d01b0b4f13e044d0c83c424e542ddcbf, type: 3}
   cardColor: {r: 0.8509804, g: 0.6901961, b: 0.23529412, a: 1}
-  whichField: 1
+  whichField: 0
   whichZone: 2
   power: 3
   addedPower: 0
@@ -8088,7 +8208,7 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: 252d43dfcdab7b34e89775370a6f1a51, type: 3}
   qualitySprite: {fileID: 21300000, guid: d01b0b4f13e044d0c83c424e542ddcbf, type: 3}
   cardColor: {r: 0.8509804, g: 0.6901961, b: 0.23529412, a: 1}
-  whichField: 2
+  whichField: 1
   whichZone: 2
   power: 3
   addedPower: 0
@@ -8143,7 +8263,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 72
+      value: 74
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -8237,7 +8357,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyAumentoZoneR
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3496806270160727607, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
 --- !u!1 &966296658
 GameObject:
@@ -8385,7 +8506,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 17
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -8404,7 +8525,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b568460f35eaa45b4a8482e79cc174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToToggle: {fileID: 971488403}
 --- !u!1 &983662788 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2311447886571139348, guid: b67b0eb5e889e5f4e98c8623a820d6e9, type: 3}
@@ -8415,6 +8535,44 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2311447886571139349, guid: b67b0eb5e889e5f4e98c8623a820d6e9, type: 3}
   m_PrefabInstance: {fileID: 2311447885856109008}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &988158957 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+  m_PrefabInstance: {fileID: 675595465}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &988158962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988158957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46916d5f18643754cabf09539e04c6e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target1: {fileID: 1988085504}
+  target2: {fileID: 1385450666}
+--- !u!1 &995698257 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+  m_PrefabInstance: {fileID: 629576296}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &995698262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 995698257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374a826d6f3dc33409d0f98d5575f49e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 661334087}
+  validPlayer: 0
 --- !u!1001 &996833803
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8972,7 +9130,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 52
+  m_RootOrder: 54
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9029,7 +9187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0c346dc4eb8d85458c398ca47b12b58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whichField: 2
+  whichField: 1
 --- !u!1 &1067786611
 GameObject:
   m_ObjectHideFlags: 0
@@ -9282,6 +9440,8 @@ RectTransform:
   - {fileID: 245762359}
   - {fileID: 343975504}
   - {fileID: 638360662}
+  - {fileID: 579331481}
+  - {fileID: 1688994219}
   - {fileID: 1990513172}
   - {fileID: 681124729}
   - {fileID: 1845967589}
@@ -9326,8 +9486,8 @@ RectTransform:
   - {fileID: 1469341215}
   - {fileID: 640041619}
   - {fileID: 733295119}
-  - {fileID: 2019767594}
   - {fileID: 1819720627}
+  - {fileID: 2019767594}
   - {fileID: 1821130397}
   - {fileID: 485448397}
   - {fileID: 904060569}
@@ -9338,8 +9498,8 @@ RectTransform:
   - {fileID: 614105095}
   - {fileID: 862226931}
   - {fileID: 915025858}
-  - {fileID: 1612244687}
   - {fileID: 14704262}
+  - {fileID: 1612244687}
   - {fileID: 793406274}
   - {fileID: 1890420675}
   - {fileID: 419372277}
@@ -9386,7 +9546,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 24
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9443,7 +9603,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b568460f35eaa45b4a8482e79cc174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToToggle: {fileID: 1091907233}
 --- !u!1 &1116841694 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
@@ -9486,7 +9645,7 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: d4688a7ca3271264d8f7eb171d47ed48, type: 3}
   qualitySprite: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
   cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
-  whichField: 1
+  whichField: 0
   whichZone: 0
   power: 0
   addedPower: 0
@@ -9720,7 +9879,7 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: 5c666fcad0d9f6e4499ac9ec21e79280, type: 3}
   qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
   cardColor: {r: 0.77254903, g: 0.45490196, b: 0.70980394, a: 1}
-  whichField: 1
+  whichField: 0
   whichZone: 5
   power: 0
   addedPower: 0
@@ -9758,7 +9917,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 50
+  m_RootOrder: 52
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9874,6 +10033,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ae924e7b64cf4447b30c10ff732b6bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1157872550 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+  m_PrefabInstance: {fileID: 1884305341}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1157872555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157872550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46916d5f18643754cabf09539e04c6e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target1: {fileID: 661334087}
+  target2: {fileID: 1622124512}
 --- !u!1001 &1166647176
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10090,7 +10268,7 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: 5c666fcad0d9f6e4499ac9ec21e79280, type: 3}
   qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
   cardColor: {r: 0.77254903, g: 0.45490196, b: 0.70980394, a: 1}
-  whichField: 2
+  whichField: 1
   whichZone: 5
   power: 0
   addedPower: 0
@@ -10333,7 +10511,7 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: 31d81447e18602340a7f8e59d53bfdd9, type: 3}
   qualitySprite: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
   cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
-  whichField: 2
+  whichField: 1
   whichZone: 2
   power: 0
   addedPower: 0
@@ -10382,7 +10560,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 15
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10655,7 +10833,7 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: 103ae41a9973a814abe6445ffc3e3b48, type: 3}
   qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
   cardColor: {r: 0.67058825, g: 0.20392157, b: 0.20392157, a: 1}
-  whichField: 1
+  whichField: 0
   whichZone: 4
   id: 2
 --- !u!1 &1254882642
@@ -10691,7 +10869,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 31
+  m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11067,7 +11245,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 33
+  m_RootOrder: 35
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11278,7 +11456,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 47
+  m_RootOrder: 49
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11382,6 +11560,44 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1331693840}
   m_CullTransparentMesh: 1
+--- !u!1 &1333914725 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+  m_PrefabInstance: {fileID: 1754580158}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1333914730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1333914725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374a826d6f3dc33409d0f98d5575f49e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1988085504}
+  validPlayer: 0
+--- !u!1 &1385450666 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+  m_PrefabInstance: {fileID: 915025857}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1385450671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385450666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22021d1679e8bc5469bba85dcd63e71d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  validZone: 2
+  validPlayer: 1
 --- !u!1 &1391710909
 GameObject:
   m_ObjectHideFlags: 0
@@ -11452,7 +11668,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 18
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11471,7 +11687,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b568460f35eaa45b4a8482e79cc174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToToggle: {fileID: 1391710909}
 --- !u!1001 &1394693989
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11706,7 +11921,7 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: d4688a7ca3271264d8f7eb171d47ed48, type: 3}
   qualitySprite: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
   cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
-  whichField: 2
+  whichField: 1
   whichZone: 0
   power: 0
   addedPower: 0
@@ -11757,7 +11972,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 63
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -11851,13 +12066,28 @@ PrefabInstance:
       propertyPath: m_Name
       value: MyRangedDropZone
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3496806270160727607, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
 --- !u!224 &1400037310 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
   m_PrefabInstance: {fileID: 1400037309}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1400037315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117318777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22021d1679e8bc5469bba85dcd63e71d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  validZone: 1
+  validPlayer: 0
 --- !u!1001 &1431952152
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12071,12 +12301,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardRealName: Manzana
-  description: Similar efecto a las bananas, no es necesaria una explicacion no?
+  description: 'Similar efecto a las bananas, no es necesaria una explicacion no?
+    Spoiler: Los vuelve locos'
   effectDescription: Aumenta el poder de las cartas de la fila seleccionada en 1
   artwork: {fileID: 21300000, guid: 2de768fe42a8094409f225922975b10a, type: 3}
   qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
   cardColor: {r: 0.44313726, g: 1, b: 0.3254902, a: 1}
-  whichField: 2
+  whichField: 1
   whichZone: 3
 --- !u!114 &1431952156
 MonoBehaviour:
@@ -12122,7 +12353,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 51
+  m_RootOrder: 53
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12179,7 +12410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0c346dc4eb8d85458c398ca47b12b58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whichField: 1
+  whichField: 0
 --- !u!1 &1469341214
 GameObject:
   m_ObjectHideFlags: 0
@@ -12211,7 +12442,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 53
+  m_RootOrder: 55
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12346,7 +12577,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 44
+  m_RootOrder: 46
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12487,7 +12718,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 68
+      value: 71
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -12581,7 +12812,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: MyAumentoZoneR
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3496806270160727607, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
 --- !u!224 &1542626788 stripped
 RectTransform:
@@ -13009,7 +13241,7 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: ca1d3e6b20b6d454c99fa08751b0a289, type: 3}
   qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
   cardColor: {r: 0.44313726, g: 1, b: 0.3254902, a: 1}
-  whichField: 2
+  whichField: 1
   whichZone: 3
 --- !u!114 &1588734209
 MonoBehaviour:
@@ -13060,7 +13292,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 73
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -13154,13 +13386,47 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyAumentoZoneS
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3496806270160727607, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
 --- !u!224 &1612244687 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
   m_PrefabInstance: {fileID: 1498120546}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1612244692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877941343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374a826d6f3dc33409d0f98d5575f49e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 117318777}
+  validPlayer: 0
+--- !u!1 &1622124512 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+  m_PrefabInstance: {fileID: 614105094}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1622124517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622124512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22021d1679e8bc5469bba85dcd63e71d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  validZone: 0
+  validPlayer: 1
 --- !u!1 &1639431362 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
@@ -13202,7 +13468,7 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: e004fb109ad42b14ba6e09e5913f62b9, type: 3}
   qualitySprite: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
   cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
-  whichField: 1
+  whichField: 0
   whichZone: 1
   power: 0
   addedPower: 0
@@ -13240,7 +13506,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 45
+  m_RootOrder: 47
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -13494,8 +13760,84 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: 651d728b51c9354499d634bd585eb504, type: 3}
   qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
   cardColor: {r: 0.44313726, g: 1, b: 0.3254902, a: 1}
-  whichField: 1
+  whichField: 0
   whichZone: 3
+--- !u!1 &1688994218
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1688994219}
+  - component: {fileID: 1688994221}
+  - component: {fileID: 1688994220}
+  m_Layer: 5
+  m_Name: PlayedLightLeaderSkillP2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1688994219
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688994218}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.0088, y: 1.4023964, z: 1.0088}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1071480984}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -219.76128, y: 58.563614}
+  m_SizeDelta: {x: 33.2689, y: 17.6071}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1688994220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688994218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 1, b: 0, a: 0.101960786}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1688994221
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688994218}
+  m_CullTransparentMesh: 1
 --- !u!1 &1723134401
 GameObject:
   m_ObjectHideFlags: 0
@@ -13530,7 +13872,7 @@ RectTransform:
   m_Children:
   - {fileID: 169692197}
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 29
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -13691,6 +14033,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29807a4df244f654899a3ac96982cd87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1737500369 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+  m_PrefabInstance: {fileID: 2102725335}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1754580158
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13728,7 +14075,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 70
+      value: 72
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -13822,7 +14169,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: MyAumentoZoneS
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3496806270160727607, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
 --- !u!1 &1763262955 stripped
 GameObject:
@@ -13866,7 +14214,7 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: 31d81447e18602340a7f8e59d53bfdd9, type: 3}
   qualitySprite: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
   cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
-  whichField: 1
+  whichField: 0
   whichZone: 2
   power: 0
   addedPower: 0
@@ -13904,7 +14252,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 25
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -13961,7 +14309,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b568460f35eaa45b4a8482e79cc174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToToggle: {fileID: 1767920635}
 --- !u!1 &1771865811 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
@@ -13997,12 +14344,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardRealName: Manzana
-  description: Similar efecto a las bananas, no es necesaria una explicacion no?
+  description: 'Similar efecto a las bananas, no es necesaria una explicacion no?
+    Spoiler: Los vuelve locos'
   effectDescription: Aumenta el poder de las cartas de la fila seleccionada en 1
   artwork: {fileID: 21300000, guid: 2de768fe42a8094409f225922975b10a, type: 3}
   qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
   cardColor: {r: 0.44313726, g: 1, b: 0.3254902, a: 1}
-  whichField: 1
+  whichField: 0
   whichZone: 3
 --- !u!1 &1775964367
 GameObject:
@@ -14101,7 +14449,7 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: b6ac0e9b841fb35478b6e9d373666997, type: 3}
   qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
   cardColor: {r: 1, g: 1, b: 1, a: 1}
-  whichField: 0
+  whichField: 1
   whichZone: 0
 --- !u!114 &1775964372
 MonoBehaviour:
@@ -14115,7 +14463,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86927c0ef6ddbd54aa2546f0ede00273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
 --- !u!1 &1819720626
 GameObject:
   m_ObjectHideFlags: 0
@@ -14147,7 +14494,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 57
+  m_RootOrder: 58
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -14201,12 +14548,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
+  m_fontSize: 30
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 0
-  m_fontSizeMax: 40
+  m_fontSizeMax: 30
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -14280,7 +14627,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 58
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -14425,7 +14772,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 22
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -14686,7 +15033,7 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: a4bca80268b6ecb44b3ad5040fd61971, type: 3}
   qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
   cardColor: {r: 0.77254903, g: 0.45490196, b: 0.70980394, a: 1}
-  whichField: 2
+  whichField: 1
   whichZone: 5
   power: 0
   addedPower: 0
@@ -14735,7 +15082,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 14
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -14811,7 +15158,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 19
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -14887,7 +15234,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 42
+  m_RootOrder: 44
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -15022,7 +15369,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 43
+  m_RootOrder: 45
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -15352,7 +15699,7 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: 22a89c1a1da600b41b143578b088c325, type: 3}
   qualitySprite: {fileID: 21300000, guid: d01b0b4f13e044d0c83c424e542ddcbf, type: 3}
   cardColor: {r: 0.8509804, g: 0.6901961, b: 0.23529412, a: 1}
-  whichField: 2
+  whichField: 1
   whichZone: 1
   power: 3
   addedPower: 0
@@ -15411,7 +15758,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 59
+      value: 61
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -15517,7 +15864,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: ClimaZoneM
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3496806270160727607, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
 --- !u!1 &1888564621
 GameObject:
@@ -15550,7 +15898,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 38
+  m_RootOrder: 40
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -15685,7 +16033,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 39
+  m_RootOrder: 41
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -15735,6 +16083,20 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
   m_PrefabInstance: {fileID: 2102725335}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1890420680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737500369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374a826d6f3dc33409d0f98d5575f49e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1622124512}
+  validPlayer: 1
 --- !u!1 &1934036165
 GameObject:
   m_ObjectHideFlags: 0
@@ -15767,7 +16129,7 @@ RectTransform:
   m_Children:
   - {fileID: 1570595591}
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 74
+  m_RootOrder: 76
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -16028,7 +16390,7 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: 103ae41a9973a814abe6445ffc3e3b48, type: 3}
   qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
   cardColor: {r: 0.67058825, g: 0.20392157, b: 0.20392157, a: 1}
-  whichField: 2
+  whichField: 1
   whichZone: 4
   id: 3
 --- !u!114 &1935818373
@@ -16361,6 +16723,25 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: -7070421257807693507, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+--- !u!1 &1988085504 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+  m_PrefabInstance: {fileID: 878779095}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1988085509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988085504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22021d1679e8bc5469bba85dcd63e71d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  validZone: 2
+  validPlayer: 0
 --- !u!1 &1990513171
 GameObject:
   m_ObjectHideFlags: 0
@@ -16392,7 +16773,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 12
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -16609,7 +16990,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 56
+      value: 59
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -16754,7 +17135,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 21
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -16832,7 +17213,7 @@ RectTransform:
   m_Children:
   - {fileID: 1325665075}
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 75
+  m_RootOrder: 77
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -17225,7 +17606,7 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: 2550495ff82ead044bb5f52124d5fe00, type: 3}
   qualitySprite: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
   cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
-  whichField: 1
+  whichField: 0
   whichZone: 1
   power: 2
   addedPower: 0
@@ -17670,12 +18051,50 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: 4c1d686790b76b249b95c18fad488267, type: 3}
   qualitySprite: {fileID: 21300000, guid: d01b0b4f13e044d0c83c424e542ddcbf, type: 3}
   cardColor: {r: 0.8509804, g: 0.6901961, b: 0.23529412, a: 1}
-  whichField: 1
+  whichField: 0
   whichZone: 0
   power: 3
   addedPower: 0
   affected: 00000000
   wichQuality: 2
+--- !u!1 &2098090388 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+  m_PrefabInstance: {fileID: 939096330}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2098090393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098090388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374a826d6f3dc33409d0f98d5575f49e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 305557593}
+  validPlayer: 1
+--- !u!1 &2098280363 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+  m_PrefabInstance: {fileID: 1591600744}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2098280368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098280363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374a826d6f3dc33409d0f98d5575f49e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1385450666}
+  validPlayer: 1
 --- !u!1 &2099023914
 GameObject:
   m_ObjectHideFlags: 0
@@ -17846,7 +18265,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 71
+      value: 73
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -17940,7 +18359,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyAumentoZoneM
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3496806270160727607, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
 --- !u!1001 &2120797348
 PrefabInstance:
@@ -18189,7 +18609,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2311447886571139349, guid: b67b0eb5e889e5f4e98c8623a820d6e9, type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 2311447886571139349, guid: b67b0eb5e889e5f4e98c8623a820d6e9, type: 3}
       propertyPath: m_AnchorMax.x
@@ -18310,7 +18730,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 62
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -18404,10 +18824,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: MyMeleeDropZone
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3496806270160727607, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
 --- !u!224 &3831248092945592189 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
   m_PrefabInstance: {fileID: 3831248092945592188}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3831248092945592194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661334087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22021d1679e8bc5469bba85dcd63e71d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  validZone: 0
+  validPlayer: 0

@@ -21,9 +21,9 @@ public class TotalFieldForce : MonoBehaviour
             sum+=P1PlayedCards[i].GetComponent<UnitCard>().power+P1PlayedCards[i].GetComponent<UnitCard>().addedPower;//Se suma el poder total
         }
         P1ForceValue=sum;//Esta suma se guarda
-        sum=0;
         GameObject.Find("Points").GetComponent<TextMeshProUGUI>().text=P1ForceValue.ToString();//Asigna el valor al puntaje
-
+        
+        sum=0;
         for(int i=0;i<P2PlayedCards.Count;i++){//Se itera por todas las cartas jugadas
             sum+=P2PlayedCards[i].GetComponent<UnitCard>().power+P2PlayedCards[i].GetComponent<UnitCard>().addedPower;//Se suma el poder total
         }
