@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 //Script que contiene las propiedades de todas las cartas
-public class Card : MonoBehaviour
+abstract public class Card : MonoBehaviour
 {
     public string cardRealName;//Nombre a mostrar en el objeto gigante a la izquierda del campo
     public string description;//Descripcion de la carta a mostrar en el objeto gigante a la izquierda del campo
@@ -35,11 +35,5 @@ public class Card : MonoBehaviour
         GameObject.Find("BackGroundCard").GetComponent<Image>().color=cardColor;
         GameObject.Find("Type").GetComponent<TextMeshProUGUI>().color=cardColor;
         GameObject.Find("Power").GetComponent<TextMeshProUGUI>().color=cardColor;
-
-        //Special
-        if(cardRealName=="Guardia"){//Si es alguno de los Guardias
-            GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="";
-            GameObject.Find("BGType").GetComponent<Image>().color=new Color(0.2f,0.2f,0.2f,0);
-        }
     }
 }

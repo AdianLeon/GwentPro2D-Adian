@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: -5481795835510925122}
   - component: {fileID: 2784469696071589718}
   - component: {fileID: -8809635103287773785}
-  - component: {fileID: -7070421257807693507}
   m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
@@ -125,7 +124,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86927c0ef6ddbd54aa2546f0ede00273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 1072672301799576032}
 --- !u!114 &-8809635103287773785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,29 +140,3 @@ MonoBehaviour:
   hand: {fileID: 2311447886571139348, guid: b67b0eb5e889e5f4e98c8623a820d6e9, type: 3}
   placeholder: {fileID: 0}
   isDraggable: 0
-  cardType: 0
-  whichField: 1
---- !u!114 &-7070421257807693507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1072672301799576032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4868f4be6b435343a07e86d1f748b15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 0
-  power: 0
-  addedPower: 0
-  cardRealName: 
-  description: 
-  hasEffect: 0
-  effectDescription: 
-  artwork: {fileID: 0}
-  qualitySprite: {fileID: 0}
-  cardColor: {r: 0, g: 0, b: 0, a: 0}
-  affected: 00000000
-  wQuality: 0

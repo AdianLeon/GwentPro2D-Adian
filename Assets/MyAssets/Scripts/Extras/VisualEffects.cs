@@ -23,7 +23,7 @@ public class VisualEffects : MonoBehaviour
             }else if(card.GetComponent<UnitCard>()!=null){//Si la carta es de unidad
                 DZUnits[] zones=GameObject.FindObjectsOfType<DZUnits>();//Se crea un array con todas las zonas de cartas de unidad
                 for(int i=0;i<zones.Length;i++){
-                    if(zones[i].validZone==card.GetComponent<UnitCard>().whichZone && zones[i].validPlayer==card.GetComponent<Card>().whichField){
+                    if(zones[i].GetComponent<DZUnits>().isDropValid(card) && zones[i].validPlayer==card.GetComponent<Card>().whichField){
                         //La zona se ilumina solo si coincide con la zona jugable y el campo de la carta
                         zones[i].GetComponent<Image>().color=new Color (1,1,1,0.1f);
                     }

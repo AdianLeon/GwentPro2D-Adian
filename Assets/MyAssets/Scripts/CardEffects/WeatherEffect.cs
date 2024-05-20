@@ -13,11 +13,14 @@ public class WeatherEffect : CardEffect
         AffectZoneWithWeather(target2);//La de P2
     }
     private void AffectZoneWithWeather(GameObject zoneTarget){//Afecta la zona determinada con el efecto clima
+        GameObject card;
         for(int i=0;i<zoneTarget.transform.childCount;i++){//Itera por todos los hijos
-            if(zoneTarget.transform.GetChild(i).GetComponent<UnitCard>().affected[this.GetComponent<WeatherCard>().id]==false){//Si no han sido afectados
-                if(zoneTarget.transform.GetChild(i).GetComponent<UnitCard>().wichQuality!=UnitCard.quality.Gold){//Ademas si no son heroes
-                    zoneTarget.transform.GetChild(i).GetComponent<UnitCard>().addedPower--;
-                    zoneTarget.transform.GetChild(i).GetComponent<UnitCard>().affected[this.GetComponent<WeatherCard>().id]=true;
+            card=zoneTarget.transform.GetChild(i).gameObject;
+            if(card.GetComponent<CardWithPower>().affected[this.GetComponent<WeatherCard>().id]==false){//Si no han sido afectados
+                if(card.GetComponent<BaitCard>()!=null || (card.GetComponent<UnitCard>()!=null && card.GetComponent<UnitCard>().wichQuality!=UnitCard.quality.Gold)){
+                    //Si la carta es senuelo o si la carta no es heroe
+                    card.GetComponent<CardWithPower>().addedPower--;
+                    card.GetComponent<CardWithPower>().affected[this.GetComponent<WeatherCard>().id]=true;
                 }
             }
         }

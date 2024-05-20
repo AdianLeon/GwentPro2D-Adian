@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1366
     height: 685
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Console
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 371}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 17
+  controlID: 62
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 22
+  controlID: 63
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 23
+  controlID: 64
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -189,8 +189,8 @@ MonoBehaviour:
     y: 0
     width: 220
     height: 428
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ProjectBrowser
+  m_Name: ConsoleWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -242,14 +242,14 @@ MonoBehaviour:
     y: 428
     width: 1010
     height: 207
-  m_MinSize: {x: 231, y: 271}
-  m_MaxSize: {x: 10001, y: 10021}
-  m_ActualView: {fileID: 15}
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 15}
   - {fileID: 16}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -400,10 +400,10 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 2cfbffff28660000da6600009e680000
+      scrollPos: {x: 0, y: 1036}
+      m_SelectedIDs: dc650000
+      m_LastClickedID: 26076
+      m_ExpandedIDs: 2cfbffffde660000a2680000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -708,9 +708,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 331.94165, y: 191.60188, z: -10.272858}
+    m_Target: {x: 325.55356, y: 134.41638, z: -10.492233}
     speed: 2
-    m_Value: {x: 331.94165, y: 191.60188, z: -10.272858}
+    m_Value: {x: 325.34253, y: 134.54422, z: -10.490687}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -761,9 +761,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 180.4633
+    m_Target: 206.30974
     speed: 2
-    m_Value: 180.4633
+    m_Value: 206.15512
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -830,23 +830,23 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/MyAssets/Scripts/Extras
+    - Assets/MyAssets/Scripts/FieldFunctions/DropZones
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 68
   m_LastFolders:
-  - Assets/MyAssets/Scripts/Extras
+  - Assets/MyAssets/Scripts/FieldFunctions/DropZones
   m_LastFoldersGridSize: 68
   m_LastProjectPath: C:\Users\Adian\Documents\CC\Primero\1er semestre\Programacion\Proyectos\YunitiProllekts\Gwent
     Pro 2D\GwentPro2D Adian
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 106}
-    m_SelectedIDs: 226b0000
-    m_LastClickedID: 27426
-    m_ExpandedIDs: 00000000a26a0000a46a0000a66a0000a86a0000aa6a0000ac6a0000c26a000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 95}
+    m_SelectedIDs: d8800000
+    m_LastClickedID: 32984
+    m_ExpandedIDs: 00000000a66a0000a86a0000aa6a0000ac6a0000ae6a0000b06a0000bc6a00001c6b000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -874,7 +874,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000a26a0000a46a0000a66a0000a86a0000aa6a0000ac6a0000
+    m_ExpandedIDs: 00000000a66a0000a86a0000aa6a0000ac6a0000ae6a0000b06a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -899,8 +899,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs: 66150000
+    m_LastClickedInstanceID: 5478
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000d2840000d26400005a66000000000000e664000002770000d8650000e6780100e8670000de670000e2670000ea670000f0670000dc670000d8670000f4670000886800007e70000056680000e2680000f26800005625ffff62690000fa68000038690000
     m_RenameOverlay:
@@ -995,7 +995,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 1927
+  m_LastVerticalScrollValue: 112.95
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
