@@ -30,11 +30,11 @@ public class MostPowerEffect : CardEffect
     private static void GetMostPowerInField(List<GameObject> field,out GameObject Card,out int cardTotalPower){//Elige la carta de mayor poder
         if(field.Count!=0){//Si se han jugado cartas en el campo 1
             Card=field[field.Count-1];//La carta de mayor poder es la ultima jugada
-            cardTotalPower=Card.GetComponent<UnitCard>().power+Card.GetComponent<UnitCard>().addedPower;//Poder de la ultima carta jugada
+            cardTotalPower=Card.GetComponent<CardWithPower>().power+Card.GetComponent<CardWithPower>().addedPower;//Poder de la ultima carta jugada
             for(int i=0;i<field.Count-1;i++){//Comparamos todas las cartas excepto la ultima pues ya la consideramos
-                if(field[i].GetComponent<UnitCard>().power+field[i].GetComponent<UnitCard>().addedPower>cardTotalPower){//Si el poder es mayor
+                if(field[i].GetComponent<CardWithPower>().power+field[i].GetComponent<CardWithPower>().addedPower>cardTotalPower){//Si el poder es mayor
                     Card=field[i];//Tenemos una nueva carta de mayor poder
-                    cardTotalPower=Card.GetComponent<UnitCard>().power+Card.GetComponent<UnitCard>().addedPower;//Actualizamos el mayor poder
+                    cardTotalPower=Card.GetComponent<CardWithPower>().power+Card.GetComponent<CardWithPower>().addedPower;//Actualizamos el mayor poder
                 }
             }
         }else{

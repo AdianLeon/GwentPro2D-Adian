@@ -17,11 +17,11 @@ public class LessPowerEffect : CardEffect
         if(targetField.Count!=0){//Si la lista del campo enemigo tiene elementos
             GameObject Card=targetField[targetField.Count-1];//Se empieza a comparar por la ultima carta
             //Si todas las cartas tienen el mismo poder la carta eliminada es la ultima jugada
-            int minTotalPower=Card.GetComponent<UnitCard>().power+Card.GetComponent<UnitCard>().addedPower;//Poder total minimo
+            int minTotalPower=Card.GetComponent<CardWithPower>().power+Card.GetComponent<CardWithPower>().addedPower;//Poder total minimo
             for(int i=0;i<targetField.Count-1;i++){//Se recorre la lista excepto el ultimo elemento pues ya lo consideramos
-                if(targetField[i].GetComponent<UnitCard>().power+targetField[i].GetComponent<UnitCard>().addedPower<minTotalPower){//Si el poder total de la carta es menor que el que tenemos guardado
+                if(targetField[i].GetComponent<CardWithPower>().power+targetField[i].GetComponent<CardWithPower>().addedPower<minTotalPower){//Si el poder total de la carta es menor que el que tenemos guardado
                     Card=targetField[i];//Esta sera nuestra nueva carta de menor poder
-                    minTotalPower=Card.GetComponent<UnitCard>().power+Card.GetComponent<UnitCard>().addedPower;//Este sera nuestro nuevo menor poder
+                    minTotalPower=Card.GetComponent<CardWithPower>().power+Card.GetComponent<CardWithPower>().addedPower;//Este sera nuestro nuevo menor poder
                 }
             }
             Graveyard.ToGraveyard(Card);//Se envia al cementerio la carta resultante(la de menor poder)

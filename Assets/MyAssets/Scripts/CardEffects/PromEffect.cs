@@ -12,7 +12,6 @@ public class PromEffect : CardEffect
         int divisor=TotalFieldForce.P1PlayedCards.Count+TotalFieldForce.P2PlayedCards.Count;//El divisor es el total de cartas en el campo
         if(divisor>0){//Si hay cartas en el campo
             this.GetComponent<UnitCard>().power=total/divisor;//El poder de la carta jugada es el promedio del total de poder de todas las cartas en el campo
-            this.GetComponent<UnitCard>().LoadInfo();//Actualizamos el poder en el CardView
             RoundPoints.URLongWrite("El total de poder en el campo es "+total+" y hay "+divisor+" cartas. El poder promedio es de: "+total/divisor);
         }else{
             RoundPoints.URLongWrite("No se pudo activar el efecto porque no se han jugado cartas");

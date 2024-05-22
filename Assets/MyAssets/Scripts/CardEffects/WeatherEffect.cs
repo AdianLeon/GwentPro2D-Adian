@@ -5,9 +5,8 @@ using UnityEngine;
 public class WeatherEffect : CardEffect
 {
     override public void TriggerEffect(){
-        GameObject target1=this.transform.parent.GetComponent<DZWeather>().target1;//Objetivos a los que quitarle 1 de poder a los hijos
+        GameObject target1=this.transform.parent.GetComponent<DZWeather>().target1;//Objetivos a los danarle los hijos
         GameObject target2=this.transform.parent.GetComponent<DZWeather>().target2;
-        //GetWeatherTargets(this.gameObject,out target1,out target2);
         //Afecta a las zonas
         AffectZoneWithWeather(target1);//La de P1
         AffectZoneWithWeather(target2);//La de P2
@@ -19,7 +18,7 @@ public class WeatherEffect : CardEffect
             if(card.GetComponent<CardWithPower>().affected[this.GetComponent<WeatherCard>().id]==false){//Si no han sido afectados
                 if(card.GetComponent<BaitCard>()!=null || (card.GetComponent<UnitCard>()!=null && card.GetComponent<UnitCard>().wichQuality!=UnitCard.quality.Gold)){
                     //Si la carta es senuelo o si la carta no es heroe
-                    card.GetComponent<CardWithPower>().addedPower--;
+                    card.GetComponent<CardWithPower>().addedPower-=this.GetComponent<WeatherCard>().damage;
                     card.GetComponent<CardWithPower>().affected[this.GetComponent<WeatherCard>().id]=true;
                 }
             }

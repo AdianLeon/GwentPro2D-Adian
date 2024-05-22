@@ -49,6 +49,7 @@ public class TurnManager : MonoBehaviour
         TotalFieldForce.AddCard(card);//Anade la carta segun el campo y el tipo
         playedCards.Add(card);//Anade la carta a la lista de cartas jugadas
         WeatherEffect.UpdateWeather();//Actualiza el clima
+        card.GetComponent<Card>().LoadInfo();//Recarga la info de la carta
         if(!lastTurn){//Si no es el ultimo turno antes de que acabe la ronda, no se puede jugar de nuevo
             VisualEffects.PlayedLightsOff();//Las luces en el campo se ponen rojas
         }

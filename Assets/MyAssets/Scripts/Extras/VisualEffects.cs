@@ -8,7 +8,7 @@ public class VisualEffects : MonoBehaviour
 {
     public static void ZonesGlow(GameObject card){//Encuentra las zonas del mismo tipo y campo que la carta y las ilumina
         if(TurnManager.cardsPlayed==0 || TurnManager.lastTurn){//Si el jugador puede jugar
-            if(card.GetComponent<WeatherCard>()!=null){//Si la carta es de clima
+            if(card.GetComponent<WeatherCard>()!=null || card.GetComponent<ClearWeatherCard>()!=null){//Si la carta es de clima o despeje
                 DZWeather[] zones=GameObject.FindObjectsOfType<DZWeather>();//Se crea un array de todas las zonas de clima
                 for(int i=0;i<zones.Length;i++){
                     zones[i].GetComponent<Image>().color=new Color (1,1,1,0.1f);//Se iluminan

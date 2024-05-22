@@ -736,7 +736,7 @@ MonoBehaviour:
   qualitySprite: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
   cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
   whichField: 0
-  power: 1
+  power: 10
   addedPower: 0
   affected: 00000000
   wichQuality: 0
@@ -963,6 +963,7 @@ MonoBehaviour:
   cardColor: {r: 0.67058825, g: 0.20392157, b: 0.20392157, a: 1}
   whichField: 0
   id: 0
+  damage: 15
 --- !u!1001 &166180177
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1180,7 +1181,7 @@ MonoBehaviour:
   qualitySprite: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
   cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
   whichField: 1
-  power: 2
+  power: 20
   addedPower: 0
   affected: 00000000
   wichQuality: 0
@@ -1547,7 +1548,7 @@ MonoBehaviour:
   qualitySprite: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
   cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
   whichField: 1
-  power: 1
+  power: 10
   addedPower: 0
   affected: 00000000
   wichQuality: 0
@@ -2386,7 +2387,7 @@ MonoBehaviour:
   qualitySprite: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
   cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
   whichField: 0
-  power: 2
+  power: 25
   addedPower: 0
   affected: 00000000
   wichQuality: 0
@@ -2566,8 +2567,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -587.63, y: 197.2}
-  m_SizeDelta: {x: 4.4077, y: 2.4479}
+  m_AnchoredPosition: {x: -563.4, y: 197.2}
+  m_SizeDelta: {x: 5.9704, y: 2.4479}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &329738326
 MonoBehaviour:
@@ -2582,7 +2583,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0.2, g: 0.2, b: 0.2, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2816,7 +2817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ace862f759936047bf7c32feabb2eb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &330225656
+--- !u!114 &330225663
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2825,7 +2826,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 330225639}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41be9dbf63255af42a404b778cefa16d, type: 3}
+  m_Script: {fileID: 11500000, guid: bb0cea119d8d5364e816a177670b77c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cardRealName: Muchas Bananas
@@ -2836,7 +2837,6 @@ MonoBehaviour:
   qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
   cardColor: {r: 0.37254903, g: 0.81960785, b: 1, a: 1}
   whichField: 0
-  id: 4
 --- !u!1 &343975503
 GameObject:
   m_ObjectHideFlags: 0
@@ -3130,6 +3130,7 @@ MonoBehaviour:
   qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
   cardColor: {r: 0.44313726, g: 1, b: 0.3254902, a: 1}
   whichField: 1
+  boost: 25
 --- !u!114 &347881586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3726,6 +3727,7 @@ MonoBehaviour:
   cardColor: {r: 0.67058825, g: 0.20392157, b: 0.20392157, a: 1}
   whichField: 1
   id: 1
+  damage: 15
 --- !u!114 &504113003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4333,7 +4335,7 @@ MonoBehaviour:
   qualitySprite: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
   cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
   whichField: 1
-  power: 2
+  power: 25
   addedPower: 0
   affected: 00000000
   wichQuality: 0
@@ -4578,7 +4580,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 111
+  m_text: '30
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -5080,7 +5084,7 @@ MonoBehaviour:
   qualitySprite: {fileID: 21300000, guid: d01b0b4f13e044d0c83c424e542ddcbf, type: 3}
   cardColor: {r: 0.8509804, g: 0.6901961, b: 0.23529412, a: 1}
   whichField: 0
-  power: 3
+  power: 30
   addedPower: 0
   affected: 00000000
   wichQuality: 1
@@ -5932,6 +5936,7 @@ MonoBehaviour:
   qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
   cardColor: {r: 0.44313726, g: 1, b: 0.3254902, a: 1}
   whichField: 0
+  boost: 15
 --- !u!1 &661334087 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
@@ -6828,27 +6833,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
   m_PrefabInstance: {fileID: 754466210}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &754466213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 754466212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41be9dbf63255af42a404b778cefa16d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardRealName: Muchas Bananas
-  description: Para un minion cualquier problema tiene solucion, si tienes suficiente
-    dinero, digo bananas
-  effectDescription: Se deshace de todas las cartas de clima en la fila seleccionada
-  artwork: {fileID: 21300000, guid: dc03cc05d9a1a2245bcf77ae676c1e42, type: 3}
-  qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
-  cardColor: {r: 0.37254903, g: 0.81960785, b: 1, a: 1}
-  whichField: 1
-  id: 4
 --- !u!114 &754466214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6861,6 +6845,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ace862f759936047bf7c32feabb2eb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &754466221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754466212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0cea119d8d5364e816a177670b77c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardRealName: Muchas Bananas
+  description: Para un minion cualquier problema tiene solucion, si tienes suficiente
+    dinero, digo bananas
+  effectDescription: Se deshace de todas las cartas de clima en la fila seleccionada
+  artwork: {fileID: 21300000, guid: dc03cc05d9a1a2245bcf77ae676c1e42, type: 3}
+  qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
+  cardColor: {r: 0.37254903, g: 0.81960785, b: 1, a: 1}
+  whichField: 1
 --- !u!224 &793406274 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
@@ -7107,7 +7111,7 @@ MonoBehaviour:
   qualitySprite: {fileID: 21300000, guid: d01b0b4f13e044d0c83c424e542ddcbf, type: 3}
   cardColor: {r: 0.8509804, g: 0.6901961, b: 0.23529412, a: 1}
   whichField: 1
-  power: 3
+  power: 35
   addedPower: 0
   affected: 00000000
   wichQuality: 1
@@ -7959,7 +7963,7 @@ MonoBehaviour:
   qualitySprite: {fileID: 21300000, guid: d01b0b4f13e044d0c83c424e542ddcbf, type: 3}
   cardColor: {r: 0.8509804, g: 0.6901961, b: 0.23529412, a: 1}
   whichField: 0
-  power: 3
+  power: 30
   addedPower: 0
   affected: 00000000
   wichQuality: 1
@@ -8196,7 +8200,7 @@ MonoBehaviour:
   qualitySprite: {fileID: 21300000, guid: d01b0b4f13e044d0c83c424e542ddcbf, type: 3}
   cardColor: {r: 0.8509804, g: 0.6901961, b: 0.23529412, a: 1}
   whichField: 1
-  power: 3
+  power: 30
   addedPower: 0
   affected: 00000000
   wichQuality: 1
@@ -10818,6 +10822,7 @@ MonoBehaviour:
   cardColor: {r: 0.67058825, g: 0.20392157, b: 0.20392157, a: 1}
   whichField: 0
   id: 2
+  damage: 15
 --- !u!1 &1254882642
 GameObject:
   m_ObjectHideFlags: 0
@@ -12290,6 +12295,7 @@ MonoBehaviour:
   qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
   cardColor: {r: 0.44313726, g: 1, b: 0.3254902, a: 1}
   whichField: 1
+  boost: 20
 --- !u!114 &1431952156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13223,6 +13229,7 @@ MonoBehaviour:
   qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
   cardColor: {r: 0.44313726, g: 1, b: 0.3254902, a: 1}
   whichField: 1
+  boost: 15
 --- !u!114 &1588734209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13741,6 +13748,7 @@ MonoBehaviour:
   qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
   cardColor: {r: 0.44313726, g: 1, b: 0.3254902, a: 1}
   whichField: 0
+  boost: 25
 --- !u!1 &1688994218
 GameObject:
   m_ObjectHideFlags: 0
@@ -14325,11 +14333,12 @@ MonoBehaviour:
   cardRealName: Manzana
   description: 'Similar efecto a las bananas, no es necesaria una explicacion no?
     Spoiler: Los vuelve locos'
-  effectDescription: Aumenta el poder de las cartas de la fila seleccionada en 1
+  effectDescription: Aumenta el poder de las cartas de la fila seleccionada
   artwork: {fileID: 21300000, guid: 2de768fe42a8094409f225922975b10a, type: 3}
   qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
   cardColor: {r: 0.44313726, g: 1, b: 0.3254902, a: 1}
   whichField: 0
+  boost: 20
 --- !u!1 &1775964367
 GameObject:
   m_ObjectHideFlags: 0
@@ -15213,7 +15222,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -560.91, y: 197.2}
+  m_AnchoredPosition: {x: -551.83, y: 197.2}
   m_SizeDelta: {x: 63.779, y: 20.1253}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1851510348
@@ -15675,7 +15684,7 @@ MonoBehaviour:
   qualitySprite: {fileID: 21300000, guid: d01b0b4f13e044d0c83c424e542ddcbf, type: 3}
   cardColor: {r: 0.8509804, g: 0.6901961, b: 0.23529412, a: 1}
   whichField: 1
-  power: 3
+  power: 30
   addedPower: 0
   affected: 00000000
   wichQuality: 1
@@ -16013,7 +16022,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -621.07, y: 184.59}
-  m_SizeDelta: {x: 14.395, y: 12.238}
+  m_SizeDelta: {x: 18.045, y: 12.238}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1889871526
 MonoBehaviour:
@@ -16028,7 +16037,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0.2, g: 0.2, b: 0.2, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -16360,13 +16369,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardRealName: Rayo Congelador
   description: 'Aviso: Esta carta solo se puede utilizar cuando no hay apagones'
-  effectDescription: Reduce el poder de las cartas de la fila seleccionada en 1 (Para
+  effectDescription: Reduce el poder de las cartas de la fila seleccionada (Para
     ambos campos)
   artwork: {fileID: 21300000, guid: 103ae41a9973a814abe6445ffc3e3b48, type: 3}
   qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
   cardColor: {r: 0.67058825, g: 0.20392157, b: 0.20392157, a: 1}
   whichField: 1
   id: 3
+  damage: 15
 --- !u!114 &1935818373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17581,7 +17591,7 @@ MonoBehaviour:
   qualitySprite: {fileID: 21300000, guid: 1a4497d8531b845f185bb7742441138d, type: 3}
   cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
   whichField: 0
-  power: 2
+  power: 20
   addedPower: 0
   affected: 00000000
   wichQuality: 0
@@ -18026,7 +18036,7 @@ MonoBehaviour:
   qualitySprite: {fileID: 21300000, guid: d01b0b4f13e044d0c83c424e542ddcbf, type: 3}
   cardColor: {r: 0.8509804, g: 0.6901961, b: 0.23529412, a: 1}
   whichField: 0
-  power: 3
+  power: 35
   addedPower: 0
   affected: 00000000
   wichQuality: 1
