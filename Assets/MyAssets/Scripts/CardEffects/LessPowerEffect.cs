@@ -6,11 +6,11 @@ public class LessPowerEffect : CardEffect
 {
     override public void TriggerEffect(){//Elimina la carta con menos poder del campo enemigo
         //Determinando el campo a afectar
-        List <GameObject> targetField=new List <GameObject>();//Una lista del campo enemigo
-        if(this.GetComponent<Card>().whichField==Card.fields.P1){//Si Vector es jugado por P1
-            targetField=TotalFieldForce.P2PlayedCards;//El campo P2 es el enemigo
-        }else if(this.GetComponent<Card>().whichField==Card.fields.P2){//Si Vector es jugado por P2
-            targetField=TotalFieldForce.P1PlayedCards;//El campo P1 es el enemigo
+        List <GameObject> targetField=null;//Una lista del campo enemigo
+        if(this.GetComponent<Card>().whichField==Card.fields.P1){//Si esta carta es de P1
+            targetField=TotalFieldForce.p2PlayedCards;//El campo P2 es el enemigo
+        }else if(this.GetComponent<Card>().whichField==Card.fields.P2){//Si esta carta es de P2
+            targetField=TotalFieldForce.p1PlayedCards;//El campo P1 es el enemigo
         }
 
         //Hallando la carta de menor poder y eliminandola

@@ -46,8 +46,11 @@ public class TurnManager : MonoBehaviour
         if(card.GetComponent<CardEffect>()!=null){//Si la carta tiene efecto
             card.GetComponent<CardEffect>().TriggerEffect();//Activa el efecto
         }
-        TotalFieldForce.AddCard(card);//Anade la carta segun el campo y el tipo
-        playedCards.Add(card);//Anade la carta a la lista de cartas jugadas
+        //Las cartas de aumento y despeje se envian al cementerio durante su efecto, no se pueden volver a anadir
+        if(card.transform.parent.gameObject!=GameObject.Find("Graveyard") && card.transform.parent.gameObject!=GameObject.Find("EnemyGraveyard")){
+            TotalFieldForce.AddCard(card);//Anade la carta segun el campo y el tipo
+            playedCards.Add(card);//Anade la carta a la lista de cartas jugadas
+        }
         WeatherEffect.UpdateWeather();//Actualiza el clima
         card.GetComponent<Card>().LoadInfo();//Recarga la info de la carta
         if(!lastTurn){//Si no es el ultimo turno antes de que acabe la ronda, no se puede jugar de nuevo
@@ -62,7 +65,7 @@ public class TurnManager : MonoBehaviour
             GameObject.Find("Deck").GetComponent<Button>().onClick.Invoke();
             GameObject.Find("EnemyDeck").GetComponent<Button>().onClick.Invoke();
         }
-        if(TotalFieldForce.P1ForceValue>TotalFieldForce.P2ForceValue){//Si P1 tiene mas poder que P2
+        if(TotalFieldForce.p1ForceValue>TotalFieldForce.p2ForceValue){//Si P1 tiene mas poder que P2
             if(playerTurn==2){//P1 comienza el proximo turno
                 SwitchTurn();//En este caso solo hay que arreglar a quien le toca el turno porque el campo se cambia ya de por si
             }else{
@@ -70,7 +73,7 @@ public class TurnManager : MonoBehaviour
             }
             PlayerCondition.rPointsP1++;//P1 gana la ronda y obtiene un punto de ronda
             RoundWinner(1);
-        }else if(TotalFieldForce.P2ForceValue>TotalFieldForce.P1ForceValue){//Si P2 tiene mas poder que P1
+        }else if(TotalFieldForce.p2ForceValue>TotalFieldForce.p1ForceValue){//Si P2 tiene mas poder que P1
             if(playerTurn==1){//P2 comienza el proximo turno
                 SwitchTurn();//En este caso solo hay que arreglar a quien le toca el turno porque el campo se cambia ya de por si
             }else{

@@ -13,8 +13,8 @@ public class MostPowerEffect : CardEffect
         int cardP1TotalPower=int.MinValue;//Este sera el poder de CardP1
         int cardP2TotalPower=int.MinValue;//Este sera el poder de CardP2
         
-        GetMostPowerInField(TotalFieldForce.P1PlayedCards,out CardP1,out cardP1TotalPower);
-        GetMostPowerInField(TotalFieldForce.P2PlayedCards,out CardP2,out cardP2TotalPower);
+        GetMostPowerInField(TotalFieldForce.p1PlayedCards,out CardP1,out cardP1TotalPower);
+        GetMostPowerInField(TotalFieldForce.p2PlayedCards,out CardP2,out cardP2TotalPower);
         //Tenemos las cartas de mayor poder de ambos campos
 
         ChosenCard=GetMostPowerCard(CardP1,cardP1TotalPower,CardP2,cardP2TotalPower);

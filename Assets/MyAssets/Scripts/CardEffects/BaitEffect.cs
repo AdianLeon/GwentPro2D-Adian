@@ -5,9 +5,9 @@ using UnityEngine.UI;
 //Script para las cartas senuelo
 public class BaitEffect : CardEffect
 {
-    //Este efecto funciona un poco diferente al resto de efectos, en vez de llamar a TriggerEffect
+    //Este efecto funciona diferente al resto, en vez de llamar a TriggerEffect
     //es mucho mas conveniente que desde que se coloca la carta en el campo y vuelva a su lugar correspondiente
-    //en la mano y desde ahi que se llame a SwapEffect con la carta que esta debajo del puntero (CardView.selectedCard)
+    //en la mano se llame a SwapEffect con la carta que esta debajo del puntero (CardView.selectedCard)
     public void SwapEffect(){
         //La carta con la que debemos intercambiar el senuelo esta guardada en CardView.selectedCard
         //Si esta carta no es de clima ni de oro (u otro senuelo)

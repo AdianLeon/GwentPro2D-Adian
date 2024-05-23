@@ -15,8 +15,9 @@ public class Graveyard : MonoBehaviour
         GameObject.Find("EGText").GetComponent<TextMeshProUGUI>().text=egCount.ToString();
     }
     public static void AllToGraveyard(){//Manda una por una todas las cartas jugadas al cementerio
-        for(int i=0;i<TurnManager.playedCards.Count;i++){
-            ToGraveyard(TurnManager.playedCards[i]);
+        int count=TurnManager.playedCards.Count;
+        for(int i=0;i<count;i++){
+            ToGraveyard(TurnManager.playedCards[0]);
         }
     }
     public static void ToGraveyard(GameObject card){//Manda la carta al cementerio
@@ -30,17 +31,20 @@ public class Graveyard : MonoBehaviour
         List<GameObject> Field=new List<GameObject>();
         if(card.GetComponent<Card>().whichField==Card.fields.P1){//Si el campo es de P1 manda la carta al cementerio de P1
             GraveyardName="Graveyard";
-            Field=TotalFieldForce.P1PlayedCards;
+            Field=TotalFieldForce.p1PlayedCards;
             gCount++;
             GameObject.Find("GText").GetComponent<TextMeshProUGUI>().text=gCount.ToString();
         }else if(card.GetComponent<Card>().whichField==Card.fields.P2){//Si el campo es de P2 manda la carta al cementerio de P2
             GraveyardName="EnemyGraveyard";
-            Field=TotalFieldForce.P2PlayedCards;
+            Field=TotalFieldForce.p2PlayedCards;
             egCount++;
             GameObject.Find("EGText").GetComponent<TextMeshProUGUI>().text=egCount.ToString();
         }
         card.transform.SetParent(GameObject.Find(GraveyardName).transform);
+        card.GetComponent<Dragging>().parentToReturnTo=GameObject.Find(GraveyardName).transform;
         Field.Remove(card);
-        Destroy(card.GetComponent<Dragging>());//No necesitaremos esto de nuevo
+        TurnManager.playedCards.Remove(card);
+        card.GetComponent<Dragging>().isDraggable=false;
+        //Destroy(card.GetComponent<Dragging>());//No necesitaremos esto de nuevo
     }
 }

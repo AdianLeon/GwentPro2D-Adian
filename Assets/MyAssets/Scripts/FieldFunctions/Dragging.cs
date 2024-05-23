@@ -15,6 +15,7 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     //Si se esta arrastrando una carta
     public static bool onDrag;
+    public static GameObject cardBeingDragged;
 
     public void Start(){//Al inicio del juego se define cual es la mano propia
         if(this.GetComponent<Card>().whichField==Card.fields.P1){
@@ -28,6 +29,7 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public void OnBeginDrag(PointerEventData eventData){
         if(isDraggable && (TurnManager.cardsPlayed==0 || TurnManager.lastTurn)){//Solo si es arrastrable y si se puede jugar
             onDrag=true;//Comenzamos el arrastre
+            cardBeingDragged=this.gameObject;
             //Guarda la posicion a la que volver si soltamos en lugar invalido y crea un espacio en el lugar de la carta
             placeholder=new GameObject();//Crea el placeholder y le asigna los mismos valores que a la carta y la posicion de la carta
             placeholder.transform.SetParent(this.transform.parent);
@@ -78,7 +80,10 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 Destroy(placeholder);//Destruye el espacio creado
                 if(this.GetComponent<BaitCard>()!=null && CardView.selectedCard!=null){//Si la carta jugada es senuelo y estamos sobre otra carta
                     if(CardView.selectedCard.GetComponent<Card>().whichField==this.GetComponent<Card>().whichField){//Si sus campos coinciden
-                        this.GetComponent<BaitEffect>().SwapEffect();//Usa el efecto del senuelo
+                        if(CardView.selectedCard.transform.parent.gameObject!=GameObject.Find("Graveyard") && CardView.selectedCard.transform.parent.gameObject!=GameObject.Find("EnemyGraveyard")){
+                            //Si la carta sobre la que estamos no esta en el cementerio
+                            this.GetComponent<BaitEffect>().SwapEffect();//Usa el efecto del senuelo
+                        }
                     }
                 }
                 if(this.transform.parent!=hand.transform && this.transform.parent!=GameObject.Find("Trash").transform){//Si el objeto sale de la mano y no esta en la basura
@@ -92,9 +97,11 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 placeholder.transform.SetParent(GameObject.Find("Trash").transform);//Movemos el placeholder primero a la basura para evitar bugs molestos
                 Destroy(placeholder);//Destruye el espacio creado
             }
-            //Cada vez que se suelte una carta necesitamos desactivar el glow de cualquier zona que hayamos iluminado
+            //Cada vez que se suelte una carta necesitamos desactivar el glow de cualquier objeto que hayamos iluminado
+            VisualEffects.OffCardsGlow();
             VisualEffects.OffZonesGlow();
             onDrag=false;//Terminamos el arrastre
+            cardBeingDragged=null;
             RoundPoints.URWriteRoundInfo();
         }
     }

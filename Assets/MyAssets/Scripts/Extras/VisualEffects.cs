@@ -7,26 +7,24 @@ using UnityEngine.UI;
 public class VisualEffects : MonoBehaviour
 {
     public static void ZonesGlow(GameObject card){//Encuentra las zonas del mismo tipo y campo que la carta y las ilumina
-        if(TurnManager.cardsPlayed==0 || TurnManager.lastTurn){//Si el jugador puede jugar
-            if(card.GetComponent<WeatherCard>()!=null || card.GetComponent<ClearWeatherCard>()!=null){//Si la carta es de clima o despeje
-                DZWeather[] zones=GameObject.FindObjectsOfType<DZWeather>();//Se crea un array de todas las zonas de clima
-                for(int i=0;i<zones.Length;i++){
-                    zones[i].GetComponent<Image>().color=new Color (1,1,1,0.1f);//Se iluminan
+        if(card.GetComponent<WeatherCard>()!=null || card.GetComponent<ClearWeatherCard>()!=null){//Si la carta es de clima o despeje
+            DZWeather[] zones=GameObject.FindObjectsOfType<DZWeather>();//Se crea un array de todas las zonas de clima
+            for(int i=0;i<zones.Length;i++){
+                zones[i].GetComponent<Image>().color=new Color (1,1,1,0.1f);//Se iluminan
+            }
+        }else if(card.GetComponent<BoostCard>()!=null){//Si la carta es de aumento
+            DZBoost[] zones=GameObject.FindObjectsOfType<DZBoost>();//Se crea un array de todas las zonas de aumento
+            for(int i=0;i<zones.Length;i++){
+                if(zones[i].validPlayer==card.GetComponent<Card>().whichField){//Si la zona es del jugador
+                    zones[i].GetComponent<Image>().color=new Color (1,1,1,0.1f);//Se ilumina
                 }
-            }else if(card.GetComponent<BoostCard>()!=null){//Si la carta es de aumento
-                DZBoost[] zones=GameObject.FindObjectsOfType<DZBoost>();//Se crea un array de todas las zonas de aumento
-                for(int i=0;i<zones.Length;i++){
-                    if(zones[i].validPlayer==card.GetComponent<Card>().whichField){//Si la zona es del jugador
-                        zones[i].GetComponent<Image>().color=new Color (1,1,1,0.1f);//Se ilumina
-                    }
-                }
-            }else if(card.GetComponent<UnitCard>()!=null){//Si la carta es de unidad
-                DZUnits[] zones=GameObject.FindObjectsOfType<DZUnits>();//Se crea un array con todas las zonas de cartas de unidad
-                for(int i=0;i<zones.Length;i++){
-                    if(zones[i].GetComponent<DZUnits>().isDropValid(card) && zones[i].validPlayer==card.GetComponent<Card>().whichField){
-                        //La zona se ilumina solo si coincide con la zona jugable y el campo de la carta
-                        zones[i].GetComponent<Image>().color=new Color (1,1,1,0.1f);
-                    }
+            }
+        }else if(card.GetComponent<UnitCard>()!=null){//Si la carta es de unidad
+            DZUnits[] zones=GameObject.FindObjectsOfType<DZUnits>();//Se crea un array con todas las zonas de cartas de unidad
+            for(int i=0;i<zones.Length;i++){
+                if(zones[i].GetComponent<DZUnits>().isDropValid(card) && zones[i].validPlayer==card.GetComponent<Card>().whichField){
+                    //La zona se ilumina solo si coincide con la zona jugable y el campo de la carta
+                    zones[i].GetComponent<Image>().color=new Color (1,1,1,0.1f);
                 }
             }
         }
@@ -70,5 +68,19 @@ public class VisualEffects : MonoBehaviour
         GameObject.Find("PlayedLightRight").GetComponent<Image>().color=red;
         GameObject.Find("PlayedLightLeaderSkillP1").GetComponent<Image>().color=red;
         GameObject.Find("PlayedLightLeaderSkillP2").GetComponent<Image>().color=red;
+    }
+    public static void ValidSwapsGlow(GameObject selectedCard){//Ilumina las cartas con las que el senuelo pasado como parametro se puede intercambiar
+        //En realidad oscurece las cartas con las que el senuelo no se puede intercambiar
+        for(int i=0;i<TurnManager.playedCards.Count;i++){
+            bool tradeable=TurnManager.playedCards[i].GetComponent<UnitCard>()!=null && TurnManager.playedCards[i].GetComponent<UnitCard>().wichQuality!=UnitCard.quality.Gold;
+            if(!(tradeable && TurnManager.playedCards[i].GetComponent<Card>().whichField==selectedCard.GetComponent<Card>().whichField)){
+                TurnManager.playedCards[i].GetComponent<Image>().color=new Color (0.5f,0.5f,0.5f,1);
+            }
+        }
+    }
+    public static void OffCardsGlow(){
+        for(int i=0;i<TurnManager.playedCards.Count;i++){
+            TurnManager.playedCards[i].GetComponent<Image>().color=new Color (1,1,1,1);//Las cartas se dessombrean
+        }
     }
 }
