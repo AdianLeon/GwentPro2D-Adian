@@ -160,7 +160,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 51
+  m_RootOrder: 52
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -451,7 +451,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 36
+  m_RootOrder: 37
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -727,6 +727,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Minions
   cardRealName: Kyle
   description: Es la mascota de Gru, mitad "perro", mitad piranha, puedes jugar un
     poco con el, solo asegurate de que no tenga hambre
@@ -954,6 +955,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41be9dbf63255af42a404b778cefa16d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Minions
   cardRealName: Peluche
   description: Los minions se vuelven pasivos cuando les das un peluche
   effectDescription: Reduce el poder de las cartas de la fila seleccionada en 1 (Para
@@ -1173,6 +1175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Minions
   cardRealName: Ninas
   description: Edith, Margo y Agnes. Fueron adoptadas por Gru y desde entonces le
     han hecho la vida un infierno, pero por lo menos saben usar un rifle
@@ -1539,6 +1542,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Minions
   cardRealName: Kyle
   description: Es la mascota de Gru, mitad "perro", mitad piranha, puedes jugar un
     poco con el, solo asegurate de que no tenga hambre
@@ -1783,6 +1787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Minions
   cardRealName: Bob
   description: Solia ser un aventurero justo como tu, pero lo bananearon en la rodilla
   effectDescription: Cuando esta carta es jugada su poder se convierte en el promedio
@@ -1925,7 +1930,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 62
+      value: 63
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2379,6 +2384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Minions
   cardRealName: Doctor Nefario
   description: Cientifico "loco" ayudante de Gru desde que se creo la maldad, inventor
     del rayo congelador , el algebra lineal y la gravedad
@@ -2428,7 +2434,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 37
+  m_RootOrder: 38
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2563,7 +2569,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 43
+  m_RootOrder: 44
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2829,6 +2835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb0cea119d8d5364e816a177670b77c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Minions
   cardRealName: Muchas Bananas
   description: Para un minion cualquier problema tiene solucion, si tienes suficiente
     dinero, digo bananas
@@ -3122,6 +3129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 367f08dd737aded49a78ebd8d0af39c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Minions
   cardRealName: Banana
   description: 'Supongo que no tengo que explicarte lo que las bananas le hacen a
     los minions Spoiler: Los vuelve locos'
@@ -3245,6 +3253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf5d51741b1bf4419ce3980d7dce32c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: 
   cardRealName: Guardia
   description: Este es un guardia, su trabajo es quedarse ahi aburrido, ni siquiera
     le pagan bien, todo el dia ahi parado, pobre lastimoso
@@ -3459,7 +3468,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 39
+  m_RootOrder: 40
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3718,6 +3727,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41be9dbf63255af42a404b778cefa16d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Minions
   cardRealName: Peluche
   description: Los minions se vuelven pasivos cuando les das un peluche
   effectDescription: Reduce el poder de las cartas de la fila seleccionada en 1 (Para
@@ -3774,6 +3784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae807bac8cd4eb245be09c98d995db5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Minions
   cardRealName: Minion Bebe
   description: Demasiado pequeno para pelear, Gru le hallo otra utilidad
   effectDescription: Esta carta se puede intercambiar con otra en el campo propio
@@ -3816,7 +3827,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 38
+  m_RootOrder: 39
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4080,6 +4091,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca5f8a1ff4980b34c8b52df2366aba7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: 
   cardRealName: Gru
   description: Besto villano de todos los tiempos, mi favorito
   effectDescription: Ordena a los minions que roben dos cartas de la mano enemiga
@@ -4327,6 +4339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Minions
   cardRealName: Doctor Nefario
   description: Cientifico "loco" ayudante de Gru desde que se creo la maldad, inventor
     del rayo congelador , el algebra lineal y la gravedad
@@ -4500,6 +4513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca5f8a1ff4980b34c8b52df2366aba7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: 
   cardRealName: Gru
   description: Besto villano de todos los tiempos, mi favorito
   effectDescription: Ordena a los minions que roben dos cartas de la mano enemiga
@@ -4553,7 +4567,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 42
+  m_RootOrder: 43
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4837,6 +4851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf5d51741b1bf4419ce3980d7dce32c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: 
   cardRealName: Guardia
   description: Este es un guardia, su trabajo es quedarse ahi aburrido, ni siquiera
     le pagan bien, todo el dia ahi parado, pobre lastimoso
@@ -5075,6 +5090,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Minions
   cardRealName: Vector
   description: Comparado al macho, este es muy gay, no muere de la manera mas macha
     posible, solo se quedo botado en la luna
@@ -5118,7 +5134,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 67
+      value: 68
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -5253,7 +5269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 70
+      value: 71
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -5382,7 +5398,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 48
+  m_RootOrder: 49
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5605,7 +5621,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 56
+  m_RootOrder: 57
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5929,6 +5945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 367f08dd737aded49a78ebd8d0af39c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Minions
   cardRealName: Inyeccion de minion purpura
   description: Vuelve a los minions aun mas malvados
   effectDescription: Aumenta el poder de las cartas de la fila seleccionada en 1
@@ -5987,7 +6004,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 63
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -6455,7 +6472,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 57
+  m_RootOrder: 58
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6628,6 +6645,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf5d51741b1bf4419ce3980d7dce32c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: 
   cardRealName: Guardia
   description: Este es un guardia, su trabajo es quedarse ahi aburrido, ni siquiera
     le pagan bien, todo el dia ahi parado, pobre lastimoso
@@ -6857,6 +6875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb0cea119d8d5364e816a177670b77c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Minions
   cardRealName: Muchas Bananas
   description: Para un minion cualquier problema tiene solucion, si tienes suficiente
     dinero, digo bananas
@@ -7101,6 +7120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Minions
   cardRealName: El Macho
   description: :o El Macho!! Pidele un autografo antes de que muera montando un tiburon
     vivo y saltando dentro de la boca de un volcan activo con 250 libras de dinamita
@@ -7164,7 +7184,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 50
+  m_RootOrder: 51
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7301,7 +7321,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 68
+      value: 69
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -7467,7 +7487,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 66
+      value: 67
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -7621,7 +7641,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 69
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -7955,6 +7975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Minions
   cardRealName: Scarlet Overkill
   description: Mente maestra del crimen, archienemiga de Gru, experta ladrona de
     cartas
@@ -8192,6 +8213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Minions
   cardRealName: Scarlet Overkill
   description: Mente maestra del crimen, archienemiga de Gru, experta ladrona de
     cartas
@@ -8254,7 +8276,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 74
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -9121,7 +9143,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 54
+  m_RootOrder: 55
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9455,6 +9477,7 @@ RectTransform:
   - {fileID: 1254882643}
   - {fileID: 79865655}
   - {fileID: 1323165372}
+  - {fileID: 1611976138}
   - {fileID: 81295669}
   - {fileID: 321572045}
   - {fileID: 528515577}
@@ -9628,6 +9651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Minions
   cardRealName: Kevin
   description: 'Famoso filosofo autor de la frase: "Belo papaguera, churepera con
     la papaya"'
@@ -9863,6 +9887,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae807bac8cd4eb245be09c98d995db5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Minions
   cardRealName: Agnes
   description: Le encantan los unicornios, cree que Kyle es adorable
   effectDescription: Esta carta se puede intercambiar con otra en el campo propio
@@ -9906,7 +9931,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 52
+  m_RootOrder: 53
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10262,6 +10287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae807bac8cd4eb245be09c98d995db5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Minions
   cardRealName: Agnes
   description: Le encantan los unicornios, cree que Kyle es adorable
   effectDescription: Esta carta se puede intercambiar con otra en el campo propio
@@ -10490,6 +10516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Minions
   cardRealName: Stuart
   description: Esta un poco loco, le gusta que lo catapulten contra enemigos, muy
     conveniente
@@ -10813,6 +10840,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41be9dbf63255af42a404b778cefa16d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Minions
   cardRealName: Rayo Congelador
   description: 'Aviso: Esta carta solo se puede utilizar cuando no hay apagones'
   effectDescription: Reduce el poder de las cartas de la fila seleccionada en 1 (Para
@@ -11443,7 +11471,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 49
+  m_RootOrder: 50
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11900,6 +11928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Minions
   cardRealName: Kevin
   description: 'Famoso filosofo autor de la frase: "Belo papaguera, churepera con
     la papaya"'
@@ -11959,7 +11988,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 65
+      value: 66
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -12287,6 +12316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 367f08dd737aded49a78ebd8d0af39c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Minions
   cardRealName: Manzana
   description: 'Similar efecto a las bananas, no es necesaria una explicacion no?
     Spoiler: Los vuelve locos'
@@ -12340,7 +12370,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 53
+  m_RootOrder: 54
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12429,7 +12459,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 55
+  m_RootOrder: 56
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12564,7 +12594,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 46
+  m_RootOrder: 47
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12705,7 +12735,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 71
+      value: 72
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -13222,6 +13252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 367f08dd737aded49a78ebd8d0af39c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Minions
   cardRealName: Inyeccion de minion purpura
   description: Vuelve a los minions aun mas malvados
   effectDescription: Aumenta el poder de las cartas de la fila seleccionada en 1
@@ -13279,7 +13310,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 75
+      value: 76
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -13376,6 +13407,141 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 3496806270160727607, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+--- !u!1 &1611976137
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1611976138}
+  - component: {fileID: 1611976140}
+  - component: {fileID: 1611976139}
+  m_Layer: 5
+  m_Name: Faction
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1611976138
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611976137}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.0445818, y: 1.3840709, z: 1.1606466}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1071480984}
+  m_RootOrder: 36
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -512.76, y: 231.6}
+  m_SizeDelta: {x: 190.1, y: 11.867}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1611976139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611976137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
+  m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 0.8581352, b: 0, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 0, g: 0, b: 0, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 30
+  m_fontSizeBase: 30
+  m_fontWeight: 400
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 0
+  m_fontSizeMax: 30
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1611976140
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611976137}
+  m_CullTransparentMesh: 1
 --- !u!224 &1612244687 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
@@ -13448,6 +13614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Minions
   cardRealName: Bob
   description: Solia ser un aventurero justo como tu, pero lo bananearon en la rodilla
   effectDescription: Cuando esta carta es jugada su poder se convierte en el promedio
@@ -13493,7 +13660,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 47
+  m_RootOrder: 48
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -13740,6 +13907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 367f08dd737aded49a78ebd8d0af39c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Minions
   cardRealName: Banana
   description: 'Supongo que no tengo que explicarte lo que las bananas le hacen a
     los minions Spoiler: Los vuelve locos'
@@ -14062,7 +14230,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 72
+      value: 73
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -14193,6 +14361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Minions
   cardRealName: Stuart
   description: Esta un poco loco, le gusta que lo catapulten contra enemigos, muy
     conveniente
@@ -14330,6 +14499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 367f08dd737aded49a78ebd8d0af39c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Minions
   cardRealName: Manzana
   description: 'Similar efecto a las bananas, no es necesaria una explicacion no?
     Spoiler: Los vuelve locos'
@@ -14441,6 +14611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf5d51741b1bf4419ce3980d7dce32c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: 
   cardRealName: Guardia
   description: Este es un guardia, su trabajo es quedarse ahi aburrido, ni siquiera
     le pagan bien, todo el dia ahi parado, pobre lastimoso
@@ -14480,7 +14651,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 58
+  m_RootOrder: 59
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -14613,7 +14784,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 60
+      value: 61
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -15024,6 +15195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae807bac8cd4eb245be09c98d995db5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Minions
   cardRealName: Minion Bebe
   description: Demasiado pequeno para pelear, Gru le hallo otra utilidad
   effectDescription: Esta carta se puede intercambiar con otra en el campo propio
@@ -15218,7 +15390,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 44
+  m_RootOrder: 45
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -15353,7 +15525,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 45
+  m_RootOrder: 46
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -15675,6 +15847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Minions
   cardRealName: Vector
   description: Comparado al macho, este es muy gay, no muere de la manera mas macha
     posible, solo se quedo botado en la luna
@@ -15742,7 +15915,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 61
+      value: 62
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -15882,7 +16055,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 40
+  m_RootOrder: 41
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -16017,7 +16190,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 41
+  m_RootOrder: 42
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -16113,7 +16286,7 @@ RectTransform:
   m_Children:
   - {fileID: 1570595591}
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 76
+  m_RootOrder: 77
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -16367,6 +16540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41be9dbf63255af42a404b778cefa16d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Minions
   cardRealName: Rayo Congelador
   description: 'Aviso: Esta carta solo se puede utilizar cuando no hay apagones'
   effectDescription: Reduce el poder de las cartas de la fila seleccionada (Para
@@ -16974,7 +17148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 59
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -17197,7 +17371,7 @@ RectTransform:
   m_Children:
   - {fileID: 1325665075}
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 77
+  m_RootOrder: 78
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -17583,6 +17757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Minions
   cardRealName: Ninas
   description: Edith, Margo y Agnes. Fueron adoptadas por Gru y desde entonces le
     han hecho la vida un infierno, pero por lo menos saben usar un rifle
@@ -18026,6 +18201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faction: Minions
   cardRealName: El Macho
   description: :o El Macho!! Pidele un autografo antes de que muera montando un tiburon
     vivo y saltando dentro de la boca de un volcan activo con 250 libras de dinamita
@@ -18273,7 +18449,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 73
+      value: 74
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -18738,7 +18914,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 64
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x

@@ -6,6 +6,7 @@ using TMPro;
 //Script que contiene las propiedades de todas las cartas
 abstract public class Card : MonoBehaviour
 {
+    public string faction;//Faccion de la carta
     public string cardRealName;//Nombre a mostrar en el objeto gigante a la izquierda del campo
     public string description;//Descripcion de la carta a mostrar en el objeto gigante a la izquierda del campo
     public string effectDescription;//Descripcion del efecto
@@ -15,6 +16,8 @@ abstract public class Card : MonoBehaviour
     public enum fields{P1,P2};
     public fields whichField;
     public virtual void LoadInfo(){//Esta funcion es especifica para cada tipo de carta, pero todas comparten lo siguiente
+        //Faction
+        GameObject.Find("Faction").GetComponent<TextMeshProUGUI>().text=faction;
         //Name
         GameObject.Find("CardName").GetComponent<TextMeshProUGUI>().text=cardRealName;
         //Description
