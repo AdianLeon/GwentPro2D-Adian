@@ -1,0 +1,16 @@
+{
+    "sourceImage": "C:/Users/Adian/Documents/CC/Primero/1er semestre/Programacion/Proyectos/YunitiProllekts/Gwent Pro 2D/GwentPro2D Adian/Assets/MyAssets/Sprites/Kevin",
+    "faction": "Minions",
+    "cardRealName": "Kevin",
+    "description": "Famoso filosofo autor de la frase: \"Belo papaguera, churepera con la papaya\"",
+    "effectDescription": "Cuando esta carta es jugada su poder se convierte en el promedio del poder total de todas las cartas del campo",
+    "artwork": "C:/Users/Adian/Documents/CC/Primero/1er semestre/Programacion/Proyectos/YunitiProllekts/Gwent Pro 2D/GwentPro2D Adian/Assets/MyAssets/Sprites/KevinImage",
+    "qualitySprite": "C:/Users/Adian/Documents/CC/Primero/1er semestre/Programacion/Proyectos/YunitiProllekts/Gwent Pro 2D/GwentPro2D Adian/Assets/MyAssets/Sprites/item-feedback-1",
+    "powerPoints": 0,
+    "typeComponent": "UnitCard",
+    "effectComponents": [
+        "PromEffect"
+    ],
+    "zones": "M",
+    "quality": "Silver"
+}

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 //Script para el efecto de robar una carta del deck
-public class DrawOneCardEffect : CardEffect
+public class DrawOneEffect : CardEffect
 {
     override public void TriggerEffect(){//Roba una carta del deck propio
         GameObject PlayerArea=null;//Mano del jugador

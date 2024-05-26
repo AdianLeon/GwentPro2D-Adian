@@ -11,7 +11,7 @@ public class BaitEffect : CardEffect
     public void SwapEffect(){
         //La carta con la que debemos intercambiar el senuelo esta guardada en CardView.selectedCard
         //Si esta carta no es de clima ni de oro (u otro senuelo)
-        if(CardView.selectedCard.GetComponent<UnitCard>()!=null && CardView.selectedCard.GetComponent<UnitCard>().wichQuality!=UnitCard.quality.Gold){
+        if(CardView.selectedCard.GetComponent<UnitCard>()!=null && CardView.selectedCard.GetComponent<UnitCard>().whichQuality!=UnitCard.quality.Gold){
             GameObject placehold=new GameObject();//Creamos un objeto auxiliar para saber donde esta el senuelo
             placehold.transform.SetParent(this.transform.parent);
             LayoutElement le=placehold.AddComponent<LayoutElement>();

@@ -75,7 +75,7 @@ public class VisualEffects : MonoBehaviour
     public static void ValidSwapsGlow(GameObject selectedCard){//Ilumina las cartas con las que el senuelo pasado como parametro se puede intercambiar
         //En realidad oscurece las cartas con las que el senuelo no se puede intercambiar
         for(int i=0;i<TurnManager.playedCards.Count;i++){
-            bool tradeable=TurnManager.playedCards[i].GetComponent<UnitCard>()!=null && TurnManager.playedCards[i].GetComponent<UnitCard>().wichQuality!=UnitCard.quality.Gold;
+            bool tradeable=TurnManager.playedCards[i].GetComponent<UnitCard>()!=null && TurnManager.playedCards[i].GetComponent<UnitCard>().whichQuality!=UnitCard.quality.Gold;
             if(!(tradeable && TurnManager.playedCards[i].GetComponent<Card>().whichField==selectedCard.GetComponent<Card>().whichField)){
                 TurnManager.playedCards[i].GetComponent<Image>().color=new Color (0.5f,0.5f,0.5f,1);
             }

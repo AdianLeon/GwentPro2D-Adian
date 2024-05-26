@@ -1,0 +1,16 @@
+{
+    "sourceImage": "C:/Users/Adian/Documents/CC/Primero/1er semestre/Programacion/Proyectos/YunitiProllekts/Gwent Pro 2D/GwentPro2D Adian/Assets/MyAssets/Sprites/CPeluche",
+    "faction": "Minions",
+    "cardRealName": "Peluche",
+    "description": "Los minions se vuelven pasivos cuando les das un peluche",
+    "effectDescription": "Reduce el poder de las cartas de la fila seleccionada en 1 (Para ambos campos)",
+    "artwork": "C:/Users/Adian/Documents/CC/Primero/1er semestre/Programacion/Proyectos/YunitiProllekts/Gwent Pro 2D/GwentPro2D Adian/Assets/MyAssets/Sprites/CPelucheImage",
+    "qualitySprite": "C:/Users/Adian/Documents/CC/Primero/1er semestre/Programacion/Proyectos/YunitiProllekts/Gwent Pro 2D/GwentPro2D Adian/Assets/MyAssets/Sprites/BlankImage",
+    "powerPoints": 15,
+    "typeComponent": "WeatherCard",
+    "effectComponents": [
+        "WeatherEffect"
+    ],
+    "zones": "",
+    "quality": ""
+}

@@ -1,0 +1,16 @@
+{
+    "sourceImage": "C:/Users/Adian/Documents/CC/Primero/1er semestre/Programacion/Proyectos/YunitiProllekts/Gwent Pro 2D/GwentPro2D Adian/Assets/MyAssets/Sprites/ScarlettOverkill",
+    "faction": "Minions",
+    "cardRealName": "Scarlet Overkill",
+    "description": "Mente maestra del crimen, archienemiga de Gru, experta ladrona de cartas",
+    "effectDescription": "Cuando esta carta es jugada se roba una carta del deck propio",
+    "artwork": "C:/Users/Adian/Documents/CC/Primero/1er semestre/Programacion/Proyectos/YunitiProllekts/Gwent Pro 2D/GwentPro2D Adian/Assets/MyAssets/Sprites/ScarlettOverkillImage",
+    "qualitySprite": "C:/Users/Adian/Documents/CC/Primero/1er semestre/Programacion/Proyectos/YunitiProllekts/Gwent Pro 2D/GwentPro2D Adian/Assets/MyAssets/Sprites/item-feedback-2",
+    "powerPoints": 30,
+    "typeComponent": "UnitCard",
+    "effectComponents": [
+        "DrawOneEffect"
+    ],
+    "zones": "MRS",
+    "quality": "Silver"
+}

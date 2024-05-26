@@ -16,7 +16,7 @@ public class WeatherEffect : CardEffect
         for(int i=0;i<zoneTarget.transform.childCount;i++){//Itera por todos los hijos
             card=zoneTarget.transform.GetChild(i).gameObject;
             //Si la carta en esa zona no es senuelo, o es unidad pero no de oro
-            if(card.GetComponent<BaitCard>()!=null || (card.GetComponent<UnitCard>()!=null && card.GetComponent<UnitCard>().wichQuality!=UnitCard.quality.Gold)){
+            if(card.GetComponent<BaitCard>()!=null || (card.GetComponent<UnitCard>()!=null && card.GetComponent<UnitCard>().whichQuality!=UnitCard.quality.Gold)){
                 if(!(card.GetComponent<CardWithPower>().affectedBy.Contains(this.gameObject.name))){//Si no han sido afectados
                     //Si la carta es senuelo o si la carta no es heroe
                     card.GetComponent<CardWithPower>().addedPower-=this.GetComponent<WeatherCard>().damage;
