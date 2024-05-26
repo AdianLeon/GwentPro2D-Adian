@@ -13,8 +13,6 @@ public class UnitCard : CardWithPower
 
     public override void LoadInfo(){
         base.LoadInfo();
-        string typeText="[";
-        typeText+=whichZone.ToString()+"]";
-        GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text=typeText;
+        GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="["+whichZone.ToString()+"]";
     }
 }

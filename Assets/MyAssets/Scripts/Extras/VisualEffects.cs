@@ -69,6 +69,9 @@ public class VisualEffects : MonoBehaviour
         GameObject.Find("PlayedLightLeaderSkillP1").GetComponent<Image>().color=red;
         GameObject.Find("PlayedLightLeaderSkillP2").GetComponent<Image>().color=red;
     }
+    public static void TurnLeaderOff(string thisPlayer){
+        GameObject.Find("PlayedLightLeaderSkill"+thisPlayer).GetComponent<Image>().color=new Color(1,0,0,0.2f);
+    }
     public static void ValidSwapsGlow(GameObject selectedCard){//Ilumina las cartas con las que el senuelo pasado como parametro se puede intercambiar
         //En realidad oscurece las cartas con las que el senuelo no se puede intercambiar
         for(int i=0;i<TurnManager.playedCards.Count;i++){

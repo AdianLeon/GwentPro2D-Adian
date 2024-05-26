@@ -23,7 +23,7 @@ public class LeaderEffect : MonoBehaviour
         }
     }
     private void LeaderSkillConditions(string hand,string enemyHand,string thisPlayer){
-        if(!used && TurnManager.cardsPlayed==0){//Si la habilidad no ha sido usada aun en la partida y no se ha jugado en el turno
+        if(!used && (TurnManager.cardsPlayed==0 || TurnManager.lastTurn)){//Si la habilidad no ha sido usada aun en la partida y no se ha jugado en el turno o es el ultimo turno
             if(GameObject.Find(enemyHand).transform.childCount<2){//Si el enemigo tiene una o ninguna carta
                 if(GameObject.Find(enemyHand).transform.childCount==1){//Si tiene una
                     RoundPoints.URLongWrite("Los minions intentaron robar dos cartas de la mano enemiga, pero solo tenia una y les dio lastima, se la regresaron y le pidieron disculpas");
@@ -39,8 +39,14 @@ public class LeaderEffect : MonoBehaviour
                 TurnManager.cardsPlayed++;//Esta accion cuenta como carta jugada
                 DeckTrade.firstAction=false;//Ya no se puede intercambiar cartas con el deck propio si es el primer turno de la partida
             }
-            VisualEffects.PlayedLightsOff();
-        }else if(used && TurnManager.cardsPlayed==0){//Si la habilidad ha sido usada
+            if(!TurnManager.lastTurn){
+                VisualEffects.PlayedLightsOff();
+            }else{
+                if(used){
+                    VisualEffects.TurnLeaderOff(thisPlayer);
+                }
+            }
+        }else if(used && TurnManager.cardsPlayed==0 || TurnManager.lastTurn){//Si la habilidad ha sido usada
             RoundPoints.URLongWrite("Gru solo puede ordenarle a los minions que roben dos cartas enemigas una vez por partida");
         }
 

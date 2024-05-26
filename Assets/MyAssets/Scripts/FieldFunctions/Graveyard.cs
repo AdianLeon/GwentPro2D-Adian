@@ -21,11 +21,9 @@ public class Graveyard : MonoBehaviour
         }
     }
     public static void ToGraveyard(GameObject card){//Manda la carta al cementerio
-        if(card.GetComponent<UnitCard>()!=null){
-            for(int i=0;i<4;i++){//Deshace el efecto clima
-                card.GetComponent<UnitCard>().affected[i]=false;
-            }
-            card.GetComponent<UnitCard>().addedPower=0;
+        if(card.GetComponent<CardWithPower>()!=null){
+            card.GetComponent<CardWithPower>().affectedBy.Clear();
+            card.GetComponent<CardWithPower>().addedPower=0;
         }
         string GraveyardName="";
         List<GameObject> Field=new List<GameObject>();

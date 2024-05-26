@@ -8,8 +8,7 @@ abstract public class CardWithPower : Card
 {
     public int power;//Poder propio de la carta
     public int addedPower;//Poder anadido por efectos durante el juego
-    public bool[] affected=new bool[4];//Un array que describe si la carta esta siendo afectada por un clima, la posicion del true es el id de la carta clima que la afecta
-    
+    public List<string> affectedBy=new List<string>();//Una lista que describe por cuales climas la carta esta siendo afectada
     public override void LoadInfo(){
         base.LoadInfo();
         //Power

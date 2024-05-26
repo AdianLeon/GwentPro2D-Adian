@@ -30,6 +30,9 @@ public class BaitEffect : CardEffect
             if(CardView.selectedCard.GetComponent<MultiplyEffect>()!=null){//Si selectedCard tiene efecto de multiplicar
                 CardView.selectedCard.GetComponent<UnitCard>().power=CardView.selectedCard.GetComponent<MultiplyEffect>().originalPower;
             }
+            if(CardView.selectedCard.GetComponent<PromEffect>()!=null){//Si selectedCard tiene efecto de multiplicar
+                CardView.selectedCard.GetComponent<UnitCard>().power=0;
+            }
             //Deshace el efecto de clima cuando la carta vuelve a la mano, el senuelo recibira el clima como consecuencia de la llamada de UpdateClima
             ClearWeatherEffect.ClearCardOfWeathers(CardView.selectedCard);
         }

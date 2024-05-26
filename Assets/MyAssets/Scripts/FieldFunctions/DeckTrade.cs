@@ -48,7 +48,7 @@ public class DeckTrade : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
 
                 GameObject picked=playerDeck.GetComponent<DrawCards>().cards[Random.Range(0,playerDeck.GetComponent<DrawCards>().cards.Count)];//Escoge una carta aleatoria del deck
                 GameObject pickedCard = Instantiate(picked,new Vector3(0,0,0),Quaternion.identity);//Se instancia una copia de esa escogida
-                pickedCard.transform.SetParent(playerDeck.GetComponent<DrawCards>().PlayerArea.transform,false);//Se pone en la mano
+                pickedCard.transform.SetParent(playerDeck.GetComponent<DrawCards>().playerArea.transform,false);//Se pone en la mano
                 pickedCard.GetComponent<CanvasGroup>().blocksRaycasts=true;//Permite asegurar que se puede arrastrar la carta
                 playerDeck.GetComponent<DrawCards>().cards.Remove(picked);//Se quita de la lista
 

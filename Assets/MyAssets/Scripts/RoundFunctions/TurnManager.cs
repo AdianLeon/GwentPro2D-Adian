@@ -62,8 +62,8 @@ public class TurnManager : MonoBehaviour
         Graveyard.AllToGraveyard();//Manda todas las cartas al cementerio
         playedCards.Clear();
         for(int i=0;i<2;i++){
-            GameObject.Find("Deck").GetComponent<Button>().onClick.Invoke();
-            GameObject.Find("EnemyDeck").GetComponent<Button>().onClick.Invoke();
+            GameObject.Find("Deck").GetComponent<DrawCards>().OnClickDraw();
+            GameObject.Find("EnemyDeck").GetComponent<DrawCards>().OnClickDraw();
         }
         if(TotalFieldForce.p1ForceValue>TotalFieldForce.p2ForceValue){//Si P1 tiene mas poder que P2
             if(playerTurn==2){//P1 comienza el proximo turno
