@@ -52,12 +52,6 @@ public class VisualEffects : MonoBehaviour
         GameObject.Find("PlayedLightMiddle").GetComponent<Image>().color=green;
         GameObject.Find("PlayedLightLeft").GetComponent<Image>().color=green;
         GameObject.Find("PlayedLightRight").GetComponent<Image>().color=green;
-        if(!GameObject.Find("Leader").GetComponent<LeaderEffect>().used){
-            GameObject.Find("PlayedLightLeaderSkillP1").GetComponent<Image>().color=green;
-        }
-        if(!GameObject.Find("EnemyLeader").GetComponent<LeaderEffect>().used){
-            GameObject.Find("PlayedLightLeaderSkillP2").GetComponent<Image>().color=green;
-        }
     }
     public static void PlayedLightsOff(){//Afecta a unos objetos del campo y los pone rojos
         Color red=new Color(1,0,0,0.2f);
@@ -66,11 +60,6 @@ public class VisualEffects : MonoBehaviour
         GameObject.Find("PlayedLightMiddle").GetComponent<Image>().color=red;
         GameObject.Find("PlayedLightLeft").GetComponent<Image>().color=red;
         GameObject.Find("PlayedLightRight").GetComponent<Image>().color=red;
-        GameObject.Find("PlayedLightLeaderSkillP1").GetComponent<Image>().color=red;
-        GameObject.Find("PlayedLightLeaderSkillP2").GetComponent<Image>().color=red;
-    }
-    public static void TurnLeaderOff(string thisPlayer){
-        GameObject.Find("PlayedLightLeaderSkill"+thisPlayer).GetComponent<Image>().color=new Color(1,0,0,0.2f);
     }
     public static void ValidSwapsGlow(GameObject selectedCard){//Ilumina las cartas con las que el senuelo pasado como parametro se puede intercambiar
         //En realidad oscurece las cartas con las que el senuelo no se puede intercambiar

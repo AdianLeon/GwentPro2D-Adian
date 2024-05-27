@@ -9,7 +9,8 @@ using System.Text;
 public class JsonCards : MonoBehaviour
 {
     private static int instantiatedCardsCount;
-    public GameObject prefab;//Referencia al prefab CardPrefab 
+    public GameObject cardPrefab;//Referencia al prefab CardPrefab 
+    public GameObject leaderPrefab;//Referencia al prefab LeaderPrefab
     void Awake(){
         instantiatedCardsCount=0;
         //ExportCardsInObject();//Para hacer jsons de todas las cartas en el objeto CardsToExport
@@ -31,12 +32,26 @@ public class JsonCards : MonoBehaviour
         }
     }
     public static void ImportCardTo(string jsonFormatCard,GameObject DeckPlace){
+        GameObject newCard=null;
         CardSave cardSave=JsonUtility.FromJson<CardSave>(jsonFormatCard);//Convierte el string en json a un objeto CardSave
-        GameObject newCard=Instantiate(GameObject.Find("Canvas").GetComponent<JsonCards>().prefab,new Vector3(0,0,0),Quaternion.identity);//Instanciando una carta generica
-        newCard.transform.SetParent(DeckPlace.transform);//Seteando esa carta generica a donde pertenece dependiendo del campo
+        if(cardSave.typeComponent=="LeaderCard"){//Si la carta a crear es una carta lider
+            newCard=Instantiate(GameObject.Find("Canvas").GetComponent<JsonCards>().leaderPrefab,new Vector3(0,0,0),Quaternion.identity);//Instanciando una carta lider generica
+            if(DeckPlace.name=="CardsP1"){
+                newCard.GetComponent<LeaderCard>().whichField=Card.fields.P1;
+                newCard.transform.SetParent(GameObject.Find("LeaderZone").transform);
+            }else if(DeckPlace.name=="CardsP2"){
+                newCard.GetComponent<LeaderCard>().whichField=Card.fields.P2;
+                newCard.transform.SetParent(GameObject.Find("EnemyLeaderZone").transform);
+            }
+        }else{//Si la carta no es lider
+            newCard=Instantiate(GameObject.Find("Canvas").GetComponent<JsonCards>().cardPrefab,new Vector3(0,0,0),Quaternion.identity);//Instanciando una carta generica
+            newCard.transform.SetParent(DeckPlace.transform);//Seteando esa carta generica a donde pertenece dependiendo del campo
+            newCard.AddComponent(Type.GetType(cardSave.typeComponent));//Anade el componente carta
+        }
+
         instantiatedCardsCount++;
         newCard.name=cardSave.cardRealName+"("+instantiatedCardsCount.ToString()+")";//Se le cambia el nombre a uno que sera unico: el nombre de la carta junto con la cantidad de cartas instanciadas
-        newCard.AddComponent(Type.GetType(cardSave.typeComponent));//Anade el componente carta
+        
         for(int i=0;i<cardSave.effectComponents.Count;i++){//Anade todos los componentes de efecto
             newCard.AddComponent(Type.GetType(cardSave.effectComponents[i]));
         }
@@ -63,7 +78,8 @@ public class JsonCards : MonoBehaviour
             newCard.GetComponent<BoostCard>().boost=cardSave.powerPoints;
         }
 
-        if(newCard.GetComponent<UnitCard>()!=null){//zones y quality
+        //zones && quality
+        if(newCard.GetComponent<UnitCard>()!=null){
             newCard.GetComponent<UnitCard>().whichZone=(UnitCard.zonesUC)Enum.Parse(typeof(UnitCard.zonesUC),cardSave.zones);//Convierte el string guardado en cardSave a un tipo del enum zones y lo asigna a la carta
             newCard.GetComponent<UnitCard>().whichQuality=(UnitCard.quality)Enum.Parse(typeof(UnitCard.quality),cardSave.quality);//Convierte el string guardado en cardSave a un tipo del enum quality y lo asigna a la carta
         }

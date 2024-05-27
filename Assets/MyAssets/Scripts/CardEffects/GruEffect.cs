@@ -2,24 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 //Script para el efecto de la carta lider
-public class LeaderEffect : MonoBehaviour
+public class GruEffect : LeaderEffect
 {
     public bool used;//Si se ha usado o no la habilidad de lider
         void Start(){
         used=false;
     }
-    public void LeaderP1(){//Habilidad de lider, intento de robo (P1)
-        if(TurnManager.playerTurn==1){
-            LeaderSkillConditions("Hand","EnemyHand","P1");
+    public override void TriggerLeaderEffect(){
+        //Si el lider es del jugador
+        if(this.gameObject.GetComponent<Card>().whichField.ToString().Contains(TurnManager.playerTurn.ToString())){
+            if(TurnManager.playerTurn==1){
+                LeaderSkillConditions("Hand","EnemyHand","P1");
+            }else if(TurnManager.playerTurn==2){
+                LeaderSkillConditions("EnemyHand","Hand","P2");
+            }
         }else{
-            RoundPoints.URLongWrite("Ese no es el tuyo, tu Gru es el de arriba");
-        }
-    }
-    public void LeaderP2(){//Habilidad de lider, intento de robo (P2)
-        if(TurnManager.playerTurn==2){
-            LeaderSkillConditions("EnemyHand","Hand","P2");
-        }else{
-            RoundPoints.URLongWrite("Ese no es el tuyo, tu Gru es el de abajo");
+            RoundPoints.URLongWrite("Ese no es tu Gru!!");
         }
     }
     private void LeaderSkillConditions(string hand,string enemyHand,string thisPlayer){
@@ -38,13 +36,6 @@ public class LeaderEffect : MonoBehaviour
                 LeaderSkill(hand,enemyHand,thisPlayer);//Activa la habilidad de lider para el jugador correspondiente
                 TurnManager.cardsPlayed++;//Esta accion cuenta como carta jugada
                 DeckTrade.firstAction=false;//Ya no se puede intercambiar cartas con el deck propio si es el primer turno de la partida
-            }
-            if(!TurnManager.lastTurn){
-                VisualEffects.PlayedLightsOff();
-            }else{
-                if(used){
-                    VisualEffects.TurnLeaderOff(thisPlayer);
-                }
             }
         }else if(used && TurnManager.cardsPlayed==0 || TurnManager.lastTurn){//Si la habilidad ha sido usada
             RoundPoints.URLongWrite("Gru solo puede ordenarle a los minions que roben dos cartas enemigas una vez por partida");
@@ -101,7 +92,7 @@ public class LeaderEffect : MonoBehaviour
             cardToSteal.GetComponent<Card>().whichField=stealerField;//Cambia el campo de la carta
             cardToSteal.GetComponent<Dragging>().hand=cardToSteal.transform.parent.gameObject;//Cambia la mano de la carta
     }
-    private GameObject GetRandomCardFromHand(string enemyHand){//Escoge una carta aleatoria de la mano enemiga
+    private GameObject GetRandomCardFromHand(string enemyHand){//Devuelve una carta aleatoria de la mano enemiga
         GameObject cardToSteal=GameObject.Find(enemyHand).transform.GetChild(Random.Range(0,GameObject.Find(enemyHand).transform.childCount)).gameObject;
         return cardToSteal;
     }
