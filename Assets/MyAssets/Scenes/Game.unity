@@ -3144,8 +3144,8 @@ MonoBehaviour:
   effectDescription: Ordena a los minions que roben dos cartas de la mano enemiga
     aunque conociendo a los minions eso puede salir mal (Solo se puede activar una
     vez por partida)
-  artwork: {fileID: 21300000, guid: 0c25efb6be7db3d43a0793023468ca41, type: 3}
-  qualitySprite: {fileID: 21300000, guid: d1c3b6a233b524474899f14a81d5c3b5, type: 3}
+  artwork: {fileID: 21300000, guid: 2b4ea53af48388d46878a149699cefdb, type: 3}
+  qualitySprite: {fileID: 21300000, guid: 59d86ff46d7aed94da81ad3480f2c35c, type: 3}
   cardColor: {r: 0.7254902, g: 0.1882353, b: 0.4862745, a: 1}
   whichField: 0
 --- !u!114 &532834802
@@ -3327,8 +3327,8 @@ MonoBehaviour:
   effectDescription: Ordena a los minions que roben dos cartas de la mano enemiga
     aunque conociendo a los minions eso puede salir mal (Solo se puede activar una
     vez por partida)
-  artwork: {fileID: 21300000, guid: 0c25efb6be7db3d43a0793023468ca41, type: 3}
-  qualitySprite: {fileID: 21300000, guid: d1c3b6a233b524474899f14a81d5c3b5, type: 3}
+  artwork: {fileID: 21300000, guid: 2b4ea53af48388d46878a149699cefdb, type: 3}
+  qualitySprite: {fileID: 21300000, guid: 59d86ff46d7aed94da81ad3480f2c35c, type: 3}
   cardColor: {r: 0.7254902, g: 0.1882353, b: 0.4862745, a: 1}
   whichField: 1
 --- !u!114 &540849624

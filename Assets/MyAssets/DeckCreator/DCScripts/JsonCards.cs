@@ -23,6 +23,12 @@ public class JsonCards : MonoBehaviour
             string jsonFormatCard=File.ReadAllText(cardsJson[i]);//Lee el archivo
             ImportCardTo(jsonFormatCard,DeckPlace);
         }
+        //Asignando la imagen del deck
+        if(DeckPlace.name=="CardsP1"){
+            GameObject.Find("Deck").GetComponent<Image>().sprite=Resources.Load<Sprite>(faction+"/DeckImage/Deck");
+        }else if(DeckPlace.name=="CardsP2"){
+            GameObject.Find("EnemyDeck").GetComponent<Image>().sprite=Resources.Load<Sprite>(faction+"/DeckImage/Deck");
+        }
     }
     public static void ImportCardTo(string jsonFormatCard,GameObject DeckPlace){
         CardSave cardSave=JsonUtility.FromJson<CardSave>(jsonFormatCard);//Convierte el string en json a un objeto CardSave
@@ -36,23 +42,24 @@ public class JsonCards : MonoBehaviour
         }
         newCard.GetComponent<RectTransform>().localScale=new Vector3(1,1,1);//Resetea la escala porque cuando se instancia esta desproporcional al resto de objetos
         
-        //Setear los campos de sprites a los valores guardados en cardSave
-        //newCard.GetComponent<Image>().sprite=cardSave.sourceImage
-        //newCard.GetComponent<Card>().artwork=cardSave.artwork
-        //newCard.GetComponent<Card>().qualitySprite=cardSave.quality
-        
+        //Card Properties
         newCard.GetComponent<Card>().faction=cardSave.faction;//faction
         newCard.GetComponent<Card>().cardRealName=cardSave.cardRealName;//cardRealName
         newCard.GetComponent<Card>().description=cardSave.description;//description
         newCard.GetComponent<Card>().effectDescription=cardSave.effectDescription;//effectDescription
         newCard.GetComponent<Card>().cardColor=new Color(cardSave.r,cardSave.g,cardSave.b,cardSave.a);//cardColor
 
+        //Sprites
+        newCard.GetComponent<Image>().sprite=Resources.Load<Sprite>(cardSave.sourceImage);//Carga el sprite en Assests/Resources/sourceImage en la carta
+        newCard.GetComponent<Card>().artwork=Resources.Load<Sprite>(cardSave.artwork);//Carga el sprite en Assests/Resources/artwork en la carta
+        newCard.GetComponent<Card>().qualitySprite=Resources.Load<Sprite>(cardSave.qualitySprite);//Carga el sprite en Assests/Resources/qualitySprite en la carta
+        
         //power || damage || boost
-        if(newCard.GetComponent<CardWithPower>()!=null){
+        if(newCard.GetComponent<CardWithPower>()!=null){//Si la carta instanciada es de poder
             newCard.GetComponent<CardWithPower>().power=cardSave.powerPoints;
-        }else if(newCard.GetComponent<WeatherCard>()!=null){
+        }else if(newCard.GetComponent<WeatherCard>()!=null){//Si es clima
             newCard.GetComponent<WeatherCard>().damage=cardSave.powerPoints;
-        }else if(newCard.GetComponent<BoostCard>()!=null){
+        }else if(newCard.GetComponent<BoostCard>()!=null){//Si es aumento
             newCard.GetComponent<BoostCard>().boost=cardSave.powerPoints;
         }
 
@@ -70,10 +77,9 @@ public class JsonCards : MonoBehaviour
     public static void ExportCard(GameObject card){
         string filePath=Application.dataPath+"/MyAssets/DeckCreator/Decks/"+card.GetComponent<Card>().faction+"/"+card.name+".json";
         Component[] validScripts=CardScriptsGatherer(card);//Todos los scripts validos de card
-        string spritesPath=Application.dataPath+"/MyAssets/Sprites/";
-        string sourceImage=spritesPath+card.GetComponent<Image>().sprite.name+".png";
-        string artwork=spritesPath+card.GetComponent<Card>().artwork.name+".png";
-        string qualitySprite=spritesPath+card.GetComponent<Card>().qualitySprite.name+".png";
+        string sourceImage=card.GetComponent<Card>().faction+"/"+card.GetComponent<Image>().sprite.name;
+        string artwork=card.GetComponent<Card>().faction+"/"+card.GetComponent<Card>().artwork.name;
+        string qualitySprite=card.GetComponent<Card>().faction+"/"+card.GetComponent<Card>().qualitySprite.name;
 
         ColorData color=new ColorData(card.GetComponent<Card>().cardColor.r,card.GetComponent<Card>().cardColor.g,card.GetComponent<Card>().cardColor.b,card.GetComponent<Card>().cardColor.a);//Color de la carta
         List<string> effectComponentList=new List<string>();//Todos los efectos de card
@@ -190,6 +196,4 @@ public class JsonCards : MonoBehaviour
         }
         return cardComponent;
     }
-
-    //private static 
 }
