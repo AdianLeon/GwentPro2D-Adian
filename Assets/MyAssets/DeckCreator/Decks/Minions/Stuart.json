@@ -1,0 +1,20 @@
+{
+    "sourceImage": "C:/Users/Adian/Documents/CC/Primero/1er semestre/Programacion/Proyectos/YunitiProllekts/Gwent Pro 2D/GwentPro2D Adian/Assets/MyAssets/Sprites/Stuart.png",
+    "faction": "Minions",
+    "cardRealName": "Stuart",
+    "description": "Esta un poco loco, le gusta que lo catapulten contra enemigos, muy conveniente",
+    "effectDescription": "Cuando esta carta es jugada su poder se convierte en el promedio del poder total de todas las cartas del campo",
+    "artwork": "C:/Users/Adian/Documents/CC/Primero/1er semestre/Programacion/Proyectos/YunitiProllekts/Gwent Pro 2D/GwentPro2D Adian/Assets/MyAssets/Sprites/StuartImage.png",
+    "qualitySprite": "C:/Users/Adian/Documents/CC/Primero/1er semestre/Programacion/Proyectos/YunitiProllekts/Gwent Pro 2D/GwentPro2D Adian/Assets/MyAssets/Sprites/SilverQuality.png",
+    "r": 0.772549033164978,
+    "g": 0.8274509906768799,
+    "b": 0.8666666746139526,
+    "a": 1.0,
+    "powerPoints": 0,
+    "typeComponent": "UnitCard",
+    "effectComponents": [
+        "PromEffect"
+    ],
+    "zones": "S",
+    "quality": "Silver"
+}

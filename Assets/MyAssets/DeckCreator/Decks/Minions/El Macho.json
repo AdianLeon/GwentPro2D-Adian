@@ -1,0 +1,20 @@
+{
+    "sourceImage": "C:/Users/Adian/Documents/CC/Primero/1er semestre/Programacion/Proyectos/YunitiProllekts/Gwent Pro 2D/GwentPro2D Adian/Assets/MyAssets/Sprites/ElMacho.png",
+    "faction": "Minions",
+    "cardRealName": "El Macho",
+    "description": ":o El Macho!! Pidele un autografo antes de que muera montando un tiburon vivo y saltando dentro de la boca de un volcan activo con 250 libras de dinamita atadas a su pecho",
+    "effectDescription": "Cuando esta carta es jugada manda al cementerio a la carta de mayor poder (no se incluye a si misma)",
+    "artwork": "C:/Users/Adian/Documents/CC/Primero/1er semestre/Programacion/Proyectos/YunitiProllekts/Gwent Pro 2D/GwentPro2D Adian/Assets/MyAssets/Sprites/ElMachoImage.png",
+    "qualitySprite": "C:/Users/Adian/Documents/CC/Primero/1er semestre/Programacion/Proyectos/YunitiProllekts/Gwent Pro 2D/GwentPro2D Adian/Assets/MyAssets/Sprites/GoldQuality.png",
+    "r": 0.8509804010391235,
+    "g": 0.6901960968971252,
+    "b": 0.23529411852359773,
+    "a": 1.0,
+    "powerPoints": 35,
+    "typeComponent": "UnitCard",
+    "effectComponents": [
+        "MostPowerEffect"
+    ],
+    "zones": "M",
+    "quality": "Gold"
+}

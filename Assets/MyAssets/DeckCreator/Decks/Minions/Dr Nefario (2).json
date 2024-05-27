@@ -1,0 +1,18 @@
+{
+    "sourceImage": "C:/Users/Adian/Documents/CC/Primero/1er semestre/Programacion/Proyectos/YunitiProllekts/Gwent Pro 2D/GwentPro2D Adian/Assets/MyAssets/Sprites/Dr Nefario.png",
+    "faction": "Minions",
+    "cardRealName": "Doctor Nefario",
+    "description": "Cientifico \"loco\" ayudante de Gru desde que se creo la maldad, inventor del rayo congelador , el algebra lineal y la gravedad",
+    "effectDescription": "",
+    "artwork": "C:/Users/Adian/Documents/CC/Primero/1er semestre/Programacion/Proyectos/YunitiProllekts/Gwent Pro 2D/GwentPro2D Adian/Assets/MyAssets/Sprites/Dr NefarioImage.png",
+    "qualitySprite": "C:/Users/Adian/Documents/CC/Primero/1er semestre/Programacion/Proyectos/YunitiProllekts/Gwent Pro 2D/GwentPro2D Adian/Assets/MyAssets/Sprites/SilverQuality.png",
+    "r": 0.772549033164978,
+    "g": 0.8274509906768799,
+    "b": 0.8666666746139526,
+    "a": 1.0,
+    "powerPoints": 25,
+    "typeComponent": "UnitCard",
+    "effectComponents": [],
+    "zones": "RS",
+    "quality": "Silver"
+}

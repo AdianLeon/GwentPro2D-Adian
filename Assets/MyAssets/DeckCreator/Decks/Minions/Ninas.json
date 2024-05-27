@@ -1,0 +1,18 @@
+{
+    "sourceImage": "C:/Users/Adian/Documents/CC/Primero/1er semestre/Programacion/Proyectos/YunitiProllekts/Gwent Pro 2D/GwentPro2D Adian/Assets/MyAssets/Sprites/Ninas.png",
+    "faction": "Minions",
+    "cardRealName": "Ninas",
+    "description": "Edith, Margo y Agnes. Fueron adoptadas por Gru y desde entonces le han hecho la vida un infierno, pero por lo menos saben usar un rifle",
+    "effectDescription": "",
+    "artwork": "C:/Users/Adian/Documents/CC/Primero/1er semestre/Programacion/Proyectos/YunitiProllekts/Gwent Pro 2D/GwentPro2D Adian/Assets/MyAssets/Sprites/NinasImage.png",
+    "qualitySprite": "C:/Users/Adian/Documents/CC/Primero/1er semestre/Programacion/Proyectos/YunitiProllekts/Gwent Pro 2D/GwentPro2D Adian/Assets/MyAssets/Sprites/SilverQuality.png",
+    "r": 0.772549033164978,
+    "g": 0.8274509906768799,
+    "b": 0.8666666746139526,
+    "a": 1.0,
+    "powerPoints": 20,
+    "typeComponent": "UnitCard",
+    "effectComponents": [],
+    "zones": "MR",
+    "quality": "Silver"
+}

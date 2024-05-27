@@ -8,7 +8,7 @@ using TMPro;
 public class MainMenu : MonoBehaviour
 {
     static bool firstExecuted=true;//Controla la primera ejecucion
-    void Start(){//Cuando se inicialice la escena
+    void Awake(){//Cuando se inicialice la escena
         if(firstExecuted){//Si es la primera vez que este script se ejecuta
             PlayerPrefs.SetFloat("allVolume",1);//Se impone como preferencia el volumen maximo
             PlayerPrefs.SetString("P1Deck","Minions");
