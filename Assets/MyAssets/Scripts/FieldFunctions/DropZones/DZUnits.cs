@@ -18,17 +18,7 @@ public class DZUnits : DropZone
             }
         }
     }
-    public bool isDropValid(GameObject card){
-        if(card.GetComponent<UnitCard>().whichZone.ToString().Length==1){
-            return validZone.ToString()==card.GetComponent<UnitCard>().whichZone.ToString();
-        }else{
-            string cardZones=card.GetComponent<UnitCard>().whichZone.ToString();
-            for(int i=0;i<cardZones.Length;i++){
-                if(validZone.ToString()==cardZones[i].ToString()){
-                    return true;
-                }
-            }
-            return false;
-        }
+    public bool isDropValid(GameObject card){//Analiza si es valido soltar una carta de unidad en esta zona
+        return card.GetComponent<UnitCard>().whichZone.ToString().Contains(validZone.ToString());//Devuelve si esta zona es una de las de la carta
     }
 }

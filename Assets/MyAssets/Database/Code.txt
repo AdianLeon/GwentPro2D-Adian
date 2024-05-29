@@ -1,0 +1,7 @@
+Card{
+	Type:"Oro",
+	Name:"Iron Man",
+	Faction:Avengers,
+	Power:100,
+	Range:"Ranged"
+}

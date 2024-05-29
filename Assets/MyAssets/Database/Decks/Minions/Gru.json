@@ -1,0 +1,19 @@
+{
+    "faction": "Minions",
+    "cardRealName": "Gru",
+    "description": "Besto villano de todos los tiempos, mi favorito",
+    "effectDescription": "Ordena a los minions que roben dos cartas de la mano enemiga aunque conociendo a los minions eso puede salir mal (Solo se puede activar una vez por partida)",
+    "sourceImage": "Minions/Gru",
+    "artwork": "Minions/GruImage",
+    "qualitySprite": "Minions/LeaderQuality",
+    "r": 0.7254902124404907,
+    "g": 0.1882352977991104,
+    "b": 0.48627451062202456,
+    "powerPoints": 0,
+    "typeComponent": "LeaderCard",
+    "effectComponents": [
+        "GruEffect"
+    ],
+    "zones": "",
+    "quality": ""
+}

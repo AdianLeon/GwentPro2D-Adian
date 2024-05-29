@@ -1,0 +1,17 @@
+{
+    "faction": "Minions",
+    "cardRealName": "Doctor Nefario",
+    "description": "Cientifico \"loco\" ayudante de Gru desde que se creo la maldad, inventor del rayo congelador , el algebra lineal y la gravedad",
+    "effectDescription": "",
+    "sourceImage": "Minions/Dr Nefario",
+    "artwork": "Minions/Dr NefarioImage",
+    "qualitySprite": "Minions/SilverQuality",
+    "r": 0.772549033164978,
+    "g": 0.8274509906768799,
+    "b": 0.8666666746139526,
+    "powerPoints": 25,
+    "typeComponent": "UnitCard",
+    "effectComponents": [],
+    "zones": "RS",
+    "quality": "Silver"
+}

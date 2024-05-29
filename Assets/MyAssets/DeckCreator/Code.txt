@@ -1,3 +1,0 @@
-Class{
-int power=0
-}
