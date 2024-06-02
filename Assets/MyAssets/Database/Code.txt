@@ -1,7 +1,7 @@
-Card{
+card{
 	Type:"Oro",
-	Name:"Iron Man",
-	Faction:Avengers,
-	Power:100,
-	Range:"Ranged"
+	Name:"Beluga",
+	Faction:"Northern Realms",
+	Power:10,
+	Range:["Ranged","Melee"]
 }

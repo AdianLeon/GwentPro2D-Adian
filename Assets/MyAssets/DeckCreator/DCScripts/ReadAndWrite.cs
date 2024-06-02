@@ -7,16 +7,15 @@ using TMPro;
 public class ReadAndWrite : MonoBehaviour
 {
     public TMP_InputField inputField;
-    private static string filePath;
-    public void SaveTextToFile(){//Guarda el texto del editor de codigo a el txt
-        filePath=Application.dataPath+"/MyAssets/Database/Code.txt";
+    public void SaveTextToFile(){//Guarda el texto del editor de codigo a el txt, se llama cuando se pulsa el boton
         string textToSave=inputField.text;
-        File.WriteAllText(filePath,textToSave);
+        File.WriteAllText(Application.dataPath+"/MyAssets/Database/Code.txt",textToSave);
     }
-    public void ReadTextFromFile(){//Obtiene el texto del txt
-        string allText=File.ReadAllText(filePath);
+    public void ReadTextFromFile(){//Obtiene el texto del txt, se llama cuando se pulsa el boton (despues de SaveTextFile)
+        string allText=File.ReadAllText(Application.dataPath+"/MyAssets/Database/Code.txt");
+        Lexer.TokenizeCode(allText);
     }
-    public void LoadTxtToCodeEditor(){
+    public void LoadTxtToCodeEditor(){//Se llama cuando se activa el menu Crear Deck
         inputField.text=File.ReadAllText(Application.dataPath+"/MyAssets/Database/Code.txt");
     }
 }
