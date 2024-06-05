@@ -44,7 +44,7 @@ public class DeckMenuLoadCards : MonoBehaviour
         
         for(int i=0;i<cardsJsonAddress.Length;i++){//Para cada uno de los archivos con extension json
             string jsonFormatCard=File.ReadAllText(cardsJsonAddress[i]);//Lee el archivo
-            CardsToJson.CardSave cardSave=JsonUtility.FromJson<CardsToJson.CardSave>(jsonFormatCard);//Convierte el string en json a un objeto CardSave
+            CustomClasses.CardSave cardSave=JsonUtility.FromJson<CustomClasses.CardSave>(jsonFormatCard);//Convierte el string en json a un objeto CardSave
             if(!showRepeated){//Si no debemos cargar las cartas repetidas
                 if(cardSave.cardRealName==nameOfLastCardLoaded){//Si esta carta que intentamos cargar es la misma que la que cargamos por ultima vez
                     continue;//No la cargamos
@@ -56,7 +56,7 @@ public class DeckMenuLoadCards : MonoBehaviour
 
         AlterCardsToShowChildrens();//Se ajusta el tamano de cada carta en dependencia de la cantidad
     }
-    private static void LoadCardToShow(CardsToJson.CardSave cardSave){
+    private static void LoadCardToShow(CustomClasses.CardSave cardSave){
         GameObject newCard=null;
         newCard=Instantiate(GameObject.Find("Dropdown").GetComponent<DeckMenuLoadCards>().viewCardPrefab,new Vector3(0,0,0),Quaternion.identity);
         newCard.transform.SetParent(GameObject.Find("CardsToShow").transform);//Instanciamos una carta del prefab CardsToShow

@@ -13,7 +13,7 @@ public class ReadAndWrite : MonoBehaviour
     }
     public void ReadTextFromFile(){//Obtiene el texto del txt, se llama cuando se pulsa el boton (despues de SaveTextFile)
         string allText=File.ReadAllText(Application.dataPath+"/MyAssets/Database/Code.txt");
-        Lexer.TokenizeCode(allText);
+        MainCompiler.ProcessText(allText);
     }
     public void LoadTxtToCodeEditor(){//Se llama cuando se activa el menu Crear Deck
         inputField.text=File.ReadAllText(Application.dataPath+"/MyAssets/Database/Code.txt");

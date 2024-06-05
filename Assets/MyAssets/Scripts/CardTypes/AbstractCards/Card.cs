@@ -10,6 +10,7 @@ abstract public class Card : MonoBehaviour
     public string cardRealName;//Nombre a mostrar en el objeto gigante a la izquierda del campo
     public string description;//Descripcion de la carta a mostrar en el objeto gigante a la izquierda del campo
     public string effectDescription;//Descripcion del efecto
+    public List<CustomClasses.Token> effectCode;
     public Sprite artwork;//Imagen para mostrar en el CardView
     public Sprite qualitySprite;//Otra imagen que representa al enum quality
     public Color cardColor;//Color determinado de la carta

@@ -4,72 +4,68 @@ using UnityEngine;
 //Script para transformar el codigo del objeto Compiler a tokens
 public class Lexer : MonoBehaviour
 {
-    public class Token{//Clase que almacena las propiedades del token
-        public string text;//Texto del token
-        public int position;//Posicion del token (indice con el que se encuentra en el string codigo)
-        public int line;//Linea donde se encuentra en el texto del objeto Compiler
-        public int col;//Columna donde se encuentra en el texto del objeto Compiler
-        //Tipos de token         123   card   ()[]{}     , ;    : =         ' "       + - > < * / || &&
-        public enum tokenTypes{number,word,parenthesis,comma,assignation,quote,space,binaryOperator,unexpected};
-        public tokenTypes type;
-        public Token(string text,int position,int line,int col,tokenTypes type){
-            this.text=text;
-            this.position=position;
-            this.line=line;
-            this.col=col;
-            this.type=type;
-        }
-    }
-
-    private static List<Token> tokenList=new List<Token>();//Lista de tokens (traduccion del codigo)
-    public static void TokenizeCode(string code){//Transforma el string code a una lista de tokens
+    private static List<CustomClasses.Token> tokenList=new List<CustomClasses.Token>();//Lista de tokens (traduccion del codigo)
+    public static List<CustomClasses.Token> TokenizeCode(string code){//Transforma el string code a una lista de tokens
         tokenList.Clear();
-        CheckTokens.ErrorClean();
+        CheckErrors.ErrorClean();
         if(code.Length>0){
-            if(code[code.Length-1]=='}'){
+            int lastPos=code.Length-1;
+            while(char.IsWhiteSpace(code[lastPos])){lastPos--;}
+            if(code[lastPos]=='}'){
                 Tokenize(code,0);
-                if(CheckTokens.IsCorrect(tokenList)){
+                SpecializeWordTokens(tokenList);
+                if(CheckErrors.IsCorrect(tokenList)){
                     //Iniciar el analisis de tokens
-                    Debug.Log("El codigo no tiene errores, inicia el analisis del parser");
+                    return tokenList;
                 }
             }else{
-                CheckTokens.ErrorWrite("Token de fin de archivo '}' esperado en linea: "+NewLineCounter(code,code.Length-1)+" columna: "+ColumnCounter(code,code.Length-1));
+                CheckErrors.ErrorWrite("Token de fin de archivo '}' esperado en linea: "+NewLineCounter(code,code.Length-1)+" columna: "+ColumnCounter(code,code.Length-1),"TokenizeCode");
             }
         }else{
-            CheckTokens.ErrorWrite("No hay codigo");
+            CheckErrors.ErrorWrite("No hay codigo","TokenizeCode");
         }
+        return null;
     }
-    public static void Tokenize(string code,int i){
+    private static void Tokenize(string code,int i){
         if(i>=code.Length){//MakeEndToken
+            //tokenList.Add(new CustomClasses.Token("$",i,NewLineCounter(code,i),ColumnCounter(code,i),CustomClasses.Token.tokenTypes.end,DepthCounter(code,i)));
             return;
         }else if(char.IsDigit(code[i])){
             MakeNumberToken(code,i,i,false);
         }else if(char.IsLetter(code[i])){
             MakeWordToken(code,i,i);
-        }else if(code[i]=='(' || code[i]=='[' || code[i]=='{' || code[i]==')' || code[i]==']' || code[i]=='}'){//MakeParenthesisToken
-            tokenList.Add(new Token(code[i].ToString(),i,NewLineCounter(code,i),ColumnCounter(code,i),Token.tokenTypes.parenthesis));
-            Tokenize(code,i+1);
-        }else if(code[i]==',' || code[i]==';'){//MakeCommaToken
-            tokenList.Add(new Token(code[i].ToString(),i,NewLineCounter(code,i),ColumnCounter(code,i),Token.tokenTypes.comma));
-            Tokenize(code,i+1);
-        }else if(code[i]==':' || code[i]=='='){//MakeAssignationToken
-            tokenList.Add(new Token(code[i].ToString(),i,NewLineCounter(code,i),ColumnCounter(code,i),Token.tokenTypes.assignation));
-            Tokenize(code,i+1);
-        }else if(code[i].ToString()=="'" || code[i]=='"'){//MakeQuoteToken
-            tokenList.Add(new Token(code[i].ToString(),i,NewLineCounter(code,i),ColumnCounter(code,i),Token.tokenTypes.quote));
+        }else if(code[i]=='"'){//MakeLiteralToken
+            MakeLiteralToken(code,i,i+1);
+        }else if(code[i]=='(' || code[i]=='[' || code[i]=='{' || code[i]==')' || code[i]==']' || code[i]=='}' || code[i].ToString()=="'" ||
+                code[i]==',' || code[i]==';' || code[i]=='.' || code[i]==':'){//MakePunctuatorToken
+            tokenList.Add(new CustomClasses.Token(code[i].ToString(),i,NewLineCounter(code,i),ColumnCounter(code,i),CustomClasses.Token.tokenTypes.punctuator,DepthCounter(code,i)));
             Tokenize(code,i+1);
         }else if(char.IsWhiteSpace(code[i])){//MakeSpaceToken
-            tokenList.Add(new Token(code[i].ToString(),i,NewLineCounter(code,i),ColumnCounter(code,i),Token.tokenTypes.space));
+            //tokenList.Add(new Token(code[i].ToString(),i,NewLineCounter(code,i),ColumnCounter(code,i),Token.tokenTypes.space,DepthCounter(code,i)));
             Tokenize(code,i+1);
-        }else if(code[i]=='@' || (code[i]=='@' && code[i+1]=='@') ||code[i]=='+' || code[i]=='-' || code[i]=='*' || code[i]=='/' || (code[i]=='&' && code[i+1]=='&') || (code[i]=='|' && code[i+1]=='|')){//MakeBinaryOperatorToken
-            tokenList.Add(new Token(code[i].ToString(),i,NewLineCounter(code,i),ColumnCounter(code,i),Token.tokenTypes.binaryOperator));
+        }else if(code[i]=='@' || (code[i]=='@' && code[i+1]=='@') ||code[i]=='+' || code[i]=='-' || code[i]=='*' || code[i]=='/' || 
+                (code[i]=='&' && code[i+1]=='&') || (code[i]=='|' && code[i+1]=='|') || code[i]=='<' || (code[i]=='<' && code[i+1]=='=') ||
+                code[i]=='>' || (code[i]=='>' && code[i]+1=='=') || code[i]=='=' || (code[i]=='=' && code[i+1]=='=')){//MakeBinaryOperatorToken
+            //********** Make a Method to read the double char ones 
+            tokenList.Add(new CustomClasses.Token(code[i].ToString(),i,NewLineCounter(code,i),ColumnCounter(code,i),CustomClasses.Token.tokenTypes.binOperator,DepthCounter(code,i)));
             Tokenize(code,i+1);
         }else if(code[i]=='/' && code[i+1]=='/'){//Comentarios
             while(code[i]!='\n' && i<code.Length){i++;}
             Tokenize(code,i+1);
         }else{//MakeBadToken
-            tokenList.Add(new Token(code[i].ToString(),i,NewLineCounter(code,i),ColumnCounter(code,i),Token.tokenTypes.unexpected));
+            tokenList.Add(new CustomClasses.Token(code[i].ToString(),i,NewLineCounter(code,i),ColumnCounter(code,i),CustomClasses.Token.tokenTypes.unexpected,DepthCounter(code,i)));
             Tokenize(code,i+1);
+        }
+    }
+    private static void SpecializeWordTokens(List<CustomClasses.Token> tokenList){
+        string w="";
+        for(int i=0;i<tokenList.Count;i++){
+            w=tokenList[i].text;
+            if((w=="Type" || w=="Name" || w=="Faction" || w=="Power" || w=="Range" || w=="OnActivation") && tokenList[i].depth==1 && tokenList[i+1].text==":"){
+                tokenList[i].type=CustomClasses.Token.tokenTypes.cardAssignment;
+            }else if((w=="card" || w=="effect") && tokenList[i].depth==0 && tokenList[i+1].text=="{"){
+                tokenList[i].type=CustomClasses.Token.tokenTypes.blockDeclaration;
+            }
         }
     }
     private static void MakeNumberToken(string code,int start,int i,bool foundDot){//Crea un token numerico (puede ser int o float) 100.2.2
@@ -81,27 +77,43 @@ public class Lexer : MonoBehaviour
                 if(char.IsDigit(code[i+1])){//Y si el proximo numero despues del punto es un numero
                     MakeNumberToken(code,start,i+1,true);//Seguimos contando
                 }else{//Si despues del punto no hay un numero
-                    tokenList.Add(new Token(code.Substring(start,i-start+1),start,NewLineCounter(code,start),ColumnCounter(code,start),Token.tokenTypes.unexpected));
+                    tokenList.Add(new CustomClasses.Token(code.Substring(start,i-start+1),start,NewLineCounter(code,start),ColumnCounter(code,start),CustomClasses.Token.tokenTypes.unexpected,DepthCounter(code,i)));
                     Tokenize(code,i+1);
                 }
             }else{//Si ya hemos encontrado un punto antes
-                tokenList.Add(new Token(code.Substring(start,i-start+1),start,NewLineCounter(code,start),ColumnCounter(code,start),Token.tokenTypes.unexpected));
+                tokenList.Add(new CustomClasses.Token(code.Substring(start,i-start+1),start,NewLineCounter(code,start),ColumnCounter(code,start),CustomClasses.Token.tokenTypes.unexpected,DepthCounter(code,i)));
                 Tokenize(code,i+1);
             }
         }else{
             //Anade a la lista de tokens el substring desde que empezamos a contar hasta que finalizamos
-            tokenList.Add(new Token(code.Substring(start,i-start),start,NewLineCounter(code,start),ColumnCounter(code,start),Token.tokenTypes.number));
+            tokenList.Add(new CustomClasses.Token(code.Substring(start,i-start),start,NewLineCounter(code,start),ColumnCounter(code,start),CustomClasses.Token.tokenTypes.number,DepthCounter(code,i)));
             Tokenize(code,i);
         }
     }
+
     private static void MakeWordToken(string code,int start,int i){//Crea un token palabra
-        while(char.IsLetter(code[i])){//Mientras el caracter sea una letra sigue avanzando
+        while(char.IsLetter(code[i]) || char.IsDigit(code[i])){//Mientras el caracter sea una letra sigue avanzando
             i++;
         }
         //Anade a la lista de tokens el substring desde que empezamos a contar hasta que finalizamos
-        tokenList.Add(new Token(code.Substring(start,i-start),start,NewLineCounter(code,start),ColumnCounter(code,start),Token.tokenTypes.word));
+        tokenList.Add(new CustomClasses.Token(code.Substring(start,i-start),start,NewLineCounter(code,start),ColumnCounter(code,start),CustomClasses.Token.tokenTypes.identifier,DepthCounter(code,i)));
         Tokenize(code,i);
     }
+
+    private static void MakeLiteralToken(string code,int start,int i){//Crea un token string
+        while(code[i]!='"'){//Mientras el caracter no sea una comilla sigue avanzando
+            i++;
+            if(i==code.Length){
+                CheckErrors.ErrorWrite("Pareja de caracter doble comilla no encontrado linea: "+NewLineCounter(code,start)+" columna: "+ColumnCounter(code,start),"MakeLiteralToken");
+                tokenList.Add(new CustomClasses.Token("",start,NewLineCounter(code,start),ColumnCounter(code,start),CustomClasses.Token.tokenTypes.unexpected,DepthCounter(code,i)));
+                return;
+            }
+        }
+        //Anade a la lista de tokens el substring desde que empezamos a contar hasta que finalizamos
+        tokenList.Add(new CustomClasses.Token(code.Substring(start+1,i-start-1),start,NewLineCounter(code,start),ColumnCounter(code,start),CustomClasses.Token.tokenTypes.literal,DepthCounter(code,i)));
+        Tokenize(code,i+1);//Hay que llamar la funcion principal una posicion despues de la comilla
+    }
+
     public static int NewLineCounter(string code,int i){//Dados el codigo y la posicion cuenta la cantidad de saltos de linea
         int lines=1;
         for(int j=0;j<i;j++){
@@ -111,6 +123,7 @@ public class Lexer : MonoBehaviour
         }
         return lines;
     }
+
     public static int ColumnCounter(string code,int i){//Dados el codigo y la posicion cuenta los caracteres anteriores a la palabra en su linea
         int col=0;
         for(int j=0;j<i;j++){
@@ -120,5 +133,19 @@ public class Lexer : MonoBehaviour
             }
         }
         return col;
+    }
+
+    private static int DepthCounter(string code,int index){
+        List<char> aux=new List<char>();
+        for(int i=0;i<index;i++){
+            if(code[i]=='(' || code[i]=='[' || code[i]=='{'){
+                aux.Add(code[i]);
+            }else if(code[i]==')' || code[i]==']' || code[i]=='}'){
+                if(aux[aux.Count-1].ToString()==Utils.ParenthesisMatch(code[i].ToString())){
+                    aux.RemoveAt(aux.Count-1);
+                }
+            }
+        }
+        return aux.Count;
     }
 }

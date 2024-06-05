@@ -1,7 +1,45 @@
+effect{
+	Name: "Damage",
+	Params: {
+		Amount: Number
+	},
+	Action(targets, context)=> {
+		for targets in target {
+			i=0;
+			while (i++ < Amount)
+				target.Power-=1;
+		};
+	}
+}
 card{
-	Type:"Oro",
-	Name:"Beluga",
-	Faction:"Northern Realms",
-	Power:10,
-	Range:["Ranged","Melee"]
+	Type: "Oro",
+	Name: "Beluga",
+	Faction: "Northern Realms",
+	Power: 10,
+	Range: ["Ranged", "Melee"],
+	OnActivation: [
+		{
+			Effect: {
+				Name: "Damage",
+				Amount: 5,
+			},
+			Selector: {
+				Source: "board",
+
+				Single: false,
+				Predicate: (unit) => unit.Faction == "Northern" @@ "Realms"
+			},
+			PostAction{
+				Type:"ReturnToDeck",
+				Selector: {
+					Source: "parent",
+					Single: false,
+					Predicate (unit) => unit.Power < 1
+				}
+			}
+		},
+		{
+			Effect: Draw
+		}
+	]
 }

@@ -21,13 +21,13 @@ public class JsonToCards : MonoBehaviour
         string[] cardsJsonAddress=Directory.GetFiles(factionPath,"*.json");//Obtiene dentro del directorio del deck solo la direccion de los archivos con extension json (ignora los meta)
         for(int i=0;i<cardsJsonAddress.Length;i++){//Para cada uno de los archivos con extension json
             string jsonFormatCard=File.ReadAllText(cardsJsonAddress[i]);//Lee el archivo
-            CardsToJson.CardSave cardSave=JsonUtility.FromJson<CardsToJson.CardSave>(jsonFormatCard);//Convierte el string en json a un objeto CardSave
+            CustomClasses.CardSave cardSave=JsonUtility.FromJson<CustomClasses.CardSave>(jsonFormatCard);//Convierte el string en json a un objeto CardSave
             ImportCardTo(cardSave,DeckPlace);
         }
         //Asignando la imagen del deck
         Deck.GetComponent<Image>().sprite=Resources.Load<Sprite>(faction+"/DeckImage/Deck");
     }
-    public static void ImportCardTo(CardsToJson.CardSave cardSave,GameObject DeckPlace){
+    public static void ImportCardTo(CustomClasses.CardSave cardSave,GameObject DeckPlace){
         GameObject newCard=null;
         //Instanciando la carta
         if(cardSave.typeComponent=="LeaderCard"){//Si la carta a crear es una carta lider
@@ -59,6 +59,7 @@ public class JsonToCards : MonoBehaviour
         newCard.GetComponent<Card>().description=cardSave.description;//Description
         newCard.GetComponent<Card>().effectDescription=cardSave.effectDescription;//EffectDescription
         newCard.GetComponent<Card>().cardColor=new Color(cardSave.r,cardSave.g,cardSave.b,1);//Color
+        newCard.GetComponent<Card>().effectCode=cardSave.effectCode;
 
         //Sprites
         newCard.GetComponent<Image>().sprite=Resources.Load<Sprite>(cardSave.sourceImage);//Carga el sprite en Assests/Resources/sourceImage en la carta
