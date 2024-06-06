@@ -1,0 +1,18 @@
+{
+    "faction": "Northern Realms",
+    "cardRealName": "Beluga",
+    "description": "Esta es una carta creada",
+    "effectDescription": "Esta es una carta creada",
+    "sourceImage": "Northern Realms/BelugaImage",
+    "artwork": "Northern Realms/Beluga",
+    "qualitySprite": "GoldQuality",
+    "r": 0.9345263838768005,
+    "g": 0.9856032729148865,
+    "b": 0.9034845232963562,
+    "powerPoints": 10,
+    "typeComponent": "UnitCard",
+    "effectComponents": [],
+    "onActivationCode": "[{Effect:{Name:Damage,Amount:5,},Selector:{Source:board,Single:false,Predicate:(unit)=>unit.Faction==Northern@@Realms},PostAction{Type:ReturnToDeck,Selector:{Source:parent,Single:false,Predicate(unit)=>unit.Power<1}}},{Effect:Draw}]",
+    "zones": "S",
+    "quality": "Gold"
+}

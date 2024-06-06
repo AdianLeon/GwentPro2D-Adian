@@ -16,7 +16,7 @@ card{
 	Name: "Beluga",
 	Faction: "Northern Realms",
 	Power: 10,
-	Range: ["Ranged", "Melee"],
+	Range: ["S"],
 	OnActivation: [
 		{
 			Effect: {

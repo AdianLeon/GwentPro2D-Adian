@@ -39,4 +39,9 @@ public class Utils : MonoBehaviour
             return allpars[posOfPar-1];
         }
     }
+    public static void AddTokensTo(List<CustomClasses.Token> targetList,List<CustomClasses.Token> tokenList,int start,int end){
+        for(int i=start;i<end;i++){
+            targetList.Add(tokenList[i]);
+        }
+    }
 }

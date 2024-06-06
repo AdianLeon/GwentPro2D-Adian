@@ -21,7 +21,6 @@ public class CardsToJson : MonoBehaviour
         //Sprites
         string sourceImage=card.GetComponent<Card>().faction+"/"+card.GetComponent<Image>().sprite.name;
         string artwork=card.GetComponent<Card>().faction+"/"+card.GetComponent<Card>().artwork.name;
-        string qualitySprite=card.GetComponent<Card>().faction+"/"+card.GetComponent<Card>().qualitySprite.name;
         //Power
         int powerPoints=0;
         if(card.GetComponent<UnitCard>()!=null){
@@ -41,18 +40,24 @@ public class CardsToJson : MonoBehaviour
         CustomClasses.CardSave saveCard=new CustomClasses.CardSave(
             card.GetComponent<Card>().faction,card.GetComponent<Card>().cardRealName,//Faccion y nombre
             card.GetComponent<Card>().description, card.GetComponent<Card>().effectDescription,//Descripcion y descripcion de efecto
-            sourceImage, artwork, qualitySprite,//Sprites
+            sourceImage, artwork,//Sprites
             card.GetComponent<Card>().cardColor.r, card.GetComponent<Card>().cardColor.g, card.GetComponent<Card>().cardColor.b,//Color
             powerPoints,//Power||Damage||Boost
             GetCardScriptName(card), GetEffectScriptsNames(card),//Nombres de scripts
-            zones, quality//Enums zones y quality
+            zones, quality,//Enums zones y quality
+            card.GetComponent<Card>().onActivationCode
         );
-        string filePath=Application.dataPath+"/MyAssets/Database/Decks/"+card.GetComponent<Card>().faction+"/"+card.name+".json";
-        WriteJsonOfCard(saveCard,filePath);
+        string filePath=Application.dataPath+"/MyAssets/Database/Decks/"+card.GetComponent<Card>().faction;
+        string cardJsonName="/"+card.name+".json";
+        WriteJsonOfCard(saveCard,filePath,cardJsonName);
     }
-    public static void WriteJsonOfCard(CustomClasses.CardSave saveCard,string address){//Crea un json de la carta guardada en la direccion
+    public static void WriteJsonOfCard(CustomClasses.CardSave saveCard,string address,string cardJsonName){//Crea un json de la carta guardada en la direccion
         string jsonStringCard=JsonUtility.ToJson(saveCard,true);
-        File.WriteAllText(address,jsonStringCard);
+        if(!Directory.Exists(address)){
+            Debug.Log("Directorio no encontrado");
+            Directory.CreateDirectory(address);
+        }
+        File.WriteAllText(address+cardJsonName,jsonStringCard);
     }
     private static string GetCardScriptName(GameObject card){//Devuelve el nombre del script Card
         return card.GetComponent<Card>().GetType().Name;

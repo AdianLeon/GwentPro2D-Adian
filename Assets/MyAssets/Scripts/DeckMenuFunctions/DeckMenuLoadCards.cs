@@ -9,8 +9,6 @@ public class DeckMenuLoadCards : MonoBehaviour
 {
     public TMP_Dropdown dropdown;
     public GameObject viewCardPrefab;
-    static bool showRepeated;
-    static string nameOfLastCardLoaded;
     public void DeckStart(){//Esta funcion se llama cada vez que se activa el menu deck
         LoadFilesInDropdown();//Carga los decks al dropdown
         dropdown.onValueChanged.AddListener(delegate{OnDropdownValueChanged();});//Ahora cuando el dropdown se modifique la funcion OnDeopDownValueChanged se llama
@@ -28,10 +26,6 @@ public class DeckMenuLoadCards : MonoBehaviour
         string selectedDeck=dropdown.options[dropdown.value].text;//Se obtiene el deck seleccionado
         LoadAllCardsToShow(selectedDeck);//Se cargan todas las cartas de esa carpeta en el medio del menu
     }
-    public void OnTogglePress(){//Cuando se presiona el oso
-        showRepeated=!showRepeated;//Se alterna el booleano
-        OnDropdownValueChanged();//Se recarga el deck
-    }
     private static void LoadAllCardsToShow(string faction){//Carga todas las cartas de esa faccion
         int count=GameObject.Find("CardsToShow").transform.childCount;
         for(int i=0;i<count;i++){//Limpia el objeto de cartas anteriores
@@ -45,12 +39,6 @@ public class DeckMenuLoadCards : MonoBehaviour
         for(int i=0;i<cardsJsonAddress.Length;i++){//Para cada uno de los archivos con extension json
             string jsonFormatCard=File.ReadAllText(cardsJsonAddress[i]);//Lee el archivo
             CustomClasses.CardSave cardSave=JsonUtility.FromJson<CustomClasses.CardSave>(jsonFormatCard);//Convierte el string en json a un objeto CardSave
-            if(!showRepeated){//Si no debemos cargar las cartas repetidas
-                if(cardSave.cardRealName==nameOfLastCardLoaded){//Si esta carta que intentamos cargar es la misma que la que cargamos por ultima vez
-                    continue;//No la cargamos
-                }
-            }
-            nameOfLastCardLoaded=cardSave.cardRealName;
             LoadCardToShow(cardSave);//Convierte ese objeto a carta
         }
 

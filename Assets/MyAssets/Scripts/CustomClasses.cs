@@ -18,17 +18,16 @@ public class CustomClasses : MonoBehaviour
         public int powerPoints;//Puntos de la carta sea para el power de las cartas unidades, damage de climas o boost de las cartas aumento
         public string typeComponent;//Nombre del tipo de carta
         public string[] effectComponents;//Lista de nombres de los componentes efecto
-        public List<Token> effectCode;//Codigo del efecto
+        public string onActivationCode;//Nombre del Codigo del efecto
         public string zones;//Zonas donde se puede jugar en caso de que sea tipo unidad
         public string quality;//Calidad de la carta en caso de que sea tipo Unidad
-        public CardSave(string faction,string cardRealName,string description,string effectDescription,string sourceImage,string artwork,string qualitySprite,float r,float g,float b,int powerPoints,string typeComponent,string[] effectComponents,string zones,string quality,List<Token> effectCode){
+        public CardSave(string faction,string cardRealName,string description,string effectDescription,string sourceImage,string artwork,float r,float g,float b,int powerPoints,string typeComponent,string[] effectComponents,string zones,string quality,string onActivationCode){
             this.sourceImage=sourceImage;
             this.faction=faction;
             this.cardRealName=cardRealName;
             this.description=description;
             this.effectDescription=effectDescription;
             this.artwork=artwork;
-            this.qualitySprite=qualitySprite;
             this.r=r;
             this.g=g;
             this.b=b;
@@ -37,25 +36,11 @@ public class CustomClasses : MonoBehaviour
             this.effectComponents=effectComponents;
             this.zones=zones;
             this.quality=quality;
-            this.effectCode=effectCode;
-        }
-        public CardSave(string faction,string cardRealName,string description,string effectDescription,string sourceImage,string artwork,string qualitySprite,float r,float g,float b,int powerPoints,string typeComponent,string[] effectComponents,string zones,string quality){
-            this.sourceImage=sourceImage;
-            this.faction=faction;
-            this.cardRealName=cardRealName;
-            this.description=description;
-            this.effectDescription=effectDescription;
-            this.artwork=artwork;
-            this.qualitySprite=qualitySprite;
-            this.r=r;
-            this.g=g;
-            this.b=b;
-            this.powerPoints=powerPoints;
-            this.typeComponent=typeComponent;
-            this.effectComponents=effectComponents;
-            this.zones=zones;
-            this.quality=quality;
-            this.effectCode=null;
+            this.onActivationCode=onActivationCode;
+            if(quality=="Gold"){this.qualitySprite="GoldQuality";
+            }else if(quality=="Silver"){this.qualitySprite="SilverQuality";
+            }else if(typeComponent=="LeaderCard"){this.qualitySprite="LeaderQuality";
+            }else{this.qualitySprite="BlankImage";}
         }
     }
     public class Token{//Clase que almacena las propiedades del token

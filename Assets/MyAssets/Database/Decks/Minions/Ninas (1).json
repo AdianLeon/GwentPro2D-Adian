@@ -5,13 +5,14 @@
     "effectDescription": "",
     "sourceImage": "Minions/Ninas",
     "artwork": "Minions/NinasImage",
-    "qualitySprite": "Minions/SilverQuality",
+    "qualitySprite": "SilverQuality",
     "r": 0.772549033164978,
     "g": 0.8274509906768799,
     "b": 0.8666666746139526,
     "powerPoints": 20,
     "typeComponent": "UnitCard",
     "effectComponents": [],
+    "onActivationCode": "",
     "zones": "MR",
     "quality": "Silver"
 }

@@ -5,7 +5,7 @@
     "effectDescription": "Esta carta se puede intercambiar con otra en el campo propio (solo con unidades de plata)",
     "sourceImage": "Minions/SBaby",
     "artwork": "Minions/SBabyImage",
-    "qualitySprite": "Minions/BlankImage",
+    "qualitySprite": "BlankImage",
     "r": 0.772549033164978,
     "g": 0.45490196347236636,
     "b": 0.7098039388656616,
@@ -14,6 +14,7 @@
     "effectComponents": [
         "BaitEffect"
     ],
+    "onActivationCode": "",
     "zones": "",
     "quality": ""
 }

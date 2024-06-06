@@ -5,7 +5,7 @@
     "effectDescription": "Cuando esta carta es jugada se roba una carta del deck propio",
     "sourceImage": "Minions/ScarlettOverkill",
     "artwork": "Minions/ScarlettOverkillImage",
-    "qualitySprite": "Minions/GoldQuality",
+    "qualitySprite": "GoldQuality",
     "r": 0.8509804010391235,
     "g": 0.6901960968971252,
     "b": 0.23529411852359773,
@@ -14,6 +14,7 @@
     "effectComponents": [
         "DrawOneEffect"
     ],
+    "onActivationCode": "",
     "zones": "MRS",
     "quality": "Gold"
 }

@@ -5,7 +5,7 @@
     "effectDescription": "Cuando esta carta es jugada su poder es multiplicado por la cantidad de Kyles jugados en el campo (contandose a si misma)",
     "sourceImage": "Minions/Kyle",
     "artwork": "Minions/KyleImage",
-    "qualitySprite": "Minions/SilverQuality",
+    "qualitySprite": "SilverQuality",
     "r": 0.772549033164978,
     "g": 0.8274509906768799,
     "b": 0.8666666746139526,
@@ -14,6 +14,7 @@
     "effectComponents": [
         "MultiplyEffect"
     ],
+    "onActivationCode": "",
     "zones": "MS",
     "quality": "Silver"
 }

@@ -59,7 +59,7 @@ public class JsonToCards : MonoBehaviour
         newCard.GetComponent<Card>().description=cardSave.description;//Description
         newCard.GetComponent<Card>().effectDescription=cardSave.effectDescription;//EffectDescription
         newCard.GetComponent<Card>().cardColor=new Color(cardSave.r,cardSave.g,cardSave.b,1);//Color
-        newCard.GetComponent<Card>().effectCode=cardSave.effectCode;
+        newCard.GetComponent<Card>().onActivationCode=cardSave.onActivationCode;
 
         //Sprites
         newCard.GetComponent<Image>().sprite=Resources.Load<Sprite>(cardSave.sourceImage);//Carga el sprite en Assests/Resources/sourceImage en la carta
