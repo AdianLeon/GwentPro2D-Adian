@@ -13,6 +13,8 @@ public class JsonToCards : MonoBehaviour
     public GameObject leaderPrefab;//Referencia al prefab LeaderPrefab
     void Awake(){
         instantiatedCardsCount=0;
+        Debug.Log(PlayerPrefs.GetString("P1Deck"));
+        Debug.Log(PlayerPrefs.GetString("P2Deck"));
         ImportDeckTo(PlayerPrefs.GetString("P1Deck"),GameObject.Find("CardsP1"),GameObject.Find("Deck"));
         ImportDeckTo(PlayerPrefs.GetString("P2Deck"),GameObject.Find("CardsP2"),GameObject.Find("EnemyDeck"));
     }

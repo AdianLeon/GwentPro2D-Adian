@@ -10,21 +10,12 @@ public class DeckMenuLoadCards : MonoBehaviour
     public TMP_Dropdown dropdown;
     public GameObject viewCardPrefab;
     public void DeckStart(){//Esta funcion se llama cada vez que se activa el menu deck
-        LoadFilesInDropdown();//Carga los decks al dropdown
+        DeckAssignDropdowns.LoadFilesInDropdown(dropdown);//Carga los decks al dropdown
         dropdown.onValueChanged.AddListener(delegate{OnDropdownValueChanged();});//Ahora cuando el dropdown se modifique la funcion OnDeopDownValueChanged se llama
-    }
-    private void LoadFilesInDropdown(){//Obtiene todos los directorios en la carpeta Decks y los anade como opcion en el dropdown
-        DirectoryInfo dir=new DirectoryInfo(Application.dataPath+"/MyAssets/Database/Decks/");
-        DirectoryInfo[] subDirs=dir.GetDirectories();//Carpetas dentro de Decks
-        dropdown.ClearOptions();//Quita todas las opciones del dropdown
-
-        for(int i=0;i<subDirs.Length;i++){//Anade todas las carpetas (decks)
-            dropdown.options.Add(new TMP_Dropdown.OptionData(subDirs[i].Name));
-        }
+        OnDropdownValueChanged();
     }
     public void OnDropdownValueChanged(){//Cuando el valor del dropdown se modifique
-        string selectedDeck=dropdown.options[dropdown.value].text;//Se obtiene el deck seleccionado
-        LoadAllCardsToShow(selectedDeck);//Se cargan todas las cartas de esa carpeta en el medio del menu
+        LoadAllCardsToShow(dropdown.options[dropdown.value].text);//Se cargan todas las cartas de esa carpeta en el medio del menu
     }
     private static void LoadAllCardsToShow(string faction){//Carga todas las cartas de esa faccion
         int count=GameObject.Find("CardsToShow").transform.childCount;

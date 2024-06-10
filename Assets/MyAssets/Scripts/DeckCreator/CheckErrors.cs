@@ -27,5 +27,4 @@ public class CheckErrors : MonoBehaviour
         }
         return isCorrect;
     }
-    //Metodo para chequear que no hayan palabras que no sean correctas
 }

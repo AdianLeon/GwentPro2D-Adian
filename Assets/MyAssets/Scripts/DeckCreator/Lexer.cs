@@ -134,7 +134,7 @@ public class Lexer : MonoBehaviour
         }
         return col;
     }
-
+    
     private static int DepthCounter(string code,int index){
         List<char> aux=new List<char>();
         for(int i=0;i<index;i++){

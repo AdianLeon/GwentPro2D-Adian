@@ -12,11 +12,11 @@ effect{
 	}
 }
 card{
-	Type: "Lider",
-	Name: "Unga Bunga",
+	Type: "Oro",
+	Name: "Beluga",
 	Faction: "Northern Realms",
-	Range:[],
-	Power: 0,
+	Power: 10,
+	Range: ["S"],
 	OnActivation: [
 		{
 			Effect: {
