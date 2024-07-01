@@ -36,15 +36,14 @@ public class CardsToJson : MonoBehaviour
         {
             //Faccion y nombre
             faction = card.GetComponent<Card>().faction,
-            cardRealName = card.GetComponent<Card>().cardRealName,
+            cardName = card.GetComponent<Card>().cardName,
             //Descripcion y descripcion de efecto
             description = card.GetComponent<Card>().description,
             effectDescription = card.GetComponent<Card>().effectDescription,
             //Power||Damage||Boost
             powerPoints = powerPoints,
             //Nombres de scripts
-            typeComponent = card.GetComponent<Card>().GetType().Name,//Componente carta
-            effectComponents = GetEffectScriptsNames(card),//Componentes efecto
+            scriptComponents = GetScriptsNames(card),
             //Enums zones y quality
             zones = zones,
             //Nombre del json con los efectos
@@ -61,12 +60,12 @@ public class CardsToJson : MonoBehaviour
         }
         File.WriteAllText(address+cardJsonName,jsonStringCard);
     }
-    private static string[] GetEffectScriptsNames(GameObject card){//Devuelve una lista de nombres de los efectos de la carta
-        Component[] effectScripts=card.GetComponents(typeof(IEffect));
-        string[] effectScriptsNames=new string[effectScripts.Length];
-        for(int i=0;i<effectScripts.Length;i++){
-            effectScriptsNames[i]=effectScripts[i].GetType().Name;
+    private static string[] GetScriptsNames(GameObject card){//Devuelve una lista de nombres de los efectos de la carta
+        Component[] scripts=card.GetComponents(typeof(IToJson));
+        string[] scriptNames=new string[scripts.Length];
+        for(int i=0;i<scripts.Length;i++){
+            scriptNames[i]=scripts[i].GetType().Name;
         }
-        return effectScriptsNames;
+        return scriptNames;
     }
 }

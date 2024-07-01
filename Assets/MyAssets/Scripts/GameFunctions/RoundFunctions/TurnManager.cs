@@ -5,18 +5,22 @@ using UnityEngine.UI;
 //Script para la logica de los turnos
 public class TurnManager : MonoBehaviour
 {
-    public static int playerTurn;//Turno de jugador
+    private static int playerTurn;//Turno de jugador
     public static string PTurn{get=>"P"+playerTurn;}
     public static string ETurn{get{if(playerTurn==1){return "P2";}else{return "P1";}}}
-    public static int cardsPlayed;//Cant de cartas jugadas en el turno
-    public static bool lastTurn;//Si es o no el ultimo turno antes de que acabe la ronda
-    public static List<GameObject> playedCards=new List<GameObject>();//Lista de las cartas jugadas para enviarlas al cementerio
-    public static float lastClickTime;
+    private static int cardsPlayedCount;//Cant de cartas jugadas en el turno
+    public static int CardsPlayedCount{get=>cardsPlayedCount;}
+    private static bool isLastTurn;//Si es o no el ultimo turno antes de que acabe la ronda
+    public static bool IsLastTurn{get=>isLastTurn;}
+    public static bool CanPlay{get=>cardsPlayedCount==0 || isLastTurn;}
+    private static List<GameObject> playedCards=new List<GameObject>();//Lista de las cartas jugadas en la ronda
+    public static List<GameObject> PlayedCards{get=>playedCards;}
+    private static float lastClickTime;
     void Start(){
         RoundPoints.URLongWrite("Ha comenzado una nueva partida, es el turno de P1");
         lastClickTime=0;
-        cardsPlayed=0;
-        lastTurn=false;
+        cardsPlayedCount=0;
+        isLastTurn=false;
         playedCards.Clear();
         playerTurn=1;//El Player 1 inicia la partida siempre
     }
@@ -24,17 +28,17 @@ public class TurnManager : MonoBehaviour
         if(Time.time-RoundPoints.secCounter<1){
             RoundPoints.URWrite(RoundPoints.message);
         }
-        if(Input.GetKeyDown(KeyCode.Space) && Time.time-lastClickTime>0.5f){//Clickea el passbutton cuando se presiona espacio, pero con una diferencia de tiempo de 0.5s
+        if(Input.GetKeyDown(KeyCode.Space) && Time.time-lastClickTime>0.3f){//Clickea el passbutton cuando se presiona espacio, pero con una diferencia de tiempo de 0.3s
             GameObject.Find("PassButton").GetComponent<Button>().onClick.Invoke();
             lastClickTime=Time.time;
         }
     }
     public static void EndTurn(){//Se llama con cada pass
-        if(lastTurn){//Se entra cuando se acaba la ronda 
+        if(isLastTurn){//Se entra cuando se acaba la ronda 
             NextRound();
-        }else if(cardsPlayed==0){//Detecta caundo un jugador pasa sin jugar
+        }else if(cardsPlayedCount==0){//Detecta caundo un jugador pasa sin jugar
             SwitchTurn();
-            lastTurn=true;//Activa el modo ultimo turno, cuando se presione el pass de nuevo se acabara la ronda
+            isLastTurn=true;//Activa el modo ultimo turno, cuando se presione el pass de nuevo se acabara la ronda
             RoundPoints.URLongWrite("Turno de "+PTurn+", es el ultimo turno antes de que se acabe la ronda");
         }else{
             SwitchTurn();
@@ -46,6 +50,7 @@ public class TurnManager : MonoBehaviour
         if(card.GetComponent<ICardEffect>()!=null){//Si la carta tiene efectos
             ICardEffect[] cardEffects=card.GetComponents<ICardEffect>();
             foreach(ICardEffect cardEffect in cardEffects){
+                Debug.Log("TurnManager.Play Card: "+card.transform.parent.name);
                 cardEffect.TriggerEffect();//Ejecuta esos scripts
             }
         }
@@ -57,9 +62,8 @@ public class TurnManager : MonoBehaviour
             TotalFieldForce.AddCard(card);//Anade la carta segun el campo y el tipo
             playedCards.Add(card);//Anade la carta a la lista de cartas jugadas
         }
-        TotalFieldForce.UpdateForce();//Se actualiza la fuerza del campo
-        card.GetComponent<Card>().LoadInfo();//Recarga la info de la carta
         CompleteTurn();
+        card.GetComponent<Card>().LoadInfo();//Recarga la info de la carta
     }
     public static void PlayLeaderCard(GameObject leaderCard){//Juega la carta lider
         if(leaderCard.gameObject.GetComponent<ILeaderEffect>()!=null){//Si tiene efectos en scripts
@@ -71,19 +75,20 @@ public class TurnManager : MonoBehaviour
         if(leaderCard.gameObject.GetComponent<Card>().OnActivationCode!=""){//Si tiene efectos en OnActivation
             ProcessEffect.ExecuteEffect(leaderCard,leaderCard.GetComponent<LeaderCard>().OnActivationCode);//Se ejecutan
         }
-        leaderCard.GetComponent<LeaderCard>().usedSkill=true;
+        leaderCard.GetComponent<LeaderCard>().UsedSkill=true;
         CompleteTurn();
     }
     private static void CompleteTurn(){
-        cardsPlayed++;
+        cardsPlayedCount++;
         DeckTrade.firstAction=false;
-        WeatherEffect.UpdateWeather();//Actualiza el clima
-        if(!lastTurn){//Si no es el ultimo turno antes de que acabe la ronda, no se puede jugar de nuevo
+        TotalFieldForce.UpdateForce();//Se actualiza la fuerza del campo
+        WeatherCard.UpdateWeather();//Actualiza el clima
+        if(!isLastTurn){//Si no es el ultimo turno antes de que acabe la ronda, no se puede jugar de nuevo
             VisualEffects.PlayedLightsToColor(new Color(1,0,0,0.2f));//Las luces en el campo se ponen rojas
         }
     }
     private static void NextRound(){//Proxima ronda
-        lastTurn=false;
+        isLastTurn=false;
         Graveyard.AllToGraveyard();//Manda todas las cartas al cementerio
         playedCards.Clear();
         for(int i=1;i<3;i++){
@@ -112,7 +117,7 @@ public class TurnManager : MonoBehaviour
             PlayerCondition.rPointsP2++;
             PlayerCondition.WinCheck();
         }
-        cardsPlayed=0;
+        cardsPlayedCount=0;
         TotalFieldForce.ResetPlayedCards();
         RoundPoints.UpdatePoints();
     }
@@ -125,10 +130,10 @@ public class TurnManager : MonoBehaviour
         DeckTrade.firstAction=true;//Siempre que comienza un nuevo turno se hace posible una primera accion
         if(playerTurn==1){
                playerTurn=2;
-                cardsPlayed=0;
+                cardsPlayedCount=0;
         }else{
             playerTurn=1;
-            cardsPlayed=0;
+            cardsPlayedCount=0;
             DeckTrade.firstTurn=false;//Esto es para desactivar el uso del intercambio de cartas con el mazo al inicio del juego
         }
         RoundPoints.URLongWrite("Turno de P"+playerTurn);

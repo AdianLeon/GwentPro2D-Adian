@@ -13,7 +13,7 @@ public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         selectedCard=this.gameObject;
         selectedCard.GetComponent<Image>().color=new Color (0.75f,0.75f,0.75f,1);//La carta se sombrea cuando pasamos por encima
         selectedCard.GetComponent<Card>().LoadInfo();//Se carga toda la informacion de esta carta en el CardView
-        if((TurnManager.cardsPlayed==0 || TurnManager.lastTurn) && selectedCard.GetComponent<Dragging>()!=null){//Si el jugador puede jugar
+        if(TurnManager.CanPlay && selectedCard.GetComponent<Dragging>()!=null){//Si el jugador puede jugar
             if(!Dragging.IsOnDrag && selectedCard.transform.parent==selectedCard.GetComponent<Dragging>().Hand.transform){//Si no se esta arrastrando ninguna carta y ademas esta en la mano
                 VisualEffects.ZonesGlow(selectedCard);//Se ilumina la zona donde se puede soltar
             }

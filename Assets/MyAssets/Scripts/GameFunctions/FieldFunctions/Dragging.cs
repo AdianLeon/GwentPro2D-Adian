@@ -25,15 +25,16 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     }
     //Detecta cuando empieza el arrastre de las cartas
     public void OnBeginDrag(PointerEventData eventData){
-        if(isDraggable && (TurnManager.cardsPlayed==0 || TurnManager.lastTurn)){//Solo si es arrastrable y si se puede jugar
+        if(isDraggable && TurnManager.CanPlay){//Solo si es arrastrable y si se puede jugar
             onDrag=true;//Comenzamos el arrastre
+
             //Guarda la posicion a la que volver si soltamos en lugar invalido y crea un espacio en el lugar de la carta
             Placeholder=new GameObject();//Crea el placeholder y le asigna los mismos valores que a la carta y la posicion de la carta
             Placeholder.transform.SetParent(this.transform.parent);
             Placeholder.AddComponent<LayoutElement>();//Crea un espacio para saber donde esta el placeholder
             Placeholder.transform.SetSiblingIndex(this.transform.GetSiblingIndex());//Hace que ese espacio este en el indice correspondiente a donde estaba la carta
             ParentToReturnTo=this.transform.parent;//Padre al que volver, aqui guardaremos a donde la carta va cuando se suelta
-            this.transform.SetParent(this.transform.parent.parent);//Cambia el padre de la carta al canvas para que podamos moverla libremente
+            this.transform.SetParent(GameObject.Find("Canvas").transform);//Cambia el padre de la carta al canvas para que podamos moverla libremente
 
             //Activa la penetracion de la carta por el puntero para que podamos soltarla
             this.gameObject.GetComponent<CanvasGroup>().blocksRaycasts=false;
@@ -44,7 +45,7 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     //Mientras se arrastra
     public void OnDrag(PointerEventData eventData){
-        if(isDraggable && (TurnManager.cardsPlayed==0 || TurnManager.lastTurn)){//Solo si es arrastrable y si se puede jugar
+        if(isDraggable && TurnManager.CanPlay){//Solo si es arrastrable y si se puede jugar
             //Haciendo que las zonas donde se pueda soltar la carta "brillen"
             VisualEffects.ZonesGlow(this.gameObject);
             this.transform.position=eventData.position;//Actualiza la posicion de la carta con la del puntero
@@ -64,7 +65,7 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     //Cuando termina el arrastre
     public void OnEndDrag(PointerEventData eventData){
-        if(isDraggable && (TurnManager.cardsPlayed==0 || TurnManager.lastTurn)){//Solo si es arrastrable y si se puede jugar
+        if(isDraggable && TurnManager.CanPlay){//Solo si es arrastrable y si se puede jugar
             //Mueve la carta a donde se determino
             this.transform.SetParent(ParentToReturnTo);
 
@@ -73,7 +74,7 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 this.transform.SetSiblingIndex(Placeholder.transform.GetSiblingIndex());//Posiciona la carta en la mano
             }
             if(this.GetComponent<BaitCard>()!=null && CardView.selectedCard!=null){//Si la carta jugada es senuelo y estamos sobre otra carta valida
-                this.GetComponent<BaitEffect>().SwapConditions();
+                this.GetComponent<BaitCard>().SwapConditions();
             }
             if(this.transform.parent!=Hand.transform && this.transform.parent!=GameObject.Find("Trash").transform){//Si el objeto sale de la mano y no esta en la basura
                 TurnManager.PlayCard(this.gameObject);//Independientemente del campo juega la carta

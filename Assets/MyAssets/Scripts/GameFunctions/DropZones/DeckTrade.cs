@@ -43,7 +43,7 @@ public class DeckTrade : DropZone
                 pickedCard.GetComponent<CanvasGroup>().blocksRaycasts=true;//Permite asegurar que se puede arrastrar la carta
                 playerDeck.GetComponent<DrawCards>().cardsInDeck.Remove(picked);//Se quita de la lista
 
-                RoundPoints.URLongWrite("Has cambiado a "+c.cardRealName+" por "+pickedCard.GetComponent<Card>().cardRealName);
+                RoundPoints.URLongWrite("Has cambiado a "+c.cardName+" por "+pickedCard.GetComponent<Card>().cardName);
                 
                 twice++;//Controla cuantas veces se ha intercambiado
             }

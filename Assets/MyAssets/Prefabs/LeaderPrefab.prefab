@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 3476766104184240226}
   - component: {fileID: 3476766104184240225}
   - component: {fileID: 3476766104184240252}
-  - component: {fileID: 3476766104184240253}
-  - component: {fileID: -1721519945300762321}
   m_Layer: 5
   m_Name: LeaderPrefab
   m_TagString: Untagged
@@ -148,36 +146,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86927c0ef6ddbd54aa2546f0ede00273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3476766104184240253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3476766104184240231}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca5f8a1ff4980b34c8b52df2366aba7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  faction: 
-  cardRealName: 
-  description: 
-  effectDescription: 
-  artwork: {fileID: 0}
-  qualitySprite: {fileID: 0}
-  cardColor: {r: 1, g: 1, b: 1, a: 1}
-  whichField: 0
---- !u!114 &-1721519945300762321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3476766104184240231}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9962ed6cee87be4ab5a2e7315c55002, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thisLeaderButton: {fileID: 3476766104184240225}

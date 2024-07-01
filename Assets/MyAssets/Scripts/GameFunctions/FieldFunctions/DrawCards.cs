@@ -47,16 +47,6 @@ public class DrawCards : MonoBehaviour
             cardsInDeck[i]=cardsInDeck[randomPos];
             cardsInDeck[randomPos]=aux;
         }
+        Debug.Log("Se ha llamado a la funcion Shuffle en el deck de "+deckField);
     }
-    // public void DrawRandomCard(){
-    //     if(cardsInDeck.Count!=0){//Si quedan cartas en el deck, creamos la carta y la ponemos en la mano
-    //         GameObject picked=cardsInDeck[Random.Range(0,cardsInDeck.Count)];//La escogida es aleatoria
-    //         GameObject newCard = Instantiate(picked,new Vector3(0,0,0),Quaternion.identity);//Se instancia un objeto de esa escogida
-    //         newCard.transform.SetParent(playerArea.transform,false);//Se pone en la mano
-    //         cardsInDeck.Remove(picked);//Se quita de la lista
-    //         if(playerArea.transform.childCount>10){//Si la carta nueva no cabe en la mano
-    //             Graveyard.ToGraveyard(newCard);//Se envia al cementerio
-    //         }
-    //     }
-    // }
 }

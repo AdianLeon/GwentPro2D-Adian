@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 //Script para el efecto del promedio
-public class PromEffect : MonoBehaviour, ICardEffect
+public class PromEffect : MonoBehaviour, ICardEffect, IToJson
 {
     public void TriggerEffect(){//Iguala el poder de la carta jugada al promedio del poder total de todas las cartas del campo (Solo las unidades (y senuelos), no se incluyen climas)
         int total=0;//Total de poder de todas las cartas del campo

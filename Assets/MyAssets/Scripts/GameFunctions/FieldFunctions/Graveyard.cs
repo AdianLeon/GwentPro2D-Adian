@@ -15,9 +15,9 @@ public class Graveyard : MonoBehaviour
         GameObject.Find("GTextP2").GetComponent<TextMeshProUGUI>().text=gP2Count.ToString();
     }
     public static void AllToGraveyard(){//Manda una por una todas las cartas jugadas al cementerio
-        int count=TurnManager.playedCards.Count;
+        int count=TurnManager.PlayedCards.Count;
         for(int i=0;i<count;i++){
-            ToGraveyard(TurnManager.playedCards[0]);
+            ToGraveyard(TurnManager.PlayedCards[0]);
         }
     }
     public static void ToGraveyard(GameObject card){//Manda la carta al cementerio
@@ -37,7 +37,7 @@ public class Graveyard : MonoBehaviour
         card.transform.SetParent(GameObject.Find("Graveyard"+card.GetComponent<Card>().WhichField).transform);
         card.GetComponent<Dragging>().ParentToReturnTo=GameObject.Find("Graveyard"+card.GetComponent<Card>().WhichField).transform;
         Field.Remove(card);
-        TurnManager.playedCards.Remove(card);
+        TurnManager.PlayedCards.Remove(card);
         card.GetComponent<Dragging>().IsDraggable=false;
     }
 }

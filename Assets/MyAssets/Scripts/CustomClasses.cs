@@ -6,12 +6,11 @@ using UnityEngine;
 [System.Serializable]
 public class CardSave{//Clase para guardar todas las propiedades de una carta
     public string faction;//Faccion de la carta
-    public string cardRealName;//Nombre de la carta
+    public string cardName;//Nombre de la carta
     public string description;//Descripcion de la carta
     public string effectDescription;//Descripcion del efecto
     public int powerPoints;//Puntos de la carta sea para el power de las cartas unidades, damage de climas o boost de las cartas aumento
-    public string typeComponent;//Nombre del tipo de carta
-    public string[] effectComponents;//Lista de nombres de los componentes efecto
+    public string[] scriptComponents;//Lista de nombres de los scripts de la carta
     public string onActivationCodeName;//Nombre del Codigo del efecto
     public string zones;//Zonas donde se puede jugar en caso de que sea tipo unidad
 }

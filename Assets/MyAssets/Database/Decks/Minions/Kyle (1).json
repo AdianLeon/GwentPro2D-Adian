@@ -1,12 +1,12 @@
 {
     "faction": "Minions",
-    "cardRealName": "Kyle",
+    "cardName": "Kyle",
     "description": "Es la mascota de Gru, mitad \"perro\", mitad piranha, puedes jugar un poco con el, solo asegurate de que no tenga hambre",
     "effectDescription": "Cuando esta carta es jugada su poder es multiplicado por la cantidad de Kyles jugados en el campo (contandose a si misma)",
     "powerPoints": 10,
-    "typeComponent": "SilverCard",
-    "effectComponents": [
-        "MultiplyEffect"
+    "scriptComponents": [
+        "MultiplyEffect",
+        "SilverCard"
     ],
     "onActivationCodeName": "",
     "zones": "MS"

@@ -8,7 +8,7 @@ using TMPro;
 public class DeckView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public string faction;//Faccion (Nombre del deck)
-    public string cardRealName;//Nombre a mostrar en el objeto gigante a la izquierda del campo
+    public string cardName;//Nombre a mostrar en el objeto gigante a la izquierda del campo
     public string description;//Descripcion de la carta a mostrar en el objeto gigante a la izquierda del campo
     public string effectDescription;//Descripcion del efecto
     public Sprite artwork;//Imagen relacionada con la carta para mostrar en grande en el objeto gigante a la izquierda del campo
@@ -73,7 +73,7 @@ public class DeckView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             GameObject.Find("BGPower").GetComponent<Image>().color=new Color(0.2f,0.2f,0.2f,0);
         }
         //Name
-        GameObject.Find("CardName").GetComponent<TextMeshProUGUI>().text=this.cardRealName;
+        GameObject.Find("CardName").GetComponent<TextMeshProUGUI>().text=this.cardName;
         //Description
         GameObject.Find("CardDescription").GetComponent<TextMeshProUGUI>().text=this.description;
         //EffectDescription

@@ -23,11 +23,11 @@ public class RoundPoints : MonoBehaviour
         GameObject.Find("UserRead").GetComponent<TextMeshProUGUI>().text=passedMessage;
     }
     public static void URWriteRoundInfo(){//Se llama cuando se desea escribir la informacion de ronda
-        if(TurnManager.cardsPlayed==0 && TurnManager.lastTurn){
-            RoundPoints.URWrite("Turno de P"+TurnManager.playerTurn+", es el ultimo turno antes de que se acabe la ronda");
-        }else if(TurnManager.cardsPlayed==0){
-            RoundPoints.URWrite("Turno de P"+TurnManager.playerTurn);
-        }else if(TurnManager.lastTurn){
+        if(TurnManager.CanPlay){
+            RoundPoints.URWrite("Turno de "+TurnManager.PTurn+", es el ultimo turno antes de que se acabe la ronda");
+        }else if(TurnManager.CardsPlayedCount==0){
+            RoundPoints.URWrite("Turno de "+TurnManager.PTurn);
+        }else if(TurnManager.IsLastTurn){
             RoundPoints.URWrite("Puedes seguir jugando mas cartas. Presiona espacio cuando desees acabar la ronda");
         }else{
             RoundPoints.URWrite("Presiona espacio para pasar de turno");

@@ -1,12 +1,12 @@
 {
     "faction": "Minions",
-    "cardRealName": "Kevin",
+    "cardName": "Kevin",
     "description": "Famoso filosofo autor de la frase: \"Belo papaguera, churepera con la papaya\"",
     "effectDescription": "Cuando esta carta es jugada su poder se convierte en el promedio del poder total de todas las cartas del campo",
     "powerPoints": 0,
-    "typeComponent": "SilverCard",
-    "effectComponents": [
-        "PromEffect"
+    "scriptComponents": [
+        "PromEffect",
+        "SilverCard"
     ],
     "onActivationCodeName": "",
     "zones": "M"

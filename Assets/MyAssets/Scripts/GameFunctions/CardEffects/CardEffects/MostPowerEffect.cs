@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 //Script para el efecto de eliminar la carta de mayor poder del campo
-public class MostPowerEffect : MonoBehaviour, ICardEffect
+public class MostPowerEffect : MonoBehaviour, ICardEffect, IToJson
 {
     public void TriggerEffect(){//Elimina la carta con mas poder del campo
         
@@ -21,7 +21,7 @@ public class MostPowerEffect : MonoBehaviour, ICardEffect
         
         if(chosenCard!=null){//Si elegimos una carta
             Graveyard.ToGraveyard(chosenCard);//Se envia al cementerio
-            RoundPoints.URLongWrite("Se ha eliminado a "+chosenCard.GetComponent<Card>().cardRealName);
+            RoundPoints.URLongWrite("Se ha eliminado a "+chosenCard.GetComponent<Card>().cardName);
             TotalFieldForce.UpdateForce();//Se actualiza la fuerza del campo
         }else{
             RoundPoints.URLongWrite("No se pudo activar el efecto porque no se han jugado cartas");

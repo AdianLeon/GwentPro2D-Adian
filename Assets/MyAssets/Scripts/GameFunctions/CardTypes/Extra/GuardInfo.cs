@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 //Script para ensenar la info de los guardias
-public class GuardInfo : Card, IIdle
+public class GuardInfo : Card
 {
     public override void LoadInfo(){
         base.LoadInfo();

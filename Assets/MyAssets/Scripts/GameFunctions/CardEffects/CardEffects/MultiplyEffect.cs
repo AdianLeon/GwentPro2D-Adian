@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 //Script para el efecto de multiplicar por n el poder
-public class MultiplyEffect : MonoBehaviour, ICardEffect
+public class MultiplyEffect : MonoBehaviour, ICardEffect, IToJson
 {
     private int originalPowerData;//Se guarda el poder original de la carta
     //Esto es para evitar que si se activara el efecto dos o mas veces por uso del efecto del senuelo el poder de esta carta sea demasiado alto
@@ -20,7 +20,7 @@ public class MultiplyEffect : MonoBehaviour, ICardEffect
     private int CountSelfIn(List<GameObject> PlayedCardsList){//Devuelve el conteo de cuantas veces se encuentra la carta en la lista
         int n=0;
         for(int i=0;i<PlayedCardsList.Count;i++){
-            if(PlayedCardsList[i].GetComponent<Card>().cardRealName==this.GetComponent<Card>().cardRealName){
+            if(PlayedCardsList[i].GetComponent<Card>().cardName==this.GetComponent<Card>().cardName){
                 //Si se encuentra una carta igual, se cuenta
                 n++;
             }

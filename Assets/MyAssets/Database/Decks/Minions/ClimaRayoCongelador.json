@@ -1,12 +1,11 @@
 {
     "faction": "Minions",
-    "cardRealName": "Rayo Congelador",
+    "cardName": "Rayo Congelador",
     "description": "Aviso: Esta carta solo se puede utilizar cuando no hay apagones",
     "effectDescription": "Reduce el poder de las cartas de la fila seleccionada (Para ambos campos)",
     "powerPoints": 15,
-    "typeComponent": "WeatherCard",
-    "effectComponents": [
-        "WeatherEffect"
+    "scriptComponents": [
+        "WeatherCard"
     ],
     "onActivationCodeName": "",
     "zones": ""

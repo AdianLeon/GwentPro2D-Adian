@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 //Script para las cartas de aumento
-public class BoostCard : Card, IShowZone
+public class BoostCard : Card, IShowZone, ICardEffect
 {
     public override Color GetCardViewColor(){return new Color(0.4f,1,0.3f);}
     public int boost;//Cant de poder aumentado cuando una carta es afectada por el aumento
@@ -17,6 +17,15 @@ public class BoostCard : Card, IShowZone
 
         GameObject.Find("AddedPower").GetComponent<TextMeshProUGUI>().text="";
         GameObject.Find("BGAddedPower").GetComponent<Image>().color=new Color(1,1,1,0);
+    }
+    public void TriggerEffect(){//Efecto de las cartas aumento
+        GameObject target=this.transform.parent.GetComponent<DZBoost>().target;//Objetivo padre de las cartas a las que anadirle poder
+        for(int i=0;i<target.transform.childCount;i++){
+            if(target.transform.GetChild(i).GetComponent<IAffectable>()!=null){//Si es afectable
+                target.transform.GetChild(i).GetComponent<CardWithPower>().AddedPower+=this.GetComponent<BoostCard>().boost;//Aumenta el poder
+            }
+        }
+        Graveyard.ToGraveyard(this.gameObject);//Envia la carta usada al cementerio
     }
     public void ShowZone(){
         DZBoost[] boostZones=GameObject.FindObjectsOfType<DZBoost>();//Se crea un array de todas las zonas de aumento

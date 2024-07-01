@@ -21,7 +21,7 @@ public static class VisualEffects
         foreach(DropZone zone in zones){zone.GetComponent<Image>().color=new Color (1,1,1,0);}//Hace las zonas invisibles nuevamente
     }
     public static void OffCardsGlow(){//Restaura la iluminacion de las cartas jugadas
-        foreach(GameObject playedCard in TurnManager.playedCards){
+        foreach(GameObject playedCard in TurnManager.PlayedCards){
             playedCard.GetComponent<Image>().color=new Color (1,1,1,1);//Las cartas se dessombrean
         }
     }

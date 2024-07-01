@@ -34,18 +34,17 @@ public class ProcessCard : MonoBehaviour
         CardSave codeCard = new CardSave
         {
             faction = propertiesDict["Faction"],
-            cardRealName = propertiesDict["Name"],
+            cardName = propertiesDict["Name"],
             description="Esta es una carta creada",
             effectDescription="Esta es una carta creada",
             powerPoints=power,
-            typeComponent=GetCardComponentFromCode(propertiesDict["Type"]),
-            effectComponents=null,
+            scriptComponents=new string[]{GetCardComponentFromCode(propertiesDict["Type"])},
             zones=GetZonesFromCode(propertiesDict["Range"]),
             onActivationCodeName=propertiesDict["OnActivation"],
         };
         
         string filePath=Application.dataPath+"/MyAssets/Database/Decks/"+codeCard.faction;
-        string cardJsonName="/"+codeCard.cardRealName+".json";
+        string cardJsonName="/"+codeCard.cardName+".json";
         CardsToJson.WriteJsonOfCard(codeCard,filePath,cardJsonName);
     }
     private static string GetInstructionValue(List<Token> tokenList,int index,string nameOfKey){

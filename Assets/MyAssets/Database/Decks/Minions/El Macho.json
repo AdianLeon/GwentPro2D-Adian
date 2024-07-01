@@ -1,12 +1,12 @@
 {
     "faction": "Minions",
-    "cardRealName": "El Macho",
+    "cardName": "El Macho",
     "description": ":o El Macho!! Pidele un autografo antes de que muera montando un tiburon vivo y saltando dentro de la boca de un volcan activo con 250 libras de dinamita atadas a su pecho",
     "effectDescription": "Cuando esta carta es jugada manda al cementerio a la carta de mayor poder (no se incluye a si misma)",
     "powerPoints": 35,
-    "typeComponent": "GoldCard",
-    "effectComponents": [
-        "MostPowerEffect"
+    "scriptComponents": [
+        "MostPowerEffect",
+        "GoldCard"
     ],
     "onActivationCodeName": "",
     "zones": "M"

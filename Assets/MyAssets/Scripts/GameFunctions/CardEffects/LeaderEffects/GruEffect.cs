@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 //Script para el efecto de la carta lider
-public class GruEffect : MonoBehaviour, ILeaderEffect
+public class GruEffect : MonoBehaviour, ILeaderEffect, IToJson
 {
     private static GameObject GetHand{get=>GameObject.Find("Hand"+TurnManager.PTurn);}
     private static GameObject GetEnemyHand{get=>GameObject.Find("Hand"+TurnManager.ETurn);}

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using TMPro;
+using System.Linq;
 //Script para crear las cartas de la faccion seleccionada en el menu Deck
 public class DeckMenuLoadCards : MonoBehaviour
 {
@@ -39,45 +40,55 @@ public class DeckMenuLoadCards : MonoBehaviour
         GameObject newCard=null;
         newCard=Instantiate(GameObject.Find("Dropdown").GetComponent<DeckMenuLoadCards>().viewCardPrefab,new Vector3(0,0,0),Quaternion.identity);
         newCard.transform.SetParent(GameObject.Find("CardsToShow").transform);//Instanciamos una carta del prefab CardsToShow
-        newCard.name=cardSave.cardRealName+"(ViewCard)";//Le ponemos nombre
+        newCard.name=cardSave.cardName+"(ViewCard)";//Le ponemos nombre
         newCard.GetComponent<RectTransform>().localScale=new Vector3(1,1,1);//Resetea la escala porque cuando se instancia esta desproporcional al resto de objetos
         
-        //Card Properties
+        //Propiedades
         newCard.GetComponent<DeckView>().faction=cardSave.faction;//Faction
-        newCard.GetComponent<DeckView>().cardRealName=cardSave.cardRealName;//Name
+        newCard.GetComponent<DeckView>().cardName=cardSave.cardName;//Name
         newCard.GetComponent<DeckView>().description=cardSave.description;//Description
         newCard.GetComponent<DeckView>().effectDescription=cardSave.effectDescription;//EffectDescription
-        newCard.GetComponent<DeckView>().typeComponent=cardSave.typeComponent;
 
         //Sprites
-        newCard.GetComponent<Image>().sprite=Resources.Load<Sprite>(cardSave.faction+"/"+cardSave.cardRealName);//Carga el sprite en Assets/Resources/sourceImage en la carta
-        newCard.GetComponent<DeckView>().artwork=Resources.Load<Sprite>(cardSave.faction+"/"+cardSave.cardRealName+"Image");//Carga el sprite en Assets/Resources/artwork en la carta
+        newCard.GetComponent<Image>().sprite=Resources.Load<Sprite>(cardSave.faction+"/"+cardSave.cardName);//Carga el sprite en Assets/Resources/sourceImage en la carta
+        newCard.GetComponent<DeckView>().artwork=Resources.Load<Sprite>(cardSave.faction+"/"+cardSave.cardName+"Image");//Carga el sprite en Assets/Resources/artwork en la carta
         
-        if(newCard.GetComponent<Image>().sprite is null){
+        if(newCard.GetComponent<Image>().sprite==null){
             string randomImagesPath=Application.dataPath+"/Resources/RandomImages";
             int max=Directory.GetFiles(randomImagesPath,"*.png").Length;
             newCard.GetComponent<Image>().sprite=Resources.Load<Sprite>("RandomImages/"+Random.Range(1,max+1).ToString());
         }
-        if(newCard.GetComponent<DeckView>().artwork is null){
-            newCard.GetComponent<DeckView>().artwork=Resources.Load<Sprite>("BlankImage");
+        if(newCard.GetComponent<DeckView>().artwork==null){
+            newCard.GetComponent<DeckView>().artwork=newCard.GetComponent<Image>().sprite;
         }
         //power || damage || boost
         newCard.GetComponent<DeckView>().power=cardSave.powerPoints;
 
-        //zones && quality
-        if(cardSave.typeComponent=="SilverCard" || cardSave.typeComponent=="GoldCard"){
-            newCard.GetComponent<DeckView>().playableZone=cardSave.zones;
-        }else if(cardSave.typeComponent=="WeatherCard"){
-            newCard.GetComponent<DeckView>().playableZone="C";
-        }else if(cardSave.typeComponent=="ClearWeatherCard"){
-            newCard.GetComponent<DeckView>().playableZone="D";
-        }else if(cardSave.typeComponent=="BaitCard"){
-            newCard.GetComponent<DeckView>().playableZone="S";
-        }else if(cardSave.typeComponent=="BoostCard"){
-            newCard.GetComponent<DeckView>().playableZone="A";
-        }else if(cardSave.typeComponent=="LeaderCard"){
+        //zones && typeComponent
+        string typeName="";
+        if(cardSave.scriptComponents.Contains("LeaderCard")){
+            typeName="LeaderCard";
             newCard.GetComponent<DeckView>().playableZone="L";
+        }else if(cardSave.scriptComponents.Contains("BoostCard")){
+            typeName="BoostCard";
+            newCard.GetComponent<DeckView>().playableZone="A";
+        }else if(cardSave.scriptComponents.Contains("WeatherCard")){
+            typeName="WeatherCard";
+            newCard.GetComponent<DeckView>().playableZone="C";
+        }else if(cardSave.scriptComponents.Contains("ClearWeatherCard")){
+            typeName="ClearWeatherCard";
+            newCard.GetComponent<DeckView>().playableZone="D";
+        }else if(cardSave.scriptComponents.Contains("SilverCard")){
+            typeName="SilverCard";
+            newCard.GetComponent<DeckView>().playableZone=cardSave.zones;
+        }else if(cardSave.scriptComponents.Contains("GoldCard")){
+            typeName="GoldCard";
+            newCard.GetComponent<DeckView>().playableZone=cardSave.zones;
+        }else if(cardSave.scriptComponents.Contains("BaitCard")){
+            typeName="BaitCard";
+            newCard.GetComponent<DeckView>().playableZone="S";
         }
+        newCard.GetComponent<DeckView>().typeComponent=typeName;
     }
     private static void AlterCardsToShowChildrens(){
         GridLayoutGroup grid=GameObject.Find("CardsToShow").GetComponent<GridLayoutGroup>();

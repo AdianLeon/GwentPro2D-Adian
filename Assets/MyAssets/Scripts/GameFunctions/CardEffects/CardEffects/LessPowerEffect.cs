@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 //Script para el efecto de eliminar la carta de menor poder del rival
-public class LessPowerEffect : MonoBehaviour, ICardEffect
+public class LessPowerEffect : MonoBehaviour, ICardEffect, IToJson
 {
     public void TriggerEffect(){//Elimina la carta con menos poder del campo enemigo
         //Determinando el campo a afectar
@@ -25,7 +25,7 @@ public class LessPowerEffect : MonoBehaviour, ICardEffect
                 }
             }
             Graveyard.ToGraveyard(Card);//Se envia al cementerio la carta resultante(la de menor poder)
-            RoundPoints.URLongWrite("Se ha eliminado a "+Card.GetComponent<Card>().cardRealName);
+            RoundPoints.URLongWrite("Se ha eliminado a "+Card.GetComponent<Card>().cardName);
             //En caso de que todas tengan el mismo poder se envia al cementerio la ultima jugada porque se empieza a comparar por la ultima carta
             TotalFieldForce.UpdateForce();//Se actualizan las fuerzas de los jugadores
         }else{

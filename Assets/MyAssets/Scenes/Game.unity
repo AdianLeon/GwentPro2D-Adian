@@ -1105,7 +1105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
-  cardRealName: Stuart
+  cardName: Stuart
   description: Esta un poco loco, le gusta que lo catapulten contra enemigos, muy
     conveniente
   effectDescription: Cuando esta carta es jugada su poder se convierte en el promedio
@@ -1113,7 +1113,6 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: faecfd47eeba305469eb968015660a0b, type: 3}
   whichField: 0
   power: 0
-  affectedBy: []
   whichZone: 2
 --- !u!1 &206273462
 GameObject:
@@ -2196,25 +2195,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
-  cardRealName: Rayo Congelador
+  cardName: Rayo Congelador
   description: 'Aviso: Esta carta solo se puede utilizar cuando no hay apagones'
   effectDescription: Reduce el poder de las cartas de la fila seleccionada (Para
     ambos campos)
   artwork: {fileID: 21300000, guid: 3d03c775de555df4280aa7744f885c23, type: 3}
   whichField: 0
   damage: 15
---- !u!114 &350516873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 350516871}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80036bd605f75474c96e413fe61bc232, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &373339262
 GameObject:
   m_ObjectHideFlags: 0
@@ -2318,7 +2305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: 
-  cardRealName: Guardia
+  cardName: Guardia
   description: Este es un guardia, su trabajo es quedarse ahi aburrido, ni siquiera
     le pagan bien, todo el dia ahi parado, pobre lastimoso
   effectDescription: Esta carta no es jugable
@@ -2554,14 +2541,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
-  cardRealName: Bob
+  cardName: Bob
   description: Solia ser un aventurero justo como tu, pero lo bananearon en la rodilla
   effectDescription: Cuando esta carta es jugada su poder se convierte en el promedio
     del poder total de todas las cartas del campo
   artwork: {fileID: 21300000, guid: 9c0326e7eadf93e428963d37f2147999, type: 3}
   whichField: 0
   power: 0
-  affectedBy: []
   whichZone: 1
 --- !u!1 &401695424
 GameObject:
@@ -3045,7 +3031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
-  cardRealName: Vector
+  cardName: Vector
   description: Comparado al macho, este es muy gay, no muere de la manera mas macha
     posible, solo se quedo botado en la luna
   effectDescription: Cuando esta carta es jugada manda al cementerio a la carta de
@@ -3053,7 +3039,6 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: c51ef3b4f9d4ac343912c442c9b2abcb, type: 3}
   whichField: 0
   power: 30
-  affectedBy: []
   whichZone: 5
 --- !u!1 &485093252
 GameObject:
@@ -3396,7 +3381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
-  cardRealName: Gru
+  cardName: Gru
   description: Besto villano de todos los tiempos, mi favorito
   effectDescription: Ordena a los minions que roben dos cartas de la mano enemiga
     aunque conociendo a los minions eso puede salir mal (Solo se puede activar una
@@ -3741,26 +3726,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
-  cardRealName: Agnes
+  cardName: Agnes
   description: Le encantan los unicornios, cree que Kyle es adorable
   effectDescription: Esta carta se puede intercambiar con otra en el campo propio
     (solo con unidades de plata)
   artwork: {fileID: 21300000, guid: 53e16c8f9e2f1114ab4c96f8e99b0a78, type: 3}
   whichField: 0
   power: 0
-  affectedBy: []
---- !u!114 &550907573
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 550907571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 906316fd333c46e45b103f8548989359, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &556206759
 GameObject:
   m_ObjectHideFlags: 0
@@ -4040,7 +4012,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: 
-  cardRealName: Guardia
+  cardName: Guardia
   description: Este es un guardia, su trabajo es quedarse ahi aburrido, ni siquiera
     le pagan bien, todo el dia ahi parado, pobre lastimoso
   effectDescription: Esta carta no es jugable
@@ -4370,24 +4342,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
-  cardRealName: Inyeccion de minion purpura
+  cardName: Inyeccion de minion purpura
   description: Vuelve a los minions aun mas malvados
   effectDescription: Aumenta el poder de las cartas de la fila seleccionada en 1
   artwork: {fileID: 21300000, guid: 41b7b81fc0c6faa4da908bb11643636e, type: 3}
   whichField: 0
   boost: 15
---- !u!114 &617735140
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 617735138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c720ff7f22e25ab41b60628eb6ece3f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &629576296
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5358,7 +5318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: 
-  cardRealName: Guardia
+  cardName: Guardia
   description: Este es un guardia, su trabajo es quedarse ahi aburrido, ni siquiera
     le pagan bien, todo el dia ahi parado, pobre lastimoso
   effectDescription: Esta carta no es jugable
@@ -5574,25 +5534,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
-  cardRealName: Banana
+  cardName: Banana
   description: 'Supongo que no tengo que explicarte lo que las bananas le hacen a
     los minions Spoiler: Los vuelve locos'
   effectDescription: Aumenta el poder de las cartas de la fila seleccionada en 1
   artwork: {fileID: 21300000, guid: de089a2f0b529844db6b49389e1a6747, type: 3}
   whichField: 0
   boost: 25
---- !u!114 &790674557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 790674555}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c720ff7f22e25ab41b60628eb6ece3f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &793406274 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
@@ -6265,7 +6213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
-  cardRealName: Kevin
+  cardName: Kevin
   description: 'Famoso filosofo autor de la frase: "Belo papaguera, churepera con
     la papaya"'
   effectDescription: Cuando esta carta es jugada su poder se convierte en el promedio
@@ -6273,7 +6221,6 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: a5b358b788169784b9b4d62a0f37cb58, type: 3}
   whichField: 0
   power: 0
-  affectedBy: []
   whichZone: 0
 --- !u!1001 &915025857
 PrefabInstance:
@@ -6634,7 +6581,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
-  cardRealName: El Macho
+  cardName: El Macho
   description: :o El Macho!! Pidele un autografo antes de que muera montando un tiburon
     vivo y saltando dentro de la boca de un volcan activo con 250 libras de dinamita
     atadas a su pecho
@@ -6643,7 +6590,6 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: 2b539ac534b0ba247a511436b409e06a, type: 3}
   whichField: 0
   power: 35
-  affectedBy: []
   whichZone: 0
 --- !u!1001 &933903456
 PrefabInstance:
@@ -6855,14 +6801,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
-  cardRealName: Ninas
+  cardName: Ninas
   description: Edith, Margo y Agnes. Fueron adoptadas por Gru y desde entonces le
     han hecho la vida un infierno, pero por lo menos saben usar un rifle
   effectDescription: 
   artwork: {fileID: 21300000, guid: 1f9aeed22151c0e48939f51ea500782f, type: 3}
   whichField: 0
   power: 20
-  affectedBy: []
   whichZone: 3
 --- !u!1001 &939096330
 PrefabInstance:
@@ -7698,7 +7643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
-  cardRealName: Kyle
+  cardName: Kyle
   description: Es la mascota de Gru, mitad "perro", mitad piranha, puedes jugar un
     poco con el, solo asegurate de que no tenga hambre
   effectDescription: Cuando esta carta es jugada su poder es multiplicado por la
@@ -7706,7 +7651,6 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: 4a94692d2f86aba4094169397df1df70, type: 3}
   whichField: 0
   power: 10
-  affectedBy: []
   whichZone: 4
 --- !u!1001 &1041093396
 PrefabInstance:
@@ -7918,25 +7862,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
-  cardRealName: Peluche
+  cardName: Peluche
   description: Los minions se vuelven pasivos cuando les das un peluche
   effectDescription: Reduce el poder de las cartas de la fila seleccionada (Para
     ambos campos)
   artwork: {fileID: 21300000, guid: cc7b9aa19d91c7f429cd2cc11f02b14e, type: 3}
   whichField: 0
   damage: 15
---- !u!114 &1041093400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1041093398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80036bd605f75474c96e413fe61bc232, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1049803914
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8150,25 +8082,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
-  cardRealName: Manzana
+  cardName: Manzana
   description: 'Similar efecto a las bananas, no es necesaria una explicacion no?
     Spoiler: Los vuelve locos'
   effectDescription: Aumenta el poder de las cartas de la fila seleccionada
   artwork: {fileID: 21300000, guid: e564c7d836d96aa4f8a9c580957e3fbf, type: 3}
   whichField: 0
   boost: 20
---- !u!114 &1049803918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1049803916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c720ff7f22e25ab41b60628eb6ece3f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1054376734
 GameObject:
   m_ObjectHideFlags: 0
@@ -8485,14 +8405,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
-  cardRealName: Doctor Nefario
+  cardName: Doctor Nefario
   description: Cientifico "loco" ayudante de Gru desde que se creo la maldad, inventor
     del rayo congelador , el algebra lineal y la gravedad
   effectDescription: 
   artwork: {fileID: 21300000, guid: 3da2059eb9ba797409387d9bafaff558, type: 3}
   whichField: 0
   power: 25
-  affectedBy: []
   whichZone: 5
 --- !u!1001 &1065442422
 PrefabInstance:
@@ -8704,25 +8623,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
-  cardRealName: Muchas Bananas
+  cardName: Muchas Bananas
   description: Para un minion cualquier problema tiene solucion, si tienes suficiente
     dinero, digo bananas
   effectDescription: Se deshace de todas las cartas de clima y sus efectos en la
     fila seleccionada
   artwork: {fileID: 21300000, guid: dc03cc05d9a1a2245bcf77ae676c1e42, type: 3}
   whichField: 0
---- !u!114 &1065442426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1065442424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ace862f759936047bf7c32feabb2eb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1067786611
 GameObject:
   m_ObjectHideFlags: 0
@@ -9597,14 +9504,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
-  cardRealName: Ninas
+  cardName: Ninas
   description: Edith, Margo y Agnes. Fueron adoptadas por Gru y desde entonces le
     han hecho la vida un infierno, pero por lo menos saben usar un rifle
   effectDescription: 
   artwork: {fileID: 21300000, guid: 1f9aeed22151c0e48939f51ea500782f, type: 3}
   whichField: 0
   power: 20
-  affectedBy: []
   whichZone: 3
 --- !u!1001 &1234931569
 PrefabInstance:
@@ -9843,14 +9749,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
-  cardRealName: Scarlett Overkill
+  cardName: Scarlett Overkill
   description: Mente maestra del crimen, archienemiga de Gru, experta ladrona de
     cartas
   effectDescription: Cuando esta carta es jugada se roba una carta del deck propio
   artwork: {fileID: 21300000, guid: 252d43dfcdab7b34e89775370a6f1a51, type: 3}
   whichField: 0
   power: 30
-  affectedBy: []
   whichZone: 6
 --- !u!1 &1238096646
 GameObject:
@@ -10118,14 +10023,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
-  cardRealName: Doctor Nefario
+  cardName: Doctor Nefario
   description: Cientifico "loco" ayudante de Gru desde que se creo la maldad, inventor
     del rayo congelador , el algebra lineal y la gravedad
   effectDescription: 
   artwork: {fileID: 21300000, guid: 3da2059eb9ba797409387d9bafaff558, type: 3}
   whichField: 0
   power: 25
-  affectedBy: []
   whichZone: 5
 --- !u!1 &1254882642
 GameObject:
@@ -11591,14 +11495,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
-  cardRealName: Bob
+  cardName: Bob
   description: Solia ser un aventurero justo como tu, pero lo bananearon en la rodilla
   effectDescription: Cuando esta carta es jugada su poder se convierte en el promedio
     del poder total de todas las cartas del campo
   artwork: {fileID: 21300000, guid: 9c0326e7eadf93e428963d37f2147999, type: 3}
   whichField: 0
   power: 0
-  affectedBy: []
   whichZone: 1
 --- !u!1001 &1519646199
 PrefabInstance:
@@ -11978,7 +11881,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
-  cardRealName: Kyle
+  cardName: Kyle
   description: Es la mascota de Gru, mitad "perro", mitad piranha, puedes jugar un
     poco con el, solo asegurate de que no tenga hambre
   effectDescription: Cuando esta carta es jugada su poder es multiplicado por la
@@ -11986,7 +11889,6 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: 4a94692d2f86aba4094169397df1df70, type: 3}
   whichField: 0
   power: 10
-  affectedBy: []
   whichZone: 4
 --- !u!224 &1542626788 stripped
 RectTransform:
@@ -12544,14 +12446,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
-  cardRealName: Doctor Nefario
+  cardName: Doctor Nefario
   description: Cientifico "loco" ayudante de Gru desde que se creo la maldad, inventor
     del rayo congelador , el algebra lineal y la gravedad
   effectDescription: 
   artwork: {fileID: 21300000, guid: 3da2059eb9ba797409387d9bafaff558, type: 3}
   whichField: 0
   power: 25
-  affectedBy: []
   whichZone: 5
 --- !u!1 &1611976137
 GameObject:
@@ -12917,26 +12818,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
-  cardRealName: Minion Bebe
+  cardName: Minion Bebe
   description: Demasiado pequeno para pelear, Gru le hallo otra utilidad
   effectDescription: Esta carta se puede intercambiar con otra en el campo propio
     (solo con unidades de plata)
   artwork: {fileID: 21300000, guid: 394e3d4bf1a595247ac066cd390f506a, type: 3}
   whichField: 0
   power: 0
-  affectedBy: []
---- !u!114 &1618750943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1618750941}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 906316fd333c46e45b103f8548989359, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1622124512 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
@@ -13750,7 +13638,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
-  cardRealName: Kyle
+  cardName: Kyle
   description: Es la mascota de Gru, mitad "perro", mitad piranha, puedes jugar un
     poco con el, solo asegurate de que no tenga hambre
   effectDescription: Cuando esta carta es jugada su poder es multiplicado por la
@@ -13758,7 +13646,6 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: 4a94692d2f86aba4094169397df1df70, type: 3}
   whichField: 0
   power: 10
-  affectedBy: []
   whichZone: 4
 --- !u!1 &1767920635
 GameObject:
@@ -14079,7 +13966,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
-  cardRealName: Stuart
+  cardName: Stuart
   description: Esta un poco loco, le gusta que lo catapulten contra enemigos, muy
     conveniente
   effectDescription: Cuando esta carta es jugada su poder se convierte en el promedio
@@ -14087,7 +13974,6 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: faecfd47eeba305469eb968015660a0b, type: 3}
   whichField: 0
   power: 0
-  affectedBy: []
   whichZone: 2
 --- !u!1 &1775964367
 GameObject:
@@ -14192,7 +14078,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: 
-  cardRealName: Guardia
+  cardName: Guardia
   description: Este es un guardia, su trabajo es quedarse ahi aburrido, ni siquiera
     le pagan bien, todo el dia ahi parado, pobre lastimoso
   effectDescription: Esta carta no es jugable
@@ -15889,7 +15775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
-  cardRealName: Kevin
+  cardName: Kevin
   description: 'Famoso filosofo autor de la frase: "Belo papaguera, churepera con
     la papaya"'
   effectDescription: Cuando esta carta es jugada su poder se convierte en el promedio
@@ -15897,7 +15783,6 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: a5b358b788169784b9b4d62a0f37cb58, type: 3}
   whichField: 0
   power: 0
-  affectedBy: []
   whichZone: 0
 --- !u!1 &1988085504 stripped
 GameObject:
@@ -17132,14 +17017,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
-  cardRealName: Ninas
+  cardName: Ninas
   description: Edith, Margo y Agnes. Fueron adoptadas por Gru y desde entonces le
     han hecho la vida un infierno, pero por lo menos saben usar un rifle
   effectDescription: 
   artwork: {fileID: 21300000, guid: 1f9aeed22151c0e48939f51ea500782f, type: 3}
   whichField: 0
   power: 20
-  affectedBy: []
   whichZone: 3
 --- !u!1 &2123096150
 GameObject:

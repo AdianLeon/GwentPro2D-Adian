@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 //Script que contiene las propiedades de todas las cartas
-abstract public class Card : MonoBehaviour
+abstract public class Card : MonoBehaviour, IToJson
 {
     public string faction;//Faccion de la carta
-    public string cardRealName;//Nombre a mostrar en el objeto gigante a la izquierda del campo
+    public string cardName;//Nombre a mostrar en el objeto gigante a la izquierda del campo
     public string description;//Descripcion de la carta a mostrar en el objeto gigante a la izquierda del campo
     public string effectDescription;//Descripcion del efecto
     private string onActivationCode;
@@ -21,7 +21,7 @@ abstract public class Card : MonoBehaviour
         //Faction
         GameObject.Find("Faction").GetComponent<TextMeshProUGUI>().text=faction;
         //Name
-        GameObject.Find("CardName").GetComponent<TextMeshProUGUI>().text=cardRealName;
+        GameObject.Find("CardName").GetComponent<TextMeshProUGUI>().text=cardName;
         //Description
         GameObject.Find("CardDescription").GetComponent<TextMeshProUGUI>().text=description;
         //EffectDescription

@@ -1,12 +1,11 @@
 {
     "faction": "Minions",
-    "cardRealName": "Manzana",
+    "cardName": "Manzana",
     "description": "Similar efecto a las bananas, no es necesaria una explicacion no? Spoiler: Los vuelve locos",
     "effectDescription": "Aumenta el poder de las cartas de la fila seleccionada",
     "powerPoints": 20,
-    "typeComponent": "BoostCard",
-    "effectComponents": [
-        "BoostEffect"
+    "scriptComponents": [
+        "BoostCard"
     ],
     "onActivationCodeName": "",
     "zones": ""

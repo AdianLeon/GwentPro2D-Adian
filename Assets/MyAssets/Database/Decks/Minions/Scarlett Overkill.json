@@ -1,12 +1,12 @@
 {
     "faction": "Minions",
-    "cardRealName": "Scarlett Overkill",
+    "cardName": "Scarlett Overkill",
     "description": "Mente maestra del crimen, archienemiga de Gru, experta ladrona de cartas",
     "effectDescription": "Cuando esta carta es jugada se roba una carta del deck propio",
     "powerPoints": 30,
-    "typeComponent": "GoldCard",
-    "effectComponents": [
-        "DrawOneEffect"
+    "scriptComponents": [
+        "DrawOneEffect",
+        "GoldCard"
     ],
     "onActivationCodeName": "",
     "zones": "MRS"

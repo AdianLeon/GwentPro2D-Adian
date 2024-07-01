@@ -14,4 +14,4 @@ interface IAffectable{//Para las cartas que sean afectables por efectos de carta
 interface IShowZone{//Para las cartas que deben iluminar alguna zona
     void ShowZone();//Se llama este metodo cuando se desean iluminar esas zonas
 }
-interface IIdle{}//Para las cartas que no son arrastrables
+interface IToJson{}//Para los script que se deseen anadir en el json de la carta

@@ -1,11 +1,10 @@
 {
     "faction": "Northern Realms",
-    "cardRealName": "Unga Bunga",
+    "cardName": "Unga Bunga",
     "description": "Esta es una carta creada",
     "effectDescription": "Esta es una carta creada",
     "powerPoints": 0,
-    "typeComponent": "LeaderCard",
-    "effectComponents": [],
+    "scriptComponents": ["LeaderCard"],
     "onActivationCode": "[{Effect:{Name:Damage,Amount:5,},Selector:{Source:board,Single:false,Predicate:(unit)=>unit.Faction==Northern@@Realms},PostAction{Type:ReturnToDeck,Selector:{Source:parent,Single:false,Predicate(unit)=>unit.Power<1}}},{Effect:Draw}]",
     "zones": ""
 }
