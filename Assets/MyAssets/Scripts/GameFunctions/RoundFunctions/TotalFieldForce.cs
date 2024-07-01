@@ -18,14 +18,14 @@ public class TotalFieldForce : MonoBehaviour
     public static void UpdateForce(){//Se actualizan los valores de fuerza total por campo
         int sum=0;
         for(int i=0;i<p1PlayedCards.Count;i++){//Se itera por todas las cartas jugadas
-            sum+=p1PlayedCards[i].GetComponent<CardWithPower>().power+p1PlayedCards[i].GetComponent<CardWithPower>().addedPower;//Se suma el poder total
+            sum+=p1PlayedCards[i].GetComponent<CardWithPower>().power+p1PlayedCards[i].GetComponent<CardWithPower>().AddedPower;//Se suma el poder total
         }
         p1ForceValue=sum;//Esta suma se guarda
         GameObject.Find("PointsP1").GetComponent<TextMeshProUGUI>().text=p1ForceValue.ToString();//Asigna el valor al puntaje
         
         sum=0;
         for(int i=0;i<p2PlayedCards.Count;i++){//Se itera por todas las cartas jugadas
-            sum+=p2PlayedCards[i].GetComponent<CardWithPower>().power+p2PlayedCards[i].GetComponent<CardWithPower>().addedPower;//Se suma el poder total
+            sum+=p2PlayedCards[i].GetComponent<CardWithPower>().power+p2PlayedCards[i].GetComponent<CardWithPower>().AddedPower;//Se suma el poder total
         }
         p2ForceValue=sum;//Esta suma se guarda
         GameObject.Find("PointsP2").GetComponent<TextMeshProUGUI>().text=p2ForceValue.ToString();//Asigna el valor al puntaje

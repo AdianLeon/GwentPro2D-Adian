@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 //Script para el funcionamiento del deck y la habilidad de lider
@@ -10,31 +11,52 @@ public class DrawCards : MonoBehaviour
     public fields deckField;//Este es el campo del jugador dueno de este deck
     public List <GameObject> cardsInDeck = new List <GameObject>();//Lista de cartas
     void Start(){
+        //Anadiendo las cartas del contenedor del jugador al deck
         for(int i=0;i<container.transform.childCount;i++){
             cardsInDeck.Add(container.transform.GetChild(i).gameObject);
         }
+        //Asignando a todas las cartas la mano y el campo correctos
         foreach(GameObject card in cardsInDeck){
-            card.GetComponent<Dragging>().hand=playerArea;
+            card.GetComponent<Dragging>().Hand=playerArea;
             card.GetComponent<Card>().WhichField=deckField;
         }
+
+        Shuffle(cardsInDeck);
         for(int i=0;i<10;i++){
-            DrawCard();
+            DrawTopCard();
         }
     }
     public void OnClickDraw(){//Se llama cuando se pulsa el boton
         Debug.Log("El deck: "+this.name+" ha sido presionado como boton");
-        DrawCard();
+        DrawTopCard();
     }
-    public void DrawCard(){
-        if(this.GetComponent<DrawCards>().cardsInDeck.Count!=0){//Si quedan cartas en el deck, creamos la carta y la ponemos en la mano
-            GameObject picked=this.GetComponent<DrawCards>().cardsInDeck[Random.Range(0,this.GetComponent<DrawCards>().cardsInDeck.Count)];//La escogida es aleatoria
-            GameObject newCard = Instantiate(picked,new Vector3(0,0,0),Quaternion.identity);//Se instancia un objeto de esa escogida
+    private void DrawTopCard(){
+        if(cardsInDeck.Count>0){//Si quedan cartas en el deck, creamos la carta y la ponemos en la mano
+            GameObject newCard = Instantiate(cardsInDeck.Last(),new Vector3(0,0,0),Quaternion.identity);//Se instancia un objeto de esa escogida
             newCard.transform.SetParent(playerArea.transform,false);//Se pone en la mano
-            this.GetComponent<DrawCards>().cardsInDeck.Remove(picked);//Se quita de la lista
+            cardsInDeck.RemoveAt(cardsInDeck.Count-1);//Se quita de la lista
             if(playerArea.transform.childCount>10){//Si la carta nueva no cabe en la mano
                 Graveyard.ToGraveyard(newCard);//Se envia al cementerio
             }
         }
     }
-    //public void Shuffle
+    public void Shuffle(List<GameObject> cardsInDeck){
+        for(int i=0;i<cardsInDeck.Count;i++){
+            int randomPos=Random.Range(0,cardsInDeck.Count);
+            GameObject aux=cardsInDeck[i];
+            cardsInDeck[i]=cardsInDeck[randomPos];
+            cardsInDeck[randomPos]=aux;
+        }
+    }
+    // public void DrawRandomCard(){
+    //     if(cardsInDeck.Count!=0){//Si quedan cartas en el deck, creamos la carta y la ponemos en la mano
+    //         GameObject picked=cardsInDeck[Random.Range(0,cardsInDeck.Count)];//La escogida es aleatoria
+    //         GameObject newCard = Instantiate(picked,new Vector3(0,0,0),Quaternion.identity);//Se instancia un objeto de esa escogida
+    //         newCard.transform.SetParent(playerArea.transform,false);//Se pone en la mano
+    //         cardsInDeck.Remove(picked);//Se quita de la lista
+    //         if(playerArea.transform.childCount>10){//Si la carta nueva no cabe en la mano
+    //             Graveyard.ToGraveyard(newCard);//Se envia al cementerio
+    //         }
+    //     }
+    // }
 }

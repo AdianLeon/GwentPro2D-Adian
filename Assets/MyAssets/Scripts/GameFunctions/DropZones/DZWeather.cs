@@ -13,7 +13,7 @@ public class DZWeather : DropZone
         ClearWeatherCard c=eventData.pointerDrag.GetComponent<ClearWeatherCard>();
         if(c!=null || w!=null){
             //Solo si son cartas de clima o despeje
-            eventData.pointerDrag.GetComponent<Dragging>().parentToReturnTo=this.transform;
+            eventData.pointerDrag.GetComponent<Dragging>().ParentToReturnTo=this.transform;
         }
     }
 }

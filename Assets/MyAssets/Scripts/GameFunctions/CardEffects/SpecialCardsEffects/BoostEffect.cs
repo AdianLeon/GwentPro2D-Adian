@@ -8,7 +8,7 @@ public class BoostEffect : MonoBehaviour, ICardEffect
         GameObject target=this.transform.parent.GetComponent<DZBoost>().target;//Objetivo padre de las cartas a las que anadirle poder
         for(int i=0;i<target.transform.childCount;i++){
             if(target.transform.GetChild(i).GetComponent<IAffectable>()!=null){//Si es afectable
-                target.transform.GetChild(i).GetComponent<CardWithPower>().addedPower+=this.GetComponent<BoostCard>().boost;//Aumenta el poder
+                target.transform.GetChild(i).GetComponent<CardWithPower>().AddedPower+=this.GetComponent<BoostCard>().boost;//Aumenta el poder
             }
         }
         Graveyard.ToGraveyard(this.gameObject);//Envia la carta usada al cementerio

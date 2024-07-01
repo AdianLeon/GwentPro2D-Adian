@@ -13,7 +13,7 @@ public class DZBoost : DropZone
         if(c!=null){
             //Solo si son cartas de aumento del jugador correspondiente
             if(validPlayer==c.WhichField){
-                c.gameObject.GetComponent<Dragging>().parentToReturnTo=this.transform;
+                c.gameObject.GetComponent<Dragging>().ParentToReturnTo=this.transform;
             }
         }
     }

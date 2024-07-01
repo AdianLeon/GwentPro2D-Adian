@@ -57,6 +57,7 @@ public class TurnManager : MonoBehaviour
             TotalFieldForce.AddCard(card);//Anade la carta segun el campo y el tipo
             playedCards.Add(card);//Anade la carta a la lista de cartas jugadas
         }
+        TotalFieldForce.UpdateForce();//Se actualiza la fuerza del campo
         card.GetComponent<Card>().LoadInfo();//Recarga la info de la carta
         CompleteTurn();
     }

@@ -48,7 +48,7 @@ public class GruEffect : MonoBehaviour, ILeaderEffect
         fields stealerField=(fields)Enum.Parse(typeof(fields),TurnManager.PTurn);//El campo del ladron es el turno actual
         cardToSteal.transform.SetParent(hand.transform);//Pone la carta robada en la mano del ladron
         cardToSteal.GetComponent<Card>().WhichField=stealerField;//Cambia el campo de la carta
-        cardToSteal.GetComponent<Dragging>().hand=cardToSteal.transform.parent.gameObject;//Cambia la mano de la carta
+        cardToSteal.GetComponent<Dragging>().Hand=cardToSteal.transform.parent.gameObject;//Cambia la mano de la carta
     }
     private GameObject GetRandomCardFromHand(GameObject targetHand){//Devuelve una carta aleatoria de la mano objetivo
         return targetHand.transform.GetChild(UnityEngine.Random.Range(0,targetHand.transform.childCount)).gameObject;

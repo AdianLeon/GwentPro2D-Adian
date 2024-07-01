@@ -6,6 +6,7 @@ using TMPro;
 //Script para la carta Lider
 public class LeaderCard : Card, IIdle
 {
+    public override Color GetCardViewColor(){return new Color(0.7f,0.1f,0.5f);}
     private bool usedSkillData;
     public bool usedSkill{get=>usedSkillData; set=>usedSkillData=value;}
     public override void LoadInfo(){

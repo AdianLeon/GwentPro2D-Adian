@@ -21,9 +21,9 @@ public class Graveyard : MonoBehaviour
         }
     }
     public static void ToGraveyard(GameObject card){//Manda la carta al cementerio
+        card.GetComponent<IAffectable>()?.AffectedByWeathers.Clear();
         if(card.GetComponent<CardWithPower>()!=null){
-            card.GetComponent<CardWithPower>().affectedBy.Clear();
-            card.GetComponent<CardWithPower>().addedPower=0;
+            card.GetComponent<CardWithPower>().AddedPower=0;
         }
         List<GameObject> Field=new List<GameObject>();
         if(card.GetComponent<Card>().WhichField==fields.P1){//Si el campo es de P1 manda la carta al cementerio de P1
@@ -35,7 +35,7 @@ public class Graveyard : MonoBehaviour
         }
         GameObject.Find("GText"+card.GetComponent<Card>().WhichField).GetComponent<TextMeshProUGUI>().text=gP1Count.ToString();
         card.transform.SetParent(GameObject.Find("Graveyard"+card.GetComponent<Card>().WhichField).transform);
-        card.GetComponent<Dragging>().parentToReturnTo=GameObject.Find("Graveyard"+card.GetComponent<Card>().WhichField).transform;
+        card.GetComponent<Dragging>().ParentToReturnTo=GameObject.Find("Graveyard"+card.GetComponent<Card>().WhichField).transform;
         Field.Remove(card);
         TurnManager.playedCards.Remove(card);
         card.GetComponent<Dragging>().IsDraggable=false;

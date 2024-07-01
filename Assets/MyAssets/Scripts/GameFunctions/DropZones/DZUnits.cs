@@ -14,7 +14,7 @@ public class DZUnits : DropZone
         if(c!=null){
             //Solo si coincide el tipo de carta con el tipo de dropzone y es en el campo correspondiente
             if(isDropValid(c.gameObject) && (validPlayer==c.WhichField)){
-                c.gameObject.GetComponent<Dragging>().parentToReturnTo=this.transform;
+                c.gameObject.GetComponent<Dragging>().ParentToReturnTo=this.transform;
             }
         }
     }

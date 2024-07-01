@@ -23,11 +23,14 @@ public class ClearWeatherEffect : MonoBehaviour, ICardEffect
         }
     }
     public static void ClearCardOfWeathers(GameObject affectedCard){//Deshace completamente el efecto de clima de la carta pasada como parametro
-        CardWithPower c=affectedCard.GetComponent<CardWithPower>();
-        int count=c.affectedBy.Count;
-        for(int i=0;i<count;i++){
-            c.addedPower+=GameObject.Find(c.affectedBy[0]).GetComponent<WeatherCard>().damage;
-            c.affectedBy.RemoveAt(0);
+        if(affectedCard.GetComponent<IAffectable>()!=null){
+            int count=affectedCard.GetComponent<IAffectable>().AffectedByWeathers.Count;
+            for(int i=0;i<count;i++){
+                if(affectedCard.GetComponent<CardWithPower>()!=null){
+                    affectedCard.GetComponent<CardWithPower>().AddedPower+=GameObject.Find(affectedCard.GetComponent<IAffectable>().AffectedByWeathers[0]).GetComponent<WeatherCard>().damage;
+                }
+                affectedCard.GetComponent<IAffectable>().AffectedByWeathers.RemoveAt(0);
+            }
         }
     }
 }

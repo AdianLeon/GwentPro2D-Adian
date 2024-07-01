@@ -7,10 +7,8 @@ using TMPro;
 abstract public class CardWithPower : Card
 {
     public int power;//Poder propio de la carta
-    private int addedPowerValue;//Poder anadido por efectos durante el juego
-    public int addedPower{get => addedPowerValue; set => addedPowerValue=value;}
-    public List<string> affectedBy=new List<string>();//Una lista que describe por cuales climas la carta esta siendo afectada
-
+    private int addedPower;//Poder anadido por efectos durante el juego
+    public int AddedPower{get=>addedPower; set=>addedPower=value;}
     public override void LoadInfo(){
         base.LoadInfo();
         //Power

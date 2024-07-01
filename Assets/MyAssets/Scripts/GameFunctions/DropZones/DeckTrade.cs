@@ -35,7 +35,7 @@ public class DeckTrade : DropZone
                 playerDeck.GetComponent<DrawCards>().cardsInDeck.Add(d.gameObject);//Anade la copia de la carta a la lista del deck
 
                 d.gameObject.transform.SetParent(GameObject.Find("Trash").transform);//Envia la carta a intercambiar afuera de la escena
-                d.parentToReturnTo=GameObject.Find("Trash").transform;
+                d.ParentToReturnTo=GameObject.Find("Trash").transform;
 
                 GameObject picked=playerDeck.GetComponent<DrawCards>().cardsInDeck[Random.Range(0,playerDeck.GetComponent<DrawCards>().cardsInDeck.Count)];//Escoge una carta aleatoria del deck
                 GameObject pickedCard = Instantiate(picked,new Vector3(0,0,0),Quaternion.identity);//Se instancia una copia de esa escogida

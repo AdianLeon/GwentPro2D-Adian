@@ -16,11 +16,13 @@ public class WeatherEffect : MonoBehaviour, ICardEffect
         for(int i=0;i<zoneTarget.transform.childCount;i++){//Itera por todos los hijos
             card=zoneTarget.transform.GetChild(i).gameObject;
             //Si la carta en esa zona no es senuelo, o es unidad pero no de oro
-            if(card.GetComponent<BaitCard>()!=null || (card.GetComponent<IAffectable>()!=null)){
-                if(!(card.GetComponent<CardWithPower>().affectedBy.Contains(this.gameObject.name))){//Si no han sido afectados
+            if(card.GetComponent<IAffectable>()!=null){
+                if(!card.GetComponent<IAffectable>().AffectedByWeathers.Contains(this.gameObject.name)){//Si no han sido afectados
                     //Si la carta es senuelo o si la carta no es heroe
-                    card.GetComponent<CardWithPower>().addedPower-=this.GetComponent<WeatherCard>().damage;
-                    card.GetComponent<CardWithPower>().affectedBy.Add(this.gameObject.name);
+                    card.GetComponent<IAffectable>().AffectedByWeathers.Add(this.gameObject.name);
+                    if(card.GetComponent<CardWithPower>()!=null){
+                        card.GetComponent<CardWithPower>().AddedPower-=this.GetComponent<WeatherCard>().damage;
+                    }
                 }
             }
         }
@@ -32,8 +34,8 @@ public class WeatherEffect : MonoBehaviour, ICardEffect
     }
     private static void RectivateWeathersInZone(string zoneToUpdate){//Reactiva los efectos de las cartas clima en una zona especifica
         WeatherEffect[] cardsInZone=GameObject.Find(zoneToUpdate).GetComponentsInChildren<WeatherEffect>();//Se acceden a todos los hijos de esa zona
-        for(int i=0;i<cardsInZone.Length;i++){//Itera por cada uno de esos hijos
-            cardsInZone[i].TriggerEffect();//Hace que activen el efecto de clima otra vez
+        foreach(WeatherEffect cardInZone in cardsInZone){//Itera por cada uno de esos hijos
+            cardInZone.TriggerEffect();//Hace que activen el efecto de clima otra vez
         }
     }
 }
