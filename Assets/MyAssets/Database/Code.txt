@@ -12,34 +12,10 @@ effect{
 	}
 }
 card{
-	Type: "Lider",
-	Name: "Unga Bunga",
+	Type: "Plata",
+	Name: "Unga",
 	Faction: "Northern Realms",
-	Range:[],
-	Power: 0,
-	OnActivation: [
-		{
-			Effect: {
-				Name: "Damage",
-				Amount: 5,
-			},
-			Selector: {
-				Source: "board",
-
-				Single: false,
-				Predicate: (unit) => unit.Faction == "Northern" @@ "Realms"
-			},
-			PostAction{
-				Type:"ReturnToDeck",
-				Selector: {
-					Source: "parent",
-					Single: false,
-					Predicate (unit) => unit.Power < 1
-				}
-			}
-		},
-		{
-			Effect: Draw
-		}
-	]
+	Range:["MRS"],
+	Power: 30
+	OnActivation: []
 }

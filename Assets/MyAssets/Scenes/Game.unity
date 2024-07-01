@@ -154,12 +154,12 @@ RectTransform:
   m_LocalScale: {x: 0.9956029, y: 1.1872565, z: 0.9956029}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1238096647}
-  m_RootOrder: 3
+  m_Father: {fileID: 1071480984}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -125.49664, y: 0.003066188}
+  m_AnchoredPosition: {x: 0.10449982, y: 0.000027775997}
   m_SizeDelta: {x: 1372.2, y: 647.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7568641
@@ -484,7 +484,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7019608, g: 0.6627451, b: 0.6313726, a: 1}
+  m_Color: {r: 0.7224546, g: 0.8018868, b: 0.8018868, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -599,7 +599,7 @@ GameObject:
   - component: {fileID: 108452094}
   - component: {fileID: 108452093}
   m_Layer: 5
-  m_Name: Deck
+  m_Name: DeckP1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -640,7 +640,7 @@ MonoBehaviour:
   container: {fileID: 1947402711}
   playerArea: {fileID: 983662788}
   deckField: 0
-  cards: []
+  cardsInDeck: []
 --- !u!114 &108452094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1080,33 +1080,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
   m_PrefabInstance: {fileID: 172133887}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &172133890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 172133889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  faction: Minions
-  cardRealName: Stuart
-  description: Esta un poco loco, le gusta que lo catapulten contra enemigos, muy
-    conveniente
-  effectDescription: Cuando esta carta es jugada su poder se convierte en el promedio
-    del poder total de todas las cartas del campo
-  artwork: {fileID: 21300000, guid: faecfd47eeba305469eb968015660a0b, type: 3}
-  qualitySprite: {fileID: 21300000, guid: a484a7e19eacc0c46a67fd3e2d701f1f, type: 2}
-  cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
-  whichField: 0
-  power: 0
-  addedPower: 0
-  affectedBy: []
-  whichQuality: 0
-  whichZone: 2
 --- !u!114 &172133891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1119,6 +1092,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a05567db42745a43a2c64055b641dee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &172133898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172133889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60b5313dc52aea748af2d54847ce799d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  faction: Minions
+  cardRealName: Stuart
+  description: Esta un poco loco, le gusta que lo catapulten contra enemigos, muy
+    conveniente
+  effectDescription: Cuando esta carta es jugada su poder se convierte en el promedio
+    del poder total de todas las cartas del campo
+  artwork: {fileID: 21300000, guid: faecfd47eeba305469eb968015660a0b, type: 3}
+  whichField: 0
+  power: 0
+  affectedBy: []
+  whichZone: 2
 --- !u!1 &206273462
 GameObject:
   m_ObjectHideFlags: 0
@@ -1154,7 +1150,7 @@ RectTransform:
   - {fileID: 419372277}
   - {fileID: 1542626788}
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1358,7 +1354,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_Name
-      value: ClimaZoneR
+      value: WeatherZoneR
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -1376,7 +1372,7 @@ GameObject:
   - component: {fileID: 270863345}
   - component: {fileID: 270863344}
   m_Layer: 5
-  m_Name: EnemyHand
+  m_Name: HandP2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1601,7 +1597,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_Name
-      value: LeaderZone
+      value: LeaderZoneP1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -1651,7 +1647,7 @@ RectTransform:
   - {fileID: 862226931}
   - {fileID: 915025858}
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1696,7 +1692,7 @@ RectTransform:
   - {fileID: 1449059162}
   - {fileID: 1054376735}
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2202,11 +2198,9 @@ MonoBehaviour:
   faction: Minions
   cardRealName: Rayo Congelador
   description: 'Aviso: Esta carta solo se puede utilizar cuando no hay apagones'
-  effectDescription: Reduce el poder de las cartas de la fila seleccionada en 1 (Para
+  effectDescription: Reduce el poder de las cartas de la fila seleccionada (Para
     ambos campos)
   artwork: {fileID: 21300000, guid: 3d03c775de555df4280aa7744f885c23, type: 3}
-  qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
-  cardColor: {r: 0.67058825, g: 0.20392157, b: 0.20392157, a: 1}
   whichField: 0
   damage: 15
 --- !u!114 &350516873
@@ -2235,7 +2229,7 @@ GameObject:
   - component: {fileID: 373339267}
   - component: {fileID: 373339268}
   m_Layer: 5
-  m_Name: Guard1E
+  m_Name: GuardP2-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2329,8 +2323,6 @@ MonoBehaviour:
     le pagan bien, todo el dia ahi parado, pobre lastimoso
   effectDescription: Esta carta no es jugable
   artwork: {fileID: 21300000, guid: b6ac0e9b841fb35478b6e9d373666997, type: 3}
-  qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
-  cardColor: {r: 1, g: 1, b: 1, a: 1}
   whichField: 0
 --- !u!1001 &394274531
 PrefabInstance:
@@ -2537,32 +2529,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
   m_PrefabInstance: {fileID: 394274531}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &394274534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 394274533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  faction: Minions
-  cardRealName: Bob
-  description: Solia ser un aventurero justo como tu, pero lo bananearon en la rodilla
-  effectDescription: Cuando esta carta es jugada su poder se convierte en el promedio
-    del poder total de todas las cartas del campo
-  artwork: {fileID: 21300000, guid: 9c0326e7eadf93e428963d37f2147999, type: 3}
-  qualitySprite: {fileID: 21300000, guid: a484a7e19eacc0c46a67fd3e2d701f1f, type: 2}
-  cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
-  whichField: 0
-  power: 0
-  addedPower: 0
-  affectedBy: []
-  whichQuality: 0
-  whichZone: 1
 --- !u!114 &394274535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2575,6 +2541,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a05567db42745a43a2c64055b641dee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &394274542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394274533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60b5313dc52aea748af2d54847ce799d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  faction: Minions
+  cardRealName: Bob
+  description: Solia ser un aventurero justo como tu, pero lo bananearon en la rodilla
+  effectDescription: Cuando esta carta es jugada su poder se convierte en el promedio
+    del poder total de todas las cartas del campo
+  artwork: {fileID: 21300000, guid: 9c0326e7eadf93e428963d37f2147999, type: 3}
+  whichField: 0
+  power: 0
+  affectedBy: []
+  whichZone: 1
 --- !u!1 &401695424
 GameObject:
   m_ObjectHideFlags: 0
@@ -2608,7 +2596,7 @@ RectTransform:
   m_Children:
   - {fileID: 2015754910}
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3032,33 +3020,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
   m_PrefabInstance: {fileID: 449702823}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &449702826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 449702825}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  faction: Minions
-  cardRealName: Vector
-  description: Comparado al macho, este es muy gay, no muere de la manera mas macha
-    posible, solo se quedo botado en la luna
-  effectDescription: Cuando esta carta es jugada manda al cementerio a la carta de
-    menor poder del rival
-  artwork: {fileID: 21300000, guid: c51ef3b4f9d4ac343912c442c9b2abcb, type: 3}
-  qualitySprite: {fileID: 21300000, guid: b0838eed2cabc2041a19e0b1df06f328, type: 2}
-  cardColor: {r: 0.8509804, g: 0.6901961, b: 0.23529412, a: 1}
-  whichField: 1
-  power: 30
-  addedPower: 0
-  affectedBy: []
-  whichQuality: 1
-  whichZone: 5
 --- !u!114 &449702827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3071,6 +3032,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8376e36c57d273b44a526176b5e51fd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &449702834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449702825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cba8299c1020f242b8b3ba40a009759, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  faction: Minions
+  cardRealName: Vector
+  description: Comparado al macho, este es muy gay, no muere de la manera mas macha
+    posible, solo se quedo botado en la luna
+  effectDescription: Cuando esta carta es jugada manda al cementerio a la carta de
+    menor poder del rival
+  artwork: {fileID: 21300000, guid: c51ef3b4f9d4ac343912c442c9b2abcb, type: 3}
+  whichField: 0
+  power: 30
+  affectedBy: []
+  whichZone: 5
 --- !u!1 &485093252
 GameObject:
   m_ObjectHideFlags: 0
@@ -3104,7 +3088,7 @@ RectTransform:
   - {fileID: 1469341215}
   - {fileID: 640041619}
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3339,7 +3323,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 532834802}
         m_TargetAssemblyTypeName: GruEffect, Assembly-CSharp
-        m_MethodName: LeaderEffect
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3418,8 +3402,6 @@ MonoBehaviour:
     aunque conociendo a los minions eso puede salir mal (Solo se puede activar una
     vez por partida)
   artwork: {fileID: 21300000, guid: 2b4ea53af48388d46878a149699cefdb, type: 3}
-  qualitySprite: {fileID: 21300000, guid: 59d86ff46d7aed94da81ad3480f2c35c, type: 3}
-  cardColor: {r: 0.7254902, g: 0.1882353, b: 0.4862745, a: 1}
   whichField: 0
 --- !u!114 &532834802
 MonoBehaviour:
@@ -3433,7 +3415,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f9b36897b6ed0c46b685de25f7fae2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  used: 0
 --- !u!1 &545772179
 GameObject:
   m_ObjectHideFlags: 0
@@ -3765,11 +3746,8 @@ MonoBehaviour:
   effectDescription: Esta carta se puede intercambiar con otra en el campo propio
     (solo con unidades de plata)
   artwork: {fileID: 21300000, guid: 53e16c8f9e2f1114ab4c96f8e99b0a78, type: 3}
-  qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
-  cardColor: {r: 0.77254903, g: 0.45490196, b: 0.70980394, a: 1}
   whichField: 0
   power: 0
-  addedPower: 0
   affectedBy: []
 --- !u!114 &550907573
 MonoBehaviour:
@@ -3952,7 +3930,7 @@ RectTransform:
   - {fileID: 904060569}
   - {fileID: 287957410}
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3973,7 +3951,7 @@ GameObject:
   - component: {fileID: 588232795}
   - component: {fileID: 588232796}
   m_Layer: 5
-  m_Name: Guard2
+  m_Name: GuardP1-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4067,9 +4045,7 @@ MonoBehaviour:
     le pagan bien, todo el dia ahi parado, pobre lastimoso
   effectDescription: Esta carta no es jugable
   artwork: {fileID: 21300000, guid: b6ac0e9b841fb35478b6e9d373666997, type: 3}
-  qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
-  cardColor: {r: 1, g: 1, b: 1, a: 1}
-  whichField: 1
+  whichField: 0
 --- !u!1001 &614105094
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4175,7 +4151,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_Name
-      value: EnemyMeleeDropZone
+      value: MeleeDropZoneP2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -4398,8 +4374,6 @@ MonoBehaviour:
   description: Vuelve a los minions aun mas malvados
   effectDescription: Aumenta el poder de las cartas de la fila seleccionada en 1
   artwork: {fileID: 21300000, guid: 41b7b81fc0c6faa4da908bb11643636e, type: 3}
-  qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
-  cardColor: {r: 0.44313726, g: 1, b: 0.3254902, a: 1}
   whichField: 0
   boost: 15
 --- !u!114 &617735140
@@ -4527,7 +4501,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_Name
-      value: MyAumentoZoneM
+      value: BoostZoneMP1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -4545,7 +4519,7 @@ GameObject:
   - component: {fileID: 631647595}
   - component: {fileID: 631647597}
   m_Layer: 5
-  m_Name: EnemyPoints
+  m_Name: PointsP2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4768,7 +4742,7 @@ GameObject:
   - component: {fileID: 640041622}
   - component: {fileID: 640041621}
   m_Layer: 5
-  m_Name: EGText
+  m_Name: GTextP2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5021,7 +4995,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_Name
-      value: ClimaZoneS
+      value: WeatherZoneS
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -5038,7 +5012,7 @@ GameObject:
   - component: {fileID: 677752212}
   - component: {fileID: 677752211}
   m_Layer: 5
-  m_Name: EnemyBgHand2
+  m_Name: BgHandP2-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5114,7 +5088,7 @@ GameObject:
   - component: {fileID: 681124731}
   - component: {fileID: 681124730}
   m_Layer: 5
-  m_Name: BgHand2
+  m_Name: BgHandP1-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5210,7 +5184,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1238096647}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5295,7 +5269,7 @@ GameObject:
   - component: {fileID: 748548216}
   - component: {fileID: 748548217}
   m_Layer: 5
-  m_Name: Guard1
+  m_Name: GuardP1-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5389,8 +5363,6 @@ MonoBehaviour:
     le pagan bien, todo el dia ahi parado, pobre lastimoso
   effectDescription: Esta carta no es jugable
   artwork: {fileID: 21300000, guid: b6ac0e9b841fb35478b6e9d373666997, type: 3}
-  qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
-  cardColor: {r: 1, g: 1, b: 1, a: 1}
   whichField: 0
 --- !u!1001 &790674553
 PrefabInstance:
@@ -5607,8 +5579,6 @@ MonoBehaviour:
     los minions Spoiler: Los vuelve locos'
   effectDescription: Aumenta el poder de las cartas de la fila seleccionada en 1
   artwork: {fileID: 21300000, guid: de089a2f0b529844db6b49389e1a6747, type: 3}
-  qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
-  cardColor: {r: 0.44313726, g: 1, b: 0.3254902, a: 1}
   whichField: 0
   boost: 25
 --- !u!114 &790674557
@@ -5889,7 +5859,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_Name
-      value: EnemyRangedDropZone
+      value: RangedDropZoneP2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -6027,7 +5997,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_Name
-      value: MySiegeDropZone
+      value: SiegeDropZoneP1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -6270,33 +6240,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
   m_PrefabInstance: {fileID: 913813922}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &913813925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 913813924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  faction: Minions
-  cardRealName: Kevin
-  description: 'Famoso filosofo autor de la frase: "Belo papaguera, churepera con
-    la papaya"'
-  effectDescription: Cuando esta carta es jugada su poder se convierte en el promedio
-    del poder total de todas las cartas del campo
-  artwork: {fileID: 21300000, guid: a5b358b788169784b9b4d62a0f37cb58, type: 3}
-  qualitySprite: {fileID: 21300000, guid: a484a7e19eacc0c46a67fd3e2d701f1f, type: 2}
-  cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
-  whichField: 0
-  power: 0
-  addedPower: 0
-  affectedBy: []
-  whichQuality: 0
-  whichZone: 0
 --- !u!114 &913813926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6309,6 +6252,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a05567db42745a43a2c64055b641dee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &913813933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913813924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60b5313dc52aea748af2d54847ce799d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  faction: Minions
+  cardRealName: Kevin
+  description: 'Famoso filosofo autor de la frase: "Belo papaguera, churepera con
+    la papaya"'
+  effectDescription: Cuando esta carta es jugada su poder se convierte en el promedio
+    del poder total de todas las cartas del campo
+  artwork: {fileID: 21300000, guid: a5b358b788169784b9b4d62a0f37cb58, type: 3}
+  whichField: 0
+  power: 0
+  affectedBy: []
+  whichZone: 0
 --- !u!1001 &915025857
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6414,7 +6380,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_Name
-      value: EnemySiegeDropZone
+      value: SiegeDropZoneP2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -6643,34 +6609,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
   m_PrefabInstance: {fileID: 932100832}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &932100835
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 932100834}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  faction: Minions
-  cardRealName: El Macho
-  description: :o El Macho!! Pidele un autografo antes de que muera montando un tiburon
-    vivo y saltando dentro de la boca de un volcan activo con 250 libras de dinamita
-    atadas a su pecho
-  effectDescription: Cuando esta carta es jugada manda al cementerio a la carta de
-    mayor poder (no se incluye a si misma)
-  artwork: {fileID: 21300000, guid: 2b539ac534b0ba247a511436b409e06a, type: 3}
-  qualitySprite: {fileID: 21300000, guid: b0838eed2cabc2041a19e0b1df06f328, type: 2}
-  cardColor: {r: 0.8509804, g: 0.6901961, b: 0.23529412, a: 1}
-  whichField: 1
-  power: 35
-  addedPower: 0
-  affectedBy: []
-  whichQuality: 1
-  whichZone: 0
 --- !u!114 &932100836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6683,6 +6621,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23f3139dee0168140aee38cdb7c813f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &932100843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932100834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cba8299c1020f242b8b3ba40a009759, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  faction: Minions
+  cardRealName: El Macho
+  description: :o El Macho!! Pidele un autografo antes de que muera montando un tiburon
+    vivo y saltando dentro de la boca de un volcan activo con 250 libras de dinamita
+    atadas a su pecho
+  effectDescription: Cuando esta carta es jugada manda al cementerio a la carta de
+    mayor poder (no se incluye a si misma)
+  artwork: {fileID: 21300000, guid: 2b539ac534b0ba247a511436b409e06a, type: 3}
+  whichField: 0
+  power: 35
+  affectedBy: []
+  whichZone: 0
 --- !u!1001 &933903456
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6880,7 +6842,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
   m_PrefabInstance: {fileID: 933903456}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &933903459
+--- !u!114 &933903466
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6889,7 +6851,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 933903458}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
+  m_Script: {fileID: 11500000, guid: 60b5313dc52aea748af2d54847ce799d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
@@ -6898,13 +6860,9 @@ MonoBehaviour:
     han hecho la vida un infierno, pero por lo menos saben usar un rifle
   effectDescription: 
   artwork: {fileID: 21300000, guid: 1f9aeed22151c0e48939f51ea500782f, type: 3}
-  qualitySprite: {fileID: 21300000, guid: a484a7e19eacc0c46a67fd3e2d701f1f, type: 2}
-  cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
   whichField: 0
   power: 20
-  addedPower: 0
   affectedBy: []
-  whichQuality: 0
   whichZone: 3
 --- !u!1001 &939096330
 PrefabInstance:
@@ -7019,7 +6977,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_Name
-      value: EnemyAumentoZoneR
+      value: BoostZoneRP2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -7113,7 +7071,7 @@ GameObject:
   - component: {fileID: 971488404}
   - component: {fileID: 971488407}
   m_Layer: 5
-  m_Name: CoverHand1
+  m_Name: CoverHandP1-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7202,7 +7160,7 @@ GameObject:
   - component: {fileID: 983662791}
   - component: {fileID: 983662790}
   m_Layer: 5
-  m_Name: Hand
+  m_Name: HandP1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7359,7 +7317,7 @@ RectTransform:
   - {fileID: 275894335}
   - {fileID: 1519646200}
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7715,33 +7673,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
   m_PrefabInstance: {fileID: 1020152329}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1020152332
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1020152331}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  faction: Minions
-  cardRealName: Kyle
-  description: Es la mascota de Gru, mitad "perro", mitad piranha, puedes jugar un
-    poco con el, solo asegurate de que no tenga hambre
-  effectDescription: Cuando esta carta es jugada su poder es multiplicado por la
-    cantidad de Kyles jugados en el campo (contandose a si misma)
-  artwork: {fileID: 21300000, guid: 4a94692d2f86aba4094169397df1df70, type: 3}
-  qualitySprite: {fileID: 21300000, guid: a484a7e19eacc0c46a67fd3e2d701f1f, type: 2}
-  cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
-  whichField: 0
-  power: 10
-  addedPower: 0
-  affectedBy: []
-  whichQuality: 0
-  whichZone: 4
 --- !u!114 &1020152333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7754,7 +7685,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e42f7b0661f0d314b90eb4dfa718270a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalPower: 0
+--- !u!114 &1020152340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020152331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60b5313dc52aea748af2d54847ce799d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  faction: Minions
+  cardRealName: Kyle
+  description: Es la mascota de Gru, mitad "perro", mitad piranha, puedes jugar un
+    poco con el, solo asegurate de que no tenga hambre
+  effectDescription: Cuando esta carta es jugada su poder es multiplicado por la
+    cantidad de Kyles jugados en el campo (contandose a si misma)
+  artwork: {fileID: 21300000, guid: 4a94692d2f86aba4094169397df1df70, type: 3}
+  whichField: 0
+  power: 10
+  affectedBy: []
+  whichZone: 4
 --- !u!1001 &1041093396
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7967,12 +7920,10 @@ MonoBehaviour:
   faction: Minions
   cardRealName: Peluche
   description: Los minions se vuelven pasivos cuando les das un peluche
-  effectDescription: Reduce el poder de las cartas de la fila seleccionada en 1 (Para
+  effectDescription: Reduce el poder de las cartas de la fila seleccionada (Para
     ambos campos)
   artwork: {fileID: 21300000, guid: cc7b9aa19d91c7f429cd2cc11f02b14e, type: 3}
-  qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
-  cardColor: {r: 0.67058825, g: 0.20392157, b: 0.20392157, a: 1}
-  whichField: 1
+  whichField: 0
   damage: 15
 --- !u!114 &1041093400
 MonoBehaviour:
@@ -8204,8 +8155,6 @@ MonoBehaviour:
     Spoiler: Los vuelve locos'
   effectDescription: Aumenta el poder de las cartas de la fila seleccionada
   artwork: {fileID: 21300000, guid: e564c7d836d96aa4f8a9c580957e3fbf, type: 3}
-  qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
-  cardColor: {r: 0.44313726, g: 1, b: 0.3254902, a: 1}
   whichField: 0
   boost: 20
 --- !u!114 &1049803918
@@ -8233,7 +8182,7 @@ GameObject:
   - component: {fileID: 1054376736}
   - component: {fileID: 1054376738}
   m_Layer: 5
-  m_Name: EnemyDeckZone
+  m_Name: DeckZoneP2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8523,7 +8472,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
   m_PrefabInstance: {fileID: 1064438723}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1064438726
+--- !u!114 &1064438733
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8532,7 +8481,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1064438725}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
+  m_Script: {fileID: 11500000, guid: 60b5313dc52aea748af2d54847ce799d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
@@ -8541,13 +8490,9 @@ MonoBehaviour:
     del rayo congelador , el algebra lineal y la gravedad
   effectDescription: 
   artwork: {fileID: 21300000, guid: 3da2059eb9ba797409387d9bafaff558, type: 3}
-  qualitySprite: {fileID: 21300000, guid: a484a7e19eacc0c46a67fd3e2d701f1f, type: 2}
-  cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
   whichField: 0
   power: 25
-  addedPower: 0
   affectedBy: []
-  whichQuality: 0
   whichZone: 5
 --- !u!1001 &1065442422
 PrefabInstance:
@@ -8762,10 +8707,9 @@ MonoBehaviour:
   cardRealName: Muchas Bananas
   description: Para un minion cualquier problema tiene solucion, si tienes suficiente
     dinero, digo bananas
-  effectDescription: Se deshace de todas las cartas de clima en la fila seleccionada
+  effectDescription: Se deshace de todas las cartas de clima y sus efectos en la
+    fila seleccionada
   artwork: {fileID: 21300000, guid: dc03cc05d9a1a2245bcf77ae676c1e42, type: 3}
-  qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
-  cardColor: {r: 0.37254903, g: 0.81960785, b: 1, a: 1}
   whichField: 0
 --- !u!114 &1065442426
 MonoBehaviour:
@@ -9022,6 +8966,7 @@ RectTransform:
   m_Children:
   - {fileID: 1238096647}
   - {fileID: 2099023915}
+  - {fileID: 7568640}
   - {fileID: 1580820472}
   - {fileID: 1805688302}
   - {fileID: 1786402091}
@@ -9075,7 +9020,7 @@ GameObject:
   - component: {fileID: 1091907235}
   - component: {fileID: 1091907237}
   m_Layer: 5
-  m_Name: EnemyCover1
+  m_Name: CoverHandP2-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9192,7 +9137,7 @@ RectTransform:
   - {fileID: 329738325}
   - {fileID: 1851510347}
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9378,7 +9323,7 @@ GameObject:
   - component: {fileID: 1194172543}
   - component: {fileID: 1194172542}
   m_Layer: 5
-  m_Name: BgHand4
+  m_Name: BgHandP1-4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9639,7 +9584,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
   m_PrefabInstance: {fileID: 1203919625}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1203919628
+--- !u!114 &1203919635
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9648,7 +9593,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1203919627}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
+  m_Script: {fileID: 11500000, guid: 60b5313dc52aea748af2d54847ce799d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
@@ -9657,13 +9602,9 @@ MonoBehaviour:
     han hecho la vida un infierno, pero por lo menos saben usar un rifle
   effectDescription: 
   artwork: {fileID: 21300000, guid: 1f9aeed22151c0e48939f51ea500782f, type: 3}
-  qualitySprite: {fileID: 21300000, guid: a484a7e19eacc0c46a67fd3e2d701f1f, type: 2}
-  cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
   whichField: 0
   power: 20
-  addedPower: 0
   affectedBy: []
-  whichQuality: 0
   whichZone: 3
 --- !u!1001 &1234931569
 PrefabInstance:
@@ -9750,7 +9691,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Name
-      value: Scarlet Overkill
+      value: Scarlett Overkill
       objectReference: {fileID: 0}
     - target: {fileID: 2561653655594927260, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
       propertyPath: m_Sprite
@@ -9877,32 +9818,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
   m_PrefabInstance: {fileID: 1234931569}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1234931572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1234931571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  faction: Minions
-  cardRealName: Scarlet Overkill
-  description: Mente maestra del crimen, archienemiga de Gru, experta ladrona de
-    cartas
-  effectDescription: Cuando esta carta es jugada se roba una carta del deck propio
-  artwork: {fileID: 21300000, guid: 252d43dfcdab7b34e89775370a6f1a51, type: 3}
-  qualitySprite: {fileID: 21300000, guid: b0838eed2cabc2041a19e0b1df06f328, type: 2}
-  cardColor: {r: 0.8509804, g: 0.6901961, b: 0.23529412, a: 1}
-  whichField: 1
-  power: 30
-  addedPower: 0
-  affectedBy: []
-  whichQuality: 1
-  whichZone: 6
 --- !u!114 &1234931573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9915,6 +9830,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8dd1a21a2e8c644fbe99ebf85ff717f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1234931580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234931571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cba8299c1020f242b8b3ba40a009759, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  faction: Minions
+  cardRealName: Scarlett Overkill
+  description: Mente maestra del crimen, archienemiga de Gru, experta ladrona de
+    cartas
+  effectDescription: Cuando esta carta es jugada se roba una carta del deck propio
+  artwork: {fileID: 21300000, guid: 252d43dfcdab7b34e89775370a6f1a51, type: 3}
+  whichField: 0
+  power: 30
+  affectedBy: []
+  whichZone: 6
 --- !u!1 &1238096646
 GameObject:
   m_ObjectHideFlags: 0
@@ -9946,7 +9883,6 @@ RectTransform:
   - {fileID: 545772180}
   - {fileID: 1947402712}
   - {fileID: 2131818547}
-  - {fileID: 7568640}
   - {fileID: 733295119}
   m_Father: {fileID: 1071480984}
   m_RootOrder: 0
@@ -10169,7 +10105,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
   m_PrefabInstance: {fileID: 1251430885}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1251430888
+--- !u!114 &1251430895
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10178,7 +10114,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1251430887}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
+  m_Script: {fileID: 11500000, guid: 60b5313dc52aea748af2d54847ce799d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
@@ -10187,13 +10123,9 @@ MonoBehaviour:
     del rayo congelador , el algebra lineal y la gravedad
   effectDescription: 
   artwork: {fileID: 21300000, guid: 3da2059eb9ba797409387d9bafaff558, type: 3}
-  qualitySprite: {fileID: 21300000, guid: a484a7e19eacc0c46a67fd3e2d701f1f, type: 2}
-  cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
   whichField: 0
   power: 25
-  addedPower: 0
   affectedBy: []
-  whichQuality: 0
   whichZone: 5
 --- !u!1 &1254882642
 GameObject:
@@ -10209,7 +10141,7 @@ GameObject:
   - component: {fileID: 1254882645}
   - component: {fileID: 1254882644}
   m_Layer: 5
-  m_Name: EnemyDeck
+  m_Name: DeckP2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10250,7 +10182,7 @@ MonoBehaviour:
   container: {fileID: 2131818546}
   playerArea: {fileID: 270863342}
   deckField: 1
-  cards: []
+  cardsInDeck: []
 --- !u!114 &1254882645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10742,7 +10674,7 @@ GameObject:
   - component: {fileID: 1391710910}
   - component: {fileID: 1391710913}
   m_Layer: 5
-  m_Name: CoverHand2
+  m_Name: CoverHandP1-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10927,7 +10859,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_Name
-      value: MyRangedDropZone
+      value: RangedDropZoneP1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -10964,7 +10896,7 @@ GameObject:
   - component: {fileID: 1449059163}
   - component: {fileID: 1449059165}
   m_Layer: 5
-  m_Name: MyDeckZone
+  m_Name: DeckZoneP1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11053,7 +10985,7 @@ GameObject:
   - component: {fileID: 1469341218}
   - component: {fileID: 1469341217}
   m_Layer: 5
-  m_Name: GText
+  m_Name: GTextP1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11188,7 +11120,7 @@ GameObject:
   - component: {fileID: 1479294795}
   - component: {fileID: 1479294794}
   m_Layer: 5
-  m_Name: EnemyPointsText
+  m_Name: PointsTextP2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11424,7 +11356,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_Name
-      value: MyAumentoZoneR
+      value: BoostZoneRP1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -11646,7 +11578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a05567db42745a43a2c64055b641dee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1498460614
+--- !u!114 &1498460621
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11655,7 +11587,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1498460612}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
+  m_Script: {fileID: 11500000, guid: 60b5313dc52aea748af2d54847ce799d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
@@ -11664,13 +11596,9 @@ MonoBehaviour:
   effectDescription: Cuando esta carta es jugada su poder se convierte en el promedio
     del poder total de todas las cartas del campo
   artwork: {fileID: 21300000, guid: 9c0326e7eadf93e428963d37f2147999, type: 3}
-  qualitySprite: {fileID: 21300000, guid: a484a7e19eacc0c46a67fd3e2d701f1f, type: 2}
-  cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
   whichField: 0
   power: 0
-  addedPower: 0
   affectedBy: []
-  whichQuality: 0
   whichZone: 1
 --- !u!1001 &1519646199
 PrefabInstance:
@@ -11809,7 +11737,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_Name
-      value: EnemyLeaderZone
+      value: LeaderZoneP2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -12037,8 +11965,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e42f7b0661f0d314b90eb4dfa718270a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalPower: 0
---- !u!114 &1524708365
+--- !u!114 &1524708372
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12047,7 +11974,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1524708363}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
+  m_Script: {fileID: 11500000, guid: 60b5313dc52aea748af2d54847ce799d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
@@ -12057,13 +11984,9 @@ MonoBehaviour:
   effectDescription: Cuando esta carta es jugada su poder es multiplicado por la
     cantidad de Kyles jugados en el campo (contandose a si misma)
   artwork: {fileID: 21300000, guid: 4a94692d2f86aba4094169397df1df70, type: 3}
-  qualitySprite: {fileID: 21300000, guid: a484a7e19eacc0c46a67fd3e2d701f1f, type: 2}
-  cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
   whichField: 0
   power: 10
-  addedPower: 0
   affectedBy: []
-  whichQuality: 0
   whichZone: 4
 --- !u!224 &1542626788 stripped
 RectTransform:
@@ -12235,7 +12158,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12390,7 +12313,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_Name
-      value: EnemyAumentoZoneS
+      value: BoostZoneSP2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -12608,7 +12531,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
   m_PrefabInstance: {fileID: 1608695151}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1608695154
+--- !u!114 &1608695161
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12617,7 +12540,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1608695153}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
+  m_Script: {fileID: 11500000, guid: 60b5313dc52aea748af2d54847ce799d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
@@ -12626,13 +12549,9 @@ MonoBehaviour:
     del rayo congelador , el algebra lineal y la gravedad
   effectDescription: 
   artwork: {fileID: 21300000, guid: 3da2059eb9ba797409387d9bafaff558, type: 3}
-  qualitySprite: {fileID: 21300000, guid: a484a7e19eacc0c46a67fd3e2d701f1f, type: 2}
-  cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
   whichField: 0
   power: 25
-  addedPower: 0
   affectedBy: []
-  whichQuality: 0
   whichZone: 5
 --- !u!1 &1611976137
 GameObject:
@@ -13003,11 +12922,8 @@ MonoBehaviour:
   effectDescription: Esta carta se puede intercambiar con otra en el campo propio
     (solo con unidades de plata)
   artwork: {fileID: 21300000, guid: 394e3d4bf1a595247ac066cd390f506a, type: 3}
-  qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
-  cardColor: {r: 0.77254903, g: 0.45490196, b: 0.70980394, a: 1}
   whichField: 0
   power: 0
-  addedPower: 0
   affectedBy: []
 --- !u!114 &1618750943
 MonoBehaviour:
@@ -13053,7 +12969,7 @@ GameObject:
   - component: {fileID: 1649212437}
   - component: {fileID: 1649212439}
   m_Layer: 5
-  m_Name: Points
+  m_Name: PointsP1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13319,7 +13235,7 @@ RectTransform:
   m_Children:
   - {fileID: 169692197}
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -13598,7 +13514,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_Name
-      value: MyAumentoZoneS
+      value: BoostZoneSP1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -13821,8 +13737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e42f7b0661f0d314b90eb4dfa718270a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalPower: 0
---- !u!114 &1757506597
+--- !u!114 &1757506604
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13831,7 +13746,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1757506595}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
+  m_Script: {fileID: 11500000, guid: 60b5313dc52aea748af2d54847ce799d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
@@ -13841,13 +13756,9 @@ MonoBehaviour:
   effectDescription: Cuando esta carta es jugada su poder es multiplicado por la
     cantidad de Kyles jugados en el campo (contandose a si misma)
   artwork: {fileID: 21300000, guid: 4a94692d2f86aba4094169397df1df70, type: 3}
-  qualitySprite: {fileID: 21300000, guid: a484a7e19eacc0c46a67fd3e2d701f1f, type: 2}
-  cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
   whichField: 0
   power: 10
-  addedPower: 0
   affectedBy: []
-  whichQuality: 0
   whichZone: 4
 --- !u!1 &1767920635
 GameObject:
@@ -13862,7 +13773,7 @@ GameObject:
   - component: {fileID: 1767920637}
   - component: {fileID: 1767920639}
   m_Layer: 5
-  m_Name: EnemyCover2
+  m_Name: CoverHandP2-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14155,7 +14066,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a05567db42745a43a2c64055b641dee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1770079374
+--- !u!114 &1770079381
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14164,7 +14075,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1770079372}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
+  m_Script: {fileID: 11500000, guid: 60b5313dc52aea748af2d54847ce799d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
@@ -14174,13 +14085,9 @@ MonoBehaviour:
   effectDescription: Cuando esta carta es jugada su poder se convierte en el promedio
     del poder total de todas las cartas del campo
   artwork: {fileID: 21300000, guid: faecfd47eeba305469eb968015660a0b, type: 3}
-  qualitySprite: {fileID: 21300000, guid: a484a7e19eacc0c46a67fd3e2d701f1f, type: 2}
-  cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
   whichField: 0
   power: 0
-  addedPower: 0
   affectedBy: []
-  whichQuality: 0
   whichZone: 2
 --- !u!1 &1775964367
 GameObject:
@@ -14196,7 +14103,7 @@ GameObject:
   - component: {fileID: 1775964372}
   - component: {fileID: 1775964373}
   m_Layer: 5
-  m_Name: Guard2E
+  m_Name: GuardP2-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14290,9 +14197,7 @@ MonoBehaviour:
     le pagan bien, todo el dia ahi parado, pobre lastimoso
   effectDescription: Esta carta no es jugable
   artwork: {fileID: 21300000, guid: b6ac0e9b841fb35478b6e9d373666997, type: 3}
-  qualitySprite: {fileID: 21300000, guid: 73ba251ae780800419af709d3a4ce59d, type: 3}
-  cardColor: {r: 1, g: 1, b: 1, a: 1}
-  whichField: 1
+  whichField: 0
 --- !u!1 &1786402090
 GameObject:
   m_ObjectHideFlags: 0
@@ -14327,7 +14232,7 @@ RectTransform:
   - {fileID: 343975504}
   - {fileID: 638360662}
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -14367,7 +14272,7 @@ RectTransform:
   - {fileID: 373339263}
   - {fileID: 1775964368}
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -14405,7 +14310,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -14622,19 +14527,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5444796647865736657, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_Color.b
-      value: 0.21960786
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5444796647865736657, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_Color.g
-      value: 0.21960786
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5444796647865736657, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_Color.r
-      value: 0.21960786
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_Name
-      value: EnemyGraveyard
+      value: GraveyardP2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -14656,7 +14561,7 @@ GameObject:
   - component: {fileID: 1829186322}
   - component: {fileID: 1829186321}
   m_Layer: 5
-  m_Name: EnemyBgHand4
+  m_Name: BgHandP2-4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14732,7 +14637,7 @@ GameObject:
   - component: {fileID: 1845967591}
   - component: {fileID: 1845967590}
   m_Layer: 5
-  m_Name: BgHand3
+  m_Name: BgHandP1-3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14808,7 +14713,7 @@ GameObject:
   - component: {fileID: 1848283488}
   - component: {fileID: 1848283487}
   m_Layer: 5
-  m_Name: EnemyBgHand1
+  m_Name: BgHandP2-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15019,7 +14924,7 @@ GameObject:
   - component: {fileID: 1857397648}
   - component: {fileID: 1857397647}
   m_Layer: 5
-  m_Name: PointsText
+  m_Name: PointsTextP1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15179,7 +15084,7 @@ RectTransform:
   - {fileID: 64627403}
   - {fileID: 1156043807}
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -15319,7 +15224,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_Name
-      value: ClimaZoneM
+      value: WeatherZoneM
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -15586,7 +15491,7 @@ RectTransform:
   m_Children:
   - {fileID: 1570595591}
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -15971,7 +15876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a05567db42745a43a2c64055b641dee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1950782865
+--- !u!114 &1950782872
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -15980,7 +15885,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1950782863}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
+  m_Script: {fileID: 11500000, guid: 60b5313dc52aea748af2d54847ce799d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
@@ -15990,13 +15895,9 @@ MonoBehaviour:
   effectDescription: Cuando esta carta es jugada su poder se convierte en el promedio
     del poder total de todas las cartas del campo
   artwork: {fileID: 21300000, guid: a5b358b788169784b9b4d62a0f37cb58, type: 3}
-  qualitySprite: {fileID: 21300000, guid: a484a7e19eacc0c46a67fd3e2d701f1f, type: 2}
-  cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
   whichField: 0
   power: 0
-  addedPower: 0
   affectedBy: []
-  whichQuality: 0
   whichZone: 0
 --- !u!1 &1988085504 stripped
 GameObject:
@@ -16029,7 +15930,7 @@ GameObject:
   - component: {fileID: 1990513174}
   - component: {fileID: 1990513173}
   m_Layer: 5
-  m_Name: BgHand1
+  m_Name: BgHandP1-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16365,7 +16266,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_Name
-      value: Graveyard
+      value: GraveyardP1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -16387,7 +16288,7 @@ GameObject:
   - component: {fileID: 2044138539}
   - component: {fileID: 2044138538}
   m_Layer: 5
-  m_Name: EnemyBgHand3
+  m_Name: BgHandP2-3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16484,7 +16385,7 @@ RectTransform:
   m_Children:
   - {fileID: 1325665075}
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -16671,7 +16572,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2085063853}
   m_Layer: 5
-  m_Name: HandSet
+  m_Name: HandP1Set
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16697,7 +16598,7 @@ RectTransform:
   - {fileID: 971488406}
   - {fileID: 1391710912}
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -17012,7 +16913,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_Name
-      value: EnemyAumentoZoneM
+      value: BoostZoneMP2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -17218,7 +17119,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
   m_PrefabInstance: {fileID: 2112487287}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2112487290
+--- !u!114 &2112487297
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -17227,7 +17128,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2112487289}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5d656056881e00428be85f7adf74df3, type: 3}
+  m_Script: {fileID: 11500000, guid: 60b5313dc52aea748af2d54847ce799d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   faction: Minions
@@ -17236,13 +17137,9 @@ MonoBehaviour:
     han hecho la vida un infierno, pero por lo menos saben usar un rifle
   effectDescription: 
   artwork: {fileID: 21300000, guid: 1f9aeed22151c0e48939f51ea500782f, type: 3}
-  qualitySprite: {fileID: 21300000, guid: a484a7e19eacc0c46a67fd3e2d701f1f, type: 2}
-  cardColor: {r: 0.77254903, g: 0.827451, b: 0.8666667, a: 1}
   whichField: 0
   power: 20
-  addedPower: 0
   affectedBy: []
-  whichQuality: 0
   whichZone: 3
 --- !u!1 &2123096150
 GameObject:
@@ -17254,7 +17151,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2123096151}
   m_Layer: 5
-  m_Name: EnemyHandSet
+  m_Name: HandP2Set
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17280,7 +17177,7 @@ RectTransform:
   - {fileID: 1091907234}
   - {fileID: 1767920636}
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -17510,7 +17407,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_Name
-      value: MyMeleeDropZone
+      value: MeleeDropZoneP1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}

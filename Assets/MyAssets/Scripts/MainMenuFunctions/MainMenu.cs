@@ -14,8 +14,8 @@ public class MainMenu : MonoBehaviour
             string jsonPrefs=File.ReadAllText(Application.dataPath+"/MyAssets/Database/PlayerPreferences/PlayerPrefs.json");//Lee el archivo
             PlayerPrefsData prefs=JsonUtility.FromJson<PlayerPrefsData>(jsonPrefs);//Se convierte a un objeto que contiene todos los PlayerPrefs
             PlayerPrefs.SetFloat("allVolume",prefs.volume);//Se impone como preferencia los valores guardados
-            PlayerPrefs.SetString("P1Deck",prefs.deckP1);
-            PlayerPrefs.SetString("P2Deck",prefs.deckP2);
+            PlayerPrefs.SetString("P1PrefDeck",prefs.deckPrefP1);
+            PlayerPrefs.SetString("P2PrefDeck",prefs.deckPrefP2);
             firstExecuted=false;//Ya no se ejecutara este condicional de nuevo
         }
         if(SceneManager.GetActiveScene().buildIndex==0){//Si estamos en el menu inicial
@@ -37,15 +37,5 @@ public class MainMenu : MonoBehaviour
         PlayerPrefsData savePrefs=new PlayerPrefsData(PlayerPrefs.GetFloat("allVolume"),PlayerPrefs.GetString("P1Deck"),PlayerPrefs.GetString("P2Deck"));
         string jsonPlayerPrefs=JsonUtility.ToJson(savePrefs);
         File.WriteAllText(Application.dataPath+"/MyAssets/Database/PlayerPreferences/PlayerPrefs.json",jsonPlayerPrefs);
-    }
-    private class PlayerPrefsData{//Clase para guardar las preferencias del jugador
-        public float volume;
-        public string deckP1;
-        public string deckP2;
-        public PlayerPrefsData(float volume,string deckP1,string deckP2){
-            this.volume=volume;
-            this.deckP1=deckP1;
-            this.deckP2=deckP2;
-        }
     }
 }

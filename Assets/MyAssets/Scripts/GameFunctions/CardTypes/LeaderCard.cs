@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 //Script para la carta Lider
-public class LeaderCard : Card
+public class LeaderCard : Card, IIdle
 {
+    private bool usedSkillData;
+    public bool usedSkill{get=>usedSkillData; set=>usedSkillData=value;}
     public override void LoadInfo(){
         base.LoadInfo();
         GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="[L]";

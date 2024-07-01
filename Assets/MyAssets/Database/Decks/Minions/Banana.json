@@ -3,18 +3,11 @@
     "cardRealName": "Banana",
     "description": "Supongo que no tengo que explicarte lo que las bananas le hacen a los minions Spoiler: Los vuelve locos",
     "effectDescription": "Aumenta el poder de las cartas de la fila seleccionada en 1",
-    "sourceImage": "Minions/ABanana",
-    "artwork": "Minions/ABananaImage",
-    "qualitySprite": "BlankImage",
-    "r": 0.4431372582912445,
-    "g": 1.0,
-    "b": 0.32549020648002627,
     "powerPoints": 25,
     "typeComponent": "BoostCard",
     "effectComponents": [
         "BoostEffect"
     ],
-    "onActivationCode": "",
-    "zones": "",
-    "quality": ""
+    "onActivationCodeName": "",
+    "zones": ""
 }

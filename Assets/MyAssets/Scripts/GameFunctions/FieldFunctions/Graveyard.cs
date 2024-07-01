@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 //Script para la funcionalidad de los cementerios
 public class Graveyard : MonoBehaviour
 {
     //Este script es completamente static
-    public static int gCount,egCount;//Contadores de cartas en los respectivos cementerios
+    public static int gP1Count,gP2Count;//Contadores de cartas en los respectivos cementerios
     void Start(){
-        gCount=0;
-        egCount=0;
-        GameObject.Find("GText").GetComponent<TextMeshProUGUI>().text=gCount.ToString();
-        GameObject.Find("EGText").GetComponent<TextMeshProUGUI>().text=egCount.ToString();
+        gP1Count=0;gP2Count=0;
+        GameObject.Find("GTextP1").GetComponent<TextMeshProUGUI>().text=gP1Count.ToString();
+        GameObject.Find("GTextP2").GetComponent<TextMeshProUGUI>().text=gP2Count.ToString();
     }
     public static void AllToGraveyard(){//Manda una por una todas las cartas jugadas al cementerio
         int count=TurnManager.playedCards.Count;
@@ -25,24 +25,19 @@ public class Graveyard : MonoBehaviour
             card.GetComponent<CardWithPower>().affectedBy.Clear();
             card.GetComponent<CardWithPower>().addedPower=0;
         }
-        string GraveyardName="";
         List<GameObject> Field=new List<GameObject>();
-        if(card.GetComponent<Card>().whichField==Card.fields.P1){//Si el campo es de P1 manda la carta al cementerio de P1
-            GraveyardName="Graveyard";
+        if(card.GetComponent<Card>().WhichField==fields.P1){//Si el campo es de P1 manda la carta al cementerio de P1
             Field=TotalFieldForce.p1PlayedCards;
-            gCount++;
-            GameObject.Find("GText").GetComponent<TextMeshProUGUI>().text=gCount.ToString();
-        }else if(card.GetComponent<Card>().whichField==Card.fields.P2){//Si el campo es de P2 manda la carta al cementerio de P2
-            GraveyardName="EnemyGraveyard";
+            gP1Count++;
+        }else if(card.GetComponent<Card>().WhichField==fields.P2){//Si el campo es de P2 manda la carta al cementerio de P2
             Field=TotalFieldForce.p2PlayedCards;
-            egCount++;
-            GameObject.Find("EGText").GetComponent<TextMeshProUGUI>().text=egCount.ToString();
+            gP2Count++;
         }
-        card.transform.SetParent(GameObject.Find(GraveyardName).transform);
-        card.GetComponent<Dragging>().parentToReturnTo=GameObject.Find(GraveyardName).transform;
+        GameObject.Find("GText"+card.GetComponent<Card>().WhichField).GetComponent<TextMeshProUGUI>().text=gP1Count.ToString();
+        card.transform.SetParent(GameObject.Find("Graveyard"+card.GetComponent<Card>().WhichField).transform);
+        card.GetComponent<Dragging>().parentToReturnTo=GameObject.Find("Graveyard"+card.GetComponent<Card>().WhichField).transform;
         Field.Remove(card);
         TurnManager.playedCards.Remove(card);
-        card.GetComponent<Dragging>().isDraggable=false;
-        //Destroy(card.GetComponent<Dragging>());//No necesitaremos esto de nuevo
+        card.GetComponent<Dragging>().IsDraggable=false;
     }
 }

@@ -3,18 +3,11 @@
     "cardRealName": "Bob",
     "description": "Solia ser un aventurero justo como tu, pero lo bananearon en la rodilla",
     "effectDescription": "Cuando esta carta es jugada su poder se convierte en el promedio del poder total de todas las cartas del campo",
-    "sourceImage": "Minions/Bob",
-    "artwork": "Minions/BobImage",
-    "qualitySprite": "SilverQuality",
-    "r": 0.772549033164978,
-    "g": 0.8274509906768799,
-    "b": 0.8666666746139526,
     "powerPoints": 0,
-    "typeComponent": "UnitCard",
+    "typeComponent": "SilverCard",
     "effectComponents": [
         "PromEffect"
     ],
-    "onActivationCode": "",
-    "zones": "R",
-    "quality": "Silver"
+    "onActivationCodeName": "",
+    "zones": "R"
 }

@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Assigner : MonoBehaviour
 {
-    public static void AssignBlocks(List<CustomClasses.Token> tokenList){
+    public static void AssignBlocks(List<Token> tokenList){
         for(int i=0;i<tokenList.Count;i++){
-            if(tokenList[i].type==CustomClasses.Token.tokenTypes.blockDeclaration){
+            if(tokenList[i].type==tokenTypes.blockDeclaration){
                 if(tokenList[i+1].text=="{"){
                     int blockEnd=Utils.FindMatchingParenthesis(tokenList,i+1);
                     if(tokenList[i].text=="card"){
                     ProcessCard.CompileAndCreate(tokenList,i+2,blockEnd);
                     }else if(tokenList[i].text=="effect"){
-                    ProcessEffect.SaveOnTxt(tokenList,i+2,blockEnd);
+                    ProcessEffect.SaveEffectOnJson(tokenList,i+2,blockEnd);
                     }else{
                         Debug.Log("Error, cardAssignmentWord is not card or effect");
                     }

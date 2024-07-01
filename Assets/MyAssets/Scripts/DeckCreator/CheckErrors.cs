@@ -6,7 +6,7 @@ using TMPro;
 public class CheckErrors : MonoBehaviour
 {
     private static int errorCount;
-    public static bool IsCorrect(List<CustomClasses.Token> tokenList){
+    public static bool IsCorrect(List<Token> tokenList){
         return CheckUnexpectedTokens(tokenList);//No existan token sin clasificar
     }
     public static void ErrorWrite(string message,string writer){//Escribe el mensaje pasado como error en el objeto ErrorRead
@@ -15,10 +15,10 @@ public class CheckErrors : MonoBehaviour
     public static void ErrorClean(){
         GameObject.Find("ErrorRead").GetComponent<TextMeshProUGUI>().text="";
     }
-    private static bool CheckUnexpectedTokens(List<CustomClasses.Token> tokenList){//Chequea si hay algun token inesperado
+    private static bool CheckUnexpectedTokens(List<Token> tokenList){//Chequea si hay algun token inesperado
         bool isCorrect=true;
         for(int i=0;i<tokenList.Count;i++){
-            if(tokenList[i].type==CustomClasses.Token.tokenTypes.unexpected){
+            if(tokenList[i].type==tokenTypes.unexpected){
                 isCorrect=false;
             }
             if(!(tokenList[i].text=="")){

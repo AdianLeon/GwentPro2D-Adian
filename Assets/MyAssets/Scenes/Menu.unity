@@ -1190,7 +1190,7 @@ GameObject:
   - component: {fileID: 154299784}
   - component: {fileID: 154299783}
   m_Layer: 5
-  m_Name: Label
+  m_Name: P1PrefDeckLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1572,7 +1572,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 9, y: -510}
+  m_AnchoredPosition: {x: 9, y: -489}
   m_SizeDelta: {x: 211.6954, y: 78.8746}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &195244240
@@ -2566,7 +2566,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 59.583435, y: -50.95414}
+  m_AnchoredPosition: {x: 43, y: -29.999992}
   m_SizeDelta: {x: 1123.2931, y: 200.15166}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &341580641
@@ -5815,7 +5815,7 @@ GameObject:
   - component: {fileID: 647001990}
   - component: {fileID: 647001993}
   m_Layer: 5
-  m_Name: P1DeckDropdown
+  m_Name: P1PrefDeck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7431,7 +7431,7 @@ GameObject:
   - component: {fileID: 967098407}
   - component: {fileID: 967098406}
   m_Layer: 5
-  m_Name: Label
+  m_Name: P2PrefDeckLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8555,7 +8555,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 9, y: -426.03}
+  m_AnchoredPosition: {x: 9, y: -405.03}
   m_SizeDelta: {x: 211.6954, y: 78.8746}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1033671595
@@ -8763,7 +8763,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 9, y: -348}
+  m_AnchoredPosition: {x: 9, y: -327}
   m_SizeDelta: {x: 211.6954, y: 78.8746}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1045075682
@@ -9965,7 +9965,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 410, y: -270}
+  m_AnchoredPosition: {x: 410, y: -249}
   m_SizeDelta: {x: 422.4519, y: 78.8746}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1209448698
@@ -11146,7 +11146,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -475, y: -51}
+  m_AnchoredPosition: {x: -475, y: -29.999992}
   m_SizeDelta: {x: 267.761, y: 78.437}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1422169151
@@ -11770,7 +11770,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -424, y: 20.219}
+  m_AnchoredPosition: {x: -424, y: 41.21901}
   m_SizeDelta: {x: 211.85, y: 78.437}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1486042567
@@ -12077,7 +12077,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 11, y: 20}
+  m_AnchoredPosition: {x: 11, y: 41}
   m_SizeDelta: {x: 211.69543, y: 78.8746}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1499116217
@@ -14381,7 +14381,7 @@ GameObject:
   - component: {fileID: 1864425323}
   - component: {fileID: 1864425326}
   m_Layer: 5
-  m_Name: P2DeckDropdown
+  m_Name: P2PrefDeck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -14,16 +14,17 @@ public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         selectedCard.GetComponent<Image>().color=new Color (0.75f,0.75f,0.75f,1);//La carta se sombrea cuando pasamos por encima
         selectedCard.GetComponent<Card>().LoadInfo();//Se carga toda la informacion de esta carta en el CardView
         if((TurnManager.cardsPlayed==0 || TurnManager.lastTurn) && selectedCard.GetComponent<Dragging>()!=null){//Si el jugador puede jugar
-            if(!Dragging.onDrag && selectedCard.transform.parent==selectedCard.GetComponent<Dragging>().hand.transform)//Si no se esta arrastrando ninguna carta y ademas esta en la mano
+            if(!Dragging.onDrag && selectedCard.transform.parent==selectedCard.GetComponent<Dragging>().hand.transform){//Si no se esta arrastrando ninguna carta y ademas esta en la mano
                 if(selectedCard.GetComponent<BaitCard>()!=null){//Si la carta es senuelo
                     VisualEffects.ValidSwapsGlow(selectedCard);//Se iluminan las cartas con las que el senuelo se puede intercambiar
-                }else{
+                }else{//Si la carta no es senuelo
                     VisualEffects.ZonesGlow(selectedCard);//Se ilumina la zona donde se puede soltar
                 }
+            }
         }
     }
 
-    public void OnPointerExit(PointerEventData eventData){//Se activa cuando el mouse sale de la carta
+    public void OnPointerExit(PointerEventData eventData){//Se llama cuando el mouse sale de la carta
         if(!Dragging.onDrag && selectedCard.GetComponent<Dragging>()!=null){//Si no se esta arrastrando ninguna carta y el objeto tiene dragging
             if(selectedCard.GetComponent<CanvasGroup>().blocksRaycasts==true){//Si el objecto bloquea los raycasts
                 VisualEffects.OffCardsGlow();//Se dessombrean todas las cartas

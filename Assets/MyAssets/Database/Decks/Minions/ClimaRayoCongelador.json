@@ -2,19 +2,12 @@
     "faction": "Minions",
     "cardRealName": "Rayo Congelador",
     "description": "Aviso: Esta carta solo se puede utilizar cuando no hay apagones",
-    "effectDescription": "Reduce el poder de las cartas de la fila seleccionada en 1 (Para ambos campos)",
-    "sourceImage": "Minions/CRayoCongelador",
-    "artwork": "Minions/CRayoCongeladorImage",
-    "qualitySprite": "BlankImage",
-    "r": 0.6705882549285889,
-    "g": 0.20392157137393952,
-    "b": 0.20392157137393952,
+    "effectDescription": "Reduce el poder de las cartas de la fila seleccionada (Para ambos campos)",
     "powerPoints": 15,
     "typeComponent": "WeatherCard",
     "effectComponents": [
         "WeatherEffect"
     ],
-    "onActivationCode": "",
-    "zones": "",
-    "quality": ""
+    "onActivationCodeName": "",
+    "zones": ""
 }

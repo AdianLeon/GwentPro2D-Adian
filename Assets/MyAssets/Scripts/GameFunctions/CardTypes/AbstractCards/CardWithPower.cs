@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-//Script para las cartas que tienen poder (Cartas de unidad y senuelos)
+//Script para las cartas que tienen poder, poder anadido y que se pueden afectar por climas (Cartas de unidad y senuelos)
 abstract public class CardWithPower : Card
 {
     public int power;//Poder propio de la carta
-    public int addedPower;//Poder anadido por efectos durante el juego
+    private int addedPowerValue;//Poder anadido por efectos durante el juego
+    public int addedPower{get => addedPowerValue; set => addedPowerValue=value;}
     public List<string> affectedBy=new List<string>();//Una lista que describe por cuales climas la carta esta siendo afectada
+
     public override void LoadInfo(){
         base.LoadInfo();
         //Power

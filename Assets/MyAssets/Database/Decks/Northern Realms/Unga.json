@@ -1,0 +1,11 @@
+{
+    "faction": "Northern Realms",
+    "cardRealName": "Unga",
+    "description": "Esta es una carta creada",
+    "effectDescription": "Esta es una carta creada",
+    "powerPoints": 30,
+    "typeComponent": "SilverCard",
+    "effectComponents": [],
+    "onActivationCodeName": "[]",
+    "zones": "MRS"
+}

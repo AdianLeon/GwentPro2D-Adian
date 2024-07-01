@@ -3,16 +3,9 @@
     "cardRealName": "Unga Bunga",
     "description": "Esta es una carta creada",
     "effectDescription": "Esta es una carta creada",
-    "sourceImage": "Northern Realms/Unga BungaImage",
-    "artwork": "Northern Realms/Unga Bunga",
-    "qualitySprite": "LeaderQuality",
-    "r": 0.782351016998291,
-    "g": 0.29596370458602908,
-    "b": 0.8556029200553894,
     "powerPoints": 0,
     "typeComponent": "LeaderCard",
     "effectComponents": [],
     "onActivationCode": "[{Effect:{Name:Damage,Amount:5,},Selector:{Source:board,Single:false,Predicate:(unit)=>unit.Faction==Northern@@Realms},PostAction{Type:ReturnToDeck,Selector:{Source:parent,Single:false,Predicate(unit)=>unit.Power<1}}},{Effect:Draw}]",
-    "zones": "",
-    "quality": ""
+    "zones": ""
 }

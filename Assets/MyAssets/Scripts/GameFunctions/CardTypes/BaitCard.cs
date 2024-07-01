@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 //Script para las cartas senuelo
-public class BaitCard : CardWithPower
+public class BaitCard : CardWithPower, IAffectable
 {
     public override void LoadInfo(){
         base.LoadInfo();

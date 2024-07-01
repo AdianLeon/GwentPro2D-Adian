@@ -3,18 +3,11 @@
     "cardRealName": "Inyeccion de minion purpura",
     "description": "Vuelve a los minions aun mas malvados",
     "effectDescription": "Aumenta el poder de las cartas de la fila seleccionada en 1",
-    "sourceImage": "Minions/APurpleMinion",
-    "artwork": "Minions/APurpleMinionImage",
-    "qualitySprite": "BlankImage",
-    "r": 0.4431372582912445,
-    "g": 1.0,
-    "b": 0.32549020648002627,
     "powerPoints": 15,
     "typeComponent": "BoostCard",
     "effectComponents": [
         "BoostEffect"
     ],
-    "onActivationCode": "",
-    "zones": "",
-    "quality": ""
+    "onActivationCodeName": "",
+    "zones": ""
 }

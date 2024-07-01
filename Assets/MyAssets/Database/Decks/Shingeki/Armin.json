@@ -3,16 +3,9 @@
     "cardRealName": "Armin",
     "description": "Esta es una carta creada",
     "effectDescription": "Esta es una carta creada",
-    "sourceImage": "Shingeki/ArminImage",
-    "artwork": "Shingeki/Armin",
-    "qualitySprite": "SilverQuality",
-    "r": 0.739076554775238,
-    "g": 0.41103121638298037,
-    "b": 0.824442446231842,
     "powerPoints": 120,
-    "typeComponent": "UnitCard",
+    "typeComponent": "SilverCard",
     "effectComponents": [],
     "onActivationCode": "[{Effect:{Name:Damage,Amount:5,},Selector:{Source:board,Single:false,Predicate:(unit)=>unit.Faction==Northern@@Realms},PostAction{Type:ReturnToDeck,Selector:{Source:parent,Single:false,Predicate(unit)=>unit.Power<1}}},{Effect:Draw}]",
-    "zones": "MRS",
-    "quality": "Silver"
+    "zones": "MRS"
 }

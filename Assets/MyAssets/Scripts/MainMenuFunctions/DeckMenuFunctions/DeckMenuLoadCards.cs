@@ -27,15 +27,15 @@ public class DeckMenuLoadCards : MonoBehaviour
         string factionPath=Application.dataPath+"/MyAssets/Database/Decks/"+faction;
         string[] cardsJsonAddress=Directory.GetFiles(factionPath,"*.json");//Obtiene dentro del directorio del deck solo la direccion de los archivos con extension json (ignora los meta)
         
-        for(int i=0;i<cardsJsonAddress.Length;i++){//Para cada uno de los archivos con extension json
-            string jsonFormatCard=File.ReadAllText(cardsJsonAddress[i]);//Lee el archivo
-            CustomClasses.CardSave cardSave=JsonUtility.FromJson<CustomClasses.CardSave>(jsonFormatCard);//Convierte el string en json a un objeto CardSave
+        foreach(string cardJsonAddress in cardsJsonAddress){//Para cada uno de los archivos con extension json
+            string jsonFormatCard=File.ReadAllText(cardJsonAddress);//Lee el archivo
+            CardSave cardSave=JsonUtility.FromJson<CardSave>(jsonFormatCard);//Convierte el string en json a un objeto CardSave
             LoadCardToShow(cardSave);//Convierte ese objeto a carta
         }
 
         AlterCardsToShowChildrens();//Se ajusta el tamano de cada carta en dependencia de la cantidad
     }
-    private static void LoadCardToShow(CustomClasses.CardSave cardSave){
+    private static void LoadCardToShow(CardSave cardSave){
         GameObject newCard=null;
         newCard=Instantiate(GameObject.Find("Dropdown").GetComponent<DeckMenuLoadCards>().viewCardPrefab,new Vector3(0,0,0),Quaternion.identity);
         newCard.transform.SetParent(GameObject.Find("CardsToShow").transform);//Instanciamos una carta del prefab CardsToShow
@@ -47,18 +47,25 @@ public class DeckMenuLoadCards : MonoBehaviour
         newCard.GetComponent<DeckView>().cardRealName=cardSave.cardRealName;//Name
         newCard.GetComponent<DeckView>().description=cardSave.description;//Description
         newCard.GetComponent<DeckView>().effectDescription=cardSave.effectDescription;//EffectDescription
-        newCard.GetComponent<DeckView>().cardColor=new Color(cardSave.r,cardSave.g,cardSave.b,1);//Color
+        newCard.GetComponent<DeckView>().typeComponent=cardSave.typeComponent;
 
         //Sprites
-        newCard.GetComponent<Image>().sprite=Resources.Load<Sprite>(cardSave.sourceImage);//Carga el sprite en Assests/Resources/sourceImage en la carta
-        newCard.GetComponent<DeckView>().artwork=Resources.Load<Sprite>(cardSave.artwork);//Carga el sprite en Assests/Resources/artwork en la carta
-        newCard.GetComponent<DeckView>().qualitySprite=Resources.Load<Sprite>(cardSave.qualitySprite);//Carga el sprite en Assests/Resources/qualitySprite en la carta
+        newCard.GetComponent<Image>().sprite=Resources.Load<Sprite>(cardSave.faction+"/"+cardSave.cardRealName);//Carga el sprite en Assets/Resources/sourceImage en la carta
+        newCard.GetComponent<DeckView>().artwork=Resources.Load<Sprite>(cardSave.faction+"/"+cardSave.cardRealName+"Image");//Carga el sprite en Assets/Resources/artwork en la carta
         
+        if(newCard.GetComponent<Image>().sprite is null){
+            string randomImagesPath=Application.dataPath+"/Resources/RandomImages";
+            int max=Directory.GetFiles(randomImagesPath,"*.png").Length;
+            newCard.GetComponent<Image>().sprite=Resources.Load<Sprite>("RandomImages/"+Random.Range(1,max+1).ToString());
+        }
+        if(newCard.GetComponent<DeckView>().artwork is null){
+            newCard.GetComponent<DeckView>().artwork=Resources.Load<Sprite>("BlankImage");
+        }
         //power || damage || boost
         newCard.GetComponent<DeckView>().power=cardSave.powerPoints;
 
         //zones && quality
-        if(cardSave.typeComponent=="UnitCard"){
+        if(cardSave.typeComponent=="SilverCard" || cardSave.typeComponent=="GoldCard"){
             newCard.GetComponent<DeckView>().playableZone=cardSave.zones;
         }else if(cardSave.typeComponent=="WeatherCard"){
             newCard.GetComponent<DeckView>().playableZone="C";

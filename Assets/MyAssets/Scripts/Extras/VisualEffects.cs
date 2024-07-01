@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -13,61 +14,47 @@ public class VisualEffects : MonoBehaviour
                 zones[i].GetComponent<Image>().color=new Color (1,1,1,0.1f);//Se iluminan
             }
         }else if(card.GetComponent<BoostCard>()!=null){//Si la carta es de aumento
-            DZBoost[] zones=GameObject.FindObjectsOfType<DZBoost>();//Se crea un array de todas las zonas de aumento
-            for(int i=0;i<zones.Length;i++){
-                if(zones[i].validPlayer==card.GetComponent<Card>().whichField){//Si la zona es del jugador
-                    zones[i].GetComponent<Image>().color=new Color (1,1,1,0.1f);//Se ilumina
+            DZBoost[] boostZones=GameObject.FindObjectsOfType<DZBoost>();//Se crea un array de todas las zonas de aumento
+            foreach(DZBoost boostZone in boostZones){
+                if(boostZone.validPlayer==card.GetComponent<Card>().WhichField){//Si la zona es del jugador
+                    boostZone.GetComponent<Image>().color=new Color (1,1,1,0.1f);//Se ilumina
                 }
             }
         }else if(card.GetComponent<UnitCard>()!=null){//Si la carta es de unidad
-            DZUnits[] zones=GameObject.FindObjectsOfType<DZUnits>();//Se crea un array con todas las zonas de cartas de unidad
-            for(int i=0;i<zones.Length;i++){
-                if(zones[i].GetComponent<DZUnits>().isDropValid(card) && zones[i].validPlayer==card.GetComponent<Card>().whichField){
+            DZUnits[] unitZones=GameObject.FindObjectsOfType<DZUnits>();//Se crea un array con todas las zonas de cartas de unidad
+            foreach(DZUnits unitZone in unitZones){
+                if(unitZone.GetComponent<DZUnits>().isDropValid(card) && unitZone.validPlayer==card.GetComponent<Card>().WhichField){
                     //La zona se ilumina solo si coincide con la zona jugable y el campo de la carta
-                    zones[i].GetComponent<Image>().color=new Color (1,1,1,0.1f);
+                    unitZone.GetComponent<Image>().color=new Color (1,1,1,0.1f);
                 }
             }
         }
-        DeckTrade.UpdateRedraw();//Se actualiza si se puede intercambiar cartas con el deck
-        if(DeckTrade.redrawable){//Si se puede
-            if(card.GetComponent<Card>().whichField==Card.fields.P1){//La carta es de P1
-                GameObject.Find("MyDeckZone").GetComponent<Image>().color=new Color (0,1,0,0.1f);//El deck de P1 "brilla"
-            }else if(card.GetComponent<Card>().whichField==Card.fields.P2){//La carta es de P2
-                GameObject.Find("EnemyDeckZone").GetComponent<Image>().color=new Color (0,1,0,0.1f);//El deck de P2 "brilla"
-            }
+        //Se actualiza si se puede intercambiar cartas con el deck
+        if(DeckTrade.UpdateRedraw()){//Si se puede
+            GameObject.Find("DeckZone"+card.GetComponent<Card>().WhichField).GetComponent<Image>().color=new Color (0,1,0,0.1f);//El deck de P1 "brilla"
         }
     }
     public static void OffZonesGlow(){//Resetea la invisibilidad de todas las dropzone del campo
         DropZone[] zones=GameObject.FindObjectsOfType<DropZone>();
-        for(int i=0;i<zones.Length;i++){
-            zones[i].GetComponent<Image>().color=new Color (1,1,1,0);
-        }
-        GameObject.Find("MyDeckZone").GetComponent<Image>().color=new Color (1,1,1,0);//Incluye los decks
-        GameObject.Find("EnemyDeckZone").GetComponent<Image>().color=new Color (1,1,1,0);
+        foreach(DropZone zone in zones){zone.GetComponent<Image>().color=new Color (1,1,1,0);}//Hace las zonas invisibles nuevamente
     }
-    public static void PlayedLightsOn(){//Afecta a unos objetos del campo y los pone verdes
-        Color green=new Color(0,1,0,0.2f);
-        GameObject.Find("PlayedLightUpper").GetComponent<Image>().color=green;
-        GameObject.Find("PlayedLightLower").GetComponent<Image>().color=green;
-        GameObject.Find("PlayedLightMiddle").GetComponent<Image>().color=green;
-        GameObject.Find("PlayedLightLeft").GetComponent<Image>().color=green;
-        GameObject.Find("PlayedLightRight").GetComponent<Image>().color=green;
+    public static void PlayedLightsToColor(Color color){//Afecta a unos objetos del campo y los pone del color pasado como parametro
+        GameObject.Find("PlayedLightUpper").GetComponent<Image>().color=color;
+        GameObject.Find("PlayedLightLower").GetComponent<Image>().color=color;
+        GameObject.Find("PlayedLightMiddle").GetComponent<Image>().color=color;
+        GameObject.Find("PlayedLightLeft").GetComponent<Image>().color=color;
+        GameObject.Find("PlayedLightRight").GetComponent<Image>().color=color;
     }
-    public static void PlayedLightsOff(){//Afecta a unos objetos del campo y los pone rojos
-        Color red=new Color(1,0,0,0.2f);
-        GameObject.Find("PlayedLightUpper").GetComponent<Image>().color=red;
-        GameObject.Find("PlayedLightLower").GetComponent<Image>().color=red;
-        GameObject.Find("PlayedLightMiddle").GetComponent<Image>().color=red;
-        GameObject.Find("PlayedLightLeft").GetComponent<Image>().color=red;
-        GameObject.Find("PlayedLightRight").GetComponent<Image>().color=red;
-    }
-    public static void ValidSwapsGlow(GameObject selectedCard){//Ilumina las cartas con las que el senuelo pasado como parametro se puede intercambiar
+    public static void ValidSwapsGlow(GameObject card){//Ilumina las cartas con las que el senuelo pasado como parametro se puede intercambiar
         //En realidad oscurece las cartas con las que el senuelo no se puede intercambiar
-        for(int i=0;i<TurnManager.playedCards.Count;i++){
-            bool tradeable=TurnManager.playedCards[i].GetComponent<UnitCard>()!=null && TurnManager.playedCards[i].GetComponent<UnitCard>().whichQuality!=UnitCard.quality.Gold;
-            if(!(tradeable && TurnManager.playedCards[i].GetComponent<Card>().whichField==selectedCard.GetComponent<Card>().whichField)){
-                TurnManager.playedCards[i].GetComponent<Image>().color=new Color (0.5f,0.5f,0.5f,1);
-            }
+        Debug.Log("ValidSwapsGlow:");
+        foreach(GameObject cardPlayed in TurnManager.playedCards){
+            Debug.Log(cardPlayed);
+            if(cardPlayed.GetComponent<IAffectable>()==null || cardPlayed.GetComponent<Card>().WhichField!=card.GetComponent<Card>().WhichField){
+                //Si no es afectable o si no coincide con el campo del senuelo
+                Debug.Log("Darkened");
+                cardPlayed.GetComponent<Image>().color=new Color (0.5f,0.5f,0.5f,1);
+            }else{Debug.Log("Left Undarkened");}
         }
     }
     public static void OffCardsGlow(){

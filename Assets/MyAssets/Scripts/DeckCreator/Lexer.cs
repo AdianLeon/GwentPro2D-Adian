@@ -4,8 +4,8 @@ using UnityEngine;
 //Script para transformar el codigo del objeto Compiler a tokens
 public class Lexer : MonoBehaviour
 {
-    private static List<CustomClasses.Token> tokenList=new List<CustomClasses.Token>();//Lista de tokens (traduccion del codigo)
-    public static List<CustomClasses.Token> TokenizeCode(string code){//Transforma el string code a una lista de tokens
+    private static List<Token> tokenList=new List<Token>();//Lista de tokens (traduccion del codigo)
+    public static List<Token> TokenizeCode(string code){//Transforma el string code a una lista de tokens
         tokenList.Clear();
         CheckErrors.ErrorClean();
         if(code.Length>0){
@@ -28,7 +28,7 @@ public class Lexer : MonoBehaviour
     }
     private static void Tokenize(string code,int i){
         if(i>=code.Length){//MakeEndToken
-            //tokenList.Add(new CustomClasses.Token("$",i,NewLineCounter(code,i),ColumnCounter(code,i),CustomClasses.Token.tokenTypes.end,DepthCounter(code,i)));
+            tokenList.Add(new Token("$",i,NewLineCounter(code,i),ColumnCounter(code,i),tokenTypes.end,DepthCounter(code,i)));
             return;
         }else if(char.IsDigit(code[i])){
             MakeNumberToken(code,i,i,false);
@@ -38,7 +38,7 @@ public class Lexer : MonoBehaviour
             MakeLiteralToken(code,i,i+1);
         }else if(code[i]=='(' || code[i]=='[' || code[i]=='{' || code[i]==')' || code[i]==']' || code[i]=='}' || code[i].ToString()=="'" ||
                 code[i]==',' || code[i]==';' || code[i]=='.' || code[i]==':'){//MakePunctuatorToken
-            tokenList.Add(new CustomClasses.Token(code[i].ToString(),i,NewLineCounter(code,i),ColumnCounter(code,i),CustomClasses.Token.tokenTypes.punctuator,DepthCounter(code,i)));
+            tokenList.Add(new Token(code[i].ToString(),i,NewLineCounter(code,i),ColumnCounter(code,i),tokenTypes.punctuator,DepthCounter(code,i)));
             Tokenize(code,i+1);
         }else if(char.IsWhiteSpace(code[i])){//MakeSpaceToken
             //tokenList.Add(new Token(code[i].ToString(),i,NewLineCounter(code,i),ColumnCounter(code,i),Token.tokenTypes.space,DepthCounter(code,i)));
@@ -47,24 +47,24 @@ public class Lexer : MonoBehaviour
                 (code[i]=='&' && code[i+1]=='&') || (code[i]=='|' && code[i+1]=='|') || code[i]=='<' || (code[i]=='<' && code[i+1]=='=') ||
                 code[i]=='>' || (code[i]=='>' && code[i]+1=='=') || code[i]=='=' || (code[i]=='=' && code[i+1]=='=')){//MakeBinaryOperatorToken
             //********** Make a Method to read the double char ones 
-            tokenList.Add(new CustomClasses.Token(code[i].ToString(),i,NewLineCounter(code,i),ColumnCounter(code,i),CustomClasses.Token.tokenTypes.binOperator,DepthCounter(code,i)));
+            tokenList.Add(new Token(code[i].ToString(),i,NewLineCounter(code,i),ColumnCounter(code,i),tokenTypes.binOperator,DepthCounter(code,i)));
             Tokenize(code,i+1);
         }else if(code[i]=='/' && code[i+1]=='/'){//Comentarios
             while(code[i]!='\n' && i<code.Length){i++;}
             Tokenize(code,i+1);
         }else{//MakeBadToken
-            tokenList.Add(new CustomClasses.Token(code[i].ToString(),i,NewLineCounter(code,i),ColumnCounter(code,i),CustomClasses.Token.tokenTypes.unexpected,DepthCounter(code,i)));
+            tokenList.Add(new Token(code[i].ToString(),i,NewLineCounter(code,i),ColumnCounter(code,i),tokenTypes.unexpected,DepthCounter(code,i)));
             Tokenize(code,i+1);
         }
     }
-    private static void SpecializeWordTokens(List<CustomClasses.Token> tokenList){
+    private static void SpecializeWordTokens(List<Token> tokenList){
         string w="";
         for(int i=0;i<tokenList.Count;i++){
             w=tokenList[i].text;
             if((w=="Type" || w=="Name" || w=="Faction" || w=="Power" || w=="Range" || w=="OnActivation") && tokenList[i].depth==1 && tokenList[i+1].text==":"){
-                tokenList[i].type=CustomClasses.Token.tokenTypes.cardAssignment;
+                tokenList[i].type=tokenTypes.cardAssignment;
             }else if((w=="card" || w=="effect") && tokenList[i].depth==0 && tokenList[i+1].text=="{"){
-                tokenList[i].type=CustomClasses.Token.tokenTypes.blockDeclaration;
+                tokenList[i].type=tokenTypes.blockDeclaration;
             }
         }
     }
@@ -77,16 +77,16 @@ public class Lexer : MonoBehaviour
                 if(char.IsDigit(code[i+1])){//Y si el proximo numero despues del punto es un numero
                     MakeNumberToken(code,start,i+1,true);//Seguimos contando
                 }else{//Si despues del punto no hay un numero
-                    tokenList.Add(new CustomClasses.Token(code.Substring(start,i-start+1),start,NewLineCounter(code,start),ColumnCounter(code,start),CustomClasses.Token.tokenTypes.unexpected,DepthCounter(code,i)));
+                    tokenList.Add(new Token(code.Substring(start,i-start+1),start,NewLineCounter(code,start),ColumnCounter(code,start),tokenTypes.unexpected,DepthCounter(code,i)));
                     Tokenize(code,i+1);
                 }
             }else{//Si ya hemos encontrado un punto antes
-                tokenList.Add(new CustomClasses.Token(code.Substring(start,i-start+1),start,NewLineCounter(code,start),ColumnCounter(code,start),CustomClasses.Token.tokenTypes.unexpected,DepthCounter(code,i)));
+                tokenList.Add(new Token(code.Substring(start,i-start+1),start,NewLineCounter(code,start),ColumnCounter(code,start),tokenTypes.unexpected,DepthCounter(code,i)));
                 Tokenize(code,i+1);
             }
         }else{
             //Anade a la lista de tokens el substring desde que empezamos a contar hasta que finalizamos
-            tokenList.Add(new CustomClasses.Token(code.Substring(start,i-start),start,NewLineCounter(code,start),ColumnCounter(code,start),CustomClasses.Token.tokenTypes.number,DepthCounter(code,i)));
+            tokenList.Add(new Token(code.Substring(start,i-start),start,NewLineCounter(code,start),ColumnCounter(code,start),tokenTypes.number,DepthCounter(code,i)));
             Tokenize(code,i);
         }
     }
@@ -96,7 +96,7 @@ public class Lexer : MonoBehaviour
             i++;
         }
         //Anade a la lista de tokens el substring desde que empezamos a contar hasta que finalizamos
-        tokenList.Add(new CustomClasses.Token(code.Substring(start,i-start),start,NewLineCounter(code,start),ColumnCounter(code,start),CustomClasses.Token.tokenTypes.identifier,DepthCounter(code,i)));
+        tokenList.Add(new Token(code.Substring(start,i-start),start,NewLineCounter(code,start),ColumnCounter(code,start),tokenTypes.identifier,DepthCounter(code,i)));
         Tokenize(code,i);
     }
 
@@ -105,12 +105,12 @@ public class Lexer : MonoBehaviour
             i++;
             if(i==code.Length){
                 CheckErrors.ErrorWrite("Pareja de caracter doble comilla no encontrado linea: "+NewLineCounter(code,start)+" columna: "+ColumnCounter(code,start),"MakeLiteralToken");
-                tokenList.Add(new CustomClasses.Token("",start,NewLineCounter(code,start),ColumnCounter(code,start),CustomClasses.Token.tokenTypes.unexpected,DepthCounter(code,i)));
+                tokenList.Add(new Token("",start,NewLineCounter(code,start),ColumnCounter(code,start),tokenTypes.unexpected,DepthCounter(code,i)));
                 return;
             }
         }
         //Anade a la lista de tokens el substring desde que empezamos a contar hasta que finalizamos
-        tokenList.Add(new CustomClasses.Token(code.Substring(start+1,i-start-1),start,NewLineCounter(code,start),ColumnCounter(code,start),CustomClasses.Token.tokenTypes.literal,DepthCounter(code,i)));
+        tokenList.Add(new Token(code.Substring(start+1,i-start-1),start,NewLineCounter(code,start),ColumnCounter(code,start),tokenTypes.literal,DepthCounter(code,i)));
         Tokenize(code,i+1);//Hay que llamar la funcion principal una posicion despues de la comilla
     }
 
