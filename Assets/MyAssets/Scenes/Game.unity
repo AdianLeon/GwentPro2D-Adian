@@ -174,6 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bbe899339c54184cb8206432fbd5efe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GraveyardCards: []
 --- !u!114 &7568642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -596,7 +597,6 @@ GameObject:
   - component: {fileID: 108452092}
   - component: {fileID: 108452096}
   - component: {fileID: 108452095}
-  - component: {fileID: 108452094}
   - component: {fileID: 108452093}
   m_Layer: 5
   m_Name: DeckP1
@@ -637,66 +637,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca6246573f1a7304ba6b3cafcf8a94b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  container: {fileID: 1947402711}
-  playerArea: {fileID: 983662788}
-  deckField: 0
-  cardsInDeck: []
---- !u!114 &108452094
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 108452091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 108452095}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 108452093}
-        m_TargetAssemblyTypeName: DrawCards, Assembly-CSharp
-        m_MethodName: OnClickDraw
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  DeckCards: []
 --- !u!114 &108452095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1167,6 +1108,7 @@ GameObject:
   - component: {fileID: 245762359}
   - component: {fileID: 245762361}
   - component: {fileID: 245762360}
+  - component: {fileID: 245762362}
   m_Layer: 5
   m_Name: PlayedLightMiddle
   m_TagString: Untagged
@@ -1232,6 +1174,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 245762358}
   m_CullTransparentMesh: 1
+--- !u!114 &245762362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245762358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f274280f61fa2141885d65a568f6cb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &262611662
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1920,6 +1874,7 @@ GameObject:
   - component: {fileID: 343975504}
   - component: {fileID: 343975506}
   - component: {fileID: 343975505}
+  - component: {fileID: 343975507}
   m_Layer: 5
   m_Name: PlayedLightLeft
   m_TagString: Untagged
@@ -1985,6 +1940,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 343975503}
   m_CullTransparentMesh: 1
+--- !u!114 &343975507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343975503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f274280f61fa2141885d65a568f6cb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &350516869
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4625,6 +4592,7 @@ GameObject:
   - component: {fileID: 638360662}
   - component: {fileID: 638360664}
   - component: {fileID: 638360663}
+  - component: {fileID: 638360665}
   m_Layer: 5
   m_Name: PlayedLightRight
   m_TagString: Untagged
@@ -4690,6 +4658,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 638360661}
   m_CullTransparentMesh: 1
+--- !u!114 &638360665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638360661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f274280f61fa2141885d65a568f6cb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &640041618
 GameObject:
   m_ObjectHideFlags: 0
@@ -5972,8 +5952,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46916d5f18643754cabf09539e04c6e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target1: {fileID: 117318777}
-  target2: {fileID: 305557593}
+  Target1: {fileID: 117318777}
+  Target2: {fileID: 305557593}
 --- !u!1001 &913813922
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6938,6 +6918,7 @@ GameObject:
   - component: {fileID: 966296659}
   - component: {fileID: 966296661}
   - component: {fileID: 966296660}
+  - component: {fileID: 966296662}
   m_Layer: 5
   m_Name: PlayedLightUpper
   m_TagString: Untagged
@@ -7003,6 +6984,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 966296658}
   m_CullTransparentMesh: 1
+--- !u!114 &966296662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966296658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f274280f61fa2141885d65a568f6cb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &971488403
 GameObject:
   m_ObjectHideFlags: 0
@@ -7210,8 +7203,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46916d5f18643754cabf09539e04c6e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target1: {fileID: 1988085504}
-  target2: {fileID: 1385450666}
+  Target1: {fileID: 1988085504}
+  Target2: {fileID: 1385450666}
 --- !u!1 &995698257 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
@@ -7229,8 +7222,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 374a826d6f3dc33409d0f98d5575f49e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 661334087}
-  validPlayer: 0
+  Target: {fileID: 661334087}
+  ValidPlayer: 0
 --- !u!1 &997334052
 GameObject:
   m_ObjectHideFlags: 0
@@ -8912,8 +8905,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5615f19d98bfa74449b2adc01cf894c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
-  leaderPrefab: {fileID: 3476766104184240231, guid: 7ab21674d5f962840a4fcf0379939d17, type: 3}
+  CardPrefab: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+  LeaderPrefab: {fileID: 3476766104184240231, guid: 7ab21674d5f962840a4fcf0379939d17, type: 3}
 --- !u!1 &1091907233
 GameObject:
   m_ObjectHideFlags: 0
@@ -9216,8 +9209,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46916d5f18643754cabf09539e04c6e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target1: {fileID: 661334087}
-  target2: {fileID: 1622124512}
+  Target1: {fileID: 661334087}
+  Target2: {fileID: 1622124512}
 --- !u!1 &1194172540
 GameObject:
   m_ObjectHideFlags: 0
@@ -10042,7 +10035,6 @@ GameObject:
   - component: {fileID: 1254882643}
   - component: {fileID: 1254882647}
   - component: {fileID: 1254882646}
-  - component: {fileID: 1254882645}
   - component: {fileID: 1254882644}
   m_Layer: 5
   m_Name: DeckP2
@@ -10083,66 +10075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca6246573f1a7304ba6b3cafcf8a94b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  container: {fileID: 2131818546}
-  playerArea: {fileID: 270863342}
-  deckField: 1
-  cardsInDeck: []
---- !u!114 &1254882645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1254882642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1254882646}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1254882644}
-        m_TargetAssemblyTypeName: DrawCards, Assembly-CSharp
-        m_MethodName: OnClickDraw
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  DeckCards: []
 --- !u!114 &1254882646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10544,8 +10477,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 374a826d6f3dc33409d0f98d5575f49e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1988085504}
-  validPlayer: 0
+  Target: {fileID: 1988085504}
+  ValidPlayer: 0
 --- !u!1 &1385450666 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
@@ -12606,8 +12539,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 374a826d6f3dc33409d0f98d5575f49e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 117318777}
-  validPlayer: 0
+  Target: {fileID: 117318777}
+  ValidPlayer: 0
 --- !u!1001 &1618750939
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15343,8 +15276,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 374a826d6f3dc33409d0f98d5575f49e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1622124512}
-  validPlayer: 1
+  Target: {fileID: 1622124512}
+  ValidPlayer: 1
 --- !u!1 &1934036165
 GameObject:
   m_ObjectHideFlags: 0
@@ -15512,6 +15445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bbe899339c54184cb8206432fbd5efe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GraveyardCards: []
 --- !u!114 &1947402716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16382,6 +16316,7 @@ GameObject:
   - component: {fileID: 2067022166}
   - component: {fileID: 2067022168}
   - component: {fileID: 2067022167}
+  - component: {fileID: 2067022169}
   m_Layer: 5
   m_Name: PlayedLightLower
   m_TagString: Untagged
@@ -16447,6 +16382,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2067022165}
   m_CullTransparentMesh: 1
+--- !u!114 &2067022169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067022165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f274280f61fa2141885d65a568f6cb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2085063852
 GameObject:
   m_ObjectHideFlags: 0
@@ -16507,8 +16454,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 374a826d6f3dc33409d0f98d5575f49e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 305557593}
-  validPlayer: 1
+  Target: {fileID: 305557593}
+  ValidPlayer: 1
 --- !u!1 &2098280363 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
@@ -16526,8 +16473,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 374a826d6f3dc33409d0f98d5575f49e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1385450666}
-  validPlayer: 1
+  Target: {fileID: 1385450666}
+  ValidPlayer: 1
 --- !u!1 &2099023914
 GameObject:
   m_ObjectHideFlags: 0
@@ -17120,6 +17067,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bbe899339c54184cb8206432fbd5efe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GraveyardCards: []
 --- !u!114 &2131818549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17292,6 +17240,10 @@ PrefabInstance:
     - target: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_Name
       value: MeleeDropZoneP1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}

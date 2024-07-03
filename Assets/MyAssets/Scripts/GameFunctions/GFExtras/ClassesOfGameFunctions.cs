@@ -24,21 +24,4 @@ public class PlayerPrefsData{//Clase para guardar las preferencias del jugador
             this.deckPrefP1=deckPrefP1;
             this.deckPrefP2=deckPrefP2;
         }
-    }
-public class Token{//Clase que almacena las propiedades del token
-    public string text;//Texto del token
-    public int position;//Posicion del token (indice con el que se encuentra en el string codigo)
-    public int line;//Linea donde se encuentra en el texto del objeto Compiler
-    public int col;//Columna donde se encuentra en el texto del objeto Compiler
-    //Tipos de token
-    public tokenTypes type;
-    public int depth;
-    public Token(string text,int position,int line,int col,tokenTypes type,int depth){
-        this.text=text;
-        this.position=position;
-        this.line=line;
-        this.col=col;
-        this.type=type;
-        this.depth=depth;
-    }
 }

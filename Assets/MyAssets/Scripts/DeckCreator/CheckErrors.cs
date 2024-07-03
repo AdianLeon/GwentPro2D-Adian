@@ -18,7 +18,7 @@ public class CheckErrors : MonoBehaviour
     private static bool CheckUnexpectedTokens(List<Token> tokenList){//Chequea si hay algun token inesperado
         bool isCorrect=true;
         for(int i=0;i<tokenList.Count;i++){
-            if(tokenList[i].type==tokenTypes.unexpected){
+            if(tokenList[i].type==TokenTypes.unexpected){
                 isCorrect=false;
             }
             if(!(tokenList[i].text=="")){

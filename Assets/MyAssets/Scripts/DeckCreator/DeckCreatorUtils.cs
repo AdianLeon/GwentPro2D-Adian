@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Utils : MonoBehaviour
+public class DeckCreatorUtils
 {
     public static int FindMatchingParenthesis(List<Token> tokenList,int pos){//Dado un parentesis de apertura halla su respectivo parentesis de clausura
         List<Token> aux=new List<Token>();
@@ -11,7 +11,7 @@ public class Utils : MonoBehaviour
             if(tokenList[i].text=="(" || tokenList[i].text=="[" || tokenList[i].text=="{"){//Si es un parentesis de apertura
             aux.Add(tokenList[i]);//Se anade a la lista
             }else if(tokenList[i].text==")" || tokenList[i].text=="]" || tokenList[i].text=="}"){//Si es un parentesis de clausura
-                if(aux[aux.Count-1].text==Utils.ParenthesisMatch(tokenList[i].text)){//El ultimo parentesis de apertura coincide
+                if(aux[aux.Count-1].text==ParenthesisMatch(tokenList[i].text)){//El ultimo parentesis de apertura coincide
                         aux.RemoveAt(aux.Count-1);//Quitamos este par pues ambos son validos
                 }
                 if(aux.Count==0){

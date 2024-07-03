@@ -8,13 +8,14 @@ using TMPro;
 public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     //Objetos a utilizar
-    public static GameObject selectedCard;//En esta variable se guarda el objeto debajo del puntero el cual mostramos en CardView
+    private static GameObject selectedCard;//En esta variable se guarda el objeto debajo del puntero el cual mostramos en CardView
+    public static GameObject GetSelectedCard{get=>selectedCard;}
     public void OnPointerEnter(PointerEventData eventData){//Se activa cuando el mouse entra en la carta
         selectedCard=this.gameObject;
-        selectedCard.GetComponent<Image>().color=new Color (0.75f,0.75f,0.75f,1);//La carta se sombrea cuando pasamos por encima
+        selectedCard.GetComponent<Card>().OnGlow();//La carta se sombrea cuando pasamos por encima
         selectedCard.GetComponent<Card>().LoadInfo();//Se carga toda la informacion de esta carta en el CardView
         if(TurnManager.CanPlay && selectedCard.GetComponent<Dragging>()!=null){//Si el jugador puede jugar
-            if(!Dragging.IsOnDrag && selectedCard.transform.parent==selectedCard.GetComponent<Dragging>().Hand.transform){//Si no se esta arrastrando ninguna carta y ademas esta en la mano
+            if(!Dragging.IsOnDrag && selectedCard.GetComponent<Dragging>().IsOnHand){//Si no se esta arrastrando ninguna carta y ademas esta en la mano
                 VisualEffects.ZonesGlow(selectedCard);//Se ilumina la zona donde se puede soltar
             }
         }
@@ -23,13 +24,13 @@ public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         VisualEffects.OffCardsGlow();//Se dessombrean todas las cartas jugadas
         VisualEffects.OffZonesGlow();//Se desactiva la iluminacion de todas las zonas
 
-        selectedCard.GetComponent<Image>().color=new Color (1,1,1,1);//La carta se dessombrea
+        selectedCard.GetComponent<Card>().OffGlow();//La carta se dessombrea
         selectedCard=null;//Ya no se esta encima de ninguna carta
 
         if(Dragging.IsOnDrag){//Se actualiza el mensaje en pantalla
-            RoundPoints.URWrite(". . .");
+            RoundPoints.WriteUserRead(". . .");
         }else{
-            RoundPoints.URWriteRoundInfo();
+            RoundPoints.WriteRoundInfoUserRead();
         }
     }
 

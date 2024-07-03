@@ -19,16 +19,16 @@ public class ClearWeatherCard : Card, IShowZone, ICardEffect
     }
     public void ShowZone(){
         DZWeather[] zones=GameObject.FindObjectsOfType<DZWeather>();//Se crea un array de todas las zonas de clima
-        for(int i=0;i<zones.Length;i++){
-            zones[i].GetComponent<Image>().color=new Color (1,1,1,0.1f);//Se iluminan
+        foreach(DZWeather zone in zones){
+            zone.OnGlow();
         }
     }
     public void TriggerEffect(){//Efecto de las cartas despeje
         Debug.Log(this.transform.parent.gameObject.name);
         Debug.Log(this.transform.parent.GetComponent<DZWeather>());
-        Debug.Log(this.transform.parent.GetComponent<DZWeather>().target1);
-        GameObject target1=this.transform.parent.GetComponent<DZWeather>().target1;//Objetivos a los que afectan las cartas de clima
-        GameObject target2=this.transform.parent.GetComponent<DZWeather>().target2;
+        Debug.Log(this.transform.parent.GetComponent<DZWeather>().Target1);
+        GameObject target1=this.transform.parent.GetComponent<DZWeather>().Target1;//Objetivos a los que afectan las cartas de clima
+        GameObject target2=this.transform.parent.GetComponent<DZWeather>().Target2;
 
         for(int i=0;i<this.transform.parent.childCount-1;i++){//Deshaciendo el efecto de clima carta por carta
             ClearZoneOfWeathers(target1);//Deshace el efecto de esa carta en el campo correspondiente de P1

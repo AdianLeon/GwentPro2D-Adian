@@ -19,7 +19,7 @@ public class BoostCard : Card, IShowZone, ICardEffect
         GameObject.Find("BGAddedPower").GetComponent<Image>().color=new Color(1,1,1,0);
     }
     public void TriggerEffect(){//Efecto de las cartas aumento
-        GameObject target=this.transform.parent.GetComponent<DZBoost>().target;//Objetivo padre de las cartas a las que anadirle poder
+        GameObject target=this.transform.parent.GetComponent<DZBoost>().Target;//Objetivo padre de las cartas a las que anadirle poder
         for(int i=0;i<target.transform.childCount;i++){
             if(target.transform.GetChild(i).GetComponent<IAffectable>()!=null){//Si es afectable
                 target.transform.GetChild(i).GetComponent<CardWithPower>().AddedPower+=this.GetComponent<BoostCard>().boost;//Aumenta el poder
@@ -30,8 +30,8 @@ public class BoostCard : Card, IShowZone, ICardEffect
     public void ShowZone(){
         DZBoost[] boostZones=GameObject.FindObjectsOfType<DZBoost>();//Se crea un array de todas las zonas de aumento
         foreach(DZBoost boostZone in boostZones){
-            if(boostZone.validPlayer==GetComponent<Card>().WhichField){//Si la zona es del jugador
-                boostZone.GetComponent<Image>().color=new Color (1,1,1,0.1f);//Se ilumina
+            if(boostZone.ValidPlayer==GetComponent<Card>().WhichField){//Si la zona es del jugador
+                boostZone.OnGlow();//Se ilumina
             }
         }
     }

@@ -41,13 +41,13 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\FieldFunctions\Dragging.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\RoundFunctions\PassButtonScript.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\CustomInterfaces.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GFExtras\InterfacesOfGameFunctions.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardEffects\CardEffects\MostPowerEffect.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\DropZones\DropZone.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\WeatherCard.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\Extras\VisualEffects.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GFExtras\VisualEffects.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardEffects\LeaderEffects\GruEffect.cs" />
@@ -57,7 +57,7 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Lexer.cs" />
      <Compile Include="Assets\MyAssets\Scripts\MainMenuFunctions\DeckAssignDropdowns.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Utils.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\DeckCreator\DeckCreatorUtils.cs" />
      <Compile Include="Assets\MyAssets\Scripts\MainMenuFunctions\MainMenu.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardEffects\CardEffects\DrawOneEffect.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
@@ -67,7 +67,7 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\DropZones\DZUnits.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\RoundFunctions\PlayerCondition.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\FieldFunctions\DrawCards.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\FieldFunctions\Deck.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
@@ -93,7 +93,7 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\SilverCard.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\BaitCard.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\CustomClasses.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GFExtras\ClassesOfGameFunctions.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\MainCompiler.cs" />
@@ -108,10 +108,10 @@
      <Compile Include="Assets\MyAssets\Scripts\MainMenuFunctions\DeckMenuFunctions\DeckMenuLoadCards.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\DropZones\DZWeather.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\CustomEnums.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GFExtras\EnumsOfGameFunctions.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\AbstractCards\Card.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\Extras\AudioManager.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GFExtras\AudioManager.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
@@ -120,6 +120,11 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\RoundFunctions\TotalFieldForce.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\Extra\GuardInfo.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GFExtras\UtilsOfGameFunctions.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\FieldFunctions\Hand.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\DeckCreator\DCExtras\ClassesOfDeckCreator.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\DeckCreator\DCExtras\EnumsOfDeckCreator.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GFExtras\PlayedLight.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

@@ -8,7 +8,8 @@ using Unity.VisualScripting;
 public class Graveyard : MonoBehaviour
 {
     //Este script es completamente static
-    public static int gP1Count,gP2Count;//Contadores de cartas en los respectivos cementerios
+    private static int gP1Count,gP2Count;//Contadores de cartas en los respectivos cementerios
+    public List<GameObject> GraveyardCards=new List<GameObject>();
     void Start(){
         gP1Count=0;gP2Count=0;
         GameObject.Find("GTextP1").GetComponent<TextMeshProUGUI>().text=gP1Count.ToString();
@@ -26,11 +27,11 @@ public class Graveyard : MonoBehaviour
             card.GetComponent<CardWithPower>().AddedPower=0;
         }
         List<GameObject> Field=new List<GameObject>();
-        if(card.GetComponent<Card>().WhichField==fields.P1){//Si el campo es de P1 manda la carta al cementerio de P1
-            Field=TotalFieldForce.p1PlayedCards;
+        if(card.GetComponent<Card>().WhichField==Fields.P1){//Si el campo es de P1 manda la carta al cementerio de P1
+            Field=TotalFieldForce.P1PlayedCards;
             gP1Count++;
-        }else if(card.GetComponent<Card>().WhichField==fields.P2){//Si el campo es de P2 manda la carta al cementerio de P2
-            Field=TotalFieldForce.p2PlayedCards;
+        }else if(card.GetComponent<Card>().WhichField==Fields.P2){//Si el campo es de P2 manda la carta al cementerio de P2
+            Field=TotalFieldForce.P2PlayedCards;
             gP2Count++;
         }
         GameObject.Find("GText"+card.GetComponent<Card>().WhichField).GetComponent<TextMeshProUGUI>().text=gP1Count.ToString();

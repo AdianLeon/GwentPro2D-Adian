@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.EventSystems;
 //Script para las DropZones de cartas de clima
 public class DZWeather : DropZone
 {
-    public GameObject target1;//Primer objetivo que el clima afecta (P1)
-    public GameObject target2;//Segundo objetivo que el clima afecta (P2)
+    public GameObject Target1;//Primer objetivo que el clima afecta
+    public GameObject Target2;//Segundo objetivo que el clima afecta
     public override void OnDrop(PointerEventData eventData){//Detecta cuando se suelta una carta en una zona valida
         //Cambia donde se queda la carta, en vez de quedarse en la mano ahora se queda en la zona soltada si es valida
         WeatherCard w=eventData.pointerDrag.GetComponent<WeatherCard>();

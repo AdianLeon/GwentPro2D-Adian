@@ -21,16 +21,14 @@ public class WeatherCard : Card, IShowZone, ICardEffect
     }
     public void ShowZone(){
         DZWeather[] zones=GameObject.FindObjectsOfType<DZWeather>();//Se crea un array de todas las zonas de clima
-        for(int i=0;i<zones.Length;i++){
-            zones[i].GetComponent<Image>().color=new Color (1,1,1,0.1f);//Se iluminan
+        foreach(DZWeather zone in zones){
+            zone.OnGlow();
         }
     }
     public void TriggerEffect(){//Efecto de las cartas clima
-        GameObject target1=this.transform.parent.GetComponent<DZWeather>().target1;//Objetivos a los danarle los hijos
-        GameObject target2=this.transform.parent.GetComponent<DZWeather>().target2;
         //Afecta a las zonas
-        AffectZoneWithWeather(target1);//La de P1
-        AffectZoneWithWeather(target2);//La de P2
+        AffectZoneWithWeather(this.transform.parent.GetComponent<DZWeather>().Target1);//La de P1
+        AffectZoneWithWeather(this.transform.parent.GetComponent<DZWeather>().Target2);//La de P2
     }
     private void AffectZoneWithWeather(GameObject zoneTarget){//Afecta la zona determinada con el efecto clima
         GameObject card;

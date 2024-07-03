@@ -18,7 +18,7 @@ public class ProcessCard : MonoBehaviour
             Debug.Log(tokenList[i].text+"  --  "+tokenList[i].type.ToString()+"  depth: "+tokenList[i].depth);
         }
         for(int i=start;i<end;i++){
-            if(tokenList[i].type==tokenTypes.cardAssignment && tokenList[i+1].text==":"){
+            if(tokenList[i].type==TokenTypes.cardAssignment && tokenList[i+1].text==":"){
                 propertiesDict.Add(tokenList[i].text,GetInstructionValue(tokenList,i+2,tokenList[i].text));
                 if(propertiesDict[tokenList[i].text]==""){
                     CheckErrors.ErrorWrite("Valor no asignado a "+tokenList[i].text+" en linea: "+tokenList[i].line+" columna: "+tokenList[i].col,"CompileAndCreate");
@@ -48,15 +48,15 @@ public class ProcessCard : MonoBehaviour
         CardsToJson.WriteJsonOfCard(codeCard,filePath,cardJsonName);
     }
     private static string GetInstructionValue(List<Token> tokenList,int index,string nameOfKey){
-        if(tokenList[index].type==tokenTypes.literal){
+        if(tokenList[index].type==TokenTypes.literal){
             return tokenList[index].text;
-        }else if(tokenList[index].type==tokenTypes.number){
+        }else if(tokenList[index].type==TokenTypes.number){
             return tokenList[index].text;
         }else{
             if(nameOfKey=="Range" || nameOfKey=="OnActivation"){
                 if(tokenList[index].text=="["){
                     string ans="";
-                    int matchPos=Utils.FindMatchingParenthesis(tokenList,index);
+                    int matchPos=DeckCreatorUtils.FindMatchingParenthesis(tokenList,index);
                     for(int i=index;i<=matchPos;i++){//Copiamos todos los elementos hasta el parentesis (incluyendo el parentesis)
                         ans+=tokenList[i].text;
                     }

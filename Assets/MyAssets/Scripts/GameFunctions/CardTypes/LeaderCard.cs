@@ -26,15 +26,15 @@ public class LeaderCard : Card
     }
     private void OnButtonClick(){//Se llama cuando se presiona en el lider
         if(!TurnManager.CanPlay){//Si no se puede jugar
-            RoundPoints.URWriteRoundInfo();
+            RoundPoints.WriteRoundInfoUserRead();
             return;
         }
-        if(WhichField.ToString()!=TurnManager.PTurn){//Si no coincide en campo con el jugador que lo presiona
-            RoundPoints.URWrite("Ese no es el lider de tu deck");
+        if(WhichField.ToString()!=TurnManager.GetPlayerTurn){//Si no coincide en campo con el jugador que lo presiona
+            RoundPoints.WriteUserRead("Ese no es el lider de tu deck");
             return;
         }
         if(usedSkill){//Si la habilidad de este lider ya ha sido usada previamente
-            RoundPoints.URLongWrite("La habilidad del lider: "+cardName+" ya ha sido usada. La habilidad de lider solo puede ser usada una vez por partida");
+            RoundPoints.LongWriteUserRead("La habilidad del lider: "+cardName+" ya ha sido usada. La habilidad de lider solo puede ser usada una vez por partida");
             return;
         }
 

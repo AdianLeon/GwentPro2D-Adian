@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -9,18 +10,18 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     //Variables que guardan en donde se queda la carta y su espacio
     private Transform parentToReturnTo=null;
     public Transform ParentToReturnTo{get=>parentToReturnTo;set=>parentToReturnTo=value;}
-    public GameObject hand;
-    public GameObject Hand{get=>hand; set=>hand=value;}
+    /*Leave public*/public GameObject Hand;
+    public bool IsOnHand{get{return this.gameObject.transform.parent.gameObject==Hand;}}
     private GameObject placeholder=null;
     public GameObject Placeholder{get=>placeholder;set=>placeholder=value;}
     //Si la carta es arrastrable
-    public bool isDraggable;
+    private bool isDraggable;
     public bool IsDraggable{get=>isDraggable;set=>isDraggable=value;}
     //Si se esta arrastrando una carta
     private static bool onDrag;
     public static bool IsOnDrag{get=>onDrag;}
 
-    public void Start(){//Al inicio del juego se define cual es la mano propia
+    void Start(){//Al inicio del juego se define cual es la mano propia
         IsDraggable=true;//Todas las cartas son arrastrables al inicio
     }
     //Detecta cuando empieza el arrastre de las cartas
@@ -39,7 +40,7 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             //Activa la penetracion de la carta por el puntero para que podamos soltarla
             this.gameObject.GetComponent<CanvasGroup>().blocksRaycasts=false;
         }else{
-            RoundPoints.URWriteRoundInfo();
+            RoundPoints.WriteRoundInfoUserRead();
         }
     }
 
@@ -70,29 +71,29 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             this.transform.SetParent(ParentToReturnTo);
 
             //Caso en el que se devuelve a la mano
-            if(this.transform.parent==Hand.transform){//Si la carta cae de nuevo en la mano
+            if(IsOnHand){//Si la carta cae de nuevo en la mano
                 this.transform.SetSiblingIndex(Placeholder.transform.GetSiblingIndex());//Posiciona la carta en la mano
             }
-            if(this.GetComponent<BaitCard>()!=null && CardView.selectedCard!=null){//Si la carta jugada es senuelo y estamos sobre otra carta valida
+            if(this.GetComponent<BaitCard>()!=null && CardView.GetSelectedCard!=null){//Si la carta jugada es senuelo y estamos sobre otra carta valida
                 this.GetComponent<BaitCard>().SwapConditions();
             }
-            if(this.transform.parent!=Hand.transform && this.transform.parent!=GameObject.Find("Trash").transform){//Si el objeto sale de la mano y no esta en la basura
+            if(!IsOnHand && this.transform.parent!=GameObject.Find("Trash").transform){//Si el objeto sale de la mano y no esta en la basura
                 TurnManager.PlayCard(this.gameObject);//Independientemente del campo juega la carta
             }
 
+            onDrag=false;//Terminamos el arrastre
             this.GetComponent<CanvasGroup>().blocksRaycasts = true;//Desactiva la penetracion de la carta para que podamos mostrarla/arrastrarla de nuevo
             DestroyPlaceholder();//Destruye el espacio creado
 
             //Cada vez que se suelte una carta necesitamos desactivar el glow de cualquier objeto que hayamos iluminado
             VisualEffects.OffCardsGlow();
             VisualEffects.OffZonesGlow();
-            onDrag=false;//Terminamos el arrastre
-            RoundPoints.URWriteRoundInfo();
+            RoundPoints.WriteRoundInfoUserRead();
         }
     }
     public void DestroyPlaceholder(){
         Placeholder.transform.SetParent(GameObject.Find("Trash").transform);//Mueve el placeholder para que al destruirlo
-        //no deje rastros y no cuente como objeto perteneciente a hand, esto es necesario para arreglar un bug referente a DrawCards.DrawCard()
+        //no deje rastros y no cuente como objeto perteneciente a Hand, esto es necesario para arreglar un bug referente a DrawCards.DrawCard()
         Destroy(Placeholder);
     }
 }

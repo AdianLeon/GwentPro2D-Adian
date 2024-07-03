@@ -7,10 +7,10 @@ public class LessPowerEffect : MonoBehaviour, ICardEffect, IToJson
     public void TriggerEffect(){//Elimina la carta con menos poder del campo enemigo
         //Determinando el campo a afectar
         List <GameObject> targetField=null;//Una lista del campo enemigo
-        if(this.GetComponent<Card>().WhichField==fields.P1){//Si esta carta es de P1
-            targetField=TotalFieldForce.p2PlayedCards;//El campo P2 es el enemigo
-        }else if(this.GetComponent<Card>().WhichField==fields.P2){//Si esta carta es de P2
-            targetField=TotalFieldForce.p1PlayedCards;//El campo P1 es el enemigo
+        if(this.GetComponent<Card>().WhichField==Fields.P1){//Si esta carta es de P1
+            targetField=TotalFieldForce.P2PlayedCards;//El campo P2 es el enemigo
+        }else if(this.GetComponent<Card>().WhichField==Fields.P2){//Si esta carta es de P2
+            targetField=TotalFieldForce.P1PlayedCards;//El campo P1 es el enemigo
         }
 
         //Hallando la carta de menor poder y eliminandola
@@ -25,11 +25,11 @@ public class LessPowerEffect : MonoBehaviour, ICardEffect, IToJson
                 }
             }
             Graveyard.ToGraveyard(Card);//Se envia al cementerio la carta resultante(la de menor poder)
-            RoundPoints.URLongWrite("Se ha eliminado a "+Card.GetComponent<Card>().cardName);
+            RoundPoints.LongWriteUserRead("Se ha eliminado a "+Card.GetComponent<Card>().cardName);
             //En caso de que todas tengan el mismo poder se envia al cementerio la ultima jugada porque se empieza a comparar por la ultima carta
             TotalFieldForce.UpdateForce();//Se actualizan las fuerzas de los jugadores
         }else{
-            RoundPoints.URLongWrite("No se pudo activar el efecto porque el enemigo no ha jugado cartas");
+            RoundPoints.LongWriteUserRead("No se pudo activar el efecto porque el enemigo no ha jugado cartas");
         }
     }
 }

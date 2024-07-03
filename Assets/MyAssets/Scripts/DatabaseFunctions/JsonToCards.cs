@@ -11,8 +11,8 @@ using System.Linq;
 public class JsonToCards : MonoBehaviour
 {
     private static int instantiatedCardsCount;//Cuenta de las cartas instanciadas
-    public GameObject cardPrefab;//Referencia al prefab CardPrefab 
-    public GameObject leaderPrefab;//Referencia al prefab LeaderPrefab
+    public GameObject CardPrefab;//Referencia al prefab CardPrefab 
+    public GameObject LeaderPrefab;//Referencia al prefab LeaderPrefab
     void Awake(){
         instantiatedCardsCount=0;
         ImportDeckTo(PlayerPrefs.GetString("P1PrefDeck"),GameObject.Find("CardsP1"),GameObject.Find("DeckP1"));
@@ -34,10 +34,10 @@ public class JsonToCards : MonoBehaviour
         string player=deckPlace.name[deckPlace.name.Length-2].ToString()+deckPlace.name[deckPlace.name.Length-1].ToString();
         //Instanciando la carta
         if(cardSave.scriptComponents.Contains("LeaderCard")){//Si la carta a crear es una carta lider
-            newCard=Instantiate(GameObject.Find("Canvas").GetComponent<JsonToCards>().leaderPrefab,new Vector3(0,0,0),Quaternion.identity);//Instanciando una carta lider generica
+            newCard=Instantiate(GameObject.Find("Canvas").GetComponent<JsonToCards>().LeaderPrefab,new Vector3(0,0,0),Quaternion.identity);//Instanciando una carta lider generica
             newCard.transform.SetParent(GameObject.Find("LeaderZone"+player).transform);
         }else{//Si la carta no es lider
-            newCard=Instantiate(GameObject.Find("Canvas").GetComponent<JsonToCards>().cardPrefab,new Vector3(0,0,0),Quaternion.identity);//Instanciando una carta generica
+            newCard=Instantiate(GameObject.Find("Canvas").GetComponent<JsonToCards>().CardPrefab,new Vector3(0,0,0),Quaternion.identity);//Instanciando una carta generica
             newCard.transform.SetParent(deckPlace.transform);//Seteando esa carta generica a donde pertenece dependiendo del campo
         }
         instantiatedCardsCount++;
@@ -48,7 +48,7 @@ public class JsonToCards : MonoBehaviour
             newCard.AddComponent(Type.GetType(scriptName));
         }
         if(newCard.GetComponent<LeaderCard>()!=null){
-            newCard.GetComponent<LeaderCard>().WhichField=(fields)Enum.Parse(typeof(fields),player);
+            newCard.GetComponent<LeaderCard>().WhichField=(Fields)Enum.Parse(typeof(Fields),player);
         }
         newCard.GetComponent<RectTransform>().localScale=new Vector3(1,1,1);//Resetea la escala porque cuando se instancia esta desproporcional al resto de objetos
         
@@ -83,7 +83,7 @@ public class JsonToCards : MonoBehaviour
 
         //zones && quality
         if(newCard.GetComponent<UnitCard>()!=null){
-            newCard.GetComponent<UnitCard>().whichZone=(UnitCard.zonesUC)Enum.Parse(typeof(UnitCard.zonesUC),cardSave.zones);//Convierte el string guardado en cardSave a un tipo del enum zones y lo asigna a la carta
+            newCard.GetComponent<UnitCard>().whichZone=(ZonesUC)Enum.Parse(typeof(ZonesUC),cardSave.zones);//Convierte el string guardado en cardSave a un tipo del enum zones y lo asigna a la carta
         }
     }
 }

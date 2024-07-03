@@ -6,9 +6,9 @@ public class Assigner : MonoBehaviour
 {
     public static void AssignBlocks(List<Token> tokenList){
         for(int i=0;i<tokenList.Count;i++){
-            if(tokenList[i].type==tokenTypes.blockDeclaration){
+            if(tokenList[i].type==TokenTypes.blockDeclaration){
                 if(tokenList[i+1].text=="{"){
-                    int blockEnd=Utils.FindMatchingParenthesis(tokenList,i+1);
+                    int blockEnd=DeckCreatorUtils.FindMatchingParenthesis(tokenList,i+1);
                     if(tokenList[i].text=="card"){
                     ProcessCard.CompileAndCreate(tokenList,i+2,blockEnd);
                     }else if(tokenList[i].text=="effect"){

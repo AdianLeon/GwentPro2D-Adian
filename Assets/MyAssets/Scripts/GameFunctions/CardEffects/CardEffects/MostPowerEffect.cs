@@ -13,18 +13,18 @@ public class MostPowerEffect : MonoBehaviour, ICardEffect, IToJson
         int cardP1TotalPower=int.MinValue;//Este sera el poder de cardP1
         int cardP2TotalPower=int.MinValue;//Este sera el poder de cardP2
         
-        GetMostPowerInField(TotalFieldForce.p1PlayedCards,out cardP1,out cardP1TotalPower);
-        GetMostPowerInField(TotalFieldForce.p2PlayedCards,out cardP2,out cardP2TotalPower);
+        GetMostPowerInField(TotalFieldForce.P1PlayedCards,out cardP1,out cardP1TotalPower);
+        GetMostPowerInField(TotalFieldForce.P2PlayedCards,out cardP2,out cardP2TotalPower);
         //Tenemos las cartas de mayor poder de ambos campos
 
         chosenCard=GetMostPowerCard(cardP1,cardP1TotalPower,cardP2,cardP2TotalPower);
         
         if(chosenCard!=null){//Si elegimos una carta
             Graveyard.ToGraveyard(chosenCard);//Se envia al cementerio
-            RoundPoints.URLongWrite("Se ha eliminado a "+chosenCard.GetComponent<Card>().cardName);
+            RoundPoints.LongWriteUserRead("Se ha eliminado a "+chosenCard.GetComponent<Card>().cardName);
             TotalFieldForce.UpdateForce();//Se actualiza la fuerza del campo
         }else{
-            RoundPoints.URLongWrite("No se pudo activar el efecto porque no se han jugado cartas");
+            RoundPoints.LongWriteUserRead("No se pudo activar el efecto porque no se han jugado cartas");
         }
     }
     private static void GetMostPowerInField(List<GameObject> field,out GameObject Card,out int cardTotalPower){//Elige la carta de mayor poder
@@ -49,9 +49,9 @@ public class MostPowerEffect : MonoBehaviour, ICardEffect, IToJson
         }else if(cardP1TotalPower<cardP2TotalPower){//Si la de mayor poder es de P2
             chosenCard=cardP2;//La carta elegida es la de P2
         }else{//Si tienen igual poder la carta elegida es la del rival
-            if(this.GetComponent<Card>().WhichField==fields.P1){//Si el Macho jugado es de P1
+            if(this.GetComponent<Card>().WhichField==Fields.P1){//Si el Macho jugado es de P1
                 chosenCard=cardP2;//La carta elegida es la de P2
-            }else if(this.GetComponent<Card>().WhichField==fields.P2){//Si el Macho jugado es de P2
+            }else if(this.GetComponent<Card>().WhichField==Fields.P2){//Si el Macho jugado es de P2
                 chosenCard=cardP1;//La carta elegida es la de P1
             }
         }
