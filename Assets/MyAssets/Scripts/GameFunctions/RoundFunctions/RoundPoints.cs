@@ -37,9 +37,9 @@ public class RoundPoints : MonoBehaviour
     }
     public static void WriteRoundInfoUserRead(){//Se llama cuando se desea escribir la informacion de ronda
         if(Board.GetTurnActionsCount==0 && Board.IsLastTurn){//Si se puede jugar y es el ultimo turno
-            WriteUserRead("Turno de "+Board.GetPlayerTurn+", es el ultimo turno antes de que se acabe la ronda");
+            WriteUserRead("Turno de "+Board.GetPlayer+", es el ultimo turno antes de que se acabe la ronda");
         }else if(Board.GetTurnActionsCount==0){//Si no es el ultimo turno pero se puede jugar
-            WriteUserRead("Turno de "+Board.GetPlayerTurn);
+            WriteUserRead("Turno de "+Board.GetPlayer);
         }else if(Board.IsLastTurn){//Si "no se puede jugar" pero es el ultimo turno
             WriteUserRead("Puedes seguir jugando mas cartas. Presiona espacio cuando desees acabar la ronda");
         }else{//Si no se puede jugar y no es el ultimo turno

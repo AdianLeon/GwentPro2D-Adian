@@ -15,7 +15,7 @@ public class Graveyard : MonoBehaviour, IContainer
     private int deadCount;//Contadores de cartas en los respectivos cementerios
     void Start(){
         deadCount=0;
-        GameObject.Find("GText"+GFUtils.GetFieldFromName(this.name)).GetComponent<TextMeshProUGUI>().text=deadCount.ToString();
+        GameObject.Find("GText"+GFUtils.GetField(this.name)).GetComponent<TextMeshProUGUI>().text=deadCount.ToString();
     }
     public static void SendToGraveyard(List<GameObject> souls){//Analiza una por una las cartas de la lista para enviarlas al cementerio
         foreach(GameObject soul in souls){
@@ -32,8 +32,6 @@ public class Graveyard : MonoBehaviour, IContainer
         }
         deadCount++;
         GameObject.Find("GText"+card.GetComponent<Card>().WhichField).GetComponent<TextMeshProUGUI>().text=deadCount.ToString();
-        card.transform.SetParent(GameObject.Find("Graveyard"+card.GetComponent<Card>().WhichField).transform);
-        card.GetComponent<Dragging>().ParentToReturnTo=GameObject.Find("Graveyard"+card.GetComponent<Card>().WhichField).transform;
-        card.GetComponent<Dragging>().IsDraggable=false;
+        card.GetComponent<Dragging>().DropOnZone(GameObject.Find("Graveyard"+card.GetComponent<Card>().WhichField));
     }
 }

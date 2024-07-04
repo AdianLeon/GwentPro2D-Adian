@@ -6,7 +6,7 @@ public class LessPowerEffect : MonoBehaviour, ICardEffect, IToJson
 {
     public void TriggerEffect(){//Elimina la carta con menos poder del campo enemigo
         //Determinando el campo a afectar
-        List <GameObject> targetField=GameObject.Find("Field"+Board.GetEnemyTurn).GetComponent<Field>().GetCards;//Una lista de las cartas del campo enemigo
+        List <GameObject> targetField=GameObject.Find("Field"+Board.GetEnemy).GetComponent<Field>().GetCards;//Una lista de las cartas del campo enemigo
         
         if(targetField.Count>0){//Si la lista del campo enemigo tiene elementos
             GameObject Card=targetField[targetField.Count-1];//Se empieza a comparar por la ultima carta

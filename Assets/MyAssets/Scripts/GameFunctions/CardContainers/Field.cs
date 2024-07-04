@@ -33,6 +33,6 @@ public class Field : MonoBehaviour, IContainer
         for(int i=0;i<GetCards.Count;i++){//Se itera por todas las cartas jugadas
             playerForceValue+=GetCards[i].GetComponent<CardWithPower>().TotalPower;//Se suma el poder total
         }
-        GameObject.Find("Points"+GFUtils.GetFieldFromName(this.name)).GetComponent<TextMeshProUGUI>().text=playerForceValue.ToString();//Asigna el valor al puntaje
+        GameObject.Find("Points"+GFUtils.GetField(this.name)).GetComponent<TextMeshProUGUI>().text=playerForceValue.ToString();//Asigna el valor al puntaje
     }
 }

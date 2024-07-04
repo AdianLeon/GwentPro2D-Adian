@@ -18,11 +18,11 @@ public static class VisualEffects
     public static void ZonesGlow(GameObject card){//Hace que las cartas iluminen sus zonas y que el deck brille si se pueden intercambiar cartas
         //Si la carta puede ensenar su zona
         card.GetComponent<IShowZone>()?.ShowZone();//Que la ensene
-        
-        //Se actualiza si se puede intercambiar cartas con el deck
-        if(DeckTrade.CheckValidTrade){//Si se puede
-            GameObject.Find("DeckZone"+card.GetComponent<Card>().WhichField).GetComponent<DeckTrade>().OnGlow();//El deck de P1 "brilla"
-        }
+        DeckTrade.DeckGlow();//Si el deck se puede iluminar que se ilumine
+    }
+    public static void AllGlowOff(){
+        OffZonesGlow();
+        OffCardsGlow();
     }
     public static void OffZonesGlow(){//Resetea la invisibilidad de todas las dropzone del campo
         DropZone[] zones=GameObject.FindObjectsOfType<DropZone>();

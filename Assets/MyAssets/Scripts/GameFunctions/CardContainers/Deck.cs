@@ -15,7 +15,7 @@ public class Deck : MonoBehaviour, IContainer
     private Fields deckField;//Este es el campo del jugador dueno de este deck
     private List <GameObject> DeckCards = new List <GameObject>();//Lista de cartas
     void Start(){
-        deckField=GFUtils.GetFieldFromName(this.name);
+        deckField=GFUtils.GetField(this.name);
         container=GameObject.Find("Cards"+deckField);
         playerArea=GameObject.Find("Hand"+deckField);
         

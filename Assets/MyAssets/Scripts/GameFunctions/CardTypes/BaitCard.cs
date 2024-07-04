@@ -55,8 +55,6 @@ public class BaitCard : CardWithPower, IAffectable, IShowZone
         placehold.transform.SetParent(GameObject.Find("Trash").transform);//Se destruye el objeto auxiliar
         Destroy(placehold);
 
-        CardView.GetSelectedCard.GetComponent<Dragging>().IsDraggable=true;//GetSelectedCard ahora es arrastrable como cualquier otra de la mano
-
         if(CardView.GetSelectedCard.GetComponent<MultiplyEffect>()!=null){//Si GetSelectedCard tiene efecto de multiplicar
             CardView.GetSelectedCard.GetComponent<UnitCard>().power=CardView.GetSelectedCard.GetComponent<MultiplyEffect>().OriginalPower;
         }

@@ -29,7 +29,7 @@ public class LeaderCard : Card
             RoundPoints.WriteRoundInfoUserRead();
             return;
         }
-        if(WhichField.ToString()!=Board.GetPlayerTurn){//Si no coincide en campo con el jugador que lo presiona
+        if(WhichField.ToString()!=Board.GetPlayer){//Si no coincide en campo con el jugador que lo presiona
             RoundPoints.WriteUserRead("Ese no es el lider de tu deck");
             return;
         }
