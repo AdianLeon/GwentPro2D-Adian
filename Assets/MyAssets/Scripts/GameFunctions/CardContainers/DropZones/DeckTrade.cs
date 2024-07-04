@@ -28,14 +28,14 @@ public class DeckTrade : DropZone
             {
                 
                 d.DestroyPlaceholder();//Destruimos el placeholder
-                GameObject playerDeck=GameObject.Find("Deck"+TurnManager.GetPlayerTurn);//Deck del jugador
+                GameObject playerDeck=GameObject.Find("Deck"+Board.GetPlayerTurn);//Deck del jugador
 
                 playerDeck.GetComponent<Deck>().AddCardRandomly(d.gameObject);//Anade la copia de la carta a la lista del deck
 
                 d.gameObject.transform.SetParent(GameObject.Find("Trash").transform);//Envia la carta a intercambiar afuera de la escena
                 d.ParentToReturnTo=GameObject.Find("Trash").transform;
 
-                GameObject pickedCard=playerDeck.GetComponent<Deck>().ForceDrawTopCard();
+                GameObject pickedCard=playerDeck.GetComponent<Deck>().DrawTopCard();
 
                 pickedCard.GetComponent<CanvasGroup>().blocksRaycasts=true;//Permite asegurar que se puede arrastrar la carta
 

@@ -14,7 +14,7 @@ public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         selectedCard=this.gameObject;
         selectedCard.GetComponent<Card>().OnGlow();//La carta se sombrea cuando pasamos por encima
         selectedCard.GetComponent<Card>().LoadInfo();//Se carga toda la informacion de esta carta en el CardView
-        if(TurnManager.CanPlay && selectedCard.GetComponent<Dragging>()!=null){//Si el jugador puede jugar
+        if(Board.CanPlay && selectedCard.GetComponent<Dragging>()!=null){//Si el jugador puede jugar
             if(!Dragging.IsOnDrag && selectedCard.GetComponent<Dragging>().IsOnHand){//Si no se esta arrastrando ninguna carta y ademas esta en la mano
                 VisualEffects.ZonesGlow(selectedCard);//Se ilumina la zona donde se puede soltar
             }

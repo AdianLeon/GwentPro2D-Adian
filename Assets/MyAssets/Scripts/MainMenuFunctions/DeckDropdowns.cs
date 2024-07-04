@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System.IO;
 using TMPro;
 //Script para asignar el deck de los jugadores a traves de un dropdown
-public class DeckAssignDropdowns : MonoBehaviour
+public class DeckDropdowns : MonoBehaviour
 {
     private TMP_Dropdown deckDropdown;
     private string playerDeck;

@@ -29,7 +29,7 @@ public static class VisualEffects
         foreach(DropZone zone in zones){zone.OffGlow();}//Hace las zonas invisibles nuevamente
     }
     public static void OffCardsGlow(){//Restaura la iluminacion de las cartas jugadas
-        foreach(GameObject playedCard in TurnManager.PlayedCards){
+        foreach(GameObject playedCard in Board.PlayedCards){
             playedCard.GetComponent<Image>().color=new Color (1,1,1,1);//Las cartas se dessombrean
         }
     }

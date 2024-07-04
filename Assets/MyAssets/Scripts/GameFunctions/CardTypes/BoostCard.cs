@@ -25,7 +25,7 @@ public class BoostCard : Card, IShowZone, ICardEffect
                 target.transform.GetChild(i).GetComponent<CardWithPower>().AddedPower+=this.GetComponent<BoostCard>().boost;//Aumenta el poder
             }
         }
-        Graveyard.ToGraveyard(this.gameObject);//Envia la carta usada al cementerio
+        Graveyard.SendToGraveyard(this.gameObject);//Envia la carta usada al cementerio
     }
     public void ShowZone(){
         DZBoost[] boostZones=GameObject.FindObjectsOfType<DZBoost>();//Se crea un array de todas las zonas de aumento

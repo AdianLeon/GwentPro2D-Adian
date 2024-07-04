@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 //Script para las cartas senuelo
 public class BaitCard : CardWithPower, IAffectable, IShowZone
 {
@@ -15,7 +16,7 @@ public class BaitCard : CardWithPower, IAffectable, IShowZone
     }
     public void ShowZone(){
         //Activa el glow (oscurece) para las cartas con las que el senuelo no se puede intercambiar
-        foreach(GameObject cardPlayed in TurnManager.PlayedCards){
+        foreach(GameObject cardPlayed in Board.PlayedCards){
             if(cardPlayed.GetComponent<IAffectable>()==null || cardPlayed.GetComponent<Card>().WhichField!=WhichField || cardPlayed.GetComponent<BaitCard>()!=null){
                 //Si no es afectable, no coincide con el campo del senuelo o es otro senuelo
                 cardPlayed.GetComponent<Card>().OnGlow();//Se le activa el glow (oscurece la carta)
@@ -56,11 +57,8 @@ public class BaitCard : CardWithPower, IAffectable, IShowZone
 
         CardView.GetSelectedCard.GetComponent<Dragging>().IsDraggable=true;//GetSelectedCard ahora es arrastrable como cualquier otra de la mano
 
-        TotalFieldForce.RemoveCard(CardView.GetSelectedCard);//Se quita GetSelectedCard de las cartas jugadas
-        TurnManager.PlayedCards.Remove(CardView.GetSelectedCard);
-
         if(CardView.GetSelectedCard.GetComponent<MultiplyEffect>()!=null){//Si GetSelectedCard tiene efecto de multiplicar
-            CardView.GetSelectedCard.GetComponent<UnitCard>().power=CardView.GetSelectedCard.GetComponent<MultiplyEffect>().originalPower;
+            CardView.GetSelectedCard.GetComponent<UnitCard>().power=CardView.GetSelectedCard.GetComponent<MultiplyEffect>().OriginalPower;
         }
         if(CardView.GetSelectedCard.GetComponent<PromEffect>()!=null){//Si GetSelectedCard tiene efecto de promedio
             CardView.GetSelectedCard.GetComponent<UnitCard>().power=0;

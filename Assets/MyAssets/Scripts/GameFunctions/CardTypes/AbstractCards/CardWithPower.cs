@@ -9,6 +9,7 @@ abstract public class CardWithPower : Card
     public int power;//Poder propio de la carta
     private int addedPower;//Poder anadido por efectos durante el juego
     public int AddedPower{get=>addedPower; set=>addedPower=value;}
+    public int TotalPower{get=>power+addedPower;}
     public override void LoadInfo(){
         base.LoadInfo();
         //Power

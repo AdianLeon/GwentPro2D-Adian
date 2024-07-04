@@ -28,11 +28,11 @@ public class RoundPoints : MonoBehaviour
         GameObject.Find("UserRead").GetComponent<TextMeshProUGUI>().text=passedMessage;
     }
     public static void WriteRoundInfoUserRead(){//Se llama cuando se desea escribir la informacion de ronda
-        if(TurnManager.GetTurnActionsCount==0 && TurnManager.IsLastTurn){//Si se puede jugar y es el ultimo turno
-            RoundPoints.WriteUserRead("Turno de "+TurnManager.GetPlayerTurn+", es el ultimo turno antes de que se acabe la ronda");
-        }else if(TurnManager.GetTurnActionsCount==0){//Si no es el ultimo turno pero se puede jugar
-            RoundPoints.WriteUserRead("Turno de "+TurnManager.GetPlayerTurn);
-        }else if(TurnManager.IsLastTurn){//Si no se puede jugar pero es el ultimo turno
+        if(Board.GetTurnActionsCount==0 && Board.IsLastTurn){//Si se puede jugar y es el ultimo turno
+            RoundPoints.WriteUserRead("Turno de "+Board.GetPlayerTurn+", es el ultimo turno antes de que se acabe la ronda");
+        }else if(Board.GetTurnActionsCount==0){//Si no es el ultimo turno pero se puede jugar
+            RoundPoints.WriteUserRead("Turno de "+Board.GetPlayerTurn);
+        }else if(Board.IsLastTurn){//Si no se puede jugar pero es el ultimo turno
             RoundPoints.WriteUserRead("Puedes seguir jugando mas cartas. Presiona espacio cuando desees acabar la ronda");
         }else{//Si no se puede jugar y no es el ultimo turno
             RoundPoints.WriteUserRead("Presiona espacio para pasar de turno");

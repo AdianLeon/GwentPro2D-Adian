@@ -25,11 +25,11 @@ public class LeaderCard : Card
         GameObject.Find("BGAddedPower").GetComponent<Image>().color=new Color(1,1,1,0);
     }
     private void OnButtonClick(){//Se llama cuando se presiona en el lider
-        if(!TurnManager.CanPlay){//Si no se puede jugar
+        if(!Board.CanPlay){//Si no se puede jugar
             RoundPoints.WriteRoundInfoUserRead();
             return;
         }
-        if(WhichField.ToString()!=TurnManager.GetPlayerTurn){//Si no coincide en campo con el jugador que lo presiona
+        if(WhichField.ToString()!=Board.GetPlayerTurn){//Si no coincide en campo con el jugador que lo presiona
             RoundPoints.WriteUserRead("Ese no es el lider de tu deck");
             return;
         }
@@ -39,6 +39,6 @@ public class LeaderCard : Card
         }
 
         //Juega la carta lider
-        TurnManager.PlayLeaderCard(this.gameObject);
+        Board.PlayLeaderCard(this.gameObject);
     }
 }

@@ -30,7 +30,7 @@ public class PlayerCondition : MonoBehaviour
     public static void WinsGame(string player){//El jugador gana la partida
         RoundPoints.LongWriteUserRead("Felicidades "+player+". Has ganado la partida!!");
         GameObject.Find("SetRGB").GetComponent<Button>().onClick.Invoke();
-        Graveyard.AllToGraveyard();
+        Graveyard.SendToGraveyard(Board.PlayedCards);
     }
     public static void ResetGame(){//Reinicia el juego (o sea la escena Game)
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

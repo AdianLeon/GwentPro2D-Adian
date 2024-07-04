@@ -14,8 +14,8 @@ abstract public class Card : MonoBehaviour, IToJson, IGlow
     private string onActivationCode;
     public string OnActivationCode{get=>onActivationCode; set=>onActivationCode=value;}
     public Sprite artwork;//Imagen para mostrar en el CardView
-    /*Leave public*/public Fields whichField;//Campo de la carta
-    public Fields WhichField{get=>whichField; set=>whichField=value;}
+    /*Leave public*/public Fields WhichField;//Campo de la carta
+    //public Fields WhichField{get=>whichField; set=>whichField=value;}
 
     public virtual Color GetCardViewColor(){return new Color(1,1,1);}//Retorna el color de la carta en el CardView
     public virtual void LoadInfo(){//Esta funcion es especifica para cada tipo de carta, pero todas comparten lo siguiente

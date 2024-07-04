@@ -11,7 +11,7 @@ public class DeckMenuLoadCards : MonoBehaviour
     public TMP_Dropdown dropdown;
     public GameObject viewCardPrefab;
     public void DeckStart(){//Esta funcion se llama cada vez que se activa el menu deck
-        DeckAssignDropdowns.LoadFilesInDropdown(dropdown);//Carga los decks al dropdown
+        DeckDropdowns.LoadFilesInDropdown(dropdown);//Carga los decks al dropdown
         dropdown.onValueChanged.AddListener(delegate{OnDropdownValueChanged();});//Ahora cuando el dropdown se modifique la funcion OnDeopDownValueChanged se llama
         OnDropdownValueChanged();
     }

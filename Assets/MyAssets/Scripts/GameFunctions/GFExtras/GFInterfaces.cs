@@ -19,3 +19,6 @@ interface IGlow{//Para las zonas y cartas que se iluminan
     void OffGlow();//Desactiva su iluminacion
 }
 interface IToJson{}//Para los script que se deseen anadir en el json de la carta
+interface IContainer{//Para aquellos objetos que en el juego contendran cartas
+    List<GameObject> GetCards{get;}//Devuelve una lista con las cartas contenidas en el objeto
+}

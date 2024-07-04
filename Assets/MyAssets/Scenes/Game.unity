@@ -134,7 +134,6 @@ GameObject:
   - component: {fileID: 7568640}
   - component: {fileID: 7568643}
   - component: {fileID: 7568642}
-  - component: {fileID: 7568641}
   m_Layer: 5
   m_Name: BG
   m_TagString: Untagged
@@ -162,19 +161,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.10449982, y: 0.000027775997}
   m_SizeDelta: {x: 1372.2, y: 647.4}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7568641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7568639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bbe899339c54184cb8206432fbd5efe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GraveyardCards: []
 --- !u!114 &7568642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -637,7 +623,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca6246573f1a7304ba6b3cafcf8a94b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DeckCards: []
 --- !u!114 &108452095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -816,6 +801,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 169692196}
   m_CullTransparentMesh: 1
+--- !u!1 &171018802
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 171018803}
+  - component: {fileID: 171018804}
+  m_Layer: 5
+  m_Name: FieldP2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &171018803
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171018802}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 614105095}
+  - {fileID: 862226931}
+  - {fileID: 915025858}
+  m_Father: {fileID: 303018096}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 173.21864, y: 125.64453}
+  m_SizeDelta: {x: 479.79745, y: 247.88171}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &171018804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171018802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ab0c6f9f4594094a94a6b0121e80148, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &172133887
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1052,7 +1089,7 @@ MonoBehaviour:
   effectDescription: Cuando esta carta es jugada su poder se convierte en el promedio
     del poder total de todas las cartas del campo
   artwork: {fileID: 21300000, guid: faecfd47eeba305469eb968015660a0b, type: 3}
-  whichField: 0
+  WhichField: 0
   power: 0
   whichZone: 2
 --- !u!1 &206273462
@@ -1090,7 +1127,7 @@ RectTransform:
   - {fileID: 419372277}
   - {fileID: 1542626788}
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 18
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1324,6 +1361,7 @@ GameObject:
   - component: {fileID: 270863346}
   - component: {fileID: 270863345}
   - component: {fileID: 270863344}
+  - component: {fileID: 270863347}
   m_Layer: 5
   m_Name: HandP2
   m_TagString: Untagged
@@ -1413,6 +1451,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 270863342}
   m_CullTransparentMesh: 1
+--- !u!114 &270863347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270863342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38485103a594cdc4bbad83643bd2ec8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &275894334
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1565,7 +1615,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
   m_PrefabInstance: {fileID: 675595465}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &297928702
+--- !u!1 &303018095
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1573,40 +1623,50 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 297928703}
+  - component: {fileID: 303018096}
+  - component: {fileID: 303018097}
   m_Layer: 5
-  m_Name: UnitsZonesSet
+  m_Name: Board
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &297928703
+--- !u!224 &303018096
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 297928702}
+  m_GameObject: {fileID: 303018095}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3831248092945592189}
-  - {fileID: 1400037310}
-  - {fileID: 878779096}
-  - {fileID: 614105095}
-  - {fileID: 862226931}
-  - {fileID: 915025858}
+  - {fileID: 573870148}
+  - {fileID: 1615405040}
+  - {fileID: 171018803}
   m_Father: {fileID: 1071480984}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 277.53, y: -8.925041}
-  m_SizeDelta: {x: 479.79755, y: 499.17078}
+  m_AnchoredPosition: {x: 104.311295, y: -8.925041}
+  m_SizeDelta: {x: 826.235, y: 499.17078}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &303018097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303018095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29807a4df244f654899a3ac96982cd87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &305557593 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
@@ -2167,7 +2227,7 @@ MonoBehaviour:
   effectDescription: Reduce el poder de las cartas de la fila seleccionada (Para
     ambos campos)
   artwork: {fileID: 21300000, guid: 3d03c775de555df4280aa7744f885c23, type: 3}
-  whichField: 0
+  WhichField: 0
   damage: 15
 --- !u!1 &373339262
 GameObject:
@@ -2277,7 +2337,7 @@ MonoBehaviour:
     le pagan bien, todo el dia ahi parado, pobre lastimoso
   effectDescription: Esta carta no es jugable
   artwork: {fileID: 21300000, guid: b6ac0e9b841fb35478b6e9d373666997, type: 3}
-  whichField: 0
+  WhichField: 0
 --- !u!1001 &394274531
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2513,7 +2573,7 @@ MonoBehaviour:
   effectDescription: Cuando esta carta es jugada su poder se convierte en el promedio
     del poder total de todas las cartas del campo
   artwork: {fileID: 21300000, guid: 9c0326e7eadf93e428963d37f2147999, type: 3}
-  whichField: 0
+  WhichField: 0
   power: 0
   whichZone: 1
 --- !u!1 &401695424
@@ -3004,7 +3064,7 @@ MonoBehaviour:
   effectDescription: Cuando esta carta es jugada manda al cementerio a la carta de
     menor poder del rival
   artwork: {fileID: 21300000, guid: c51ef3b4f9d4ac343912c442c9b2abcb, type: 3}
-  whichField: 0
+  WhichField: 0
   power: 30
   whichZone: 5
 --- !u!1 &485093252
@@ -3354,7 +3414,7 @@ MonoBehaviour:
     aunque conociendo a los minions eso puede salir mal (Solo se puede activar una
     vez por partida)
   artwork: {fileID: 21300000, guid: 2b4ea53af48388d46878a149699cefdb, type: 3}
-  whichField: 0
+  WhichField: 0
 --- !u!114 &532834802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3698,7 +3758,7 @@ MonoBehaviour:
   effectDescription: Esta carta se puede intercambiar con otra en el campo propio
     (solo con unidades de plata)
   artwork: {fileID: 21300000, guid: 53e16c8f9e2f1114ab4c96f8e99b0a78, type: 3}
-  whichField: 0
+  WhichField: 0
   power: 0
 --- !u!1 &556206759
 GameObject:
@@ -3860,7 +3920,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 573870147}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3868,12 +3928,12 @@ RectTransform:
   - {fileID: 485448397}
   - {fileID: 904060569}
   - {fileID: 287957410}
-  m_Father: {fileID: 1071480984}
-  m_RootOrder: 16
+  m_Father: {fileID: 303018096}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -220.13779, y: -9.440851}
+  m_AnchoredPosition: {x: -324.4491, y: -0.5158205}
   m_SizeDelta: {x: 177.33678, y: 82.11282}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &588232790
@@ -3984,13 +4044,13 @@ MonoBehaviour:
     le pagan bien, todo el dia ahi parado, pobre lastimoso
   effectDescription: Esta carta no es jugable
   artwork: {fileID: 21300000, guid: b6ac0e9b841fb35478b6e9d373666997, type: 3}
-  whichField: 0
+  WhichField: 0
 --- !u!1001 &614105094
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 297928703}
+    m_TransformParent: {fileID: 171018803}
     m_Modifications:
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_Pivot.x
@@ -4002,7 +4062,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4074,7 +4134,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 42.63403
+      value: -83.0105
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4313,7 +4373,7 @@ MonoBehaviour:
   description: Vuelve a los minions aun mas malvados
   effectDescription: Aumenta el poder de las cartas de la fila seleccionada en 1
   artwork: {fileID: 21300000, guid: 41b7b81fc0c6faa4da908bb11643636e, type: 3}
-  whichField: 0
+  WhichField: 0
   boost: 15
 --- !u!1001 &629576296
 PrefabInstance:
@@ -5303,7 +5363,12 @@ MonoBehaviour:
     le pagan bien, todo el dia ahi parado, pobre lastimoso
   effectDescription: Esta carta no es jugable
   artwork: {fileID: 21300000, guid: b6ac0e9b841fb35478b6e9d373666997, type: 3}
-  whichField: 0
+  WhichField: 0
+--- !u!1 &756348808 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+  m_PrefabInstance: {fileID: 2019767593}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &790674553
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5519,7 +5584,7 @@ MonoBehaviour:
     los minions Spoiler: Los vuelve locos'
   effectDescription: Aumenta el poder de las cartas de la fila seleccionada en 1
   artwork: {fileID: 21300000, guid: de089a2f0b529844db6b49389e1a6747, type: 3}
-  whichField: 0
+  WhichField: 0
   boost: 25
 --- !u!224 &793406274 stripped
 RectTransform:
@@ -5671,7 +5736,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 297928703}
+    m_TransformParent: {fileID: 171018803}
     m_Modifications:
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_Pivot.x
@@ -5683,7 +5748,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -5755,7 +5820,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 126.005066
+      value: 0.36053467
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -5821,7 +5886,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 297928703}
+    m_TransformParent: {fileID: 1615405040}
     m_Modifications:
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_Pivot.x
@@ -5905,7 +5970,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -208.65501
+      value: -82.25851
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6199,7 +6264,7 @@ MonoBehaviour:
   effectDescription: Cuando esta carta es jugada su poder se convierte en el promedio
     del poder total de todas las cartas del campo
   artwork: {fileID: 21300000, guid: a5b358b788169784b9b4d62a0f37cb58, type: 3}
-  whichField: 0
+  WhichField: 0
   power: 0
   whichZone: 0
 --- !u!1001 &915025857
@@ -6207,7 +6272,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 297928703}
+    m_TransformParent: {fileID: 171018803}
     m_Modifications:
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_Pivot.x
@@ -6219,7 +6284,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -6291,7 +6356,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 208.65503
+      value: 83.0105
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6568,7 +6633,7 @@ MonoBehaviour:
   effectDescription: Cuando esta carta es jugada manda al cementerio a la carta de
     mayor poder (no se incluye a si misma)
   artwork: {fileID: 21300000, guid: 2b539ac534b0ba247a511436b409e06a, type: 3}
-  whichField: 0
+  WhichField: 0
   power: 35
   whichZone: 0
 --- !u!1001 &933903456
@@ -6786,7 +6851,7 @@ MonoBehaviour:
     han hecho la vida un infierno, pero por lo menos saben usar un rifle
   effectDescription: 
   artwork: {fileID: 21300000, guid: 1f9aeed22151c0e48939f51ea500782f, type: 3}
-  whichField: 0
+  WhichField: 0
   power: 20
   whichZone: 3
 --- !u!1001 &939096330
@@ -7097,6 +7162,7 @@ GameObject:
   - component: {fileID: 983662792}
   - component: {fileID: 983662791}
   - component: {fileID: 983662790}
+  - component: {fileID: 983662793}
   m_Layer: 5
   m_Name: HandP1
   m_TagString: Untagged
@@ -7186,6 +7252,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 983662788}
   m_CullTransparentMesh: 1
+--- !u!114 &983662793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 983662788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38485103a594cdc4bbad83643bd2ec8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &988158957 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
@@ -7642,7 +7720,7 @@ MonoBehaviour:
   effectDescription: Cuando esta carta es jugada su poder es multiplicado por la
     cantidad de Kyles jugados en el campo (contandose a si misma)
   artwork: {fileID: 21300000, guid: 4a94692d2f86aba4094169397df1df70, type: 3}
-  whichField: 0
+  WhichField: 0
   power: 10
   whichZone: 4
 --- !u!1001 &1041093396
@@ -7860,7 +7938,7 @@ MonoBehaviour:
   effectDescription: Reduce el poder de las cartas de la fila seleccionada (Para
     ambos campos)
   artwork: {fileID: 21300000, guid: cc7b9aa19d91c7f429cd2cc11f02b14e, type: 3}
-  whichField: 0
+  WhichField: 0
   damage: 15
 --- !u!1001 &1049803914
 PrefabInstance:
@@ -8080,7 +8158,7 @@ MonoBehaviour:
     Spoiler: Los vuelve locos'
   effectDescription: Aumenta el poder de las cartas de la fila seleccionada
   artwork: {fileID: 21300000, guid: e564c7d836d96aa4f8a9c580957e3fbf, type: 3}
-  whichField: 0
+  WhichField: 0
   boost: 20
 --- !u!1 &1054376734
 GameObject:
@@ -8403,7 +8481,7 @@ MonoBehaviour:
     del rayo congelador , el algebra lineal y la gravedad
   effectDescription: 
   artwork: {fileID: 21300000, guid: 3da2059eb9ba797409387d9bafaff558, type: 3}
-  whichField: 0
+  WhichField: 0
   power: 25
   whichZone: 5
 --- !u!1001 &1065442422
@@ -8622,7 +8700,7 @@ MonoBehaviour:
   effectDescription: Se deshace de todas las cartas de clima y sus efectos en la
     fila seleccionada
   artwork: {fileID: 21300000, guid: dc03cc05d9a1a2245bcf77ae676c1e42, type: 3}
-  whichField: 0
+  WhichField: 0
 --- !u!1 &1067786611
 GameObject:
   m_ObjectHideFlags: 0
@@ -8880,9 +8958,8 @@ RectTransform:
   - {fileID: 485093253}
   - {fileID: 1819720627}
   - {fileID: 997334053}
-  - {fileID: 573870148}
-  - {fileID: 297928703}
   - {fileID: 206273463}
+  - {fileID: 303018096}
   - {fileID: 1934036166}
   - {fileID: 2051672428}
   m_Father: {fileID: 0}
@@ -9502,7 +9579,7 @@ MonoBehaviour:
     han hecho la vida un infierno, pero por lo menos saben usar un rifle
   effectDescription: 
   artwork: {fileID: 21300000, guid: 1f9aeed22151c0e48939f51ea500782f, type: 3}
-  whichField: 0
+  WhichField: 0
   power: 20
   whichZone: 3
 --- !u!1001 &1234931569
@@ -9747,7 +9824,7 @@ MonoBehaviour:
     cartas
   effectDescription: Cuando esta carta es jugada se roba una carta del deck propio
   artwork: {fileID: 21300000, guid: 252d43dfcdab7b34e89775370a6f1a51, type: 3}
-  whichField: 0
+  WhichField: 0
   power: 30
   whichZone: 6
 --- !u!1 &1238096646
@@ -10021,7 +10098,7 @@ MonoBehaviour:
     del rayo congelador , el algebra lineal y la gravedad
   effectDescription: 
   artwork: {fileID: 21300000, guid: 3da2059eb9ba797409387d9bafaff558, type: 3}
-  whichField: 0
+  WhichField: 0
   power: 25
   whichZone: 5
 --- !u!1 &1254882642
@@ -10075,7 +10152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca6246573f1a7304ba6b3cafcf8a94b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DeckCards: []
 --- !u!114 &1254882646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10114,6 +10190,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1254882642}
   m_CullTransparentMesh: 1
+--- !u!1 &1320493306 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
+  m_PrefabInstance: {fileID: 1821130396}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1323165371
 GameObject:
   m_ObjectHideFlags: 0
@@ -10592,7 +10673,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 297928703}
+    m_TransformParent: {fileID: 1615405040}
     m_Modifications:
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_Pivot.x
@@ -10676,7 +10757,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -125.6749
+      value: 0.7215805
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -11433,7 +11514,7 @@ MonoBehaviour:
   effectDescription: Cuando esta carta es jugada su poder se convierte en el promedio
     del poder total de todas las cartas del campo
   artwork: {fileID: 21300000, guid: 9c0326e7eadf93e428963d37f2147999, type: 3}
-  whichField: 0
+  WhichField: 0
   power: 0
   whichZone: 1
 --- !u!1001 &1519646199
@@ -11820,7 +11901,7 @@ MonoBehaviour:
   effectDescription: Cuando esta carta es jugada su poder es multiplicado por la
     cantidad de Kyles jugados en el campo (contandose a si misma)
   artwork: {fileID: 21300000, guid: 4a94692d2f86aba4094169397df1df70, type: 3}
-  whichField: 0
+  WhichField: 0
   power: 10
   whichZone: 4
 --- !u!224 &1542626788 stripped
@@ -11974,7 +12055,7 @@ GameObject:
   - component: {fileID: 1580820474}
   - component: {fileID: 1580820473}
   m_Layer: 5
-  m_Name: Board
+  m_Name: BGBoard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12384,7 +12465,7 @@ MonoBehaviour:
     del rayo congelador , el algebra lineal y la gravedad
   effectDescription: 
   artwork: {fileID: 21300000, guid: 3da2059eb9ba797409387d9bafaff558, type: 3}
-  whichField: 0
+  WhichField: 0
   power: 25
   whichZone: 5
 --- !u!1 &1611976137
@@ -12541,6 +12622,58 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 117318777}
   ValidPlayer: 0
+--- !u!1 &1615405039
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1615405040}
+  - component: {fileID: 1615405041}
+  m_Layer: 5
+  m_Name: FieldP1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1615405040
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615405039}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3831248092945592189}
+  - {fileID: 1400037310}
+  - {fileID: 878779096}
+  m_Father: {fileID: 303018096}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 173.21864, y: -126.396515}
+  m_SizeDelta: {x: 479.79752, y: 246.37776}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1615405041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615405039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ab0c6f9f4594094a94a6b0121e80148, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1618750939
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12756,7 +12889,7 @@ MonoBehaviour:
   effectDescription: Esta carta se puede intercambiar con otra en el campo propio
     (solo con unidades de plata)
   artwork: {fileID: 21300000, guid: 394e3d4bf1a595247ac066cd390f506a, type: 3}
-  whichField: 0
+  WhichField: 0
   power: 0
 --- !u!1 &1622124512 stripped
 GameObject:
@@ -13034,7 +13167,6 @@ GameObject:
   - component: {fileID: 1723134405}
   - component: {fileID: 1723134404}
   - component: {fileID: 1723134403}
-  - component: {fileID: 1723134406}
   m_Layer: 5
   m_Name: PassButton
   m_TagString: Untagged
@@ -13107,8 +13239,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1723134406}
-        m_TargetAssemblyTypeName: TurnManager, Assembly-CSharp
+      - m_Target: {fileID: 303018097}
+        m_TargetAssemblyTypeName: Board, Assembly-CSharp
         m_MethodName: EndTurn
         m_Mode: 1
         m_Arguments:
@@ -13205,18 +13337,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1723134401}
   m_CullTransparentMesh: 1
---- !u!114 &1723134406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1723134401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29807a4df244f654899a3ac96982cd87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1737500369 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
@@ -13577,7 +13697,7 @@ MonoBehaviour:
   effectDescription: Cuando esta carta es jugada su poder es multiplicado por la
     cantidad de Kyles jugados en el campo (contandose a si misma)
   artwork: {fileID: 21300000, guid: 4a94692d2f86aba4094169397df1df70, type: 3}
-  whichField: 0
+  WhichField: 0
   power: 10
   whichZone: 4
 --- !u!1 &1767920635
@@ -13905,7 +14025,7 @@ MonoBehaviour:
   effectDescription: Cuando esta carta es jugada su poder se convierte en el promedio
     del poder total de todas las cartas del campo
   artwork: {fileID: 21300000, guid: faecfd47eeba305469eb968015660a0b, type: 3}
-  whichField: 0
+  WhichField: 0
   power: 0
   whichZone: 2
 --- !u!1 &1775964367
@@ -14016,7 +14136,7 @@ MonoBehaviour:
     le pagan bien, todo el dia ahi parado, pobre lastimoso
   effectDescription: Esta carta no es jugable
   artwork: {fileID: 21300000, guid: b6ac0e9b841fb35478b6e9d373666997, type: 3}
-  whichField: 0
+  WhichField: 0
 --- !u!1 &1786402090
 GameObject:
   m_ObjectHideFlags: 0
@@ -14368,6 +14488,18 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
   m_PrefabInstance: {fileID: 1821130396}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1821130401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1320493306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bbe899339c54184cb8206432fbd5efe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1829186319
 GameObject:
   m_ObjectHideFlags: 0
@@ -15310,7 +15442,7 @@ RectTransform:
   m_Children:
   - {fileID: 1570595591}
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 19
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -15366,7 +15498,6 @@ GameObject:
   - component: {fileID: 1947402712}
   - component: {fileID: 1947402714}
   - component: {fileID: 1947402713}
-  - component: {fileID: 1947402715}
   - component: {fileID: 1947402716}
   m_Layer: 5
   m_Name: CardsP1
@@ -15433,19 +15564,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1947402711}
   m_CullTransparentMesh: 1
---- !u!114 &1947402715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1947402711}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bbe899339c54184cb8206432fbd5efe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GraveyardCards: []
 --- !u!114 &1947402716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15715,7 +15833,7 @@ MonoBehaviour:
   effectDescription: Cuando esta carta es jugada su poder se convierte en el promedio
     del poder total de todas las cartas del campo
   artwork: {fileID: 21300000, guid: a5b358b788169784b9b4d62a0f37cb58, type: 3}
-  whichField: 0
+  WhichField: 0
   power: 0
   whichZone: 0
 --- !u!1 &1988085504 stripped
@@ -16095,6 +16213,18 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
   m_PrefabInstance: {fileID: 2019767593}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2019767598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756348808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bbe899339c54184cb8206432fbd5efe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2044138536
 GameObject:
   m_ObjectHideFlags: 0
@@ -16204,7 +16334,7 @@ RectTransform:
   m_Children:
   - {fileID: 1325665075}
   m_Father: {fileID: 1071480984}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -16969,7 +17099,7 @@ MonoBehaviour:
     han hecho la vida un infierno, pero por lo menos saben usar un rifle
   effectDescription: 
   artwork: {fileID: 21300000, guid: 1f9aeed22151c0e48939f51ea500782f, type: 3}
-  whichField: 0
+  WhichField: 0
   power: 20
   whichZone: 3
 --- !u!1 &2123096150
@@ -17026,7 +17156,6 @@ GameObject:
   - component: {fileID: 2131818547}
   - component: {fileID: 2131818550}
   - component: {fileID: 2131818549}
-  - component: {fileID: 2131818548}
   - component: {fileID: 2131818551}
   m_Layer: 5
   m_Name: CardsP2
@@ -17055,19 +17184,6 @@ RectTransform:
   m_AnchoredPosition: {x: 944.39886, y: 187.76303}
   m_SizeDelta: {x: 436.7, y: 331.1}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2131818548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2131818546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bbe899339c54184cb8206432fbd5efe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GraveyardCards: []
 --- !u!114 &2131818549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17135,7 +17251,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 297928703}
+    m_TransformParent: {fileID: 1615405040}
     m_Modifications:
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_Pivot.x
@@ -17219,7 +17335,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -44.13797
+      value: 82.25852
       objectReference: {fileID: 0}
     - target: {fileID: 4409426609925047577, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

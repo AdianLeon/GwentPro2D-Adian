@@ -5,7 +5,7 @@ using UnityEngine;
 public class DrawOneEffect : MonoBehaviour, ICardEffect, IToJson
 {
     public void TriggerEffect(){//Roba una carta del deck propio
-        GameObject newCard=GameObject.Find("Deck"+this.gameObject.GetComponent<Card>().WhichField).GetComponent<Deck>().ForceDrawTopCard();
+        GameObject newCard=GameObject.Find("Deck"+this.gameObject.GetComponent<Card>().WhichField).GetComponent<Deck>().DrawTopCard();
         if(newCard!=null){
             RoundPoints.LongWriteUserRead("Se ha robado una carta del deck. Es "+newCard.GetComponent<Card>().cardName);
         }else{

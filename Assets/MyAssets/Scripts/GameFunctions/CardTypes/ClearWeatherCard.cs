@@ -36,7 +36,7 @@ public class ClearWeatherCard : Card, IShowZone, ICardEffect
         }
         int count=this.transform.parent.childCount;//Cantidad de hijos que tiene la zona clima
         for(int i=0;i<count;i++){
-            Graveyard.ToGraveyard(this.transform.parent.GetChild(0).gameObject);//Mandando las cartas de la zona para el cementerio
+            Graveyard.SendToGraveyard(this.transform.parent.GetChild(0).gameObject);//Mandando las cartas de la zona para el cementerio
         }
     }
     private static void ClearZoneOfWeathers(GameObject zoneTarget){//Deshace el efecto de clima en la zona
