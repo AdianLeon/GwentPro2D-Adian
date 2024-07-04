@@ -102,7 +102,7 @@ public class Board : MonoBehaviour, IContainer
             }else{
                 PassButtonScript.ClickPassButtonWithoutEndTurn();//En este caso hay que clickear el passbutton porque esto deshace el cambio de campo
             }
-            PlayerCondition.AddPointToP1();//P1 gana la ronda y obtiene un punto de ronda
+            RoundPoints.AddPointToP1();//P1 gana la ronda y obtiene un punto de ronda
             WinsRound(1);
         }else if(Field.P2ForceValue>Field.P1ForceValue){//Si P2 tiene mas poder que P1
             if(playerTurn==1){//P2 comienza el proximo turno
@@ -110,20 +110,20 @@ public class Board : MonoBehaviour, IContainer
             }else{
                 PassButtonScript.ClickPassButtonWithoutEndTurn();//En este caso hay que clickear el passbutton porque esto deshace el cambio de campo
             }
-            PlayerCondition.AddPointToP2();//P2 gana la ronda y obtiene un punto de ronda
+            RoundPoints.AddPointToP2();//P2 gana la ronda y obtiene un punto de ronda
             WinsRound(2);
         }else{//Si ambos tienen igual poder ambos ganan 1 punto y la ronda continua sin afectarse
             SwitchTurn();
-            PlayerCondition.AddPointToP1();
-            PlayerCondition.AddPointToP2();
-            PlayerCondition.WinCheck();
+            RoundPoints.AddPointToP1();
+            RoundPoints.AddPointToP2();
+            RoundPoints.WinCheck();
         }
         turnActionsCount=0;
         RoundPoints.UpdatePoints();
     }
     private static void WinsRound(int playerNumber){
         RoundPoints.LongWriteUserRead("Jugador "+playerNumber+" gano la ronda");
-        PlayerCondition.WinCheck();
+        RoundPoints.WinCheck();
     }
     private static void SwitchTurn(){//Se cambia de turno
         DeckTrade.ResetTradeCount();

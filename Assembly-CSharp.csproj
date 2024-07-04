@@ -69,7 +69,6 @@
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardContainers\Graveyard.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardContainers\DropZones\DZUnits.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\RoundFunctions\PlayerCondition.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardContainers\Deck.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
