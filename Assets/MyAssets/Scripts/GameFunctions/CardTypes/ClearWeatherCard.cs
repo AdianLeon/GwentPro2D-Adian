@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 //Script para las cartas de despeje
-public class ClearWeatherCard : Card, IShowZone, ICardEffect
+public class ClearWeatherCard : Card, IShowZone, ISpecialCard
 {
     public override Color GetCardViewColor(){return new Color(0.5f,1,1);}
     public override void LoadInfo(){
@@ -23,7 +23,7 @@ public class ClearWeatherCard : Card, IShowZone, ICardEffect
             zone.OnGlow();
         }
     }
-    public void TriggerEffect(){//Efecto de las cartas despeje
+    public void TriggerSpecialEffect(){//Efecto de las cartas despeje
         Debug.Log(this.transform.parent.gameObject.name);
         Debug.Log(this.transform.parent.GetComponent<DZWeather>());
         Debug.Log(this.transform.parent.GetComponent<DZWeather>().Target1);

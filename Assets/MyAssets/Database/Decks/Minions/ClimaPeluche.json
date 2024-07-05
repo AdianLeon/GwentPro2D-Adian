@@ -4,9 +4,7 @@
     "description": "Los minions se vuelven pasivos cuando les das un peluche",
     "effectDescription": "Reduce el poder de las cartas de la fila seleccionada (Para ambos campos)",
     "powerPoints": 15,
-    "scriptComponents": [
-        "WeatherCard"
-    ],
-    "onActivationCodeName": "",
+    "scriptComponent": "WeatherCard",
+    "onActivationName": "",
     "zones": ""
 }

@@ -38,9 +38,9 @@ public class ProcessCard : MonoBehaviour
             description="Esta es una carta creada",
             effectDescription="Esta es una carta creada",
             powerPoints=power,
-            scriptComponents=new string[]{GetCardComponentFromCode(propertiesDict["Type"])},
+            scriptComponent=GetCardComponentFromCode(propertiesDict["Type"]),
             zones=GetZonesFromCode(propertiesDict["Range"]),
-            onActivationCodeName=propertiesDict["OnActivation"],
+            onActivationName=propertiesDict["OnActivation"],
         };
         
         string filePath=Application.dataPath+"/MyAssets/Database/Decks/"+codeCard.faction;

@@ -12,10 +12,9 @@ public class Deck : MonoBehaviour, IContainer
     public List<GameObject> P2Deck{get=>GameObject.Find("DeckP2").GetComponent<Deck>().GetCards;}
     private GameObject container;//Este objeto contiene todas las cartas que van a ser anadidas a la lista
     private GameObject playerArea;//Esta es la mano del jugador dueno de este deck
-    private Fields deckField;//Este es el campo del jugador dueno de este deck
     private List <GameObject> DeckCards = new List <GameObject>();//Lista de cartas
     void Start(){
-        deckField=GFUtils.GetField(this.name);
+        Fields deckField=GFUtils.GetField(this.name);
         container=GameObject.Find("Cards"+deckField);
         playerArea=GameObject.Find("Hand"+deckField);
         

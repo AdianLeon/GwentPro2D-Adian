@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 //Script para las cartas de aumento
-public class BoostCard : Card, IShowZone, ICardEffect
+public class BoostCard : Card, IShowZone, ISpecialCard
 {
     public override Color GetCardViewColor(){return new Color(0.4f,1,0.3f);}
     public int boost;//Cant de poder aumentado cuando una carta es afectada por el aumento
@@ -18,7 +18,7 @@ public class BoostCard : Card, IShowZone, ICardEffect
         GameObject.Find("AddedPower").GetComponent<TextMeshProUGUI>().text="";
         GameObject.Find("BGAddedPower").GetComponent<Image>().color=new Color(1,1,1,0);
     }
-    public void TriggerEffect(){//Efecto de las cartas aumento
+    public void TriggerSpecialEffect(){//Efecto de las cartas aumento
         GameObject target=this.transform.parent.GetComponent<DZBoost>().Target;//Objetivo padre de las cartas a las que anadirle poder
         for(int i=0;i<target.transform.childCount;i++){
             if(target.transform.GetChild(i).GetComponent<IAffectable>()!=null){//Si es afectable

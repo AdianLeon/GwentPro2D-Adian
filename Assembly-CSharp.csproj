@@ -44,7 +44,6 @@
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GFExtras\GFInterfaces.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\DCExtras\DCClasses.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardEffects\CardEffects\MostPowerEffect.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GFExtras\GFUtils.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\DropZones\DropZone.cs" />
@@ -52,7 +51,7 @@
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GFExtras\VisualEffects.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardEffects\LeaderEffects\GruEffect.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardEffects\GruEffect.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\ProcessCard.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
@@ -61,7 +60,7 @@
      <Compile Include="Assets\MyAssets\Scripts\MainMenuFunctions\DeckDropdowns.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\DeckCreatorUtils.cs" />
      <Compile Include="Assets\MyAssets\Scripts\MainMenuFunctions\MainMenu.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardEffects\CardEffects\DrawOneEffect.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardEffects\DrawOneEffect.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DatabaseFunctions\JsonToCards.cs" />
@@ -72,7 +71,6 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardEffects\CardEffects\MultiplyEffect.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\ReadAndWrite.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
@@ -89,6 +87,7 @@
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\DropZones\DeckTrade.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\GoldCard.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\RoundFunctions\RoundPoints.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\RoundFunctions\HandCover.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\CheckErrors.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
@@ -98,11 +97,11 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\MainCompiler.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardEffects\CardEffects\LessPowerEffect.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardEffects\LessPowerEffect.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\LeaderCard.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardFunctionalities\CardView.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardEffects\CardEffects\PromEffect.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardEffects\PromEffect.cs" />
      <Compile Include="Assets\MyAssets\Scripts\MainMenuFunctions\DeckMenuFunctions\DeckView.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DatabaseFunctions\CardsToJson.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
@@ -123,7 +122,8 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardContainers\Field.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\Extra\GuardInfo.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\RoundFunctions\HandCover.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardEffects\MultiplyEffect1.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardEffects\MostPowerEffect.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

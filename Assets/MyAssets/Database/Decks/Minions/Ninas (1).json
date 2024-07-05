@@ -4,9 +4,7 @@
     "description": "Edith, Margo y Agnes. Fueron adoptadas por Gru y desde entonces le han hecho la vida un infierno, pero por lo menos saben usar un rifle",
     "effectDescription": "",
     "powerPoints": 20,
-    "scriptComponents": [
-        "SilverCard"
-    ],
-    "onActivationCodeName": "",
+    "scriptComponent": "SilverCard",
+    "onActivationName": "",
     "zones": "MR"
 }

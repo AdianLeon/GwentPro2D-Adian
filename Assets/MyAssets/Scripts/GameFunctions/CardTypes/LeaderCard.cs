@@ -34,7 +34,7 @@ public class LeaderCard : Card
             return;
         }
         if(usedSkill){//Si la habilidad de este lider ya ha sido usada previamente
-            RoundPoints.LongWriteUserRead("La habilidad del lider: "+cardName+" ya ha sido usada. La habilidad de lider solo puede ser usada una vez por partida");
+            RoundPoints.LongWriteUserRead("La habilidad del lider: "+CardName+" ya ha sido usada. La habilidad de lider solo puede ser usada una vez por partida");
             return;
         }
 

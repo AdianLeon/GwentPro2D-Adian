@@ -4,9 +4,7 @@
     "description": "Supongo que no tengo que explicarte lo que las bananas le hacen a los minions Spoiler: Los vuelve locos",
     "effectDescription": "Aumenta el poder de las cartas de la fila seleccionada en 1",
     "powerPoints": 25,
-    "scriptComponents": [
-        "BoostCard"
-    ],
-    "onActivationCodeName": "",
+    "scriptComponent": "BoostCard",
+    "onActivationName": "",
     "zones": ""
 }

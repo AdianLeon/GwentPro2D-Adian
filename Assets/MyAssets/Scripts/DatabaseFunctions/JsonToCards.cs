@@ -33,7 +33,7 @@ public class JsonToCards : MonoBehaviour
         GameObject newCard;
         string player=deckPlace.name[deckPlace.name.Length-2].ToString()+deckPlace.name[deckPlace.name.Length-1].ToString();
         //Instanciando la carta
-        if(cardSave.scriptComponents.Contains("LeaderCard")){//Si la carta a crear es una carta lider
+        if(cardSave.scriptComponent=="LeaderCard"){//Si la carta a crear es una carta lider
             newCard=Instantiate(GameObject.Find("Canvas").GetComponent<JsonToCards>().LeaderPrefab,new Vector3(0,0,0),Quaternion.identity);//Instanciando una carta lider generica
             newCard.transform.SetParent(GameObject.Find("LeaderZone"+player).transform);
         }else{//Si la carta no es lider
@@ -44,32 +44,33 @@ public class JsonToCards : MonoBehaviour
         newCard.name=cardSave.cardName+"("+instantiatedCardsCount.ToString()+")";//Se le cambia el nombre a uno que sera unico: el nombre de la carta junto con la cantidad de cartas instanciadas
         
         //Anadiendo scripts
-        foreach(string scriptName in cardSave.scriptComponents){//Anade todos los scripts
-            newCard.AddComponent(Type.GetType(scriptName));
-        }
+        
+        newCard.AddComponent(Type.GetType(cardSave.scriptComponent));
+
         if(newCard.GetComponent<LeaderCard>()!=null){
             newCard.GetComponent<LeaderCard>().WhichField=(Fields)Enum.Parse(typeof(Fields),player);
         }
+
         newCard.GetComponent<RectTransform>().localScale=new Vector3(1,1,1);//Resetea la escala porque cuando se instancia esta desproporcional al resto de objetos
         
         //Card Properties
-        newCard.GetComponent<Card>().faction=cardSave.faction;//Faction
-        newCard.GetComponent<Card>().cardName=cardSave.cardName;//Name
-        newCard.GetComponent<Card>().description=cardSave.description;//Description
-        newCard.GetComponent<Card>().effectDescription=cardSave.effectDescription;//EffectDescription
-        newCard.GetComponent<Card>().OnActivationCode=cardSave.onActivationCodeName;
+        newCard.GetComponent<Card>().Faction=cardSave.faction;//Faction
+        newCard.GetComponent<Card>().CardName=cardSave.cardName;//Name
+        newCard.GetComponent<Card>().Description=cardSave.description;//Description
+        newCard.GetComponent<Card>().EffectDescription=cardSave.effectDescription;//EffectDescription
+        newCard.GetComponent<Card>().OnActivationName=cardSave.onActivationName;
 
         //Sprites
         newCard.GetComponent<UnityEngine.UI.Image>().sprite=Resources.Load<Sprite>(cardSave.faction+"/"+cardSave.cardName);//Carga el sprite en Assets/Resources/sourceImage en la carta
-        newCard.GetComponent<Card>().artwork=Resources.Load<Sprite>(cardSave.faction+"/"+cardSave.cardName+"Image");//Carga el sprite en Assets/Resources/artwork en la carta
+        newCard.GetComponent<Card>().Artwork=Resources.Load<Sprite>(cardSave.faction+"/"+cardSave.cardName+"Image");//Carga el sprite en Assets/Resources/artwork en la carta
 
         if(newCard.GetComponent<UnityEngine.UI.Image>().sprite==null){
             string randomImagesPath = Application.dataPath + "/Resources/RandomImages";
             int max = Directory.GetFiles(randomImagesPath, "*.png").Length;
             newCard.GetComponent<UnityEngine.UI.Image>().sprite=Resources.Load<Sprite>("RandomImages/" + UnityEngine.Random.Range(1, max + 1).ToString());
         }
-        if (newCard.GetComponent<Card>().artwork==null){
-            newCard.GetComponent<Card>().artwork=newCard.GetComponent<UnityEngine.UI.Image>().sprite;
+        if (newCard.GetComponent<Card>().Artwork==null){
+            newCard.GetComponent<Card>().Artwork=newCard.GetComponent<UnityEngine.UI.Image>().sprite;
         }
 
         //power || damage || boost

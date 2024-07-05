@@ -35,21 +35,21 @@ public class CardsToJson : MonoBehaviour
         CardSave saveCard = new CardSave
         {
             //Faccion y nombre
-            faction = card.GetComponent<Card>().faction,
-            cardName = card.GetComponent<Card>().cardName,
+            faction = card.GetComponent<Card>().Faction,
+            cardName = card.GetComponent<Card>().CardName,
             //Descripcion y descripcion de efecto
-            description = card.GetComponent<Card>().description,
-            effectDescription = card.GetComponent<Card>().effectDescription,
+            description = card.GetComponent<Card>().Description,
+            effectDescription = card.GetComponent<Card>().EffectDescription,
             //Power||Damage||Boost
             powerPoints = powerPoints,
             //Nombres de scripts
-            scriptComponents = GetScriptsNames(card),
+            scriptComponent = card.GetComponent<Card>().GetType().Name,
             //Enums zones y quality
             zones = zones,
             //Nombre del json con los efectos
-            onActivationCodeName = card.GetComponent<Card>().OnActivationCode
+            onActivationName = card.GetComponent<Card>().OnActivationName
         };
-        string filePath=Application.dataPath+"/MyAssets/Database/Decks/"+card.GetComponent<Card>().faction;
+        string filePath=Application.dataPath+"/MyAssets/Database/Decks/"+card.GetComponent<Card>().Faction;
         string cardJsonName="/"+card.name+".json";
         WriteJsonOfCard(saveCard,filePath,cardJsonName);
     }
@@ -59,13 +59,5 @@ public class CardsToJson : MonoBehaviour
             Directory.CreateDirectory(address);
         }
         File.WriteAllText(address+cardJsonName,jsonStringCard);
-    }
-    private static string[] GetScriptsNames(GameObject card){//Devuelve una lista de nombres de los efectos de la carta
-        Component[] scripts=card.GetComponents(typeof(IToJson));
-        string[] scriptNames=new string[scripts.Length];
-        for(int i=0;i<scripts.Length;i++){
-            scriptNames[i]=scripts[i].GetType().Name;
-        }
-        return scriptNames;
     }
 }

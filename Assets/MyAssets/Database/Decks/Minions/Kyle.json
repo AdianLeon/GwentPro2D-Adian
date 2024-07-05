@@ -4,10 +4,7 @@
     "description": "Es la mascota de Gru, mitad \"perro\", mitad piranha, puedes jugar un poco con el, solo asegurate de que no tenga hambre",
     "effectDescription": "Cuando esta carta es jugada su poder es multiplicado por la cantidad de Kyles jugados en el campo (contandose a si misma)",
     "powerPoints": 10,
-    "scriptComponents": [
-        "MultiplyEffect",
-        "SilverCard"
-    ],
-    "onActivationCodeName": "",
+    "scriptComponent": "SilverCard",
+    "onActivationName": "MultiplyEffect",
     "zones": "MS"
 }

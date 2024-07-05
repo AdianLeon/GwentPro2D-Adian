@@ -4,17 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 //Script que declara las clases a utilizar de todo el proyecto
 [System.Serializable]
-public class CardSave{//Clase para guardar todas las propiedades de una carta
-    public string faction;//Faccion de la carta
-    public string cardName;//Nombre de la carta
-    public string description;//Descripcion de la carta
-    public string effectDescription;//Descripcion del efecto
-    public int powerPoints;//Puntos de la carta sea para el power de las cartas unidades, damage de climas o boost de las cartas aumento
-    public string[] scriptComponents;//Lista de nombres de los scripts de la carta
-    public string onActivationCodeName;//Nombre del Codigo del efecto
-    public string zones;//Zonas donde se puede jugar en caso de que sea tipo unidad
-}
-[System.Serializable]
 public class PlayerPrefsData{//Clase para guardar las preferencias del jugador
         public float volume;
         public string deckPrefP1;

@@ -54,13 +54,7 @@ public class BaitCard : CardWithPower, IAffectable, IShowZone
 
         placehold.transform.SetParent(GameObject.Find("Trash").transform);//Se destruye el objeto auxiliar
         Destroy(placehold);
-
-        if(CardView.GetSelectedCard.GetComponent<MultiplyEffect>()!=null){//Si GetSelectedCard tiene efecto de multiplicar
-            CardView.GetSelectedCard.GetComponent<UnitCard>().power=CardView.GetSelectedCard.GetComponent<MultiplyEffect>().OriginalPower;
-        }
-        if(CardView.GetSelectedCard.GetComponent<PromEffect>()!=null){//Si GetSelectedCard tiene efecto de promedio
-            CardView.GetSelectedCard.GetComponent<UnitCard>().power=0;
-        }
+        
         //Deshace el efecto de clima cuando la carta vuelve a la mano, el senuelo recibira el clima como consecuencia de la llamada de UpdateClima
         ClearWeatherCard.ClearCardOfWeathers(CardView.GetSelectedCard);
     }

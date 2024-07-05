@@ -48,7 +48,7 @@ public class DeckMenuLoadCards : MonoBehaviour
         newCard.GetComponent<DeckView>().cardName=cardSave.cardName;//Name
         newCard.GetComponent<DeckView>().description=cardSave.description;//Description
         newCard.GetComponent<DeckView>().effectDescription=cardSave.effectDescription;//EffectDescription
-
+        newCard.GetComponent<DeckView>().typeComponent=cardSave.scriptComponent;
         //Sprites
         newCard.GetComponent<Image>().sprite=Resources.Load<Sprite>(cardSave.faction+"/"+cardSave.cardName);//Carga el sprite en Assets/Resources/sourceImage en la carta
         newCard.GetComponent<DeckView>().artwork=Resources.Load<Sprite>(cardSave.faction+"/"+cardSave.cardName+"Image");//Carga el sprite en Assets/Resources/artwork en la carta
@@ -64,31 +64,22 @@ public class DeckMenuLoadCards : MonoBehaviour
         //power || damage || boost
         newCard.GetComponent<DeckView>().power=cardSave.powerPoints;
 
-        //zones && typeComponent
-        string typeName="";
-        if(cardSave.scriptComponents.Contains("LeaderCard")){
-            typeName="LeaderCard";
+        //zones
+        if(cardSave.scriptComponent=="LeaderCard"){
             newCard.GetComponent<DeckView>().playableZone="L";
-        }else if(cardSave.scriptComponents.Contains("BoostCard")){
-            typeName="BoostCard";
+        }else if(cardSave.scriptComponent=="BoostCard"){
             newCard.GetComponent<DeckView>().playableZone="A";
-        }else if(cardSave.scriptComponents.Contains("WeatherCard")){
-            typeName="WeatherCard";
+        }else if(cardSave.scriptComponent=="WeatherCard"){
             newCard.GetComponent<DeckView>().playableZone="C";
-        }else if(cardSave.scriptComponents.Contains("ClearWeatherCard")){
-            typeName="ClearWeatherCard";
+        }else if(cardSave.scriptComponent=="ClearWeatherCard"){
             newCard.GetComponent<DeckView>().playableZone="D";
-        }else if(cardSave.scriptComponents.Contains("SilverCard")){
-            typeName="SilverCard";
+        }else if(cardSave.scriptComponent=="SilverCard"){
             newCard.GetComponent<DeckView>().playableZone=cardSave.zones;
-        }else if(cardSave.scriptComponents.Contains("GoldCard")){
-            typeName="GoldCard";
+        }else if(cardSave.scriptComponent=="GoldCard"){
             newCard.GetComponent<DeckView>().playableZone=cardSave.zones;
-        }else if(cardSave.scriptComponents.Contains("BaitCard")){
-            typeName="BaitCard";
+        }else if(cardSave.scriptComponent=="BaitCard"){
             newCard.GetComponent<DeckView>().playableZone="S";
         }
-        newCard.GetComponent<DeckView>().typeComponent=typeName;
     }
     private static void AlterCardsToShowChildrens(){
         GridLayoutGroup grid=GameObject.Find("CardsToShow").GetComponent<GridLayoutGroup>();

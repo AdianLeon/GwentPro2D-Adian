@@ -45,35 +45,24 @@ public class Board : MonoBehaviour, IContainer
         VisualEffects.SetPlayedLights=true;
     }
     public static void PlayCard(GameObject card){//Juega la carta
-        if(card.GetComponent<ICardEffect>()!=null){//Si la carta tiene efectos de scripts
+        if(card.GetComponent<ISpecialCard>()!=null){//Si la carta tiene efectos de carta especial
             //Por comodidad sacaremos la carta del campo para activar el efecto
             Transform location=card.transform.parent;//Recordamos la posicion de la carta
-            card.transform.SetParent(GameObject.Find("Hand"+card.GetComponent<Card>().WhichField).transform);//Quitamos la carta del campo
-            ICardEffect[] cardEffects=card.GetComponents<ICardEffect>();
-            foreach(ICardEffect cardEffect in cardEffects){
-                cardEffect.TriggerEffect();//Ejecuta esos scripts
+
+            ISpecialCard[] cardEffects=card.GetComponents<ISpecialCard>();
+            foreach(ISpecialCard cardEffect in cardEffects){
+                cardEffect.TriggerSpecialEffect();//Ejecuta esos scripts
             }
-            card.transform.SetParent(location);//Devolvemos la carta a su posicion original
         }
-        if(card.GetComponent<Card>().OnActivationCode!=""){//Si tiene efectos en OnActivation
-            ProcessEffect.ExecuteEffect(card,card.GetComponent<Card>().OnActivationCode);//Se ejecutan
-        }
-        //Las cartas de aumento y despeje se envian al cementerio durante su efecto, no se pueden anadir a las listas de cartas jugadas
-        if(card.transform.parent.gameObject!=GameObject.Find("GraveyardP1") && card.transform.parent.gameObject!=GameObject.Find("GraveyardP2")){
-            PlayedCards.Add(card);//Anade la carta a la lista de cartas jugadas
+        if(card.GetComponent<Card>().OnActivationName!=""){//Si tiene OnActivation
+            ProcessEffect.ExecuteEffect(card,card.GetComponent<Card>().OnActivationName);//Se ejecutan
         }
         CompleteTurn();
         card.GetComponent<Card>().LoadInfo();//Recarga la info de la carta
     }
     public static void PlayLeaderCard(GameObject leaderCard){//Juega la carta lider
-        if(leaderCard.gameObject.GetComponent<ILeaderEffect>()!=null){//Si tiene efectos en scripts
-            ILeaderEffect[] leaderEffects=leaderCard.GetComponents<ILeaderEffect>();
-            foreach(ILeaderEffect leaderEffect in leaderEffects){
-                leaderEffect.TriggerEffect();//Ejecuta esos scripts
-            }
-        }
-        if(leaderCard.gameObject.GetComponent<Card>().OnActivationCode!=""){//Si tiene efectos en OnActivation
-            ProcessEffect.ExecuteEffect(leaderCard,leaderCard.GetComponent<LeaderCard>().OnActivationCode);//Se ejecutan
+        if(leaderCard.gameObject.GetComponent<Card>().OnActivationName!=""){//Si tiene el nombre de algun efecto en OnActivation
+            ProcessEffect.ExecuteEffect(leaderCard,leaderCard.GetComponent<LeaderCard>().OnActivationName);//Se ejecuta
         }
         leaderCard.GetComponent<LeaderCard>().UsedSkill=true;
         CompleteTurn();
@@ -126,7 +115,7 @@ public class Board : MonoBehaviour, IContainer
             turnNumber++;//Es un nuevo turno
         }
         turnActionsCount=0;
-        RoundPoints.LongWriteUserRead("Turno de P"+playerTurn);
+        RoundPoints.WriteUserRead("Turno de P"+playerTurn);
         HandCover.UpdateCovers();//Se actualizan los covers de las manos de los jugadores
     }
 }

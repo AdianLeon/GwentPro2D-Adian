@@ -5,29 +5,26 @@ using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
 //Script que contiene las propiedades de todas las cartas
-abstract public class Card : MonoBehaviour, IToJson, IGlow
+abstract public class Card : MonoBehaviour, IGlow
 {
-    public string faction;//Faccion de la carta
-    public string cardName;//Nombre a mostrar en el objeto gigante a la izquierda del campo
-    public string description;//Descripcion de la carta a mostrar en el objeto gigante a la izquierda del campo
-    public string effectDescription;//Descripcion del efecto
-    private string onActivationCode;
-    public string OnActivationCode{get=>onActivationCode; set=>onActivationCode=value;}
-    public Sprite artwork;//Imagen para mostrar en el CardView
-    /*Leave public*/public Fields WhichField;//Campo de la carta
-    //public Fields WhichField{get=>whichField; set=>whichField=value;}
-
+    public string Faction;//Faccion de la carta
+    public string CardName;//Nombre a mostrar en el objeto gigante a la izquierda del campo
+    public string Description;//Descripcion de la carta a mostrar en el objeto gigante a la izquierda del campo
+    public string EffectDescription;//Descripcion del efecto
+    public string OnActivationName;//Nombre de OnActivation
+    public Sprite Artwork;//Imagen para mostrar en el CardView
+    public Fields WhichField;//Campo de la carta
     public virtual Color GetCardViewColor(){return new Color(1,1,1);}//Retorna el color de la carta en el CardView
     public virtual void LoadInfo(){//Esta funcion es especifica para cada tipo de carta, pero todas comparten lo siguiente
         //Faction
-        GameObject.Find("Faction").GetComponent<TextMeshProUGUI>().text=faction;
+        GameObject.Find("Faction").GetComponent<TextMeshProUGUI>().text=Faction;
         //Name
-        GameObject.Find("CardName").GetComponent<TextMeshProUGUI>().text=cardName;
+        GameObject.Find("CardName").GetComponent<TextMeshProUGUI>().text=CardName;
         //Description
-        GameObject.Find("CardDescription").GetComponent<TextMeshProUGUI>().text=description;
+        GameObject.Find("CardDescription").GetComponent<TextMeshProUGUI>().text=Description;
         //EffectDescription
-        if(effectDescription.Length>0){//Si hay descripcion de efecto
-            RoundPoints.WriteUserRead("Efecto: "+effectDescription);
+        if(EffectDescription.Length>0){//Si hay descripcion de efecto
+            RoundPoints.WriteUserRead("Efecto: "+EffectDescription);
         }else{
             RoundPoints.WriteUserRead("Esta carta no tiene efecto");
         }
@@ -35,7 +32,7 @@ abstract public class Card : MonoBehaviour, IToJson, IGlow
 
         //Quality e Image
         GameObject.Find("Quality").GetComponent<Image>().sprite=Resources.Load<Sprite>("BlankImage");
-        GameObject.Find("CardPreview").GetComponent<Image>().sprite=artwork;
+        GameObject.Find("CardPreview").GetComponent<Image>().sprite=Artwork;
 
         //Colores
         GameObject.Find("BackGroundCard").GetComponent<Image>().color=GetCardViewColor();

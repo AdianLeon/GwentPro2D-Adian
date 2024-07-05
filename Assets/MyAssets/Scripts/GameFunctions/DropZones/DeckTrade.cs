@@ -26,7 +26,7 @@ public class DeckTrade : DropZone
             Dragging.GetRidOf(c.gameObject);//Nos deshacemos de la carta
 
             GameObject pickedCard=playerDeck.GetComponent<Deck>().DrawTopCard();
-            RoundPoints.LongWriteUserRead("Has cambiado a "+c.cardName+" por "+pickedCard.GetComponent<Card>().cardName);
+            RoundPoints.LongWriteUserRead("Has cambiado a "+c.CardName+" por "+pickedCard.GetComponent<Card>().CardName);
             
             tradeCount++;//Controla cuantas veces se ha intercambiado
         }

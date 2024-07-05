@@ -4,10 +4,7 @@
     "description": "Mente maestra del crimen, archienemiga de Gru, experta ladrona de cartas",
     "effectDescription": "Cuando esta carta es jugada se roba una carta del deck propio",
     "powerPoints": 30,
-    "scriptComponents": [
-        "DrawOneEffect",
-        "GoldCard"
-    ],
-    "onActivationCodeName": "",
+    "scriptComponent": "GoldCard",
+    "onActivationName": "DrawOneEffect",
     "zones": "MRS"
 }

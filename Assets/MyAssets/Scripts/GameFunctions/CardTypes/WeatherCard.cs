@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
 //Script para las cartas clima
-public class WeatherCard : Card, IShowZone, ICardEffect
+public class WeatherCard : Card, IShowZone, ISpecialCard
 {
     public int damage;//Cant de poder restado cuando una carta es afectada por el clima
     public override Color GetCardViewColor(){return new Color(0.7f,0.2f,0.2f);}
@@ -25,7 +25,7 @@ public class WeatherCard : Card, IShowZone, ICardEffect
             zone.OnGlow();
         }
     }
-    public void TriggerEffect(){//Efecto de las cartas clima
+    public void TriggerSpecialEffect(){//Efecto de las cartas clima
         //Afecta a las zonas
         AffectZoneWithWeather(this.transform.parent.GetComponent<DZWeather>().Target1);//La de P1
         AffectZoneWithWeather(this.transform.parent.GetComponent<DZWeather>().Target2);//La de P2
@@ -54,7 +54,7 @@ public class WeatherCard : Card, IShowZone, ICardEffect
     private static void RectivateWeathersInZone(string zoneToUpdate){//Reactiva los efectos de las cartas clima en una zona especifica
         WeatherCard[] cardsInZone=GameObject.Find(zoneToUpdate).GetComponentsInChildren<WeatherCard>();//Se acceden a todos los hijos de esa zona
         foreach(WeatherCard cardInZone in cardsInZone){//Itera por cada uno de esos hijos
-            cardInZone.TriggerEffect();//Hace que activen el efecto de clima otra vez
+            cardInZone.TriggerSpecialEffect();//Hace que activen el efecto de clima otra vez
         }
     }
 }

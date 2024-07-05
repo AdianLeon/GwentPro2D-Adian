@@ -4,9 +4,7 @@
     "description": "Aviso: Esta carta solo se puede utilizar cuando no hay apagones",
     "effectDescription": "Reduce el poder de las cartas de la fila seleccionada (Para ambos campos)",
     "powerPoints": 15,
-    "scriptComponents": [
-        "WeatherCard"
-    ],
-    "onActivationCodeName": "",
+    "scriptComponent": "WeatherCard",
+    "onActivationName": "",
     "zones": ""
 }

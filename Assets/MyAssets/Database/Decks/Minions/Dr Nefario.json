@@ -4,9 +4,7 @@
     "description": "Cientifico \"loco\" ayudante de Gru desde que se creo la maldad, inventor del rayo congelador , el algebra lineal y la gravedad",
     "effectDescription": "",
     "powerPoints": 25,
-    "scriptComponents": [
-        "SilverCard"
-    ],
-    "onActivationCodeName": "",
+    "scriptComponent": "SilverCard",
+    "onActivationName": "",
     "zones": "RS"
 }
