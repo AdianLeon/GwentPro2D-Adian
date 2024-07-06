@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ProcessEffect : MonoBehaviour
+public static class ProcessEffect
 {
-    public static void SaveEffectOnJson(List<Token> tokenList,int start,int end){
+    public static void StartProcessEffect(List<Token> tokenList,int start,int end){
 
     }
     public static void ExecuteEffect(GameObject caller,string onActivationName){

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class ProcessCard : MonoBehaviour
+public static class ProcessCard
 {
     public class SaveInstruction{
         public string key;
@@ -21,7 +21,7 @@ public class ProcessCard : MonoBehaviour
             if(tokenList[i].type==TokenTypes.cardAssignment && tokenList[i+1].text==":"){
                 propertiesDict.Add(tokenList[i].text,GetInstructionValue(tokenList,i+2,tokenList[i].text));
                 if(propertiesDict[tokenList[i].text]==""){
-                    CheckErrors.ErrorWrite("Valor no asignado a "+tokenList[i].text+" en linea: "+tokenList[i].line+" columna: "+tokenList[i].col,"CompileAndCreate");
+                    Errors.Write("Valor no asignado a "+tokenList[i].text, tokenList[i].line, tokenList[i].col);
                 }
             }
         }
@@ -62,7 +62,7 @@ public class ProcessCard : MonoBehaviour
                     }
                     return ans;
                 }else{
-                    CheckErrors.ErrorWrite("Propiedad "+nameOfKey+" no definida correctamente (falta iniciar con '[') linea: "+tokenList[index].line+" columna: "+tokenList[index].col,"GetInstructionValue");
+                    Errors.Write("Propiedad "+nameOfKey+" no definida correctamente (falta iniciar con '[')", tokenList[index].line, tokenList[index].col);
                     return "";
                 }
             }else{
@@ -79,7 +79,7 @@ public class ProcessCard : MonoBehaviour
         }else if(w=="Senuelo"){return "BaitCard";
         }else if(w=="Despeje"){return "ClearWeatherCard";
         }else{
-            CheckErrors.ErrorWrite("El valor correspondiente a Type no es correcto","ProcessCard");
+            Errors.Write("El valor correspondiente a Type no es correcto");
             return "";
         }
     }

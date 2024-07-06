@@ -32,6 +32,6 @@ public class Graveyard : MonoBehaviour, IContainer
         }
         deadCount++;
         GameObject.Find("GText"+card.GetComponent<Card>().WhichField).GetComponent<TextMeshProUGUI>().text=deadCount.ToString();
-        card.GetComponent<Dragging>().DropOnZone(GameObject.Find("Graveyard"+card.GetComponent<Card>().WhichField));
+        card.GetComponent<Dragging>().ForcedDropOnZone(GameObject.Find("Graveyard"+card.GetComponent<Card>().WhichField));
     }
 }

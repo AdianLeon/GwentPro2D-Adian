@@ -18,7 +18,7 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     //private bool isDraggable;
     //public bool IsDraggable{get=>isDraggable;set=>isDraggable=value;}
     //Si se esta arrastrando una carta
-    private static bool onDrag=false;
+    private static bool onDrag;
     public static bool IsOnDrag{get=>onDrag;}
 
     //Detecta cuando empieza el arrastre de las cartas
@@ -70,7 +70,9 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             //Caso en el que se devuelve a la mano
             if(IsOnHand){//Si la carta cae de nuevo en la mano
                 this.transform.SetSiblingIndex(Placeholder.transform.GetSiblingIndex());//Posiciona la carta en la mano
+                DestroyPlaceholder();//Destruye el espacio creado
             }else{
+                DestroyPlaceholder();//Destruye el espacio creado
                 if(this.transform.parent!=GameObject.Find("Trash").transform){//Si el objeto sale de la mano y no esta en la basura
                     Board.PlayCard(this.gameObject);//Independientemente del campo juega la carta
                 }
@@ -80,7 +82,6 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             }
             onDrag=false;//Terminamos el arrastre
             this.GetComponent<CanvasGroup>().blocksRaycasts=true;//Desactiva la penetracion de la carta para que podamos mostrarla/arrastrarla de nuevo
-            DestroyPlaceholder();//Destruye el espacio creado
             Hand.CheckHands();//Chequeamos si las cartas en la mano no exceden el limite
 
             //Cada vez que se suelte una carta necesitamos desactivar el glow de cualquier objeto que hayamos iluminado
@@ -90,10 +91,10 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     }
     public void DestroyPlaceholder(){
         Placeholder.transform.SetParent(GameObject.Find("Trash").transform);//Mueve el placeholder para que al destruirlo
-        //no deje rastros y no cuente como objeto perteneciente a Hand, esto es necesario para arreglar un bug referente a DrawCards.DrawCard()
+        //no deje rastros y no cuente como objeto perteneciente a Hand, esto es necesario para arreglar un bug referente a la cantidad de hijos en Hand
         Destroy(Placeholder);
     }
-    public void DropOnZone(GameObject zone){//Si la supuesta zona es una zona entonces la carta ira a esa zona
+    public void ForcedDropOnZone(GameObject zone){//Si la supuesta zona es una zona entonces la carta ira a esa zona
         if(zone.GetComponent<DropZone>()!=null || zone.GetComponent<IContainer>()!=null){
             this.transform.SetParent(zone.transform);
             parentToReturnTo=zone.transform;

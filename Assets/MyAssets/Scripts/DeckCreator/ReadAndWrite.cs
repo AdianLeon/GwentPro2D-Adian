@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using TMPro;
-//Script para escribir en el txt
+//Script para escribir en el txt Code
 public class ReadAndWrite : MonoBehaviour
 {
     public TMP_InputField inputField;

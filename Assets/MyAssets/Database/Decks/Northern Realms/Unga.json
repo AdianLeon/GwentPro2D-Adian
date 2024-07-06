@@ -4,7 +4,7 @@
     "description": "Esta es una carta creada",
     "effectDescription": "Esta es una carta creada",
     "powerPoints": 30,
-    "scriptComponents": ["SilverCard"],
-    "onActivationCodeName": "[]",
+    "scriptComponent": "SilverCard",
+    "onActivationName": "[]",
     "zones": "MRS"
 }

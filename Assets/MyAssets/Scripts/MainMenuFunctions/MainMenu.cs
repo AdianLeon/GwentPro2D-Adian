@@ -33,9 +33,10 @@ public class MainMenu : MonoBehaviour
         SavePlayerPreferences();//Se guardan las preferencias del jugador
         Application.Quit();
     }
-    public static void SavePlayerPreferences(){//Crea un objeto que contendra las preferencias del jugador y lo exporta en formato json
-        PlayerPrefsData savePrefs=new PlayerPrefsData(PlayerPrefs.GetFloat("allVolume"),PlayerPrefs.GetString("P1Deck"),PlayerPrefs.GetString("P2Deck"));
+    private static void SavePlayerPreferences(){//Crea un objeto que contendra las preferencias del jugador y lo exporta en formato json
+        PlayerPrefsData savePrefs=new PlayerPrefsData(PlayerPrefs.GetFloat("allVolume"),PlayerPrefs.GetString("P1PrefDeck"),PlayerPrefs.GetString("P2PrefDeck"));
         string jsonPlayerPrefs=JsonUtility.ToJson(savePrefs);
         File.WriteAllText(Application.dataPath+"/MyAssets/Database/PlayerPreferences/PlayerPrefs.json",jsonPlayerPrefs);
+        Debug.Log("Player Preferences saved!");
     }
 }
