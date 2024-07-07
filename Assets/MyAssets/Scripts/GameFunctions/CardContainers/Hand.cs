@@ -14,7 +14,6 @@ public class Hand : MonoBehaviour, IContainer
     public void CheckHand(){
         while(this.transform.childCount>10){//Si una carta no cabe en la mano
             Graveyard.SendToGraveyard(this.transform.GetChild(this.transform.childCount-1).gameObject);//Se envia al cementerio
-            Debug.Log("Se han enviado cartas al cementerio porque no cabian en la mano");
         }
     }
 }

@@ -27,7 +27,19 @@ public static class LexerUtils
         {"=>",TokenTypes.lambdaOp}
     };
     public static Dictionary<string,TokenTypes> ReservedWords=new Dictionary<string, TokenTypes>{
-        
+        //Assignments
+        {"Name",TokenTypes.assignment},{"Params",TokenTypes.assignment},{"Action",TokenTypes.assignment},{"Type",TokenTypes.assignment},{"Effect",TokenTypes.assignment},
+        {"Selector",TokenTypes.assignment},{"Source",TokenTypes.assignment},{"Single",TokenTypes.assignment},{"Predicate",TokenTypes.assignment},{"PostAction",TokenTypes.assignment},
+        //Card Assignments
+        {"Faction",TokenTypes.cardAssignment},{"Power",TokenTypes.cardAssignment},{"Range",TokenTypes.cardAssignment},{"OnActivation",TokenTypes.cardAssignment},
+        //Added
+        {"ScriptEffect",TokenTypes.assignment},
+        //BlockDeclaration
+        {"card",TokenTypes.blockDeclaration},{"effect",TokenTypes.blockDeclaration},
+        //Cycle
+        {"for",TokenTypes.cycle},{"while",TokenTypes.cycle},{"in",TokenTypes.cycle},
+        //VariableTypes
+        {"Number",TokenTypes.varType},{"String",TokenTypes.varType},{"Bool",TokenTypes.varType}
     };
     public static int NewLineCounter(string code,int i){//Dados el codigo y la posicion cuenta la cantidad de saltos de linea
         int lines=1;

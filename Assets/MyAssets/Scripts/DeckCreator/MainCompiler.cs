@@ -22,7 +22,7 @@ public static class MainCompiler
                 Errors.Write("Se ha encontrado: '"+tokenList[i+1].text+"' en vez de '{' luego de declaracion de bloque", tokenList[i].line, tokenList[i].col);
                 return;
             }
-                int blockEnd=DeckCreatorUtils.FindMatchingParenthesis(tokenList,i+1);
+            int blockEnd=DeckCreatorUtils.FindMatchingParenthesis(tokenList,i+1);
             if(tokenList[i].text=="card"){
                 ProcessCard.CompileAndCreate(tokenList,i+2,blockEnd);
             }else if(tokenList[i].text=="effect"){

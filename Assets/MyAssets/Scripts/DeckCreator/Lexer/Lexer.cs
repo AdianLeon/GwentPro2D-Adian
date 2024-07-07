@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 //Script para transformar el codigo del objeto Compiler a tokens
 public static class Lexer
@@ -26,9 +27,6 @@ public static class Lexer
         }
         //Iniciar el analisis avanzado de tokens
         SpecializeIdentifierTokens(tokenList);
-        foreach(Token token in tokenList){
-            Debug.Log("Text: '"+token.text+"'   type: "+token.type);
-        }
         return tokenList;
     }
     private static void Tokenize(string code,int i){
@@ -65,13 +63,13 @@ public static class Lexer
         }
     }
     private static void SpecializeIdentifierTokens(List<Token> tokenList){
-        string w="";
         for(int i=0;i<tokenList.Count;i++){
-            w=tokenList[i].text;
-            if((w=="Type" || w=="Name" || w=="Faction" || w=="Power" || w=="Range" || w=="OnActivation") && tokenList[i].depth==1 && tokenList[i+1].text==":"){
-                tokenList[i].type=TokenTypes.cardAssignment;
-            }else if((w=="card" || w=="effect") && tokenList[i].depth==0 && tokenList[i+1].text=="{"){
-                tokenList[i].type=TokenTypes.blockDeclaration;
+            if(tokenList[i].type!=TokenTypes.identifier){
+                continue;
+            }
+            string w=tokenList[i].text;
+            if(LexerUtils.ReservedWords.ContainsKey(w)){
+                tokenList[i].type=LexerUtils.ReservedWords[w];
             }
         }
     }

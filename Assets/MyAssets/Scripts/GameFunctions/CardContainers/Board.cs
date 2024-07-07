@@ -19,7 +19,7 @@ public class Board : MonoBehaviour, IContainer
     public static bool CanPlay{get=>turnActionsCount==0 || isLastTurn;}
     private static float lastClickTime;
     void Start(){
-        RoundPoints.LongWriteUserRead("Ha comenzado una nueva partida, es el turno de P1");
+        RoundPoints.WriteUserRead("Ha comenzado una nueva partida, es el turno de P1");
         lastClickTime=0;
         turnActionsCount=0;
         isLastTurn=false;
@@ -28,7 +28,7 @@ public class Board : MonoBehaviour, IContainer
     }
     void Update(){
         if(Input.GetKeyDown(KeyCode.Space) && Time.time-lastClickTime>0.3f){//Clickea el passbutton cuando se presiona espacio, pero con una diferencia de tiempo de 0.3s
-            GameObject.Find("PassButton").GetComponent<Button>().onClick.Invoke();
+            EndTurn();
             lastClickTime=Time.time;
         }
     }
@@ -42,27 +42,24 @@ public class Board : MonoBehaviour, IContainer
         }else{
             SwitchTurn();
         }
-        VisualEffects.SetPlayedLights=true;
+        VisualEffects.PlayedLights=true;
     }
     public static void PlayCard(GameObject card){//Juega la carta
         if(card.GetComponent<ISpecialCard>()!=null){//Si la carta tiene efectos de carta especial
-            //Por comodidad sacaremos la carta del campo para activar el efecto
-            Transform location=card.transform.parent;//Recordamos la posicion de la carta
-
             ISpecialCard[] cardEffects=card.GetComponents<ISpecialCard>();
             foreach(ISpecialCard cardEffect in cardEffects){
                 cardEffect.TriggerSpecialEffect();//Ejecuta esos scripts
             }
         }
         if(card.GetComponent<Card>().OnActivationName!=""){//Si tiene OnActivation
-            ProcessEffect.ExecuteEffect(card,card.GetComponent<Card>().OnActivationName);//Se ejecutan
+            Execute.DoEffect(card,card.GetComponent<Card>().OnActivationName);//Se ejecutan
         }
-        CompleteTurn();
         card.GetComponent<Card>().LoadInfo();//Recarga la info de la carta
+        CompleteTurn();
     }
     public static void PlayLeaderCard(GameObject leaderCard){//Juega la carta lider
         if(leaderCard.gameObject.GetComponent<Card>().OnActivationName!=""){//Si tiene el nombre de algun efecto en OnActivation
-            ProcessEffect.ExecuteEffect(leaderCard,leaderCard.GetComponent<LeaderCard>().OnActivationName);//Se ejecuta
+            Execute.DoEffect(leaderCard,leaderCard.GetComponent<LeaderCard>().OnActivationName);//Se ejecuta
         }
         leaderCard.GetComponent<LeaderCard>().UsedSkill=true;
         CompleteTurn();
@@ -72,7 +69,7 @@ public class Board : MonoBehaviour, IContainer
         Field.UpdateAllForces();//Se actualiza la fuerza del campo
         WeatherCard.UpdateWeather();//Actualiza el clima
         if(!isLastTurn){//Si no es el ultimo turno antes de que acabe la ronda, no se puede jugar de nuevo
-            VisualEffects.SetPlayedLights=false;//Las luces en el campo se ponen rojas
+            VisualEffects.PlayedLights=false;//Las luces en el campo se ponen rojas
         }
     }
     private static void NextRound(){//Proxima ronda
@@ -82,16 +79,12 @@ public class Board : MonoBehaviour, IContainer
             GameObject.Find("DeckP"+i).GetComponent<Deck>().DrawTopCard();
             GameObject.Find("DeckP"+i).GetComponent<Deck>().DrawTopCard();
         }
-        if(Field.P1ForceValue>Field.P2ForceValue){//Si P1 tiene mas poder que P2
-            if(playerTurn==2){//P1 comienza el proximo turno
-                SwitchTurn();//En este caso solo hay que arreglar a quien le toca el turno porque el campo se cambia ya de por si
-            }
+        if(Field.P1ForceValue>Field.P2ForceValue){//Si P1 tiene mas poder que P2 entonces P1 comienza el proximo turno
+            if(playerTurn==2){SwitchTurn();}//Cambiamos los turnos ya que P1 debe comenzar el proximo
             RoundPoints.AddPointToP1();//P1 gana la ronda y obtiene un punto de ronda
             WinsRound(1);
-        }else if(Field.P2ForceValue>Field.P1ForceValue){//Si P2 tiene mas poder que P1
-            if(playerTurn==1){//P2 comienza el proximo turno
-                SwitchTurn();//En este caso solo hay que arreglar a quien le toca el turno porque el campo se cambia ya de por si
-            }
+        }else if(Field.P2ForceValue>Field.P1ForceValue){//Si P2 tiene mas poder que P1 entonces P2 comienza el proximo turno
+            if(playerTurn==1){SwitchTurn();}//Cambiamos los turnos ya que P2 debe comenzar el proximo
             RoundPoints.AddPointToP2();//P2 gana la ronda y obtiene un punto de ronda
             WinsRound(2);
         }else{//Si ambos tienen igual poder ambos ganan 1 punto y la ronda continua sin afectarse
@@ -104,13 +97,12 @@ public class Board : MonoBehaviour, IContainer
         RoundPoints.UpdatePoints();
     }
     private static void WinsRound(int playerNumber){
-        RoundPoints.LongWriteUserRead("Jugador "+playerNumber+" gano la ronda");
+        RoundPoints.LongWriteUserRead("P"+playerNumber+" gano la ronda");
         RoundPoints.WinCheck();
     }
     private static void SwitchTurn(){//Se cambia de turno
-        if(playerTurn==1){
-            playerTurn=2;
-        }else{
+        playerTurn++;
+        if(playerTurn>2){
             playerTurn=1;
             turnNumber++;//Es un nuevo turno
         }

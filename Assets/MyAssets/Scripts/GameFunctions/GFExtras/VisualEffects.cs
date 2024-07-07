@@ -7,7 +7,7 @@ using UnityEngine.UI;
 //Script que contiene algunos efectos visuales
 public static class VisualEffects
 {
-    public static bool SetPlayedLights{
+    public static bool PlayedLights{
         set{
             PlayedLight[] playedLights=GameObject.FindObjectsOfType<PlayedLight>();
             foreach(PlayedLight light in playedLights){

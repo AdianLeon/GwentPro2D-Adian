@@ -71,13 +71,13 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             if(IsOnHand){//Si la carta cae de nuevo en la mano
                 this.transform.SetSiblingIndex(Placeholder.transform.GetSiblingIndex());//Posiciona la carta en la mano
                 DestroyPlaceholder();//Destruye el espacio creado
+                if(this.GetComponent<BaitCard>()!=null && CardView.GetSelectedCard!=null){//Si la carta jugada es senuelo y estamos sobre otra carta valida
+                    this.GetComponent<BaitCard>().SwapConditions();
+                }
             }else{
                 DestroyPlaceholder();//Destruye el espacio creado
                 if(this.transform.parent!=GameObject.Find("Trash").transform){//Si el objeto sale de la mano y no esta en la basura
                     Board.PlayCard(this.gameObject);//Independientemente del campo juega la carta
-                }
-                if(this.GetComponent<BaitCard>()!=null && CardView.GetSelectedCard!=null){//Si la carta jugada es senuelo y estamos sobre otra carta valida
-                    this.GetComponent<BaitCard>().SwapConditions();
                 }
             }
             onDrag=false;//Terminamos el arrastre

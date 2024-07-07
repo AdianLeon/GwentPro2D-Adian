@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using System.Text;
+using Newtonsoft.Json;
 //Script para convertir cartas a archivos json
 public class CardsToJson : MonoBehaviour
 {
@@ -54,7 +55,7 @@ public class CardsToJson : MonoBehaviour
         WriteJsonOfCard(saveCard,filePath,cardJsonName);
     }
     public static void WriteJsonOfCard(CardSave saveCard,string address,string cardJsonName){//Crea un json de la carta guardada en la direccion
-        string jsonStringCard=JsonUtility.ToJson(saveCard,true);
+        string jsonStringCard=JsonConvert.SerializeObject(saveCard,Formatting.Indented);
         if(!Directory.Exists(address)){
             Directory.CreateDirectory(address);
         }
