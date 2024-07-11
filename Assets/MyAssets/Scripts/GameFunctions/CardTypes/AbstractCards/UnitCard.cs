@@ -21,4 +21,5 @@ abstract public class UnitCard : CardWithPower, IShowZone
             }
         }
     }
+    public override bool IsPlayable{get=>this.transform.parent.gameObject.GetComponent<DZUnits>()!=null;}
 }

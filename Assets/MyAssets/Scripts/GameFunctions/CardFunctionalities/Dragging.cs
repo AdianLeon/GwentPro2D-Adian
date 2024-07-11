@@ -9,21 +9,18 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 {
     //Variables que guardan en donde se queda la carta y su espacio
     private Transform parentToReturnTo=null;
-    //public Transform ParentToReturnTo{get=>parentToReturnTo;set=>parentToReturnTo=value;}
     private GameObject GetHand{get=>GameObject.Find("Hand"+this.gameObject.GetComponent<Card>().WhichField);}
     public bool IsOnHand{get=>this.gameObject.transform.parent.gameObject==GetHand;}
     private GameObject placeholder=null;
     public GameObject Placeholder{get=>placeholder;set=>placeholder=value;}
-    //Si la carta es arrastrable
-    //private bool isDraggable;
-    //public bool IsDraggable{get=>isDraggable;set=>isDraggable=value;}
+    
     //Si se esta arrastrando una carta
     private static bool onDrag;
     public static bool IsOnDrag{get=>onDrag;}
 
     //Detecta cuando empieza el arrastre de las cartas
     public void OnBeginDrag(PointerEventData eventData){
-        if(IsOnHand && Board.CanPlay){//Solo si es arrastrable y si se puede jugar
+        if(IsOnHand && Judge.CanPlay){//Solo si es arrastrable y si se puede jugar
             onDrag=true;//Comenzamos el arrastre
 
             //Guarda la posicion a la que volver si soltamos en lugar invalido y crea un espacio en el lugar de la carta
@@ -43,7 +40,7 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     //Mientras se arrastra
     public void OnDrag(PointerEventData eventData){
-        if(onDrag){//Solo si es arrastrable y si se puede jugar
+        if(onDrag){//Solo si se esta arrastrando
             //Haciendo que las zonas donde se pueda soltar la carta "brillen"
             VisualEffects.ZonesGlow(this.gameObject);
             this.transform.position=eventData.position;//Actualiza la posicion de la carta con la del puntero
@@ -63,24 +60,20 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     //Cuando termina el arrastre
     public void OnEndDrag(PointerEventData eventData){
-        if(onDrag){//Solo si es arrastrable y si se puede jugar
+        if(onDrag){//Solo si se estaba arrastrando
+            onDrag=false;//Terminamos el arrastre
+
             //Mueve la carta a donde se determino
             this.transform.SetParent(parentToReturnTo);
+            DestroyPlaceholder();//Destruye el espacio creado
 
-            //Caso en el que se devuelve a la mano
             if(IsOnHand){//Si la carta cae de nuevo en la mano
                 this.transform.SetSiblingIndex(Placeholder.transform.GetSiblingIndex());//Posiciona la carta en la mano
-                DestroyPlaceholder();//Destruye el espacio creado
-                if(this.GetComponent<BaitCard>()!=null && CardView.GetSelectedCard!=null){//Si la carta jugada es senuelo y estamos sobre otra carta valida
-                    this.GetComponent<BaitCard>().SwapConditions();
-                }
-            }else{
-                DestroyPlaceholder();//Destruye el espacio creado
-                if(this.transform.parent!=GameObject.Find("Trash").transform){//Si el objeto sale de la mano y no esta en la basura
-                    Board.PlayCard(this.gameObject);//Independientemente del campo juega la carta
-                }
             }
-            onDrag=false;//Terminamos el arrastre
+            if(this.gameObject.GetComponent<Card>().IsPlayable){//Si se puede jugar
+                Judge.PlayCard(this.gameObject);//Juega la carta
+            }
+
             this.GetComponent<CanvasGroup>().blocksRaycasts=true;//Desactiva la penetracion de la carta para que podamos mostrarla/arrastrarla de nuevo
             Hand.CheckHands();//Chequeamos si las cartas en la mano no exceden el limite
 
@@ -94,7 +87,7 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         //no deje rastros y no cuente como objeto perteneciente a Hand, esto es necesario para arreglar un bug referente a la cantidad de hijos en Hand
         Destroy(Placeholder);
     }
-    public void ForcedDropOnZone(GameObject zone){//Si la supuesta zona es una zona entonces la carta ira a esa zona
+    public void DropCardOnZone(GameObject zone){//Si la supuesta zona es valida entonces la carta ira alli
         if(zone.GetComponent<DropZone>()!=null || zone.GetComponent<IContainer>()!=null){
             this.transform.SetParent(zone.transform);
             parentToReturnTo=zone.transform;

@@ -13,7 +13,7 @@ abstract public class Card : MonoBehaviour, IGlow
     public string EffectDescription;//Descripcion del efecto
     public string OnActivationName;//Nombre de OnActivation
     public Sprite Artwork;//Imagen para mostrar en el CardView
-    public Fields WhichField;//Campo de la carta
+    public Player WhichField;//Campo de la carta
     public virtual Color GetCardViewColor(){return new Color(1,1,1);}//Retorna el color de la carta en el CardView
     public virtual void LoadInfo(){//Esta funcion es especifica para cada tipo de carta, pero todas comparten lo siguiente
         //Faction
@@ -39,10 +39,11 @@ abstract public class Card : MonoBehaviour, IGlow
         GameObject.Find("Type").GetComponent<TextMeshProUGUI>().color=GetCardViewColor();
         GameObject.Find("Power").GetComponent<TextMeshProUGUI>().color=GetCardViewColor();
     }
-    public void OnGlow(){//Cuando una carta activa su glow se oscurece
-        this.gameObject.GetComponent<Image>().color=new Color(0.75f,0.75f,0.75f,1);
-    }
-    public void OffGlow(){//Cuando una carta desactiva su glow se devuelve a su estado normal totalmente visible
+    public abstract bool IsPlayable{get;}//Conjunto de condiciones para que la carta se pueda jugar, diferente para todas las cartas
+    public void OnGlow(){//Cuando una carta desactiva su glow se devuelve a su estado normal totalmente visible
         this.gameObject.GetComponent<Image>().color=new Color(1,1,1,1);
+    }
+    public void OffGlow(){//Cuando una carta activa su glow se oscurece
+        this.gameObject.GetComponent<Image>().color=new Color(0.75f,0.75f,0.75f,1);
     }
 }

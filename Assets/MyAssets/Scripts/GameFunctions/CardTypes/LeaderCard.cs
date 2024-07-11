@@ -24,21 +24,25 @@ public class LeaderCard : Card
         GameObject.Find("AddedPower").GetComponent<TextMeshProUGUI>().text="";
         GameObject.Find("BGAddedPower").GetComponent<Image>().color=new Color(1,1,1,0);
     }
-    private void OnButtonClick(){//Se llama cuando se presiona en el lider
-        if(!Board.CanPlay){//Si no se puede jugar
+    public override bool IsPlayable{get{
+        if(!Judge.CanPlay){//Si no se puede jugar
             RoundPoints.WriteRoundInfoUserRead();
-            return;
+            return false;
         }
-        if(WhichField.ToString()!=Board.GetPlayer){//Si no coincide en campo con el jugador que lo presiona
+        if(WhichField!=Judge.GetPlayer){//Si no coincide en campo con el jugador que lo presiona
             RoundPoints.WriteUserRead("Ese no es el lider de tu deck");
-            return;
+            return false;
         }
         if(usedSkill){//Si la habilidad de este lider ya ha sido usada previamente
             RoundPoints.LongWriteUserRead("La habilidad del lider: "+CardName+" ya ha sido usada. La habilidad de lider solo puede ser usada una vez por partida");
-            return;
+            return false;
         }
 
-        //Juega la carta lider
-        Board.PlayLeaderCard(this.gameObject);
+        return true;
+    }}
+    private void OnButtonClick(){//Se llama cuando se presiona en el lider
+        if(IsPlayable){//Si se puede jugar se juega
+            Judge.PlayLeaderCard(this.gameObject);
+        }
     }
 }

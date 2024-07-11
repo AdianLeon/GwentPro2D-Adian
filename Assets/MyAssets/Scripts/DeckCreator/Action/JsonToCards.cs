@@ -48,7 +48,7 @@ public class JsonToCards : MonoBehaviour
         newCard.AddComponent(Type.GetType(cardSave.scriptComponent));
 
         if(newCard.GetComponent<LeaderCard>()!=null){
-            newCard.GetComponent<LeaderCard>().WhichField=(Fields)Enum.Parse(typeof(Fields),player);
+            newCard.GetComponent<LeaderCard>().WhichField=(Player)Enum.Parse(typeof(Player),player);
         }
 
         newCard.GetComponent<RectTransform>().localScale=new Vector3(1,1,1);//Resetea la escala porque cuando se instancia esta desproporcional al resto de objetos

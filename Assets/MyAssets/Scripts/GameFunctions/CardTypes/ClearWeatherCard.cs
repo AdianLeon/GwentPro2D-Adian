@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 //Script para las cartas de despeje
-public class ClearWeatherCard : Card, IShowZone, ISpecialCard
+public class ClearWeatherCard : WeatherZoneCard
 {
     public override Color GetCardViewColor(){return new Color(0.5f,1,1);}
     public override void LoadInfo(){
@@ -13,20 +13,8 @@ public class ClearWeatherCard : Card, IShowZone, ISpecialCard
 
         GameObject.Find("Power").GetComponent<TextMeshProUGUI>().text="";
         GameObject.Find("BGPower").GetComponent<Image>().color=new Color(0.2f,0.2f,0.2f,0);
-
-        GameObject.Find("AddedPower").GetComponent<TextMeshProUGUI>().text="";
-        GameObject.Find("BGAddedPower").GetComponent<Image>().color=new Color(1,1,1,0);
     }
-    public void ShowZone(){
-        DZWeather[] zones=GameObject.FindObjectsOfType<DZWeather>();//Se crea un array de todas las zonas de clima
-        foreach(DZWeather zone in zones){
-            zone.OnGlow();
-        }
-    }
-    public void TriggerSpecialEffect(){//Efecto de las cartas despeje
-        Debug.Log(this.transform.parent.gameObject.name);
-        Debug.Log(this.transform.parent.GetComponent<DZWeather>());
-        Debug.Log(this.transform.parent.GetComponent<DZWeather>().Target1);
+    public override void TriggerSpecialEffect(){//Efecto de las cartas despeje
         GameObject target1=this.transform.parent.GetComponent<DZWeather>().Target1;//Objetivos a los que afectan las cartas de clima
         GameObject target2=this.transform.parent.GetComponent<DZWeather>().Target2;
 

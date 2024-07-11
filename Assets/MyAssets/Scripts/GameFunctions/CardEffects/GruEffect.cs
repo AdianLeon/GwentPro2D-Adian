@@ -5,8 +5,8 @@ using UnityEngine;
 //Script para el efecto de la carta lider
 public class GruEffect : MonoBehaviour, ICardEffect
 {
-    private static GameObject GetHand{get=>GameObject.Find("Hand"+Board.GetPlayer);}
-    private static GameObject GetEnemyHand{get=>GameObject.Find("Hand"+Board.GetEnemy);}
+    private static GameObject GetHand{get=>GameObject.Find("Hand"+Judge.GetPlayer);}
+    private static GameObject GetEnemyHand{get=>GameObject.Find("Hand"+Judge.GetEnemy);}
     public void TriggerEffect(){
         if(GetEnemyHand.transform.childCount<2){//Si el enemigo tiene una o ninguna carta
             RoundPoints.LongWriteUserRead("Los minions intentaron robar dos cartas de la mano enemiga, pero tenia menos de dos y les dio lastima, intentalo mas tarde");
@@ -45,7 +45,7 @@ public class GruEffect : MonoBehaviour, ICardEffect
         }
     }
     private static void StealCardTo(GameObject hand, GameObject cardToSteal){//Robar de un jugador
-        Fields stealerField=(Fields)Enum.Parse(typeof(Fields),Board.GetPlayer);//El campo del ladron es el turno actual
+        Player stealerField=(Player)Enum.Parse(typeof(Player),Judge.GetPlayer.ToString());//El campo del ladron es el turno actual
         cardToSteal.transform.SetParent(hand.transform);//Pone la carta robada en la mano del ladron
         cardToSteal.GetComponent<Card>().WhichField=stealerField;//Cambia el campo de la carta
     }

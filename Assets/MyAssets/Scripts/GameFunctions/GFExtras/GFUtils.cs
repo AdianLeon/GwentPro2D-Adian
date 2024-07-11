@@ -26,7 +26,7 @@ public class GFUtils : MonoBehaviour
         }
         return GetCardsIn(childrens);//Analizamos todos sus hijos exactamente como antes
     }
-    public static Fields GetField(string name){//Devuelve el campo de un objeto teniendo su nombre
-        return (Fields)Enum.Parse(typeof(Fields),"P"+name[name.Length-1]);
+    public static Player GetField(string name){//Devuelve el campo de un objeto teniendo su nombre
+        return (Player)Enum.Parse(typeof(Player),"P"+name[name.Length-1]);
     }//Funcionara siempre que siga la convencion de nombrar los objetos con P+(identificador)
 }

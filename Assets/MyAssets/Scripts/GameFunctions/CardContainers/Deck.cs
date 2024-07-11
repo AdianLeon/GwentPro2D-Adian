@@ -14,7 +14,7 @@ public class Deck : MonoBehaviour, IContainer
     private GameObject playerArea;//Esta es la mano del jugador dueno de este deck
     private List <GameObject> DeckCards = new List <GameObject>();//Lista de cartas
     void Start(){
-        Fields deckField=GFUtils.GetField(this.name);
+        Player deckField=GFUtils.GetField(this.name);
         container=GameObject.Find("Cards"+deckField);
         playerArea=GameObject.Find("Hand"+deckField);
         
@@ -22,7 +22,7 @@ public class Deck : MonoBehaviour, IContainer
         for(int i=0;i<container.transform.childCount;i++){
             DeckCards.Add(container.transform.GetChild(i).gameObject);
         }
-        //Asignando a todas las cartas el campo correctos
+        //Asignando a todas las cartas el campo correcto
         foreach(GameObject card in DeckCards){
             card.GetComponent<Card>().WhichField=deckField;
         }

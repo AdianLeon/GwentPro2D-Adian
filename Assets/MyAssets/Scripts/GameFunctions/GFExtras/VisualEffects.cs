@@ -22,15 +22,15 @@ public static class VisualEffects
     }
     public static void AllGlowOff(){
         OffZonesGlow();
-        OffCardsGlow();
+        OnCardsGlow();
     }
     public static void OffZonesGlow(){//Resetea la invisibilidad de todas las dropzone del campo
         DropZone[] zones=GameObject.FindObjectsOfType<DropZone>();
         foreach(DropZone zone in zones){zone.OffGlow();}//Hace las zonas invisibles nuevamente
     }
-    public static void OffCardsGlow(){//Restaura la iluminacion de las cartas jugadas
-        foreach(GameObject playedCard in Board.PlayedCards){
-            playedCard.GetComponent<Image>().color=new Color (1,1,1,1);//Las cartas se dessombrean
+    public static void OnCardsGlow(){//Restaura la iluminacion de las cartas jugadas
+        foreach(GameObject playedCard in Judge.PlayedCards){
+            playedCard.GetComponent<Card>().OnGlow();//Las cartas se dessombrean
         }
     }
 }

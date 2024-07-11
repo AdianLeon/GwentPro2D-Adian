@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class DeckTrade : DropZone
 {//Script para intercambiar hasta 2 cartas de la mano con una random del deck
     private int tradeCount;//Para controlar cuantas cartas ha cambiado el jugador
-    public bool CheckValidTrade{get=>Board.GetTurnNumber==1 && tradeCount<2;}
+    public bool CheckValidTrade{get=>Judge.GetTurnNumber==1 && tradeCount<2;}
     void Start(){
         tradeCount=0;
     }
@@ -20,7 +20,7 @@ public class DeckTrade : DropZone
             Dragging d=eventData.pointerDrag.GetComponent<Dragging>();//Componente Dragging de la carta
             
             //d.DestroyPlaceholder();//Destruimos el placeholder
-            GameObject playerDeck=GameObject.Find("Deck"+Board.GetPlayer);//Deck del jugador
+            GameObject playerDeck=GameObject.Find("Deck"+Judge.GetPlayer);//Deck del jugador
 
             playerDeck.GetComponent<Deck>().AddCardRandomly(d.gameObject);//Anade la copia de la carta a la lista del deck
             Dragging.GetRidOf(c.gameObject);//Nos deshacemos de la carta
@@ -32,7 +32,7 @@ public class DeckTrade : DropZone
         }
     }
     public static void DeckGlow(){//Para el deck del jugador que sea su turno
-        DeckTrade deck=GameObject.Find("DeckZone"+Board.GetPlayer).GetComponent<DeckTrade>();
+        DeckTrade deck=GameObject.Find("DeckZone"+Judge.GetPlayer).GetComponent<DeckTrade>();
         if(deck.CheckValidTrade){//Si se pueden intercambiar cartas con el deck
             deck.OnGlow();//El deck del jugador "brilla"
         }

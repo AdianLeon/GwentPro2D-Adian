@@ -36,11 +36,11 @@ public class RoundPoints : MonoBehaviour
         GameObject.Find("UserRead").GetComponent<TextMeshProUGUI>().text=passedMessage;
     }
     public static void WriteRoundInfoUserRead(){//Se llama cuando se desea escribir la informacion de ronda
-        if(Board.GetTurnActionsCount==0 && Board.IsLastTurn){//Si se puede jugar y es el ultimo turno
-            WriteUserRead("Turno de "+Board.GetPlayer+", es el ultimo turno antes de que se acabe la ronda");
-        }else if(Board.GetTurnActionsCount==0){//Si no es el ultimo turno pero se puede jugar
-            WriteUserRead("Turno de "+Board.GetPlayer);
-        }else if(Board.IsLastTurn){//Si "no se puede jugar" pero es el ultimo turno
+        if(Judge.GetTurnActionsCount==0 && Judge.IsLastTurn){//Si se puede jugar y es el ultimo turno
+            WriteUserRead("Turno de "+Judge.GetPlayer+", es el ultimo turno antes de que se acabe la ronda");
+        }else if(Judge.GetTurnActionsCount==0){//Si no es el ultimo turno pero se puede jugar
+            WriteUserRead("Turno de "+Judge.GetPlayer);
+        }else if(Judge.IsLastTurn){//Si "no se puede jugar" pero es el ultimo turno
             WriteUserRead("Puedes seguir jugando mas cartas. Presiona espacio cuando desees acabar la ronda");
         }else{//Si no se puede jugar y no es el ultimo turno
             WriteUserRead("Presiona espacio para pasar de turno");
@@ -61,7 +61,7 @@ public class RoundPoints : MonoBehaviour
     private static void WinsGame(string player){//El jugador gana la partida
         RoundPoints.LongWriteUserRead("Felicidades "+player+". Has ganado la partida!!");
         GameObject.Find("SetRGB").GetComponent<Button>().onClick.Invoke();
-        Graveyard.SendToGraveyard(Board.PlayedCards);
+        Graveyard.SendToGraveyard(Judge.PlayedCards);
     }
     public static void ResetGame(){//Reinicia el juego (o sea la escena Game) Este metodo es llamado por un boton llamado ResetGameButton
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

@@ -12,6 +12,6 @@ public class HandCover : MonoBehaviour
         }
     }
     private void UpdateVisibility(){//Si es el turno de su enemigo, se activa, si es el turno de su jugador, se desactiva
-        this.gameObject.SetActive(GFUtils.GetField(this.name).ToString()==Board.GetEnemy);
+        this.gameObject.SetActive(GFUtils.GetField(this.name)==Judge.GetEnemy);
     }
 }
