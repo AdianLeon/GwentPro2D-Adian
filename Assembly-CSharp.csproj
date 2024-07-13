@@ -36,10 +36,9 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardContainers\Board.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardFunctionalities\Dragging.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardFunctions\Dragging.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardContainers\Hand.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Parser\Cards\OnActivationUtils.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GFExtras\GFInterfaces.cs" />
@@ -49,7 +48,7 @@
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GFExtras\GFUtils.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\DropZones\DropZone.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\WeatherCard.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GFExtras\VisualEffects.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\FieldFunctions\VisualEffects.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Action\Execute.cs" />
@@ -58,8 +57,10 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Parser\Cards\ProcessCard.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\FieldFunctions\UserRead.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Lexer\Lexer.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\FieldFunctions\PauseScreen.cs" />
      <Compile Include="Assets\MyAssets\Scripts\MainMenuFunctions\DeckDropdowns.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\DCExtras\DeckCreatorUtils.cs" />
      <Compile Include="Assets\MyAssets\Scripts\MainMenuFunctions\MainMenu.cs" />
@@ -77,20 +78,21 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\ReadAndWrite.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\AbstractCards\UnitCard.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\AbstractCardTypes\UnitCard.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\ClearWeatherCard.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\BoostCard.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardEffects\MostPowerEffect.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\AbstractCards\CardWithPower.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\AbstractCardTypes\CardWithPower.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\DropZones\DZBoost.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\DropZones\DeckTrade.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\GoldCard.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\RoundPoints.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GFExtras\HandCover.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\AbstractCardTypes\WeatherZoneCard.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GameLogic\RoundPoints.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\FieldFunctions\HandCover.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\DCExtras\Errors.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
@@ -103,7 +105,8 @@
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\MainCompiler.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardEffects\LessPowerEffect.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\LeaderCard.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardFunctionalities\CardView.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardFunctions\CardView.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GameLogic\Judge.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardEffects\PromEffect.cs" />
      <Compile Include="Assets\MyAssets\Scripts\MainMenuFunctions\DeckMenuFunctions\DeckView.cs" />
@@ -114,8 +117,8 @@
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\DCExtras\DCEnums.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\DropZones\DZWeather.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GFExtras\GFEnums.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GFExtras\PlayedLight.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\AbstractCards\Card.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\FieldFunctions\PlayedLight.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\AbstractCardTypes\Card.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GFExtras\AudioManager.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
@@ -125,8 +128,6 @@
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Parser\Effects\ProcessEffect.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardContainers\Field.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\Judge.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\AbstractCards\WeatherZoneCard.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

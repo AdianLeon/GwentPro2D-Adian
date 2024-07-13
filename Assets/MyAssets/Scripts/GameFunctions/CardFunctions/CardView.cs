@@ -27,9 +27,9 @@ public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         selectedCard=null;//Ya no se esta encima de ninguna carta
 
         if(Dragging.IsOnDrag){//Se actualiza el mensaje en pantalla
-            RoundPoints.WriteUserRead(". . .");
+            GFUtils.UserRead.Write(". . .");
         }else{
-            RoundPoints.WriteRoundInfoUserRead();
+            GFUtils.UserRead.WriteRoundInfo();
         }
     }
 

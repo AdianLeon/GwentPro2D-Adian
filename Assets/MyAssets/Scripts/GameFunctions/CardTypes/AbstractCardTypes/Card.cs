@@ -13,7 +13,7 @@ abstract public class Card : MonoBehaviour, IGlow
     public string EffectDescription;//Descripcion del efecto
     public string OnActivationName;//Nombre de OnActivation
     public Sprite Artwork;//Imagen para mostrar en el CardView
-    public Player WhichField;//Campo de la carta
+    public Player WhichPlayer;//Jugador dueno de la carta
     public virtual Color GetCardViewColor(){return new Color(1,1,1);}//Retorna el color de la carta en el CardView
     public virtual void LoadInfo(){//Esta funcion es especifica para cada tipo de carta, pero todas comparten lo siguiente
         //Faction
@@ -24,9 +24,9 @@ abstract public class Card : MonoBehaviour, IGlow
         GameObject.Find("CardDescription").GetComponent<TextMeshProUGUI>().text=Description;
         //EffectDescription
         if(EffectDescription.Length>0){//Si hay descripcion de efecto
-            RoundPoints.WriteUserRead("Efecto: "+EffectDescription);
+            GFUtils.UserRead.Write("Efecto: "+EffectDescription);
         }else{
-            RoundPoints.WriteUserRead("Esta carta no tiene efecto");
+            GFUtils.UserRead.Write("Esta carta no tiene efecto");
         }
         GameObject.Find("BGType").GetComponent<Image>().color=new Color(0.2f,0.2f,0.2f,0.8f);
 

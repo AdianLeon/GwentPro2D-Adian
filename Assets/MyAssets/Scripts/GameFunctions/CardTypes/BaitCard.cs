@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Unity.VisualScripting;
 //Script para las cartas senuelo
 public class BaitCard : CardWithPower, ISpecialCard, IAffectable, IShowZone
 {
@@ -14,29 +13,44 @@ public class BaitCard : CardWithPower, ISpecialCard, IAffectable, IShowZone
         base.LoadInfo();
         GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="[S]";
     }
+    private bool SwapConditions(GameObject cardToSwap, bool showMessage=false){//Si no esta en la mano ni en el cementerio, es afectable, coincide con el campo del senuelo y no es otro senuelo
+        if(cardToSwap.GetComponent<Dragging>().IsOnHand){
+            if(showMessage){GFUtils.UserRead.LongWrite("No es valido usar un senuelo sobre la mano");}
+            return false;
+        }
+        if(cardToSwap.transform.parent.gameObject==GameObject.Find("GraveyardP1") || cardToSwap.transform.parent.gameObject==GameObject.Find("GraveyardP2")){
+            if(showMessage){GFUtils.UserRead.LongWrite("No es valido usar un senuelo en un cementerio");}
+            return false;
+        }
+        if(cardToSwap.GetComponent<Card>().WhichPlayer!=WhichPlayer){
+            if(showMessage){GFUtils.UserRead.LongWrite("Esa carta no esta en tu campo");}
+            return false;
+        }
+        if(cardToSwap.GetComponent<BaitCard>()!=null){
+            if(showMessage){GFUtils.UserRead.LongWrite("No es valido usar un senuelo sobre otro senuelo");}
+            return false;
+        }
+        if(cardToSwap.GetComponent<IAffectable>()==null){
+            if(showMessage){GFUtils.UserRead.LongWrite("Esa carta no es afectable por el senuelo");}
+            return false;
+        }
+        return true;
+    }
     public void ShowZone(){
         //Activa el glow (oscurece) para las cartas con las que el senuelo no se puede intercambiar
-        foreach(GameObject cardPlayed in Judge.PlayedCards){
-            if(cardPlayed.GetComponent<IAffectable>()==null || cardPlayed.GetComponent<Card>().WhichField!=WhichField || cardPlayed.GetComponent<BaitCard>()!=null){
-                //Si no es afectable, no coincide con el campo del senuelo o es otro senuelo
+        foreach(GameObject cardPlayed in Field.AllPlayedCards){
+            if(!SwapConditions(cardPlayed)){
                 cardPlayed.GetComponent<Card>().OffGlow();//Se le activa el glow (oscurece la carta)
             }
         }
     }
 
     public override bool IsPlayable{get{//Conjunto de condiciones para que el senuelo se juegue
-        //Si no es afectable
-        if(CardView.GetSelectedCard.GetComponent<IAffectable>()==null){return false;}
-        //Si sus campos no coinciden
-        if(CardView.GetSelectedCard.GetComponent<Card>().WhichField!=this.GetComponent<Card>().WhichField){return false;}
-        //Si la carta sobre la que estamos esta en el cementerio
-        if(CardView.GetSelectedCard.transform.parent.gameObject==GameObject.Find("GraveyardP1") || CardView.GetSelectedCard.transform.parent.gameObject==GameObject.Find("GraveyardP2")){return false;}
-        //Si la carta con la que intercambiaremos el senuelo es otro senuelo
-        if(CardView.GetSelectedCard.GetComponent<BaitCard>()!=null){return false;}
-        //Si el senuelo no esta en la mano
-        if(!this.GetComponent<Dragging>().IsOnHand){return false;}
-
-        return true;
+        if(!this.gameObject.GetComponent<Dragging>().IsOnHand){Debug.Log("El senuelo se intenta jugar pero no esta en la mano!!");return false;}
+        //Si estamos encima de una carta
+        if(CardView.GetSelectedCard==null){return false;}
+        //Chequeamos las condiciones para intercambiar con esa carta
+        return SwapConditions(CardView.GetSelectedCard,true);
     }}
     public void TriggerSpecialEffect(){
         GameObject placehold=new GameObject();//Creamos un objeto auxiliar para saber donde esta el senuelo

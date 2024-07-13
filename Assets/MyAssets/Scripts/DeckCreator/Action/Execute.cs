@@ -9,8 +9,9 @@ using System.IO;
 public class Execute : MonoBehaviour
 {
     public static void DoEffect(GameObject caller,string onActivationName){
+        if(onActivationName==""){return;}
         if(Type.GetType(onActivationName)==null){
-            Debug.Log("No se encontro: '"+onActivationName+"', buscando json");
+            Debug.Log("No se encontro: '"+onActivationName+"', buscando OnActivation");
             DoOnActivation(caller,onActivationName);
             return;
         }

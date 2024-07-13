@@ -9,7 +9,7 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 {
     //Variables que guardan en donde se queda la carta y su espacio
     private Transform parentToReturnTo=null;
-    private GameObject GetHand{get=>GameObject.Find("Hand"+this.gameObject.GetComponent<Card>().WhichField);}
+    private GameObject GetHand{get=>GameObject.Find("Hand"+this.gameObject.GetComponent<Card>().WhichPlayer);}
     public bool IsOnHand{get=>this.gameObject.transform.parent.gameObject==GetHand;}
     private GameObject placeholder=null;
     public GameObject Placeholder{get=>placeholder;set=>placeholder=value;}
@@ -20,7 +20,7 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     //Detecta cuando empieza el arrastre de las cartas
     public void OnBeginDrag(PointerEventData eventData){
-        if(IsOnHand && Judge.CanPlay){//Solo si es arrastrable y si se puede jugar
+        if(IsOnHand && Judge.CanPlay){//Solo esta en la mano y si se puede jugar
             onDrag=true;//Comenzamos el arrastre
 
             //Guarda la posicion a la que volver si soltamos en lugar invalido y crea un espacio en el lugar de la carta
@@ -34,15 +34,15 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             //Activa la penetracion de la carta por el puntero para que podamos soltarla
             this.gameObject.GetComponent<CanvasGroup>().blocksRaycasts=false;
         }else{
-            RoundPoints.WriteRoundInfoUserRead();
+            GFUtils.UserRead.WriteRoundInfo();
         }
     }
 
     //Mientras se arrastra
     public void OnDrag(PointerEventData eventData){
         if(onDrag){//Solo si se esta arrastrando
-            //Haciendo que las zonas donde se pueda soltar la carta "brillen"
-            VisualEffects.ZonesGlow(this.gameObject);
+            VisualEffects.ZonesGlow(this.gameObject);//Haciendo que las zonas donde se pueda soltar la carta "brillen"
+
             this.transform.position=eventData.position;//Actualiza la posicion de la carta con la del puntero
             int newSiblingIndex=parentToReturnTo.childCount;//Guarda el indice del espacio de la derecha
             for(int i=0;i<parentToReturnTo.childCount;i++){//Chequeando constantemente si se ha pasado de la posicion de otra carta   
@@ -65,21 +65,18 @@ public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
             //Mueve la carta a donde se determino
             this.transform.SetParent(parentToReturnTo);
-            DestroyPlaceholder();//Destruye el espacio creado
-
             if(IsOnHand){//Si la carta cae de nuevo en la mano
                 this.transform.SetSiblingIndex(Placeholder.transform.GetSiblingIndex());//Posiciona la carta en la mano
             }
-            if(this.gameObject.GetComponent<Card>().IsPlayable){//Si se puede jugar
+            DestroyPlaceholder();//Destruye el espacio creado
+
+            if(this.gameObject.GetComponent<Card>().IsPlayable){//Si las condiciones para jugar esa carta se cumplen
                 Judge.PlayCard(this.gameObject);//Juega la carta
             }
-
             this.GetComponent<CanvasGroup>().blocksRaycasts=true;//Desactiva la penetracion de la carta para que podamos mostrarla/arrastrarla de nuevo
-            Hand.CheckHands();//Chequeamos si las cartas en la mano no exceden el limite
-
             //Cada vez que se suelte una carta necesitamos desactivar el glow de cualquier objeto que hayamos iluminado
             VisualEffects.AllGlowOff();
-            RoundPoints.WriteRoundInfoUserRead();
+            GFUtils.UserRead.WriteRoundInfo();
         }
     }
     public void DestroyPlaceholder(){

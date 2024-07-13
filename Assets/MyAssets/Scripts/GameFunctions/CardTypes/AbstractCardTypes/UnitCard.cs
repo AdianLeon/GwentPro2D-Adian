@@ -15,7 +15,7 @@ abstract public class UnitCard : CardWithPower, IShowZone
     public void ShowZone(){
         DZUnits[] unitZones=GameObject.FindObjectsOfType<DZUnits>();//Se crea un array con todas las zonas de cartas de unidad
         foreach(DZUnits unitZone in unitZones){
-            if(unitZone.isDropValid(this.gameObject) && unitZone.validPlayer==WhichField){
+            if(unitZone.isDropValid(this.gameObject) && unitZone.ValidPlayer==WhichPlayer){
                 //La zona se ilumina solo si coincide con la zona jugable y el campo de la carta
                 unitZone.OnGlow();
             }

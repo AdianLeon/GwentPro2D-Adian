@@ -31,7 +31,7 @@ public class BoostCard : Card, IShowZone, ISpecialCard
     public void ShowZone(){
         DZBoost[] boostZones=GameObject.FindObjectsOfType<DZBoost>();//Se crea un array de todas las zonas de aumento
         foreach(DZBoost boostZone in boostZones){
-            if(boostZone.ValidPlayer==GetComponent<Card>().WhichField){//Si la zona es del jugador
+            if(boostZone.ValidPlayer==GetComponent<Card>().WhichPlayer){//Si la zona es del jugador
                 boostZone.OnGlow();//Se ilumina
             }
         }

@@ -8,8 +8,7 @@ using Newtonsoft.Json;
 //Script para convertir cartas a archivos json
 public class CardsToJson : MonoBehaviour
 {
-    void Awake()
-    {
+    void Awake(){
         Debug.Log("Exporting Cards");
         this.ExportAllCards();//Para hacer jsons de todas las cartas en el objeto CardsToExport
     }

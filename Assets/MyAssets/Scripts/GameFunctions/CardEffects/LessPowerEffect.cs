@@ -19,10 +19,10 @@ public class LessPowerEffect : MonoBehaviour, ICardEffect
                     }
                }
                Graveyard.SendToGraveyard(Card);//Se envia al cementerio la carta resultante(la de menor poder)
-               RoundPoints.LongWriteUserRead("Se ha eliminado a "+Card.GetComponent<Card>().CardName);
+               GFUtils.UserRead.LongWrite("Se ha eliminado a "+Card.GetComponent<Card>().CardName);
                //En caso de que todas tengan el mismo poder se envia al cementerio la ultima jugada porque se empieza a comparar por la ultima carta
           }else{
-               RoundPoints.LongWriteUserRead("No se pudo activar el efecto porque el enemigo no ha jugado cartas");
+               GFUtils.UserRead.LongWrite("No se pudo activar el efecto porque el enemigo no ha jugado cartas");
           }
      }
 }

@@ -5,34 +5,34 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Diagnostics;
 //Script para llevar la logica de la fuerza del campo
-public class Field : MonoBehaviour, IContainer
+public class Field : CustomBehaviour, IContainer
 {
     public List <GameObject> GetCards{get=>GFUtils.GetCardsIn(this.gameObject);}//Lista de las cartas jugadas del jugador
-    public static List<GameObject> P1PlayedCards{get=>GameObject.Find("FieldP1").GetComponent<Field>().GetCards;}
-    public static List<GameObject> P2PlayedCards{get=>GameObject.Find("FieldP2").GetComponent<Field>().GetCards;}
-    public static List<GameObject> PlayedCardsWithoutWeathers{
-        get{
-            List<GameObject> all=new List<GameObject>();
-            all.AddRange(P1PlayedCards);
-            all.AddRange(P2PlayedCards);
-            return all;
+    public static List<GameObject> AllPlayedCards{get=>GFUtils.GetCardsIn(GameObject.Find("Field"));}//Lista de las cartas jugadas en el tablero
+    public static List<GameObject> PlayedCardsWithoutWeathers{get=>GFUtils.GetCardsIn(GameObject.Find("PlayerFieldsSet"));}
+    public static List<GameObject> PlayedWeatherCards{get=>GFUtils.GetCardsIn(GameObject.Find("WeatherZonesSet"));}
+    public static List<GameObject> PlayerPlayedCards{get=>GFUtils.GetCardsIn(GameObject.Find("Field"+Judge.GetPlayer));}
+    public static List<GameObject> EnemyPlayedCards{get=>GFUtils.GetCardsIn(GameObject.Find("Field"+Judge.GetEnemy));}
+    private int playerForceValue{get{//Total de poder de cada jugador en la ronda
+            int aux=0;
+            foreach(GameObject playerCard in GetCards){//Se itera por todas las cartas jugadas
+                aux+=playerCard.GetComponent<CardWithPower>().TotalPower;//Se suma el poder total
+            }
+            return aux;
         }
     }
-    private int playerForceValue;//Total de poder de cada jugador en la ronda
     public static int P1ForceValue{get=>GameObject.Find("FieldP1").GetComponent<Field>().playerForceValue;}
     public static int P2ForceValue{get=>GameObject.Find("FieldP2").GetComponent<Field>().playerForceValue;}
-    void Start(){//Siempre se vacia cuando se carga la escena para evitar bugs cuando juguemos repetidas veces
-        UpdateForce();
+    public override void Initialize(){//Siempre se vacia cuando se carga la escena para evitar bugs cuando juguemos repetidas veces
+        NextUpdate();
     }
-    public static void UpdateAllForces(){
-        GameObject.Find("FieldP1").GetComponent<Field>().UpdateForce();
-        GameObject.Find("FieldP2").GetComponent<Field>().UpdateForce();
+    public override void Finish(){
+        GFUtils.GetRidOf(AllPlayedCards);
+        NextUpdate();
+        //Board se deshace de todas las cartas del campo
     }
-    private void UpdateForce(){//Se actualizan los valores de fuerza total por campo
-        playerForceValue=0;
-        for(int i=0;i<GetCards.Count;i++){//Se itera por todas las cartas jugadas
-            playerForceValue+=GetCards[i].GetComponent<CardWithPower>().TotalPower;//Se suma el poder total
-        }
+    public override void NextUpdate(){//Se actualizan los valores de fuerza total por campo
+        WeatherCard.RectivateAllWeathers();//Actualiza el clima
         GameObject.Find("Points"+GFUtils.GetField(this.name)).GetComponent<TextMeshProUGUI>().text=playerForceValue.ToString();//Asigna el valor al puntaje
     }
 }

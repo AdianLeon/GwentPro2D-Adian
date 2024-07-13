@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Unity.VisualScripting;
 //Script para las cartas clima
 public class WeatherCard : WeatherZoneCard
 {
@@ -37,15 +36,10 @@ public class WeatherCard : WeatherZoneCard
             }
         }
     }
-    public static void UpdateWeather(){//Esta funcion se llama cada vez que se juega una nueva carta
-        RectivateWeathersInZone("WeatherZoneM");//Actualiza el clima por zonas
-        RectivateWeathersInZone("WeatherZoneR");
-        RectivateWeathersInZone("WeatherZoneS");
-    }
-    private static void RectivateWeathersInZone(string zoneToUpdate){//Reactiva los efectos de las cartas clima en una zona especifica
-        WeatherCard[] cardsInZone=GameObject.Find(zoneToUpdate).GetComponentsInChildren<WeatherCard>();//Se acceden a todos los hijos de esa zona
-        foreach(WeatherCard cardInZone in cardsInZone){//Itera por cada uno de esos hijos
-            cardInZone.TriggerSpecialEffect();//Hace que activen el efecto de clima otra vez
+    public static void RectivateAllWeathers(){//Reactiva los efectos de todas las cartas clima jugadas
+        List<GameObject> playedWeathers=Field.PlayedWeatherCards;
+        foreach(GameObject weather in playedWeathers){//Itera por cada uno de esos hijos
+            weather.GetComponent<WeatherCard>().TriggerSpecialEffect();//Hace que activen el efecto de clima otra vez
         }
     }
 }

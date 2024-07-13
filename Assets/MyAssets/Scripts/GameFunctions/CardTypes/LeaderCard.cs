@@ -7,10 +7,13 @@ using TMPro;
 public class LeaderCard : Card
 {
     public override Color GetCardViewColor(){return new Color(0.7f,0.1f,0.5f);}
-    private bool usedSkill;//Si la habilidad ha sido usada
-    public bool UsedSkill{get=>usedSkill; set=>usedSkill=value;}
+    private bool hasUsedSkill;//Si la habilidad ha sido usada
+    public static void ResetAllLeaderSkills(){
+        LeaderCard[] leaderCards=GameObject.FindObjectsOfType<LeaderCard>();
+        foreach(LeaderCard leaderCard in leaderCards){leaderCard.hasUsedSkill=false;}
+    }
     private Button thisLeaderButton;//El boton del objeto
-    void Start(){
+    void Awake(){
         thisLeaderButton=GetComponent<Button>();
         thisLeaderButton.onClick.AddListener(OnButtonClick);//Ejecuta el metodo OnButtonClick cuando el boton se presione
     }
@@ -26,23 +29,23 @@ public class LeaderCard : Card
     }
     public override bool IsPlayable{get{
         if(!Judge.CanPlay){//Si no se puede jugar
-            RoundPoints.WriteRoundInfoUserRead();
+            GFUtils.UserRead.WriteRoundInfo();
             return false;
         }
-        if(WhichField!=Judge.GetPlayer){//Si no coincide en campo con el jugador que lo presiona
-            RoundPoints.WriteUserRead("Ese no es el lider de tu deck");
+        if(WhichPlayer!=Judge.GetPlayer){//Si no coincide en campo con el jugador que lo presiona
+            GFUtils.UserRead.Write("Ese no es el lider de tu deck");
             return false;
         }
-        if(usedSkill){//Si la habilidad de este lider ya ha sido usada previamente
-            RoundPoints.LongWriteUserRead("La habilidad del lider: "+CardName+" ya ha sido usada. La habilidad de lider solo puede ser usada una vez por partida");
+        if(hasUsedSkill){//Si la habilidad de este lider ya ha sido usada previamente
+            GFUtils.UserRead.LongWrite("La habilidad del lider: "+CardName+" ya ha sido usada. La habilidad de lider solo puede ser usada una vez por partida");
             return false;
         }
-
         return true;
     }}
     private void OnButtonClick(){//Se llama cuando se presiona en el lider
-        if(IsPlayable){//Si se puede jugar se juega
-            Judge.PlayLeaderCard(this.gameObject);
+        if(IsPlayable){//Si se puede jugar
+            Judge.PlayCard(this.gameObject);
+            hasUsedSkill=true;
         }
     }
 }
