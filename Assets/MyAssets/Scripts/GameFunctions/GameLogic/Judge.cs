@@ -3,9 +3,17 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine;
-//Script que simula un juez, se encarga de la logica de turnos, rondas y condicion de victoria
+using Unity.VisualScripting;
+using Unity.PlasticSCM.Editor.WebApi;
+//Script que simula un juez, se encarga del manejo de estados, la logica de turnos, rondas y condicion de victoria
 public class Judge : MonoBehaviour
 {
+    private static State currentSate;
+    public static State CurrentState{get=>currentSate;set{
+        currentSate=value;
+        GFUtils.OnStateChange();
+        currentSate=State.WaitingPlayerAction;
+    }} 
     private static int turnNumber;//Numero de turnos
     public static int GetTurnNumber{get=>turnNumber;}
     private static Player playerTurn;//Turno de jugador
@@ -18,10 +26,8 @@ public class Judge : MonoBehaviour
     public static bool CanPlay{get=>turnActionsCount==0 || isLastTurn;}
     private static float lastClickTime;
     void Start(){
+        CurrentState=State.LoadingCards;
         ResetGame();
-    }
-    void Update(){
-        ListenToSpaceBarPress();
     }
     public static void ResetGame(){//Reinicia el juego. Este metodo es llamado por un boton llamado ResetGameButton
         LeaderCard.ResetAllLeaderSkills();
@@ -30,7 +36,10 @@ public class Judge : MonoBehaviour
         isLastTurn=false;
         turnNumber=1;
         playerTurn=Player.P1;//El Player 1 inicia la partida siempre
-        GFUtils.AllInitialize();
+        CurrentState=State.SettingUpGame;
+    }
+    void Update(){
+        ListenToSpaceBarPress();
     }
     private void ListenToSpaceBarPress(){
         if(Input.GetKeyDown(KeyCode.Space) && Time.time-lastClickTime>0.3f){//Clickea el passbutton cuando se presiona espacio, pero con una diferencia de tiempo de 0.3s
@@ -41,6 +50,7 @@ public class Judge : MonoBehaviour
     public static void EndTurn(){//Se llama con cada pase
         if(isLastTurn){//Se entra cuando se acaba la ronda 
             NextRound();
+            return;
         }else if(turnActionsCount==0){//Detecta caundo un jugador pasa sin jugar
             SwitchTurn();
             isLastTurn=true;//Activa el modo ultimo turno, cuando se presione el pass de nuevo se acabara la ronda
@@ -48,14 +58,14 @@ public class Judge : MonoBehaviour
         }else{
             SwitchTurn();
         }
-        GFUtils.CallNextUpdate();
+        CurrentState=State.EndingTurn;
     }
     public static void PlayCard(GameObject card){//Juega la carta
         //Si la carta tiene efecto de carta especial, que se active
         card.GetComponent<ISpecialCard>()?.TriggerSpecialEffect();
         Execute.DoEffect(card,card.GetComponent<Card>().OnActivationName);//Se ejecuta el efecto
         turnActionsCount++;
-        GFUtils.CallNextUpdate();
+        CurrentState=State.PlayingCard;
         card.GetComponent<Card>().LoadInfo();
     }
     private static void NextRound(){//Proxima ronda
@@ -74,16 +84,13 @@ public class Judge : MonoBehaviour
             GFUtils.UserRead.LongWrite("Ha ocurrido un empate");
             WinCheck();
         }
-
         isLastTurn=false;
-        Graveyard.SendToGraveyard(Field.AllPlayedCards);//Manda todas las cartas al cementerio
         for(int i=1;i<3;i++){//Reparte dos cartas a los jugadores
             GameObject.Find("DeckP"+i).GetComponent<Deck>().DrawTopCard();
             GameObject.Find("DeckP"+i).GetComponent<Deck>().DrawTopCard();
         }
-
-        GFUtils.CallNextUpdate();
         turnActionsCount=0;
+        CurrentState=State.EndingRound;
     }
     private static void SwitchTurn(){//Se cambia de turno
         playerTurn=GetEnemy;
@@ -109,6 +116,6 @@ public class Judge : MonoBehaviour
     }
     private static void WinsGame(Player player){//El jugador gana la partida
         playerTurn=player;
-        GFUtils.AllFinish();
+        CurrentState=State.EndingGame;
     }
 }

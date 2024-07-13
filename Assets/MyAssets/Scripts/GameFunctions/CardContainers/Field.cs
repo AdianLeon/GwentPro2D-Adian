@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Diagnostics;
 //Script para llevar la logica de la fuerza del campo
-public class Field : CustomBehaviour, IContainer
+public class Field : StateListener, IContainer
 {
     public List <GameObject> GetCards{get=>GFUtils.GetCardsIn(this.gameObject);}//Lista de las cartas jugadas del jugador
     public static List<GameObject> AllPlayedCards{get=>GFUtils.GetCardsIn(GameObject.Find("Field"));}//Lista de las cartas jugadas en el tablero
@@ -23,16 +23,18 @@ public class Field : CustomBehaviour, IContainer
     }
     public static int P1ForceValue{get=>GameObject.Find("FieldP1").GetComponent<Field>().playerForceValue;}
     public static int P2ForceValue{get=>GameObject.Find("FieldP2").GetComponent<Field>().playerForceValue;}
-    public override void Initialize(){//Siempre se vacia cuando se carga la escena para evitar bugs cuando juguemos repetidas veces
-        NextUpdate();
-    }
-    public override void Finish(){
-        GFUtils.GetRidOf(AllPlayedCards);
-        NextUpdate();
-        //Board se deshace de todas las cartas del campo
-    }
-    public override void NextUpdate(){//Se actualizan los valores de fuerza total por campo
-        WeatherCard.RectivateAllWeathers();//Actualiza el clima
-        GameObject.Find("Points"+GFUtils.GetField(this.name)).GetComponent<TextMeshProUGUI>().text=playerForceValue.ToString();//Asigna el valor al puntaje
+    public override void CheckState(){
+        if(Judge.CurrentState==State.EndingRound || Judge.CurrentState==State.EndingGame){
+            GFUtils.GetRidOf(AllPlayedCards);
+        }
+        switch(Judge.CurrentState){
+            case State.SettingUpGame:
+            case State.PlayingCard:
+            case State.EndingRound:
+            case State.EndingGame:
+                WeatherCard.RectivateAllWeathers();//Actualiza el clima
+                GameObject.Find("Points"+GFUtils.GetField(this.name)).GetComponent<TextMeshProUGUI>().text=playerForceValue.ToString();//Asigna el valor al puntaje
+                break;
+        }
     }
 }

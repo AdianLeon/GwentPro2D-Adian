@@ -4,16 +4,22 @@ using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.UI;
 //Script de las luces del juego que indican si se puede jugar
-public class PlayedLight : CustomBehaviour, IGlow
+public class PlayedLight : StateListener, IGlow
 {
-    public override void Initialize(){
-        OnGlow();
-    }
-    public override void Finish(){
-        OffGlow();
-    }
-    public override void NextUpdate(){
-        if(Judge.CanPlay){OnGlow();}else{OffGlow();}
+    public override void CheckState(){
+        switch(Judge.CurrentState){
+            case State.SettingUpGame:
+                OnGlow();
+                break;
+            case State.PlayingCard:
+            case State.EndingTurn:
+            case State.EndingRound:
+                if(Judge.CanPlay){OnGlow();}else{OffGlow();}
+                break;
+            case State.EndingGame:
+                OffGlow();
+                break;
+        }
     }
     public void OnGlow(){//Pone el objeto en verde
         this.gameObject.GetComponent<UnityEngine.UI.Image>().color=new Color(0,1,0,0.2f);

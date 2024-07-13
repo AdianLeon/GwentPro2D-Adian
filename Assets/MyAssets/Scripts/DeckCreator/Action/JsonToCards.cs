@@ -8,12 +8,13 @@ using System.Text;
 using UnityEngine.UIElements;
 using System.Linq;
 //Script para instanciar cartas de un json
-public class JsonToCards : MonoBehaviour
+public class JsonToCards : StateListener
 {
     private static int instantiatedCardsCount;//Cuenta de las cartas instanciadas
     public GameObject CardPrefab;//Referencia al prefab CardPrefab 
     public GameObject LeaderPrefab;//Referencia al prefab LeaderPrefab
-    void Awake(){
+    public override void CheckState(){
+        if(Judge.CurrentState!=State.LoadingCards){return;}
         instantiatedCardsCount=0;
         ImportDeckTo(PlayerPrefs.GetString("P1PrefDeck"),GameObject.Find("CardsP1"),GameObject.Find("DeckP1"));
         ImportDeckTo(PlayerPrefs.GetString("P2PrefDeck"),GameObject.Find("CardsP2"),GameObject.Find("DeckP2"));

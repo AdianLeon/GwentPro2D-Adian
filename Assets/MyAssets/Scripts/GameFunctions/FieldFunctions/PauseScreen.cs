@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 //Script para marcar las pantallas de pausa
-public class PauseScreen : CustomBehaviour
+public class PauseScreen : StateListener
 {
-    public override void Finish(){
-        this.gameObject.SetActive(true);
+    public override void CheckState(){
+        switch(Judge.CurrentState){
+            case State.SettingUpGame:
+                this.gameObject.SetActive(false);
+                return;
+            case State.EndingGame:
+                this.gameObject.SetActive(true);
+                return;
+        }
     }
-    public override void Initialize(){
-        this.gameObject.SetActive(false);
-    }
-    public override void NextUpdate(){}
 }

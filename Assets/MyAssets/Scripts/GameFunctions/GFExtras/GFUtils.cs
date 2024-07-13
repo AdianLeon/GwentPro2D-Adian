@@ -25,17 +25,9 @@ public class GFUtils : MonoBehaviour
             Dragging.GetRidOf(card);
         }
     }
-    public static void AllInitialize(){
-        CustomBehaviour[] initializers=Resources.FindObjectsOfTypeAll<CustomBehaviour>();
-        foreach(CustomBehaviour initializer in initializers){initializer.Initialize();}
-    }
-    public static void AllFinish(){
-        CustomBehaviour[] finishers=Resources.FindObjectsOfTypeAll<CustomBehaviour>();
-        foreach(CustomBehaviour finisher in finishers){finisher.Finish();}
-    }
-    public static void CallNextUpdate(){
-        Debug.Log("Update called");
-        CustomBehaviour[] scripts=Resources.FindObjectsOfTypeAll<CustomBehaviour>();
-        foreach(CustomBehaviour script in scripts){script.NextUpdate();}
+    public static void OnStateChange(){
+        Debug.Log("State changed to "+Judge.CurrentState);
+        StateListener[] scripts=Resources.FindObjectsOfTypeAll<StateListener>();
+        foreach(StateListener script in scripts){script.CheckState();}
     }
 }

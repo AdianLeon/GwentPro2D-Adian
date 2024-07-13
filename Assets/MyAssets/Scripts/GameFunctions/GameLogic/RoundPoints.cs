@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
 //Script que representa los puntos de ronda de cada jugador
-public class RoundPoints : CustomBehaviour
+public class RoundPoints : StateListener
 {
     //Puntos de ronda de cada jugador
     private int rPoints;
@@ -13,15 +13,16 @@ public class RoundPoints : CustomBehaviour
     public static int GetRPointsP2{get=>GameObject.Find("RoundPointsP2").GetComponent<RoundPoints>().rPoints;}
     public static void AddPointToP2(){GameObject.Find("RoundPointsP2").GetComponent<RoundPoints>().rPoints++;}
     private int getMarks{get=>this.GetComponent<TextMeshProUGUI>().text.Length;}//Cantidad de marcas de cada jugador
-    public override void Initialize(){
-        rPoints=0;
-        NextUpdate();
+    public override void CheckState(){//Hace que la cantidad de marcas sea igual a los puntos de cada jugador, si llega un nuevo punto de ronda se hace una nueva marca
+        switch(Judge.CurrentState){
+            case State.SettingUpGame:
+            case State.EndingRound:
+            case State.EndingGame:
+                UpdatePoints();
+                break;
+        }
     }
-    public override void Finish(){
-        rPoints=0;
-        NextUpdate();
-    }
-    public override void NextUpdate(){//Hace que la cantidad de marcas sea igual a los puntos de cada jugador, si llega un nuevo punto de ronda se hace una nueva marca
+    private void UpdatePoints(){
         if(rPoints==0){
             this.gameObject.GetComponent<TextMeshProUGUI>().text="";
             return;
