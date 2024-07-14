@@ -1,7 +1,6 @@
 {
     "faction": "Minions",
     "cardName": "Muchas Bananas",
-    "description": "Para un minion cualquier problema tiene solucion, si tienes suficiente dinero, digo bananas",
     "effectDescription": "Se deshace de todas las cartas de clima y sus efectos en la fila seleccionada",
     "powerPoints": 0,
     "scriptComponent": "ClearWeatherCard",

@@ -46,7 +46,6 @@ public class DeckMenuLoadCards : MonoBehaviour
         //Propiedades
         newCard.GetComponent<DeckView>().faction=cardSave.faction;//Faction
         newCard.GetComponent<DeckView>().cardName=cardSave.cardName;//Name
-        newCard.GetComponent<DeckView>().description=cardSave.description;//Description
         newCard.GetComponent<DeckView>().effectDescription=cardSave.effectDescription;//EffectDescription
         newCard.GetComponent<DeckView>().typeComponent=cardSave.scriptComponent;
         //Sprites

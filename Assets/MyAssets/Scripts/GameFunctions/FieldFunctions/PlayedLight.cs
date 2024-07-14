@@ -1,22 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
-using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
-using UnityEngine.UI;
 //Script de las luces del juego que indican si se puede jugar
 public class PlayedLight : StateListener, IGlow
 {
     public override void CheckState(){
         switch(Judge.CurrentState){
-            case State.SettingUpGame:
-                OnGlow();
-                break;
+            case State.SettingUpGame://Si se pude jugar se pone verde, si no rojo
             case State.PlayingCard:
             case State.EndingTurn:
             case State.EndingRound:
                 if(Judge.CanPlay){OnGlow();}else{OffGlow();}
                 break;
-            case State.EndingGame:
+            case State.EndingGame://Cuando es el final del juego se deja en rojo
                 OffGlow();
                 break;
         }

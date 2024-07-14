@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -15,32 +13,27 @@ public class ClearWeatherCard : WeatherZoneCard
         GameObject.Find("BGPower").GetComponent<Image>().color=new Color(0.2f,0.2f,0.2f,0);
     }
     public override void TriggerSpecialEffect(){//Efecto de las cartas despeje
-        GameObject target1=this.transform.parent.GetComponent<DZWeather>().Target1;//Objetivos a los que afectan las cartas de clima
-        GameObject target2=this.transform.parent.GetComponent<DZWeather>().Target2;
-
-        for(int i=0;i<this.transform.parent.childCount-1;i++){//Deshaciendo el efecto de clima carta por carta
-            ClearZoneOfWeathers(target1);//Deshace el efecto de esa carta en el campo correspondiente de P1
-            ClearZoneOfWeathers(target2);//Deshace el efecto de esa carta en el campo correspondiente de P2
-        }
+        ClearZoneOfWeathers(this.transform.parent.GetComponent<DZWeather>().Target1);//Deshace el efecto clima en el campo correspondiente a la zona de P1
+        ClearZoneOfWeathers(this.transform.parent.GetComponent<DZWeather>().Target2);//Deshace el efecto clima en el campo correspondiente a la zona de P2
         int count=this.transform.parent.childCount;//Cantidad de hijos que tiene la zona clima
-        for(int i=0;i<count;i++){
-            Graveyard.SendToGraveyard(this.transform.parent.GetChild(0).gameObject);//Mandando las cartas de la zona para el cementerio
+        Graveyard.SendToGraveyard(GFUtils.GetCardsIn(this.transform.parent.gameObject));//Mandando las cartas de la zona para el cementerio (incluido el despeje)
+    }
+    public static void ClearZoneOfWeathers(GameObject zoneTarget){//Deshace el efecto de clima en la zona pasada como parametro
+        foreach(Transform card in zoneTarget.transform){
+            ClearCardOfWeathers(card.gameObject);
         }
     }
-    private static void ClearZoneOfWeathers(GameObject zoneTarget){//Deshace el efecto de clima en la zona
-        for(int i=0;i<zoneTarget.transform.childCount;i++){
-            ClearCardOfWeathers(zoneTarget.transform.GetChild(i).gameObject);
-        }
-    }
-    public static void ClearCardOfWeathers(GameObject affectedCard){//Deshace completamente el efecto de clima de la carta pasada como parametro
+    private static void ClearCardOfWeathers(GameObject affectedCard){//Deshace completamente el efecto de clima de la carta pasada como parametro
         if(affectedCard.GetComponent<IAffectable>()!=null){
-            int count=affectedCard.GetComponent<IAffectable>().AffectedByWeathers.Count;
-            for(int i=0;i<count;i++){
+            foreach(WeatherCard weatherCard in affectedCard.GetComponent<IAffectable>().AffectedByWeathers){//Cada carta clima que la afecta deshace su efecto
                 if(affectedCard.GetComponent<CardWithPower>()!=null){
-                    affectedCard.GetComponent<CardWithPower>().AddedPower+=GameObject.Find(affectedCard.GetComponent<IAffectable>().AffectedByWeathers[0]).GetComponent<WeatherCard>().damage;
+                    affectedCard.GetComponent<CardWithPower>().AddedPower+=weatherCard.Damage;
+                }else{
+                    Debug.Log("La carta afectada por efecto clima: "+affectedCard.GetComponent<Card>().CardName+" no tiene poder!");
+                    throw new System.Exception();
                 }
-                affectedCard.GetComponent<IAffectable>().AffectedByWeathers.RemoveAt(0);
             }
+            affectedCard.GetComponent<IAffectable>().AffectedByWeathers.Clear();//Esta carta ya no es afectada por ninguna carta clima
         }
     }
 }

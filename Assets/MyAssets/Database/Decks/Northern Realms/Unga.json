@@ -1,7 +1,6 @@
 {
   "faction": "Northern Realms",
   "cardName": "Unga",
-  "description": "Esta es una carta creada",
   "effectDescription": "Esta es una carta creada",
   "powerPoints": 30,
   "scriptComponent": "SilverCard",

@@ -57,7 +57,6 @@ public class JsonToCards : StateListener
         //Card Properties
         newCard.GetComponent<Card>().Faction=cardSave.faction;//Faction
         newCard.GetComponent<Card>().CardName=cardSave.cardName;//Name
-        newCard.GetComponent<Card>().Description=cardSave.description;//Description
         newCard.GetComponent<Card>().EffectDescription=cardSave.effectDescription;//EffectDescription
         newCard.GetComponent<Card>().OnActivationName=cardSave.onActivationName;
 
@@ -76,16 +75,16 @@ public class JsonToCards : StateListener
 
         //power || damage || boost
         if(newCard.GetComponent<CardWithPower>()!=null){//Si la carta instanciada es de poder
-            newCard.GetComponent<CardWithPower>().power=cardSave.powerPoints;
+            newCard.GetComponent<CardWithPower>().Power=cardSave.powerPoints;
         }else if(newCard.GetComponent<WeatherCard>()!=null){//Si es clima
-            newCard.GetComponent<WeatherCard>().damage=cardSave.powerPoints;
+            newCard.GetComponent<WeatherCard>().Damage=cardSave.powerPoints;
         }else if(newCard.GetComponent<BoostCard>()!=null){//Si es aumento
-            newCard.GetComponent<BoostCard>().boost=cardSave.powerPoints;
+            newCard.GetComponent<BoostCard>().Boost=cardSave.powerPoints;
         }
 
         //zones && quality
         if(newCard.GetComponent<UnitCard>()!=null){
-            newCard.GetComponent<UnitCard>().whichZone=(ZonesUC)Enum.Parse(typeof(ZonesUC),cardSave.zones);//Convierte el string guardado en cardSave a un tipo del enum zones y lo asigna a la carta
+            newCard.GetComponent<UnitCard>().WhichZone=(UnitCardZone)Enum.Parse(typeof(UnitCardZone),cardSave.zones);//Convierte el string guardado en cardSave a un tipo del enum zones y lo asigna a la carta
         }
     }
 }

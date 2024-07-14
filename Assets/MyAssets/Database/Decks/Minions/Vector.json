@@ -1,7 +1,6 @@
 {
     "faction": "Minions",
     "cardName": "Vector",
-    "description": "Comparado al macho, este es muy gay, no muere de la manera mas macha posible, solo se quedo botado en la luna",
     "effectDescription": "Cuando esta carta es jugada manda al cementerio a la carta de menor poder del rival",
     "powerPoints": 30,
     "scriptComponent": "GoldCard",

@@ -55,7 +55,6 @@ public static class ProcessCard
         {
             faction = cardProperties["Faction"],
             cardName = cardProperties["Name"],
-            description="Esta es una carta creada",
             effectDescription="Esta es una carta creada",
             powerPoints=power,
             scriptComponent=GetCardComponentFromCode(cardProperties["Type"]),

@@ -1,7 +1,6 @@
 {
     "faction": "Minions",
     "cardName": "Minion Bebe",
-    "description": "Demasiado pequeno para pelear, Gru le hallo otra utilidad",
     "effectDescription": "Esta carta se puede intercambiar con otra en el campo propio (solo con unidades de plata)",
     "powerPoints": 0,
     "scriptComponent": "BaitCard",

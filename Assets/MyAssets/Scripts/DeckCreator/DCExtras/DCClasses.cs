@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 [System.Serializable]
 public class CardSave{//Clase para guardar todas las propiedades de una carta
     public string faction;//Faccion de la carta
     public string cardName;//Nombre de la carta
-    public string description;//Descripcion de la carta
     public string effectDescription;//Descripcion del efecto
     public int powerPoints;//Puntos de la carta sea para el power de las cartas unidades, damage de climas o boost de las cartas aumento
     public string scriptComponent;//Nombre del script de la carta

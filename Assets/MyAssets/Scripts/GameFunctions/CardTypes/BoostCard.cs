@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -7,12 +5,12 @@ using TMPro;
 public class BoostCard : Card, IShowZone, ISpecialCard
 {
     public override Color GetCardViewColor(){return new Color(0.4f,1,0.3f);}
-    public int boost;//Cant de poder aumentado cuando una carta es afectada por el aumento
+    public int Boost;//Cantidad de poder aumentado cuando una carta es afectada por el aumento
     public override void LoadInfo(){
         base.LoadInfo();
         GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="[A]";
 
-        GameObject.Find("Power").GetComponent<TextMeshProUGUI>().text="+"+boost;
+        GameObject.Find("Power").GetComponent<TextMeshProUGUI>().text="+"+Boost;
         GameObject.Find("BGPower").GetComponent<Image>().color=new Color(0.2f,0.2f,0.2f,1);
 
         GameObject.Find("AddedPower").GetComponent<TextMeshProUGUI>().text="";
@@ -21,19 +19,11 @@ public class BoostCard : Card, IShowZone, ISpecialCard
     public override bool IsPlayable{get=>this.transform.parent.gameObject.GetComponent<DZBoost>()!=null;}
     public void TriggerSpecialEffect(){//Efecto de las cartas aumento
         GameObject target=this.transform.parent.GetComponent<DZBoost>().Target;//Objetivo padre de las cartas a las que anadirle poder
-        for(int i=0;i<target.transform.childCount;i++){
-            if(target.transform.GetChild(i).GetComponent<IAffectable>()!=null){//Si es afectable
-                target.transform.GetChild(i).GetComponent<CardWithPower>().AddedPower+=this.GetComponent<BoostCard>().boost;//Aumenta el poder
+        foreach(Transform card in target.transform){
+            if(card.GetComponent<IAffectable>()!=null){//Si es afectable
+                card.GetComponent<CardWithPower>().AddedPower+=this.GetComponent<BoostCard>().Boost;//Aumenta el poder
             }
         }
-        Graveyard.SendToGraveyard(this.gameObject);//Envia la carta usada al cementerio
-    }
-    public void ShowZone(){
-        DZBoost[] boostZones=GameObject.FindObjectsOfType<DZBoost>();//Se crea un array de todas las zonas de aumento
-        foreach(DZBoost boostZone in boostZones){
-            if(boostZone.ValidPlayer==GetComponent<Card>().WhichPlayer){//Si la zona es del jugador
-                boostZone.OnGlow();//Se ilumina
-            }
-        }
+        Graveyard.SendToGraveyard(this.gameObject);//Envia la carta de aumento al cementerio
     }
 }

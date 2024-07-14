@@ -1,15 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using TMPro;
 //Script para el audio
 public class AudioManager : MonoBehaviour
 {
     [SerializeField] AudioSource musicSource;//Declara un campo en el objeto que lo contiene
     public AudioClip backgroundMusic;//Clip de audio
-
     void Start(){
         this.gameObject.GetComponent<AudioSource>().volume=PlayerPrefs.GetFloat("allVolume");//Se accede al volumen preferido del jugador y se actualiza
         musicSource.clip=backgroundMusic;//Se asigna el clip de audio al campo musicSource

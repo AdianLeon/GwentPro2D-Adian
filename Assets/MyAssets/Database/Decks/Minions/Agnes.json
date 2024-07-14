@@ -1,7 +1,6 @@
 {
     "faction": "Minions",
     "cardName": "Agnes",
-    "description": "Le encantan los unicornios, cree que Kyle es adorable",
     "effectDescription": "Esta carta se puede intercambiar con otra en el campo propio (solo con unidades de plata)",
     "powerPoints": 0,
     "scriptComponent": "BaitCard",

@@ -9,7 +9,6 @@ public class DeckView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public string faction;//Faccion (Nombre del deck)
     public string cardName;//Nombre a mostrar en el objeto gigante a la izquierda del campo
-    public string description;//Descripcion de la carta a mostrar en el objeto gigante a la izquierda del campo
     public string effectDescription;//Descripcion del efecto
     public Sprite artwork;//Imagen relacionada con la carta para mostrar en grande en el objeto gigante a la izquierda del campo
     private Color cardColor;
@@ -75,13 +74,8 @@ public class DeckView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         //Name
         GameObject.Find("CardName").GetComponent<TextMeshProUGUI>().text=this.cardName;
         //Description
-        GameObject.Find("CardDescription").GetComponent<TextMeshProUGUI>().text=this.description;
-        //EffectDescription
-        if(this.effectDescription.Length>0){//Si tiene descripcion de efecto
-            GameObject.Find("Effect Description").GetComponent<TextMeshProUGUI>().text=this.effectDescription;
-        }else{//Caso contrario para evitar dejar el efecto escrito en el objeto; se escribe que no tiene efecto
-            GameObject.Find("Effect Description").GetComponent<TextMeshProUGUI>().text="Esta carta no tiene efecto";
-        }
+        GameObject.Find("CardDescription").GetComponent<TextMeshProUGUI>().text=this.effectDescription;
+        
         this.GetComponent<Image>().color=new Color (0.75f,0.75f,0.75f,1);//La carta se sombrea cuando se pasa por encima
     }
     public void OnPointerExit(PointerEventData eventData){

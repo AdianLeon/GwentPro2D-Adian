@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using TMPro;
 //Script para algunos efectos cuando se pase el mouse por encima de la carta
 public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -14,23 +10,19 @@ public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         selectedCard=this.gameObject;
         selectedCard.GetComponent<Card>().OffGlow();//La carta se sombrea cuando pasamos por encima
         selectedCard.GetComponent<Card>().LoadInfo();//Se carga toda la informacion de esta carta en el CardView
-        if(Judge.CanPlay && selectedCard.GetComponent<Dragging>()!=null){//Si el jugador puede jugar
-            if(!Dragging.IsOnDrag && selectedCard.GetComponent<Dragging>().IsOnHand){//Si no se esta arrastrando ninguna carta y ademas esta en la mano
-                VisualEffects.ZonesGlow(selectedCard);//Se ilumina la zona donde se puede soltar
-            }
-        }
+
+        if(!Judge.CanPlay){return;}//Si no se pude jugar
+        if(selectedCard.GetComponent<Dragging>()==null){return;}//Si no tiene componente Dragging
+        if(Dragging.IsOnDrag){return;}//Si se esta arrastrando
+        if(!selectedCard.GetComponent<Dragging>().IsOnHand){return;}//Si no esta en la mano
+
+        //Si el jugador puede jugar, tiene componente Dragging, no se esta arrastrando ninguna carta y ademas esta en la mano
+        selectedCard.GetComponent<IShowZone>()?.ShowZone();//Se iluminan las zonas donde la carta se puede soltar
     }
     public void OnPointerExit(PointerEventData eventData){//Se llama cuando el mouse sale de la carta
-        VisualEffects.AllGlowOff();//Se dessombrean todas las cartas jugadas y se desactiva la iluminacion de todas las zonas
-
+        GFUtils.GlowOff();//Se dessombrean todas las cartas jugadas y se desactiva la iluminacion de todas las zonas
         selectedCard.GetComponent<Card>().OnGlow();//La carta se dessombrea
         selectedCard=null;//Ya no se esta encima de ninguna carta
-
-        if(Dragging.IsOnDrag){//Se actualiza el mensaje en pantalla
-            GFUtils.UserRead.Write(". . .");
-        }else{
-            GFUtils.UserRead.WriteRoundInfo();
-        }
     }
 
 }

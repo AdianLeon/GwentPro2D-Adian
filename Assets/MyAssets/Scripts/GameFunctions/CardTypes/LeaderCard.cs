@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -8,14 +6,12 @@ public class LeaderCard : Card
 {
     public override Color GetCardViewColor(){return new Color(0.7f,0.1f,0.5f);}
     private bool hasUsedSkill;//Si la habilidad ha sido usada
-    public static void ResetAllLeaderSkills(){
+    public static void ResetAllLeaderSkills(){//Resetea el uso de todas las habilidades de lider
         LeaderCard[] leaderCards=GameObject.FindObjectsOfType<LeaderCard>();
         foreach(LeaderCard leaderCard in leaderCards){leaderCard.hasUsedSkill=false;}
     }
-    private Button thisLeaderButton;//El boton del objeto
     void Awake(){
-        thisLeaderButton=GetComponent<Button>();
-        thisLeaderButton.onClick.AddListener(OnButtonClick);//Ejecuta el metodo OnButtonClick cuando el boton se presione
+        GetComponent<Button>().onClick.AddListener(OnButtonClick);//Ejecuta el metodo OnButtonClick cuando el boton se presione
     }
     public override void LoadInfo(){
         base.LoadInfo();
@@ -29,23 +25,18 @@ public class LeaderCard : Card
     }
     public override bool IsPlayable{get{
         if(!Judge.CanPlay){//Si no se puede jugar
-            GFUtils.UserRead.WriteRoundInfo();
-            return false;
-        }
+            GFUtils.UserRead.WriteRoundInfo();return false;}
         if(WhichPlayer!=Judge.GetPlayer){//Si no coincide en campo con el jugador que lo presiona
-            GFUtils.UserRead.Write("Ese no es el lider de tu deck");
-            return false;
-        }
+            GFUtils.UserRead.Write("Ese no es el lider de tu deck");return false;}
         if(hasUsedSkill){//Si la habilidad de este lider ya ha sido usada previamente
-            GFUtils.UserRead.LongWrite("La habilidad del lider: "+CardName+" ya ha sido usada. La habilidad de lider solo puede ser usada una vez por partida");
-            return false;
-        }
+            GFUtils.UserRead.Write("La habilidad del lider: "+CardName+" ya ha sido usada. La habilidad de lider solo puede ser usada una vez por partida");return false;}
+        
         return true;
     }}
     private void OnButtonClick(){//Se llama cuando se presiona en el lider
         if(IsPlayable){//Si se puede jugar
-            Judge.PlayCard(this.gameObject);
             hasUsedSkill=true;
+            Judge.PlayCard(this.gameObject);
         }
     }
 }

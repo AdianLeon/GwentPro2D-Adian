@@ -1,7 +1,6 @@
 {
     "faction": "Minions",
     "cardName": "Inyeccion de minion purpura",
-    "description": "Vuelve a los minions aun mas malvados",
     "effectDescription": "Aumenta el poder de las cartas de la fila seleccionada en 1",
     "powerPoints": 15,
     "scriptComponent": "BoostCard",
