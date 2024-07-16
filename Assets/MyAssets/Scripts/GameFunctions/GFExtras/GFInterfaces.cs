@@ -1,10 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 //Script que declara las interfaces a utilizar
-interface ISpecialCard{//Para las cartas con efecto especial
+interface IEffect{//Para los efectos
+    string GetEffectDescription{get;}
+}
+interface ISpecialCard : IEffect{//Para las cartas con efecto especial
     void TriggerSpecialEffect();//Este metodo se llama cuando se desee activar el efecto especial
 }
-interface ICardEffect{//Para los scripts que describen un efecto de carta
+interface ICardEffect : IEffect{//Para los scripts que describen un efecto de carta
     void TriggerEffect();//Este metodo se llama cuando se desee activar el efecto de carta
 }
 interface IAffectable{//Para las cartas que sean afectables por efectos de cartas especiales

@@ -6,7 +6,7 @@ public class SilverCard : UnitCard, IAffectable
 {
     private List<WeatherCard> affectedByWeathers=new List<WeatherCard>();
     public List<WeatherCard> AffectedByWeathers{get=>affectedByWeathers; set=>affectedByWeathers=value;}
-    public override Color GetCardViewColor(){return new Color(0.8f,0.8f,0.8f);}
+    public override Color GetCardViewColor=>new Color(0.8f,0.8f,0.8f);
     public override void LoadInfo(){
         base.LoadInfo();
         GameObject.Find("Quality").GetComponent<Image>().sprite=Resources.Load<Sprite>("SilverQuality");

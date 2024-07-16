@@ -4,8 +4,8 @@ using TMPro;
 //Script para mostrar mensajes en un objeto llamado UserRead
 public class UserRead : StateListener
 {
-    private List<string> messages;//Lista de mensajes
-    private int currentMessage;//Indexador que escoge el mensaje a mostrar en la lista
+    private static List<string> messages;//Lista de mensajes
+    private static int currentMessage;//Indexador que escoge el mensaje a mostrar en la lista
     public override void CheckState(){
         switch(Judge.CurrentState){
             case State.SettingUpGame://Cuando inicia el juego limpia la lista y escribe un mensaje inicial
@@ -26,7 +26,7 @@ public class UserRead : StateListener
         if(Input.GetKeyDown(KeyCode.LeftArrow)){PreviousMessage();}
         if(Input.GetKeyDown(KeyCode.RightArrow)){NextMessage();}
     }
-    private void UpdateMessage(){//Actualiza el mensaje del UserRead con el mensaje seleccionado
+    private static void UpdateMessage(){//Actualiza el mensaje del UserRead con el mensaje seleccionado
         Show(messages[currentMessage]);
         GameObject.Find("MessageNumber").GetComponent<TextMeshProUGUI>().text=(currentMessage+1).ToString()+"/"+messages.Count;
     }
@@ -40,15 +40,15 @@ public class UserRead : StateListener
         if(currentMessage>messages.Count-1){currentMessage=messages.Count-1;}
         UpdateMessage();
     }
-    public void Show(string passedMessage){//Muestra el mensaje pasado como parametro en el UserRead directamente
+    public static void Show(string passedMessage){//Muestra el mensaje pasado como parametro en el UserRead directamente
         GameObject.Find("UserRead").GetComponent<TextMeshProUGUI>().text=passedMessage;
     }
-    public void Write(string passedMessage){//Se llama cuando se desea poner un mensaje en el UserRead, pero si se ha escrito un mensaje Long en los ultimos 2s entonces no puede mostrarse
+    public static void Write(string passedMessage){//Se llama cuando se desea poner un mensaje en el UserRead, pero si se ha escrito un mensaje Long en los ultimos 2s entonces no puede mostrarse
         messages.Add(passedMessage);
         currentMessage=messages.Count-1;
         UpdateMessage();
     }
-    public void WriteRoundInfo(){//Se llama cuando se desea escribir la informacion de ronda
+    public static void WriteRoundInfo(){//Se llama cuando se desea escribir la informacion de ronda
         if(Judge.GetTurnActionsCount==0 && Judge.IsLastTurn){//Si no se han jugado cartas y es el ultimo turno
             Write("Turno de "+Judge.GetPlayer+", es el ultimo turno antes de que se acabe la ronda");
         }else if(Judge.GetTurnActionsCount==0){//Si no es el ultimo turno pero no se han jugado cartas

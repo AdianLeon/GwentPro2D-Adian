@@ -1,7 +1,6 @@
 {
   "faction": "Northern Realms",
   "cardName": "Unga",
-  "effectDescription": "Esta es una carta creada",
   "powerPoints": 30,
   "scriptComponent": "SilverCard",
   "onActivationName": "Northern Realms/UngaOnActivation.json",

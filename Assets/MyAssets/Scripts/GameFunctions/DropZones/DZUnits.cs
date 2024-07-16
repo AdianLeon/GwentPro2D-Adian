@@ -10,7 +10,7 @@ public class DZUnits : DropZone
         if(card.GetComponent<UnitCard>()==null){//Si no es carta de unidad
             return false;
         }
-        if(GFUtils.GetField(this.name)!=card.GetComponent<Card>().WhichPlayer){//Si los campos no coinciden
+        if(gameObject.Field()!=card.GetComponent<Card>().WhichPlayer){//Si los campos no coinciden
             return false;
         }
         if(!card.GetComponent<UnitCard>().WhichZone.ToString().Contains(GetValidZone.ToString())){//Si esta zona no es una de las de la carta

@@ -1,7 +1,6 @@
 {
     "faction": "Minions",
     "cardName": "Ninas",
-    "effectDescription": "",
     "powerPoints": 20,
     "scriptComponent": "SilverCard",
     "onActivationName": "",

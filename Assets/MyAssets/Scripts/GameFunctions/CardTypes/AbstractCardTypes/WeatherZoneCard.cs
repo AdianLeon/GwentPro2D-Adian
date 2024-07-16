@@ -2,9 +2,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 //Script para los comportamientos que comparten las cartas que seran jugadas en la zona de climas
-public abstract class WeatherZoneCard : Card, IShowZone, ISpecialCard
+public abstract class WeatherZoneCard : DraggableCard, IShowZone, ISpecialCard
 {
-    public override bool IsPlayable{get=>this.transform.parent.gameObject.GetComponent<DZWeather>()!=null;}//Son jugables si se encuentran en una zona de clima
+    public abstract string GetEffectDescription{get;}
+    public override bool IsPlayable=>this.transform.parent.gameObject.GetComponent<DZWeather>()!=null;//Son jugables si se encuentran en una zona de clima
     public override void LoadInfo(){//No tienen AddedPower
         base.LoadInfo();
 

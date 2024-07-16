@@ -1,7 +1,6 @@
 {
     "faction": "Minions",
     "cardName": "Manzana",
-    "effectDescription": "Aumenta el poder de las cartas de la fila seleccionada",
     "powerPoints": 20,
     "scriptComponent": "BoostCard",
     "onActivationName": "",

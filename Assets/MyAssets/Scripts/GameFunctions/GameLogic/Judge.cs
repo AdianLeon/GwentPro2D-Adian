@@ -27,7 +27,6 @@ public class Judge : MonoBehaviour
     }
     public static void ResetGame(){//Reinicia el juego. Este metodo es llamado por un boton llamado ResetGameButton y al inicio del juego
         LeaderCard.ResetAllLeaderSkills();//Reinicia las habilidades de los lideres
-        DeckTrade.ResetTradeCount();//Reinicia el conteo de intercambios de los decks
         turnActionsCount=0;
         isLastTurn=false;
         turnNumber=1;
@@ -69,16 +68,16 @@ public class Judge : MonoBehaviour
         if(Field.P1ForceValue>Field.P2ForceValue){//Si P1 tiene mas poder que P2 entonces P1 comienza el proximo turno
             if(playerTurn==Player.P2){SwitchTurn();}//Cambiamos los turnos ya que P1 debe comenzar el proximo
             RoundPoints.AddPointToP1();//P1 gana la ronda y obtiene un punto de ronda
-            GFUtils.UserRead.Write("P1 gano la ronda");
+            UserRead.Write("P1 gano la ronda");
         }else if(Field.P2ForceValue>Field.P1ForceValue){//Si P2 tiene mas poder que P1 entonces P2 comienza el proximo turno
             if(playerTurn==Player.P1){SwitchTurn();}//Cambiamos los turnos ya que P2 debe comenzar el proximo
             RoundPoints.AddPointToP2();//P2 gana la ronda y obtiene un punto de ronda
-            GFUtils.UserRead.Write("P2 gano la ronda");
+            UserRead.Write("P2 gano la ronda");
         }else{//Si ambos tienen igual poder ambos ganan 1 punto y la ronda continua sin afectarse
             SwitchTurn();
             RoundPoints.AddPointToP1();
             RoundPoints.AddPointToP2();
-            GFUtils.UserRead.Write("Ha ocurrido un empate");
+            UserRead.Write("Ha ocurrido un empate");
         }
         if(CheckGameWin()){//Si se gana el juego
             return;
@@ -101,7 +100,7 @@ public class Judge : MonoBehaviour
                 WinsGame(Player.P2);return true;
             }
         }else{
-            GFUtils.UserRead.Write("El proximo jugador que gane una ronda gana el juego!!");
+            UserRead.Write("El proximo jugador que gane una ronda gana el juego!!");
         }
         return false;
     }

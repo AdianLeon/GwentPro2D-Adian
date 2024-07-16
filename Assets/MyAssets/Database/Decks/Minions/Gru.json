@@ -1,7 +1,6 @@
 {
     "faction": "Minions",
     "cardName": "Gru",
-    "effectDescription": "Ordena a los minions que roben dos cartas de la mano enemiga aunque conociendo a los minions eso puede salir mal (Solo se puede activar una vez por partida)",
     "powerPoints": 0,
     "scriptComponent": "LeaderCard",
     "onActivationName": "GruEffect",

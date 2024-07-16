@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 //Script para las cartas que tienen poder, poder anadido y que se pueden afectar por efectos de cartas especiales (Cartas de unidad (oro y plata) y senuelos)
-abstract public class CardWithPower : Card
+abstract public class PowerCard : DraggableCard
 {
     public int Power;//Poder de la carta
     public int AddedPower;//Poder anadido por efectos durante el juego
-    public int TotalPower{get=>Power+AddedPower;}//Poder total
+    public int TotalPower=>Power+AddedPower;//Poder total
     public override void LoadInfo(){
         base.LoadInfo();
         //Power

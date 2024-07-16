@@ -1,7 +1,6 @@
 {
     "faction": "Minions",
     "cardName": "Doctor Nefario",
-    "effectDescription": "",
     "powerPoints": 25,
     "scriptComponent": "SilverCard",
     "onActivationName": "",

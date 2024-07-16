@@ -10,7 +10,7 @@ public class DZBoost : DropZone
         if(card.GetComponent<BoostCard>()==null){//Si la carta no es un aumento
             return false;
         }
-        if(GFUtils.GetField(this.name)!=card.GetComponent<Card>().WhichPlayer){//Si es del jugador incorrecto
+        if(gameObject.Field()!=card.GetComponent<Card>().WhichPlayer){//Si es del jugador incorrecto
             return false;
         }
         return true;

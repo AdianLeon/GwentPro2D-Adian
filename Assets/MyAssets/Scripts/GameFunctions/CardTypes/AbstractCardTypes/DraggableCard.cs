@@ -2,18 +2,18 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 //Script para el arrastre de las cartas
-public class Dragging : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public abstract class DraggableCard : Card, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    public override abstract bool IsPlayable{get;}
     private Transform parentToReturnTo=null;//Padre al que volver cuando se acaba el arrastre
-    private GameObject GetHand{get=>GameObject.Find("Hand"+this.gameObject.GetComponent<Card>().WhichPlayer);}//Devuelve la mano de la carta
-    public bool IsOnHand{get=>this.gameObject.transform.parent.gameObject==GetHand;}//Devuelve si la carta se encuentra en la mano
+    public bool IsOnHand=>transform.parent.gameObject==GameObject.Find("Hand"+this.gameObject.GetComponent<Card>().WhichPlayer);//Devuelve si la carta se encuentra en la mano
     private GameObject placeholder=null;//El espacio que deja la carta en la mano cuando se arrastra
     private static bool onDrag;//Si se esta arrastrando una carta
     public static bool IsOnDrag{get=>onDrag;}
     public void OnBeginDrag(PointerEventData eventData){//Este metodo se llama cuando empieza el arrastre de la carta
         if(IsOnHand && Judge.CanPlay){//Solo si esta en la mano y se puede jugar
             onDrag=true;//Comenzamos el arrastre
-            GFUtils.UserRead.Show(". . .");
+            UserRead.Show(". . .");
             //Guarda la posicion a la que volver si soltamos en lugar invalido y crea un espacio en el lugar de la carta
             placeholder=new GameObject();//Crea el placeholder y le asigna los mismos valores que a la carta y la posicion de la carta
             placeholder.transform.SetParent(this.transform.parent);

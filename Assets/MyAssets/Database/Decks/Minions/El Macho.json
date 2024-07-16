@@ -1,7 +1,6 @@
 {
     "faction": "Minions",
     "cardName": "El Macho",
-    "effectDescription": "Cuando esta carta es jugada manda al cementerio a la carta de mayor poder (no se incluye a si misma)",
     "powerPoints": 35,
     "scriptComponent": "GoldCard",
     "onActivationName": "MostPowerEffect",

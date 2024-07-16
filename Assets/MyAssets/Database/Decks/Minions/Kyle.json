@@ -1,7 +1,6 @@
 {
     "faction": "Minions",
     "cardName": "Kyle",
-    "effectDescription": "Cuando esta carta es jugada su poder es multiplicado por la cantidad de cartas iguales a ella jugadas en el campo (contandose a si misma)",
     "powerPoints": 10,
     "scriptComponent": "SilverCard",
     "onActivationName": "MultiplyEffect",

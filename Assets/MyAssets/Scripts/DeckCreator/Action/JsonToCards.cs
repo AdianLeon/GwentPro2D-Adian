@@ -11,8 +11,7 @@ using System.Linq;
 public class JsonToCards : StateListener
 {
     private static int instantiatedCardsCount;//Cuenta de las cartas instanciadas
-    public GameObject CardPrefab;//Referencia al prefab CardPrefab 
-    public GameObject LeaderPrefab;//Referencia al prefab LeaderPrefab
+    public GameObject CardPrefab;//Referencia al prefab CardPrefab
     public override void CheckState(){
         if(Judge.CurrentState!=State.LoadingCards){return;}
         instantiatedCardsCount=0;
@@ -22,8 +21,8 @@ public class JsonToCards : StateListener
     public static void ImportDeckTo(string faction,GameObject deckPlace,GameObject Deck){//Crea todas las cartas en el directorio asignado en preferencias del jugador en el objeto
         string factionPath=Application.dataPath+"/MyAssets/Database/Decks/"+faction;
         string[] cardsJsonAddress=Directory.GetFiles(factionPath,"*.json");//Obtiene dentro del directorio del deck solo la direccion de los archivos con extension json (ignora los meta)
-        for(int i=0;i<cardsJsonAddress.Length;i++){//Para cada uno de los archivos con extension json
-            string jsonFormatCard=File.ReadAllText(cardsJsonAddress[i]);//Lee el archivo
+        foreach(string address in cardsJsonAddress){//Para cada uno de los archivos con extension json
+            string jsonFormatCard=File.ReadAllText(address);//Lee el archivo
             CardSave cardSave=JsonUtility.FromJson<CardSave>(jsonFormatCard);//Convierte el string en json a un objeto CardSave
             ImportCardTo(cardSave,deckPlace);
         }
@@ -32,14 +31,13 @@ public class JsonToCards : StateListener
     }
     public static void ImportCardTo(CardSave cardSave,GameObject deckPlace){
         GameObject newCard;
-        string player=deckPlace.name[deckPlace.name.Length-2].ToString()+deckPlace.name[deckPlace.name.Length-1].ToString();
+        Player player=deckPlace.Field();
         //Instanciando la carta
+        newCard=Instantiate(GameObject.Find("Canvas").GetComponent<JsonToCards>().CardPrefab,new Vector3(0,0,0),Quaternion.identity);//Instanciando una carta generica
         if(cardSave.scriptComponent=="LeaderCard"){//Si la carta a crear es una carta lider
-            newCard=Instantiate(GameObject.Find("Canvas").GetComponent<JsonToCards>().LeaderPrefab,new Vector3(0,0,0),Quaternion.identity);//Instanciando una carta lider generica
             newCard.transform.SetParent(GameObject.Find("LeaderZone"+player).transform);
         }else{//Si la carta no es lider
-            newCard=Instantiate(GameObject.Find("Canvas").GetComponent<JsonToCards>().CardPrefab,new Vector3(0,0,0),Quaternion.identity);//Instanciando una carta generica
-            newCard.transform.SetParent(deckPlace.transform);//Seteando esa carta generica a donde pertenece dependiendo del campo
+            newCard.transform.SetParent(deckPlace.transform);
         }
         instantiatedCardsCount++;
         newCard.name=cardSave.cardName+"("+instantiatedCardsCount.ToString()+")";//Se le cambia el nombre a uno que sera unico: el nombre de la carta junto con la cantidad de cartas instanciadas
@@ -48,34 +46,30 @@ public class JsonToCards : StateListener
         
         newCard.AddComponent(Type.GetType(cardSave.scriptComponent));
 
-        if(newCard.GetComponent<LeaderCard>()!=null){
-            newCard.GetComponent<LeaderCard>().WhichPlayer=(Player)Enum.Parse(typeof(Player),player);
-        }
-
         newCard.GetComponent<RectTransform>().localScale=new Vector3(1,1,1);//Resetea la escala porque cuando se instancia esta desproporcional al resto de objetos
         
         //Card Properties
         newCard.GetComponent<Card>().Faction=cardSave.faction;//Faction
         newCard.GetComponent<Card>().CardName=cardSave.cardName;//Name
-        newCard.GetComponent<Card>().EffectDescription=cardSave.effectDescription;//EffectDescription
-        newCard.GetComponent<Card>().OnActivationName=cardSave.onActivationName;
+        newCard.GetComponent<Card>().WhichPlayer=player;//Player
+        newCard.GetComponent<Card>().OnActivationName=cardSave.onActivationName;//OnActivation
 
         //Sprites
         newCard.GetComponent<UnityEngine.UI.Image>().sprite=Resources.Load<Sprite>(cardSave.faction+"/"+cardSave.cardName);//Carga el sprite en Assets/Resources/sourceImage en la carta
         newCard.GetComponent<Card>().Artwork=Resources.Load<Sprite>(cardSave.faction+"/"+cardSave.cardName+"Image");//Carga el sprite en Assets/Resources/artwork en la carta
 
-        if(newCard.GetComponent<UnityEngine.UI.Image>().sprite==null){
+        if(newCard.GetComponent<UnityEngine.UI.Image>().sprite==null){//Si no se encontro una imagen se selecciona una random
             string randomImagesPath = Application.dataPath + "/Resources/RandomImages";
             int max = Directory.GetFiles(randomImagesPath, "*.png").Length;
             newCard.GetComponent<UnityEngine.UI.Image>().sprite=Resources.Load<Sprite>("RandomImages/" + UnityEngine.Random.Range(1, max + 1).ToString());
         }
-        if (newCard.GetComponent<Card>().Artwork==null){
+        if (newCard.GetComponent<Card>().Artwork==null){//Si no se encontro artwork se selecciona la propia imagen
             newCard.GetComponent<Card>().Artwork=newCard.GetComponent<UnityEngine.UI.Image>().sprite;
         }
 
         //power || damage || boost
-        if(newCard.GetComponent<CardWithPower>()!=null){//Si la carta instanciada es de poder
-            newCard.GetComponent<CardWithPower>().Power=cardSave.powerPoints;
+        if(newCard.GetComponent<PowerCard>()!=null){//Si la carta instanciada es de poder
+            newCard.GetComponent<PowerCard>().Power=cardSave.powerPoints;
         }else if(newCard.GetComponent<WeatherCard>()!=null){//Si es clima
             newCard.GetComponent<WeatherCard>().Damage=cardSave.powerPoints;
         }else if(newCard.GetComponent<BoostCard>()!=null){//Si es aumento

@@ -1,7 +1,6 @@
 {
     "faction": "Minions",
     "cardName": "Muchas Bananas",
-    "effectDescription": "Se deshace de todas las cartas de clima y sus efectos en la fila seleccionada",
     "powerPoints": 0,
     "scriptComponent": "ClearWeatherCard",
     "onActivationName": "",

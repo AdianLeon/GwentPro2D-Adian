@@ -24,8 +24,6 @@ public class CardsToJson : MonoBehaviour
             //Faccion y nombre
             faction = card.GetComponent<Card>().Faction,
             cardName = card.GetComponent<Card>().CardName,
-            //Descripcion de efecto
-            effectDescription = card.GetComponent<Card>().EffectDescription,
             //Power||Damage||Boost
             powerPoints = powerPoints,
             //Nombre del script carta

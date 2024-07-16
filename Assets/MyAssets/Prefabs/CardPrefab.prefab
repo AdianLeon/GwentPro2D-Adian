@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 2561653655594927260}
   - component: {fileID: -1472689394280561588}
   - component: {fileID: -5481795835510925122}
-  - component: {fileID: 2784469696071589718}
-  - component: {fileID: -8809635103287773785}
   m_Layer: 5
   m_Name: CardPrefab
   m_TagString: Untagged
@@ -112,31 +110,3 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &2784469696071589718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1072672301799576032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86927c0ef6ddbd54aa2546f0ede00273, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-8809635103287773785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1072672301799576032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 526b0911e63726d4bb0f5e6463a5f63a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentToReturnTo: {fileID: 0}
-  hand: {fileID: 2311447886571139348, guid: b67b0eb5e889e5f4e98c8623a820d6e9, type: 3}
-  placeholder: {fileID: 0}
-  isDraggable: 0

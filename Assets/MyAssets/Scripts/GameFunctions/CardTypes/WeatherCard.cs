@@ -5,8 +5,9 @@ using TMPro;
 //Script para las cartas clima
 public class WeatherCard : WeatherZoneCard
 {
+    public override string GetEffectDescription=>"Reduce el poder de las cartas de la fila seleccionada (Para ambos campos)";
     public int Damage;//Cantidad de poder restado cuando una carta es afectada por el clima
-    public override Color GetCardViewColor(){return new Color(0.7f,0.2f,0.2f);}
+    public override Color GetCardViewColor=>new Color(0.7f,0.2f,0.2f);
     public override void LoadInfo(){
         base.LoadInfo();
         GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="[C]";
@@ -25,8 +26,8 @@ public class WeatherCard : WeatherZoneCard
             if(card.GetComponent<IAffectable>().AffectedByWeathers.Contains(this)){continue;}//Si la carta ya ha sido afectada por este clima no la consideramos
             //La carta es afectable y todavia no ha sido afectada por este clima
             card.GetComponent<IAffectable>().AffectedByWeathers.Add(this);
-            if(card.GetComponent<CardWithPower>()!=null){//Si contiene componente de carta con poder
-                card.GetComponent<CardWithPower>().AddedPower-=Damage;
+            if(card.GetComponent<PowerCard>()!=null){//Si contiene componente de carta con poder
+                card.GetComponent<PowerCard>().AddedPower-=Damage;
             }
         }
     }

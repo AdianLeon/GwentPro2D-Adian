@@ -1,7 +1,6 @@
 {
     "faction": "Minions",
     "cardName": "Vector",
-    "effectDescription": "Cuando esta carta es jugada manda al cementerio a la carta de menor poder del rival",
     "powerPoints": 30,
     "scriptComponent": "GoldCard",
     "onActivationName": "LessPowerEffect",

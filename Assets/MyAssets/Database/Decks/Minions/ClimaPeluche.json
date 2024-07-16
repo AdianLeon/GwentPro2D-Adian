@@ -1,7 +1,6 @@
 {
     "faction": "Minions",
     "cardName": "Peluche",
-    "effectDescription": "Reduce el poder de las cartas de la fila seleccionada (Para ambos campos)",
     "powerPoints": 15,
     "scriptComponent": "WeatherCard",
     "onActivationName": "",
