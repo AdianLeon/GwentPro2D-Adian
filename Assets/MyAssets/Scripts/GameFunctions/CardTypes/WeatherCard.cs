@@ -31,10 +31,4 @@ public class WeatherCard : WeatherZoneCard
             }
         }
     }
-    public static void RectivateAllWeathers(){//Reactiva los efectos de todas las cartas clima jugadas
-        List<GameObject> playedWeathers=Field.PlayedWeatherCards;
-        foreach(GameObject weather in playedWeathers){//Itera por cada uno de esos hijos
-            weather.GetComponent<WeatherCard>().TriggerSpecialEffect();//Hace que activen el efecto de clima otra vez
-        }
-    }
 }

@@ -3,6 +3,7 @@ using UnityEngine;
 //Script para las manos de los jugadores
 public class Hand : StateListener, IContainer
 {
+    public override int GetPriority=>1;
     public List <GameObject> GetCards=>gameObject.CardsInside();
     public static List<GameObject> PlayerHandCards=>GameObject.Find("Hand"+Judge.GetPlayer).GetComponent<Hand>().GetCards;//Lista de las cartas de la mano del jugador en turno
     public static List<GameObject> EnemyHandCards=>GameObject.Find("Hand"+Judge.GetEnemy).GetComponent<Hand>().GetCards;//Lista de las cartas de la mano del enemigo del jugador en turno
@@ -11,16 +12,13 @@ public class Hand : StateListener, IContainer
             case State.PlayingCard://Chequea que no hayan mas de 10 cartas en la mano y limpia a esas cartas de los efectos de clima
             case State.EndingTurn:
             case State.EndingRound:
-                UpdateHandActions();
+                ClearWeatherCard.ClearZoneOfWeathers(this.gameObject);
+                UpdateHandLimit();
                 break;
             case State.EndingGame://Al final del juego se deshace de las cartas en la mano enviandolas a la basura
                 GetCards.Disappear();
                 break;
         }
-    }
-    private void UpdateHandActions(){
-        ClearWeatherCard.ClearZoneOfWeathers(this.gameObject);
-        UpdateHandLimit();
     }
     private void UpdateHandLimit(){
         while(this.transform.childCount>10){//Si una carta no cabe en la mano

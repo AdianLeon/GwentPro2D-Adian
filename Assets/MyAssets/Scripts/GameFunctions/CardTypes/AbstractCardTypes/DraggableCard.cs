@@ -6,7 +6,7 @@ public abstract class DraggableCard : Card, IBeginDragHandler, IDragHandler, IEn
 {
     public override abstract bool IsPlayable{get;}
     private Transform parentToReturnTo=null;//Padre al que volver cuando se acaba el arrastre
-    public bool IsOnHand=>transform.parent.gameObject==GameObject.Find("Hand"+this.gameObject.GetComponent<Card>().WhichPlayer);//Devuelve si la carta se encuentra en la mano
+    public bool IsOnHand=>transform.parent.gameObject==GameObject.Find("Hand"+gameObject.GetComponent<Card>().WhichPlayer);//Devuelve si la carta se encuentra en la mano
     private GameObject placeholder=null;//El espacio que deja la carta en la mano cuando se arrastra
     private static bool onDrag;//Si se esta arrastrando una carta
     public static bool IsOnDrag{get=>onDrag;}
@@ -16,24 +16,24 @@ public abstract class DraggableCard : Card, IBeginDragHandler, IDragHandler, IEn
             UserRead.Show(". . .");
             //Guarda la posicion a la que volver si soltamos en lugar invalido y crea un espacio en el lugar de la carta
             placeholder=new GameObject();//Crea el placeholder y le asigna los mismos valores que a la carta y la posicion de la carta
-            placeholder.transform.SetParent(this.transform.parent);
+            placeholder.transform.SetParent(transform.parent);
             placeholder.AddComponent<LayoutElement>();//Crea un espacio para saber donde esta el placeholder
 
-            parentToReturnTo=this.transform.parent;//Padre al que volver, aqui guardaremos a donde la carta va cuando se suelta
-            this.transform.SetParent(GameObject.Find("Canvas").transform);//Cambia el padre de la carta al canvas para que podamos moverla libremente
+            parentToReturnTo=transform.parent;//Padre al que volver, aqui guardaremos a donde la carta va cuando se suelta
+            transform.SetParent(GameObject.Find("Canvas").transform);//Cambia el padre de la carta al canvas para que podamos moverla libremente
 
             //Activa la penetracion de la carta por el puntero para que podamos soltarla
-            this.gameObject.GetComponent<CanvasGroup>().blocksRaycasts=false;
+            gameObject.GetComponent<CanvasGroup>().blocksRaycasts=false;
         }
     }
     public void OnDrag(PointerEventData eventData){//Este metodo se llama continuamente mientras se arrastra la carta
         if(onDrag){//Solo si se esta arrastrando
-            this.gameObject.GetComponent<IShowZone>()?.ShowZone();//Haciendo que las zonas donde se pueda soltar la carta "brillen"
+            gameObject.GetComponent<IShowZone>()?.ShowZone();//Haciendo que las zonas donde se pueda soltar la carta "brillen"
 
-            this.transform.position=eventData.position;//Actualiza la posicion de la carta con la del puntero
+            transform.position=eventData.position;//Actualiza la posicion de la carta con la del puntero
             int newSiblingIndex=parentToReturnTo.childCount;//Guarda el indice del espacio de la derecha
             for(int i=0;i<parentToReturnTo.childCount;i++){//Chequeando constantemente si se esta a la izquierda de cada una de las cartas de la mano
-                if(this.transform.position.x<parentToReturnTo.GetChild(i).position.x){//Si la carta arrastrada esta a la izquierda
+                if(transform.position.x<parentToReturnTo.GetChild(i).position.x){//Si la carta arrastrada esta a la izquierda
                     newSiblingIndex=i;//Actualiza el valor guardado con el actual
                     if(placeholder.transform.GetSiblingIndex()<newSiblingIndex){//Si la posicion del placeholder es menor que la guardada
                         newSiblingIndex--;
@@ -49,14 +49,13 @@ public abstract class DraggableCard : Card, IBeginDragHandler, IDragHandler, IEn
             onDrag=false;//Terminamos el arrastre
             DropCardOnZone(parentToReturnTo.gameObject);//Mueve la carta a donde se determino
             if(IsOnHand){//Si la carta cae de nuevo en la mano
-                this.transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());//Posiciona la carta en la mano
+                transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());//Posiciona la carta en la mano
             }
             DestroyPlaceholder();//Destruye el espacio creado
-
-            if(this.gameObject.GetComponent<Card>().IsPlayable){//Si las condiciones para jugar esa carta se cumplen
-                Judge.PlayCard(this.gameObject);//Juega la carta
+            if(IsPlayable){//Si las condiciones para jugar esa carta se cumplen
+                Play();//Juega la carta
             }
-            this.GetComponent<CanvasGroup>().blocksRaycasts=true;//Desactiva la penetracion de la carta para que podamos mostrarla o arrastrarla de nuevo
+            GetComponent<CanvasGroup>().blocksRaycasts=true;//Desactiva la penetracion de la carta para que podamos mostrarla o arrastrarla de nuevo
             GFUtils.GlowOff();//Desactivamos el glow de cualquier objeto que hayamos iluminado
         }
     }
@@ -67,10 +66,10 @@ public abstract class DraggableCard : Card, IBeginDragHandler, IDragHandler, IEn
     }
     public void DropCardOnZone(GameObject zone){//Si la supuesta zona es valida entonces la carta ira alli
         if(zone.GetComponent<DropZone>()!=null || zone.GetComponent<IContainer>()!=null || zone.name=="Trash"){
-            this.transform.SetParent(zone.transform);
+            transform.SetParent(zone.transform);
             parentToReturnTo=zone.transform;
         }else{//Si la carta se envio a una zona invalida
-            Debug.Log(this.gameObject.name+" tried to go to : "+zone.name+". Throwing error...");
+            Debug.Log(gameObject.name+" tried to go to : "+zone.name+". Throwing error...");
             throw new System.Exception();
         }
     }

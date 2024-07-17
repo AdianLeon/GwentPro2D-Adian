@@ -1,68 +1,67 @@
+using System;
 using UnityEngine;
 //Script que simula un juez, se encarga del manejo de estados, la logica de turnos, rondas y condicion de victoria
 public class Judge : MonoBehaviour
 {
-    private static State currentSate;//Estado actual del juego
-    public static State CurrentState{get=>currentSate;private set{//Si se desea obtener el estado se devuelve sin problemas sin embargo solo el juez puede cambiar el estado
-        currentSate=value;
-        Debug.Log("State changed to "+Judge.CurrentState);
-        StateListener[] scripts=Resources.FindObjectsOfTypeAll<StateListener>();//Se buscan todos los StateListener
-        foreach(StateListener script in scripts){script.CheckState();}//Se hace reaccionar a todos los StateListener ante el nuevo estado
-        currentSate=State.WaitingPlayerAction;//Se espera la proxima accion del jugador
+    private static StateListener[] stateListeners;
+    private static State currentState;//Estado actual del juego
+    public static State CurrentState{get=>currentState;private set{//Si se desea obtener el estado se devuelve sin problemas sin embargo solo el juez puede cambiar el estado
+        currentState=value;
+        Debug.Log("State changed to "+currentState);
+        foreach(StateListener script in stateListeners){Debug.Log("CheckingState: "+script+" priority: "+script.GetPriority);script.CheckState();}
+        currentState=State.WaitingPlayerAction;//Se espera la proxima accion del jugador
     }}
-    private static int turnNumber;//Numero de turnos
-    public static int GetTurnNumber{get=>turnNumber;}
+    public static void PlayCard(){//Se llama cuando se juega una carta
+        hasPlayed=true;//El jugador acaba de jugar una carta
+        CurrentState=State.PlayingCard;
+    }
+    private static bool isFirstTurnOfPlayer;//Si es el primer turno de ese jugador
+    public static bool IsFirstTurnOfPlayer=>isFirstTurnOfPlayer;
     private static Player playerTurn;//Jugador en turno
-    public static Player GetPlayer{get=>playerTurn;}//Devuelve el jugador en turno
-    public static Player GetEnemy{get=>playerTurn==Player.P1? Player.P2 : Player.P1;}//Devuelve el enemigo del jugador en turno
-    private static int turnActionsCount;//Cantidad de acciones realizadas en el turno
-    public static int GetTurnActionsCount{get=>turnActionsCount;}
-    private static bool isLastTurn;//Si es o no el ultimo turno antes de que acabe la ronda
-    public static bool IsLastTurn{get=>isLastTurn;}
-    public static bool CanPlay{get=>turnActionsCount==0 || isLastTurn;}
+    public static Player GetPlayer=>playerTurn;//Devuelve el jugador en turno
+    public static Player GetEnemy=>playerTurn==Player.P1? Player.P2 : Player.P1;//Devuelve el enemigo del jugador en turno
+    public static bool hasPlayed;//Si se ha jugado en el turno
+    public static bool HasPlayed=>hasPlayed;
+    private static bool isLastTurnOfRound;//Si es o no el ultimo turno antes de que acabe la ronda
+    public static bool IsLastTurnOfRound=>isLastTurnOfRound;
+    public static bool CanPlay=>!hasPlayed || isLastTurnOfRound;
     private static float lastClickTime;
     void Start(){//En el inicio de la escena se cargan las cartas y se reinicia el juego
+        stateListeners=Resources.FindObjectsOfTypeAll<StateListener>();
+        Array.Sort(stateListeners);
         CurrentState=State.LoadingCards;
         ResetGame();
     }
     public static void ResetGame(){//Reinicia el juego. Este metodo es llamado por un boton llamado ResetGameButton y al inicio del juego
         LeaderCard.ResetAllLeaderSkills();//Reinicia las habilidades de los lideres
-        turnActionsCount=0;
-        isLastTurn=false;
-        turnNumber=1;
+        hasPlayed=false;
+        isLastTurnOfRound=false;
+        isFirstTurnOfPlayer=true;
         playerTurn=Player.P1;//El Player 1 inicia la partida siempre
         CurrentState=State.SettingUpGame;
     }
     void Update(){
         ListenToSpaceBarPress();
     }
-    private void ListenToSpaceBarPress(){//Acaba el turno cuando se presiona espacio, pero con una diferencia de tiempo de 0.3s entre pulsaciones
+    private static void ListenToSpaceBarPress(){//Acaba el turno cuando se presiona espacio, pero con una diferencia de tiempo de 0.3s entre pulsaciones
         if(Input.GetKeyDown(KeyCode.Space) && Time.time-lastClickTime>0.3f){
+            if(isLastTurnOfRound){//Se entra cuando se acaba la ronda 
+            NextRound();
+            return;
+            }
             EndTurn();
             lastClickTime=Time.time;
         }
     }
-    public static void EndTurn(){//Se llama con cada pase
-        if(isLastTurn){//Se entra cuando se acaba la ronda 
-            NextRound();
-            return;
-        }
-        if(turnActionsCount==0){//Detecta caundo un jugador pasa sin jugar
+    public static void EndTurn(){//Se llama con cada click en el boton PASS o cuando se presiona espacio
+        if(!hasPlayed){//Detecta caundo un jugador pasa sin jugar
             SwitchTurn();
-            isLastTurn=true;//Activa el modo ultimo turno, cuando se presione el pass de nuevo se acabara la ronda
+            isLastTurnOfRound=true;//Activa el modo ultimo turno, cuando se presione el pass de nuevo se acabara la ronda
         }else{
             SwitchTurn();
         }
+        hasPlayed=false;
         CurrentState=State.EndingTurn;
-    }
-    public static void PlayCard(GameObject card){//Juega la carta
-        //Si la carta tiene efecto de carta especial, que se active
-        card.GetComponent<ISpecialCard>()?.TriggerSpecialEffect();
-
-        Execute.DoEffect(card,card.GetComponent<Card>().OnActivationName);//Se ejecuta el efecto en del OnActivation
-        turnActionsCount++;//Se anade una accion de turno
-        CurrentState=State.PlayingCard;
-        card.GetComponent<Card>().LoadInfo();
     }
     private static void NextRound(){//Proxima ronda
         if(Field.P1ForceValue>Field.P2ForceValue){//Si P1 tiene mas poder que P2 entonces P1 comienza el proximo turno
@@ -82,17 +81,16 @@ public class Judge : MonoBehaviour
         if(CheckGameWin()){//Si se gana el juego
             return;
         }
-        isLastTurn=false;
-        turnActionsCount=0;
+        isLastTurnOfRound=false;
+        hasPlayed=false;
         CurrentState=State.EndingRound;
     }
     private static void SwitchTurn(){//Se cambia de turno
         playerTurn=GetEnemy;//Es el turno del contrario
-        if(playerTurn==Player.P1){turnNumber++;}
-        turnActionsCount=0;
+        if(playerTurn==Player.P1){isFirstTurnOfPlayer=false;}
     }
     //Condicion de victoria
-    public static bool CheckGameWin(){//Chequea quien ha ganado el juego
+    private static bool CheckGameWin(){//Chequea quien ha ganado el juego
         if(RoundPoints.GetRPointsP1!=RoundPoints.GetRPointsP2){//Si la puntuacion es diferente (esto obliga a que el juego siga hasta que haya una ventaja)
             if(RoundPoints.GetRPointsP1>1){//El primero que llegue a 2 puntos de ronda gana
                 WinsGame(Player.P1);return true;
@@ -105,7 +103,7 @@ public class Judge : MonoBehaviour
         return false;
     }
     private static void WinsGame(Player player){//El jugador gana la partida
-        playerTurn=player;//Se guarda en playerTurn el jugador ganador para que otros scripts puedan acceder al ganador del juego mediante GetPlayerTurn
+        playerTurn=player;//Se guarda en playerTurn el jugador ganador para que otros stateListeners puedan acceder al ganador del juego mediante GetPlayerTurn
         CurrentState=State.EndingGame;
     }
 }

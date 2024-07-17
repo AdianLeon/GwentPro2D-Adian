@@ -4,6 +4,7 @@ using TMPro;
 //Script para mostrar mensajes en un objeto llamado UserRead
 public class UserRead : StateListener
 {
+    public override int GetPriority=>1;
     private static List<string> messages;//Lista de mensajes
     private static int currentMessage;//Indexador que escoge el mensaje a mostrar en la lista
     public override void CheckState(){
@@ -26,6 +27,17 @@ public class UserRead : StateListener
         if(Input.GetKeyDown(KeyCode.LeftArrow)){PreviousMessage();}
         if(Input.GetKeyDown(KeyCode.RightArrow)){NextMessage();}
     }
+    private static void WriteRoundInfo(){//Se llama cuando se desea escribir la informacion de ronda
+        if(Judge.HasPlayed && Judge.IsLastTurnOfRound){//Si no se han jugado cartas y es el ultimo turno
+            Write("Turno de "+Judge.GetPlayer+", es el ultimo turno antes de que se acabe la ronda");
+        }else if(Judge.HasPlayed){//Si no es el ultimo turno pero no se han jugado cartas
+            Write("Turno de "+Judge.GetPlayer);
+        }else if(Judge.IsLastTurnOfRound){//Si se han jugado cartas y es el ultimo turno
+            Write("Puedes seguir jugando mas cartas. Presiona espacio cuando desees acabar la ronda");
+        }else{//Si se han jugado cartas y no es el ultimo turno
+            Write("Presiona espacio para pasar de turno");
+        }
+    }
     private static void UpdateMessage(){//Actualiza el mensaje del UserRead con el mensaje seleccionado
         Show(messages[currentMessage]);
         GameObject.Find("MessageNumber").GetComponent<TextMeshProUGUI>().text=(currentMessage+1).ToString()+"/"+messages.Count;
@@ -47,16 +59,5 @@ public class UserRead : StateListener
         messages.Add(passedMessage);
         currentMessage=messages.Count-1;
         UpdateMessage();
-    }
-    public static void WriteRoundInfo(){//Se llama cuando se desea escribir la informacion de ronda
-        if(Judge.GetTurnActionsCount==0 && Judge.IsLastTurn){//Si no se han jugado cartas y es el ultimo turno
-            Write("Turno de "+Judge.GetPlayer+", es el ultimo turno antes de que se acabe la ronda");
-        }else if(Judge.GetTurnActionsCount==0){//Si no es el ultimo turno pero no se han jugado cartas
-            Write("Turno de "+Judge.GetPlayer);
-        }else if(Judge.IsLastTurn){//Si se han jugado cartas y es el ultimo turno
-            Write("Puedes seguir jugando mas cartas. Presiona espacio cuando desees acabar la ronda");
-        }else{//Si se han jugado cartas y no es el ultimo turno
-            Write("Presiona espacio para pasar de turno");
-        }
     }
 }

@@ -4,6 +4,7 @@ using TMPro;
 //Script para llevar la logica de la fuerza de cada jugador y las cartas jugadas en el campo
 public class Field : StateListener, IContainer
 {
+    public override int GetPriority=>1;
     public List <GameObject> GetCards=>gameObject.CardsInside();//Lista de las cartas jugadas en el campo
     public static List<GameObject> AllPlayedCards=>GameObject.Find("Field").CardsInside();//Lista de todas las cartas jugadas en el tablero
     public static List<GameObject> PlayedCardsWithoutWeathers=>GameObject.Find("PlayerFieldsSet").CardsInside();//Lista de todas las cartas excluyendo climas
@@ -21,19 +22,30 @@ public class Field : StateListener, IContainer
     public static int P1ForceValue=>GameObject.Find("FieldP1").GetComponent<Field>().playerForceValue;//Fuerza total de P1
     public static int P2ForceValue=>GameObject.Find("FieldP2").GetComponent<Field>().playerForceValue;//Fuerza total de P2
     public override void CheckState(){
-        if(Judge.CurrentState==State.EndingGame){//Si estamos terminando el juego las cartas que queden en el campo se iran a la basura
-            AllPlayedCards.Disappear();
+        switch(Judge.CurrentState){
+            case State.PlayingCard://Si jugamos una carta reactivamos todos los climas
+                ReactivateAllWeathers();
+                break;
+            case State.EndingRound:
+                Graveyard.SendToGraveyard(AllPlayedCards);//Cuando se acaba la ronda todas las cartas del campo son enviadas al cementerio
+                break;
+            case State.EndingGame://Si se acabo el juego limpiamos todo el tablero de cartas
+                AllPlayedCards.Disappear();
+                break;
         }
         switch(Judge.CurrentState){
-            case State.SettingUpGame:
+            case State.SettingUpGame://Calcula y asigna el valor al puntaje
+            case State.PlayingCard:
+            case State.EndingTurn:
             case State.EndingRound:
             case State.EndingGame:
-                GameObject.Find("Points"+gameObject.Field()).GetComponent<TextMeshProUGUI>().text="0";//Resetea el valor del puntaje
+                GameObject.Find("Points"+gameObject.Field()).GetComponent<TextMeshProUGUI>().text=playerForceValue.ToString();
                 break;
-            case State.PlayingCard:
-                WeatherCard.RectivateAllWeathers();//Actualiza el clima
-                GameObject.Find("Points"+gameObject.Field()).GetComponent<TextMeshProUGUI>().text=playerForceValue.ToString();//Calcula y asigna el valor al puntaje
-                break;
+        }
+    }
+    private static void ReactivateAllWeathers(){//Reactiva los efectos de todas las cartas clima jugadas
+        foreach(GameObject weather in PlayedWeatherCards){//Itera por cada uno de esos hijos
+            weather.GetComponent<WeatherCard>().TriggerSpecialEffect();//Hace que activen el efecto de clima otra vez
         }
     }
 }

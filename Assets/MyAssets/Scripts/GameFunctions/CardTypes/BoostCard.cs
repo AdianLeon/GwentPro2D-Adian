@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 //Script para las cartas de aumento
-public class BoostCard : DraggableCard, IShowZone, ISpecialCard
+public class BoostCard : DraggableCard, ISpecialCard
 {
     public string GetEffectDescription=>"Aumenta el poder de las cartas de la fila seleccionada";
     public override Color GetCardViewColor=>new Color(0.4f,1,0.3f);

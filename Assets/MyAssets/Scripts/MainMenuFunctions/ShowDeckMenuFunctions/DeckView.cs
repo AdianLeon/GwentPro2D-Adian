@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -37,7 +35,7 @@ public class DeckView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerEnter(PointerEventData eventData){//Se activa cuando el mouse entra en la carta
         //Playable zone
         GameObject.Find("BGType").GetComponent<Image>().color=new Color(0.2f,0.2f,0.2f,0.8f);
-        GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="["+this.playableZone+"]";
+        GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="["+playableZone+"]";
 
         //Quality
         if(typeComponent=="SilverCard"){
@@ -51,20 +49,20 @@ public class DeckView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
 
         //Image
-        GameObject.Find("CardPreview").GetComponent<Image>().sprite=this.artwork;
+        GameObject.Find("CardPreview").GetComponent<Image>().sprite=artwork;
 
         //Colors
-        GameObject.Find("BackGroundCard").GetComponent<Image>().color=this.cardColor;
-        GameObject.Find("Type").GetComponent<TextMeshProUGUI>().color=this.cardColor;
-        GameObject.Find("Power").GetComponent<TextMeshProUGUI>().color=this.cardColor;
+        GameObject.Find("BackGroundCard").GetComponent<Image>().color=cardColor;
+        GameObject.Find("Type").GetComponent<TextMeshProUGUI>().color=cardColor;
+        GameObject.Find("Power").GetComponent<TextMeshProUGUI>().color=cardColor;
 
         //Power
         if(playableZone=="C"){
-            GameObject.Find("Power").GetComponent<TextMeshProUGUI>().text="-"+this.power.ToString();
+            GameObject.Find("Power").GetComponent<TextMeshProUGUI>().text="-"+power.ToString();
         }else if(playableZone=="A"){
-            GameObject.Find("Power").GetComponent<TextMeshProUGUI>().text="+"+this.power.ToString();
+            GameObject.Find("Power").GetComponent<TextMeshProUGUI>().text="+"+power.ToString();
         }else{
-            GameObject.Find("Power").GetComponent<TextMeshProUGUI>().text=this.power.ToString();
+            GameObject.Find("Power").GetComponent<TextMeshProUGUI>().text=power.ToString();
         }
         GameObject.Find("BGPower").GetComponent<Image>().color=new Color(0.2f,0.2f,0.2f,0.8f);
         if(playableZone=="D" || playableZone=="L"){
@@ -72,13 +70,13 @@ public class DeckView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             GameObject.Find("BGPower").GetComponent<Image>().color=new Color(0.2f,0.2f,0.2f,0);
         }
         //Name
-        GameObject.Find("CardName").GetComponent<TextMeshProUGUI>().text=this.cardName;
+        GameObject.Find("CardName").GetComponent<TextMeshProUGUI>().text=cardName;
         //Description
-        GameObject.Find("CardDescription").GetComponent<TextMeshProUGUI>().text=this.effectDescription;
+        GameObject.Find("CardDescription").GetComponent<TextMeshProUGUI>().text=effectDescription;
         
-        this.GetComponent<Image>().color=new Color (0.75f,0.75f,0.75f,1);//La carta se sombrea cuando se pasa por encima
+        GetComponent<Image>().color=new Color (0.75f,0.75f,0.75f,1);//La carta se sombrea cuando se pasa por encima
     }
     public void OnPointerExit(PointerEventData eventData){
-        this.GetComponent<Image>().color=new Color (1,1,1,1);//La carta se dessombrea cuando se sale de encima de ella
+        GetComponent<Image>().color=new Color (1,1,1,1);//La carta se dessombrea cuando se sale de encima de ella
     }
 }

@@ -1,22 +1,18 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using System.IO;
-using System.Text;
-using UnityEngine.UIElements;
-using System.Linq;
 //Script para instanciar cartas de un json
 public class JsonToCards : StateListener
 {
+    public override int GetPriority=>0;
     private static int instantiatedCardsCount;//Cuenta de las cartas instanciadas
     public GameObject CardPrefab;//Referencia al prefab CardPrefab
     public override void CheckState(){
-        if(Judge.CurrentState!=State.LoadingCards){return;}
-        instantiatedCardsCount=0;
-        ImportDeckTo(PlayerPrefs.GetString("P1PrefDeck"),GameObject.Find("CardsP1"),GameObject.Find("DeckP1"));
-        ImportDeckTo(PlayerPrefs.GetString("P2PrefDeck"),GameObject.Find("CardsP2"),GameObject.Find("DeckP2"));
+        if(Judge.CurrentState==State.LoadingCards){
+            instantiatedCardsCount=0;
+            ImportDeckTo(PlayerPrefs.GetString("P1PrefDeck"),GameObject.Find("CardsP1"),GameObject.Find("DeckP1"));
+            ImportDeckTo(PlayerPrefs.GetString("P2PrefDeck"),GameObject.Find("CardsP2"),GameObject.Find("DeckP2"));
+        }
     }
     public static void ImportDeckTo(string faction,GameObject deckPlace,GameObject Deck){//Crea todas las cartas en el directorio asignado en preferencias del jugador en el objeto
         string factionPath=Application.dataPath+"/MyAssets/Database/Decks/"+faction;

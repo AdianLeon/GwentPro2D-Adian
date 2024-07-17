@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 public class DeckTrade : DropZone
 {
     public override bool IsDropValid(GameObject card){
-        if(Judge.GetTurnNumber>1){//Si no es el primer turno
+        if(!Judge.IsFirstTurnOfPlayer){//Si no es el primer turno
             return false;
         }
         if(GameObject.Find("Deck"+Judge.GetPlayer).GetComponent<Deck>().GetTradeCount>1){//Si se han intercambiado dos cartas o mas

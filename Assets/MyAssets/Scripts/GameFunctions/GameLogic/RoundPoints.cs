@@ -3,6 +3,7 @@ using TMPro;
 //Script que representa los puntos de ronda de cada jugador
 public class RoundPoints : StateListener
 {
+    public override int GetPriority=>1;
     private int rPoints;//Puntos de ronda de cada jugador
     public static int GetRPointsP1{get=>GameObject.Find("RoundPointsP1").GetComponent<RoundPoints>().rPoints;}
     public static void AddPointToP1(){GameObject.Find("RoundPointsP1").GetComponent<RoundPoints>().rPoints++;}

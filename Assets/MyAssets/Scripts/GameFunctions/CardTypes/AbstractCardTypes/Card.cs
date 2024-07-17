@@ -35,6 +35,13 @@ public abstract class Card : MonoBehaviour, IGlow, IShowZone, IPointerEnterHandl
         GameObject.Find("Type").GetComponent<TextMeshProUGUI>().color=GetCardViewColor;
         GameObject.Find("Power").GetComponent<TextMeshProUGUI>().color=GetCardViewColor;
     }
+    public void Play(){//Juega la carta
+        //Si la carta tiene efecto de carta especial, que se active
+        gameObject.GetComponent<ISpecialCard>()?.TriggerSpecialEffect();
+        Execute.DoEffect(gameObject,OnActivationName);//Se ejecuta el efecto en del OnActivation
+        Judge.PlayCard();//Juega la carta
+        LoadInfo();
+    }
     public virtual void ShowZone(){
         DropZone[] unitZones=GameObject.FindObjectsOfType<DropZone>();//Se crea un array con todas las zonas de cartas de unidad
         foreach(DropZone unitZone in unitZones){

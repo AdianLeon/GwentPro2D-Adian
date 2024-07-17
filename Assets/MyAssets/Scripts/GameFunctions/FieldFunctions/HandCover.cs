@@ -1,6 +1,7 @@
 //Script para activar el cover de las manos cuando sea turno del enemigo
 public class HandCover : StateListener
 {
+    public override int GetPriority=>1;
     public override void CheckState(){
         switch(Judge.CurrentState){
             case State.SettingUpGame://Si es el turno de su enemigo, se activa, si es el turno de su jugador, se desactiva

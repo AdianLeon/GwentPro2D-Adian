@@ -22,8 +22,6 @@ public class LeaderCard : Card, IPointerClickHandler
         GameObject.Find("BGAddedPower").GetComponent<Image>().color=new Color(1,1,1,0);
     }
     public override bool IsPlayable{get{
-        if(!Judge.CanPlay){//Si no se puede jugar
-            UserRead.WriteRoundInfo();return false;}
         if(WhichPlayer!=Judge.GetPlayer){//Si no coincide en campo con el jugador que lo presiona
             UserRead.Write("Ese no es el lider de tu deck");return false;}
         if(hasUsedSkill){//Si la habilidad de este lider ya ha sido usada previamente
@@ -34,7 +32,7 @@ public class LeaderCard : Card, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData){
         if(IsPlayable){//Si se puede jugar
             hasUsedSkill=true;
-            Judge.PlayCard(gameObject);
+            Play();
         }
     }
 }

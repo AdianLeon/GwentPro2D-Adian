@@ -2,6 +2,7 @@ using UnityEngine;
 //Script de las luces del juego que indican si se puede jugar
 public class PlayedLight : StateListener, IGlow
 {
+    public override int GetPriority=>1;
     public override void CheckState(){
         switch(Judge.CurrentState){
             case State.SettingUpGame://Si se pude jugar se pone verde, si no rojo

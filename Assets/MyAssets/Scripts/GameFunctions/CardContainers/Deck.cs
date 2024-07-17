@@ -4,6 +4,7 @@ using UnityEngine;
 //Script para el funcionamiento del deck
 public class Deck : StateListener, IContainer
 {
+    public override int GetPriority=>0;
     private int tradedCardsCount;
     public int GetTradeCount=>tradedCardsCount;
     public void OnCardTrade(){tradedCardsCount++;}
