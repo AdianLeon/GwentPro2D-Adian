@@ -7951,7 +7951,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1238096648}
         m_TargetAssemblyTypeName: Judge, Assembly-CSharp
-        m_MethodName: EndTurn
+        m_MethodName: EndTurnOrRound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

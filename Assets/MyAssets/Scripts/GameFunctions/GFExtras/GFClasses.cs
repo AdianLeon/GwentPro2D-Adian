@@ -12,10 +12,12 @@ public class PlayerPrefsData
     public float volume;
     public string deckPrefP1;
     public string deckPrefP2;
-    public PlayerPrefsData(float volume, string deckPrefP1, string deckPrefP2)
+    public bool singlePlayerMode;
+    public PlayerPrefsData(float volume, string deckPrefP1, string deckPrefP2, bool singlePlayerMode)
     {
         this.volume = volume;
         this.deckPrefP1 = deckPrefP1;
         this.deckPrefP2 = deckPrefP2;
+        this.singlePlayerMode = singlePlayerMode;
     }
 }

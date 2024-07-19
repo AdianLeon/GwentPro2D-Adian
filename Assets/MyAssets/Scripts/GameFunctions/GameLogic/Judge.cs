@@ -48,15 +48,21 @@ public class Judge : MonoBehaviour, IKeyboardListener
     {//Acaba el turno cuando se presiona espacio
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (isLastTurnOfRound) { NextRound(); } else { EndTurn(); }
+            EndTurnOrRound();
         }
+    }
+    public static void EndTurnOrRound()
+    {
+        if (isLastTurnOfRound) { NextRound(); } else { EndTurn(); }
+
+        Computer.ListenToPlayer();
     }
     public static void PlayCard()
     {//Se llama cuando se juega una carta
         hasPlayed = true;//El jugador acaba de jugar una carta
         CurrentState = State.PlayingCard;
     }
-    public static void EndTurn()
+    private static void EndTurn()
     {//Se llama con cada click en el boton PASS o cuando se presiona espacio
         if (!hasPlayed)
         {//Detecta caundo un jugador pasa sin jugar
