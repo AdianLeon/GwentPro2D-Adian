@@ -8,5 +8,5 @@ public abstract class UnitCard : PowerCard
         base.LoadInfo();
         GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="["+WhichZone.ToString()+"]";
     }
-    public override bool IsPlayable{get=>this.transform.parent.gameObject.GetComponent<DZUnits>()!=null;}//Es jugable si se encuentra en una zona de cartas de unidad
+    public override bool IsPlayable{get=>this.transform.parent.gameObject.GetComponent<DZUnit>()!=null;}//Es jugable si se encuentra en una zona de cartas de unidad
 }

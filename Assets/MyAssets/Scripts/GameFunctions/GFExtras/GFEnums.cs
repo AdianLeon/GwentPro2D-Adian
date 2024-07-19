@@ -1,4 +1,4 @@
-//Script que declara los enums a utilizar en las funciones del juego
+//Declaracion de los enums a utilizar en las funciones del juego
 public enum Player{P1,P2}//Jugadores
 public enum State{LoadingCards,SettingUpGame,PlayingCard,EndingTurn,EndingRound,EndingGame,WaitingPlayerAction}//Estados del juego
 public enum UnitDropZoneType{M,R,S};//Tipos de dropzones de cartas de unidad

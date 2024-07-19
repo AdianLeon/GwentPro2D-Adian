@@ -31,8 +31,8 @@ public class LeaderCard : Card, IPointerClickHandler
     }}
     public void OnPointerClick(PointerEventData eventData){
         if(IsPlayable){//Si se puede jugar
-            hasUsedSkill=true;
             Play();
+            hasUsedSkill=true;
         }
     }
 }

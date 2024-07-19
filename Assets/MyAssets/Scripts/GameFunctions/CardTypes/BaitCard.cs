@@ -12,17 +12,17 @@ public class BaitCard : PowerCard, ISpecialCard, IAffectable
         base.LoadInfo();
         GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="[S]";
     }
-    private bool SwapConditions(GameObject cardToSwap, bool showMessage=false){//Si no es una carta lider, no esta en la mano ni en el cementerio, coincide con el campo del senuelo, no es otro senuelo y es afectable
+    private bool SwapConditions(DraggableCard cardToSwap, bool showMessage=false){//Si no es una carta lider, no esta en la mano ni en el cementerio, coincide con el campo del senuelo, no es otro senuelo y es afectable
         if(cardToSwap.GetComponent<LeaderCard>()!=null){ if(showMessage){UserRead.Write("No es valido usar un senuelo con una carta lider");}               return false;}
-        if(cardToSwap.GetComponent<DraggableCard>().IsOnHand){ if(showMessage){UserRead.Write("No es valido usar un senuelo sobre la mano");}                    return false;}
+        if(cardToSwap.IsOnHand){ if(showMessage){UserRead.Write("No es valido usar un senuelo sobre la mano");}                                             return false;}
         if(cardToSwap.transform.parent.GetComponent<Graveyard>()!=null){ if(showMessage){UserRead.Write("No es valido usar un senuelo en un cementerio");}  return false;}
-        if(cardToSwap.GetComponent<Card>().WhichPlayer!=WhichPlayer){ if(showMessage){UserRead.Write("Esa carta no esta en tu campo");}                     return false;}
+        if(cardToSwap.WhichPlayer!=WhichPlayer){ if(showMessage){UserRead.Write("Esa carta no esta en tu campo");}                                          return false;}
         if(cardToSwap.GetComponent<BaitCard>()!=null){ if(showMessage){UserRead.Write("No es valido usar un senuelo sobre otro senuelo");}                  return false;}
         if(cardToSwap.GetComponent<IAffectable>()==null){ if(showMessage){UserRead.Write("Esa carta no es afectable por el senuelo");}                      return false;}
         return true;
     }
     public override void ShowZone(){//Activa el glow (oscurece) para las cartas con las que el senuelo no se puede intercambiar
-        foreach(GameObject cardPlayed in Field.AllPlayedCards){
+        foreach(DraggableCard cardPlayed in Field.AllPlayedCards){
             if(!SwapConditions(cardPlayed)){
                 cardPlayed.GetComponent<Card>().OffGlow();//Se le activa el glow (oscurece la carta)
             }
@@ -36,7 +36,7 @@ public class BaitCard : PowerCard, ISpecialCard, IAffectable
         //Si estamos encima de una carta
         if(GetEnteredCard==null){return false;}
         //Chequeamos las condiciones para intercambiar con esa carta
-        return SwapConditions(GetEnteredCard.gameObject,true);
+        return SwapConditions(GetEnteredCard.GetComponent<DraggableCard>(),true);
     }}
     public void TriggerSpecialEffect(){//Efecto de intercambio del senuelo
         GameObject placehold=new GameObject();//Creamos un objeto auxiliar para saber donde esta el senuelo

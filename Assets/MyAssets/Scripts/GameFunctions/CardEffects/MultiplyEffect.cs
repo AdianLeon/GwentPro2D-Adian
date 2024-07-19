@@ -12,9 +12,9 @@ public class MultiplyEffect : MonoBehaviour, ICardEffect
     }
     public void TriggerEffect(){//Multiplica por n su ataque, siendo n la cantidad de cartas iguales a ella en el campo.
         int n=0;//Contador de cuantas cartas del mismo tipo hay (n al menos sera 1 despues del conteo ya que la carta siempre se contara a si misma)
-        List<GameObject> field=Field.PlayedCardsWithoutWeathers;
-        foreach(GameObject card in field){
-            if(card.GetComponent<Card>().CardName==gameObject.GetComponent<Card>().CardName){n++;}
+        List<DraggableCard> field=Field.PlayedCardsWithoutWeathers;
+        foreach(DraggableCard card in field){
+            if(card.CardName==gameObject.GetComponent<Card>().CardName){n++;}
         }
         gameObject.GetComponent<PowerCard>().Power=originalPower*n;//Se iguala el poder de la carta jugada a n veces su propio poder
         UserRead.Write("Hay "+n+" cartas iguales a "+GetComponent<Card>().CardName+" y tiene "+originalPower+" de poder. Luego del efecto posee "+GetComponent<PowerCard>().Power);

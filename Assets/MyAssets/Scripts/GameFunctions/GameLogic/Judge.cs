@@ -1,20 +1,15 @@
 using System;
 using UnityEngine;
 //Script que simula un juez, se encarga del manejo de estados, la logica de turnos, rondas y condicion de victoria
-public class Judge : MonoBehaviour
+public class Judge : MonoBehaviour, IKeyboardListener
 {
     private static StateListener[] stateListeners;
     private static State currentState;//Estado actual del juego
     public static State CurrentState{get=>currentState;private set{//Si se desea obtener el estado se devuelve sin problemas sin embargo solo el juez puede cambiar el estado
         currentState=value;
-        Debug.Log("State changed to "+currentState);
-        foreach(StateListener script in stateListeners){Debug.Log("CheckingState: "+script+" priority: "+script.GetPriority);script.CheckState();}
+        foreach(StateListener script in stateListeners){script.CheckState();}
         currentState=State.WaitingPlayerAction;//Se espera la proxima accion del jugador
     }}
-    public static void PlayCard(){//Se llama cuando se juega una carta
-        hasPlayed=true;//El jugador acaba de jugar una carta
-        CurrentState=State.PlayingCard;
-    }
     private static bool isFirstTurnOfPlayer;//Si es el primer turno de ese jugador
     public static bool IsFirstTurnOfPlayer=>isFirstTurnOfPlayer;
     private static Player playerTurn;//Jugador en turno
@@ -25,12 +20,16 @@ public class Judge : MonoBehaviour
     private static bool isLastTurnOfRound;//Si es o no el ultimo turno antes de que acabe la ronda
     public static bool IsLastTurnOfRound=>isLastTurnOfRound;
     public static bool CanPlay=>!hasPlayed || isLastTurnOfRound;
-    private static float lastClickTime;
     void Start(){//En el inicio de la escena se cargan las cartas y se reinicia el juego
         stateListeners=Resources.FindObjectsOfTypeAll<StateListener>();
         Array.Sort(stateListeners);
         CurrentState=State.LoadingCards;
         ResetGame();
+    }
+    void Update(){
+        foreach(IKeyboardListener listener in GFUtils.FindScriptsOfType<IKeyboardListener>()){
+            listener.ListenToKeyboardPress();
+        }
     }
     public static void ResetGame(){//Reinicia el juego. Este metodo es llamado por un boton llamado ResetGameButton y al inicio del juego
         LeaderCard.ResetAllLeaderSkills();//Reinicia las habilidades de los lideres
@@ -40,18 +39,14 @@ public class Judge : MonoBehaviour
         playerTurn=Player.P1;//El Player 1 inicia la partida siempre
         CurrentState=State.SettingUpGame;
     }
-    void Update(){
-        ListenToSpaceBarPress();
-    }
-    private static void ListenToSpaceBarPress(){//Acaba el turno cuando se presiona espacio, pero con una diferencia de tiempo de 0.3s entre pulsaciones
-        if(Input.GetKeyDown(KeyCode.Space) && Time.time-lastClickTime>0.3f){
-            if(isLastTurnOfRound){//Se entra cuando se acaba la ronda 
-            NextRound();
-            return;
-            }
-            EndTurn();
-            lastClickTime=Time.time;
+    public void ListenToKeyboardPress(){//Acaba el turno cuando se presiona espacio
+        if(Input.GetKeyDown(KeyCode.Space)){
+            if(isLastTurnOfRound){NextRound();}else{EndTurn();}
         }
+    }
+    public static void PlayCard(){//Se llama cuando se juega una carta
+        hasPlayed=true;//El jugador acaba de jugar una carta
+        CurrentState=State.PlayingCard;
     }
     public static void EndTurn(){//Se llama con cada click en el boton PASS o cuando se presiona espacio
         if(!hasPlayed){//Detecta caundo un jugador pasa sin jugar

@@ -12,7 +12,6 @@ public abstract class Card : MonoBehaviour, IGlow, IShowZone, IPointerEnterHandl
     public string OnActivationName;//Nombre de OnActivation
     public Sprite Artwork;//Imagen para mostrar en el CardView
     public Player WhichPlayer;//Jugador dueno de la carta
-    public abstract bool IsPlayable{get;}//Conjunto de condiciones para que la carta se pueda jugar, diferente para todas las cartas
     public virtual Color GetCardViewColor=>new Color(1,1,1);//Retorna el color de la carta en el CardView
     public virtual void LoadInfo(){//Esta funcion es especifica para cada tipo de carta, pero todas comparten lo siguiente
         GameObject.Find("Faction").GetComponent<TextMeshProUGUI>().text=Faction;
@@ -35,6 +34,7 @@ public abstract class Card : MonoBehaviour, IGlow, IShowZone, IPointerEnterHandl
         GameObject.Find("Type").GetComponent<TextMeshProUGUI>().color=GetCardViewColor;
         GameObject.Find("Power").GetComponent<TextMeshProUGUI>().color=GetCardViewColor;
     }
+    public abstract bool IsPlayable{get;}//Conjunto de condiciones para que la carta se pueda jugar, diferente para todas las cartas
     public void Play(){//Juega la carta
         //Si la carta tiene efecto de carta especial, que se active
         gameObject.GetComponent<ISpecialCard>()?.TriggerSpecialEffect();
@@ -43,11 +43,10 @@ public abstract class Card : MonoBehaviour, IGlow, IShowZone, IPointerEnterHandl
         LoadInfo();
     }
     public virtual void ShowZone(){
-        DropZone[] unitZones=GameObject.FindObjectsOfType<DropZone>();//Se crea un array con todas las zonas de cartas de unidad
-        foreach(DropZone unitZone in unitZones){
-            if(unitZone.IsDropValid(this.gameObject)){
-                //La zona se ilumina solo si coincide con la zona jugable y el campo de la carta
-                unitZone.OnGlow();
+        DropZone[] zones=GameObject.FindObjectsOfType<DropZone>();//Se crea un array con todas las zonas de cartas
+        foreach(DropZone zone in zones){
+            if(zone.IsDropValid(this.gameObject.GetComponent<DraggableCard>())){
+                zone.OnGlow();
             }
         }
     }

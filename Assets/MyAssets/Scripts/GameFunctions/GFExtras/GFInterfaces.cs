@@ -21,5 +21,8 @@ interface IGlow{//Para los objetos que se iluminan
     void OffGlow();//Desactiva su iluminacion
 }
 interface IContainer{//Para aquellos objetos que en el juego contendran cartas
-    List<GameObject> GetCards{get;}//Devuelve una lista con las cartas contenidas en el objeto
+    List<DraggableCard> GetCards{get;}//Devuelve una lista con las cartas contenidas en el objeto
+}
+interface IKeyboardListener{
+    void ListenToKeyboardPress();
 }

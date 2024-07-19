@@ -25,6 +25,6 @@ public class BoostCard : DraggableCard, ISpecialCard
                 card.GetComponent<PowerCard>().AddedPower+=this.GetComponent<BoostCard>().Boost;//Aumenta el poder
             }
         }
-        Graveyard.SendToGraveyard(this.gameObject);//Envia la carta de aumento al cementerio
+        Graveyard.SendToGraveyard(gameObject.GetComponent<DraggableCard>());//Envia la carta de aumento al cementerio
     }
 }

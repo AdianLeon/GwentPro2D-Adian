@@ -3,12 +3,14 @@ using UnityEngine;
 //Script para las manos de los jugadores
 public class Hand : StateListener, IContainer
 {
-    public override int GetPriority=>1;
-    public List <GameObject> GetCards=>gameObject.CardsInside();
-    public static List<GameObject> PlayerHandCards=>GameObject.Find("Hand"+Judge.GetPlayer).GetComponent<Hand>().GetCards;//Lista de las cartas de la mano del jugador en turno
-    public static List<GameObject> EnemyHandCards=>GameObject.Find("Hand"+Judge.GetEnemy).GetComponent<Hand>().GetCards;//Lista de las cartas de la mano del enemigo del jugador en turno
-    public override void CheckState(){ 
-        switch(Judge.CurrentState){
+    public override int GetPriority => 1;
+    public List<DraggableCard> GetCards => gameObject.CardsInside();
+    public static List<DraggableCard> PlayerHandCards => GameObject.Find("Hand" + Judge.GetPlayer).GetComponent<Hand>().GetCards;//Lista de las cartas de la mano del jugador en turno
+    public static List<DraggableCard> EnemyHandCards => GameObject.Find("Hand" + Judge.GetEnemy).GetComponent<Hand>().GetCards;//Lista de las cartas de la mano del enemigo del jugador en turno
+    public override void CheckState()
+    {
+        switch (Judge.CurrentState)
+        {
             case State.PlayingCard://Chequea que no hayan mas de 10 cartas en la mano y limpia a esas cartas de los efectos de clima
             case State.EndingTurn:
             case State.EndingRound:
@@ -20,11 +22,13 @@ public class Hand : StateListener, IContainer
                 break;
         }
     }
-    private void UpdateHandLimit(){
-        while(this.transform.childCount>10){//Si una carta no cabe en la mano
-            GameObject extraCard=this.transform.GetChild(this.transform.childCount-1).gameObject;
+    private void UpdateHandLimit()
+    {
+        while (transform.childCount > 10)
+        {//Si una carta no cabe en la mano
+            DraggableCard extraCard = transform.GetChild(this.transform.childCount - 1).gameObject.GetComponent<DraggableCard>();
             Graveyard.SendToGraveyard(extraCard);//Se envia al cementerio
-            UserRead.Write("No puedes tener mas de 10 cartas en la mano."+extraCard.GetComponent<Card>().CardName+" se ha enviado al cementerio!");
+            UserRead.Write("No puedes tener mas de 10 cartas en la mano." + extraCard.GetComponent<Card>().CardName + " se ha enviado al cementerio!");
         }
     }
 }

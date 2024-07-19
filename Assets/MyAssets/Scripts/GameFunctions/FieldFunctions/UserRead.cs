@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 //Script para mostrar mensajes en un objeto llamado UserRead
-public class UserRead : StateListener
+public class UserRead : StateListener, IKeyboardListener
 {
     public override int GetPriority=>1;
     private static List<string> messages;//Lista de mensajes
@@ -13,8 +13,7 @@ public class UserRead : StateListener
                 messages=new List<string>();
                 Write("Ha comenzado una nueva partida, es el turno de P1");
                 break;
-            case State.PlayingCard://Cuando se juega una carta o al final de turnos y rondas escribe informacion sobre la ronda
-            case State.EndingTurn:
+            case State.EndingTurn://Al final de turnos y rondas escribe informacion sobre la ronda
             case State.EndingRound:
                 WriteRoundInfo();
                 break;
@@ -23,7 +22,7 @@ public class UserRead : StateListener
                 break;
         }
     }
-    void Update(){//Si se presiona la flecha izquierda o derecha se navega por los mensajes
+    public void ListenToKeyboardPress(){//Si se presiona la flecha izquierda o derecha se navega por los mensajes
         if(Input.GetKeyDown(KeyCode.LeftArrow)){PreviousMessage();}
         if(Input.GetKeyDown(KeyCode.RightArrow)){NextMessage();}
     }
@@ -42,12 +41,12 @@ public class UserRead : StateListener
         Show(messages[currentMessage]);
         GameObject.Find("MessageNumber").GetComponent<TextMeshProUGUI>().text=(currentMessage+1).ToString()+"/"+messages.Count;
     }
-    public void PreviousMessage(){//Este metodo es llamado por el boton a la izquierda del UserRead o por presionar la flecha izquierda
+    public static void PreviousMessage(){//Este metodo es llamado por el boton a la izquierda del UserRead o por presionar la flecha izquierda
         currentMessage--;
         if(currentMessage<0){currentMessage=0;}
         UpdateMessage();
     }
-    public void NextMessage(){//Este metodo es llamado por el boton a la derecha del UserRead o por presionar la flecha derecha
+    public static void NextMessage(){//Este metodo es llamado por el boton a la derecha del UserRead o por presionar la flecha derecha
         currentMessage++;
         if(currentMessage>messages.Count-1){currentMessage=messages.Count-1;}
         UpdateMessage();
