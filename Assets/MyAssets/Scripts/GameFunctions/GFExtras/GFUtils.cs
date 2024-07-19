@@ -1,19 +1,33 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using System.Linq;
 using UnityEngine;
-public static class GameObjectExtensionMethods
+public static class CustomExtensionMethods
 {
-    public static List<DraggableCard> CardsInside(this GameObject place)
-    {//Devuelve los descendientes carta de un GameObject
-        if (place.GetComponent<DraggableCard>() != null)
-        {//Si el lugar es una carta se devuelve esa carta
-            return new List<DraggableCard>() { place.GetComponent<DraggableCard>() };
+    public static void ForEach<T>(this IEnumerable<T> items, Action<T> action)
+    {//Comodidad extra para realizar una accion simple sobre todos los elementos de un IEnumerable sin declarar ese IEnumerable
+        foreach (T item in items) { action(item); }
+    }
+    public static IEnumerable<T> TransformToIEnumerable<T>(this Transform zone)
+    {//Para cuando se haga deseen usar metodos de Linq sobre un transform
+        foreach (Transform card in zone)
+        {
+            if (card.GetComponent<T>() != null)
+            {
+                yield return card.GetComponent<T>();
+            }
         }
-        List<DraggableCard> cards = new List<DraggableCard>();//Considerando que no es una carta comenzamos a anadir sus hijos
+    }
+    public static List<T> CardsInside<T>(this GameObject place)
+    {//Devuelve los descendientes carta de un GameObject
+        if (place.GetComponent<T>() != null)
+        {//Si el lugar es una carta se devuelve esa carta
+            return new List<T>() { place.GetComponent<T>() };
+        }
+        List<T> cards = new List<T>();//Considerando que no es una carta comenzamos a anadir sus hijos
         foreach (Transform card in place.transform)
         {//Si no tiene hijos se devolvera una lista vacia
-            cards.AddRange(card.gameObject.CardsInside());//Anade a su lista lo que sus hijos devuelvan
+            cards.AddRange(card.gameObject.CardsInside<T>());//Anade a su lista lo que sus hijos devuelvan
         }
         return cards;//Devuelve todas las cartas que contiene
     }
@@ -23,10 +37,7 @@ public static class GameObjectExtensionMethods
     }
     public static void Disappear(this IEnumerable<Card> cards)
     {//Se deshace una por una de las cartas en el IEnumerable
-        foreach (Card card in cards)
-        {
-            Disappear(card);
-        }
+        cards.ForEach(card => card.Disappear());
     }
     public static void Disappear(this Card card)
     {//Se deshace de la carta mandandola a la basura
@@ -36,27 +47,15 @@ public static class GameObjectExtensionMethods
 public static class GFUtils
 {
     public static List<T> FindScriptsOfType<T>()
-    {
-        List<T> implementers = new List<T>();
+    {//Encuentra todos los scripts y luego devuelve todos los que sean tipo T
         MonoBehaviour[] allScripts = Resources.FindObjectsOfTypeAll<MonoBehaviour>();
-        foreach (MonoBehaviour script in allScripts)
-        {
-            if (script.gameObject.GetComponent<T>() != null)
-            {
-                implementers.Add(script.gameObject.GetComponent<T>());
-            }
-        }
-        return implementers;
+        return allScripts.Where(script => script.gameObject.GetComponent<T>() != null).Select(item => item.GetComponent<T>()).ToList();
     }
     public static void GlowOff()
     {//Desactiva toda la iluminacion de las zonas y las cartas jugadas
-        foreach (DropZone zone in GameObject.FindObjectsOfType<DropZone>())
-        {//Hace las zonas invisibles nuevamente
-            zone.OffGlow();
-        }
-        foreach (DraggableCard playedCard in Field.AllPlayedCards)
-        {//Las cartas se dessombrean
-            playedCard.OnGlow();
-        }
+        //Hace las zonas invisibles nuevamente
+        GameObject.FindObjectsOfType<DropZone>().ForEach(zone => zone.OffGlow());
+        //Las cartas se dessombrean
+        Field.AllPlayedCards.ForEach(playedCard => playedCard.OnGlow());
     }
 }

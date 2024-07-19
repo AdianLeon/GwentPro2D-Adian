@@ -4,9 +4,10 @@ using TMPro;
 public abstract class UnitCard : PowerCard
 {
     public UnitCardZone WhichZone;//Zona(s) donde se puede jugar la carta
-    public override void LoadInfo(){
+    public override void LoadInfo()
+    {
         base.LoadInfo();
-        GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text="["+WhichZone.ToString()+"]";
+        GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text = "[" + WhichZone.ToString() + "]";
     }
-    public override bool IsPlayable{get=>this.transform.parent.gameObject.GetComponent<DZUnit>()!=null;}//Es jugable si se encuentra en una zona de cartas de unidad
+    public override bool IsPlayable { get => this.transform.parent.gameObject.GetComponent<DZUnit>() != null; }//Es jugable si se encuentra en una zona de cartas de unidad
 }

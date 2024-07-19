@@ -5,9 +5,9 @@ using TMPro;
 public class Graveyard : StateListener, IContainer
 {
     public override int GetPriority => 2;
-    public List<DraggableCard> GetCards => gameObject.CardsInside();
-    public static List<DraggableCard> PlayerGraveyardCards => GameObject.Find("Graveyard" + Judge.GetPlayer).GetComponent<Graveyard>().GetCards;//Lista de las cartas en el cementerio del jugador en turno
-    public static List<DraggableCard> EnemyGraveyardCards => GameObject.Find("Graveyard" + Judge.GetEnemy).GetComponent<Graveyard>().GetCards;//Lista de las cartas en el cementerio del enemigo del jugador en turno
+    public List<DraggableCard> GetCards => gameObject.CardsInside<DraggableCard>();
+    public static List<DraggableCard> PlayerGraveyardCards => GameObject.Find("Graveyard" + Judge.GetPlayer).CardsInside<DraggableCard>();//Lista de las cartas en el cementerio del jugador en turno
+    public static List<DraggableCard> EnemyGraveyardCards => GameObject.Find("Graveyard" + Judge.GetEnemy).CardsInside<DraggableCard>();//Lista de las cartas en el cementerio del enemigo del jugador en turno
     private int deadCount { get => this.transform.childCount; }//Contador de carta en este cementerio
     public override void CheckState()
     {
@@ -30,10 +30,7 @@ public class Graveyard : StateListener, IContainer
     }
     public static void SendToGraveyard(List<DraggableCard> cards)
     {//Envia a todas las cartas de la lista al cementerio
-        foreach (DraggableCard card in cards)
-        {
-            SendToGraveyard(card);
-        }
+        cards.ForEach(card => SendToGraveyard(card));
     }
     public static void SendToGraveyard(DraggableCard card)
     {//Envia la carta al cementerio correspondiente
@@ -41,11 +38,9 @@ public class Graveyard : StateListener, IContainer
     }
     private void ToGraveyard(DraggableCard card)
     {//Envia la carta a este cementerio
-        card.GetComponent<IAffectable>()?.AffectedByWeathers.Clear();
-        if (card.GetComponent<PowerCard>() != null)
-        {
-            card.GetComponent<PowerCard>().AddedPower = 0;
-        }
+        //Se limpia la lista de cartas de clima si es afectable, se resetea el poder anadido si es de poder y se mueve para el cementerio
+        card.GetComponent<IAffectable>()?.WeathersAffecting.Clear();
+        if (card.GetComponent<PowerCard>() != null) { card.GetComponent<PowerCard>().AddedPower = 0; }
         card.GetComponent<DraggableCard>().MoveCardTo(GameObject.Find("Graveyard" + card.GetComponent<Card>().WhichPlayer));
     }
 }

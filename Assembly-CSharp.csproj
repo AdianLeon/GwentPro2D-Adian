@@ -65,7 +65,7 @@
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardEffects\DrawOneEffect.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Action\JsonToCards.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GameLogic\JsonToCards.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardContainers\Graveyard.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\DropZones\DZUnit.cs" />

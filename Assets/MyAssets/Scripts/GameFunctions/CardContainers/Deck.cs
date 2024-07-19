@@ -8,9 +8,9 @@ public class Deck : StateListener, IContainer
     public int GetTradeCount => tradedCardsCount;
     public void OnCardTrade() { tradedCardsCount++; }
     public List<DraggableCard> GetCards => DeckCards;
-    public static List<DraggableCard> PlayerDeckCards => GameObject.Find("Deck" + Judge.GetPlayer).GetComponent<Deck>().GetCards;//Lista de las cartas del deck del jugador en turno
-    public static List<DraggableCard> EnemyDeckCards => GameObject.Find("Deck" + Judge.GetEnemy).GetComponent<Deck>().GetCards;//Lista de las cartas del deck del enemigo del jugador en turno
-    private List<DraggableCard> DeckCards = new List<DraggableCard>();//Lista de cartas de este deck
+    public static List<DraggableCard> PlayerDeckCards => GameObject.Find("Deck" + Judge.GetPlayer).GetComponent<Deck>().GetCards;
+    public static List<DraggableCard> EnemyDeckCards => GameObject.Find("Deck" + Judge.GetEnemy).GetComponent<Deck>().GetCards;
+    private List<DraggableCard> DeckCards = new List<DraggableCard>();
     public override void CheckState()
     {
         switch (Judge.CurrentState)
@@ -30,10 +30,8 @@ public class Deck : StateListener, IContainer
     }
     private void ReceiveAndDealCards()
     {
-        foreach (Transform card in GameObject.Find("Cards" + gameObject.Field()).transform)
-        {//Anadiendo las cartas del contenedor del jugador al deck
-            DeckCards.Add(card.GetComponent<DraggableCard>());
-        }
+        //Anadiendo las cartas del contenedor del jugador al deck
+        GameObject.Find("Cards" + gameObject.Field()).CardsInside<DraggableCard>().ForEach(card => DeckCards.Add(card));
         ShuffleDeck(DeckCards);//Barajeando el deck
         for (int i = 0; i < 10; i++) { DrawTopCard(); }//Repartiendo 10 cartas
     }
@@ -64,6 +62,7 @@ public class Deck : StateListener, IContainer
     }
     private void SwapCardToRandomPosition(int posOfCard)
     {//Cambia la carta en esa posicion con otra random
+        if (posOfCard >= DeckCards.Count || posOfCard < 0) { throw new System.Exception("Indice de posOfCard no valido"); }
         int randomPos = UnityEngine.Random.Range(0, DeckCards.Count);
         DraggableCard aux = DeckCards[posOfCard];
         DeckCards[posOfCard] = DeckCards[randomPos];

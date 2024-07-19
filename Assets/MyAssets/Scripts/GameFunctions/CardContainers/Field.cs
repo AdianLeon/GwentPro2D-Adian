@@ -6,13 +6,13 @@ using System.Linq;
 public class Field : StateListener, IContainer
 {
     public override int GetPriority => 1;
-    public List<DraggableCard> GetCards => gameObject.CardsInside();//Lista de las cartas jugadas en el campo
-    public static List<DraggableCard> AllPlayedCards => GameObject.Find("Field").CardsInside();//Lista de todas las cartas jugadas en el tablero
-    public static List<DraggableCard> PlayedCardsWithoutWeathers => GameObject.Find("PlayerFieldsSet").CardsInside();//Lista de todas las cartas excluyendo climas
-    public static List<DraggableCard> PlayedWeatherCards => GameObject.Find("WeatherZonesSet").CardsInside();//Lista de las cartas clima jugadas
-    public static List<DraggableCard> PlayerPlayedCards => GameObject.Find("Field" + Judge.GetPlayer).CardsInside();//Lista de las cartas jugadas del jugador en turno
-    public static List<DraggableCard> EnemyPlayedCards => GameObject.Find("Field" + Judge.GetEnemy).CardsInside();//Lista de las cartas jugadas del enemigo del jugador en turno
-    private int playerForceValue => GetCards.Select(card => card.GetComponent<PowerCard>().TotalPower).Sum();
+    public List<DraggableCard> GetCards => gameObject.CardsInside<DraggableCard>();//Lista de las cartas jugadas en el campo
+    public static List<DraggableCard> AllPlayedCards => GameObject.Find("Board").CardsInside<DraggableCard>();//Lista de todas las cartas jugadas en el tablero
+    public static List<PowerCard> PlayedCardsWithoutWeathers => GameObject.Find("PlayerFieldsSet").CardsInside<PowerCard>();//Lista de todas las cartas excluyendo climas
+    public static List<WeatherCard> PlayedWeatherCards => GameObject.Find("WeatherZonesSet").CardsInside<WeatherCard>();//Lista de las cartas clima jugadas
+    public static List<PowerCard> PlayerPlayedCards => GameObject.Find("Field" + Judge.GetPlayer).CardsInside<PowerCard>();//Lista de las cartas jugadas del jugador en turno
+    public static List<PowerCard> EnemyPlayedCards => GameObject.Find("Field" + Judge.GetEnemy).CardsInside<PowerCard>();//Lista de las cartas jugadas del enemigo del jugador en turno
+    private int playerForceValue => GetCards.Select(card => card.GetComponent<PowerCard>().TotalPower).Sum();//Suma cada vez que se llame el poder total de las cartas del campo
     public static int P1ForceValue => GameObject.Find("FieldP1").GetComponent<Field>().playerForceValue;//Fuerza total de P1
     public static int P2ForceValue => GameObject.Find("FieldP2").GetComponent<Field>().playerForceValue;//Fuerza total de P2
     public override void CheckState()
@@ -42,9 +42,6 @@ public class Field : StateListener, IContainer
     }
     private static void ReactivateAllWeathers()
     {//Reactiva los efectos de todas las cartas clima jugadas
-        foreach (WeatherCard weather in PlayedWeatherCards)
-        {//Itera por cada uno de esos hijos
-            weather.TriggerSpecialEffect();//Hace que activen el efecto de clima otra vez
-        }
+        PlayedWeatherCards.ForEach(weather => weather.GetComponent<WeatherCard>().TriggerSpecialEffect());
     }
 }

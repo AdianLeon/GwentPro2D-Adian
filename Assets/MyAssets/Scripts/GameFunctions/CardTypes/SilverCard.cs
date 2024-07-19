@@ -4,11 +4,12 @@ using UnityEngine.UI;
 //Script para las cartas de plata
 public class SilverCard : UnitCard, IAffectable
 {
-    private List<WeatherCard> affectedByWeathers=new List<WeatherCard>();
-    public List<WeatherCard> AffectedByWeathers{get=>affectedByWeathers; set=>affectedByWeathers=value;}
-    public override Color GetCardViewColor=>new Color(0.8f,0.8f,0.8f);
-    public override void LoadInfo(){
+    private List<WeatherCard> weathersAffecting = new List<WeatherCard>();
+    public List<WeatherCard> WeathersAffecting { get => weathersAffecting; }
+    public override Color GetCardViewColor => new Color(0.8f, 0.8f, 0.8f);
+    public override void LoadInfo()
+    {
         base.LoadInfo();
-        GameObject.Find("Quality").GetComponent<Image>().sprite=Resources.Load<Sprite>("SilverQuality");
+        GameObject.Find("Quality").GetComponent<Image>().sprite = Resources.Load<Sprite>("SilverQuality");
     }
 }
