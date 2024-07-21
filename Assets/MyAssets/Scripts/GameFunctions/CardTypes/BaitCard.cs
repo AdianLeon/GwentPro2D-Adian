@@ -37,25 +37,17 @@ public class BaitCard : PowerCard, ISpecialCard, IAffectable
     {
         get
         {//Conjunto de condiciones para que el senuelo se juegue
-            if (!gameObject.GetComponent<DraggableCard>().IsOnHand) { throw new System.Exception("El senuelo se intenta jugar pero no esta en la mano!!"); }
-            if (GetEnteredCard == null) { return false; }//Si estamos encima de una carta
+            if (GetEnteredCard == null) { return false; }//Si debajo del senuelo se encuentra otra carta
             //Chequeamos las condiciones para intercambiar con esa carta
             return SwapConditions(GetEnteredCard.GetComponent<DraggableCard>(), true);
         }
     }
     public void TriggerSpecialEffect()
     {//Efecto de intercambio del senuelo
-        GameObject placehold = new GameObject();//Creamos un objeto auxiliar para saber donde esta el senuelo
-        placehold.transform.SetParent(transform.parent);
-        placehold.transform.SetSiblingIndex(transform.GetSiblingIndex());
-
         transform.SetParent(GetEnteredCard.transform.parent);//El senuelo se pone donde esta la carta seleccionada
         transform.SetSiblingIndex(GetEnteredCard.transform.GetSiblingIndex());
 
-        GetEnteredCard.transform.SetParent(placehold.transform.parent);//GetEnteredCard se pone donde esta el objeto auxiliar
-        GetEnteredCard.transform.SetSiblingIndex(placehold.transform.GetSiblingIndex());
-
-        placehold.transform.SetParent(GameObject.Find("Trash").transform);//Se destruye el objeto auxiliar
-        Destroy(placehold);
+        GetEnteredCard.transform.SetParent(GetHand.transform);//GetEnteredCard se pone donde esta el objeto auxiliar
+        GetEnteredCard.transform.SetSiblingIndex(positionInHand);
     }
 }

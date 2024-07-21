@@ -31,7 +31,7 @@ public class DeckTrade : DropZone
             TradeCardWithDeck(eventData.pointerDrag.GetComponent<DraggableCard>());
         }
     }
-    private void TradeCardWithDeck(DraggableCard card)
+    public void TradeCardWithDeck(DraggableCard card)
     {
         GameObject playerDeck = GameObject.Find("Deck" + Judge.GetPlayer);//Deck del jugador
         playerDeck.GetComponent<Deck>().AddCardRandomly(card);//Anade la copia de la carta a la lista del deck

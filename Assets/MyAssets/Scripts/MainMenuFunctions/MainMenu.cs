@@ -6,10 +6,9 @@ using TMPro;
 //Script para la funcionalidad de los botones en el menu principal
 public class MainMenu : MonoBehaviour
 {
-    private static bool singlePlayerMode;
     public void OnTogglePlayerMode()
     {
-        singlePlayerMode = GameObject.Find("PlayerModeToggle").GetComponent<Toggle>().enabled;
+        PlayerPrefs.SetInt("SinglePlayerMode", GameObject.Find("PlayerModeToggle").GetComponent<Toggle>().isOn ? 1 : 0);
     }
     static bool firstExecuted = true;//Controla la primera ejecucion
     void Awake()
@@ -18,16 +17,17 @@ public class MainMenu : MonoBehaviour
         {//Si es la primera vez que este script se ejecuta
             string jsonPrefs = File.ReadAllText(Application.dataPath + "/MyAssets/Database/PlayerPreferences/PlayerPrefs.json");//Lee el archivo
             PlayerPrefsData prefs = JsonUtility.FromJson<PlayerPrefsData>(jsonPrefs);//Se convierte a un objeto que contiene todos los PlayerPrefs
-            PlayerPrefs.SetFloat("allVolume", prefs.volume);//Se impone como preferencia los valores guardados
+            PlayerPrefs.SetFloat("AllVolume", prefs.volume);//Se impone como preferencia los valores guardados
             PlayerPrefs.SetString("P1PrefDeck", prefs.deckPrefP1);
             PlayerPrefs.SetString("P2PrefDeck", prefs.deckPrefP2);
-            PlayerPrefs.SetInt("singlePlayerMode", prefs.singlePlayerMode ? 1 : 0);
+            PlayerPrefs.SetInt("SinglePlayerMode", prefs.singlePlayerMode);
             firstExecuted = false;//Ya no se ejecutara este condicional de nuevo
         }
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {//Si estamos en el menu inicial
-            GameObject.Find("SoundSlider").GetComponent<Slider>().value = PlayerPrefs.GetFloat("allVolume") * 100;//Inicializa el valor del slider del sonido con el valor preferido del jugador
-            GameObject.Find("Percentage").GetComponent<TextMeshProUGUI>().text = PlayerPrefs.GetFloat("allVolume") * 100 + "%";//Actualiza el porcentaje
+            GameObject.Find("SoundSlider").GetComponent<Slider>().value = PlayerPrefs.GetFloat("AllVolume") * 100;//Inicializa el valor del slider del sonido con el valor preferido del jugador
+            GameObject.Find("Percentage").GetComponent<TextMeshProUGUI>().text = PlayerPrefs.GetFloat("AllVolume") * 100 + "%";//Actualiza el porcentaje
+            GameObject.Find("PlayerModeToggle").GetComponent<Toggle>().isOn = PlayerPrefs.GetInt("SinglePlayerMode") == 1;
         }
     }
     public void Play()
@@ -45,8 +45,9 @@ public class MainMenu : MonoBehaviour
     }
     private static void SavePlayerPreferences()
     {//Crea un objeto que contendra las preferencias del jugador y lo exporta en formato json
-        PlayerPrefsData savePrefs = new PlayerPrefsData(PlayerPrefs.GetFloat("allVolume"), PlayerPrefs.GetString("P1PrefDeck"), PlayerPrefs.GetString("P2PrefDeck"), singlePlayerMode);
+        PlayerPrefsData savePrefs = new PlayerPrefsData(PlayerPrefs.GetFloat("AllVolume"), PlayerPrefs.GetString("P1PrefDeck"), PlayerPrefs.GetString("P2PrefDeck"), PlayerPrefs.GetInt("SinglePlayerMode"));
         string jsonPlayerPrefs = JsonUtility.ToJson(savePrefs);
+        Debug.Log("V: " + savePrefs.volume + " SinglePlayer: " + savePrefs.singlePlayerMode);
         File.WriteAllText(Application.dataPath + "/MyAssets/Database/PlayerPreferences/PlayerPrefs.json", jsonPlayerPrefs);
         Debug.Log("Player Preferences saved!");
     }

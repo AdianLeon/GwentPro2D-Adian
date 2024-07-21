@@ -67,7 +67,7 @@ public class UserRead : StateListener, IKeyboardListener
     }
     public static void Show(string passedMessage)
     {//Muestra el mensaje pasado como parametro en el UserRead directamente
-        GameObject.Find("UserRead").GetComponent<TextMeshProUGUI>().text = passedMessage;
+        GameObject.Find("UserReadZone").GetComponent<TextMeshProUGUI>().text = passedMessage;
     }
     public static void Write(string passedMessage)
     {//Se llama cuando se desea poner un mensaje en el UserRead, pero si se ha escrito un mensaje Long en los ultimos 2s entonces no puede mostrarse

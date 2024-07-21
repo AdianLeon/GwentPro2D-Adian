@@ -6,9 +6,10 @@ public abstract class DraggableCard : Card, IBeginDragHandler, IDragHandler, IEn
 {
     public override abstract bool IsPlayable { get; }
     private Transform parentToReturnTo = null;//Padre al que volver cuando se acaba el arrastre
-    public bool IsOnHand => transform.parent.gameObject == GameObject.Find("Hand" + gameObject.GetComponent<Card>().WhichPlayer);//Devuelve si la carta se encuentra en la mano
-    private GameObject placeholder = null;//El espacio que deja la carta en la mano cuando se arrastra
-    private static bool onDrag;//Si se esta arrastrando una carta
+    protected GameObject GetHand => GameObject.Find("Hand" + WhichPlayer);//Devuelve la mano del dueno de la carta
+    public bool IsOnHand => transform.parent.gameObject == GetHand;//Devuelve si la carta se encuentra en la mano
+    protected int positionInHand;
+    private static bool onDrag;//Si se esta arrastrando alguna carta
     public static bool IsOnDrag { get => onDrag; }
     public void OnBeginDrag(PointerEventData eventData)
     {//Este metodo se llama cuando empieza el arrastre de la carta
@@ -16,13 +17,7 @@ public abstract class DraggableCard : Card, IBeginDragHandler, IDragHandler, IEn
         {//Solo si esta en la mano y se puede jugar
             onDrag = true;//Comenzamos el arrastre
             //Guarda la posicion a la que volver si soltamos en lugar invalido y crea un espacio en el lugar de la carta
-            placeholder = new GameObject();//Crea el placeholder y le asigna los mismos valores que a la carta y la posicion de la carta
-            placeholder.transform.SetParent(transform.parent);
-            placeholder.AddComponent<LayoutElement>();//Crea un espacio para saber donde esta el placeholder
-
-            parentToReturnTo = transform.parent;//Padre al que volver, aqui guardaremos a donde la carta va cuando se suelta
             transform.SetParent(GameObject.Find("Canvas").transform);//Cambia el padre de la carta al canvas para que podamos moverla libremente
-
             //Activa la penetracion de la carta por el puntero para que podamos soltarla
             gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
         }
@@ -34,20 +29,17 @@ public abstract class DraggableCard : Card, IBeginDragHandler, IDragHandler, IEn
             gameObject.GetComponent<IShowZone>()?.ShowZone();//Haciendo que las zonas donde se pueda soltar la carta "brillen"
 
             transform.position = eventData.position;//Actualiza la posicion de la carta con la del puntero
+
             int newSiblingIndex = parentToReturnTo.childCount;//Guarda el indice del espacio de la derecha
             for (int i = 0; i < parentToReturnTo.childCount; i++)
             {//Chequeando constantemente si se esta a la izquierda de cada una de las cartas de la mano
                 if (transform.position.x < parentToReturnTo.GetChild(i).position.x)
                 {//Si la carta arrastrada esta a la izquierda
                     newSiblingIndex = i;//Actualiza el valor guardado con el actual
-                    if (placeholder.transform.GetSiblingIndex() < newSiblingIndex)
-                    {//Si la posicion del placeholder es menor que la guardada
-                        newSiblingIndex--;
-                    }
                     break;
                 }
             }
-            placeholder.transform.SetSiblingIndex(newSiblingIndex);//Pone el espacio debajo de la carta
+            positionInHand = newSiblingIndex;
         }
     }
     public void OnEndDrag(PointerEventData eventData)
@@ -55,36 +47,28 @@ public abstract class DraggableCard : Card, IBeginDragHandler, IDragHandler, IEn
         if (onDrag)
         {//Solo si se estaba arrastrando
             onDrag = false;//Terminamos el arrastre
-            MoveCardTo(parentToReturnTo.gameObject);//Mueve la carta a donde se determino
-            if (IsOnHand)
-            {//Si la carta cae de nuevo en la mano
-                transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());//Posiciona la carta en la mano
-            }
-            DestroyPlaceholder();//Destruye el espacio creado
-            GetComponent<CanvasGroup>().blocksRaycasts = true;//Desactiva la penetracion de la carta para que podamos mostrarla o arrastrarla de nuevo
-            GFUtils.GlowOff();//Desactivamos el glow de cualquier objeto que hayamos iluminado
-            if (IsPlayable)
+            if (transform.parent == GameObject.Find("Canvas").transform && !TryPlay())//Si la carta todavia esta en el canvas y no se juega desde ahi
             {
-                Play();//Juega la carta
+                MoveCardTo(GetHand);//Devuelve la carta a la mano
+                transform.SetSiblingIndex(positionInHand);//Posiciona la carta en la mano
             }
+            GetComponent<CanvasGroup>().blocksRaycasts = true;//Desactiva la penetracion de la carta para que podamos mostrarla o arrastrarla de nuevo
+            GFUtils.RestoreGlow();//Desactivamos el glow de cualquier objeto que hayamos iluminado
         }
     }
-    public void DestroyPlaceholder()
-    {//Mueve el placeholder para que al destruirlo no deje rastros y no cuente como objeto perteneciente a Hand
-        //Hacer esto es necesario para arreglar un bug referente a la cantidad de hijos en Hand en ciertos momentos
-        placeholder.transform.SetParent(GameObject.Find("Trash").transform);
-        Destroy(placeholder);
+    public bool TryPlayCardIn(DropZone zone)
+    {//Juega la carta en una zona
+        MoveCardTo(zone.gameObject);
+        return TryPlay();
     }
     public void MoveCardTo(GameObject zone)
-    {//Si la supuesta zona es valida entonces la carta ira alli
-        if (zone.GetComponent<DropZone>() != null || zone.GetComponent<IContainer>() != null || zone.name == "Trash")
-        {
-            transform.SetParent(zone.transform, false);//El segundo parametro es necesario para que no se altere la escala de la carta
-            parentToReturnTo = zone.transform;
-        }
-        else
-        {//Si la carta se envio a una zona invalida
-            throw new System.Exception(gameObject.name + " tried to go to : " + zone.name + " but is not a dropzone or container");
-        }
+    {
+        transform.SetParent(zone.transform, false);//El segundo parametro es necesario para que no se altere la escala de la carta
+        parentToReturnTo = zone.transform;
     }
+    public void Disappear()
+    {//Se deshace de la carta mandandola a la basura
+        MoveCardTo(GameObject.Find("Trash"));
+    }
+
 }

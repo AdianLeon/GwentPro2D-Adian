@@ -33,7 +33,7 @@ public class Judge : MonoBehaviour, IKeyboardListener
     }
     void Update()
     {
-        GFUtils.FindScriptsOfType<IKeyboardListener>().ForEach(listener => listener.ListenToKeyboardPress());
+        GFUtils.FindGameObjectsOfType<IKeyboardListener>().ForEach(listener => listener.ListenToKeyboardPress());
     }
     public static void ResetGame()
     {//Reinicia el juego. Este metodo es llamado por un boton llamado ResetGameButton y al inicio del juego
@@ -46,7 +46,7 @@ public class Judge : MonoBehaviour, IKeyboardListener
     }
     public void ListenToKeyboardPress()
     {//Acaba el turno cuando se presiona espacio
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !Computer.IsPlaying)
         {
             EndTurnOrRound();
         }
@@ -54,10 +54,10 @@ public class Judge : MonoBehaviour, IKeyboardListener
     public static void EndTurnOrRound()
     {
         if (isLastTurnOfRound) { NextRound(); } else { EndTurn(); }
-
-        Computer.ListenToPlayer();
+        //Se chequean las condiciones de que la computadora tome accion en el turno
+        GameObject.Find("Computer").GetComponent<Computer>().CheckPlayConditions();
     }
-    public static void PlayCard()
+    public static void OnPlayedCard()
     {//Se llama cuando se juega una carta
         hasPlayed = true;//El jugador acaba de jugar una carta
         CurrentState = State.PlayingCard;

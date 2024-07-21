@@ -41,13 +41,15 @@ public abstract class Card : MonoBehaviour, IGlow, IShowZone, IPointerEnterHandl
         GameObject.Find("Power").GetComponent<TextMeshProUGUI>().color = GetCardViewColor;
     }
     public abstract bool IsPlayable { get; }//Conjunto de condiciones para que la carta se pueda jugar, diferente para todas las cartas
-    public void Play()
-    {//Juega la carta
+    public bool TryPlay()
+    {//Juega la carta y devuelve si se cumplieron las condiciones para que se pudiese jugar
+        if (!IsPlayable) { return false; }
         //Si la carta tiene efecto de carta especial, que se active
         gameObject.GetComponent<ISpecialCard>()?.TriggerSpecialEffect();
         Execute.DoEffect(gameObject, OnActivationName);//Se ejecuta el efecto en del OnActivation
-        Judge.PlayCard();//Juega la carta
-        LoadInfo();
+        Judge.OnPlayedCard();//Notifica al juez de que se jugo una carta
+        LoadInfo();//Carga la info de la carta luego de que todos los scripts han reaccionado al estado
+        return true;
     }
     public void OnPointerEnter(PointerEventData eventData)
     {//Se activa cuando el mouse entra en la carta
@@ -58,7 +60,7 @@ public abstract class Card : MonoBehaviour, IGlow, IShowZone, IPointerEnterHandl
     }
     public void OnPointerExit(PointerEventData eventData)
     {//Se llama cuando el mouse sale de la carta
-        GFUtils.GlowOff();//Se dessombrean todas las cartas jugadas y se desactiva la iluminacion de todas las zonas
+        GFUtils.RestoreGlow();//Se dessombrean todas las cartas jugadas y se desactiva la iluminacion de todas las zonas
         OnGlow();//La carta se dessombrea
         enteredCard = null;//Ya no se esta encima de ninguna carta
     }
@@ -75,12 +77,6 @@ public abstract class Card : MonoBehaviour, IGlow, IShowZone, IPointerEnterHandl
         if (!enteredCard.GetComponent<DraggableCard>().IsOnHand) { return; }//Si no esta en la mano
         ShowZone();
     }
-    public void OnGlow()
-    {//Cuando una carta activa su glow se devuelve a su estado normal totalmente visible
-        this.gameObject.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-    }
-    public void OffGlow()
-    {//Cuando una carta desactiva su glow se oscurece
-        this.gameObject.GetComponent<Image>().color = new Color(0.75f, 0.75f, 0.75f, 1);
-    }
+    public void OnGlow() { gameObject.GetComponent<Image>().color = new Color(1, 1, 1, 1); }//Cuando una carta activa su glow se devuelve a su estado normal totalmente visible
+    public void OffGlow() { gameObject.GetComponent<Image>().color = new Color(0.75f, 0.75f, 0.75f, 1); }//Cuando una carta desactiva su glow se oscurece
 }

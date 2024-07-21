@@ -13,7 +13,7 @@ public abstract class DropZone : MonoBehaviour, IDropHandler, IGlow
         }
         if (IsDropValid(eventData.pointerDrag.GetComponent<DraggableCard>()))
         {//Solo si se esta arrastrando y es valido segun el IsDropValid de cada DropZone
-            eventData.pointerDrag.GetComponent<DraggableCard>().MoveCardTo(this.gameObject);
+            eventData.pointerDrag.GetComponent<DraggableCard>().TryPlayCardIn(this);
         }
     }
     public virtual void OnGlow()

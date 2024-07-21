@@ -40,11 +40,11 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardContainers\Hand.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Parser\Cards\OnActivationUtils.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GFExtras\GFInterfaces.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GFDeclarations\GFInterfaces.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\DCExtras\DCClasses.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GFExtras\GFUtils.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GFDeclarations\GFUtils.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\DropZones\DropZone.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\WeatherCard.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
@@ -60,8 +60,8 @@
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Lexer\Lexer.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\FieldFunctions\PauseScreen.cs" />
      <Compile Include="Assets\MyAssets\Scripts\MainMenuFunctions\DeckDropdowns.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\DeckCreator\DCExtras\DeckCreatorUtils.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\SinglePlayerMode\Computer.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\DeckCreator\DCExtras\DCUtils.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\SinglePlayerMode\Computer.cs" />
      <Compile Include="Assets\MyAssets\Scripts\MainMenuFunctions\MainMenu.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardEffects\DrawOneEffect.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
@@ -97,7 +97,7 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\SilverCard.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\BaitCard.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GFExtras\GFClasses.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GFDeclarations\GFClasses.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Lexer\LexerUtils.cs" />
@@ -114,11 +114,11 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\DCExtras\DCEnums.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\DropZones\DZWeather.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GFExtras\GFEnums.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GFDeclarations\GFEnums.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\FieldFunctions\PlayedLight.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\AbstractCardTypes\Card.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GFExtras\AudioManager.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\MainMenuFunctions\AudioManager.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />

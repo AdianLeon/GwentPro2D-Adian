@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 //Script que declara las clases a utilizar de todo el juego
 public abstract class StateListener : MonoBehaviour
@@ -12,8 +11,8 @@ public class PlayerPrefsData
     public float volume;
     public string deckPrefP1;
     public string deckPrefP2;
-    public bool singlePlayerMode;
-    public PlayerPrefsData(float volume, string deckPrefP1, string deckPrefP2, bool singlePlayerMode)
+    public int singlePlayerMode;
+    public PlayerPrefsData(float volume, string deckPrefP1, string deckPrefP2, int singlePlayerMode)
     {
         this.volume = volume;
         this.deckPrefP1 = deckPrefP1;
