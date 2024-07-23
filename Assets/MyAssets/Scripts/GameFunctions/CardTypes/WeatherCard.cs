@@ -22,7 +22,7 @@ public class WeatherCard : WeatherZoneCard
         AffectZoneWithWeather(this.transform.parent.GetComponent<DZWeather>().Target1);//La de P1
         AffectZoneWithWeather(this.transform.parent.GetComponent<DZWeather>().Target2);//La de P2
     }
-    private void AffectZoneWithWeather(GameObject zoneTarget)
+    private void AffectZoneWithWeather(DZUnit zoneTarget)
     {//Afecta la zona determinada con el efecto clima
         foreach (Transform card in zoneTarget.transform)
         {//Itera por todos los hijos

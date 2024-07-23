@@ -1,7 +1,4 @@
 using System;
-using Unity.VisualScripting;
-using UnityEngine;
-using UnityEngine.EventSystems;
 //Script para las DropZones de cartas de unidad
 public class DZUnit : DropZone
 {

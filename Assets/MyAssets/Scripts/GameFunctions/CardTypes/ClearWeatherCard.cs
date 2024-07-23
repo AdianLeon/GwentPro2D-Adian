@@ -16,8 +16,8 @@ public class ClearWeatherCard : WeatherZoneCard
     }
     public override void TriggerSpecialEffect()
     {//Efecto de las cartas despeje
-        ClearZoneOfWeathers(transform.parent.GetComponent<DZWeather>().Target1);//Deshace el efecto clima en el campo correspondiente a la zona de P1
-        ClearZoneOfWeathers(transform.parent.GetComponent<DZWeather>().Target2);//Deshace el efecto clima en el campo correspondiente a la zona de P2
+        ClearZoneOfWeathers(transform.parent.GetComponent<DZWeather>().Target1.gameObject);//Deshace el efecto clima en el campo correspondiente a la zona de P1
+        ClearZoneOfWeathers(transform.parent.GetComponent<DZWeather>().Target2.gameObject);//Deshace el efecto clima en el campo correspondiente a la zona de P2
         Graveyard.SendToGraveyard(transform.parent.gameObject.CardsInside<DraggableCard>());//Mandando las cartas de la zona para el cementerio (incluido el despeje)
     }
     public static void ClearZoneOfWeathers(GameObject zoneTarget)
