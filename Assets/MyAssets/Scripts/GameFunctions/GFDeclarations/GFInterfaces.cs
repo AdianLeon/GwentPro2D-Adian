@@ -1,6 +1,10 @@
 using System.Collections.Generic;
-using UnityEngine;
 //Script que declara las interfaces a utilizar
+interface IStateListener
+{//Para aquellos scripts que deban ejecutar codigo en alguno de los estados definidos
+    public abstract int GetPriority { get; }//Para definir un orden de prioridad y ejecutar primero aquellos scripts de mayor prioridad
+    public abstract void CheckState();//Realiza acciones en dependencia del estado actual
+}
 interface IEffect
 {//Para los efectos
     string GetEffectDescription { get; }
@@ -28,7 +32,7 @@ interface IGlow
 }
 interface IContainer
 {//Para aquellos objetos que en el juego contendran cartas
-    List<DraggableCard> GetCards { get; }//Devuelve una lista con las cartas contenidas en el objeto
+    IEnumerable<DraggableCard> GetCards { get; }//Devuelve una lista con las cartas contenidas en el objeto
 }
 interface IKeyboardListener
 {

@@ -5,7 +5,6 @@ using TMPro;
 public abstract class WeatherZoneCard : DraggableCard, IShowZone, ISpecialCard
 {
     public abstract string GetEffectDescription { get; }
-    public override bool IsPlayable => this.transform.parent.gameObject.GetComponent<DZWeather>() != null;//Son jugables si se encuentran en una zona de clima
     public override void LoadInfo()
     {//No tienen AddedPower
         base.LoadInfo();

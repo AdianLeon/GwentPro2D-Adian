@@ -2,12 +2,12 @@ using System;
 using UnityEngine;
 using System.IO;
 //Script para instanciar cartas de un json
-public class JsonToCards : StateListener
+public class JsonToCards : MonoBehaviour, IStateListener
 {
-    public override int GetPriority => 0;
+    public int GetPriority => 0;
     private static int instantiatedCardsCount;//Cuenta de las cartas instanciadas
     public GameObject CardPrefab;//Referencia al prefab CardPrefab
-    public override void CheckState()
+    public void CheckState()
     {
         if (Judge.CurrentState == State.LoadingCards)
         {

@@ -1,8 +1,10 @@
 //Script para marcar las pantallas de pausa
-public class PauseScreen : StateListener
+using UnityEngine;
+
+public class PauseScreen : MonoBehaviour, IStateListener
 {
-    public override int GetPriority => 0;
-    public override void CheckState()
+    public int GetPriority => 0;
+    public void CheckState()
     {
         switch (Judge.CurrentState)
         {

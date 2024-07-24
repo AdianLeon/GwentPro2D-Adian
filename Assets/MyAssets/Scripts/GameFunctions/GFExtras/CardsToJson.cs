@@ -7,7 +7,7 @@ public class CardsToJson : MonoBehaviour
     void Awake()
     {
         Debug.Log("Exporting Cards");
-        transform.TransformToIEnumerable<Card>().ForEach(card => ExportCard(card));
+        gameObject.CardsInside<Card>().ForEach(card => ExportCard(card));
     }
     private static void ExportCard(Card card)
     {

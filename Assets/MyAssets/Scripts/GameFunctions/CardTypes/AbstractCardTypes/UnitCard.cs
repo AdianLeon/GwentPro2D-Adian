@@ -7,7 +7,6 @@ public abstract class UnitCard : PowerCard
     public override void LoadInfo()
     {
         base.LoadInfo();
-        GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text = "[" + WhichZone.ToString() + "]";
+        GameObject.Find("Type").GetComponent<TextMeshProUGUI>().text = "[" + WhichZone + "]";
     }
-    public override bool IsPlayable { get => this.transform.parent.gameObject.GetComponent<DZUnit>() != null; }//Es jugable si se encuentra en una zona de cartas de unidad
 }

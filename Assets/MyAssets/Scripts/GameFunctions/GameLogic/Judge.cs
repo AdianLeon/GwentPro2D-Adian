@@ -1,9 +1,10 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 //Script que simula un juez, se encarga del manejo de estados, la logica de turnos, rondas y condicion de victoria
 public class Judge : MonoBehaviour, IKeyboardListener
 {
-    private static StateListener[] stateListeners;
+    private static IEnumerable<IStateListener> stateListeners;
     private static State currentState;//Estado actual del juego
     public static State CurrentState
     {
@@ -23,39 +24,38 @@ public class Judge : MonoBehaviour, IKeyboardListener
     public static bool HasPlayed => hasPlayed;
     private static bool isLastTurnOfRound;//Si es o no el ultimo turno antes de que acabe la ronda
     public static bool IsLastTurnOfRound => isLastTurnOfRound;
+    private static bool hasGameEnded;//Si el juego se ha acabado
     public static bool CanPlay => !hasPlayed || isLastTurnOfRound;
-    void Start()
-    {//En el inicio de la escena se cargan las cartas y se reinicia el juego
-        stateListeners = Resources.FindObjectsOfTypeAll<StateListener>();
-        stateListeners.OrderBy(script => script.GetPriority);
-        CurrentState = State.LoadingCards;
-        ResetGame();
-    }
-    void Update()
-    {
-        GFUtils.FindGameObjectsOfType<IKeyboardListener>().ForEach(listener => listener.ListenToKeyboardPress());
-    }
-    public static void ResetGame()
-    {//Reinicia el juego. Este metodo es llamado por un boton llamado ResetGameButton y al inicio del juego
-        LeaderCard.ResetAllLeaderSkills();//Reinicia las habilidades de los lideres
-        hasPlayed = false;
-        isLastTurnOfRound = false;
-        isFirstTurnOfPlayer = true;
-        playerTurn = Player.P1;//El Player 1 inicia la partida siempre
-        CurrentState = State.SettingUpGame;
-    }
+    void Update() { GFUtils.FindGameObjectsOfType<IKeyboardListener>().ForEach(listener => listener.ListenToKeyboardPress()); }//Hace posible las respuestas ante las presiones de teclas
     public void ListenToKeyboardPress()
     {//Acaba el turno cuando se presiona espacio
         if (Input.GetKeyDown(KeyCode.Space) && !Computer.IsPlaying)
         {
+            Debug.Log("Presionado ESPACIO");
             EndTurnOrRound();
         }
     }
+    void Start()
+    {//En el inicio de la escena se cargan las cartas y se reinicia el juego
+        stateListeners = GFUtils.FindGameObjectsOfType<IStateListener>().OrderBy(script => script.GetPriority);
+        CurrentState = State.LoadingCards;
+        ResetGame();
+    }
+    public static void ResetGame()
+    {//Reinicia el juego. Este metodo es llamado por un boton llamado ResetGameButton
+        hasPlayed = false;
+        isLastTurnOfRound = false;
+        isFirstTurnOfPlayer = true;
+        hasGameEnded = false;
+        playerTurn = Player.P1;//El Player 1 inicia la partida siempre
+        CurrentState = State.SettingUpGame;
+    }
     public static void EndTurnOrRound()
     {
+        if (hasGameEnded) { return; }
         if (isLastTurnOfRound) { NextRound(); } else { EndTurn(); }
-        //Se chequean las condiciones de que la computadora tome accion en el turno
-        GameObject.Find("Computer").GetComponent<Computer>().CheckPlayConditions();
+        GameObject.Find("Computer").GetComponent<Computer>().TryPlay();//Se chequean las condiciones para que la computadora juegue el turno
+
     }
     public static void OnPlayedCard()
     {//Se llama cuando se juega una carta
@@ -132,6 +132,7 @@ public class Judge : MonoBehaviour, IKeyboardListener
     }
     private static void WinsGame(Player player)
     {//El jugador gana la partida
+        hasGameEnded = true;
         playerTurn = player;//Se guarda en playerTurn el jugador ganador para que otros stateListeners puedan acceder al ganador del juego mediante GetPlayerTurn
         CurrentState = State.EndingGame;
     }

@@ -4,21 +4,7 @@ using System.Linq;
 using UnityEngine;
 public static class CustomExtensionMethods
 {
-    public static void ForEach<T>(this IEnumerable<T> items, Action<T> action)
-    {//Comodidad extra para realizar una accion simple sobre todos los elementos de un IEnumerable sin declarar ese IEnumerable
-        foreach (T item in items) { action(item); }
-    }
-    public static IEnumerable<T> TransformToIEnumerable<T>(this Transform zone)
-    {//Para cuando se haga deseen usar metodos de Linq sobre un transform
-        foreach (Transform card in zone)
-        {
-            if (card.GetComponent<T>() != null)
-            {
-                yield return card.GetComponent<T>();
-            }
-        }
-    }
-    public static List<T> CardsInside<T>(this GameObject place)
+    public static IEnumerable<T> CardsInside<T>(this GameObject place)
     {//Devuelve los descendientes carta de un GameObject
         if (place.GetComponent<T>() != null)
         {//Si el lugar es una carta se devuelve esa carta
@@ -30,6 +16,15 @@ public static class CustomExtensionMethods
             cards.AddRange(card.gameObject.CardsInside<T>());//Anade a su lista lo que sus hijos devuelvan
         }
         return cards;//Devuelve todas las cartas que contiene
+    }
+    public static void ForEach<T>(this IEnumerable<T> items, Action<T> action)
+    {//Comodidad extra para realizar una accion simple sobre todos los elementos de un IEnumerable sin declarar ese IEnumerable
+        foreach (T item in items) { action(item); }
+    }
+    public static T RandomElement<T>(this IEnumerable<T> items)
+    {
+        if (items.Count() == 0) { return default; }
+        return items.ElementAt(UnityEngine.Random.Range(0, items.Count()));
     }
     public static Player Field(this GameObject place)
     {//Devuelve el campo de un objeto
@@ -49,9 +44,7 @@ public static class GFUtils
     }
     public static void RestoreGlow()
     {//Desactiva toda la iluminacion de las zonas y las cartas jugadas
-        //Hace las zonas invisibles nuevamente
-        GameObject.FindObjectsOfType<DropZone>().ForEach(zone => zone.OffGlow());
-        //Las cartas se dessombrean
-        Field.AllPlayedCards.ForEach(playedCard => playedCard.OnGlow());
+        GameObject.FindObjectsOfType<DropZone>().ForEach(zone => zone.OffGlow());//Hace las zonas invisibles nuevamente
+        Field.AllPlayedCards.ForEach(playedCard => playedCard.OnGlow());//Las cartas se dessombrean
     }
 }

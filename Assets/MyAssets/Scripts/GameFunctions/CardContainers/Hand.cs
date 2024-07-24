@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 //Script para las manos de los jugadores
-public class Hand : StateListener, IContainer
+public class Hand : MonoBehaviour, IStateListener, IContainer
 {
-    public override int GetPriority => 1;
-    public List<DraggableCard> GetCards => gameObject.CardsInside<DraggableCard>();
-    public static List<DraggableCard> PlayerHandCards => GameObject.Find("Hand" + Judge.GetPlayer).CardsInside<DraggableCard>();//Lista de las cartas de la mano del jugador en turno
-    public static List<DraggableCard> EnemyHandCards => GameObject.Find("Hand" + Judge.GetEnemy).CardsInside<DraggableCard>();//Lista de las cartas de la mano del enemigo del jugador en turno
-    public override void CheckState()
+    public int GetPriority => 1;
+    public IEnumerable<DraggableCard> GetCards => gameObject.CardsInside<DraggableCard>();
+    public static IEnumerable<DraggableCard> PlayerCards => GameObject.Find("Hand" + Judge.GetPlayer).CardsInside<DraggableCard>();//Lista de las cartas de la mano del jugador en turno
+    public static IEnumerable<DraggableCard> EnemyCards => GameObject.Find("Hand" + Judge.GetEnemy).CardsInside<DraggableCard>();//Lista de las cartas de la mano del enemigo del jugador en turno
+    public void CheckState()
     {
         switch (Judge.CurrentState)
         {
@@ -26,9 +26,9 @@ public class Hand : StateListener, IContainer
     {
         while (transform.childCount > 10)
         {//Si una carta no cabe en la mano
-            DraggableCard extraCard = transform.GetChild(transform.childCount - 1).gameObject.GetComponent<DraggableCard>();
+            DraggableCard extraCard = transform.GetChild(transform.childCount - 1).GetComponent<DraggableCard>();
             Graveyard.SendToGraveyard(extraCard);//Se envia al cementerio
-            UserRead.Write("No puedes tener mas de 10 cartas en la mano." + extraCard.GetComponent<Card>().CardName + " se ha enviado al cementerio!");
+            UserRead.Write("No puedes tener mas de 10 cartas en la mano." + extraCard.CardName + " se ha enviado al cementerio!");
         }
     }
 }

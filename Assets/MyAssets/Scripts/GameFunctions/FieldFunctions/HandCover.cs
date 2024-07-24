@@ -1,10 +1,10 @@
 //Script para activar el cover de las manos cuando sea turno del enemigo
 using UnityEngine;
 
-public class HandCover : StateListener
+public class HandCover : MonoBehaviour, IStateListener
 {
-    public override int GetPriority => 1;
-    public override void CheckState()
+    public int GetPriority => 1;
+    public void CheckState()
     {
         switch (Judge.CurrentState)
         {

@@ -5,8 +5,8 @@ using UnityEngine.UI;
 public class SilverCard : UnitCard, IAffectable
 {
     private List<WeatherCard> weathersAffecting = new List<WeatherCard>();
-    public List<WeatherCard> WeathersAffecting { get => weathersAffecting; }
-    public override Color GetCardViewColor => new Color(0.8f, 0.8f, 0.8f);
+    public List<WeatherCard> WeathersAffecting => weathersAffecting;
+    public override Color CardViewColor => new Color(0.8f, 0.8f, 0.8f);
     public override void LoadInfo()
     {
         base.LoadInfo();

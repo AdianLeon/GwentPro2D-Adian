@@ -4003,8 +4003,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46916d5f18643754cabf09539e04c6e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target1: {fileID: 1400037315}
-  Target2: {fileID: 862226936}
+  TargetP1: {fileID: 1400037315}
+  TargetP2: {fileID: 862226936}
 --- !u!1001 &915025857
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4534,8 +4534,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46916d5f18643754cabf09539e04c6e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target1: {fileID: 1988085509}
-  Target2: {fileID: 1385450671}
+  TargetP1: {fileID: 1988085509}
+  TargetP2: {fileID: 1385450671}
 --- !u!1 &995698257 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5693966862660292268, guid: 843c2f94e3829b646a582ef18d32ff0e, type: 3}
@@ -5444,8 +5444,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46916d5f18643754cabf09539e04c6e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target1: {fileID: 3831248092945592194}
-  Target2: {fileID: 1622124517}
+  TargetP1: {fileID: 3831248092945592194}
+  TargetP2: {fileID: 1622124517}
 --- !u!1 &1194172540
 GameObject:
   m_ObjectHideFlags: 0
