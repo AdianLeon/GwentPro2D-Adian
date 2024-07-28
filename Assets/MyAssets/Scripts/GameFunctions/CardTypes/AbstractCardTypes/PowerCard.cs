@@ -13,7 +13,6 @@ abstract public class PowerCard : DraggableCard
         //Power
         GameObject.Find("Power").GetComponent<TextMeshProUGUI>().text = Power.ToString();
         GameObject.Find("BGPower").GetComponent<Image>().color = new Color(0.2f, 0.2f, 0.2f, 0.8f);
-
         //AddedPower
         if (AddedPower > 0)
         {//Se actualiza el poder anadido, en caso de ser positivo se pone verde y si es negativo se pone rojo

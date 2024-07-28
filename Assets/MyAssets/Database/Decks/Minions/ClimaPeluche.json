@@ -1,7 +1,7 @@
 {
     "faction": "Minions",
     "cardName": "Peluche",
-    "powerPoints": 15,
+    "powerPoints": 25,
     "scriptComponent": "WeatherCard",
     "onActivationName": "",
     "zones": ""

@@ -2,13 +2,16 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 //Script para la carta Lider
-public class LeaderCard : Card, IPointerClickHandler, IStateListener
+public class LeaderCard : Card, IPointerClickHandler, IStateSubscriber
 {
-    public override Color CardViewColor => new Color(0.7f, 0.1f, 0.5f);
     private bool hasUsedSkill;//Si la habilidad ha sido usada
-    public int GetPriority => 0;
-    public void CheckState() { if (Judge.CurrentState == State.SettingUpGame) { hasUsedSkill = false; } }//Al inicio de cada juego resetea el uso de la habilidad de lider
+    public override Color CardViewColor => new Color(0.7f, 0.1f, 0.5f);
+    public List<StateSubscription> GetStateSubscriptions => new List<StateSubscription>
+    {
+        new (State.SettingUpGame, new Execution (stateInfo => hasUsedSkill = false, 0))
+    };
     public override void LoadInfo()
     {
         base.LoadInfo();
@@ -22,8 +25,8 @@ public class LeaderCard : Card, IPointerClickHandler, IStateListener
     }
     public override bool IsPlayable => LeaderSkillConditions();
     private bool LeaderSkillConditions()
-    {
-        if (WhichPlayer != Judge.GetPlayer || (PlayerPrefs.GetInt("SinglePlayerMode") == 1 && Judge.GetPlayer == Player.P2)) { UserRead.Write("Ese no es el lider de tu deck"); return false; }
+    {//Devuelve si se cumplen las condiciones para jugar el lider
+        if (Owner != Judge.GetPlayer || Computer.IsPlaying) { return false; }
         if (hasUsedSkill) { UserRead.Write("La habilidad del lider: " + CardName + " ya ha sido usada. La habilidad de lider solo puede ser usada una vez por partida"); return false; }
         return true;
     }

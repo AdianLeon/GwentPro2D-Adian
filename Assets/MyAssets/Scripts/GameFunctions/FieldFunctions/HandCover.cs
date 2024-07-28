@@ -1,21 +1,13 @@
 //Script para activar el cover de las manos cuando sea turno del enemigo
+using System.Collections.Generic;
 using UnityEngine;
 
-public class HandCover : MonoBehaviour, IStateListener
+public class HandCover : MonoBehaviour, IStateSubscriber
 {
-    public int GetPriority => 1;
-    public void CheckState()
+    public List<StateSubscription> GetStateSubscriptions => new List<StateSubscription>
     {
-        switch (Judge.CurrentState)
-        {
-            case State.SettingUpGame://Si es el turno de su enemigo, se activa, si es el turno de su jugador, se desactiva
-            case State.EndingTurn:
-            case State.EndingRound:
-                gameObject.SetActive(gameObject.Field() == Judge.GetEnemy);
-                break;
-            case State.EndingGame://Si es el fin del juego se activa
-                gameObject.SetActive(true);
-                break;
-        }
-    }
+        new (new List<State>{State.SettingUpGame,State.EndingTurn,State.EndingRound}, new Execution(stateInfo => UpdateCover(), 1)),
+        new (State.EndingGame , new Execution(stateInfo => gameObject.SetActive(true), 0))
+    };
+    private void UpdateCover() => gameObject.SetActive(gameObject.Field() == Judge.GetEnemy);
 }

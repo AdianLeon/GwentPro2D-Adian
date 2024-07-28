@@ -6,8 +6,8 @@ using System.Linq;
 //Script para las cartas clima
 public class WeatherCard : WeatherZoneCard
 {
-    public override string GetEffectDescription => "Reduce el poder de las cartas de la fila seleccionada (Para ambos campos)";
     public int Damage;//Cantidad de poder restado cuando una carta es afectada por el clima
+    public override string GetEffectDescription => "Reduce el poder de las cartas de la fila seleccionada (Para ambos campos)";
     public override Color CardViewColor => new Color(0.7f, 0.2f, 0.2f);
     public override void LoadInfo()
     {

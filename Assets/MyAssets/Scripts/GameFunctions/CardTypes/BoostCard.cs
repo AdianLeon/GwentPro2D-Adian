@@ -5,9 +5,9 @@ using TMPro;
 //Script para las cartas de aumento
 public class BoostCard : DraggableCard, ISpecialCard
 {
+    public int Boost;//Cantidad de poder aumentado cuando una carta es afectada por el aumento
     public string GetEffectDescription => "Aumenta el poder de las cartas de la fila seleccionada";
     public override Color CardViewColor => new Color(0.4f, 1, 0.3f);
-    public int Boost;//Cantidad de poder aumentado cuando una carta es afectada por el aumento
     public override void LoadInfo()
     {
         base.LoadInfo();
@@ -21,8 +21,7 @@ public class BoostCard : DraggableCard, ISpecialCard
     }
     public void TriggerSpecialEffect()
     {//Obtiene todas las cartas afectables del objetivo de la zona donde se encuentra y les aumenta el poder anadido
-        transform.parent.GetComponent<DZBoost>().Target.gameObject.CardsInside<PowerCard>()
-        .Where(card => card.GetComponent<IAffectable>() != null).ForEach(card => card.AddedPower += Boost);
+        transform.parent.GetComponent<DZBoost>().Target.gameObject.CardsInside<PowerCard>().Where(card => card.GetComponent<IAffectable>() != null).ForEach(card => card.AddedPower += Boost);
         //Envia la carta de aumento al cementerio
         Graveyard.SendToGraveyard(gameObject.GetComponent<DraggableCard>());
     }

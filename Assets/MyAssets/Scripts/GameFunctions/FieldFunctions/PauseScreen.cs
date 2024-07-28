@@ -1,19 +1,12 @@
 //Script para marcar las pantallas de pausa
+using System.Collections.Generic;
 using UnityEngine;
 
-public class PauseScreen : MonoBehaviour, IStateListener
+public class PauseScreen : MonoBehaviour, IStateSubscriber
 {
-    public int GetPriority => 0;
-    public void CheckState()
+    public List<StateSubscription> GetStateSubscriptions => new List<StateSubscription>
     {
-        switch (Judge.CurrentState)
-        {
-            case State.SettingUpGame://Cuando inicia el juego se desactiva
-                gameObject.SetActive(false);
-                return;
-            case State.EndingGame://Cuando el juego termina se activa
-                gameObject.SetActive(true);
-                return;
-        }
-    }
+        new (State.SettingUpGame, new Execution (stateInfo=>gameObject.SetActive(false), 0)),
+        new (State.EndingGame, new Execution (stateInfo=>gameObject.SetActive(true), 0))
+    };
 }

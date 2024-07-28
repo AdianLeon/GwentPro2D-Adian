@@ -7,9 +7,8 @@ public class GruEffect : MonoBehaviour, ICardEffect
     private static bool StealRandomEnemyCard()
     {//Robar del enemigo una carta random
         if (Hand.EnemyCards.Count() == 0) { return false; }//Si no tiene cartas devuelve false
-        DraggableCard cardToSteal = Hand.EnemyCards.RandomElement().GetComponent<DraggableCard>();//Carta random de la mano objetivo
+        DraggableCard cardToSteal = Hand.EnemyCards.RandomElement();//Carta random de la mano objetivo
         cardToSteal.transform.SetParent(GameObject.Find("Hand" + Judge.GetPlayer).transform);//Pone la carta robada en la mano del ladron
-        cardToSteal.WhichPlayer = Judge.GetPlayer;//Cambia el campo de la carta al del jugador que desencadeno el efecto
         return true;
     }
     public void TriggerEffect()

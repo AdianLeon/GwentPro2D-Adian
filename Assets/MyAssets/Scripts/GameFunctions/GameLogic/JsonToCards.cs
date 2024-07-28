@@ -1,20 +1,21 @@
 using System;
 using UnityEngine;
 using System.IO;
+using System.Collections.Generic;
 //Script para instanciar cartas de un json
-public class JsonToCards : MonoBehaviour, IStateListener
+public class JsonToCards : MonoBehaviour, IStateSubscriber
 {
-    public int GetPriority => 0;
     private static int instantiatedCardsCount;//Cuenta de las cartas instanciadas
     public GameObject CardPrefab;//Referencia al prefab CardPrefab
-    public void CheckState()
+    public List<StateSubscription> GetStateSubscriptions => new List<StateSubscription>
     {
-        if (Judge.CurrentState == State.LoadingCards)
-        {
-            instantiatedCardsCount = 0;
-            ImportDeckTo(PlayerPrefs.GetString("P1PrefDeck"), GameObject.Find("CardsP1"), GameObject.Find("DeckP1"));
-            ImportDeckTo(PlayerPrefs.GetString("P2PrefDeck"), GameObject.Find("CardsP2"), GameObject.Find("DeckP2"));
-        }
+        new (State.LoadingCards, new Execution (stateInfo => LoadCards(), 0))
+    };
+    private void LoadCards()
+    {
+        instantiatedCardsCount = 0;
+        ImportDeckTo(PlayerPrefs.GetString("P1PrefDeck"), GameObject.Find("CardsP1"), GameObject.Find("DeckP1"));
+        ImportDeckTo(PlayerPrefs.GetString("P2PrefDeck"), GameObject.Find("CardsP2"), GameObject.Find("DeckP2"));
     }
     public static void ImportDeckTo(string faction, GameObject deckPlace, GameObject Deck)
     {//Crea todas las cartas en el directorio asignado en preferencias del jugador en el objeto
@@ -48,7 +49,7 @@ public class JsonToCards : MonoBehaviour, IStateListener
         //Card Properties
         newCard.GetComponent<Card>().Faction = cardSave.faction;
         newCard.GetComponent<Card>().CardName = cardSave.cardName;
-        newCard.GetComponent<Card>().WhichPlayer = player;
+        newCard.GetComponent<Card>().Owner = player;
         newCard.GetComponent<Card>().OnActivationName = cardSave.onActivationName;
 
         //Sprites

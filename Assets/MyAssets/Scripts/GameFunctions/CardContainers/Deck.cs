@@ -1,29 +1,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 //Script para el funcionamiento del deck
-public class Deck : MonoBehaviour, IStateListener, IContainer
+public class Deck : MonoBehaviour, IStateSubscriber, IContainer
 {
-    public int GetPriority => 0;
-
+    public List<StateSubscription> GetStateSubscriptions => new List<StateSubscription>
+    {
+        new (State.SettingUpGame, new Execution(stateInfo => ReceiveAndDealCards(), 0)),
+        new (State.EndingRound, new Execution(stateInfo => { DrawTopCard(); DrawTopCard(); }, 0) ),
+        new (State.EndingGame, new Execution(stateInfo => DeckCards.Clear(), 0))
+    };
     public IEnumerable<DraggableCard> GetCards => DeckCards;
     public static IEnumerable<DraggableCard> PlayerCards => GameObject.Find("Deck" + Judge.GetPlayer).GetComponent<Deck>().GetCards;
     public static IEnumerable<DraggableCard> EnemyCards => GameObject.Find("Deck" + Judge.GetEnemy).GetComponent<Deck>().GetCards;
     private List<DraggableCard> DeckCards = new List<DraggableCard>();
-    public void CheckState()
-    {
-        switch (Judge.CurrentState)
-        {
-            case State.SettingUpGame://Cuando inicia el juego se reciben las cartas del contenedor y se reparten 10 cartas a cada jugador
-                ReceiveAndDealCards();
-                break;
-            case State.EndingRound://Cuando se empieza una ronda se reparten dos cartas a cada jugador
-                DrawTopCard(); DrawTopCard();
-                break;
-            case State.EndingGame://Cuando se acaba el juego se limpia la lista
-                DeckCards.Clear();
-                break;
-        }
-    }
     private void ReceiveAndDealCards()
     {
         //Anadiendo las cartas del contenedor del jugador al deck

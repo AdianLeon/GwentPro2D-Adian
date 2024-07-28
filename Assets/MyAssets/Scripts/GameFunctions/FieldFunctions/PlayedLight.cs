@@ -1,29 +1,13 @@
+using System.Collections.Generic;
 using UnityEngine;
 //Script de las luces del juego que indican si se puede jugar
-public class PlayedLight : MonoBehaviour, IStateListener, IGlow
+public class PlayedLight : MonoBehaviour, IStateSubscriber
 {
-    public int GetPriority => 1;
-    public void CheckState()
+    public List<StateSubscription> GetStateSubscriptions => new List<StateSubscription>
     {
-        switch (Judge.CurrentState)
-        {
-            case State.SettingUpGame://Si se pude jugar se pone verde, si no rojo
-            case State.PlayingCard:
-            case State.EndingTurn:
-            case State.EndingRound:
-                if (Judge.CanPlay) { OnGlow(); } else { OffGlow(); }
-                break;
-            case State.EndingGame://Cuando es el final del juego se deja en rojo
-                OffGlow();
-                break;
-        }
-    }
-    public void OnGlow()
-    {//Pone el objeto en verde
-        this.gameObject.GetComponent<UnityEngine.UI.Image>().color = new Color(0, 1, 0, 0.2f);
-    }
-    public void OffGlow()
-    {//Pone el objeto en rojo
-        this.gameObject.GetComponent<UnityEngine.UI.Image>().color = new Color(1, 0, 0, 0.2f);
-    }
+        new (new Execution(stateInfo=>{ if (Judge.CanPlay) { PaintGreen(); } else { PaintRed(); } }, 1)),
+        new (State.EndingGame, new Execution (stateInfo => PaintRed(), 0))
+    };
+    private void PaintGreen() => gameObject.GetComponent<UnityEngine.UI.Image>().color = new Color(0, 1, 0, 0.2f);
+    private void PaintRed() => gameObject.GetComponent<UnityEngine.UI.Image>().color = new Color(1, 0, 0, 0.2f);
 }

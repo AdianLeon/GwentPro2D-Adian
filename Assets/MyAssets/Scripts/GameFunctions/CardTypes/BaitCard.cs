@@ -20,20 +20,17 @@ public class BaitCard : PowerCard, ISpecialCard, IAffectable
         if (cardToSwap.GetComponent<DraggableCard>() == null) { if (showMessage) { UserRead.Write("No es valido usar un senuelo en una carta que no es arrastrable"); } return false; }
         if (cardToSwap.GetComponent<DraggableCard>().IsOnHand) { if (showMessage) { UserRead.Write("No es valido usar un senuelo sobre la mano"); } return false; }
         if (cardToSwap.transform.parent.GetComponent<Graveyard>() != null) { if (showMessage) { UserRead.Write("No es valido usar un senuelo en un cementerio"); } return false; }
-        if (cardToSwap.WhichPlayer != WhichPlayer) { if (showMessage) { UserRead.Write("Esa carta no esta en tu campo"); } return false; }
+        if (cardToSwap.Owner != Owner) { if (showMessage) { UserRead.Write("Esa carta no esta en tu campo"); } return false; }
         if (cardToSwap.GetComponent<BaitCard>() != null) { if (showMessage) { UserRead.Write("No es valido usar un senuelo sobre otro senuelo"); } return false; }
         if (cardToSwap.GetComponent<IAffectable>() == null) { if (showMessage) { UserRead.Write("Esa carta no es afectable por el senuelo"); } return false; }
         return true;
     }
     public override void ShowZone()
     {//Oscurece las cartas con las que el senuelo no se puede intercambiar e intenta iluminar el deck en caso de que se puedan intercambiar cartas con el
-        Field.AllPlayedCards.ForEach(card => { if (!SwapConditions(card)) { card.GetComponent<Card>().OffGlow(); } });
-        FindObjectsOfType<DeckTrade>().SingleOrDefault(zone => zone.IsDropValid(gameObject.GetComponent<DraggableCard>()))?.OnGlow();
+        base.ShowZone();
+        Field.AllPlayedCards.ForEach(card => { if (!SwapConditions(card)) { card.TriggerGlow(); } });
     }
-    public void TriggerSpecialEffect()
-    {//Efecto de intercambio del senuelo
-        TradeWith(EnteredCard);
-    }
+    public void TriggerSpecialEffect() => TradeWith(EnteredCard);
     private void TradeWith(Card card)
     {
         transform.SetParent(card.transform.parent);//El senuelo se pone donde esta la carta seleccionada
