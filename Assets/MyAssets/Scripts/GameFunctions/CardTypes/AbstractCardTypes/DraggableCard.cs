@@ -25,12 +25,8 @@ public abstract class DraggableCard : Card, IBeginDragHandler, IDragHandler, IEn
         transform.position = eventData.position;//Actualiza la posicion de la carta con la del puntero
         positionInHand = GetHand.transform.childCount;//Guarda el indice del espacio de la derecha
         for (int i = 0; i < GetHand.transform.childCount; i++)
-        {//Chequeando constantemente si se esta a la izquierda de cada una de las cartas de la mano
-            if (transform.position.x < GetHand.transform.GetChild(i).position.x)
-            {//Si la carta arrastrada esta a la izquierda
-                positionInHand = i;//Actualiza el valor guardado con el actual
-                break;
-            }
+        {//Chequeando constantemente si se esta a la izquierda de cada una de las cartas de la mano, si lo esta entonces esa es su nueva posicion
+            if (transform.position.x < GetHand.transform.GetChild(i).position.x) { positionInHand = i; break; }
         }
     }
     public void OnEndDrag(PointerEventData eventData)

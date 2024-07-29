@@ -35,7 +35,7 @@ public class Judge : MonoBehaviour, IStateSubscriber, IKeyboardListener
     }
     private static void EndRound()
     {//Proxima ronda
-        Player winner = default;
+        Player winner = Player.None;
         if (Field.P1ForceValue > Field.P2ForceValue)
         {//Si P1 tiene mas poder que P2 entonces P1 comienza el proximo turno
             winner = Player.P1;

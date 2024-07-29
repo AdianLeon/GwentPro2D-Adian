@@ -11,16 +11,16 @@ public class UserRead : MonoBehaviour, IStateSubscriber, IKeyboardListener
         new (State.SettingUpGame, new Execution (stateInfo => { messages = new List<string>(); Write("Ha comenzado una nueva partida, es el turno de P1"); }, 0)),
         new (new List<State> { State.PlayingCard, State.EndingTurn }, new Execution (stateInfo => WriteRoundInfo(), 1) ),
         new StateSubscription(State.EndingRound, new Execution (stateInfo => Write( MakeEndRoundMessage(stateInfo.Player) ), 0)),
-        new (State.EndingGame, new Execution (stateInfo => Write( MakeEndGameMessage(stateInfo.Player) ), 1))
+        new (State.EndingGame, new Execution (stateInfo => Write( MakeEndGameMessage(stateInfo.Player) ), 0))
     };
     private static void WriteRoundInfo()
     {//Se llama cuando se desea escribir la informacion de ronda
-        if (!Judge.HasPlayed && !Judge.IsLastTurnOfRound) { Write("Es el turno de " + Judge.GetPlayer); }
+        if (!Judge.HasPlayed && !Judge.IsLastTurnOfRound) { Write("Es el turno de " + Judge.GetPlayer); return; }
         if (Computer.IsPlaying) { return; }
-        if (Judge.IsLastTurnOfRound) { Write("Turno de " + Judge.GetPlayer + ", es el ultimo turno antes de que se acabe la ronda"); }//Si no se han jugado cartas y es el ultimo turno
+        if (Judge.IsLastTurnOfRound) { Write("Turno de " + Judge.GetPlayer + ", es el ultimo turno antes de que se acabe la ronda"); }//Si es el ultimo turno
         else if (Judge.HasPlayed) { Write("Presiona espacio para pasar de turno"); }//Si se han jugado cartas y no es el ultimo turno
     }
-    private static string MakeEndRoundMessage(Player winner) => winner == default ? "Ha ocurrido un empate" : winner + " gano la ronda";
+    private static string MakeEndRoundMessage(Player winner) => winner == Player.None ? "Ha ocurrido un empate" : winner + " gano la ronda";
     private static string MakeEndGameMessage(Player winner) => Computer.IsActive && winner == Player.P2 ? "Has perdido!!" : "Felicidades " + winner + ". Has ganado la partida!!";
     public void ListenToKeyboardPress()
     {//Si se presiona la flecha izquierda o derecha se navega por los mensajes

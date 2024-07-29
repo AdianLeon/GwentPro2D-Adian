@@ -18,22 +18,22 @@ public class PlayerPrefsData
 }
 public class StateSubscription
 {
-    public List<State> Keys;
-    public Execution Value;
-    public StateSubscription(Execution value)
+    public List<State> States;
+    public Execution Execution;
+    public StateSubscription(Execution execution)
     {
-        Keys = new List<State> { State.SettingUpGame, State.PlayingCard, State.EndingTurn, State.EndingRound, State.EndingGame };
-        Value = value;
+        States = new List<State> { State.SettingUpGame, State.PlayingCard, State.EndingTurn, State.EndingRound, State.EndingGame };
+        Execution = execution;
     }
-    public StateSubscription(State key, Execution value)
+    public StateSubscription(State state, Execution execution)
     {
-        Keys = new List<State> { key };
-        Value = value;
+        States = new List<State> { state };
+        Execution = execution;
     }
-    public StateSubscription(List<State> keys, Execution value)
+    public StateSubscription(List<State> states, Execution execution)
     {
-        Keys = keys;
-        Value = value;
+        States = states;
+        Execution = execution;
     }
 
 }
