@@ -1,8 +1,0 @@
-{
-    "faction": "Minions",
-    "cardName": "Kyle",
-    "powerPoints": 10,
-    "scriptComponent": "SilverCard",
-    "onActivationName": "MultiplyEffect",
-    "zones": "MS"
-}

@@ -26,7 +26,7 @@ public class LeaderCard : Card, IPointerClickHandler, IStateSubscriber
     public override bool IsPlayable => LeaderSkillConditions();
     private bool LeaderSkillConditions()
     {//Devuelve si se cumplen las condiciones para jugar el lider
-        if (Owner != Judge.GetPlayer || Computer.IsPlaying) { return false; }
+        if (Owner != Judge.GetPlayer || Computer.IsPlaying || !Judge.CanPlay) { return false; }
         if (hasUsedSkill) { UserRead.Write("La habilidad del lider: " + CardName + " ya ha sido usada. La habilidad de lider solo puede ser usada una vez por partida"); return false; }
         return true;
     }

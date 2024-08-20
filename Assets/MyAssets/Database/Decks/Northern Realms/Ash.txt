@@ -1,0 +1,8 @@
+card{
+	Type: "Oro",
+	Name: "Ash",
+	Faction: "Northern Realms",
+	Range:["Melee"],
+	Power: 30,
+	OnActivation: [{ScriptEffect: "GruEffect"}]
+}

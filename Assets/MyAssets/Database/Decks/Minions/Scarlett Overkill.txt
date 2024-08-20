@@ -1,0 +1,8 @@
+card{
+	Type: "Oro",
+	Name: "Scarlett Overkill",
+	Faction: "Minions",
+	Range:["Melee","Ranged","Siege"],
+	Power: 30,
+	OnActivation: [{ScriptEffect: "DrawOneEffect"}]
+}

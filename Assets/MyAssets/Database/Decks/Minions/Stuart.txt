@@ -1,0 +1,8 @@
+card{
+	Type: "Plata",
+	Name: "Stuart",
+	Faction: "Minions",
+	Range:["Siege"],
+	Power: 0,
+	OnActivation: [{ScriptEffect: "PromEffect"}]
+}

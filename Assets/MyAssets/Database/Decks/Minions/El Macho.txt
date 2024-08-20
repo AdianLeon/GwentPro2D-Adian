@@ -1,0 +1,8 @@
+card{
+	Type: "Oro",
+	Name: "El Macho",
+	Faction: "Minions",
+	Range:["Melee"],
+	Power: 35,
+	OnActivation: [{ScriptEffect: "MostPowerEffect"}]
+}

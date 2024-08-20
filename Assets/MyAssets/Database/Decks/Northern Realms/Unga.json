@@ -1,8 +1,0 @@
-{
-  "faction": "Northern Realms",
-  "cardName": "Unga",
-  "powerPoints": 30,
-  "scriptComponent": "SilverCard",
-  "onActivationName": "Northern Realms/UngaOnActivation.json",
-  "zones": "RS"
-}

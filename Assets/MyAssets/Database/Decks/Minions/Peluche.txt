@@ -1,0 +1,6 @@
+card{
+	Type: "Clima",
+	Name: "Peluche",
+	Faction: "Minions",
+	Power: 25
+}

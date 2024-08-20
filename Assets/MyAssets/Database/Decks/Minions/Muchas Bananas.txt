@@ -1,0 +1,5 @@
+card{
+	Type: "Despeje",
+	Name: "Muchas Bananas",
+	Faction: "Minions"
+}

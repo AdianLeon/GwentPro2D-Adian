@@ -1,0 +1,6 @@
+card{
+	Type: "Aumento",
+	Name: "Banana",
+	Faction: "Minions",
+	Power: 25
+}

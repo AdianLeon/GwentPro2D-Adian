@@ -1,33 +1,44 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
-using UnityEditor.PackageManager;
+using System.IO;
 using UnityEngine;
 
 public static class MainCompiler
 {
-    public static void ProcessText(string allText){
-        List <Token> tokenList=Lexer.TokenizeCode(allText);
-        if(tokenList==null){
-            Errors.Write("No se pudo procesar el codigo!");
-            return;
-        }
-        AssignBlocks(tokenList);
+    public static void ProcessText(string allText)
+    {
+        Debug.Log("Compilacion iniciada");
+        Errors.Clean();
+        allText.Trim();//Elimina los espacios al principio y al final del texto
+        List<Token> tokens = Lexer.TokenizeCode(allText);
+        if (tokens == null) { Errors.Write("No se pudo tokenizar el codigo!"); return; }
+        Debug.Log("Resultado del lexer ----------------------------------------------------------------------"); foreach (Token token in tokens) { Debug.Log(token.ToString()); }; Debug.Log("Fin del resultado del lexer --------------------------------------------------------------");
+        Parser.StartParsing(tokens);
+        FullDeclaration fullDeclaration = (FullDeclaration)new FullDeclarationParser().ParseTokens();
+        if (Parser.HasFailed) { Errors.Write("No se pudieron parsear el codigo"); }
+        SaveOnTxt(fullDeclaration, allText);
+        Debug.Log("Compilacion terminada");
     }
-    private static void AssignBlocks(List<Token> tokenList){
-        for(int i=0;i<tokenList.Count;i++){
-            if(tokenList[i].type!=TokenTypes.blockDeclaration){
-                continue;
-            }
-            if(tokenList[i+1].text!="{"){
-                Errors.Write("Se ha encontrado: '"+tokenList[i+1].text+"' en vez de '{' luego de declaracion de bloque", tokenList[i].line, tokenList[i].col);
-                return;
-            }
-            int blockEnd=DeckCreatorUtils.FindMatchingParenthesis(tokenList,i+1);
-            if(tokenList[i].text=="card"){
-                ProcessCard.CompileAndCreate(tokenList,i+2,blockEnd);
-            }else if(tokenList[i].text=="effect"){
-                ProcessEffect.StartProcessEffect(tokenList,i+2,blockEnd);
-            }
+    public static void SaveOnTxt(FullDeclaration fullDeclaration, string allText)
+    {
+        if (fullDeclaration == null || fullDeclaration.blockDeclarations == null) { return; }
+        foreach (BlockDeclaration blockDeclaration in fullDeclaration.blockDeclarations)
+        {
+            string fileName = blockDeclaration.Name + ".txt";
+            string address = Application.dataPath + "/MyAssets/Database/";
+
+            if (blockDeclaration is CardDeclaration) { address += "/Decks/" + (blockDeclaration as CardDeclaration).Faction + "/"; }
+            // else if (blockDeclaration is EffectDeclaration) { address += }
+            else { throw new NotImplementedException("The blockDeclaration wasn't card or effect!"); }
+
+            int start = fullDeclaration.positionsInCode.Dequeue();
+            int end = fullDeclaration.positionsInCode.Peek();
+
+            string text = allText.Substring(start, end - start);
+            Debug.Log(blockDeclaration.Name + " starts in " + start + " and ends in " + end + ". The whole text is: " + text);
+
+            if (!Directory.Exists(address)) { Directory.CreateDirectory(address); }
+            File.WriteAllText(address + fileName, text);
         }
     }
 }

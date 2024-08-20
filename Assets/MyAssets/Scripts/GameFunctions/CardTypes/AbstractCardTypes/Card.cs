@@ -9,7 +9,7 @@ public abstract class Card : MonoBehaviour, IGlow, IPointerEnterHandler, IPointe
     protected static Card EnteredCard;//En esta variable se guarda el objeto debajo del puntero el cual mostramos en CardView
     public string Faction;//Faccion de la carta
     public string CardName;//Nombre de la carta
-    public string OnActivationName;//Nombre de OnActivation
+    public OnActivation OnActivation;//Descripcion de acciones (efectos) para cuando la carta se active
     public Sprite Artwork;//Imagen para mostrar en el CardView
     public Player Owner;//Jugador dueno de la carta
     public virtual void LoadInfo()
@@ -18,11 +18,9 @@ public abstract class Card : MonoBehaviour, IGlow, IPointerEnterHandler, IPointe
         GameObject.Find("CardName").GetComponent<TextMeshProUGUI>().text = CardName;
         GameObject.Find("BGType").GetComponent<Image>().color = new Color(0.2f, 0.2f, 0.2f, 0.8f);
         //EffectDescription
-        // if (OnActivation.EffectDescription != ""){}
-        // else
-        if (GetComponent<ICardEffect>() != null) { GameObject.Find("EffectDescription").GetComponent<TextMeshProUGUI>().text = GetComponent<ICardEffect>().GetEffectDescription; }
-        else if (GetComponent<ISpecialCard>() != null) { GameObject.Find("EffectDescription").GetComponent<TextMeshProUGUI>().text = GetComponent<ISpecialCard>().GetEffectDescription; }
-        else { GameObject.Find("EffectDescription").GetComponent<TextMeshProUGUI>().text = "Esta carta no tiene efecto"; }
+        // if (OnActivation.EffectDescription != null) { } else
+        if (GetComponent<ISpecialCard>() != null) { GameObject.Find("EffectDescription").GetComponent<TextMeshProUGUI>().text = GetComponent<ISpecialCard>().GetEffectDescription; }
+        else { GameObject.Find("EffectDescription").GetComponent<TextMeshProUGUI>().text = ""; }
         //Quality, Image
         GameObject.Find("Quality").GetComponent<Image>().sprite = Resources.Load<Sprite>("BlankImage");
         GameObject.Find("CardPreview").GetComponent<Image>().sprite = Artwork;
@@ -38,7 +36,7 @@ public abstract class Card : MonoBehaviour, IGlow, IPointerEnterHandler, IPointe
         if (!IsPlayable) { return false; }
         UserRead.Write("Se ha jugado a " + CardName);
         gameObject.GetComponent<ISpecialCard>()?.TriggerSpecialEffect();//Si la carta tiene efecto de carta especial, que se active
-        Execute.DoEffect(gameObject, OnActivationName);//Se ejecuta el efecto en del OnActivation
+        Execute.DoEffect(this);//Se ejecuta el OnActivation
         StateManager.Publish(State.PlayingCard, new StateInfo { CardPlayed = this, Player = Owner });//Todos los IStateListener reaccionan ante la carta jugada
         LoadInfo();//Carga la info de la carta luego de que todos los IStateListener han reaccionado al estado
         return true;

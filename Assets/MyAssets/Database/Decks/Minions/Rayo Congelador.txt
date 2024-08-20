@@ -1,0 +1,6 @@
+card{
+	Type: "Clima",
+	Name: "Rayo Congelador",
+	Faction: "Minions",
+	Power: 30
+}

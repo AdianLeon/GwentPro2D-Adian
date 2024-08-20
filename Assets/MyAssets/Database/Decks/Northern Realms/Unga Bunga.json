@@ -1,8 +1,0 @@
-{
-    "faction": "Northern Realms",
-    "cardName": "Unga Bunga",
-    "powerPoints": 0,
-    "scriptComponent": "LeaderCard",
-    "onActivationName": "[{Effect:{Name:Damage,Amount:5,},Selector:{Source:board,Single:false,Predicate:(unit)=>unit.Faction==Northern@@Realms},PostAction{Type:ReturnToDeck,Selector:{Source:parent,Single:false,Predicate(unit)=>unit.Power<1}}},{Effect:Draw}]",
-    "zones": ""
-}

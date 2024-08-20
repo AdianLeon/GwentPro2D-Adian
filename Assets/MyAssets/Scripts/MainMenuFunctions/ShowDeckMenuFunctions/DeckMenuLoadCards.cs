@@ -49,7 +49,7 @@ public class DeckMenuLoadCards : MonoBehaviour
         //Propiedades
         newCard.GetComponent<DeckView>().faction = cardSave.faction;//Faction
         newCard.GetComponent<DeckView>().cardName = cardSave.cardName;//Name
-        newCard.GetComponent<DeckView>().typeComponent = cardSave.scriptComponent;
+        newCard.GetComponent<DeckView>().typeComponent = cardSave.cardType;
         //Sprites
         newCard.GetComponent<Image>().sprite = Resources.Load<Sprite>(cardSave.faction + "/" + cardSave.cardName);//Carga el sprite en Assets/Resources/sourceImage en la carta
         newCard.GetComponent<DeckView>().artwork = Resources.Load<Sprite>(cardSave.faction + "/" + cardSave.cardName + "Image");//Carga el sprite en Assets/Resources/artwork en la carta
@@ -68,7 +68,7 @@ public class DeckMenuLoadCards : MonoBehaviour
         newCard.GetComponent<DeckView>().power = cardSave.powerPoints;
 
         //zones
-        switch (cardSave.scriptComponent)
+        switch (cardSave.cardType)
         {
             case "LeaderCard":
                 newCard.GetComponent<DeckView>().playableZone = "L";

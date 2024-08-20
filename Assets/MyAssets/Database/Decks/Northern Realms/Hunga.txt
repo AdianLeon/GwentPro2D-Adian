@@ -1,0 +1,8 @@
+card{
+	Type: "Plata",
+	Name: "Hunga",
+	Faction: "Northern Realms",
+	Range:["Siege"],
+	Power: 25,
+	OnActivation: [{ScriptEffect: "PromEffect"}]
+}

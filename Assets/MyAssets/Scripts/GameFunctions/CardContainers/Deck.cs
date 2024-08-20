@@ -22,13 +22,10 @@ public class Deck : MonoBehaviour, IStateSubscriber, IContainer
     }
     public DraggableCard DrawTopCard()
     {//Roba una carta del deck sin importar el espacio en la mano
-        if (DeckCards.Count == 0)
-        {
-            UserRead.Write("Se ha intentado robar una carta del deck, pero ya no quedan cartas!");
-            return null;
-        }
+        if (DeckCards.Count == 0) { UserRead.Write("Se ha intentado robar una carta del deck, pero ya no quedan cartas!"); return null; }
         //Si quedan cartas en el deck, creamos la carta y la ponemos en la mano
         DraggableCard newCard = Instantiate(DeckCards[DeckCards.Count - 1].gameObject, new Vector3(0, 0, 0), Quaternion.identity).GetComponent<DraggableCard>();
+        newCard.OnActivation = DeckCards[DeckCards.Count - 1].OnActivation;//Apartado para actualizar el OnActivation porque por alguna razon cuando se instancia la carta la referencia a su OnActivation se pierde
         newCard.GetComponent<CanvasGroup>().blocksRaycasts = true;//Aseguramos que la carta siempre bloquee los raycasts para que podamos interactuar con ella
         newCard.MoveCardTo(GameObject.Find("Hand" + gameObject.Field()));//Se pone en la mano
         DeckCards.RemoveAt(DeckCards.Count - 1);//Se quita de la lista

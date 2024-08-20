@@ -1,8 +1,0 @@
-{
-    "faction": "Minions",
-    "cardName": "Doctor Nefario",
-    "powerPoints": 25,
-    "scriptComponent": "SilverCard",
-    "onActivationName": "",
-    "zones": "RS"
-}

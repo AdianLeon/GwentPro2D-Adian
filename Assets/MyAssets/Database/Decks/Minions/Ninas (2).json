@@ -1,8 +1,0 @@
-{
-    "faction": "Minions",
-    "cardName": "Ninas",
-    "powerPoints": 20,
-    "scriptComponent": "SilverCard",
-    "onActivationName": "",
-    "zones": "MR"
-}

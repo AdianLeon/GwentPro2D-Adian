@@ -1,0 +1,6 @@
+card{
+	Type: "Lider",
+	Name: "Gru",
+	Faction: "Minions",
+	OnActivation: [{ScriptEffect: "GruEffect"}]
+}

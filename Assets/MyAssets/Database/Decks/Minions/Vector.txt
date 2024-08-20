@@ -1,0 +1,8 @@
+card{
+	Type: "Oro",
+	Name: "Vector",
+	Faction: "Minions",
+	Range:["Ranged","Siege"],
+	Power: 30,
+	OnActivation: [{ScriptEffect: "LessPowerEffect"}]
+}

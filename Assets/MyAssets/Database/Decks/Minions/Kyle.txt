@@ -1,0 +1,8 @@
+card{
+	Type: "Plata",
+	Name: "Kyle",
+	Faction: "Minions",
+	Range:["Melee","Siege"],
+	Power: 10,
+	OnActivation: [{ScriptEffect: "MultiplyEffect"}]
+}

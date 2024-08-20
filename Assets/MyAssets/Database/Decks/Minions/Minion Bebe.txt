@@ -1,0 +1,5 @@
+card{
+	Type: "Senuelo",
+	Name: "Minion Bebe",
+	Faction: "Minions"
+}

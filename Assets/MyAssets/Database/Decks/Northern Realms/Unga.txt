@@ -1,0 +1,8 @@
+card{
+	Type: "Plata",
+	Name: "Unga",
+	Faction: "Northern Realms",
+	Range:["Ranged"],
+	Power: 30,
+	OnActivation: [{ScriptEffect: "LessPowerEffect"}]
+}

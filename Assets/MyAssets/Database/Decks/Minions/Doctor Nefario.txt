@@ -1,0 +1,7 @@
+card{
+	Type: "Plata",
+	Name: "Doctor Nefario",
+	Faction: "Minions",
+	Range:["Ranged","Siege"],
+	Power: 25
+}

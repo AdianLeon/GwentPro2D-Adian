@@ -1,0 +1,6 @@
+card{
+	Type: "Aumento",
+	Name: "Inyeccion de minion purpura",
+	Faction: "Minions",
+	Power: 20
+}
