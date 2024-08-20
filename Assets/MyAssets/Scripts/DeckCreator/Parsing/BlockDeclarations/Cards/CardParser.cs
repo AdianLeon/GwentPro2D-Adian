@@ -27,6 +27,7 @@ public class CardParser : Parser
         HashSet<string> propertiesToDeclare = new HashSet<string> { "Type", "Name", "Faction" };
         string type = "";
         string name = "";
+        string description = "";
         string faction = "";
         int power = 0;
         UnitCardZone range = UnitCardZone.None;
@@ -41,9 +42,14 @@ public class CardParser : Parser
             Next();
             switch (key.text)
             {
-                case "Type":
+                case "Description":
+                    if (description != "") { Errors.Write("La propiedad 'Description' ya ha sido declarada", key); hasFailed = true; return null; }
                     if (!Current.Is(TokenType.literal, true)) { hasFailed = true; return null; }
+                    description = Current.text;
+                    break;
+                case "Type":
                     if (!propertiesToDeclare.Contains("Type")) { Errors.Write("La propiedad 'Type' ya ha sido declarada", key); hasFailed = true; return null; }
+                    if (!Current.Is(TokenType.literal, true)) { hasFailed = true; return null; }
                     if (!cardTypes.ContainsKey(Current.text)) { Errors.Write("El tipo de carta '" + Current.text + "' no esta definido. Los tipos definidos son: 'Oro', 'Plata', 'Clima', 'Despeje', 'Aumento', 'Senuelo' o 'Lider'"); hasFailed = true; return null; }
                     type = cardTypes[Current.text];
                     if (Current.text == "Oro" || Current.text == "Plata" || Current.text == "Clima" || Current.text == "Aumento") { propertiesToDeclare.Add("Power"); }
@@ -51,20 +57,20 @@ public class CardParser : Parser
                     propertiesToDeclare.Remove("Type");
                     break;
                 case "Name":
-                    if (!Current.Is(TokenType.literal, true)) { hasFailed = true; return null; }
                     if (!propertiesToDeclare.Contains("Name")) { Errors.Write("La propiedad 'Name' ya ha sido declarada", key); hasFailed = true; return null; }
+                    if (!Current.Is(TokenType.literal, true)) { hasFailed = true; return null; }
                     name = Current.text;
                     propertiesToDeclare.Remove("Name");
                     break;
                 case "Faction":
-                    if (!Current.Is(TokenType.literal, true)) { hasFailed = true; return null; }
                     if (!propertiesToDeclare.Contains("Faction")) { Errors.Write("La propiedad 'Faction' ya ha sido declarada", key); hasFailed = true; return null; }
+                    if (!Current.Is(TokenType.literal, true)) { hasFailed = true; return null; }
                     faction = Current.text;
                     propertiesToDeclare.Remove("Faction");
                     break;
                 case "Power":
-                    if (!Current.Is(TokenType.number, true)) { hasFailed = true; return null; }
                     if (!propertiesToDeclare.Contains("Power")) { Errors.Write("No se puede declarar la propiedad 'Power'. Solo se debe declarar una vez y en caso de que la propiedad 'Type' previamente declarada sea Oro, Plata, Clima o Aumento", key); hasFailed = true; return null; }
+                    if (!Current.Is(TokenType.number, true)) { hasFailed = true; return null; }
                     power = int.Parse(Current.text);
                     propertiesToDeclare.Remove("Power");
                     break;
@@ -78,10 +84,9 @@ public class CardParser : Parser
                     if (onActivation != null) { Errors.Write("La propiedad 'OnActivation' ya ha sido declarada", key); hasFailed = true; return null; }
                     onActivation = (OnActivation)new OnActivationParser().ParseTokens();
                     if (hasFailed) { return null; }
-                    propertiesToDeclare.Remove("OnActivation");
                     break;
                 default:
-                    Errors.Write("Se esperaba una declaracion de propiedad de carta. Declaraciones de propiedad validas son las siguientes: 'Type', 'Name', 'Faction', 'Power', 'Range', 'ClonesAmount' y 'OnActivation'", key); hasFailed = true; return null;
+                    Errors.Write("Se esperaba una declaracion de propiedad de carta. Declaraciones de propiedad validas son las siguientes: 'Type', 'Name', 'Faction', 'Power', 'Range', 'ClonesAmount', 'Description' y 'OnActivation'", key); hasFailed = true; return null;
             }
             expectingDeclaration = Next().Is(",");
         }
@@ -94,7 +99,7 @@ public class CardParser : Parser
             hasFailed = true; return null;
         }
         Next();
-        return new CardDeclaration(name, type, faction, power, range, onActivation);
+        return new CardDeclaration(name, type, description, faction, power, range, onActivation);
     }
     private UnitCardZone GetRange()
     {

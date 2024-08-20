@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 using System.IO;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime;
+using Unity.VisualScripting;
 //Script para instanciar cartas de un json
 public class CardsLoader : MonoBehaviour, IStateSubscriber
 {
@@ -22,18 +24,19 @@ public class CardsLoader : MonoBehaviour, IStateSubscriber
     {//Crea todas las cartas en el directorio asignado en preferencias del jugador en el objeto
         string factionPath = Application.dataPath + "/MyAssets/Database/Decks/" + faction;
         string[] addressesOfCards = Directory.GetFiles(factionPath, "*.txt");//Obtiene dentro del directorio del deck solo la direccion de los archivos con extension txt (ignora los meta)
+        errorScreen.SetActive(true);
+        bool failedAtInterpretingAnyCard = false;
         foreach (string address in addressesOfCards)
         {//Para cada uno de los archivos con extension json
-            errorScreen.SetActive(true);
             string codeCard = File.ReadAllText(address);//Lee el archivo
             CardDeclaration cardDeclaration = CardParser.ProcessCode(codeCard);//Convierte el string en json a un objeto CardSave
             if (cardDeclaration != null)
             {
                 ImportCardTo(cardDeclaration, deckPlace);
-                errorScreen.SetActive(false);
             }
-            else { break; }
+            else { Errors.Write("No se pudo procesar el texto de la carta en: " + address); failedAtInterpretingAnyCard = true; }
         }
+        errorScreen.SetActive(failedAtInterpretingAnyCard);
         //Asignando la imagen del deck
         Deck.GetComponent<UnityEngine.UI.Image>().sprite = Resources.Load<Sprite>(faction + "/DeckImage");
     }
@@ -57,6 +60,7 @@ public class CardsLoader : MonoBehaviour, IStateSubscriber
         newCard.GetComponent<Card>().Faction = cardDeclaration.Faction;
         newCard.GetComponent<Card>().CardName = cardDeclaration.Name;
         newCard.GetComponent<Card>().Owner = player;
+        newCard.GetComponent<Card>().Description = cardDeclaration.Description;
 
         //Sprites
         newCard.GetComponent<UnityEngine.UI.Image>().sprite = Resources.Load<Sprite>(cardDeclaration.Faction + "/" + cardDeclaration.Name);//Carga el sprite en Assets/Resources/sourceImage en la carta

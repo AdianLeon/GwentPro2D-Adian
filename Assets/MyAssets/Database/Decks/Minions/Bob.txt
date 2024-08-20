@@ -1,4 +1,5 @@
 card{
+	Description: "Cuando esta carta es jugada su poder se convierte en el promedio del poder de todas las cartas jugadas en el campo",
 	Type: "Plata",
 	Name: "Bob",
 	Faction: "Minions",

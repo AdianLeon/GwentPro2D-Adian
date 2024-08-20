@@ -29,7 +29,7 @@ public static class LexerUtils
         //BlockDeclaration
         {"card",TokenType.blockDeclaration},{"effect",TokenType.blockDeclaration},
         //Assignments
-        {"Name",TokenType.assignment},{"Params",TokenType.assignment},{"Action",TokenType.assignment},{"Type",TokenType.assignment},{"Effect",TokenType.assignment},
+        {"Name",TokenType.assignment},{"Params",TokenType.assignment},{"Action",TokenType.assignment},{"Type",TokenType.assignment},{"Effect",TokenType.assignment},{"Description",TokenType.assignment},
         {"Selector",TokenType.assignment},{"Source",TokenType.assignment},{"Single",TokenType.assignment},{"Predicate",TokenType.assignment},{"PostAction",TokenType.assignment},
         {"Faction",TokenType.assignment},{"Power",TokenType.assignment},{"Range",TokenType.assignment},{"OnActivation",TokenType.assignment},{"ClonesAmount",TokenType.assignment},
         //Cycle

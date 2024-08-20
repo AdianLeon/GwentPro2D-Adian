@@ -3,7 +3,6 @@ using UnityEngine;
 //Script para el efecto de multiplicar por n el poder
 public class MultiplyEffect : MonoBehaviour, ICardEffect
 {
-    public string GetEffectDescription => "Cuando esta carta es jugada su poder es multiplicado por la cantidad de cartas iguales a ella jugadas en el campo (contandose a si misma)";
     private int originalPower;//Se guarda el poder original de la carta, esto es para evitar que si se activara el efecto dos o mas veces por uso del efecto del senuelo el poder de esta carta sea demasiado alto
     public int OriginalPower => originalPower;
     void Awake() { originalPower = gameObject.GetComponent<PowerCard>().Power; }

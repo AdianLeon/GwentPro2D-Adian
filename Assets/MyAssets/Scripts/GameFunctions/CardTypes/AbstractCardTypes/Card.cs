@@ -2,13 +2,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
-using System.Linq;
 //Script que contiene los comportamientos y propiedades en comun de todas las cartas
 public abstract class Card : MonoBehaviour, IGlow, IPointerEnterHandler, IPointerExitHandler
 {
     protected static Card EnteredCard;//En esta variable se guarda el objeto debajo del puntero el cual mostramos en CardView
     public string Faction;//Faccion de la carta
     public string CardName;//Nombre de la carta
+    public string Description;//Descripcion de la carta
     public OnActivation OnActivation;//Descripcion de acciones (efectos) para cuando la carta se active
     public Sprite Artwork;//Imagen para mostrar en el CardView
     public Player Owner;//Jugador dueno de la carta
@@ -18,9 +18,8 @@ public abstract class Card : MonoBehaviour, IGlow, IPointerEnterHandler, IPointe
         GameObject.Find("CardName").GetComponent<TextMeshProUGUI>().text = CardName;
         GameObject.Find("BGType").GetComponent<Image>().color = new Color(0.2f, 0.2f, 0.2f, 0.8f);
         //EffectDescription
-        // if (OnActivation.EffectDescription != null) { } else
         if (GetComponent<ISpecialCard>() != null) { GameObject.Find("EffectDescription").GetComponent<TextMeshProUGUI>().text = GetComponent<ISpecialCard>().GetEffectDescription; }
-        else { GameObject.Find("EffectDescription").GetComponent<TextMeshProUGUI>().text = ""; }
+        if (Description != "") { GameObject.Find("EffectDescription").GetComponent<TextMeshProUGUI>().text = Description; }
         //Quality, Image
         GameObject.Find("Quality").GetComponent<Image>().sprite = Resources.Load<Sprite>("BlankImage");
         GameObject.Find("CardPreview").GetComponent<Image>().sprite = Artwork;

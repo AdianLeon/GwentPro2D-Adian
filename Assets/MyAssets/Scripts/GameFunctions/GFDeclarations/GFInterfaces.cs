@@ -8,12 +8,12 @@ interface IKeyboardListener
 {//Para aquellos scripts que deban reaccionar ante la presion de alguna tecla por parte del usuario
     void ListenToKeyboardPress();
 }
-interface IEffect
-{//Para los efectos
-    string GetEffectDescription { get; }
-}
+interface IEffect { }//Para los efectos
+
 interface ISpecialCard : IEffect
 {//Para las cartas con efecto especial
+    string GetEffectDescription { get; }
+
     void TriggerSpecialEffect();//Este metodo se llama cuando se desee activar el efecto especial
 }
 interface ICardEffect : IEffect

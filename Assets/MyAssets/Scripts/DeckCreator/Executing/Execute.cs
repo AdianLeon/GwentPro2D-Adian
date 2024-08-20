@@ -6,8 +6,7 @@ public class Execute : MonoBehaviour
 {
     public static void DoEffect(Card card)
     {
-        if (card.OnActivation == null) { Debug.Log("OnActivation null"); return; }
-
+        if (card.OnActivation == null) { return; }
         foreach (EffectCall effectCall in card.OnActivation.effectCalls)
         {
             if (effectCall is ScriptEffect)

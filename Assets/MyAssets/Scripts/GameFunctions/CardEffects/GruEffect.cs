@@ -3,7 +3,6 @@ using UnityEngine;
 //Script para el efecto de la carta lider
 public class GruEffect : MonoBehaviour, ICardEffect
 {
-    public string GetEffectDescription => "Ordena a los minions que roben dos cartas de la mano enemiga aunque conociendo a los minions eso puede salir mal (Solo se puede activar una vez por partida)";
     private static bool StealRandomEnemyCard()
     {//Robar del enemigo una carta random
         if (Hand.EnemyCards.Count() == 0) { return false; }//Si no tiene cartas devuelve false
@@ -12,7 +11,7 @@ public class GruEffect : MonoBehaviour, ICardEffect
         return true;
     }
     public void TriggerEffect()
-    {
+    {//Se genera un entera random, si sale el 0 se roban 2 cartas, si sale 1 o 2 se roba 1, si la el 3 el robo falla
         int r = UnityEngine.Random.Range(0, 4);
         switch (r)
         {

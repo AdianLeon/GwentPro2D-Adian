@@ -1,4 +1,5 @@
 card{
+	Description: "Ordena a los minions a que roben dos cartas de la mano enemiga, aunque conociendo a los minions eso puede salir mal",
 	Type: "Lider",
 	Name: "Gru",
 	Faction: "Minions",

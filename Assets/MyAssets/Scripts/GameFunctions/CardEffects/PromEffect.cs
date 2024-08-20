@@ -4,7 +4,6 @@ using UnityEngine;
 //Script para el efecto del promedio
 public class PromEffect : MonoBehaviour, ICardEffect
 {
-     public string GetEffectDescription => "Cuando esta carta es jugada su poder se convierte en el promedio del poder total de todas las cartas del campo";
      public void TriggerEffect()
      {//Iguala el poder de la carta jugada al promedio del poder total de todas las cartas con poder del campo
           if (Field.PlayedFieldCards.Count() == 1) { UserRead.Write("No se pudo activar el efecto porque no se han jugado cartas"); return; }
