@@ -5493,6 +5493,7 @@ GameObject:
   - component: {fileID: 1071480982}
   - component: {fileID: 1071480981}
   - component: {fileID: 1071480985}
+  - component: {fileID: 1071480986}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -5613,6 +5614,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   errorScreen: {fileID: 65876432}
   CardPrefab: {fileID: 1072672301799576032, guid: 61d07fd194c60f5468472dc4bccefbce, type: 3}
+--- !u!114 &1071480986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071480979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d58402d179789e14980faad433dabe60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  errorScreen: {fileID: 65876432}
 --- !u!1 &1091907233
 GameObject:
   m_ObjectHideFlags: 0

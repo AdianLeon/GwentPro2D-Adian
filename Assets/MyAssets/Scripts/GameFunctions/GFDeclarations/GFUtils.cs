@@ -1,14 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 //Script que declara metodos recurrentes que pueden ser utilizados por cualquier script
 public static class GFUtils
 {
     public static List<T> FindGameObjectsOfType<T>()
     {//Encuentra todos los scripts y luego devuelve todos los que sean tipo T
-        GameObject[] allScripts = Resources.FindObjectsOfTypeAll<GameObject>();
-        return allScripts.Where(script => script.gameObject.GetComponent<T>() != null).Select(item => item.GetComponent<T>()).ToList();
+        return Resources.FindObjectsOfTypeAll<GameObject>().Where(gameObject => gameObject.GetComponent<T>() != null).Select(gameObject => gameObject.GetComponent<T>()).ToList();
     }
 }
 public static class CustomLinqExtensions

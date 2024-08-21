@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 //Script centro del manejo de estados y poseedor del unico Update()
 public class StateManager : MonoBehaviour
 {
@@ -10,10 +11,16 @@ public class StateManager : MonoBehaviour
     {////Inicializa el diccionario y busca todos las subscripciones de los IStateSubscriber de estados y las anade al diccionario, luego carga las cartas y comienza el juego
         assigner = new Dictionary<State, List<Execution>>();
         foreach (State state in Enum.GetValues(typeof(State))) { assigner.Add(state, new List<Execution>()); }
-        GFUtils.FindGameObjectsOfType<IStateSubscriber>().ForEach(stateSubscriber => AddToAssigner(stateSubscriber));
-        Publish(State.LoadingCards);
-        ResetGame();
+        FindAllIStateSubscribers().ForEach(stateSubscriber => AddToAssigner(stateSubscriber));
+        Publish(State.Loading);
+        Publish(State.SettingUpGame);
     }
+
+    private IEnumerable<IStateSubscriber> FindAllIStateSubscribers()
+    {//Busca todos los GameObject que contengan IStateSubscribers y luego devuelve todos esos IStateSubscribers aplanados
+        return Resources.FindObjectsOfTypeAll<GameObject>().Where(gameObject => gameObject.GetComponent<IStateSubscriber>() != null).SelectMany(gameObject => gameObject.GetComponents<IStateSubscriber>());
+    }
+
     private static void AddToAssigner(IStateSubscriber stateSubscriber)
     {//Recibe un suscriptor y anade sus subscripciones a el diccionario insertando en todos los estados indicados el execution segun su prioridad
         stateSubscriber.GetStateSubscriptions.ForEach(stateSubscription => stateSubscription.States.ForEach(state => InsertByPriority(stateSubscription, state)));

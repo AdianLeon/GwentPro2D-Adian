@@ -37,6 +37,7 @@ public class EffectDeclaration : BlockDeclaration
 }
 public class EffectAction : INode
 {
+    public void TriggerEffect() { ActionStatements.ForEach(action => action.DoAction()); }
     public List<IActionStatement> ActionStatements = new List<IActionStatement>();
 }
 public interface IActionStatement

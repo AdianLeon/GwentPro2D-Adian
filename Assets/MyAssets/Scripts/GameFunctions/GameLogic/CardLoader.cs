@@ -5,17 +5,18 @@ using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime;
 using Unity.VisualScripting;
 //Script para instanciar cartas de un json
-public class CardsLoader : MonoBehaviour, IStateSubscriber
+public class CardLoader : MonoBehaviour, IStateSubscriber
 {
     public GameObject errorScreen;
     private static int instantiatedCardsCount;//Cuenta de las cartas instanciadas
     public GameObject CardPrefab;//Referencia al prefab CardPrefab
     public List<StateSubscription> GetStateSubscriptions => new List<StateSubscription>
     {
-        new (State.LoadingCards, new Execution (stateInfo => LoadCards(), 0))
+        new (State.Loading, new Execution (stateInfo => LoadCards(), 1))
     };
     private void LoadCards()
     {
+        Debug.Log(1);
         instantiatedCardsCount = 0;
         ImportDeckTo(PlayerPrefs.GetString("P1PrefDeck"), GameObject.Find("CardsP1"), GameObject.Find("DeckP1"));
         ImportDeckTo(PlayerPrefs.GetString("P2PrefDeck"), GameObject.Find("CardsP2"), GameObject.Find("DeckP2"));
@@ -24,19 +25,16 @@ public class CardsLoader : MonoBehaviour, IStateSubscriber
     {//Crea todas las cartas en el directorio asignado en preferencias del jugador en el objeto
         string factionPath = Application.dataPath + "/MyAssets/Database/Decks/" + faction;
         string[] addressesOfCards = Directory.GetFiles(factionPath, "*.txt");//Obtiene dentro del directorio del deck solo la direccion de los archivos con extension txt (ignora los meta)
-        errorScreen.SetActive(true);
+
         bool failedAtInterpretingAnyCard = false;
         foreach (string address in addressesOfCards)
         {//Para cada uno de los archivos con extension json
             string codeCard = File.ReadAllText(address);//Lee el archivo
             CardDeclaration cardDeclaration = CardParser.ProcessCode(codeCard);//Convierte el string en json a un objeto CardSave
-            if (cardDeclaration != null)
-            {
-                ImportCardTo(cardDeclaration, deckPlace);
-            }
+            if (cardDeclaration != null) { ImportCardTo(cardDeclaration, deckPlace); }
             else { Errors.Write("No se pudo procesar el texto de la carta en: " + address); failedAtInterpretingAnyCard = true; }
         }
-        errorScreen.SetActive(failedAtInterpretingAnyCard);
+        errorScreen.SetActive(!Execute.LoadedAllEffects || failedAtInterpretingAnyCard);
         //Asignando la imagen del deck
         Deck.GetComponent<UnityEngine.UI.Image>().sprite = Resources.Load<Sprite>(faction + "/DeckImage");
     }
@@ -45,7 +43,7 @@ public class CardsLoader : MonoBehaviour, IStateSubscriber
         GameObject newCard;
         Player player = deckPlace.Field();
         //Instanciando la carta
-        newCard = Instantiate(GameObject.Find("Canvas").GetComponent<CardsLoader>().CardPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        newCard = Instantiate(CardPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         //Si la carta es lider se envia a la zona de lideres, si no se envia a el contenedor de cartas
         if (cardDeclaration.Type == "LeaderCard") { newCard.transform.SetParent(GameObject.Find("LeaderZone" + player).transform); }
         else { newCard.transform.SetParent(deckPlace.transform); }

@@ -38,6 +38,7 @@
   <ItemGroup>
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Parsing\BlockDeclarations\Effects\EffectActionParser.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardContainers\Hand.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Parsing\BlockDeclarations\Cards\OnActivationParser.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Parsing\Nodes\OnActivationNodes.cs" />
@@ -67,7 +68,7 @@
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardEffects\DrawOneEffect.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GameLogic\CardsLoader.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GameLogic\CardLoader.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Parsing\BlockDeclarations\FullDeclarationParser.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardContainers\Graveyard.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
@@ -131,7 +132,6 @@
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\AbstractCardTypes\DraggableCard.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardContainers\Field.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Parsing\BlockDeclarations\Effects\EffectActionParser.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\MyAssets\Database\Decks\Northern Realms\Ash.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />

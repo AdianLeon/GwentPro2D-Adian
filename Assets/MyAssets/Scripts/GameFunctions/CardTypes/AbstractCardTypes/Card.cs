@@ -18,8 +18,8 @@ public abstract class Card : MonoBehaviour, IGlow, IPointerEnterHandler, IPointe
         GameObject.Find("CardName").GetComponent<TextMeshProUGUI>().text = CardName;
         GameObject.Find("BGType").GetComponent<Image>().color = new Color(0.2f, 0.2f, 0.2f, 0.8f);
         //EffectDescription
-        if (GetComponent<ISpecialCard>() != null) { GameObject.Find("EffectDescription").GetComponent<TextMeshProUGUI>().text = GetComponent<ISpecialCard>().GetEffectDescription; }
-        if (Description != "") { GameObject.Find("EffectDescription").GetComponent<TextMeshProUGUI>().text = Description; }
+        GameObject.Find("EffectDescription").GetComponent<TextMeshProUGUI>().text = Description;
+        if (GetComponent<ISpecialCard>() != null && Description == "") { GameObject.Find("EffectDescription").GetComponent<TextMeshProUGUI>().text = GetComponent<ISpecialCard>().GetEffectDescription; }
         //Quality, Image
         GameObject.Find("Quality").GetComponent<Image>().sprite = Resources.Load<Sprite>("BlankImage");
         GameObject.Find("CardPreview").GetComponent<Image>().sprite = Artwork;
