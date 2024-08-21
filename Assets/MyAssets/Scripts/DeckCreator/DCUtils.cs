@@ -15,13 +15,13 @@ public static class DeckCreatorUtils
         aux.Push(tokenList[pos]);//Anadimos el parentesis a hallarle su pareja
         for (int i = pos + 1; i < tokenList.Count; i++)
         {
-            if (tokenList[i].text == "(" || tokenList[i].text == "[" || tokenList[i].text == "{")
+            if (tokenList[i].Text == "(" || tokenList[i].Text == "[" || tokenList[i].Text == "{")
             {//Si es un parentesis de apertura
                 aux.Push(tokenList[i]);//Se anade a la lista
             }
-            else if (tokenList[i].text == ")" || tokenList[i].text == "]" || tokenList[i].text == "}")
+            else if (tokenList[i].Text == ")" || tokenList[i].Text == "]" || tokenList[i].Text == "}")
             {//Si es un parentesis de clausura
-                if (aux.Peek().text == GetMatchOf(tokenList[i].text))
+                if (aux.Peek().Text == GetMatchOf(tokenList[i].Text))
                 {//El ultimo parentesis de apertura coincide
                     aux.Pop();//Quitamos este par pues ambos son validos
                 }
@@ -32,7 +32,7 @@ public static class DeckCreatorUtils
             }
         }
         //Si no encontramos pareja
-        Errors.Write("No encontrado parentesis de clausura '" + aux.Peek().text + "' correspondiente a '" + GetMatchOf(aux.Peek().text) + "'", aux.Peek().line, aux.Peek().col);
+        Errors.Write("No encontrado parentesis de clausura '" + aux.Peek().Text + "' correspondiente a '" + GetMatchOf(aux.Peek().Text) + "'", aux.Peek().Line, aux.Peek().Col);
         return -1;
     }
     public static string GetMatchOf(string par)

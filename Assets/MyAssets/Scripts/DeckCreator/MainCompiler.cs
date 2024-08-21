@@ -21,21 +21,19 @@ public static class MainCompiler
     }
     public static void SaveOnTxt(FullDeclaration fullDeclaration, string allText)
     {
-        if (fullDeclaration == null || fullDeclaration.blockDeclarations == null) { return; }
-        foreach (BlockDeclaration blockDeclaration in fullDeclaration.blockDeclarations)
+        if (fullDeclaration == null || fullDeclaration.BlockDeclarations == null) { return; }
+        foreach (BlockDeclaration blockDeclaration in fullDeclaration.BlockDeclarations)
         {
             string fileName = blockDeclaration.Name + ".txt";
             string address = Application.dataPath + "/MyAssets/Database/";
 
             if (blockDeclaration is CardDeclaration) { address += "/Decks/" + (blockDeclaration as CardDeclaration).Faction + "/"; }
-            // else if (blockDeclaration is EffectDeclaration) { address += }
+            else if (blockDeclaration is EffectDeclaration) { address += "/CreatedEffects/"; }
             else { throw new NotImplementedException("The blockDeclaration wasn't card or effect!"); }
 
-            int start = fullDeclaration.positionsInCode.Dequeue();
-            int end = fullDeclaration.positionsInCode.Peek();
-
+            int start = fullDeclaration.PositionsInCode.Dequeue();
+            int end = fullDeclaration.PositionsInCode.Peek();
             string text = allText.Substring(start, end - start);
-            Debug.Log(blockDeclaration.Name + " starts in " + start + " and ends in " + end + ". The whole text is: " + text);
 
             if (!Directory.Exists(address)) { Directory.CreateDirectory(address); }
             File.WriteAllText(address + fileName, text);

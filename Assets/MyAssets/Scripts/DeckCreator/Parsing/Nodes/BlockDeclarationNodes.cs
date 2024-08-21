@@ -1,9 +1,10 @@
 using System.Collections.Generic;
+using System.Data;
 public interface INode { }
 public class FullDeclaration : INode
 {
-    public Queue<int> positionsInCode;
-    public List<BlockDeclaration> blockDeclarations;
+    public Queue<int> PositionsInCode = new Queue<int>();
+    public List<BlockDeclaration> BlockDeclarations = new List<BlockDeclaration>();
 }
 public class BlockDeclaration : INode
 {
@@ -29,7 +30,26 @@ public class CardDeclaration : BlockDeclaration
         OnActivation = onActivation;
     }
 }
-public class EfectDeclaration : BlockDeclaration
+public class EffectDeclaration : BlockDeclaration
 {
+    public EffectAction EffectAction;
+    public EffectDeclaration(string name, EffectAction effectAction) { Name = name; EffectAction = effectAction; }
+}
+public class EffectAction : INode
+{
+    public List<IActionStatement> ActionStatements = new List<IActionStatement>();
+}
+public interface IActionStatement
+{
+    public void DoAction();
+}
+public class PrintAction : IActionStatement
+{
+    public string Message;
+    public PrintAction(string message) { Message = message; }
 
+    public void DoAction()
+    {
+        UserRead.Write(Message);
+    }
 }

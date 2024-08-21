@@ -1,0 +1,7 @@
+card{
+	Type: "Aumento",
+	Name: "Arahara",
+	Faction: "Northern Realms",
+	Power: 100,
+	OnActivation: [{Effect: "PrintEffect"}]
+}

@@ -40,38 +40,38 @@ public class CardParser : Parser
             if (!key.Is(TokenType.assignment, true)) { hasFailed = true; return null; }
             if (!Next().Is(":", true)) { hasFailed = true; return null; }
             Next();
-            switch (key.text)
+            switch (key.Text)
             {
                 case "Description":
                     if (description != "") { Errors.Write("La propiedad 'Description' ya ha sido declarada", key); hasFailed = true; return null; }
                     if (!Current.Is(TokenType.literal, true)) { hasFailed = true; return null; }
-                    description = Current.text;
+                    description = Current.Text;
                     break;
                 case "Type":
                     if (!propertiesToDeclare.Contains("Type")) { Errors.Write("La propiedad 'Type' ya ha sido declarada", key); hasFailed = true; return null; }
                     if (!Current.Is(TokenType.literal, true)) { hasFailed = true; return null; }
-                    if (!cardTypes.ContainsKey(Current.text)) { Errors.Write("El tipo de carta '" + Current.text + "' no esta definido. Los tipos definidos son: 'Oro', 'Plata', 'Clima', 'Despeje', 'Aumento', 'Senuelo' o 'Lider'"); hasFailed = true; return null; }
-                    type = cardTypes[Current.text];
-                    if (Current.text == "Oro" || Current.text == "Plata" || Current.text == "Clima" || Current.text == "Aumento") { propertiesToDeclare.Add("Power"); }
-                    if (Current.text == "Oro" || Current.text == "Plata") { propertiesToDeclare.Add("Range"); }
+                    if (!cardTypes.ContainsKey(Current.Text)) { Errors.Write("El tipo de carta '" + Current.Text + "' no esta definido. Los tipos definidos son: 'Oro', 'Plata', 'Clima', 'Despeje', 'Aumento', 'Senuelo' o 'Lider'"); hasFailed = true; return null; }
+                    type = cardTypes[Current.Text];
+                    if (Current.Text == "Oro" || Current.Text == "Plata" || Current.Text == "Clima" || Current.Text == "Aumento") { propertiesToDeclare.Add("Power"); }
+                    if (Current.Text == "Oro" || Current.Text == "Plata") { propertiesToDeclare.Add("Range"); }
                     propertiesToDeclare.Remove("Type");
                     break;
                 case "Name":
                     if (!propertiesToDeclare.Contains("Name")) { Errors.Write("La propiedad 'Name' ya ha sido declarada", key); hasFailed = true; return null; }
                     if (!Current.Is(TokenType.literal, true)) { hasFailed = true; return null; }
-                    name = Current.text;
+                    name = Current.Text;
                     propertiesToDeclare.Remove("Name");
                     break;
                 case "Faction":
                     if (!propertiesToDeclare.Contains("Faction")) { Errors.Write("La propiedad 'Faction' ya ha sido declarada", key); hasFailed = true; return null; }
                     if (!Current.Is(TokenType.literal, true)) { hasFailed = true; return null; }
-                    faction = Current.text;
+                    faction = Current.Text;
                     propertiesToDeclare.Remove("Faction");
                     break;
                 case "Power":
                     if (!propertiesToDeclare.Contains("Power")) { Errors.Write("No se puede declarar la propiedad 'Power'. Solo se debe declarar una vez y en caso de que la propiedad 'Type' previamente declarada sea Oro, Plata, Clima o Aumento", key); hasFailed = true; return null; }
                     if (!Current.Is(TokenType.number, true)) { hasFailed = true; return null; }
-                    power = int.Parse(Current.text);
+                    power = int.Parse(Current.Text);
                     propertiesToDeclare.Remove("Power");
                     break;
                 case "Range":
@@ -90,14 +90,8 @@ public class CardParser : Parser
             }
             expectingDeclaration = Next().Is(",");
         }
-
         if (propertiesToDeclare.Count > 0) { Errors.Write("Han faltado por declarar las siguientes propiedades: " + propertiesToDeclare.GetText(), Current); hasFailed = true; return null; }
-
-        if (!Current.Is("}"))
-        {
-            Errors.Write("Se esperaba '}' en vez de '" + Current.text + "', puede ser que hayas olvidado la coma antes de la declaracion");
-            hasFailed = true; return null;
-        }
+        if (!Current.Is("}")) { Errors.Write("Se esperaba '}' en vez de '" + Current.Text + "', puede ser que hayas olvidado la coma antes de la declaracion"); hasFailed = true; return null; }
         Next();
         return new CardDeclaration(name, type, description, faction, power, range, onActivation);
     }
@@ -109,9 +103,9 @@ public class CardParser : Parser
         while (expectingRange)
         {
             if (!Next().Is(TokenType.literal, true)) { hasFailed = true; return default; }
-            string aux = Current.text;
+            string aux = Current.Text;
             if (!(aux == "Melee" || aux == "Ranged" || aux == "Siege")) { Errors.Write("El rango: '" + aux + "' no esta definido. Los valores definidos son 'Melee', 'Ranged' y 'Siege'", Current); hasFailed = true; return default; }
-            if (rangeText.Contains(aux[0])) { Errors.Write("Has repetido el rango " + Current.text + " declarado en 'Range'", Current); hasFailed = true; return default; }
+            if (rangeText.Contains(aux[0])) { Errors.Write("Has repetido el rango " + Current.Text + " declarado en 'Range'", Current); hasFailed = true; return default; }
             rangeText += aux[0];
             expectingRange = Next().Is(",");
         }

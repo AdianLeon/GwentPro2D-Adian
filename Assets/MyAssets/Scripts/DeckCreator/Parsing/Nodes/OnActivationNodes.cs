@@ -5,24 +5,18 @@ using UnityEngine;
 
 public class OnActivation : INode
 {
-    public void AddScriptEffects(GameObject cardOwner)
-    {
-        foreach (EffectCall effectCall in effectCalls)
-        {
-            if (effectCall is ScriptEffect) { cardOwner.AddComponent(Type.GetType(effectCall.effectName)); }
-        }
-    }
+    public void AddScriptEffects(GameObject cardOwner) { foreach (EffectCall effectCall in effectCalls) { if (effectCall is ScriptEffectCall) { cardOwner.AddComponent(Type.GetType(effectCall.EffectName)); } } }
     public List<EffectCall> effectCalls = new List<EffectCall>();
 }
 public abstract class EffectCall
 {
-    public string effectName;
+    public string EffectName;
 }
-public class ScriptEffect : EffectCall
+public class ScriptEffectCall : EffectCall
 {
-    public ScriptEffect(string scriptName) { effectName = scriptName; }
+    public ScriptEffectCall(string effectName) { EffectName = effectName; }
 }
-public class CreatedEffect : EffectCall
+public class CreatedEffectCall : EffectCall
 {
-
+    public CreatedEffectCall(string effectName) { EffectName = effectName; }
 }

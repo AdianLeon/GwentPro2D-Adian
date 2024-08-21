@@ -1,8 +1,13 @@
 card{
-	Type: "Plata",
-	Name: "Bob",
-	Faction: "Minions",
-	Range:["Ranged"],
-	Power: 0,
-	OnActivation: [{ScriptEffect: "PromEffect"}]
+	Type: "Aumento",
+	Name: "Arahara",
+	Faction: "Northern Realms",
+	Power: 100,
+	OnActivation: [{Effect: "PrintEffect"}]
+}
+effect{
+	Name: "PrintEffect",
+	Action: (targets,context)=>{
+		Print("Caramelo de chocolaaateee");
+	}
 }

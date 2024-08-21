@@ -104,7 +104,7 @@
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GameLogic\StateManager.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GFDeclarations\GFClasses.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Parsing\BlockDeclarations\Effects\EffectsParser.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Parsing\BlockDeclarations\Effects\EffectParser.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Lexing\LexerUtils.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\MainCompiler.cs" />
@@ -131,9 +131,11 @@
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\AbstractCardTypes\DraggableCard.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardContainers\Field.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Parsing\BlockDeclarations\Effects\EffectActionParser.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\MyAssets\Database\Decks\Northern Realms\Ash.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+     <None Include="Assets\MyAssets\Database\Decks\Northern Realms\Arahara.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Vector.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
      <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Oswald-Bold - OFL.txt" />
@@ -149,6 +151,7 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <None Include="Assets\MyAssets\Database\Decks\Northern Realms\Unga.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\El Macho.txt" />
+     <None Include="Assets\MyAssets\Database\CreatedEffects\PrintEffect.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Rayo Congelador.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Peluche.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Manzana.txt" />

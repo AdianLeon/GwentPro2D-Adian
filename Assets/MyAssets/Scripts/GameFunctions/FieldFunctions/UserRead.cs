@@ -4,7 +4,7 @@ using TMPro;
 //Script para mostrar mensajes en un objeto llamado UserRead
 public class UserRead : MonoBehaviour, IStateSubscriber, IKeyboardListener
 {
-    private static List<string> messages;//Lista de mensajes
+    private static List<string> messages = new List<string>();//Lista de mensajes
     private static int currentMessage;//Indexador que escoge el mensaje a mostrar en la lista
     public List<StateSubscription> GetStateSubscriptions => new List<StateSubscription>
     {
