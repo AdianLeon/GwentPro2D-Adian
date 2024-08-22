@@ -1,8 +1,0 @@
-{
-    "faction": "Minions",
-    "cardName": "Vector",
-    "powerPoints": 30,
-    "scriptComponent": "GoldCard",
-    "onActivationName": "LessPowerEffect",
-    "zones": "RS"
-}

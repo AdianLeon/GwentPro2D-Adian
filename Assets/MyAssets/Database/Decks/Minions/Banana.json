@@ -1,8 +1,0 @@
-{
-    "faction": "Minions",
-    "cardName": "Banana",
-    "powerPoints": 25,
-    "scriptComponent": "BoostCard",
-    "onActivationName": "",
-    "zones": ""
-}

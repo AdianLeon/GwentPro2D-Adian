@@ -1,8 +1,0 @@
-{
-    "faction": "Minions",
-    "cardName": "Kevin",
-    "powerPoints": 0,
-    "scriptComponent": "SilverCard",
-    "onActivationName": "PromEffect",
-    "zones": "M"
-}

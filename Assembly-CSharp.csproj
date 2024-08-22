@@ -40,6 +40,7 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Parsing\BlockDeclarations\Effects\EffectActionParser.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardContainers\Hand.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\MainMenuFunctions\ModifyDeckFunctions.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Parsing\BlockDeclarations\Cards\OnActivationParser.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Parsing\Nodes\OnActivationNodes.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GFDeclarations\GFInterfaces.cs" />
@@ -61,7 +62,7 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Lexing\Lexer.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\FieldFunctions\PauseScreen.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\MainMenuFunctions\DeckDropdowns.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\MainMenuFunctions\ChooseDeckDropdowns.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\DCUtils.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\SinglePlayerMode\Computer.cs" />
      <Compile Include="Assets\MyAssets\Scripts\MainMenuFunctions\MainMenu.cs" />
@@ -114,10 +115,8 @@
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GameLogic\Judge.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardEffects\PromEffect.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\MainMenuFunctions\ShowDeckMenuFunctions\DeckView.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Parsing\Parser.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\MainMenuFunctions\ShowDeckMenuFunctions\DeckMenuLoadCards.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\DropZones\DZWeather.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GFDeclarations\GFEnums.cs" />
@@ -132,6 +131,7 @@
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\AbstractCardTypes\DraggableCard.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardContainers\Field.cs" />
+     <None Include="Assets\MyAssets\Database\CreatedEffects\PrintEffectBicho.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\MyAssets\Database\Decks\Northern Realms\Ash.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
@@ -170,6 +170,7 @@
      <None Include="Assets\MyAssets\Database\Decks\Minions\Muchas Bananas.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Bob.txt" />
+     <None Include="Assets\MyAssets\Database\CreatedEffects\PrintEffectSIUUU.txt" />
      <None Include="Assets\MyAssets\Database\Code.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />

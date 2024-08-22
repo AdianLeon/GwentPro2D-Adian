@@ -1,8 +1,0 @@
-{
-    "faction": "Minions",
-    "cardName": "Gru",
-    "powerPoints": 0,
-    "scriptComponent": "LeaderCard",
-    "onActivationName": "GruEffect",
-    "zones": ""
-}

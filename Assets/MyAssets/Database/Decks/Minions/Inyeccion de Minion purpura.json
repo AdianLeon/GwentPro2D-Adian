@@ -1,8 +1,0 @@
-{
-    "faction": "Minions",
-    "cardName": "Inyeccion de minion purpura",
-    "powerPoints": 20,
-    "scriptComponent": "BoostCard",
-    "onActivationName": "",
-    "zones": ""
-}

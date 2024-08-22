@@ -1,13 +1,198 @@
-card{
-	Type: "Aumento",
-	Name: "Arahara",
-	Faction: "Northern Realms",
-	Power: 100,
-	OnActivation: [{Effect: "PrintEffect"}]
-}
 effect{
 	Name: "PrintEffect",
 	Action: (targets,context)=>{
 		Print("Caramelo de chocolaaateee");
 	}
 }
+
+effect{
+	Name: "PrintEffectBicho",
+	Action: (targets,context)=>{
+		Print("SIUUUUUU");
+	}
+}
+effect{
+	Name: "PrintEffectSIUUU",
+	Action: (targets,context)=>{
+		Print("SIUUUUUU");
+	}
+}
+card{
+	Type: "Senuelo",
+	Name: "Agnes",
+	Faction: "Minions"
+}
+
+card{
+	Type: "Aumento",
+	Name: "Banana",
+	Faction: "Minions",
+	Power: 25
+}
+
+card{
+	Description: "Cuando esta carta es jugada su poder se convierte en el promedio del poder de todas las cartas jugadas en el campo",
+	Type: "Plata",
+	Name: "Bob",
+	Faction: "Minions",
+	Range:["Ranged"],
+	Power: 0,
+	OnActivation: [{ScriptEffect: "PromEffect"}]
+}
+card{
+	Type: "Plata",
+	Name: "Doctor Nefario",
+	Faction: "Minions",
+	Range:["Ranged","Siege"],
+	Power: 25
+}
+
+card{
+	Description: "Cuando esta carta es jugada elimina a la carta de mayor poder jugada en el campo",
+	Type: "Oro",
+	Name: "El Macho",
+	Faction: "Minions",
+	Range:["Melee"],
+	Power: 35,
+	OnActivation: [{ScriptEffect: "MostPowerEffect"}]
+}
+
+card{
+	Description: "Ordena a los minions a que roben dos cartas de la mano enemiga, aunque conociendo a los minions eso puede salir mal",
+	Type: "Lider",
+	Name: "Gru",
+	Faction: "Minions",
+	OnActivation: [{ScriptEffect: "GruEffect"}]
+}
+
+card{
+	Type: "Aumento",
+	Name: "Inyeccion de minion purpura",
+	Faction: "Minions",
+	Power: 20
+}
+
+card{
+	Description: "Cuando esta carta es jugada su poder se convierte en el promedio del poder de todas las cartas jugadas en el campo",
+	Type: "Plata",
+	Name: "Kevin",
+	Faction: "Minions",
+	Range:["Melee"],
+	Power: 0,
+	OnActivation: [{ScriptEffect: "PromEffect"}]
+}
+
+card{
+	Description: "Cuando esta carta es jugada convierte su poder en la cantidad de Kyles que se encuentren en el campo",
+	Type: "Plata",
+	Name: "Kyle",
+	Faction: "Minions",
+	Range:["Melee","Siege"],
+	Power: 10,
+	OnActivation: [{ScriptEffect: "MultiplyEffect"}]
+}
+card{
+	Type: "Aumento",
+	Name: "Manzana",
+	Faction: "Minions",
+	Power: 20
+}
+
+card{
+	Type: "Senuelo",
+	Name: "Minion Bebe",
+	Faction: "Minions"
+}
+
+card{
+	Type: "Despeje",
+	Name: "Muchas Bananas",
+	Faction: "Minions"
+}
+
+card{
+	Type: "Plata",
+	Name: "Ninas",
+	Faction: "Minions",
+	Range:["Melee","Ranged"],
+	Power: 20
+}
+
+card{
+	Type: "Clima",
+	Name: "Peluche",
+	Faction: "Minions",
+	Power: 25
+}
+
+card{
+	Type: "Clima",
+	Name: "Rayo Congelador",
+	Faction: "Minions",
+	Power: 30
+}
+
+card{
+	Description: "Cuando esta carta es jugada se roba una carta del deck",
+	Type: "Oro",
+	Name: "Scarlett Overkill",
+	Faction: "Minions",
+	Range:["Melee","Ranged","Siege"],
+	Power: 30,
+	OnActivation: [{ScriptEffect: "DrawOneEffect"}]
+}
+
+card{
+	Description: "Cuando esta carta es jugada su poder se convierte en el promedio del poder de todas las cartas jugadas en el campo",
+	Type: "Plata",
+	Name: "Stuart",
+	Faction: "Minions",
+	Range:["Siege"],
+	Power: 0,
+	OnActivation: [{ScriptEffect: "PromEffect"}]
+}
+
+card{
+	Description: "Cuando esta carta es jugada elimina a la carta de menor poder jugada en el campo",
+	Type: "Oro",
+	Name: "Vector",
+	Faction: "Minions",
+	Range:["Ranged","Siege"],
+	Power: 30,
+	OnActivation: [{ScriptEffect: "LessPowerEffect"}]
+}
+
+card{
+	Type: "Aumento",
+	Name: "Arahara",
+	Faction: "Northern Realms",
+	Power: 100,
+	OnActivation: [{Effect: "PrintEffect"}]
+}
+
+card{
+	Type: "Oro",
+	Name: "Ash",
+	Faction: "Northern Realms",
+	Range:["Melee"],
+	Power: 30,
+	OnActivation: [{ScriptEffect: "GruEffect"}]
+}
+card{
+	Type: "Plata",
+	Name: "Hunga",
+	Faction: "Northern Realms",
+	Range:["Siege"],
+	Power: 25,
+	OnActivation: [{ScriptEffect: "PromEffect"}]
+}
+
+card{
+	Type: "Plata",
+	Name: "Unga",
+	Faction: "Northern Realms",
+	Range:["Ranged"],
+	Power: 30,
+	OnActivation: [{ScriptEffect: "LessPowerEffect"}]
+}
+

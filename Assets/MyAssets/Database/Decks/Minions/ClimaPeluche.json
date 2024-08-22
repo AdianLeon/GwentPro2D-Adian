@@ -1,8 +1,0 @@
-{
-    "faction": "Minions",
-    "cardName": "Peluche",
-    "powerPoints": 25,
-    "scriptComponent": "WeatherCard",
-    "onActivationName": "",
-    "zones": ""
-}

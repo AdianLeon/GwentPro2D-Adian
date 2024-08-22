@@ -1,8 +1,0 @@
-{
-    "faction": "Minions",
-    "cardName": "Scarlett Overkill",
-    "powerPoints": 30,
-    "scriptComponent": "GoldCard",
-    "onActivationName": "DrawOneEffect",
-    "zones": "MRS"
-}

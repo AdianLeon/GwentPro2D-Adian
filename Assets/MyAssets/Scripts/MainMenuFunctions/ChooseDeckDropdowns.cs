@@ -2,16 +2,17 @@ using UnityEngine;
 using System.IO;
 using TMPro;
 //Script para asignar el deck de los jugadores a traves de un dropdown
-public class DeckDropdowns : MonoBehaviour
+public class ChooseDeckDropdowns : MonoBehaviour
 {
     private TMP_Dropdown deckDropdown;
     private string playerDeck;
-    void Start()
+    void Awake()
     {
-        deckDropdown = this.gameObject.GetComponent<TMP_Dropdown>();
-        playerDeck = this.name;//El nombre de los dos objetos que contienen este script coincide con P1PrefDeck o P2PrefDeck
+        deckDropdown = gameObject.GetComponent<TMP_Dropdown>();
+        playerDeck = name;//El nombre de los dos objetos que contienen este script coincide con P1PrefDeck o P2PrefDeck
 
-        LoadFilesInDropdown(deckDropdown);//Anade los decks al dropdown
+        deckDropdown.ClearOptions();//Quita todas las opciones del dropdown
+        ModifyDeckFunctions.LoadOptionsInDropdown(deckDropdown, "Decks/", "");//Anade los decks al dropdown
         SetDropDownOption(deckDropdown, PlayerPrefs.GetString(playerDeck));//Hace que la opcion mostrada sea la guardada como deck escogido
         deckDropdown.onValueChanged.AddListener(delegate { OnDeckValueChanged(); });
     }
@@ -31,13 +32,5 @@ public class DeckDropdowns : MonoBehaviour
         }
         //Por alguna extrana razon si la opcion seteada es 0 no se muestra el nombre en el label del dropdown, la siguiente linea es para solucionar ese bug
         GameObject.Find(dropdown.gameObject.name + "Label").GetComponent<TextMeshProUGUI>().text = option;
-    }
-    public static void LoadFilesInDropdown(TMP_Dropdown dropdown)
-    {//Obtiene todos los directorios en la carpeta Decks y los anade como opcion en el dropdown
-        DirectoryInfo dir = new DirectoryInfo(Application.dataPath + "/MyAssets/Database/Decks/");
-        DirectoryInfo[] subDirs = dir.GetDirectories();//Carpetas dentro de Decks
-        dropdown.ClearOptions();//Quita todas las opciones del dropdown
-        //Anade todas las carpetas (decks) como opciones del dropdown
-        subDirs.ForEach(subDir => dropdown.options.Add(new TMP_Dropdown.OptionData(subDir.Name)));
     }
 }
