@@ -2,8 +2,6 @@ using System;
 using UnityEngine;
 using System.IO;
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime;
-using Unity.VisualScripting;
 //Script para instanciar cartas de un json
 public class CardLoader : MonoBehaviour, IStateSubscriber
 {
@@ -31,7 +29,7 @@ public class CardLoader : MonoBehaviour, IStateSubscriber
         {//Para cada uno de los archivos con extension json
             string codeCard = File.ReadAllText(address);//Lee el archivo
             CardDeclaration cardDeclaration = CardParser.ProcessCode(codeCard);//Convierte el string en json a un objeto CardSave
-            if (cardDeclaration != null) { ImportCardTo(cardDeclaration, deckPlace); }
+            if (cardDeclaration != null) { for (int i = cardDeclaration.TotalCopies; i > 0; i--) { ImportCardTo(cardDeclaration, deckPlace); } }
             else { Errors.Write("No se pudo procesar el texto de la carta en: " + address); failedAtInterpretingAnyCard = true; }
         }
         errorScreen.SetActive(!Execute.LoadedAllEffects || failedAtInterpretingAnyCard);

@@ -1,7 +1,9 @@
 card{
+	TotalCopies: 2,
 	Type: "Plata",
 	Name: "Ninas",
 	Faction: "Minions",
 	Range:["Melee","Ranged"],
 	Power: 20
 }
+

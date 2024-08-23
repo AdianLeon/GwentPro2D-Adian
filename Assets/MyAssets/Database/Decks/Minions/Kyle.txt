@@ -1,4 +1,5 @@
 card{
+	TotalCopies: 3,
 	Description: "Cuando esta carta es jugada convierte su poder en la cantidad de Kyles que se encuentren en el campo",
 	Type: "Plata",
 	Name: "Kyle",

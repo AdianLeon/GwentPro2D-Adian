@@ -28,6 +28,7 @@ public class CardParser : Parser
         string type = "";
         string name = "";
         string description = "";
+        int totalCopies = 1;
         string faction = "";
         int power = 0;
         UnitCardZone range = UnitCardZone.None;
@@ -46,6 +47,12 @@ public class CardParser : Parser
                     if (description != "") { Errors.Write("La propiedad 'Description' ya ha sido declarada", key); hasFailed = true; return null; }
                     if (!Current.Is(TokenType.literal, true)) { hasFailed = true; return null; }
                     description = Current.Text;
+                    break;
+                case "TotalCopies":
+                    if (totalCopies > 1) { Errors.Write("La propiedad 'ClonesAmount' ya ha sido declarada", key); hasFailed = true; return null; }
+                    if (!Current.Is(TokenType.number, true)) { hasFailed = true; return null; }
+                    if (!int.TryParse(Current.Text, out totalCopies) || totalCopies < 2) { Errors.Write("El numero asociado a 'TotalCopies' no es valido. Intente con un numero entre 2 y " + int.MaxValue, Current); }
+                    Debug.Log("TotalCopies: " + totalCopies);
                     break;
                 case "Type":
                     if (!propertiesToDeclare.Contains("Type")) { Errors.Write("La propiedad 'Type' ya ha sido declarada", key); hasFailed = true; return null; }
@@ -71,7 +78,7 @@ public class CardParser : Parser
                 case "Power":
                     if (!propertiesToDeclare.Contains("Power")) { Errors.Write("No se puede declarar la propiedad 'Power'. Solo se debe declarar una vez y en caso de que la propiedad 'Type' previamente declarada sea Oro, Plata, Clima o Aumento", key); hasFailed = true; return null; }
                     if (!Current.Is(TokenType.number, true)) { hasFailed = true; return null; }
-                    power = int.Parse(Current.Text);
+                    if (!int.TryParse(Current.Text, out power)) { Errors.Write("El numero asociado a 'Power' fallo en pasarse al tipo 'int'. Intente con un numero entre " + int.MinValue + " y " + int.MaxValue, Current); }
                     propertiesToDeclare.Remove("Power");
                     break;
                 case "Range":
@@ -86,14 +93,14 @@ public class CardParser : Parser
                     if (hasFailed) { return null; }
                     break;
                 default:
-                    Errors.Write("Se esperaba una declaracion de propiedad de carta. Declaraciones de propiedad validas son las siguientes: 'Type', 'Name', 'Faction', 'Power', 'Range', 'ClonesAmount', 'Description' y 'OnActivation'", key); hasFailed = true; return null;
+                    Errors.Write("Se esperaba una declaracion de propiedad de carta. Declaraciones de propiedad validas son las siguientes: 'Type', 'Name', 'Faction', 'Power', 'Range', 'TotalCopies', 'Description' y 'OnActivation'", key); hasFailed = true; return null;
             }
             expectingDeclaration = Next().Is(",");
         }
         if (propertiesToDeclare.Count > 0) { Errors.Write("Han faltado por declarar las siguientes propiedades: " + propertiesToDeclare.GetText(), Current); hasFailed = true; return null; }
         if (!Current.Is("}")) { Errors.Write("Se esperaba '}' en vez de '" + Current.Text + "', puede ser que hayas olvidado la coma antes de la declaracion"); hasFailed = true; return null; }
         Next();
-        return new CardDeclaration(name, type, description, faction, power, range, onActivation);
+        return new CardDeclaration(name, type, description, totalCopies, faction, power, range, onActivation);
     }
     private UnitCardZone GetRange()
     {
