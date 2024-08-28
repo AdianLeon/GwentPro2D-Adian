@@ -37,22 +37,3 @@ public class EffectDeclaration : BlockDeclaration
     public EffectAction EffectAction;
     public EffectDeclaration(string name, EffectAction effectAction) { Name = name; EffectAction = effectAction; }
 }
-public class EffectAction : INode
-{
-    public void TriggerEffect() { ActionStatements.ForEach(action => action.DoAction()); }
-    public List<IActionStatement> ActionStatements = new List<IActionStatement>();
-}
-public interface IActionStatement
-{
-    public void DoAction();
-}
-public class PrintAction : IActionStatement
-{
-    public string Message;
-    public PrintAction(string message) { Message = message; }
-
-    public void DoAction()
-    {
-        UserRead.Write(Message);
-    }
-}

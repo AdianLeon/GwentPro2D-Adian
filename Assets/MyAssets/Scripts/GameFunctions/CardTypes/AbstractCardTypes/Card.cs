@@ -35,7 +35,7 @@ public abstract class Card : MonoBehaviour, IGlow, IPointerEnterHandler, IPointe
         if (!IsPlayable) { return false; }
         UserRead.Write("Se ha jugado a " + CardName);
         gameObject.GetComponent<ISpecialCard>()?.TriggerSpecialEffect();//Si la carta tiene efecto de carta especial, que se active
-        Execute.DoEffect(this);//Se ejecuta el OnActivation
+        Executer.ExecuteOnActivation(this);//Se ejecuta el OnActivation
         StateManager.Publish(State.PlayingCard, new StateInfo { CardPlayed = this, Player = Owner });//Todos los IStateListener reaccionan ante la carta jugada
         LoadInfo();//Carga la info de la carta luego de que todos los IStateListener han reaccionado al estado
         return true;

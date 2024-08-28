@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class Execute : MonoBehaviour, IStateSubscriber
+public class Executer : MonoBehaviour, IStateSubscriber
 {
     public GameObject errorScreen;
     public static bool LoadedAllEffects => loadedAllEffects;
@@ -31,12 +31,13 @@ public class Execute : MonoBehaviour, IStateSubscriber
         Debug.Log("On Execute: " + LoadedAllEffects);
     }
 
-    public static void DoEffect(Card card)
+    public static void ExecuteOnActivation(Card card)
     {
         if (card.OnActivation == null) { return; }
         foreach (EffectCall effectCall in card.OnActivation.effectCalls)
         {
-            if (effectCall is ScriptEffectCall)
+            if (effectCall == null) { return; }
+            else if (effectCall is ScriptEffectCall)
             {
                 Type effectType = Type.GetType(effectCall.EffectName);
                 ICardEffect effectScript = (ICardEffect)card.GetComponent(effectType);
@@ -44,10 +45,22 @@ public class Execute : MonoBehaviour, IStateSubscriber
             }
             else if (effectCall is CreatedEffectCall)
             {
-                if (effectCall == null) { return; }
                 if (!createdEffects.ContainsKey(effectCall.EffectName)) { return; }
-                createdEffects[effectCall.EffectName].EffectAction.TriggerEffect();
+                List<DraggableCard> targets = SelectTargets(card.OnActivation);
+                ExecuteEffect((CreatedEffectCall)effectCall, targets);
             }
         }
+    }
+    private static void ExecuteEffect(CreatedEffectCall effectCall, List<DraggableCard> targets)
+    {
+        foreach (IActionStatement actionStatement in createdEffects[effectCall.EffectName].EffectAction.ActionStatements)
+        {
+            if (actionStatement is PrintAction) { UserRead.Write((actionStatement as PrintAction).Message); }
+            else if (actionStatement is ContextShuffleMethod) { ContextUtils.ShuffleContainer(actionStatement as ContextShuffleMethod); }
+        }
+    }
+    private static List<DraggableCard> SelectTargets(OnActivation onActivation)
+    {
+        return null;
     }
 }

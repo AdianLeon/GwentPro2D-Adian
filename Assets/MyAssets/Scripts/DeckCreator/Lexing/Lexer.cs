@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-//Script para transformar el codigo del objeto Compiler a tokens
+//Script para transformar texto a tokens
 public static class Lexer
 {
     private static List<Token> tokenList;//Lista de tokens 

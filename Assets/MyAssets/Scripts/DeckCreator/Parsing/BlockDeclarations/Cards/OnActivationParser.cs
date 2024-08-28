@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Reflection;
 using System;
 using System.Linq;
+using UnityEditor.PackageManager;
 //
 public class OnActivationParser : Parser
 {
@@ -41,7 +42,8 @@ public class OnActivationParser : Parser
     private EffectCall ParseCreatedEffect()
     {
         if (!Next().Is(":", true)) { hasFailed = true; return null; }
-        if (!Next().Is(TokenType.literal, true)) { hasFailed = true; return null; }
-        return new CreatedEffectCall(Current.Text);
+        Next();
+        if (Current.Is(TokenType.literal)) { return new CreatedEffectCall(Current.Text, null); }
+        else { Errors.Write("Se esperaba un literal o el caracter '{'", Current); hasFailed = true; return null; }
     }
 }

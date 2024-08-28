@@ -49,10 +49,11 @@
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GFDeclarations\GFUtils.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\DropZones\DropZone.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\WeatherCard.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Executing\ContextUtils.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Parsing\Nodes\BlockDeclarationNodes.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Executing\Execute.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Executing\Executer.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardEffects\GruEffect.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardEffects\MultiplyEffect.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
@@ -85,7 +86,6 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\ClearWeatherCard.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Lexing\LexerDeclarations.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\BoostCard.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardEffects\MostPowerEffect.cs" />
@@ -117,6 +117,7 @@
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardEffects\PromEffect.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Parsing\Parser.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Parsing\Nodes\EffectActionNodes.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\DropZones\DZWeather.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GFDeclarations\GFEnums.cs" />
@@ -140,6 +141,7 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
      <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Oswald-Bold - OFL.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Scarlett Overkill.txt" />
+     <None Include="Assets\MyAssets\Database\CreatedEffects\ShuffleHandEffect.txt" />
      <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
      <None Include="Assets\MyAssets\Database\PdfCode\Code.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />

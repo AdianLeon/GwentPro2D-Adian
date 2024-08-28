@@ -17,7 +17,7 @@ public class Deck : MonoBehaviour, IStateSubscriber, IContainer
     {
         //Anadiendo las cartas del contenedor del jugador al deck
         GameObject.Find("Cards" + gameObject.Field()).CardsInside<DraggableCard>().ForEach(card => DeckCards.Add(card));
-        ShuffleDeck(DeckCards);//Barajeando el deck
+        ShuffleDeck();//Barajeando el deck
         for (int i = 0; i < 10; i++) { DrawTopCard(); }//Repartiendo 10 cartas
     }
     public DraggableCard DrawTopCard()
@@ -36,7 +36,7 @@ public class Deck : MonoBehaviour, IStateSubscriber, IContainer
         DeckCards.Add(newCard);
         SwapCardToRandomPosition(DeckCards.Count - 1);
     }
-    public void ShuffleDeck(List<DraggableCard> DeckCards)
+    public void ShuffleDeck()
     {//Barajea el deck insertando cada carta en una posicion aleatoria
         for (int i = 0; i < DeckCards.Count; i++) { SwapCardToRandomPosition(i); }
     }

@@ -3,5 +3,6 @@ card{
 	Name: "Arahara",
 	Faction: "Northern Realms",
 	Power: 100,
-	OnActivation: [{Effect: "PrintEffect"}]
+	OnActivation: [{Effect: "ShuffleHandEffect"}]
 }
+

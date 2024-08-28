@@ -32,7 +32,7 @@ public class CardLoader : MonoBehaviour, IStateSubscriber
             if (cardDeclaration != null) { for (int i = cardDeclaration.TotalCopies; i > 0; i--) { ImportCardTo(cardDeclaration, deckPlace); } }
             else { Errors.Write("No se pudo procesar el texto de la carta en: " + address); failedAtInterpretingAnyCard = true; }
         }
-        errorScreen.SetActive(!Execute.LoadedAllEffects || failedAtInterpretingAnyCard);
+        errorScreen.SetActive(!Executer.LoadedAllEffects || failedAtInterpretingAnyCard);
         //Asignando la imagen del deck
         Deck.GetComponent<UnityEngine.UI.Image>().sprite = Resources.Load<Sprite>(faction + "/DeckImage");
     }
@@ -80,6 +80,7 @@ public class CardLoader : MonoBehaviour, IStateSubscriber
         if (newCard.GetComponent<UnitCard>() != null) { newCard.GetComponent<UnitCard>().Range = cardDeclaration.Range; }
         //OnActivation
         newCard.GetComponent<Card>().OnActivation = cardDeclaration.OnActivation;
-        newCard.GetComponent<Card>().OnActivation?.AddScriptEffects(newCard);
+        if (newCard.GetComponent<Card>().OnActivation != null) { AddScriptEffects(newCard, newCard.GetComponent<Card>().OnActivation); }
     }
+    private void AddScriptEffects(GameObject cardOwner, OnActivation onActivation) { foreach (EffectCall effectCall in onActivation.effectCalls) { if (effectCall is ScriptEffectCall) { cardOwner.AddComponent(Type.GetType(effectCall.EffectName)); } } }
 }

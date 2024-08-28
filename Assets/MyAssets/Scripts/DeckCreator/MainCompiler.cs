@@ -15,7 +15,7 @@ public static class MainCompiler
         Debug.Log("Resultado del lexer ----------------------------------------------------------------------"); foreach (Token token in tokens) { Debug.Log(token.ToString()); }; Debug.Log("Fin del resultado del lexer --------------------------------------------------------------");
         Parser.StartParsing(tokens);
         FullDeclaration fullDeclaration = (FullDeclaration)new FullDeclarationParser().ParseTokens();
-        if (Parser.HasFailed) { Errors.Write("No se pudieron parsear el codigo"); return; }
+        if (Parser.HasFailed) { Errors.Write("No se pudo parsear el codigo"); return; }
         Debug.Log("Compilacion terminada");
         SaveOnTxt(fullDeclaration, allText);
     }
