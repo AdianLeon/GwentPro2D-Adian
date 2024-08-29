@@ -15,7 +15,6 @@ public class Executer : MonoBehaviour, IStateSubscriber
     };
     private void LoadEffects()
     {
-        Debug.Log(0);
         createdEffects = new Dictionary<string, EffectDeclaration>();
         loadedAllEffects = true;
         string[] addressesOfEffects = Directory.GetFiles(Application.dataPath + "/MyAssets/Database/CreatedEffects", "*.txt");//Obtiene dentro del directorio del deck solo la direccion de los archivos con extension txt (ignora los meta)
@@ -28,7 +27,6 @@ public class Executer : MonoBehaviour, IStateSubscriber
             if (effectDeclaration != null) { createdEffects.Add(effectDeclaration.Name, effectDeclaration); }
             else { Errors.Write("No se pudo procesar el texto del efecto en: " + address); loadedAllEffects = false; }
         }
-        Debug.Log("On Execute: " + LoadedAllEffects);
     }
 
     public static void ExecuteOnActivation(Card card)

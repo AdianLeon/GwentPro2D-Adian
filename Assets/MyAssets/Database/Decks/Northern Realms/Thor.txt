@@ -1,0 +1,7 @@
+card{
+	Type: "Lider",
+	Name: "Thor",
+	Faction: "Northern Realms",
+	OnActivation: [{Effect: "ShuffleBoardEffect"}],
+	TotalCopies:2
+}

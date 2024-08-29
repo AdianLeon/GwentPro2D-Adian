@@ -52,7 +52,6 @@ public class CardParser : Parser
                     if (totalCopies > 1) { Errors.Write("La propiedad 'ClonesAmount' ya ha sido declarada", key); hasFailed = true; return null; }
                     if (!Current.Is(TokenType.number, true)) { hasFailed = true; return null; }
                     if (!int.TryParse(Current.Text, out totalCopies) || totalCopies < 2) { Errors.Write("El numero asociado a 'TotalCopies' no es valido. Intente con un numero entre 2 y " + int.MaxValue, Current); }
-                    Debug.Log("TotalCopies: " + totalCopies);
                     break;
                 case "Type":
                     if (!propertiesToDeclare.Contains("Type")) { Errors.Write("La propiedad 'Type' ya ha sido declarada", key); hasFailed = true; return null; }

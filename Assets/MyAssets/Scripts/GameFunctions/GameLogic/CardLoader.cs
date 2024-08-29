@@ -14,7 +14,6 @@ public class CardLoader : MonoBehaviour, IStateSubscriber
     };
     private void LoadCards()
     {
-        Debug.Log(1);
         instantiatedCardsCount = 0;
         ImportDeckTo(PlayerPrefs.GetString("P1PrefDeck"), GameObject.Find("CardsP1"), GameObject.Find("DeckP1"));
         ImportDeckTo(PlayerPrefs.GetString("P2PrefDeck"), GameObject.Find("CardsP2"), GameObject.Find("DeckP2"));

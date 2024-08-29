@@ -5,4 +5,4 @@ card{
 	Faction: "Minions",
 	Range:["Ranged","Siege"],
 	Power: 25
-}
+}

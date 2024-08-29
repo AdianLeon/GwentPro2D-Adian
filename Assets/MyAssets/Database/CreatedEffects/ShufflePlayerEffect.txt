@@ -1,9 +1,6 @@
-
 effect{
-	Name: "ShuffleEverythingEffect",
+	Name: "ShufflePlayerEffect",
 	Action: (targets,context)=>{
-		Print("Shuffling Board");
-		context.Board.Shuffle();
 		Print("Shuffling Hand");
 		context.Hand.Shuffle();
 		Print("Shuffling Deck");

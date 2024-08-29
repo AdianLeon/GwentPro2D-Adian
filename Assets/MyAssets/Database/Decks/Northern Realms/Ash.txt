@@ -4,5 +4,6 @@ card{
 	Faction: "Northern Realms",
 	Range:["Melee"],
 	Power: 30,
-	OnActivation: [{ScriptEffect: "GruEffect"}]
+	OnActivation: [{Effect: "ShufflePlayerEffect"}],
+	TotalCopies:10
 }

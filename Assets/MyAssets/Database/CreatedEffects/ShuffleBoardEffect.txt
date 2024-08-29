@@ -1,0 +1,7 @@
+effect{
+	Name: "ShuffleBoardEffect",
+	Action: (targets,context)=>{
+		Print("Shuffling Board");
+		context.Board.Shuffle();
+	}
+}

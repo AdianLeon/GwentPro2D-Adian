@@ -38,7 +38,12 @@ public class Deck : MonoBehaviour, IStateSubscriber, IContainer
     }
     public void ShuffleDeck()
     {//Barajea el deck insertando cada carta en una posicion aleatoria
+        Debug.Log("Deck before shuffling:");
+        DeckCards.ForEach(card => Debug.Log(card.name));
+        Debug.Log("Shuffling Deck");
         for (int i = 0; i < DeckCards.Count; i++) { SwapCardToRandomPosition(i); }
+        Debug.Log("Deck after shuffling");
+        DeckCards.ForEach(card => Debug.Log(card.name));
     }
     private void SwapCardToRandomPosition(int posOfCard)
     {//Cambia la carta en esa posicion con otra random cambiando las referencias en la lista

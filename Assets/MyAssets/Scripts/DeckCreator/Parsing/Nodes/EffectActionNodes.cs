@@ -17,16 +17,16 @@ public class PlayerReference : IReference
 {
     public enum PlayerToGet { None, Self, Other }
     public PlayerToGet Player;
-    public PlayerReference(PlayerToGet player) { Player = player; }
+    public PlayerReference(string player = "None") { Player = (PlayerToGet)Enum.Parse(typeof(PlayerToGet), player); }
 }
 public class ContainerReference : IReference
 {
     public enum ContainerToGet { Board, Hand, Field, Graveyard, Deck }
     public ContainerToGet Container;
     public PlayerReference Owner;
-    public ContainerReference(ContainerToGet container, PlayerReference owner = null)
+    public ContainerReference(string containerName, PlayerReference owner = null)
     {
-        Container = container; Owner = owner;
+        Container = (ContainerToGet)Enum.Parse(typeof(ContainerToGet), containerName); Owner = owner;
     }
 }
 public abstract class ContextMethod : IActionStatement

@@ -3,3 +3,4 @@ card{
 	Name: "Muchas Bananas",
 	Faction: "Minions"
 }
+

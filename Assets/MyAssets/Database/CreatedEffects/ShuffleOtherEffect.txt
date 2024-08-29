@@ -1,0 +1,13 @@
+effect{
+	Name: "ShuffleOtherEffect",
+	Action: (targets,context)=>{
+		Print("Shuffling OtherHand");
+		context.OtherHand.Shuffle();
+		Print("Shuffling OtherDeck");
+		context.OtherDeck.Shuffle();
+		Print("Shuffling OtherField");
+		context.OtherField.Shuffle();
+		Print("Shuffling OtherGraveyard");
+		context.OtherGraveyard.Shuffle();
+	}
+}

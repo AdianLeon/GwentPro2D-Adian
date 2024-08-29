@@ -155,6 +155,9 @@
      <None Include="Assets\MyAssets\Database\Decks\Minions\El Macho.txt" />
      <None Include="Assets\MyAssets\Database\CreatedEffects\PrintEffect.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Rayo Congelador.txt" />
+     <None Include="Assets\MyAssets\Database\CreatedEffects\ShuffleOtherEffect.txt" />
+     <None Include="Assets\MyAssets\Database\CreatedEffects\ShufflePlayerEffect.txt" />
+     <None Include="Assets\MyAssets\Database\CreatedEffects\ShuffleEverythingEffect.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Peluche.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Manzana.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Gru.txt" />
