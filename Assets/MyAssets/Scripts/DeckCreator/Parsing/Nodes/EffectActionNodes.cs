@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using UnityEngine;
 
 public class EffectAction : INode
 {
@@ -22,11 +23,11 @@ public class PlayerReference : IReference
 public class ContainerReference : IReference
 {
     public enum ContainerToGet { Board, Hand, Field, Graveyard, Deck }
-    public ContainerToGet Container;
+    public ContainerToGet Name;
     public PlayerReference Owner;
     public ContainerReference(string containerName, PlayerReference owner = null)
     {
-        Container = (ContainerToGet)Enum.Parse(typeof(ContainerToGet), containerName); Owner = owner;
+        Name = (ContainerToGet)Enum.Parse(typeof(ContainerToGet), containerName); Owner = owner;
     }
 }
 public abstract class ContextMethod : IActionStatement
@@ -47,10 +48,10 @@ public abstract class ContextMethod : IActionStatement
 //     public ContextCardParameterMethod(ContainerReference container, ActionType type, CardReference card) { Container = container; Type = type; Card = card; }
 // }
 // public class CardReference : IReference { }
-// public class ContextPopMethod : ContextMethod, IReference
-// {
-//     public ContextPopMethod(ContainerReference container) { Container = container; }
-// }
+public class ContextPopMethod : ContextMethod, IReference
+{
+    public ContextPopMethod(ContainerReference container) { Container = container; }
+}
 public class ContextShuffleMethod : ContextMethod
 {
     public ContextShuffleMethod(ContainerReference container) { Container = container; }

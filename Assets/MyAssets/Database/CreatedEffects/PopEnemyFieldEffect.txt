@@ -1,0 +1,8 @@
+effect{
+	Name: "PopEnemyFieldEffect",
+	Action: (targets,context)=>{
+		Print("PoppingEnemyField");
+		context.FieldOfPlayer(context.TriggerEnemy).Pop();
+	}
+}
+

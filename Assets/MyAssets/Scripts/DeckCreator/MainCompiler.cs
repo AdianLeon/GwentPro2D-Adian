@@ -12,7 +12,7 @@ public static class MainCompiler
         allText.Trim();//Elimina los espacios al principio y al final del texto
         List<Token> tokens = Lexer.TokenizeCode(allText);
         if (tokens == null) { Errors.Write("No se pudo tokenizar el codigo!"); return; }
-        Debug.Log("Resultado del lexer ----------------------------------------------------------------------"); foreach (Token token in tokens) { Debug.Log(token.ToString()); }; Debug.Log("Fin del resultado del lexer --------------------------------------------------------------");
+        // Debug.Log("Resultado del lexer ----------------------------------------------------------------------"); foreach (Token token in tokens) { Debug.Log(token.ToString()); }; Debug.Log("Fin del resultado del lexer --------------------------------------------------------------");
         Parser.StartParsing(tokens);
         FullDeclaration fullDeclaration = (FullDeclaration)new FullDeclarationParser().ParseTokens();
         if (Parser.HasFailed) { Errors.Write("No se pudo parsear el codigo"); return; }

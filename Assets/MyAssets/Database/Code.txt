@@ -1,16 +1,17 @@
-
 effect{
-	Name: "ShuffleEverythingEffect",
+	Name: "PopEnemyFieldEffect",
 	Action: (targets,context)=>{
-		Print("Shuffling Board");
-		context.Board.Shuffle();
-		Print("Shuffling Hand");
-		context.Hand.Shuffle();
-		Print("Shuffling Deck");
-		context.Deck.Shuffle();
-		Print("Shuffling Field");
-		context.Field.Shuffle();
-		Print("Shuffling Graveyard");
-		context.Graveyard.Shuffle();
+		Print("PoppingEnemyField");
+		context.FieldOfPlayer(context.TriggerEnemy).Pop();
 	}
+}
+
+card{
+	Type: "Plata",
+	Name: "Unga",
+	Faction: "Northern Realms",
+	Range:["Ranged"],
+	Power: 30,
+	OnActivation: [{Effect: "PopEnemyFieldEffect"}],
+	TotalCopies:10
 }

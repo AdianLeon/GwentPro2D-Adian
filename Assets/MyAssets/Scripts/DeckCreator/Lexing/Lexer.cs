@@ -69,7 +69,7 @@ public static class Lexer
             end++;
             if (end == code.Length)
             {
-                Errors.Write("Pareja de caracter doble comilla no encontrado", LexerUtils.NewLineCounter(code, start), LexerUtils.ColumnCounter(code, start));
+                Errors.Write("Pareja de caracter doble comilla no encontrado en linea: " + LexerUtils.NewLineCounter(code, start) + " columna: " + LexerUtils.ColumnCounter(code, start));
                 tokenList.Add(new Token(code, start, "", TokenType.unexpected));
                 return;
             }

@@ -32,7 +32,7 @@ public static class DeckCreatorUtils
             }
         }
         //Si no encontramos pareja
-        Errors.Write("No encontrado parentesis de clausura '" + aux.Peek().Text + "' correspondiente a '" + GetMatchOf(aux.Peek().Text) + "'", aux.Peek().Line, aux.Peek().Col);
+        Errors.Write("No encontrado parentesis de clausura '" + aux.Peek().Text + "' correspondiente a '" + GetMatchOf(aux.Peek().Text) + "'", aux.Peek());
         return -1;
     }
     public static string GetMatchOf(string par)

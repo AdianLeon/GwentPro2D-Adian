@@ -149,6 +149,7 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Agnes.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Kyle.txt" />
+     <None Include="Assets\MyAssets\Database\CreatedEffects\ShuffleBoardEffect.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Kevin.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <None Include="Assets\MyAssets\Database\Decks\Northern Realms\Unga.txt" />
@@ -158,6 +159,7 @@
      <None Include="Assets\MyAssets\Database\CreatedEffects\ShuffleOtherEffect.txt" />
      <None Include="Assets\MyAssets\Database\CreatedEffects\ShufflePlayerEffect.txt" />
      <None Include="Assets\MyAssets\Database\CreatedEffects\ShuffleEverythingEffect.txt" />
+     <None Include="Assets\MyAssets\Database\Decks\Northern Realms\Thor.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Peluche.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Manzana.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Gru.txt" />
@@ -186,6 +188,7 @@
      <None Include="Assets\MyAssets\Database\Decks\Minions\Inyeccion de minion purpura.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Northern Realms\Hunga.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
+     <None Include="Assets\MyAssets\Database\CreatedEffects\PopEnemyFieldEffect.txt" />
      <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.24f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>

@@ -4,6 +4,6 @@ card{
 	Faction: "Northern Realms",
 	Range:["Ranged"],
 	Power: 30,
-	OnActivation: [{ScriptEffect: "LessPowerEffect"}]
+	OnActivation: [{Effect: "PopEnemyFieldEffect"}],
+	TotalCopies:10
 }
-
