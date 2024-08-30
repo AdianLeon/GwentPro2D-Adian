@@ -31,14 +31,10 @@ public class EffectActionParser : Parser
             actionStatement = new PrintAction(Current.Text);
             if (!Next().Is(")", true)) { hasFailed = true; return null; }
         }
-        else if (Current.Is(TokenType.identifier))
-        {
-            //Variables
-            hasFailed = true; return null;
-        }
+        else if (Current.Is(TokenType.identifier)) { hasFailed = true; return null; }//Variables
         else { Errors.Write("Accion desconocida: '" + Current.Text + "'", Current); hasFailed = true; return null; }
 
-        if (!Next().Is(";", true)) { Debug.Log("No detecta el ';'"); hasFailed = true; return null; }
+        if (!Next().Is(";", true)) { hasFailed = true; return null; }
 
         if (actionStatement == null) { Errors.Write("No se pudo procesar una accion en la linea: " + Current.Line); hasFailed = true; }
         return actionStatement;
@@ -46,6 +42,7 @@ public class EffectActionParser : Parser
 
     private IActionStatement ContextActionParser()
     {
+        if (!Current.Is("context", true)) { hasFailed = true; return null; }
         if (!Next().Is(".", true)) { hasFailed = true; return null; }
         Next();
         if (Current.Is("Board"))
@@ -100,6 +97,25 @@ public class EffectActionParser : Parser
         {
             if (!Next().Is("(", true) || !Next().Is(")", true)) { hasFailed = true; return null; }
             return new ContextPopMethod(container);
+        }
+        else if (Current.Is("Push") || Current.Is("SendBottom"))
+        {
+            if (container.Name == ContainerReference.ContainerToGet.Board || container.Name == ContainerReference.ContainerToGet.Field)
+            { Errors.Write("El metodo '" + Current.Text + "' no esta disponible para la propiedad '" + container.Name + "'", Current); hasFailed = true; return null; }
+
+            Token methodToken = Current;
+            if (!Next().Is("(", true)) { hasFailed = true; return null; }
+            ICardReference cardReference;
+            if (Next().Is("context"))
+            {
+                IActionStatement hopefullyCardReference = ContextActionParser();
+                if (hopefullyCardReference is ICardReference) { cardReference = (ICardReference)hopefullyCardReference; }
+                else { Errors.Write("El parametro pasado a '" + methodToken.Text + "' no es una referencia a una carta", Current); hasFailed = true; return null; }
+            }
+            else if (Next().Is(TokenType.identifier)) { hasFailed = true; return null; }//Variables
+            else { Errors.Write("El parametro pasado a '" + methodToken.Text + "' no es una referencia a una carta"); hasFailed = true; return null; }
+            if (!Next().Is(")", true)) { hasFailed = true; return null; }
+            return new ContextCardParameterMethod(container, methodToken.Text, cardReference);
         }
         else { Errors.Write("El metodo del contenedor " + container.Name + ": '" + Current.Text + "' no esta definido", Current); hasFailed = true; return null; }
     }

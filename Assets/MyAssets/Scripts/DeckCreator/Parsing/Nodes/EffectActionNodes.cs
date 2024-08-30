@@ -40,15 +40,20 @@ public abstract class ContextMethod : IActionStatement
 //     public ContextFindMethod(ContainerReference container, CardPredicate predicate) { Container = container; Predicate = predicate; }
 // }
 // public class CardPredicate { }
-// public class ContextCardParameterMethod : ContextMethod
-// {
-//     public enum ActionType { Push, SendBottom, Remove }
-//     public ActionType Type;
-//     public CardReference Card;
-//     public ContextCardParameterMethod(ContainerReference container, ActionType type, CardReference card) { Container = container; Type = type; Card = card; }
-// }
-// public class CardReference : IReference { }
-public class ContextPopMethod : ContextMethod, IReference
+public class ContextCardParameterMethod : ContextMethod
+{
+    public enum ActionType { Push, SendBottom/*, Remove*/ }
+    public ActionType Type;
+    public ICardReference Card;
+    public ContextCardParameterMethod(ContainerReference container, string typeName, ICardReference card)
+    {
+        Container = container;
+        Type = (ActionType)Enum.Parse(typeof(ActionType), typeName);
+        Card = card;
+    }
+}
+public interface ICardReference : IReference { }
+public class ContextPopMethod : ContextMethod, ICardReference
 {
     public ContextPopMethod(ContainerReference container) { Container = container; }
 }

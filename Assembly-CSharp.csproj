@@ -139,6 +139,7 @@
      <None Include="Assets\MyAssets\Database\Decks\Northern Realms\Arahara.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Vector.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+     <None Include="Assets\MyAssets\Database\CreatedEffects\EnemyFieldStealEffect.txt" />
      <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Oswald-Bold - OFL.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Scarlett Overkill.txt" />
      <None Include="Assets\MyAssets\Database\CreatedEffects\ShuffleHandEffect.txt" />
@@ -187,6 +188,7 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Inyeccion de minion purpura.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Northern Realms\Hunga.txt" />
+     <None Include="Assets\MyAssets\Database\Decks\Northern Realms\Matumbo.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
      <None Include="Assets\MyAssets\Database\CreatedEffects\PopEnemyFieldEffect.txt" />
      <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 //Script para el funcionamiento del deck
 public class Deck : MonoBehaviour, IStateSubscriber, IContainer
@@ -34,20 +35,10 @@ public class Deck : MonoBehaviour, IStateSubscriber, IContainer
     public void AddCardRandomly(DraggableCard newCard)
     {//Anade una carta en una posicion random del deck
         DeckCards.Add(newCard);
-        SwapCardToRandomPosition(DeckCards.Count - 1);
+        int randomPos = Random.Range(0, DeckCards.Count);
+        (DeckCards[DeckCards.Count - 1], DeckCards[randomPos]) = (DeckCards[randomPos], DeckCards[DeckCards.Count - 1]);
     }
-    public void ShuffleDeck()
-    {//Barajea el deck insertando cada carta en una posicion aleatoria
-        Debug.Log("Deck before shuffling:");
-        DeckCards.ForEach(card => Debug.Log(card.name));
-        Debug.Log("Shuffling Deck");
-        for (int i = 0; i < DeckCards.Count; i++) { SwapCardToRandomPosition(i); }
-        Debug.Log("Deck after shuffling");
-        DeckCards.ForEach(card => Debug.Log(card.name));
-    }
-    private void SwapCardToRandomPosition(int posOfCard)
-    {//Cambia la carta en esa posicion con otra random cambiando las referencias en la lista
-        int randomPos = UnityEngine.Random.Range(0, DeckCards.Count);
-        (DeckCards[posOfCard], DeckCards[randomPos]) = (DeckCards[randomPos], DeckCards[posOfCard]);
-    }
+    public void ShuffleDeck() => DeckCards = DeckCards.Randomize().ToList();
+    public void PushCard(DraggableCard card) => DeckCards.Add(card);
+    public void SendBottomCard(DraggableCard card) => DeckCards.Insert(0, card);
 }

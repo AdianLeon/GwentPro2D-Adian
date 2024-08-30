@@ -1,0 +1,7 @@
+effect{
+	Name: "EnemyFieldStealEffect",
+	Action: (targets,context)=>{
+		context.Hand.Push(context.OtherField.Pop());
+	}
+}
+

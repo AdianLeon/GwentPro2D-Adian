@@ -54,8 +54,8 @@ public class Executer : MonoBehaviour, IStateSubscriber
         foreach (IActionStatement actionStatement in createdEffects[effectCall.EffectName].EffectAction.ActionStatements)
         {
             if (actionStatement is PrintAction) { UserRead.Write((actionStatement as PrintAction).Message); }
-            else if (actionStatement is ContextShuffleMethod) { ContextUtils.ShuffleContainer(actionStatement as ContextShuffleMethod); }
-            else if (actionStatement is ContextPopMethod) { ContextUtils.PopContainer(actionStatement as ContextPopMethod); }
+            else if (actionStatement is ContextMethod) { ContextUtils.AssignMethod((ContextMethod)actionStatement); }
+            else { throw new Exception("La accion no esta definida"); }
         }
     }
     private static List<DraggableCard> SelectTargets(OnActivation onActivation)

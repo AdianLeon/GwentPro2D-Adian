@@ -1,0 +1,9 @@
+card{
+	Type: "Plata",
+	Name: "Matumbo",
+	Faction: "Northern Realms",
+	Range:["Melee","Ranged","Siege"],
+	Power: 30,
+	OnActivation: [{Effect: "EnemyFieldStealEffect"}],
+	TotalCopies:20
+}

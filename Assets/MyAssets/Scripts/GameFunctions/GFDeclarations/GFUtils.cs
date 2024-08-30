@@ -15,6 +15,16 @@ public static class CustomLinqExtensions
 {
     public static void ForEach<T>(this IEnumerable<T> items, Action<T> action) { foreach (T item in items) { action(item); } }//Comodidad extra para realizar una accion simple sobre todos los elementos de un IEnumerable
     public static T RandomElement<T>(this IEnumerable<T> items) => items.Count() == 0 ? default : items.ElementAt(UnityEngine.Random.Range(0, items.Count()));//Devuelve un elemento random dado un IEnumerable
+    public static IEnumerable<T> Randomize<T>(this IEnumerable<T> items)
+    {
+        T[] itemsList = items.ToArray();
+        for (int i = 0; i < itemsList.Length; i++)
+        {
+            int randomPos = UnityEngine.Random.Range(0, itemsList.Length);
+            (itemsList[i], itemsList[randomPos]) = (itemsList[randomPos], itemsList[i]);
+        }
+        return itemsList;
+    }
     public static T MaxBy<T, G>(this IEnumerable<T> items, Func<T, G> selector) where G : IComparable<G> => ComparingBy(items, selector, (first, second) => first.CompareTo(second) > 0);
     public static T MinBy<T, G>(this IEnumerable<T> items, Func<T, G> selector) where G : IComparable<G> => ComparingBy(items, selector, (first, second) => first.CompareTo(second) < 0);
     private static T ComparingBy<T, G>(IEnumerable<T> items, Func<T, G> selector, Func<G, G, bool> predicate) where G : IComparable<G>
