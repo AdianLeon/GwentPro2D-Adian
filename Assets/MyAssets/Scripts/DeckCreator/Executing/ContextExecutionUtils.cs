@@ -47,6 +47,7 @@ public static class ContextUtils
         };
         if (!assigner.ContainsKey(containerName)) { throw new Exception("El nombre del contenedor a .Pop(): '" + containerName + "' no esta entre los definidos."); }
         else if (assigner[containerName].Count() == 0) { return null; }
+        else if (containerName == "DeckP1" || containerName == "DeckP2") { card = GameObject.Find(containerName).GetComponent<Deck>().DrawTopCard(); card.MoveCardTo(GameObject.Find("Trash")); }
         else { card = assigner[containerName].Last(); card.MoveCardTo(GameObject.Find("Trash")); }
         return card;
     }

@@ -5,19 +5,25 @@ using UnityEngine;
 
 public static class MainCompiler
 {
-    public static void ProcessText(string allText)
+    public static void ProcessTextAndSave(string allText)
     {
         Debug.Log("Compilacion iniciada");
+        FullDeclaration fullDeclaration = ProcessText(allText);
+        Debug.Log("Compilacion terminada");
+        if (!Parser.HasFailed && fullDeclaration != null) { Debug.Log("Guardando en .txt porque (!Parser.HasFailed && fullDeclaration!=null)"); SaveOnTxt(fullDeclaration, allText); }
+        else { Debug.Log("La compilacion fue fallida: Parser.HasFailed: " + Parser.HasFailed + " fullDeclaration==null: " + (fullDeclaration == null)); }
+    }
+    public static FullDeclaration ProcessText(string allText)
+    {
         Errors.Clean();
         allText.Trim();//Elimina los espacios al principio y al final del texto
         List<Token> tokens = Lexer.TokenizeCode(allText);
-        if (tokens == null) { Errors.Write("No se pudo tokenizar el codigo!"); return; }
-        // Debug.Log("Resultado del lexer ----------------------------------------------------------------------"); foreach (Token token in tokens) { Debug.Log(token.ToString()); }; Debug.Log("Fin del resultado del lexer --------------------------------------------------------------");
+        if (tokens == null) { Errors.Write("No se pudo tokenizar el codigo!"); return null; }
+        // Debug.Log("Resultado del lexer:"); tokens.ForEach(token => Debug.Log(token.ToString())); Debug.Log("Fin del resultado del lexer...");
         Parser.StartParsing(tokens);
         FullDeclaration fullDeclaration = (FullDeclaration)new FullDeclarationParser().ParseTokens();
-        if (Parser.HasFailed) { Errors.Write("No se pudo parsear el codigo"); return; }
-        Debug.Log("Compilacion terminada");
-        SaveOnTxt(fullDeclaration, allText);
+        if (Parser.HasFailed) { Errors.Write("No se pudo parsear el codigo"); return null; } else { Errors.PureWrite("El codigo se ha compilado exitosamente"); }
+        return fullDeclaration;
     }
     private static void SaveOnTxt(FullDeclaration fullDeclaration, string allText)
     {

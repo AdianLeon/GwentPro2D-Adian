@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class EffectActionParser : Parser
 {
+    public static VariableScopes varScopes;
     public override INode ParseTokens()
     {
-        EffectAction effectAction = new EffectAction();
         if (!Current.Is("(", true)) { hasFailed = true; }
         if (!Next().Is("targets", true)) { hasFailed = true; }
         if (!Next().Is(",", true)) { hasFailed = true; }
@@ -13,17 +13,28 @@ public class EffectActionParser : Parser
         if (!Next().Is("=>", true)) { hasFailed = true; }
         if (!Next().Is("{", true)) { hasFailed = true; }
         if (hasFailed) { return null; }
+
+        EffectAction effectAction = new EffectAction();
+        varScopes = new VariableScopes();
+        varScopes.AddNewScope();
+
         while (!Next().Is("}"))
         {
             effectAction.ActionStatements.Add(ActionStatementParser());
-            if (hasFailed) { Debug.Log("El parseo de actionStatement ha fallado"); return null; }
+            if (hasFailed) { return null; }
         }
         return effectAction;
     }
     private IActionStatement ActionStatementParser()
     {//Parsea una linea de codigo dentro del Action: (targets, contexts) => {...}
-        IActionStatement actionStatement;
-        if (Current.Is("context")) { actionStatement = ContextActionParser(); }
+        IActionStatement actionStatement = null;
+        if (Current.Is("context"))
+        {
+            object hopefullyIActionStatement = ContextParser();
+            if(hasFailed){return null;}
+            if (hopefullyIActionStatement is IActionStatement) { actionStatement = (IActionStatement)hopefullyIActionStatement; }
+            else { Errors.Write("La declaracion no es una accion", Current); hasFailed = true; return null; }
+        }
         else if (Current.Is("Print"))
         {
             if (!Next().Is("(", true)) { hasFailed = true; return null; }
@@ -31,88 +42,95 @@ public class EffectActionParser : Parser
             actionStatement = new PrintAction(Current.Text);
             if (!Next().Is(")", true)) { hasFailed = true; return null; }
         }
-        else if (Current.Is(TokenType.identifier)) { hasFailed = true; return null; }//Variables
+        // else if (Current.Is(TokenType.identifier))
+        // {
+        //     string varName = Current.Text;
+        //     if (!Next().Is("=", true)) { hasFailed = true; return null; }
+        //     if (Next().Is("context"))
+        //     {
+
+        //     }
+        //     else if (Next().Is(TokenType.identifier))
+        //     {
+        //         if (varScopes.ContainsVar(Current.Text))
+        //         {
+        //             actionStatement = new VariableDeclaration(varName, new VariableReference(Current.Text));
+        //             varScopes.AddNewVar((VariableDeclaration)actionStatement);
+        //         }
+        //     }
+        //     else { Errors.Write("No se pudo asignar a la variable '" + varName + "' el valor '" + Current.Text + "'", Current); hasFailed = true; return null; }
+        // }
         else { Errors.Write("Accion desconocida: '" + Current.Text + "'", Current); hasFailed = true; return null; }
 
         if (!Next().Is(";", true)) { hasFailed = true; return null; }
 
-        if (actionStatement == null) { Errors.Write("No se pudo procesar una accion en la linea: " + Current.Line); hasFailed = true; }
+        if (actionStatement == null) { Errors.Write("No se pudo procesar una accion", Current); hasFailed = true; }
         return actionStatement;
     }
-
-    private IActionStatement ContextActionParser()
-    {
+    private object ContextParser()
+    {//Parsea cualquier declaracion que sea de acceso al context
         if (!Current.Is("context", true)) { hasFailed = true; return null; }
         if (!Next().Is(".", true)) { hasFailed = true; return null; }
         Next();
-        if (Current.Is("Board"))
-        {
-            ContainerReference container = new ContainerReference(Current.Text, new PlayerReference());
-            if (!Next().Is(".", true)) { hasFailed = true; return null; }
-            return AfterDotContextMethodParser(container);
-        }
+        if (Current.Is("Board") || Current.Text.Contains("Hand") || Current.Text.Contains("Deck") || Current.Text.Contains("Field") || Current.Text.Contains("Graveyard")) { return ContextContainerParser(); }
+        else if (Current.Is("TriggerPlayer")) { return new PlayerReference("Self"); }
+        else if (Current.Is("TriggerEnemy")) { return new PlayerReference("Other"); }
+        else { Errors.Write("No existe la propiedad del contexto: '" + Current.Text + "'"); hasFailed = true; return null; }
+    }
+    private object ContextContainerParser()
+    {
+        ContainerReference container;
+        if (Current.Is("Board")) { container = new ContainerReference(Current.Text, new PlayerReference()); }
+        else if (Current.Is("Hand") || Current.Is("Deck") || Current.Is("Field") || Current.Is("Graveyard")) { container = new ContainerReference(Current.Text, new PlayerReference("Self")); }
+        else if (Current.Is("OtherHand") || Current.Is("OtherDeck") || Current.Is("OtherField") || Current.Is("OtherGraveyard")) { container = new ContainerReference(Current.Text.Substring(5), new PlayerReference("Other")); }
         else if (Current.Is("HandOfPlayer") || Current.Is("DeckOfPlayer") || Current.Is("FieldOfPlayer") || Current.Is("GraveyardOfPlayer"))
         {
             string containerName = Current.Text.Substring(0, Current.Text.Length - 8);
             if (!Next().Is("(", true)) { hasFailed = true; return null; }
-            PlayerReference player = ContextPlayerParser();
-            if (hasFailed) { return null; }
-            if (!Next().Is(")", true)) { hasFailed = true; return null; }
-            ContainerReference container = new ContainerReference(containerName, player);
-            if (!Next().Is(".", true)) { hasFailed = true; return null; }
-            return AfterDotContextMethodParser(container);
-        }
-        else if (Current.Is("Hand") || Current.Is("Deck") || Current.Is("Field") || Current.Is("Graveyard"))
-        {
-            ContainerReference container = new ContainerReference(Current.Text, new PlayerReference("Self"));
-            if (!Next().Is(".", true)) { hasFailed = true; return null; }
-            return AfterDotContextMethodParser(container);
-        }
-        else if (Current.Is("OtherHand") || Current.Is("OtherDeck") || Current.Is("OtherField") || Current.Is("OtherGraveyard"))
-        {
-            ContainerReference container = new ContainerReference(Current.Text.Substring(5), new PlayerReference("Other"));
-            if (!Next().Is(".", true)) { hasFailed = true; return null; }
-            return AfterDotContextMethodParser(container);
+            object hopefullyPlayerReference;
+            Next();
+            if (Current.Is("context")) { hopefullyPlayerReference = ContextParser(); }
+            // else if (Current.Is(TokenType.identifier)) { hasFailed = true; return null; }
+            else { hopefullyPlayerReference = null; }
+            if (hopefullyPlayerReference is PlayerReference) 
+            {
+                PlayerReference player = (PlayerReference)hopefullyPlayerReference;
+                if (!Next().Is(")", true)) { hasFailed = true; return null; }
+                container = new ContainerReference(containerName, player);
+            }   
+            else{Errors.Write("Se esperaba una referencia a algun jugador", Current); hasFailed = true; return null; }
         }
         else { Errors.Write("No existe la propiedad del contexto: '" + Current.Text + "'"); hasFailed = true; return null; }
+
+        if (Peek().Is(".")) { return ContextContainerMethodParser(container); }
+        return container;
     }
-    private PlayerReference ContextPlayerParser()
+    private IActionStatement ContextContainerMethodParser(ContainerReference container)
     {
-        if (!Next().Is("context")) { hasFailed = true; return null; }
         if (!Next().Is(".")) { hasFailed = true; return null; }
         Next();
-        if (Current.Is("TriggerPlayer")) { return new PlayerReference("Self"); }
-        else if (Current.Is("TriggerEnemy")) { return new PlayerReference("Other"); }
-        else { Errors.Write("Se esperaba 'TriggerPlayer' o 'TriggerEnemy' en vez de '" + Current.Text + "'", Current); hasFailed = true; return null; }
-    }
-    private IActionStatement AfterDotContextMethodParser(ContainerReference container)
-    {
-        Next();
-        if (Current.Is("Shuffle"))
+        if (Current.Is("Shuffle") || Current.Is("Pop"))
         {
             if (!Next().Is("(", true) || !Next().Is(")", true)) { hasFailed = true; return null; }
-            return new ContextShuffleMethod(container);
-        }
-        else if (Current.Is("Pop"))
-        {
-            if (!Next().Is("(", true) || !Next().Is(")", true)) { hasFailed = true; return null; }
-            return new ContextPopMethod(container);
+            if (Peek(-2).Is("Shuffle")) { return new ContextShuffleMethod(container); }
+            else { return new ContextPopMethod(container); }
         }
         else if (Current.Is("Push") || Current.Is("SendBottom"))
         {
             if (container.Name == ContainerReference.ContainerToGet.Board || container.Name == ContainerReference.ContainerToGet.Field)
-            { Errors.Write("El metodo '" + Current.Text + "' no esta disponible para la propiedad '" + container.Name + "'", Current); hasFailed = true; return null; }
+            { Errors.Write("El metodo '" + Current.Text + "' no esta disponible para el contenedor '" + container.Name + "'", Current); hasFailed = true; return null; }
 
             Token methodToken = Current;
             if (!Next().Is("(", true)) { hasFailed = true; return null; }
             ICardReference cardReference;
-            if (Next().Is("context"))
+            Next();
+            if (Current.Is("context"))
             {
-                IActionStatement hopefullyCardReference = ContextActionParser();
+                object hopefullyCardReference = ContextParser();
                 if (hopefullyCardReference is ICardReference) { cardReference = (ICardReference)hopefullyCardReference; }
                 else { Errors.Write("El parametro pasado a '" + methodToken.Text + "' no es una referencia a una carta", Current); hasFailed = true; return null; }
             }
-            else if (Next().Is(TokenType.identifier)) { hasFailed = true; return null; }//Variables
+            // else if (Current.Is(TokenType.identifier)) { hasFailed = true; return null; }
             else { Errors.Write("El parametro pasado a '" + methodToken.Text + "' no es una referencia a una carta"); hasFailed = true; return null; }
             if (!Next().Is(")", true)) { hasFailed = true; return null; }
             return new ContextCardParameterMethod(container, methodToken.Text, cardReference);

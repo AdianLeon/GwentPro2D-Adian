@@ -8,3 +8,4 @@ card{
 	OnActivation: [{ScriptEffect: "DrawOneEffect"}]
 }
 
+

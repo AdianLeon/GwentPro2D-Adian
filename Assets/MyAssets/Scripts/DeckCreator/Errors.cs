@@ -5,8 +5,9 @@ using TMPro;
 public static class Errors
 {
     private static int errorCount;
-    private static TextMeshProUGUI errorsText = GameObject.Find("ErrorRead").GetComponent<TextMeshProUGUI>();
+    private static TextMeshProUGUI errorsText => GameObject.Find("ErrorRead").GetComponent<TextMeshProUGUI>();
     //Escribe el mensaje pasado como error en el objeto ErrorRead
+    public static void PureWrite(string message) => errorsText.text = errorsText.text + '\n' + message;
     public static void Write(string message) => errorsText.text = errorsText.text + '\n' + "Error #" + (++errorCount) + ": " + message;
     public static void Write(string message, Token wrongToken) => errorsText.text = errorsText.text + '\n' + "Error #" + (++errorCount) + ": " + message + ". En linea: " + wrongToken.Line + ", columna: " + wrongToken.Col;
     public static void Write(Token wrongToken) => errorsText.text = errorsText.text + '\n' + "Error #" + (++errorCount) + ": Token inesperado: '" + wrongToken.Text + "'. Encontrado en linea: " + wrongToken.Line + ", columna: " + wrongToken.Col;

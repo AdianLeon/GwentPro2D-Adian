@@ -6,3 +6,4 @@ card{
 	OnActivation: [{ScriptEffect: "GruEffect"}]
 }
 
+

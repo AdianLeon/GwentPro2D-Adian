@@ -10,6 +10,6 @@ public class ReadAndWrite : MonoBehaviour
     public void ReadTextFromFile()
     {//Obtiene el texto del txt, se llama cuando se pulsa el boton (despues de SaveTextFile)
         string allText = File.ReadAllText(Application.dataPath + "/MyAssets/Database/Code.txt");
-        MainCompiler.ProcessText(allText);
+        MainCompiler.ProcessTextAndSave(allText);
     }
 }

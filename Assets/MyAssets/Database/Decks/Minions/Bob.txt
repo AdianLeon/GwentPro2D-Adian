@@ -8,3 +8,4 @@ card{
 	Power: 0,
 	OnActivation: [{ScriptEffect: "PromEffect"}]
 }
+

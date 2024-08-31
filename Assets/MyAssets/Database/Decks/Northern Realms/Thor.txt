@@ -1,4 +1,5 @@
 card{
+	Description:"Randomiza los contenedores del campo de ambos jugadores",
 	Type: "Lider",
 	Name: "Thor",
 	Faction: "Northern Realms",

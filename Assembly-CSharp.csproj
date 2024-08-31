@@ -49,7 +49,7 @@
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GFDeclarations\GFUtils.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\DropZones\DropZone.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\WeatherCard.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Executing\ContextUtils.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Executing\ContextExecutionUtils.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Parsing\Nodes\BlockDeclarationNodes.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
@@ -148,6 +148,7 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Doctor Nefario.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+     <None Include="Assets\MyAssets\Database\Decks\Northern Realms\Fachon.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Agnes.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Kyle.txt" />
      <None Include="Assets\MyAssets\Database\CreatedEffects\ShuffleBoardEffect.txt" />
@@ -161,6 +162,7 @@
      <None Include="Assets\MyAssets\Database\CreatedEffects\ShufflePlayerEffect.txt" />
      <None Include="Assets\MyAssets\Database\CreatedEffects\ShuffleEverythingEffect.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Northern Realms\Thor.txt" />
+     <None Include="Assets\MyAssets\Database\CreatedEffects\HandStealEffect.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Peluche.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Manzana.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Gru.txt" />

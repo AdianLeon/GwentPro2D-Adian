@@ -1,4 +1,5 @@
 card{
+	Description:"Roba una carta jugada del enemigo y la coloca en la mano propia",
 	Type: "Plata",
 	Name: "Matumbo",
 	Faction: "Northern Realms",

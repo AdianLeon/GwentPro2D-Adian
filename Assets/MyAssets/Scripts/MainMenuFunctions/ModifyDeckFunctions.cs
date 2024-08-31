@@ -13,7 +13,7 @@ public class ModifyDeckFunctions : MonoBehaviour
     private static string GetCurrentText(TMP_Dropdown dropdown) => dropdown.options[dropdown.value].text;
     private static string RemoveTxt(string nameWithExtension) => nameWithExtension.Substring(0, nameWithExtension.Length - 4);
 
-    public void OnConfirmChangesButtonClick() => MainCompiler.ProcessText(code.text);
+    public void OnConfirmChangesButtonClick() => MainCompiler.ProcessTextAndSave(code.text);
     public void OnMenuActivation()
     {//Este metodo se llama cuando el menu modificar deck es activado por el boton
         effectsChoice.ClearOptions();

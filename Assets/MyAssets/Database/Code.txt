@@ -1,13 +1,64 @@
-effect{
-	Name: "HandStealEffect",
-	Action: (targets,context)=>{
-		context.Hand.Push(context.OtherHand.Pop());
-	}
-}
-
 card{
+	Description:"Randomiza los contenedores del contrario",
+	Type: "Aumento",
+	Name: "Arahara",
+	Faction: "Northern Realms",
+	Power: 100,
+	OnActivation: [{Effect: "ShuffleOtherEffect"}],
+	TotalCopies:10
+
+}
+card{
+	Description:"Randomiza los contenedores propios",
+	Type: "Oro",
+	Name: "Ash",
+	Faction: "Northern Realms",
+	Range:["Melee"],
+	Power: 30,
+	OnActivation: [{Effect: "ShufflePlayerEffect"}],
+	TotalCopies:10
+}
+card{
+	Description:"Roba dos cartas de la mano del contrario y las coloca en la propia",
 	Type: "Lider",
 	Name: "Fachon",
 	Faction: "Northern Realms",
 	OnActivation: [{Effect: "HandStealEffect"},{Effect:"HandStealEffect"}]
+}
+card{
+	Description:"Actualiza su poder con el promedio de poder del campo",
+	Type: "Plata",
+	Name: "Hunga",
+	Faction: "Northern Realms",
+	Range:["Siege"],
+	Power: 25,
+	OnActivation: [{ScriptEffect: "PromEffect"}]
+}
+card{
+	Description:"Roba una carta jugada del enemigo y la coloca en la mano propia",
+	Type: "Plata",
+	Name: "Matumbo",
+	Faction: "Northern Realms",
+	Range:["Melee","Ranged","Siege"],
+	Power: 30,
+	OnActivation: [{Effect: "EnemyFieldStealEffect"}],
+	TotalCopies:20
+}
+card{
+	Description:"Randomiza los contenedores del campo de ambos jugadores",
+	Type: "Lider",
+	Name: "Thor",
+	Faction: "Northern Realms",
+	OnActivation: [{Effect: "ShuffleBoardEffect"}],
+	TotalCopies:2
+}
+card{
+	Description:"Desaparece una carta enemiga jugada en el campo",
+	Type: "Plata",
+	Name: "Unga",
+	Faction: "Northern Realms",
+	Range:["Ranged"],
+	Power: 30,
+	OnActivation: [{Effect: "PopEnemyFieldEffect"}],
+	TotalCopies:10
 }

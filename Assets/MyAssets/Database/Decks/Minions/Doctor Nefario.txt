@@ -6,3 +6,4 @@ card{
 	Range:["Ranged","Siege"],
 	Power: 25
 }
+

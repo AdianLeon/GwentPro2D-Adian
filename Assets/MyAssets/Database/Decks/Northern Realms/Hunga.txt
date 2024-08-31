@@ -1,4 +1,5 @@
 card{
+	Description:"Actualiza su poder con el promedio de poder del campo",
 	Type: "Plata",
 	Name: "Hunga",
 	Faction: "Northern Realms",
@@ -6,4 +7,3 @@ card{
 	Power: 25,
 	OnActivation: [{ScriptEffect: "PromEffect"}]
 }
-

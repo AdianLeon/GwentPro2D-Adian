@@ -1,4 +1,5 @@
 card{
+	Description:"Desaparece una carta enemiga jugada en el campo",
 	Type: "Plata",
 	Name: "Unga",
 	Faction: "Northern Realms",

@@ -1,4 +1,5 @@
 card{
+	Description:"Roba dos cartas de la mano del contrario y las coloca en la propia",
 	Type: "Lider",
 	Name: "Fachon",
 	Faction: "Northern Realms",
