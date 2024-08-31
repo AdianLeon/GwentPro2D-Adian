@@ -5,5 +5,3 @@ effect{
 		context.Hand.Shuffle();		
 	}
 }
-
-

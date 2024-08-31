@@ -8,5 +8,3 @@ card{
 	Power: 10,
 	OnActivation: [{ScriptEffect: "MultiplyEffect"}]
 }
-
-

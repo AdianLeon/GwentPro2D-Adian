@@ -10,7 +10,7 @@ public class ModifyDeckFunctions : MonoBehaviour
     public TMP_Dropdown effectsChoice;
     public TMP_Dropdown decksChoice;
     public TMP_Dropdown cardsChoice;
-    private static string GetCurrentText(TMP_Dropdown dropdown) => dropdown.options[dropdown.value].text;
+    private static string GetText(TMP_Dropdown dropdown) => dropdown.options[dropdown.value].text;
     private static string RemoveTxt(string nameWithExtension) => nameWithExtension.Substring(0, nameWithExtension.Length - 4);
 
     public void OnConfirmChangesButtonClick() => MainCompiler.ProcessTextAndSave(code.text);
@@ -27,54 +27,6 @@ public class ModifyDeckFunctions : MonoBehaviour
 
         SetCardDropdown();
         UpdateCode();
-    }
-    private void UpdateCode()
-    {//Este metodo se llama cuando el menu modificar deck es activado por el boton luego de LoadChoicesOnDropdowns() y cada vez que se cambia el valor de alguno de los dropdown
-        string allCode = "";
-
-        if (GetCurrentText(effectsChoice) == "Todas")
-        {
-            Directory.GetFiles(Application.dataPath + "/MyAssets/Database/CreatedEffects/", "*.txt").
-            ForEach(address => allCode += File.ReadAllText(address) + '\n');
-        }
-        else if (GetCurrentText(effectsChoice) != "Ninguna")
-        {
-            allCode += File.ReadAllText(Application.dataPath + "/MyAssets/Database/CreatedEffects/" + GetCurrentText(effectsChoice) + ".txt") + '\n';
-        }
-
-        if (GetCurrentText(cardsChoice) == "Todas")
-        {
-            if (GetCurrentText(decksChoice) == "Todas")
-            {
-                Directory.GetFiles(Application.dataPath + "/MyAssets/Database/Decks/", "*.txt", SearchOption.AllDirectories).
-                ForEach(address => allCode += File.ReadAllText(address) + '\n');
-            }
-            else if (GetCurrentText(decksChoice) != "Ninguna")
-            {
-                Directory.GetFiles(Application.dataPath + "/MyAssets/Database/Decks/" + GetCurrentText(decksChoice) + "/", "*.txt").
-                ForEach(address => allCode += File.ReadAllText(address) + '\n');
-            }
-        }
-        else if (GetCurrentText(cardsChoice) != "Ninguna")
-        {
-            if (GetCurrentText(decksChoice) == "Todas")
-            {
-                foreach (string address in Directory.GetFiles(Application.dataPath + "/MyAssets/Database/Decks/", "*.txt", SearchOption.AllDirectories))
-                {
-                    if (Path.GetFileName(address) == GetCurrentText(cardsChoice) + ".txt")
-                    {
-                        allCode += File.ReadAllText(address) + '\n';
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                allCode += File.ReadAllText(Application.dataPath + "/MyAssets/Database/Decks/" + GetCurrentText(decksChoice) + "/" + GetCurrentText(cardsChoice) + ".txt") + '\n';
-            }
-        }
-
-        code.text = allCode;
     }
     public static void LoadOptionsInDropdown(TMP_Dropdown dropdown, string address, string extension)
     {//Obtiene todos los directorios en la carpeta Decks y los anade como opcion en el dropdown
@@ -95,16 +47,34 @@ public class ModifyDeckFunctions : MonoBehaviour
     private void SetCardDropdown()
     {
         cardsChoice.ClearOptions();//Quita todas las opciones del dropdown
-        if (GetCurrentText(decksChoice) == "Todas")
-        {
-            for (int i = 0; i < decksChoice.options.Count - 2; i++) { LoadOptionsInDropdown(cardsChoice, "Decks/" + decksChoice.options[i].text + "/", ".txt"); }
-            FinishSettingDropdown(cardsChoice);
-        }
-        else if (GetCurrentText(decksChoice) != "Ninguna")
-        {
-            LoadOptionsInDropdown(cardsChoice, "Decks/" + GetCurrentText(decksChoice), ".txt");
-            FinishSettingDropdown(cardsChoice);
-        }
+        if (GetText(decksChoice) == "Todas") { for (int i = 0; i < decksChoice.options.Count - 2; i++) { LoadOptionsInDropdown(cardsChoice, "Decks/" + decksChoice.options[i].text + "/", ".txt"); } FinishSettingDropdown(cardsChoice); }
+        else if (GetText(decksChoice) != "Ninguna") { LoadOptionsInDropdown(cardsChoice, "Decks/" + GetText(decksChoice), ".txt"); FinishSettingDropdown(cardsChoice); }
         else { FinishSettingDropdown(cardsChoice); }
+    }
+    private void UpdateCode()
+    {//Este metodo se llama cuando el menu modificar deck es activado por el boton luego de LoadChoicesOnDropdowns() y cada vez que se cambia el valor de alguno de los dropdown
+        string allCode = "";
+
+        if (GetText(effectsChoice) == "Todas") { Directory.GetFiles(Application.dataPath + "/MyAssets/Database/CreatedEffects/", "*.txt").ForEach(address => allCode += File.ReadAllText(address) + '\n' + '\n'); }
+        else if (GetText(effectsChoice) != "Ninguna") { allCode += File.ReadAllText(Application.dataPath + "/MyAssets/Database/CreatedEffects/" + GetText(effectsChoice) + ".txt") + '\n' + '\n'; }
+
+        if (GetText(cardsChoice) == "Todas")
+        {
+            if (GetText(decksChoice) == "Todas") { Directory.GetFiles(Application.dataPath + "/MyAssets/Database/Decks/", "*.txt", SearchOption.AllDirectories).ForEach(address => allCode += File.ReadAllText(address) + '\n' + '\n'); }
+            else if (GetText(decksChoice) != "Ninguna") { Directory.GetFiles(Application.dataPath + "/MyAssets/Database/Decks/" + GetText(decksChoice) + "/", "*.txt").ForEach(address => allCode += File.ReadAllText(address) + '\n' + '\n'); }
+        }
+        else if (GetText(cardsChoice) != "Ninguna")
+        {
+            if (GetText(decksChoice) == "Todas")
+            {
+                foreach (string address in Directory.GetFiles(Application.dataPath + "/MyAssets/Database/Decks/", "*.txt", SearchOption.AllDirectories))
+                {
+                    if (Path.GetFileName(address) == GetText(cardsChoice) + ".txt") { allCode += File.ReadAllText(address) + '\n'; break; }
+                }
+            }
+            else { allCode += File.ReadAllText(Application.dataPath + "/MyAssets/Database/Decks/" + GetText(decksChoice) + "/" + GetText(cardsChoice) + ".txt") + '\n'; }
+        }
+
+        code.text = allCode;
     }
 }

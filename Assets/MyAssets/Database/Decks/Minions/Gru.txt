@@ -5,5 +5,3 @@ card{
 	Faction: "Minions",
 	OnActivation: [{ScriptEffect: "GruEffect"}]
 }
-
-

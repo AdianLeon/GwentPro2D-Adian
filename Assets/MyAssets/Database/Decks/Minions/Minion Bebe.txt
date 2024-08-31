@@ -3,5 +3,3 @@ card{
 	Name: "Minion Bebe",
 	Faction: "Minions"
 }
-
-

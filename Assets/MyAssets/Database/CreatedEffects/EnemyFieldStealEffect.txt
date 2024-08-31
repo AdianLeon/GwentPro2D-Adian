@@ -4,5 +4,3 @@ effect{
 		context.Hand.Push(context.OtherField.Pop());
 	}
 }
-
-

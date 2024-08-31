@@ -7,5 +7,3 @@ card{
 	Power: 30,
 	OnActivation: [{ScriptEffect: "DrawOneEffect"}]
 }
-
-

@@ -19,7 +19,7 @@ public class CardParser : Parser
     {
         StartParsing(Lexer.TokenizeCode(code));
         INode cardDeclaration = new CardParser().ParseTokens();
-        if (cardDeclaration != null) { return (CardDeclaration)cardDeclaration; }
+        if (!hasFailed && cardDeclaration != null) { return (CardDeclaration)cardDeclaration; }
         return null;
     }
     public override INode ParseTokens()
@@ -98,7 +98,6 @@ public class CardParser : Parser
         }
         if (propertiesToDeclare.Count > 0) { Errors.Write("Han faltado por declarar las siguientes propiedades: " + propertiesToDeclare.GetText(), Current); hasFailed = true; return null; }
         if (!Current.Is("}")) { Errors.Write("Se esperaba '}' en vez de '" + Current.Text + "', puede ser que hayas olvidado la coma antes de la declaracion"); hasFailed = true; return null; }
-        Next();
         return new CardDeclaration(name, type, description, totalCopies, faction, power, range, onActivation);
     }
     private UnitCardZone GetRange()

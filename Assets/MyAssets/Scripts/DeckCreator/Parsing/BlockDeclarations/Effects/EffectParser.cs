@@ -8,7 +8,7 @@ public class EffectParser : Parser
     {
         StartParsing(Lexer.TokenizeCode(code));
         INode effectDeclaration = new EffectParser().ParseTokens();
-        if (effectDeclaration != null) { return (EffectDeclaration)effectDeclaration; }
+        if (!hasFailed && effectDeclaration != null) { return (EffectDeclaration)effectDeclaration; }
         return null;
     }
     public override INode ParseTokens()
@@ -45,7 +45,6 @@ public class EffectParser : Parser
         }
         if (propertiesToDeclare.Count > 0) { Errors.Write("Han faltado por declarar las siguientes propiedades: " + propertiesToDeclare.GetText(), Current); hasFailed = true; return null; }
         if (!Current.Is("}")) { Errors.Write("Se esperaba '}' en vez de '" + Current.Text + "', puede ser que hayas olvidado la coma antes de la declaracion"); hasFailed = true; return null; }
-        Next();
         return new EffectDeclaration(name, effectAction);
     }
 }

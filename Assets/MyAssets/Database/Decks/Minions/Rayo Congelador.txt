@@ -4,5 +4,3 @@ card{
 	Faction: "Minions",
 	Power: 30
 }
-
-

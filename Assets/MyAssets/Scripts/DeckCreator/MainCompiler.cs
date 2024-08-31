@@ -10,7 +10,7 @@ public static class MainCompiler
         Debug.Log("Compilacion iniciada");
         FullDeclaration fullDeclaration = ProcessText(allText);
         Debug.Log("Compilacion terminada");
-        if (!Parser.HasFailed && fullDeclaration != null) { Debug.Log("Guardando en .txt porque (!Parser.HasFailed && fullDeclaration!=null)"); SaveOnTxt(fullDeclaration, allText); }
+        if (!Parser.HasFailed && fullDeclaration != null) { SaveOnTxt(fullDeclaration, allText); }
         else { Debug.Log("La compilacion fue fallida: Parser.HasFailed: " + Parser.HasFailed + " fullDeclaration==null: " + (fullDeclaration == null)); }
     }
     public static FullDeclaration ProcessText(string allText)
@@ -38,7 +38,7 @@ public static class MainCompiler
 
             int start = fullDeclaration.PositionsInCode.Dequeue();
             int end = fullDeclaration.PositionsInCode.Dequeue();
-            string text = allText.Substring(start, end - start);
+            string text = allText.Substring(start, end - start + 1);
             Debug.Log("La blockDeclaration: " + text);
             if (!Directory.Exists(address)) { Directory.CreateDirectory(address); }
             File.WriteAllText(address + fileName, text);

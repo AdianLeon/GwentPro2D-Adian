@@ -11,4 +11,3 @@ effect{
 		context.Graveyard.Shuffle();
 	}
 }
-

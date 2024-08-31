@@ -7,5 +7,3 @@ card{
 	Power: 35,
 	OnActivation: [{ScriptEffect: "MostPowerEffect"}]
 }
-
-

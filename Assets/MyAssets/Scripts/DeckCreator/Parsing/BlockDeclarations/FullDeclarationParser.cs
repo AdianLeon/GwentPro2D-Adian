@@ -8,11 +8,12 @@ public class FullDeclarationParser : Parser
         while (!Current.Is("$"))
         {
             fullDeclaration.PositionsInCode.Enqueue(Current.Position);
-            if (!Current.Is(TokenType.blockDeclaration)) { Errors.Write("Se esperaba 'card' o 'effect'", Current); hasFailed = true; return null; }
-            else if (Current.Is("card")) { fullDeclaration.BlockDeclarations.Add((BlockDeclaration)new CardParser().ParseTokens()); }
+            if (Current.Is("card")) { fullDeclaration.BlockDeclarations.Add((BlockDeclaration)new CardParser().ParseTokens()); }
             else if (Current.Is("effect")) { fullDeclaration.BlockDeclarations.Add((BlockDeclaration)new EffectParser().ParseTokens()); }
+            else { Errors.Write("Se esperaba 'card' o 'effect' en vez de: '" + Current.Text + "'", Current); hasFailed = true; return null; }
             if (hasFailed) { return null; }
             fullDeclaration.PositionsInCode.Enqueue(Current.Position);
+            Next();
         }
         return fullDeclaration;
     }

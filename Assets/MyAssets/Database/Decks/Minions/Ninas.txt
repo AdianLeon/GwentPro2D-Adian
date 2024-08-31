@@ -6,6 +6,3 @@ card{
 	Range:["Melee","Ranged"],
 	Power: 20
 }
-
-
-
