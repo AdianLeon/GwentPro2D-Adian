@@ -53,7 +53,8 @@ public class Executer : MonoBehaviour, IStateSubscriber
     {
         foreach (IActionStatement actionStatement in createdEffects[effectCall.EffectName].EffectAction.ActionStatements)
         {
-            if (actionStatement is PrintAction) { UserRead.Write((actionStatement as PrintAction).Message); }
+            if (actionStatement is VariableDeclaration) { }
+            else if (actionStatement is PrintAction) { UserRead.Write((actionStatement as PrintAction).Message); }
             else if (actionStatement is ContextMethod) { ContextUtils.AssignMethod((ContextMethod)actionStatement); }
             else { throw new Exception("La accion no esta definida"); }
         }

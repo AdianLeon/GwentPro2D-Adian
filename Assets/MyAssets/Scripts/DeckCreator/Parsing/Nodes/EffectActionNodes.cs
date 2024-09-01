@@ -63,12 +63,11 @@ public class VariableScopes
     public bool ContainsVar(string varName) => scopes.Any(dict => dict.ContainsKey(varName));
     public void AddNewScope() => scopes.Push(new Dictionary<string, IReference>());
     public void PopLastScope() => scopes.Pop();
-    public bool AddNewVar(VariableDeclaration declaration) => AddNewVar(declaration.VarName, declaration.VarValue);
-    public bool AddNewVar(string varName, IReference varValue)
+    public void AddNewVar(VariableDeclaration declaration) => AddNewVar(declaration.VarName, declaration.VarValue);
+    public void AddNewVar(string varName, IReference varValue)
     {
-        if (ContainsVar(varName)) { return false; }
+        if (ContainsVar(varName)) { scopes.Peek().Remove(varName); }
         scopes.Peek().Add(varName, varValue);
-        return true;
     }
     public IReference GetValue(string varName)
     {

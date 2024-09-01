@@ -1,8 +1,8 @@
 card{
-	Description:"Randomiza los contenedores del campo de ambos jugadores",
+	Description:"Roba una carta del Deck propio",
 	Type: "Lider",
 	Name: "Thor",
 	Faction: "Northern Realms",
-	OnActivation: [{Effect: "ShuffleBoardEffect"}],
+	OnActivation: [{Effect: "Draw"}],
 	TotalCopies:2
 }

@@ -5,6 +5,13 @@ using UnityEngine;
 
 public static class ContextUtils
 {
+    private static string GetContainerName(ContainerReference container)
+    {
+        string player = "";
+        if (container.Owner.Player == PlayerReference.PlayerToGet.Self) { player = Judge.GetPlayer.ToString(); }
+        else if (container.Owner.Player == PlayerReference.PlayerToGet.Other) { player = Judge.GetEnemy.ToString(); }
+        return container.Name + player;
+    }
     public static void AssignMethod(ContextMethod method)
     {
         if (method is ContextShuffleMethod) { ShuffleContainer((ContextShuffleMethod)method); }
@@ -47,16 +54,9 @@ public static class ContextUtils
         };
         if (!assigner.ContainsKey(containerName)) { throw new Exception("El nombre del contenedor a .Pop(): '" + containerName + "' no esta entre los definidos."); }
         else if (assigner[containerName].Count() == 0) { return null; }
-        else if (containerName == "DeckP1" || containerName == "DeckP2") { card = GameObject.Find(containerName).GetComponent<Deck>().DrawTopCard(); card.MoveCardTo(GameObject.Find("Trash")); }
-        else { card = assigner[containerName].Last(); card.MoveCardTo(GameObject.Find("Trash")); }
+        else if (containerName == "DeckP1" || containerName == "DeckP2") { card = GameObject.Find(containerName).GetComponent<Deck>().DrawTopCard(); card.Disappear(); }
+        else { card = assigner[containerName].Last(); card.Disappear(); }
         return card;
-    }
-    private static string GetContainerName(ContainerReference container)
-    {
-        string player = "";
-        if (container.Owner.Player == PlayerReference.PlayerToGet.Self) { player = Judge.GetPlayer.ToString(); }
-        else if (container.Owner.Player == PlayerReference.PlayerToGet.Other) { player = Judge.GetEnemy.ToString(); }
-        return container.Name + player;
     }
     private static void DoActionForCardParameterMethod(ContextCardParameterMethod method)
     {

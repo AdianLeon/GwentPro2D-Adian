@@ -100,7 +100,6 @@
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Errors.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Saving\Saver.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\SilverCard.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\BaitCard.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GameLogic\StateManager.cs" />
@@ -179,6 +178,7 @@
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Muchas Bananas.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+     <None Include="Assets\MyAssets\Database\CreatedEffects\Draw.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Bob.txt" />
      <None Include="Assets\MyAssets\Database\CreatedEffects\PrintEffectSIUUU.txt" />
      <None Include="Assets\MyAssets\Database\Code.txt" />
