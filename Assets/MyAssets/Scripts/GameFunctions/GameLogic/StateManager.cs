@@ -8,19 +8,22 @@ public class StateManager : MonoBehaviour
     void Update() => GFUtils.FindGameObjectsOfType<IKeyboardListener>().ForEach(listener => listener.ListenToKeyboardPress());//Constantemente llama a los implementadores de la interfaz
     private static Dictionary<State, List<Execution>> assigner;//Diccionario que asigna una lista de ejecuciones ordenada a estados
     void Start()
-    {////Inicializa el diccionario y busca todos las subscripciones de los IStateSubscriber de estados y las anade al diccionario, luego carga las cartas y comienza el juego
+    {//Primero carga los efectos y cartas, luego inicializa el diccionario y busca todos las subscripciones de los IStateSubscriber y las anade al diccionario, entonces comienza el juego
+        GameObject.Find("Canvas").GetComponent<Executer>().LoadEffects();
+        GameObject.Find("Canvas").GetComponent<CardLoader>().LoadCards();
+        AddAllIStateSubscribersToAssigner();
+        Publish(State.SettingUpGame);
+    }
+    private void AddAllIStateSubscribersToAssigner()
+    {
         assigner = new Dictionary<State, List<Execution>>();
         foreach (State state in Enum.GetValues(typeof(State))) { assigner.Add(state, new List<Execution>()); }
         FindAllIStateSubscribers().ForEach(stateSubscriber => AddToAssigner(stateSubscriber));
-        Publish(State.Loading);
-        Publish(State.SettingUpGame);
     }
-
     private IEnumerable<IStateSubscriber> FindAllIStateSubscribers()
     {//Busca todos los GameObject que contengan IStateSubscribers y luego devuelve todos esos IStateSubscribers aplanados
         return Resources.FindObjectsOfTypeAll<GameObject>().Where(gameObject => gameObject.GetComponent<IStateSubscriber>() != null).SelectMany(gameObject => gameObject.GetComponents<IStateSubscriber>());
     }
-
     private static void AddToAssigner(IStateSubscriber stateSubscriber)
     {//Recibe un suscriptor y anade sus subscripciones a el diccionario insertando en todos los estados indicados el execution segun su prioridad
         stateSubscriber.GetStateSubscriptions.ForEach(stateSubscription => stateSubscription.States.ForEach(state => InsertByPriority(stateSubscription, state)));

@@ -49,7 +49,7 @@ public class EffectActionParser : Parser
         {//Parseo de variables o accesos a variables
             Token varToken = Current;
             string varName = Current.Text;
-            if (Next().Is("=", true))
+            if (Next().Is("="))
             {
                 if (Next().Is("context"))
                 {
@@ -65,7 +65,7 @@ public class EffectActionParser : Parser
                 {
                     if (varScopes.ContainsVar(Current.Text))
                     {
-                        actionStatement = new VariableDeclaration(varName, new VariableReference(Current.Text));
+                        actionStatement = new VariableDeclaration(varName, new VariableReference(Current.Text, varScopes.GetValue(Current.Text).Type));
                         varScopes.AddNewVar((VariableDeclaration)actionStatement);
                     }
                 }
@@ -74,7 +74,7 @@ public class EffectActionParser : Parser
             else if (Current.Is("."))
             {
                 if (!varScopes.ContainsVar(varName)) { Errors.Write("La variable: '" + varName + "' no ha sido declarada", varToken); hasFailed = true; return null; }
-                if (varScopes.GetValue(varName) is ContainerReference) { Next(-1); ContextContainerMethodParser((ContainerReference)varScopes.GetValue(varName)); }
+                else if (varScopes.GetValue(varName).Type == VarType.Container) { Next(-1); actionStatement = ContextContainerMethodParser((ContainerReference)varScopes.GetValue(varName)); }
                 else { Errors.Write("El tipo de variable de '" + varName + "' no admite ningun operador '.'", Current); hasFailed = true; return null; }
             }
             else { Errors.Write("Se esperaba '=' para asignar un valor o '.' para realizar acciones sobre '" + Current.Text + "'", Current); hasFailed = true; return null; }
@@ -111,26 +111,28 @@ public class EffectActionParser : Parser
             if (Next().Is("context")) { hopefullyPlayerReference = ContextParser(); }
             else if (Current.Is(TokenType.identifier))
             {
-                if (varScopes.ContainsVar(Current.Text)) { hopefullyPlayerReference = varScopes.GetValue(Current.Text); }
+                if (varScopes.ContainsVar(Current.Text)) { hopefullyPlayerReference = new VariableReference(Current.Text, varScopes.GetValue(Current.Text).Type); }
                 else { Errors.Write("La variable: '" + Current.Text + "' no existe en este contexto", Current); hasFailed = true; return null; }
             }
             else { hopefullyPlayerReference = null; }
-            if (hopefullyPlayerReference is PlayerReference)
+            if (hopefullyPlayerReference is IReference && (hopefullyPlayerReference as IReference).Type == VarType.Player)
             {
+                while (hopefullyPlayerReference is VariableReference) { hopefullyPlayerReference = varScopes.GetValue((hopefullyPlayerReference as VariableReference).VarName); }
+                if (hopefullyPlayerReference is not PlayerReference) { throw new System.Exception("Las referencias no apuntaron a un jugador valido"); }
                 PlayerReference player = (PlayerReference)hopefullyPlayerReference;
                 if (!Next().Is(")", true)) { hasFailed = true; return null; }
                 container = new ContainerReference(containerName, player);
             }
             else { Errors.Write("Se esperaba una referencia a algun jugador", Current); hasFailed = true; return null; }
         }
-        else { Errors.Write("No existe la propiedad del contexto: '" + Current.Text + "'"); hasFailed = true; return null; }
+        else { Errors.Write("No existe la propiedad del contexto: '" + Current.Text + "'", Current); hasFailed = true; return null; }
 
         if (Peek().Is(".")) { return ContextContainerMethodParser(container); }
         return container;
     }
     private IActionStatement ContextContainerMethodParser(ContainerReference container)
     {
-        if (!Next().Is(".")) { hasFailed = true; return null; }
+        if (!Next().Is(".", true)) { hasFailed = true; return null; }
 
         if (Next().Is("Shuffle") || Current.Is("Pop"))
         {
@@ -145,20 +147,16 @@ public class EffectActionParser : Parser
 
             Token methodToken = Current;
             if (!Next().Is("(", true)) { hasFailed = true; return null; }
-            ICardReference cardReference;
+            IReference cardReference;
             Next();
-            object hopefullyCardReference;
-            if (Current.Is("context"))
-            {
-                hopefullyCardReference = ContextParser();
-            }
+            object hopefullyCardReference = null;
+            if (Current.Is("context")) { hopefullyCardReference = ContextParser(); }
             else if (Current.Is(TokenType.identifier))
             {
-                if (varScopes.ContainsVar(Current.Text)) { hopefullyCardReference = varScopes.GetValue(Current.Text); }
+                if (varScopes.ContainsVar(Current.Text)) { hopefullyCardReference = new VariableReference(Current.Text, varScopes.GetValue(Current.Text).Type); }
                 else { Errors.Write("La variable: '" + Current.Text + "' no existe en este contexto", Current); hasFailed = true; return null; }
             }
-            else { Errors.Write("El parametro pasado a '" + methodToken.Text + "' no es una referencia a una carta"); hasFailed = true; return null; }
-            if (hopefullyCardReference is ICardReference) { cardReference = (ICardReference)hopefullyCardReference; }
+            if (hopefullyCardReference is IReference && (hopefullyCardReference as IReference).Type == VarType.Card) { cardReference = (IReference)hopefullyCardReference; }
             else { Errors.Write("El parametro pasado a '" + methodToken.Text + "' no es una referencia a una carta"); hasFailed = true; return null; }
             if (!Next().Is(")", true)) { hasFailed = true; return null; }
             return new ContextCardParameterMethod(container, methodToken.Text, cardReference);

@@ -4,26 +4,29 @@ using System.ComponentModel;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
-
+public enum VarType { Number, Boolean, String, Card, Player, Container }
 public class EffectAction : INode
 {
     public List<IActionStatement> ActionStatements = new List<IActionStatement>();
 }
 public interface IActionStatement { }
-public interface IReference { }
+public interface IReference { public VarType Type { get; } }
 public class PlayerReference : IReference
 {
+    public VarType Type => VarType.Player;
     public enum PlayerToGet { None, Self, Other }
     public PlayerToGet Player;
     public PlayerReference(string player = "None") { Player = (PlayerToGet)Enum.Parse(typeof(PlayerToGet), player); }
 }
 public class ContainerReference : IReference
 {
+    public VarType Type => VarType.Container;
     public enum ContainerToGet { Board, Hand, Field, Graveyard, Deck }
     public ContainerToGet Name;
-    public PlayerReference Owner;
-    public ContainerReference(string containerName, PlayerReference owner = null)
+    public IReference Owner;
+    public ContainerReference(string containerName, IReference owner = null)
     {
+        if (owner.Type != VarType.Player) { throw new Exception("El tipo de variable debe ser Player"); }
         Name = (ContainerToGet)Enum.Parse(typeof(ContainerToGet), containerName); Owner = owner;
     }
 }
@@ -40,17 +43,18 @@ public class ContextCardParameterMethod : ContextMethod
 {
     public enum ActionType { Push, SendBottom/*, Remove*/ }
     public ActionType Type;
-    public ICardReference Card;
-    public ContextCardParameterMethod(ContainerReference container, string typeName, ICardReference card)
+    public IReference Card;
+    public ContextCardParameterMethod(ContainerReference container, string typeName, IReference card)
     {
         Container = container;
         Type = (ActionType)Enum.Parse(typeof(ActionType), typeName);
+        if (card.Type != VarType.Card) { throw new Exception("El tipo de parametro de un metodo de contexto con parametro carta no es carta"); }
         Card = card;
     }
 }
-public interface ICardReference : IReference { }
-public class ContextPopMethod : ContextMethod, ICardReference
+public class ContextPopMethod : ContextMethod, IReference
 {
+    public VarType Type => VarType.Card;
     public ContextPopMethod(ContainerReference container) { Container = container; }
 }
 public class ContextShuffleMethod : ContextMethod
@@ -83,7 +87,7 @@ public class VariableDeclaration : IActionStatement
 }
 public class VariableReference : IReference
 {
-    public string VarRefencedName;
-    // public Type ExpectedType;
-    public VariableReference(string varRefencedName) { VarRefencedName = varRefencedName; }
+    public VarType Type { get; }
+    public string VarName;
+    public VariableReference(string varName, VarType type) { VarName = varName; Type = type; }
 }

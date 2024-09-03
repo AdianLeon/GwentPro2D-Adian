@@ -3,16 +3,12 @@ using UnityEngine;
 using System.IO;
 using System.Collections.Generic;
 //Script para instanciar cartas de un json
-public class CardLoader : MonoBehaviour, IStateSubscriber
+public class CardLoader : MonoBehaviour
 {
     public GameObject errorScreen;
     private static int instantiatedCardsCount;//Cuenta de las cartas instanciadas
     public GameObject CardPrefab;//Referencia al prefab CardPrefab
-    public List<StateSubscription> GetStateSubscriptions => new List<StateSubscription>
-    {
-        new (State.Loading, new Execution (stateInfo => LoadCards(), 1))
-    };
-    private void LoadCards()
+    public void LoadCards()
     {
         instantiatedCardsCount = 0;
         ImportDeckTo(PlayerPrefs.GetString("P1PrefDeck"), GameObject.Find("CardsP1"), GameObject.Find("DeckP1"));

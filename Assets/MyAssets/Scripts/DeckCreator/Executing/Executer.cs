@@ -3,17 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class Executer : MonoBehaviour, IStateSubscriber
+public class Executer : MonoBehaviour
 {
     public GameObject errorScreen;
     public static bool LoadedAllEffects => loadedAllEffects;
     private static bool loadedAllEffects;
     private static Dictionary<string, EffectDeclaration> createdEffects;
-    public List<StateSubscription> GetStateSubscriptions => new List<StateSubscription>
-    {
-        new (State.Loading, new Execution (stateInfo => LoadEffects(), 0))
-    };
-    private void LoadEffects()
+    public static VariableScopes varScopes;
+    public void LoadEffects()
     {
         createdEffects = new Dictionary<string, EffectDeclaration>();
         loadedAllEffects = true;
@@ -28,7 +25,6 @@ public class Executer : MonoBehaviour, IStateSubscriber
             else { Errors.Write("No se pudo procesar el texto del efecto en: " + address); loadedAllEffects = false; }
         }
     }
-
     public static void ExecuteOnActivation(Card card)
     {
         if (card.OnActivation == null) { return; }
@@ -51,9 +47,11 @@ public class Executer : MonoBehaviour, IStateSubscriber
     }
     private static void ExecuteEffect(CreatedEffectCall effectCall, List<DraggableCard> targets)
     {
+        varScopes = new VariableScopes();
+        varScopes.AddNewScope();
         foreach (IActionStatement actionStatement in createdEffects[effectCall.EffectName].EffectAction.ActionStatements)
         {
-            if (actionStatement is VariableDeclaration) { }
+            if (actionStatement is VariableDeclaration) { varScopes.AddNewVar((VariableDeclaration)actionStatement); }
             else if (actionStatement is PrintAction) { UserRead.Write((actionStatement as PrintAction).Message); }
             else if (actionStatement is ContextMethod) { ContextUtils.AssignMethod((ContextMethod)actionStatement); }
             else { throw new Exception("La accion no esta definida"); }
