@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.InteropServices;
 using Unity.VisualScripting;
 using UnityEngine;
-public enum VarType { Number, Boolean, String, Card, Player, Container }
+public enum VarType { Number, Boolean, String, Card, Player, Container, CardList }
 public class EffectAction : INode
 {
     public List<IActionStatement> ActionStatements = new List<IActionStatement>();
@@ -90,4 +91,29 @@ public class VariableReference : IReference
     public VarType Type { get; }
     public string VarName;
     public VariableReference(string varName, VarType type) { VarName = varName; Type = type; }
+}
+public class FutureCardReferenceList : IReference { public VarType Type => VarType.CardList; }
+public class FutureCardReference : IReference { public VarType Type => VarType.Card; }
+public class CardReferenceList : FutureCardReferenceList
+{
+    public List<DraggableCard> Cards;
+    public CardReferenceList(List<DraggableCard> cards) { Cards = cards; }
+}
+public class CardReference : FutureCardReference
+{
+    public DraggableCard Card;
+    public int Power
+    {
+        get => Card.GetComponent<PowerCard>() ? Card.GetComponent<PowerCard>().Power : Card.GetComponent<BoostCard>() ? Card.GetComponent<BoostCard>().Boost : Card.GetComponent<WeatherCard>() ? Card.GetComponent<WeatherCard>().Damage : 0;
+        set { if (Card.GetComponent<PowerCard>()) { Card.GetComponent<PowerCard>().Power = value; } else if (Card.GetComponent<BoostCard>()) { Card.GetComponent<BoostCard>().Boost = value; } else if (Card.GetComponent<WeatherCard>()) { Card.GetComponent<WeatherCard>().Damage = value; } }
+    }
+    public PlayerReference Owner => Card.Owner == Judge.GetPlayer ? new PlayerReference("Self") : new PlayerReference("Other");
+    public CardReference(DraggableCard card) { Card = card; }
+}
+public class ForEachCycle : IActionStatement
+{
+    public string IteratorVarName;
+    public IReference CardReferences;
+    public List<IActionStatement> ActionStatements = new List<IActionStatement>();
+    public ForEachCycle(string iteratorVarName, IReference cardReferences, List<IActionStatement> actionStatements) { IteratorVarName = iteratorVarName; CardReferences = cardReferences; ActionStatements = actionStatements; }
 }

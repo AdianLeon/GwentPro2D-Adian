@@ -13,17 +13,18 @@ public abstract class EffectCall
 }
 public class ScriptEffectCall : EffectCall
 {
-    public EffectPostAction EffectPostAction;
     public ScriptEffectCall(string effectName) { EffectName = effectName; }
 }
 public class CreatedEffectCall : EffectCall
 {
     public EffectSelector EffectSelector;
+    public EffectPostAction EffectPostAction;
     public CreatedEffectCall(string effectName, EffectSelector effectSelector) { EffectName = effectName; EffectSelector = effectSelector; }
 }
 public class EffectSelector
 {
     public string Source;
+    public EffectSelector(string source) { Source = source; }
 }
 public class EffectPostAction
 {

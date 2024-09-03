@@ -8,7 +8,7 @@ public static class ContextUtils
     private static string GetContainerName(ContainerReference container) => container.Name + GetPlayer(container.Owner);
     private static string GetPlayer(IReference owner)
     {
-        if (owner is VariableReference) { return GetPlayer(Executer.varScopes.GetValue((owner as VariableReference).VarName)); }
+        if (owner is VariableReference) { return GetPlayer(Executer.scopes.GetValue((owner as VariableReference).VarName)); }
 
         if (owner is PlayerReference)
         {
@@ -67,17 +67,21 @@ public static class ContextUtils
     }
     private static void DoActionForCardParameterMethod(ContextCardParameterMethod method)
     {
-        while (method.Card is VariableReference) { method.Card = Executer.varScopes.GetValue((method.Card as VariableReference).VarName); }
+        IReference cardReference = method.Card;
+        while (cardReference is VariableReference) { cardReference = Executer.scopes.GetValue((cardReference as VariableReference).VarName); }
         DraggableCard cardToPerformActionOn;
-        if (method.Card is ContextPopMethod) { cardToPerformActionOn = PopContainer((ContextPopMethod)method.Card); }
+        if (cardReference is ContextPopMethod) { cardToPerformActionOn = PopContainer((ContextPopMethod)cardReference); }
+        else if (cardReference is CardReference) { cardToPerformActionOn = ((CardReference)cardReference).Card; }
         else { throw new Exception("No se ha definido la forma de evaluar la ICardReference"); }
         if (method.Type == ContextCardParameterMethod.ActionType.Push || method.Type == ContextCardParameterMethod.ActionType.SendBottom)
         {
             if (method.Container.Name == ContainerReference.ContainerToGet.Hand || method.Container.Name == ContainerReference.ContainerToGet.Graveyard)
             {
-                Debug.Log(GetContainerName(method.Container));
-                cardToPerformActionOn.MoveCardTo(GameObject.Find(GetContainerName(method.Container)));
-                if (method.Type == ContextCardParameterMethod.ActionType.SendBottom) { cardToPerformActionOn.transform.SetSiblingIndex(0); }
+                if (cardToPerformActionOn != null)
+                {
+                    cardToPerformActionOn.MoveCardTo(GameObject.Find(GetContainerName(method.Container)));
+                    if (method.Type == ContextCardParameterMethod.ActionType.SendBottom) { cardToPerformActionOn.transform.SetSiblingIndex(0); }
+                }
             }
             else if (method.Container.Name == ContainerReference.ContainerToGet.Deck)
             {

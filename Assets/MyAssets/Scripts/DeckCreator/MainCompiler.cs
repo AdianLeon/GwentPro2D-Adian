@@ -39,7 +39,6 @@ public static class MainCompiler
             int start = fullDeclaration.PositionsInCode.Dequeue();
             int end = fullDeclaration.PositionsInCode.Dequeue();
             string text = allText.Substring(start, end - start + 1);
-            Debug.Log("La blockDeclaration: " + text);
             if (!Directory.Exists(address)) { Directory.CreateDirectory(address); }
             File.WriteAllText(address + fileName, text);
         }

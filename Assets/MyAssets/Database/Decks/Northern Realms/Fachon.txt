@@ -1,7 +1,14 @@
 card{
-	Description:"Roba dos cartas de la mano del contrario y las coloca en la propia",
+	Description:"Roba todas las cartas del campo del contrario y las coloca en la propia",
 	Type: "Lider",
 	Name: "Fachon",
 	Faction: "Northern Realms",
-	OnActivation: [{Effect: "HandStealEffect"},{Effect:"HandStealEffect"}]
+	OnActivation: [
+		{
+			Effect: "StealForHand",
+			Selector:{
+				Source:"field"
+			}
+		}
+	]
 }

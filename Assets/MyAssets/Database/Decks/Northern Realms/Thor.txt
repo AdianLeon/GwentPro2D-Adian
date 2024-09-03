@@ -3,6 +3,13 @@ card{
 	Type: "Lider",
 	Name: "Thor",
 	Faction: "Northern Realms",
-	OnActivation: [{Effect: "Draw"}],
+	OnActivation: [
+		{
+			Effect: "Draw",
+			Selector:{
+				Source:"board"
+			}
+		}
+	],
 	TotalCopies:2
 }

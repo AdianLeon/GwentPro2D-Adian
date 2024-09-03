@@ -141,6 +141,7 @@
      <None Include="Assets\MyAssets\Database\CreatedEffects\EnemyFieldStealEffect.txt" />
      <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Oswald-Bold - OFL.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Scarlett Overkill.txt" />
+     <None Include="Assets\MyAssets\Database\CreatedEffects\StealForHand.txt" />
      <None Include="Assets\MyAssets\Database\CreatedEffects\ShuffleHandEffect.txt" />
      <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
      <None Include="Assets\MyAssets\Database\PdfCode\Code.txt" />
@@ -179,6 +180,7 @@
      <None Include="Assets\MyAssets\Database\Decks\Minions\Muchas Bananas.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
      <None Include="Assets\MyAssets\Database\CreatedEffects\Draw.txt" />
+     <None Include="Assets\MyAssets\Database\CreatedEffects\ReturnToDeck.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Bob.txt" />
      <None Include="Assets\MyAssets\Database\CreatedEffects\PrintEffectSIUUU.txt" />
      <None Include="Assets\MyAssets\Database\Code.txt" />
