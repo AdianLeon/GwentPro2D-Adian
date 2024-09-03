@@ -89,17 +89,23 @@ public class Executer : MonoBehaviour
     private static List<DraggableCard> SelectTargets(EffectSelector selector)
     {
         if (selector == null) { throw new Exception("El selector no existe"); }
+        List<DraggableCard> cards;
         switch (selector.Source)
         {
-            case "board": return Field.PlayedFieldCards.Cast<DraggableCard>().ToList();
-            case "field": return Field.PlayerCards.Cast<DraggableCard>().ToList();
-            case "otherField": return Field.EnemyCards.Cast<DraggableCard>().ToList();
-            case "hand": return Hand.PlayerCards.ToList();
-            case "otherHand": return Hand.EnemyCards.ToList();
-            case "deck": return Deck.PlayerCards.ToList();
-            case "otherDeck": return Deck.EnemyCards.ToList();
+            case "board": cards = Field.PlayedFieldCards.Cast<DraggableCard>().ToList(); break;
+            case "field": cards = Field.PlayerCards.Cast<DraggableCard>().ToList(); break;
+            case "otherField": cards = Field.EnemyCards.Cast<DraggableCard>().ToList(); break;
+            case "hand": cards = Hand.PlayerCards.ToList(); break;
+            case "otherHand": cards = Hand.EnemyCards.ToList(); break;
+            case "deck": cards = Deck.PlayerCards.ToList(); break;
+            case "otherDeck": cards = Deck.EnemyCards.ToList(); break;
             default: throw new NotImplementedException();
         }
+        //Filter with predicate
+        //if(selector.CardPredicate!=null){foreach(DraggableCard card in cards){if(!selector.CardPredicate.EvaluateCard(new CardReference(card))){cards.Remove(card);}}}
+        if (cards.Count == 0) { return cards; }
+        if (selector.Single) { return new List<DraggableCard> { cards[0] }; }
+        return cards;
     }
 
 }

@@ -20,6 +20,8 @@ public class OnActivationParser : Parser
             {
                 string effectName = null;
                 string source = null;
+                bool single = false;
+                CardPredicate cardPredicate = null;
                 bool expectingEffectProperty = true;
                 while (expectingEffectProperty)
                 {
@@ -46,7 +48,13 @@ public class OnActivationParser : Parser
                                 }
                                 else { Errors.Write("El 'Source' no es valido. Intenta con: 'board', 'hand', 'otherHand', 'deck', 'otherDeck', 'field' u 'otherField'", Current); hasFailed = true; return null; }
                             }
-                            else { Errors.Write("Se esperaba alguna de las propiedades del 'Selector': 'Source', (...)", Current); hasFailed = true; return null; }
+                            else if (Current.Is("Single"))
+                            {
+                                if (!Next().Is(":", true)) { hasFailed = true; return null; }
+                                if (!Next().Is("true") && !Current.Is("false")) { Errors.Write("Se esperaba 'true' o 'false' en vez de " + Current.Text, Current); hasFailed = true; return null; }
+                                single = bool.Parse(Current.Text);
+                            }
+                            else { Errors.Write("Se esperaba alguna de las propiedades del 'Selector': 'Source', 'Single' o 'Predicate'", Current); hasFailed = true; return null; }
                             expectingSelectorProperty = Next().Is(",");
                         }
                     }
@@ -58,7 +66,7 @@ public class OnActivationParser : Parser
                 }
                 if (effectName == null) { Errors.Write("El efecto no tiene nombre", Current); hasFailed = true; return null; }
                 if (source == null) { source = "board"; }
-                onActivation.effectCalls.Add(new CreatedEffectCall(effectName, new EffectSelector(source)));
+                onActivation.effectCalls.Add(new CreatedEffectCall(effectName, new EffectSelector(source, single, cardPredicate)));
             }
             if (!Next().Is("}", true)) { hasFailed = true; return null; }
             expectingEffectCall = Next().Is(",");

@@ -24,7 +24,12 @@ public class CreatedEffectCall : EffectCall
 public class EffectSelector
 {
     public string Source;
-    public EffectSelector(string source) { Source = source; }
+    public bool Single;
+    public CardPredicate CardPredicate;
+    public EffectSelector(string source, bool single, CardPredicate cardPredicate) { Source = source; Single = single; CardPredicate = cardPredicate; }
+}
+public class CardPredicate
+{
 }
 public class EffectPostAction
 {

@@ -102,6 +102,9 @@ public class CardReferenceList : FutureCardReferenceList
 public class CardReference : FutureCardReference
 {
     public DraggableCard Card;
+    public string CardType { get { return ""; } }
+    public string Name => Card.CardName;
+    public string Faction => Card.Faction;
     public int Power
     {
         get => Card.GetComponent<PowerCard>() ? Card.GetComponent<PowerCard>().Power : Card.GetComponent<BoostCard>() ? Card.GetComponent<BoostCard>().Boost : Card.GetComponent<WeatherCard>() ? Card.GetComponent<WeatherCard>().Damage : 0;
