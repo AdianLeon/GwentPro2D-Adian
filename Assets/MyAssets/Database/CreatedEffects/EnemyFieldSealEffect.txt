@@ -1,0 +1,6 @@
+effect{
+	Name: "EnemyFieldSealEffect",
+	Action: (targets,context)=>{
+		context.Hand.Push(context.OtherField.Pop());
+	}
+}

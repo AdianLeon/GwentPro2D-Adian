@@ -73,6 +73,7 @@ public static class ContextUtils
         if (cardReference is ContextPopMethod) { cardToPerformActionOn = PopContainer((ContextPopMethod)cardReference); }
         else if (cardReference is CardReference) { cardToPerformActionOn = ((CardReference)cardReference).Card; }
         else { throw new Exception("No se ha definido la forma de evaluar la ICardReference"); }
+
         if (method.ActionType == "Push" || method.ActionType == "SendBottom")
         {
             if (method.Container.ContainerName == "Hand" || method.Container.ContainerName == "Graveyard")
@@ -89,6 +90,12 @@ public static class ContextUtils
                 else if (method.ActionType == "SendBottom") { GameObject.Find(GetContainerName(method.Container)).GetComponent<Deck>().SendBottomCard(cardToPerformActionOn); }
             }
             else { throw new Exception("No se ha definido '" + method.ActionType + "' para '" + method.Container.ContainerName + "'"); }
+        }
+        else if (method.ActionType == "Remove")
+        {
+            DraggableCard cardToRemove = null;
+            cardToRemove = GameObject.Find(GetContainerName(method.Container)).CardsInside<DraggableCard>().SingleOrDefault(card => card == cardToPerformActionOn);
+            if (cardToRemove != null) { cardToRemove.Disappear(); }
         }
         else { throw new Exception("No se ha definido la evaluacion de la accion: " + method.ActionType); }
     }

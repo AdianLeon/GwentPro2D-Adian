@@ -9,6 +9,12 @@ card{
 			Selector:{
 				Source:"board"
 			}
+		},
+		{
+			Effect: "RemoveFromBoard",
+			Selector:{
+				Source:"board"
+			}
 		}
 	],
 	TotalCopies:2

@@ -170,30 +170,25 @@ public class EffectActionParser : Parser
             if (Peek(-2).Is("Shuffle")) { return new ContextShuffleMethod(container); }
             else { return new ContextPopMethod(container); }
         }
-        else if (Current.Is("Push") || Current.Is("SendBottom"))
+        else if (Current.Is("Push") || Current.Is("SendBottom") || Current.Is("Remove"))
         {
-            if (container.ContainerName == "Board" || container.ContainerName == "Field")
+            if (!Current.Is("Remove") && (container.ContainerName == "Board" || container.ContainerName == "Field"))
             { Errors.Write("El metodo '" + Current.Text + "' no esta disponible para el contenedor '" + container.ContainerName + "'", Current); hasFailed = true; return null; }
 
             Token methodToken = Current;
             if (!Next().Is("(", true)) { hasFailed = true; return null; }
             IReference cardReference;
-            Next();
             object hopefullyCardReference = null;
-            if (Current.Is("context")) { hopefullyCardReference = ContextParser(); }
+            if (Next().Is("context")) { hopefullyCardReference = ContextParser(); }
             else if (Current.Is(TokenType.identifier))
             {
                 if (scopes.ContainsVar(Current.Text)) { hopefullyCardReference = new VariableReference(Current.Text, scopes.GetValue(Current.Text).Type); }
                 else { Errors.Write("La variable: '" + Current.Text + "' no existe en este contexto", Current); hasFailed = true; return null; }
             }
-            if (hopefullyCardReference is IReference && (hopefullyCardReference as IReference).Type == VarType.Card) { cardReference = (IReference)hopefullyCardReference; }
+            if (hopefullyCardReference is IReference && ((IReference)hopefullyCardReference).Type == VarType.Card) { cardReference = (IReference)hopefullyCardReference; }
             else { Errors.Write("El parametro pasado a '" + methodToken.Text + "' no es una referencia a una carta"); hasFailed = true; return null; }
             if (!Next().Is(")", true)) { hasFailed = true; return null; }
             return new ContextCardParameterMethod(container, methodToken.Text, cardReference);
-        }
-        else if (Current.Is("Remove"))
-        {
-            throw new NotImplementedException();
         }
         else { Errors.Write("El metodo del contenedor " + container.ContainerName + ": '" + Current.Text + "' no esta definido", Current); hasFailed = true; return null; }
     }
