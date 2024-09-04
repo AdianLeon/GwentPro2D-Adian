@@ -14,6 +14,30 @@ public class ModifyDeckFunctions : MonoBehaviour
     private static string RemoveTxt(string nameWithExtension) => nameWithExtension.Substring(0, nameWithExtension.Length - 4);
 
     public void OnConfirmChangesButtonClick() => MainCompiler.ProcessTextAndSave(code.text);
+    public void OnConfirmEliminationButtonClick()
+    {
+        Errors.Clean();
+        if (GetText(effectsChoice) == "Todas") { Errors.PureWrite("Se intentaron borrar todos los efectos del juego"); /*Directory.GetFiles(Application.dataPath + "/MyAssets/Database/CreatedEffects/", "*.txt").ForEach(address => File.Delete(address));*/ }
+        else if (GetText(effectsChoice) != "Ninguna") { File.Delete(Application.dataPath + "/MyAssets/Database/CreatedEffects/" + GetText(effectsChoice) + ".txt"); }
+
+        if (GetText(cardsChoice) == "Todas")
+        {
+            if (GetText(decksChoice) == "Todas") { Errors.PureWrite("Se intentaron borrar todas las cartas del juego"); /*Directory.GetFiles(Application.dataPath + "/MyAssets/Database/Decks/", "*.txt", SearchOption.AllDirectories).ForEach(address => File.Delete(address));*/ }
+            else if (GetText(decksChoice) != "Ninguna") { Errors.PureWrite("Se intento borrar todas las cartas del deck: " + GetText(decksChoice));/*Directory.GetFiles(Application.dataPath + "/MyAssets/Database/Decks/" + GetText(decksChoice) + "/", "*.txt").ForEach(address => File.Delete(address));*/ }
+        }
+        else if (GetText(cardsChoice) != "Ninguna")
+        {
+            if (GetText(decksChoice) == "Todas")
+            {
+                foreach (string address in Directory.GetFiles(Application.dataPath + "/MyAssets/Database/Decks/", "*.txt", SearchOption.AllDirectories))
+                {
+                    if (Path.GetFileName(address) == GetText(cardsChoice) + ".txt") { File.Delete(address); break; }
+                }
+            }
+            else { File.Delete(Application.dataPath + "/MyAssets/Database/Decks/" + GetText(decksChoice) + "/" + GetText(cardsChoice) + ".txt"); }
+        }
+        OnMenuActivation();
+    }
     public void OnMenuActivation()
     {//Este metodo se llama cuando el menu modificar deck es activado por el boton
         effectsChoice.ClearOptions();

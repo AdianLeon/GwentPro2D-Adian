@@ -7,14 +7,18 @@ using UnityEngine;
 public class Executer : MonoBehaviour
 {
     public GameObject errorScreen;
-    public static bool LoadedAllEffects => loadedAllEffects;
-    private static bool loadedAllEffects;
+    public static bool FailedAtLoadingAnyEffect => failedAtLoadingAnyEffect;
+    private static bool failedAtLoadingAnyEffect = false;
     private static Dictionary<string, EffectDeclaration> createdEffects;
     public static VariableScopes scopes;
+    public static void LoadEffectsAndCards()
+    {
+        GameObject.Find("Canvas").GetComponent<Executer>().LoadEffects();
+        GameObject.Find("Canvas").GetComponent<CardLoader>().LoadCards(createdEffects.Keys);
+    }
     public void LoadEffects()
     {
         createdEffects = new Dictionary<string, EffectDeclaration>();
-        loadedAllEffects = true;
         string[] addressesOfEffects = Directory.GetFiles(Application.dataPath + "/MyAssets/Database/CreatedEffects", "*.txt");//Obtiene dentro del directorio del deck solo la direccion de los archivos con extension txt (ignora los meta)
 
         errorScreen.SetActive(true);
@@ -23,7 +27,7 @@ public class Executer : MonoBehaviour
             string codeEffect = File.ReadAllText(address);//Lee el archivo
             EffectDeclaration effectDeclaration = EffectParser.ProcessCode(codeEffect);//Convierte el string en json a un objeto 
             if (effectDeclaration != null) { createdEffects.Add(effectDeclaration.Name, effectDeclaration); }
-            else { Errors.Write("No se pudo procesar el texto del efecto en: " + address); loadedAllEffects = false; }
+            else { Errors.Write("No se pudo procesar el texto del efecto en: " + address); failedAtLoadingAnyEffect = true; }
         }
     }
     public static void ExecuteOnActivation(Card card)
@@ -105,5 +109,4 @@ public class Executer : MonoBehaviour
         if (selector.Single) { return new List<DraggableCard> { cards[0] }; }
         return cards;
     }
-
 }

@@ -9,8 +9,7 @@ public class StateManager : MonoBehaviour
     private static Dictionary<State, List<Execution>> assigner;//Diccionario que asigna una lista de ejecuciones ordenada a estados
     void Start()
     {//Primero carga los efectos y cartas, luego inicializa el diccionario y busca todos las subscripciones de los IStateSubscriber y las anade al diccionario, entonces comienza el juego
-        GameObject.Find("Canvas").GetComponent<Executer>().LoadEffects();
-        GameObject.Find("Canvas").GetComponent<CardLoader>().LoadCards();
+        Executer.LoadEffectsAndCards();
         AddAllIStateSubscribersToAssigner();
         Publish(State.SettingUpGame);
     }

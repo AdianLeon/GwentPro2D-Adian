@@ -154,7 +154,6 @@
      <None Include="Assets\MyAssets\Database\CreatedEffects\ShuffleBoardEffect.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Kevin.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
-     <None Include="Assets\MyAssets\Database\Decks\Northern Realms\Unga.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\El Macho.txt" />
      <None Include="Assets\MyAssets\Database\CreatedEffects\PrintEffect.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Rayo Congelador.txt" />
@@ -177,6 +176,7 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Stuart.txt" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+     <None Include="Assets\MyAssets\Database\CreatedEffects\RemoveFromBoard.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Muchas Bananas.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
      <None Include="Assets\MyAssets\Database\CreatedEffects\Draw.txt" />

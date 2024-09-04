@@ -2,24 +2,28 @@ using System;
 using UnityEngine;
 using System.IO;
 using System.Collections.Generic;
+using System.Linq;
 //Script para instanciar cartas de un json
 public class CardLoader : MonoBehaviour
 {
     public GameObject errorScreen;
-    private static int instantiatedCardsCount;//Cuenta de las cartas instanciadas
     public GameObject CardPrefab;//Referencia al prefab CardPrefab
-    public void LoadCards()
+    private static bool failedAtInterpretingAnyCard = false;
+    private static int instantiatedCardsCount;//Cuenta de las cartas instanciadas
+    private static IEnumerable<string> allLoadedEffects;
+    public void LoadCards(IEnumerable<string> loadedEffects)
     {
+        allLoadedEffects = loadedEffects;
         instantiatedCardsCount = 0;
         ImportDeckTo(PlayerPrefs.GetString("P1PrefDeck"), GameObject.Find("CardsP1"), GameObject.Find("DeckP1"));
         ImportDeckTo(PlayerPrefs.GetString("P2PrefDeck"), GameObject.Find("CardsP2"), GameObject.Find("DeckP2"));
+        allLoadedEffects = null;
     }
     public void ImportDeckTo(string faction, GameObject deckPlace, GameObject Deck)
     {//Crea todas las cartas en el directorio asignado en preferencias del jugador en el objeto
         string factionPath = Application.dataPath + "/MyAssets/Database/Decks/" + faction;
         string[] addressesOfCards = Directory.GetFiles(factionPath, "*.txt");//Obtiene dentro del directorio del deck solo la direccion de los archivos con extension txt (ignora los meta)
 
-        bool failedAtInterpretingAnyCard = false;
         foreach (string address in addressesOfCards)
         {//Para cada uno de los archivos con extension json
             string codeCard = File.ReadAllText(address);//Lee el archivo
@@ -27,7 +31,7 @@ public class CardLoader : MonoBehaviour
             if (cardDeclaration != null) { for (int i = cardDeclaration.TotalCopies; i > 0; i--) { ImportCardTo(cardDeclaration, deckPlace); } }
             else { Errors.Write("No se pudo procesar el texto de la carta en: " + address); failedAtInterpretingAnyCard = true; }
         }
-        errorScreen.SetActive(!Executer.LoadedAllEffects || failedAtInterpretingAnyCard);
+        errorScreen.SetActive(Executer.FailedAtLoadingAnyEffect || failedAtInterpretingAnyCard);
         //Asignando la imagen del deck
         Deck.GetComponent<UnityEngine.UI.Image>().sprite = Resources.Load<Sprite>(faction + "/DeckImage");
     }
@@ -75,7 +79,22 @@ public class CardLoader : MonoBehaviour
         if (newCard.GetComponent<UnitCard>() != null) { newCard.GetComponent<UnitCard>().Range = cardDeclaration.Range; }
         //OnActivation
         newCard.GetComponent<Card>().OnActivation = cardDeclaration.OnActivation;
-        if (newCard.GetComponent<Card>().OnActivation != null) { AddScriptEffects(newCard, newCard.GetComponent<Card>().OnActivation); }
+        if (newCard.GetComponent<Card>().OnActivation != null) { AddScriptEffectsAndCheckIfDefined(newCard, newCard.GetComponent<Card>().OnActivation); }
     }
-    private void AddScriptEffects(GameObject cardOwner, OnActivation onActivation) { foreach (EffectCall effectCall in onActivation.effectCalls) { if (effectCall is ScriptEffectCall) { cardOwner.AddComponent(Type.GetType(effectCall.EffectName)); } } }
+    private void AddScriptEffectsAndCheckIfDefined(GameObject cardOwner, OnActivation onActivation)
+    {
+        foreach (EffectCall effectCall in onActivation.effectCalls)
+        {
+            if (effectCall is ScriptEffectCall) { cardOwner.AddComponent(Type.GetType(effectCall.EffectName)); }
+            else if (effectCall is CreatedEffectCall)
+            {
+                Debug.Log("Analizando el efecto: " + effectCall.EffectName);
+                if (!allLoadedEffects.Contains(effectCall.EffectName))
+                {
+                    Errors.Write("El efecto mencionado por la carta: " + cardOwner.GetComponent<Card>().CardName + ", llamado: '" + effectCall.EffectName + "' no fue cargado o no existe");
+                    failedAtInterpretingAnyCard = true;
+                }
+            }
+        }
+    }
 }
