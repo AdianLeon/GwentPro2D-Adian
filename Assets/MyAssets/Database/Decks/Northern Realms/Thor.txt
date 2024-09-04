@@ -1,21 +1,14 @@
 card{
-	Description:"Roba una carta del Deck propio",
+	Description:"Deja sin poder a todas las cartas jugadas en el campo",
 	Type: "Lider",
 	Name: "Thor",
 	Faction: "Northern Realms",
 	OnActivation: [
 		{
-			Effect: "Draw",
-			Selector:{
-				Source:"board"
-			}
-		},
-		{
-			Effect: "RemoveFromBoard",
+			Effect: "Silence",
 			Selector:{
 				Source:"board"
 			}
 		}
-	],
-	TotalCopies:2
+	]
 }

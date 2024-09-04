@@ -6,8 +6,8 @@ public class EffectAction : INode
 {
     public List<IActionStatement> ActionStatements = new List<IActionStatement>();
 }
-public interface IActionStatement { }
-public interface IReference { public VarType Type { get; } }
+public interface IActionStatement : INode { }
+public interface IReference : INode { public VarType Type { get; } }
 public class PlayerReference : IReference
 {
     public VarType Type => VarType.Player;
@@ -111,6 +111,12 @@ public class CardReference : IReference
     }
     public PlayerReference Owner => Card.Owner == Judge.GetPlayer ? new PlayerReference("Self") : new PlayerReference("Other");
     public CardReference(DraggableCard card) { Card = card; }
+}
+public class CardPowerSetting : IActionStatement
+{
+    public IReference CardReference;
+    public int NewPower;
+    public CardPowerSetting(IReference cardReference, int newPower) { if (cardReference.Type != VarType.Card) { throw new Exception("El tipo de parametro de un metodo de contexto con parametro carta no es carta"); } CardReference = cardReference; NewPower = newPower; }
 }
 public class ForEachCycle : IActionStatement
 {

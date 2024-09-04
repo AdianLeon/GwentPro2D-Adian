@@ -9,7 +9,6 @@ public static class ContextUtils
     private static string GetPlayer(IReference owner)
     {
         if (owner is VariableReference) { return GetPlayer(Executer.scopes.GetValue((owner as VariableReference).VarName)); }
-
         if (owner is PlayerReference)
         {
             string player = "";

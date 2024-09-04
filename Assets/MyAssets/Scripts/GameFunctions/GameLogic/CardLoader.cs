@@ -88,7 +88,6 @@ public class CardLoader : MonoBehaviour
             if (effectCall is ScriptEffectCall) { cardOwner.AddComponent(Type.GetType(effectCall.EffectName)); }
             else if (effectCall is CreatedEffectCall)
             {
-                Debug.Log("Analizando el efecto: " + effectCall.EffectName);
                 if (!allLoadedEffects.Contains(effectCall.EffectName))
                 {
                     Errors.Write("El efecto mencionado por la carta: " + cardOwner.GetComponent<Card>().CardName + ", llamado: '" + effectCall.EffectName + "' no fue cargado o no existe");

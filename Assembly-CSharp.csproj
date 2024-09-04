@@ -131,6 +131,7 @@
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\AbstractCardTypes\DraggableCard.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardContainers\Field.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Parsing\BlockDeclarations\Effects\ContextParser.cs" />
      <None Include="Assets\MyAssets\Database\CreatedEffects\PrintEffectBicho.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\MyAssets\Database\Decks\Northern Realms\Ash.txt" />
@@ -184,6 +185,7 @@
      <None Include="Assets\MyAssets\Database\Decks\Minions\Bob.txt" />
      <None Include="Assets\MyAssets\Database\CreatedEffects\PrintEffectSIUUU.txt" />
      <None Include="Assets\MyAssets\Database\Code.txt" />
+     <None Include="Assets\MyAssets\Database\CreatedEffects\Silence.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Minion Bebe.txt" />

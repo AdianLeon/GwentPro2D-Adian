@@ -25,27 +25,16 @@ public static class Lexer
         //Comentarios
         else if (code[i] == '/' && code[i + 1] == '/') { while (i < code.Length && code[i] != '\n') { i++; }; Tokenize(code, i + 1); }
         //Tokens simples (puntuadores, parentesis y operadores)---------------------------------------------------------------------------------------------------------
-        else if (LexerUtils.Simples.ContainsKey(code[i].ToString() + code[i + 1].ToString()))
-        {//MakeSimpleToken si ocupa dos caracteres
-            tokenList.Add(new Token(code, i, code[i].ToString() + code[i + 1].ToString()));
-            Tokenize(code, i + 2);
-        }
-        else if (LexerUtils.Simples.ContainsKey(code[i].ToString()))
-        {//MakeSimpleToken si ocupa un caracter
-            tokenList.Add(new Token(code, i, code[i].ToString()));
-            Tokenize(code, i + 1);
-        }
-        else if (char.IsWhiteSpace(code[i]))
-        {//Ignora los espacios
-            Tokenize(code, i + 1);
-        }
+        else if (LexerUtils.Simples.ContainsKey(code[i].ToString() + code[i + 1].ToString())) { tokenList.Add(new Token(code, i, code[i].ToString() + code[i + 1].ToString())); Tokenize(code, i + 2); }//MakeSimpleToken si ocupa dos caracteres
+        else if (LexerUtils.Simples.ContainsKey(code[i].ToString())) { tokenList.Add(new Token(code, i, code[i].ToString())); Tokenize(code, i + 1); }//MakeSimpleToken si ocupa un caracter
+        else if (char.IsWhiteSpace(code[i])) { Tokenize(code, i + 1); }//Ignora los espacios
         //Inesperado---------------------------------------------------------------------------------------------------------
         else { tokenList.Add(new Token(code, i, code[i].ToString())); }
     }
     private static void MakeNumberToken(string code, int start)
     {//Crea un token numerico
         int end = start;
-        while (char.IsDigit(code[end])) { end++; }//Incrementa el largo del numero mientras se obtengan numeros
+        while (end < code.Length && char.IsDigit(code[end])) { end++; }//Incrementa el largo del numero mientras se obtengan numeros
         //Anade a la lista de tokens el substring desde que empezamos a contar hasta que finalizamos
         tokenList.Add(new Token(code, start, code.Substring(start, end - start), TokenType.number));
         Tokenize(code, end);
@@ -53,7 +42,7 @@ public static class Lexer
     private static void MakeIdentifierToken(string code, int start)
     {//Crea un token identificador
         int end = start;
-        while (char.IsLetter(code[end]) || char.IsDigit(code[end])) { end++; }//Mientras el caracter sea una letra o un numero sigue avanzando
+        while (end < code.Length && (char.IsLetter(code[end]) || char.IsDigit(code[end]))) { end++; }//Mientras el caracter sea una letra o un numero sigue avanzando
         //Anade a la lista de tokens el substring desde que empezamos a contar hasta que finalizamos
         string identifierText = code.Substring(start, end - start);
         TokenType identifierType = TokenType.identifier;

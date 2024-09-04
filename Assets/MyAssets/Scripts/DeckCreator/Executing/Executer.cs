@@ -65,6 +65,7 @@ public class Executer : MonoBehaviour
             if (actionStatement is VariableDeclaration) { scopes.AddNewVar((VariableDeclaration)actionStatement); }
             else if (actionStatement is PrintAction) { UserRead.Write((actionStatement as PrintAction).Message); }
             else if (actionStatement is ContextMethod) { ContextUtils.AssignMethod((ContextMethod)actionStatement); }
+            else if (actionStatement is CardPowerSetting) { SetPower((CardPowerSetting)actionStatement); }
             else if (actionStatement is ForEachCycle)
             {
                 ForEachCycle forEachCycle = (ForEachCycle)actionStatement;
@@ -88,6 +89,18 @@ public class Executer : MonoBehaviour
             else { throw new Exception("La accion no esta definida"); }
         }
     }
+
+    private static void SetPower(CardPowerSetting actionStatement)
+    {
+        IReference reference = actionStatement.CardReference;
+        Debug.Log("Antes del while");
+        while (reference is VariableReference) { Debug.Log("Obteniendo el valor de: " + ((VariableReference)reference).VarName); reference = scopes.GetValue(((VariableReference)reference).VarName); }
+        Debug.Log("Despues del while");
+        Debug.Log("reference is VarReference: " + (reference is VariableReference));
+        if (reference is CardReference) { ((CardReference)reference).Power = actionStatement.NewPower; }
+        else { throw new Exception("La referencia no era hacia una carta"); }
+    }
+
     private static List<DraggableCard> SelectTargets(EffectSelector selector)
     {
         if (selector == null) { throw new Exception("El selector no existe"); }

@@ -1,13 +1,12 @@
 using System.Collections.Generic;
-//Script para guardar algunos metodos auxiliares del Lexer
+//Script para guardar algunos metodos y declaraciones auxiliares del Lexer
 public class Token
 {//Clase que almacena las propiedades del token
     public string Text;//Texto del token
     public int Position;//Posicion en el codigo
     public int Line;//Linea donde se encuentra en el texto del objeto Compiler
     public int Col;//Columna donde se encuentra en el texto del objeto Compiler
-                   //Tipos de token
-    public TokenType Type;
+    public TokenType Type;//Tipos de token
     public Token(string code, int pos, string tokenText, TokenType expectedType = TokenType.unexpected)
     {
         Text = tokenText;
@@ -39,16 +38,15 @@ public enum TokenType
     //Simples
     punctuator,// : ; , . " '
     limitator,// ( ) [ ] { }
-              //Operators
+    //Operators
     booleanOp,// == != < > <= >= && ||
     arithmeticOp,// + - * / ^ += -= *= /= ^=
     concatenationOp,// @ @@
     asignationOp,//=
     unaryOp,// ++ --
     lambdaOp,// =>
-
     //Otros
-    end,// $
+    end,// $ 
     unexpected// ?
 };
 public static class LexerUtils
