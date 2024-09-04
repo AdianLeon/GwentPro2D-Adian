@@ -22,12 +22,12 @@ public class Judge : MonoBehaviour, IStateSubscriber, IKeyboardListener
         new (State.EndingTurn, new Execution (stateInfo => EndTurn(), 0)),
         new (State.EndingGame, new Execution (stateInfo => hasGameEnded = true, 0))
     };
+    private static void ResetVars() { hasGameEnded = false; hasPlayed = false; isLastTurnOfRound = false; turnNumber = 1; playerTurn = Player.P1; }
     public static void EndTurnOrRound()
     {
         if (hasGameEnded) { return; }
         if (isLastTurnOfRound) { EndRound(); } else { StateManager.Publish(State.EndingTurn); }
     }
-    private static void ResetVars() { hasGameEnded = false; hasPlayed = false; isLastTurnOfRound = false; turnNumber = 1; playerTurn = Player.P1; }
     private static void EndTurn()
     {//Si no se ha jugado el proximo pase terminara la ronda, en cualquier caso cambia el turno
         if (!hasPlayed) { isLastTurnOfRound = true; UserRead.Write(GetPlayer + " ha pasado el turno sin jugar!!"); }

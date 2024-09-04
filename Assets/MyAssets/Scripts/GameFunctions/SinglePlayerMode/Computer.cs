@@ -45,12 +45,8 @@ public class Computer : MonoBehaviour, IStateSubscriber
     {//Juega la mejor de las cartas, primero se intenta jugar una carta de unidad, luego de aumento, luego de clima y finalmente de despeje
         DraggableCard chosenCard;
         DropZone chosenZone;
-        if (TryPlayUnitCard(out chosenCard, out chosenZone) || TryPlayBoostCard(out chosenCard, out chosenZone)
-        || TryPlayWeatherCard(out chosenCard, out chosenZone) || TryPlayClearWeatherCard(out chosenCard, out chosenZone))
-        {
-            chosenCard.PlayCardIn(chosenZone);
-            return true;
-        }
+        if (TryPlayUnitCard(out chosenCard, out chosenZone) || TryPlayBoostCard(out chosenCard, out chosenZone) || TryPlayWeatherCard(out chosenCard, out chosenZone) || TryPlayClearWeatherCard(out chosenCard, out chosenZone))
+        { chosenCard.PlayCardIn(chosenZone); return true; }
         UserRead.Write("P2 elige no jugar en este turno");//Si no se puede jugar ninguna carta
         return false;
     }
@@ -105,5 +101,5 @@ public class Computer : MonoBehaviour, IStateSubscriber
     private int CountIAffectables(DZUnit zone) => zone.gameObject.CardsInside<IAffectable>().Count();//Devuelve la cantidad de cartas afectables de la zona
     private void DoAfterTime(Action action, int time) => StartCoroutine(CorroutineDoAfterTime(action, time));//Realiza la accion luego de que el tiempo pase
     private IEnumerator CorroutineDoAfterTime(Action action, int time) { yield return new WaitForSeconds(time); action(); }
-    private void FinishTurn() { UserRead.Write("P2 ha acabado su turno"); Judge.EndTurnOrRound(); isPlaying = false; }//Termina el turno y permite accionar al jugador
+    private void FinishTurn() { UserRead.Write("P2 ha acabado su turno"); isPlaying = false; Judge.EndTurnOrRound(); }//Termina el turno y permite accionar al jugador
 }

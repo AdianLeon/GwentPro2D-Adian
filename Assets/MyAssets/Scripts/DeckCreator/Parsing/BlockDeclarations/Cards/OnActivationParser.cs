@@ -29,8 +29,15 @@ public class OnActivationParser : Parser
                     {
                         if (effectName != null) { Errors.Write("El nombre del efecto ya ha sido declarado", Current); hasFailed = true; return null; }
                         if (!Next().Is(":", true)) { hasFailed = true; return null; }
-                        if (!Next().Is(TokenType.literal, true)) { hasFailed = true; return null; }
-                        effectName = Current.Text;
+                        if (Next().Is(TokenType.literal)) { effectName = Current.Text; }
+                        else if (Current.Is("{"))
+                        {
+                            //Do a while(expecting) and load the effect as soon as the name is declared, if that effect has parameters start expecting them, for that purpose create a set expectedDeclarations that initially only expects the Name
+                            if (!Next().Is("Name", true)) { hasFailed = true; return null; }
+                            effectName = Current.Text;
+                            if (!Next().Is("}", true)) { hasFailed = true; return null; }
+                        }
+                        else { Errors.Write("Se esperaba el nombre del efecto o '{'", Current); hasFailed = true; return null; }
                     }
                     else if (Current.Is("Selector"))
                     {

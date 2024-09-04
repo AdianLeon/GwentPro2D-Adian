@@ -74,11 +74,9 @@ public class Executer : MonoBehaviour
                 }
                 else { throw new NotImplementedException("No se ha anadido la forma de evaluar demandada"); }
                 scopes.AddNewScope();
-                int count = 1;
                 foreach (DraggableCard card in cards)
                 {
                     scopes.AddNewVar(forEachCycle.IteratorVarName, new CardReference(card));
-                    Debug.Log("Ciclo numero: " + (count++) + ", valor de target: " + card.name);
                     ProcessActionStatements(forEachCycle.ActionStatements);
                 }
                 scopes.PopLastScope();

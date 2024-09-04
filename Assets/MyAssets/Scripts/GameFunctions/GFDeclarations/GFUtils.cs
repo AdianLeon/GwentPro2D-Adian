@@ -10,7 +10,7 @@ public static class GFUtils
         return Resources.FindObjectsOfTypeAll<GameObject>().Where(gameObject => gameObject.GetComponent<T>() != null).Select(gameObject => gameObject.GetComponent<T>()).ToList();
     }
 }
-public static class CustomLinqExtensions
+public static class CustomIEnumerableExtensions
 {
     public static void ForEach<T>(this IEnumerable<T> items, Action<T> action) { foreach (T item in items) { action(item); } }//Comodidad extra para realizar una accion simple sobre todos los elementos de un IEnumerable
     public static T RandomElement<T>(this IEnumerable<T> items) => items.Count() == 0 ? default : items.ElementAt(UnityEngine.Random.Range(0, items.Count()));//Devuelve un elemento random dado un IEnumerable

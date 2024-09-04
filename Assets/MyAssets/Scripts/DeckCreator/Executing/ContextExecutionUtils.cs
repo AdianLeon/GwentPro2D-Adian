@@ -5,7 +5,7 @@ using UnityEngine;
 
 public static class ContextUtils
 {
-    private static string GetContainerName(ContainerReference container) => container.Name + GetPlayer(container.Owner);
+    private static string GetContainerName(ContainerReference container) => container.ContainerName + GetPlayer(container.Owner);
     private static string GetPlayer(IReference owner)
     {
         if (owner is VariableReference) { return GetPlayer(Executer.scopes.GetValue((owner as VariableReference).VarName)); }
@@ -13,8 +13,8 @@ public static class ContextUtils
         if (owner is PlayerReference)
         {
             string player = "";
-            if ((owner as PlayerReference).Player == PlayerReference.PlayerToGet.Self) { player = Judge.GetPlayer.ToString(); }
-            else if ((owner as PlayerReference).Player == PlayerReference.PlayerToGet.Other) { player = Judge.GetEnemy.ToString(); }
+            if ((owner as PlayerReference).Player == "Self") { player = Judge.GetPlayer.ToString(); }
+            else if ((owner as PlayerReference).Player == "Other") { player = Judge.GetEnemy.ToString(); }
             return player;
         }
         else { throw new Exception("Evaluacion de posible owner no implementado"); }
@@ -73,23 +73,23 @@ public static class ContextUtils
         if (cardReference is ContextPopMethod) { cardToPerformActionOn = PopContainer((ContextPopMethod)cardReference); }
         else if (cardReference is CardReference) { cardToPerformActionOn = ((CardReference)cardReference).Card; }
         else { throw new Exception("No se ha definido la forma de evaluar la ICardReference"); }
-        if (method.Type == ContextCardParameterMethod.ActionType.Push || method.Type == ContextCardParameterMethod.ActionType.SendBottom)
+        if (method.ActionType == "Push" || method.ActionType == "SendBottom")
         {
-            if (method.Container.Name == ContainerReference.ContainerToGet.Hand || method.Container.Name == ContainerReference.ContainerToGet.Graveyard)
+            if (method.Container.ContainerName == "Hand" || method.Container.ContainerName == "Graveyard")
             {
                 if (cardToPerformActionOn != null)
                 {
                     cardToPerformActionOn.MoveCardTo(GameObject.Find(GetContainerName(method.Container)));
-                    if (method.Type == ContextCardParameterMethod.ActionType.SendBottom) { cardToPerformActionOn.transform.SetSiblingIndex(0); }
+                    if (method.ActionType == "SendBottom") { cardToPerformActionOn.transform.SetSiblingIndex(0); }
                 }
             }
-            else if (method.Container.Name == ContainerReference.ContainerToGet.Deck)
+            else if (method.Container.ContainerName == "Deck")
             {
-                if (method.Type == ContextCardParameterMethod.ActionType.Push) { GameObject.Find(GetContainerName(method.Container)).GetComponent<Deck>().PushCard(cardToPerformActionOn); }
-                else { GameObject.Find(GetContainerName(method.Container)).GetComponent<Deck>().SendBottomCard(cardToPerformActionOn); }
+                if (method.ActionType == "Push") { GameObject.Find(GetContainerName(method.Container)).GetComponent<Deck>().PushCard(cardToPerformActionOn); }
+                else if (method.ActionType == "SendBottom") { GameObject.Find(GetContainerName(method.Container)).GetComponent<Deck>().SendBottomCard(cardToPerformActionOn); }
             }
-            else { throw new Exception("No se ha definido '" + method.Type + "' para '" + method.Container.Name + "'"); }
+            else { throw new Exception("No se ha definido '" + method.ActionType + "' para '" + method.Container.ContainerName + "'"); }
         }
-        else { throw new Exception("No se ha definido la evaluacion de la accion: " + method.Type); }
+        else { throw new Exception("No se ha definido la evaluacion de la accion: " + method.ActionType); }
     }
 }

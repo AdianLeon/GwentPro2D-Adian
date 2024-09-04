@@ -2,7 +2,8 @@ effect {
 	Name: "StealForHand",
 	Action: (targets, context) => {
 		for target in targets {
-			context.Hand.Push(target);
+			hand=context.Hand;
+			hand.Push(target);
 		};
 	}
 }

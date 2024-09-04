@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,7 +19,7 @@ public class EffectActionParser : Parser
         EffectAction effectAction = new EffectAction();
         scopes = new VariableScopes();
         scopes.AddNewScope();
-        scopes.AddNewVar("targets", new FutureCardReferenceList());
+        scopes.AddNewVar("targets", new FutureReference(VarType.CardList));
         while (!Next().Is("}"))
         {
             effectAction.ActionStatements.Add(ActionStatementParser());
@@ -50,7 +51,7 @@ public class EffectActionParser : Parser
             if (!Next().Is(TokenType.identifier, true)) { hasFailed = true; return null; }
             string iteratorVarName = Current.Text;
             scopes.AddNewScope();
-            scopes.AddNewVar(iteratorVarName, new FutureCardReference());
+            scopes.AddNewVar(iteratorVarName, new FutureReference(VarType.Card));
             if (!Next().Is("in", true)) { hasFailed = true; return null; }
             IReference cardReferenceList;
             if (Next().Is(TokenType.identifier))
@@ -171,8 +172,8 @@ public class EffectActionParser : Parser
         }
         else if (Current.Is("Push") || Current.Is("SendBottom"))
         {
-            if (container.Name == ContainerReference.ContainerToGet.Board || container.Name == ContainerReference.ContainerToGet.Field)
-            { Errors.Write("El metodo '" + Current.Text + "' no esta disponible para el contenedor '" + container.Name + "'", Current); hasFailed = true; return null; }
+            if (container.ContainerName == "Board" || container.ContainerName == "Field")
+            { Errors.Write("El metodo '" + Current.Text + "' no esta disponible para el contenedor '" + container.ContainerName + "'", Current); hasFailed = true; return null; }
 
             Token methodToken = Current;
             if (!Next().Is("(", true)) { hasFailed = true; return null; }
@@ -190,6 +191,10 @@ public class EffectActionParser : Parser
             if (!Next().Is(")", true)) { hasFailed = true; return null; }
             return new ContextCardParameterMethod(container, methodToken.Text, cardReference);
         }
-        else { Errors.Write("El metodo del contenedor " + container.Name + ": '" + Current.Text + "' no esta definido", Current); hasFailed = true; return null; }
+        else if (Current.Is("Remove"))
+        {
+            throw new NotImplementedException();
+        }
+        else { Errors.Write("El metodo del contenedor " + container.ContainerName + ": '" + Current.Text + "' no esta definido", Current); hasFailed = true; return null; }
     }
 }

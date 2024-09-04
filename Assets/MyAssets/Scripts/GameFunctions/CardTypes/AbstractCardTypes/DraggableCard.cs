@@ -1,7 +1,7 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
-//Script para el arrastre de las cartas
+//Script para las cartas arrastrables
 public abstract class DraggableCard : Card, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     protected GameObject GetHand => GameObject.Find("Hand" + Owner);//Devuelve la mano del dueno de la carta

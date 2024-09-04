@@ -1,10 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.InteropServices;
-using Unity.VisualScripting;
-using UnityEngine;
 public enum VarType { Number, Boolean, String, Card, Player, Container, CardList }
 public class EffectAction : INode
 {
@@ -15,20 +11,19 @@ public interface IReference { public VarType Type { get; } }
 public class PlayerReference : IReference
 {
     public VarType Type => VarType.Player;
-    public enum PlayerToGet { None, Self, Other }
-    public PlayerToGet Player;
-    public PlayerReference(string player = "None") { Player = (PlayerToGet)Enum.Parse(typeof(PlayerToGet), player); }
+    public string Player;
+    public PlayerReference(string player = "None") { Player = player; }
 }
 public class ContainerReference : IReference
 {
     public VarType Type => VarType.Container;
-    public enum ContainerToGet { Board, Hand, Field, Graveyard, Deck }
-    public ContainerToGet Name;
+    public string ContainerName;
     public IReference Owner;
     public ContainerReference(string containerName, IReference owner = null)
     {
         if (owner.Type != VarType.Player) { throw new Exception("El tipo de variable debe ser Player"); }
-        Name = (ContainerToGet)Enum.Parse(typeof(ContainerToGet), containerName); Owner = owner;
+        Owner = owner;
+        ContainerName = containerName;
     }
 }
 public class PrintAction : IActionStatement
@@ -42,13 +37,12 @@ public abstract class ContextMethod : IActionStatement
 }
 public class ContextCardParameterMethod : ContextMethod
 {
-    public enum ActionType { Push, SendBottom/*, Remove*/ }
-    public ActionType Type;
+    public string ActionType;
     public IReference Card;
-    public ContextCardParameterMethod(ContainerReference container, string typeName, IReference card)
+    public ContextCardParameterMethod(ContainerReference container, string actionType, IReference card)
     {
         Container = container;
-        Type = (ActionType)Enum.Parse(typeof(ActionType), typeName);
+        ActionType = actionType;
         if (card.Type != VarType.Card) { throw new Exception("El tipo de parametro de un metodo de contexto con parametro carta no es carta"); }
         Card = card;
     }
@@ -92,15 +86,20 @@ public class VariableReference : IReference
     public string VarName;
     public VariableReference(string varName, VarType type) { VarName = varName; Type = type; }
 }
-public class FutureCardReferenceList : IReference { public VarType Type => VarType.CardList; }
-public class FutureCardReference : IReference { public VarType Type => VarType.Card; }
-public class CardReferenceList : FutureCardReferenceList
+public class FutureReference : IReference
 {
+    public VarType Type { get; }
+    public FutureReference(VarType varType) { Type = varType; }
+}
+public class CardReferenceList : IReference
+{
+    public VarType Type => VarType.CardList;
     public List<DraggableCard> Cards;
     public CardReferenceList(List<DraggableCard> cards) { Cards = cards; }
 }
-public class CardReference : FutureCardReference
+public class CardReference : IReference
 {
+    public VarType Type => VarType.Card;
     public DraggableCard Card;
     public string CardType { get { return ""; } }
     public string Name => Card.CardName;

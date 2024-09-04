@@ -25,7 +25,7 @@ public class Hand : MonoBehaviour, IStateSubscriber, IContainer
         {//Si una carta no cabe en la mano
             DraggableCard extraCard = transform.GetChild(transform.childCount - 1).GetComponent<DraggableCard>();
             Graveyard.SendToGraveyard(extraCard);//Se envia al cementerio
-            UserRead.Write("No puedes tener mas de 10 cartas en la mano." + extraCard.CardName + " se ha enviado al cementerio!");
+            UserRead.Write(this.gameObject.Field() + " tenia mas de 10 cartas en la mano. Asi que " + extraCard.CardName + " se ha enviado al cementerio!");
         }
     }
 }
