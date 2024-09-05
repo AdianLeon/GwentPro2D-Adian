@@ -30,7 +30,7 @@ public class CardParser : Parser
         string description = "";
         int totalCopies = 1;
         string faction = "";
-        int power = 0;
+        IExpression<int> power = new NumberExpression("0");
         UnitCardZone range = UnitCardZone.None;
         OnActivation onActivation = null;
         if (!Next().Is("{", true)) { hasFailed = true; return null; }
@@ -76,8 +76,10 @@ public class CardParser : Parser
                     break;
                 case "Power":
                     if (!propertiesToDeclare.Contains("Power")) { Errors.Write("No se puede declarar la propiedad 'Power'. Solo se debe declarar una vez y en caso de que la propiedad 'Type' previamente declarada sea Oro, Plata, Clima o Aumento", key); hasFailed = true; return null; }
-                    if (!Current.Is(TokenType.number, true)) { hasFailed = true; return null; }
-                    if (!int.TryParse(Current.Text, out power)) { Errors.Write("El numero asociado a 'Power' fallo en pasarse al tipo 'int'. Intente con un numero entre " + int.MinValue + " y " + int.MaxValue, Current); }
+                    // if (!Current.Is(TokenType.number, true)) { hasFailed = true; return null; }
+                    power = (IExpression<int>)new ArithmeticExpressionsParser().ParseTokens(); Next(-1);
+                    if (hasFailed) { return null; }
+                    // if (!int.TryParse(Current.Text, out power)) { Errors.Write("El numero asociado a 'Power' fallo en pasarse al tipo 'int'. Intente con un numero entre " + int.MinValue + " y " + int.MaxValue, Current); }
                     propertiesToDeclare.Remove("Power");
                     break;
                 case "Range":

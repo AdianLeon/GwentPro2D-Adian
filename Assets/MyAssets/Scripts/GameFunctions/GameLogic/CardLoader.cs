@@ -72,9 +72,9 @@ public class CardLoader : MonoBehaviour
             newCard.GetComponent<Card>().Artwork = newCard.GetComponent<UnityEngine.UI.Image>().sprite;
         }
         //Power || Damage || Boost
-        if (newCard.GetComponent<PowerCard>() != null) { newCard.GetComponent<PowerCard>().Power = cardDeclaration.Power; }
-        else if (newCard.GetComponent<WeatherCard>() != null) { newCard.GetComponent<WeatherCard>().Damage = cardDeclaration.Power; }
-        else if (newCard.GetComponent<BoostCard>() != null) { newCard.GetComponent<BoostCard>().Boost = cardDeclaration.Power; }
+        if (newCard.GetComponent<PowerCard>() != null) { newCard.GetComponent<PowerCard>().Power = cardDeclaration.Power.Evaluate(); }
+        else if (newCard.GetComponent<WeatherCard>() != null) { newCard.GetComponent<WeatherCard>().Damage = cardDeclaration.Power.Evaluate(); }
+        else if (newCard.GetComponent<BoostCard>() != null) { newCard.GetComponent<BoostCard>().Boost = cardDeclaration.Power.Evaluate(); }
         //Range
         if (newCard.GetComponent<UnitCard>() != null) { newCard.GetComponent<UnitCard>().Range = cardDeclaration.Range; }
         //OnActivation

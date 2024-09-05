@@ -1,10 +1,10 @@
-effect {
-	Name: "TestingEffect",
-	Action: (targets, context) => {
-		owner=context.Hand.Pop().Owner;
-		for w in targets {
-			Print("M");
-			context.FieldOfPlayer(owner).Shuffle();
-		};
-	}
+card{
+	Description:"Roba una carta jugada del enemigo y la coloca en la mano propia",
+	Type: "Plata",
+	Name: "Matumbo",
+	Faction: "Northern Realms",
+	Range:["Melee","Ranged","Siege"],
+	Power: (2^4)*2/3+6-5*4+1,
+	OnActivation: [{Effect: "EnemyFieldStealEffect"}],
+	TotalCopies:20
 }

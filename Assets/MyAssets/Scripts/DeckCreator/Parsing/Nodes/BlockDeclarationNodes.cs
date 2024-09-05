@@ -16,11 +16,11 @@ public class CardDeclaration : BlockDeclaration
     public string Faction;
     public string Description;
     public int TotalCopies;
-    public int Power;
+    public IExpression<int> Power;
     public UnitCardZone Range;
     public OnActivation OnActivation;
 
-    public CardDeclaration(string name, string type, string description, int totalCopies, string faction, int power, UnitCardZone range, OnActivation onActivation)
+    public CardDeclaration(string name, string type, string description, int totalCopies, string faction, IExpression<int> power, UnitCardZone range, OnActivation onActivation)
     {
         Name = name;
         Type = type;
