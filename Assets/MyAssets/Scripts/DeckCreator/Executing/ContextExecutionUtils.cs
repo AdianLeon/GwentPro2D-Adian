@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public static class ContextUtils
 {
@@ -16,14 +17,22 @@ public static class ContextUtils
             else if ((owner as PlayerReference).Player == "Other") { player = Judge.GetEnemy.ToString(); }
             return player;
         }
-        else { throw new Exception("Evaluacion de posible owner no implementado"); }
+        else if (owner is CardPropertyReference)
+        {
+            IReference reference = ((CardPropertyReference)owner).CardReference;
+            while (reference is VariableReference) { reference = Executer.scopes.GetValue(((VariableReference)reference).VarName); }
+            if (reference is CardReference) { return ((CardReference)reference).Owner.ToString(); }
+            else if (reference is ContextPopMethod) { return new CardReference(PopContainer((ContextPopMethod)reference)).Owner.ToString(); }
+            else { throw new NotImplementedException("Evaluacion no implementada"); }
+        }
+        else { throw new NotImplementedException("Evaluacion de posible owner no implementado"); }
     }
     public static void AssignMethod(ContextMethod method)
     {
         if (method is ContextShuffleMethod) { ShuffleContainer((ContextShuffleMethod)method); }
         else if (method is ContextPopMethod) { PopContainer((ContextPopMethod)method); }
         else if (method is ContextCardParameterMethod) { DoActionForCardParameterMethod((ContextCardParameterMethod)method); }
-        else { throw new Exception("El metodo no esta definido como ejecutable"); }
+        else { throw new NotImplementedException("El metodo no esta definido como ejecutable"); }
     }
     private static void ShuffleContainer(ContextShuffleMethod shuffleMethod)
     {

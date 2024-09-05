@@ -109,7 +109,7 @@ public class CardReference : IReference
         get => Card.GetComponent<PowerCard>() ? Card.GetComponent<PowerCard>().Power : Card.GetComponent<BoostCard>() ? Card.GetComponent<BoostCard>().Boost : Card.GetComponent<WeatherCard>() ? Card.GetComponent<WeatherCard>().Damage : 0;
         set { if (Card.GetComponent<PowerCard>()) { Card.GetComponent<PowerCard>().Power = value; } else if (Card.GetComponent<BoostCard>()) { Card.GetComponent<BoostCard>().Boost = value; } else if (Card.GetComponent<WeatherCard>()) { Card.GetComponent<WeatherCard>().Damage = value; } }
     }
-    public PlayerReference Owner => Card.Owner == Judge.GetPlayer ? new PlayerReference("Self") : new PlayerReference("Other");
+    public Player Owner => Card.Owner;
     public CardReference(DraggableCard card) { Card = card; }
 }
 public class CardPowerSetting : IActionStatement
@@ -117,6 +117,23 @@ public class CardPowerSetting : IActionStatement
     public IReference CardReference;
     public int NewPower;
     public CardPowerSetting(IReference cardReference, int newPower) { if (cardReference.Type != VarType.Card) { throw new Exception("El tipo de parametro de un metodo de contexto con parametro carta no es carta"); } CardReference = cardReference; NewPower = newPower; }
+}
+public class CardPropertyReference : IReference
+{
+    public IReference CardReference;
+    public VarType Type { get; }
+    public string PropertyAccessed;
+    public CardPropertyReference(IReference cardReference, string propertyAccessed)
+    {
+        CardReference = cardReference;
+        PropertyAccessed = propertyAccessed;
+        switch (propertyAccessed)
+        {
+            case "Power": Type = VarType.Number; break;
+            case "Owner": Type = VarType.Player; break;
+            default: throw new NotImplementedException("Se ha intentado construir una referencia a la propiedad de carta: " + propertyAccessed);
+        }
+    }
 }
 public class ForEachCycle : IActionStatement
 {

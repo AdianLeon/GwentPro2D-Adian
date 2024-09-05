@@ -49,7 +49,12 @@ public class EffectActionParser : Parser
     private IActionStatement ParseVariableAction(Token varToken)
     {
         if (!scopes.ContainsVar(varToken.Text)) { Errors.Write("La variable: '" + varToken.Text + "' no ha sido declarada", varToken); hasFailed = true; return null; }
-        else if (scopes.GetValue(varToken.Text).Type == VarType.Container) { Next(-1); return new ContextParser().ContextContainerMethodParser((ContainerReference)scopes.GetValue(varToken.Text)); }
+        else if (scopes.GetValue(varToken.Text).Type == VarType.Container)
+        {
+            Next(-1); INode hopefullyActionStatement = new ContextParser().ContextContainerMethodParser((ContainerReference)scopes.GetValue(varToken.Text));
+            if (hopefullyActionStatement is IActionStatement) { return (IActionStatement)hopefullyActionStatement; }
+            else { Errors.Write("Se esperaba una accion a realizar sobre la variable '" + varToken.Text + "'", varToken); hasFailed = true; return null; }
+        }
         else if (scopes.GetValue(varToken.Text).Type == VarType.Card) { return ParseCardPowerSetting(varToken); }
         else { Errors.Write("El tipo de variable de '" + varToken.Text + "' no admite ningun operador '.'", Current); hasFailed = true; return null; }
     }
@@ -71,11 +76,25 @@ public class EffectActionParser : Parser
         }
         else if (Current.Is(TokenType.identifier))
         {
-            if (scopes.ContainsVar(Current.Text)) { varDeclaration = new VariableDeclaration(varToken.Text, new VariableReference(Current.Text, scopes.GetValue(Current.Text).Type)); scopes.AddNewVar(varDeclaration); }
+            if (scopes.ContainsVar(Current.Text))
+            {
+                if (Peek().Is(".") && scopes.GetValue(Current.Text).Type == VarType.Card)
+                {
+                    VariableReference cardReference = new VariableReference(Current.Text, VarType.Card);
+                    Next(); varDeclaration = new VariableDeclaration(varToken.Text, ParseCardProperty(cardReference));
+                    scopes.AddNewVar(varDeclaration);
+                }
+                else { varDeclaration = new VariableDeclaration(varToken.Text, new VariableReference(Current.Text, scopes.GetValue(Current.Text).Type)); scopes.AddNewVar(varDeclaration); }
+            }
             else { Errors.Write("El valor asignado a la variable '" + varToken.Text + "' es una referencia a otra variable '" + Current.Text + "' la cual no existe en este contexto", Current); hasFailed = true; return null; }
         }
         else { Errors.Write("No se pudo asignar a la variable '" + varToken.Text + "' el valor '" + Current.Text + "'", Current); hasFailed = true; return null; }
         return varDeclaration;
+    }
+    protected CardPropertyReference ParseCardProperty(IReference cardReference)
+    {
+        if (Next().Is("Owner")) { return new CardPropertyReference(cardReference, Current.Text); }
+        else { Errors.Write("No existe una propiedad de carta definida como '" + Current.Text + "'", Current); hasFailed = true; return null; }
     }
     private ForEachCycle ParseForEachCycle()
     {

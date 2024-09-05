@@ -5,6 +5,6 @@ card{
 	Faction: "Northern Realms",
 	Range:["Melee"],
 	Power: 30,
-	OnActivation: [{Effect: "ShufflePlayerEffect"}],
+	OnActivation: [{Effect: "TestingEffect"}],
 	TotalCopies:10
 }

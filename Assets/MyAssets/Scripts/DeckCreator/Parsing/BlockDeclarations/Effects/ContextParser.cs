@@ -27,17 +27,14 @@ public class ContextParser : EffectActionParser
             if (Next().Is("context")) { hopefullyPlayerReference = Parse(); }
             else if (Current.Is(TokenType.identifier))
             {
-                if (scopes.ContainsVar(Current.Text)) { hopefullyPlayerReference = new VariableReference(Current.Text, scopes.GetValue(Current.Text).Type); }
+                if (scopes.ContainsVar(Current.Text) && scopes.GetValue(Current.Text).Type == VarType.Player) { hopefullyPlayerReference = new VariableReference(Current.Text, scopes.GetValue(Current.Text).Type); }
                 else { Errors.Write("La variable: '" + Current.Text + "' no existe en este contexto", Current); hasFailed = true; return null; }
             }
             else { hopefullyPlayerReference = null; }
             if (hopefullyPlayerReference is IReference && (hopefullyPlayerReference as IReference).Type == VarType.Player)
             {
-                while (hopefullyPlayerReference is VariableReference) { hopefullyPlayerReference = scopes.GetValue((hopefullyPlayerReference as VariableReference).VarName); }
-                if (hopefullyPlayerReference is not PlayerReference) { throw new System.Exception("Las referencias no apuntaron a un jugador valido"); }
-                PlayerReference player = (PlayerReference)hopefullyPlayerReference;
+                container = new ContainerReference(containerName, (IReference)hopefullyPlayerReference);
                 if (!Next().Is(")", true)) { hasFailed = true; return null; }
-                container = new ContainerReference(containerName, player);
             }
             else { Errors.Write("Se esperaba una referencia a algun jugador", Current); hasFailed = true; return null; }
         }
@@ -46,7 +43,7 @@ public class ContextParser : EffectActionParser
         if (Peek().Is(".")) { return ContextContainerMethodParser(container); }
         return container;
     }
-    public IActionStatement ContextContainerMethodParser(ContainerReference container)
+    public INode ContextContainerMethodParser(ContainerReference container)
     {
         if (!Next().Is(".", true)) { hasFailed = true; return null; }
 
@@ -54,7 +51,7 @@ public class ContextParser : EffectActionParser
         {
             if (!Next().Is("(", true) || !Next().Is(")", true)) { hasFailed = true; return null; }
             if (Peek(-2).Is("Shuffle")) { return new ContextShuffleMethod(container); }
-            else if (Peek(-2).Is("Pop")) { return new ContextPopMethod(container); }
+            else if (Peek(-2).Is("Pop")) { if (Peek().Is(".")) { Next(); return ParseCardProperty(new ContextPopMethod(container)); } return new ContextPopMethod(container); }
             else { throw new NotImplementedException(); }
         }
         else if (Current.Is("Push") || Current.Is("SendBottom") || Current.Is("Remove"))

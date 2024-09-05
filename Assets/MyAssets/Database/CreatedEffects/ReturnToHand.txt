@@ -1,11 +1,11 @@
 effect {
-	Name: "ReturnToDeck",
+	Name: "ReturnToHand",
 	Action: (targets, context) => {
 		for target in targets {
 			owner = target.Owner;
-			deck = context.DeckOfPlayer(owner);
-			deck.Push(target);
-			deck.Shuffle();
+			hand = context.HandOfPlayer(owner);
+			hand.Push(target);
+			hand.Shuffle();
 			context.Board.Remove(target);
 		};
 	}

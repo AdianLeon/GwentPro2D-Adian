@@ -20134,7 +20134,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Modificar Deck
+  m_text: 'Eliminar Deck
 
 '
   m_isRightToLeft: 0

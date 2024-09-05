@@ -1,11 +1,11 @@
 card{
-	Description:"Deja sin poder a todas las cartas jugadas en el campo",
+	Description:"Devuelve a las manos de los duenos todas las cartas jugadas",
 	Type: "Lider",
 	Name: "Thor",
 	Faction: "Northern Realms",
 	OnActivation: [
 		{
-			Effect: "Silence",
+			Effect: "ReturnToHand",
 			Selector:{
 				Source:"board"
 			}
