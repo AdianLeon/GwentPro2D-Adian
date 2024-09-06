@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using UnityEngine;
+using Unity.VisualScripting;
 
 public interface IExpression<ReturnType> : IReference { public ReturnType Evaluate(); }
 public abstract class BinaryExpression<MemberType, ReturnType> : IExpression<ReturnType>
@@ -11,15 +8,17 @@ public abstract class BinaryExpression<MemberType, ReturnType> : IExpression<Ret
     public IExpression<MemberType> Left; public Token Operator; public IExpression<MemberType> Right;
     protected BinaryExpression(IExpression<MemberType> left, Token op, IExpression<MemberType> right) { Left = left; Operator = op; Right = right; }
     public abstract ReturnType Evaluate();
+    public override string ToString() => Evaluate().ToString();
 }
 
 //Aritmeticas
 public class NumberExpression : IExpression<int>
 {
     public VarType Type => VarType.Number;
-    private int Value;
-    public int Evaluate() => Value;
-    public NumberExpression(string number) { Value = int.Parse(number); }
+    private int value;
+    public int Evaluate() => value;
+    public NumberExpression(string number) { value = int.Parse(number); }
+    public override string ToString() => Evaluate().ToString();
 }
 public class ArithmeticExpression : BinaryExpression<int, int>
 {
@@ -27,7 +26,6 @@ public class ArithmeticExpression : BinaryExpression<int, int>
     public ArithmeticExpression(IExpression<int> left, Token op, IExpression<int> right) : base(left, op, right) { }
     public override int Evaluate()
     {
-        var type = Type;
         int left = Left.Evaluate(); int right = Right.Evaluate();
         switch (Operator.Text)
         {
@@ -42,6 +40,14 @@ public class ArithmeticExpression : BinaryExpression<int, int>
 }
 
 //Booleanas
+public class BooleanValueExpression : IExpression<bool>
+{
+    public VarType Type => VarType.Boolean;
+    private bool value;
+    public bool Evaluate() => value;
+    public BooleanValueExpression(string boolean) { value = bool.Parse(boolean); }
+    public override string ToString() => Evaluate().ToString();
+}
 public class BooleanExpression : BinaryExpression<bool, bool>
 {
     public override VarType Type => VarType.Boolean;
@@ -59,10 +65,18 @@ public class BooleanExpression : BinaryExpression<bool, bool>
 }
 
 //Comparacion
-public class ComparationExpression : BinaryExpression<IComparable, bool>
+public class ComparisonValueExpression : IExpression<IComparable>
+{
+    public VarType Type => VarType.Boolean;
+    private IComparable value;
+    public IComparable Evaluate() => value;
+    public ComparisonValueExpression(string number) { value = int.Parse(number); }
+    public override string ToString() => Evaluate().ToString();
+}
+public class ComparisonExpression : BinaryExpression<IComparable, bool>
 {
     public override VarType Type => VarType.Boolean;
-    public ComparationExpression(IExpression<IComparable> left, Token op, IExpression<IComparable> right) : base(left, op, right) { }
+    public ComparisonExpression(IExpression<IComparable> left, Token op, IExpression<IComparable> right) : base(left, op, right) { }
     public override bool Evaluate()
     {
         IComparable left = Left.Evaluate(); IComparable right = Right.Evaluate();
@@ -80,6 +94,14 @@ public class ComparationExpression : BinaryExpression<IComparable, bool>
 }
 
 //String
+public class StringValueExpression : IExpression<string>
+{
+    public VarType Type => VarType.String;
+    private string value;
+    public string Evaluate() => value;
+    public StringValueExpression(string str) { value = str; }
+    public override string ToString() => Evaluate();
+}
 public class StringExpression : BinaryExpression<string, string>
 {
     public override VarType Type => VarType.String;

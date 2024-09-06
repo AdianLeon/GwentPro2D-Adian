@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using TMPro;
+using UnityEditor;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class ModifyDeckFunctions : MonoBehaviour
@@ -23,7 +25,7 @@ public class ModifyDeckFunctions : MonoBehaviour
         if (GetText(cardsChoice) == "Todas")
         {
             if (GetText(decksChoice) == "Todas") { Errors.PureWrite("Se intentaron borrar todas las cartas del juego"); /*Directory.GetFiles(Application.dataPath + "/MyAssets/Database/Decks/", "*.txt", SearchOption.AllDirectories).ForEach(address => File.Delete(address));*/ }
-            else if (GetText(decksChoice) != "Ninguna") { Errors.PureWrite("Se intento borrar todas las cartas del deck: " + GetText(decksChoice));/*Directory.GetFiles(Application.dataPath + "/MyAssets/Database/Decks/" + GetText(decksChoice) + "/", "*.txt").ForEach(address => File.Delete(address));*/ }
+            else if (GetText(decksChoice) != "Ninguna") { File.Delete(Application.dataPath + "/MyAssets/Database/Decks/" + GetText(decksChoice) + ".meta"); Directory.Delete(Application.dataPath + "/MyAssets/Database/Decks/" + GetText(decksChoice), true); AssetDatabase.Refresh(); }
         }
         else if (GetText(cardsChoice) != "Ninguna")
         {

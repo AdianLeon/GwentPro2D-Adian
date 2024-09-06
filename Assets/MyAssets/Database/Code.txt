@@ -1,8 +1,8 @@
 card{
 	Description:"Roba una carta jugada del enemigo y la coloca en la mano propia",
-	Type: "Plata",
-	Name: "Matumbo",
-	Faction: "Northern Realms",
+	Type: "Pla"@"ta",
+	Name: "Ma"@"tum"@"bo",
+	Faction: "Northern"@@"Realms",
 	Range:["Melee","Ranged","Siege"],
 	Power: (2^4)*2/3+6-5*4+1,
 	OnActivation: [{Effect: "EnemyFieldStealEffect"}],

@@ -5,16 +5,6 @@ using UnityEngine;
 
 public class CardParser : Parser
 {
-    private Dictionary<string, string> cardTypes = new Dictionary<string, string>()
-    {
-        {"Oro","GoldCard"},
-        {"Plata","SilverCard"},
-        {"Clima","WeatherCard"},
-        {"Despeje","ClearWeatherCard"},
-        {"Aumento","BoostCard"},
-        {"Senuelo","BaitCard"},
-        {"Lider","LeaderCard"}
-    };
     public static CardDeclaration ProcessCode(string code)
     {
         StartParsing(Lexer.TokenizeCode(code));
@@ -25,11 +15,11 @@ public class CardParser : Parser
     public override INode ParseTokens()
     {
         HashSet<string> propertiesToDeclare = new HashSet<string> { "Type", "Name", "Faction" };
-        string type = "";
-        string name = "";
-        string description = "";
-        int totalCopies = 1;
-        string faction = "";
+        IExpression<string> type = new StringValueExpression("");
+        IExpression<string> name = new StringValueExpression("");
+        IExpression<string> description = new StringValueExpression("");
+        IExpression<int> totalCopies = new NumberExpression("1");
+        IExpression<string> faction = new StringValueExpression("");
         IExpression<int> power = new NumberExpression("0");
         UnitCardZone range = UnitCardZone.None;
         OnActivation onActivation = null;
@@ -44,42 +34,48 @@ public class CardParser : Parser
             switch (key.Text)
             {
                 case "Description":
-                    if (description != "") { Errors.Write("La propiedad 'Description' ya ha sido declarada", key); hasFailed = true; return null; }
+                    if (description.Evaluate() != "") { Errors.Write("La propiedad 'Description' ya ha sido declarada", key); hasFailed = true; return null; }
                     if (!Current.Is(TokenType.literal, true)) { hasFailed = true; return null; }
-                    description = Current.Text;
+                    description = (IExpression<string>)new StringExpressionsParser().ParseTokens(); Next(-1);
+                    if (hasFailed) { return null; }
                     break;
                 case "TotalCopies":
-                    if (totalCopies > 1) { Errors.Write("La propiedad 'ClonesAmount' ya ha sido declarada", key); hasFailed = true; return null; }
+                    if (totalCopies.Evaluate() > 1) { Errors.Write("La propiedad 'ClonesAmount' ya ha sido declarada", key); hasFailed = true; return null; }
                     if (!Current.Is(TokenType.number, true)) { hasFailed = true; return null; }
-                    if (!int.TryParse(Current.Text, out totalCopies) || totalCopies < 2) { Errors.Write("El numero asociado a 'TotalCopies' no es valido. Intente con un numero entre 2 y " + int.MaxValue, Current); }
+                    totalCopies = (IExpression<int>)new ArithmeticExpressionsParser().ParseTokens(); Next(-1);
+                    if (totalCopies.Evaluate() < 2) { Errors.Write("El numero asociado a 'TotalCopies' no es valido. Intente con un numero entre 2 y " + int.MaxValue, Current); }
+                    if (hasFailed) { return null; }
                     break;
                 case "Type":
                     if (!propertiesToDeclare.Contains("Type")) { Errors.Write("La propiedad 'Type' ya ha sido declarada", key); hasFailed = true; return null; }
                     if (!Current.Is(TokenType.literal, true)) { hasFailed = true; return null; }
-                    if (!cardTypes.ContainsKey(Current.Text)) { Errors.Write("El tipo de carta '" + Current.Text + "' no esta definido. Los tipos definidos son: 'Oro', 'Plata', 'Clima', 'Despeje', 'Aumento', 'Senuelo' o 'Lider'"); hasFailed = true; return null; }
-                    type = cardTypes[Current.Text];
-                    if (Current.Text == "Oro" || Current.Text == "Plata" || Current.Text == "Clima" || Current.Text == "Aumento") { propertiesToDeclare.Add("Power"); }
-                    if (Current.Text == "Oro" || Current.Text == "Plata") { propertiesToDeclare.Add("Range"); }
+                    type = (IExpression<string>)new StringExpressionsParser().ParseTokens(); Next(-1);
+                    if (hasFailed) { return null; }
+                    HashSet<string> allTypes = new HashSet<string> { "Oro", "Plata", "Clima", "Despeje", "Aumento", "Senuelo", "Lider" };
+                    if (!allTypes.Contains(type.Evaluate())) { Errors.Write("El tipo de carta '" + Current.Text + "' no esta definido. Los tipos definidos son: 'Oro', 'Plata', 'Clima', 'Despeje', 'Aumento', 'Senuelo' o 'Lider'"); hasFailed = true; return null; }
+                    string evaluatedType = type.Evaluate();
+                    if (evaluatedType == "Oro" || evaluatedType == "Plata" || evaluatedType == "Clima" || evaluatedType == "Aumento") { propertiesToDeclare.Add("Power"); }
+                    if (evaluatedType == "Oro" || evaluatedType == "Plata") { propertiesToDeclare.Add("Range"); }
                     propertiesToDeclare.Remove("Type");
                     break;
                 case "Name":
                     if (!propertiesToDeclare.Contains("Name")) { Errors.Write("La propiedad 'Name' ya ha sido declarada", key); hasFailed = true; return null; }
                     if (!Current.Is(TokenType.literal, true)) { hasFailed = true; return null; }
-                    name = Current.Text;
+                    name = (IExpression<string>)new StringExpressionsParser().ParseTokens(); Next(-1);
+                    if (hasFailed) { return null; }
                     propertiesToDeclare.Remove("Name");
                     break;
                 case "Faction":
                     if (!propertiesToDeclare.Contains("Faction")) { Errors.Write("La propiedad 'Faction' ya ha sido declarada", key); hasFailed = true; return null; }
                     if (!Current.Is(TokenType.literal, true)) { hasFailed = true; return null; }
-                    faction = Current.Text;
+                    faction = (IExpression<string>)new StringExpressionsParser().ParseTokens(); Next(-1);
+                    if (hasFailed) { return null; }
                     propertiesToDeclare.Remove("Faction");
                     break;
                 case "Power":
                     if (!propertiesToDeclare.Contains("Power")) { Errors.Write("No se puede declarar la propiedad 'Power'. Solo se debe declarar una vez y en caso de que la propiedad 'Type' previamente declarada sea Oro, Plata, Clima o Aumento", key); hasFailed = true; return null; }
-                    // if (!Current.Is(TokenType.number, true)) { hasFailed = true; return null; }
                     power = (IExpression<int>)new ArithmeticExpressionsParser().ParseTokens(); Next(-1);
                     if (hasFailed) { return null; }
-                    // if (!int.TryParse(Current.Text, out power)) { Errors.Write("El numero asociado a 'Power' fallo en pasarse al tipo 'int'. Intente con un numero entre " + int.MinValue + " y " + int.MaxValue, Current); }
                     propertiesToDeclare.Remove("Power");
                     break;
                 case "Range":

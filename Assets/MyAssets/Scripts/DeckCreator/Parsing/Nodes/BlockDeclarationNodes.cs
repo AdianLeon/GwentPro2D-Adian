@@ -8,19 +8,19 @@ public class FullDeclaration : INode
 }
 public class BlockDeclaration : INode
 {
-    public string Name;
+    public IExpression<string> Name;
 }
 public class CardDeclaration : BlockDeclaration
 {
-    public string Type;
-    public string Faction;
-    public string Description;
-    public int TotalCopies;
+    public IExpression<string> Type;
+    public IExpression<string> Faction;
+    public IExpression<string> Description;
+    public IExpression<int> TotalCopies;
     public IExpression<int> Power;
     public UnitCardZone Range;
     public OnActivation OnActivation;
 
-    public CardDeclaration(string name, string type, string description, int totalCopies, string faction, IExpression<int> power, UnitCardZone range, OnActivation onActivation)
+    public CardDeclaration(IExpression<string> name, IExpression<string> type, IExpression<string> description, IExpression<int> totalCopies, IExpression<string> faction, IExpression<int> power, UnitCardZone range, OnActivation onActivation)
     {
         Name = name;
         Type = type;
@@ -35,5 +35,5 @@ public class CardDeclaration : BlockDeclaration
 public class EffectDeclaration : BlockDeclaration
 {
     public EffectAction EffectAction;
-    public EffectDeclaration(string name, EffectAction effectAction) { Name = name; EffectAction = effectAction; }
+    public EffectDeclaration(IExpression<string> name, EffectAction effectAction) { Name = name; EffectAction = effectAction; }
 }

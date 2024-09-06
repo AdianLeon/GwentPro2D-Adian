@@ -3,7 +3,6 @@ using UnityEngine;
 using System.Reflection;
 using System;
 using System.Linq;
-using UnityEditor.PackageManager;
 //
 public class OnActivationParser : Parser
 {
@@ -58,7 +57,7 @@ public class OnActivationParser : Parser
                             else if (Current.Is("Single"))
                             {
                                 if (!Next().Is(":", true)) { hasFailed = true; return null; }
-                                if (!Next().Is("true") && !Current.Is("false")) { Errors.Write("Se esperaba 'true' o 'false' en vez de " + Current.Text, Current); hasFailed = true; return null; }
+                                if (!Next().Is(TokenType.boolean)) { Errors.Write("Se esperaba 'true' o 'false' en vez de " + Current.Text, Current); hasFailed = true; return null; }
                                 single = bool.Parse(Current.Text);
                             }
                             else { Errors.Write("Se esperaba alguna de las propiedades del 'Selector': 'Source', 'Single' o 'Predicate'", Current); hasFailed = true; return null; }

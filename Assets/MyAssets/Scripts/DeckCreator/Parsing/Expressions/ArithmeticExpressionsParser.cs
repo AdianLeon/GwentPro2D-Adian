@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class ArithmeticExpressionsParser : Parser
 {//(2+4)*2/3+6-5*4+1==-9

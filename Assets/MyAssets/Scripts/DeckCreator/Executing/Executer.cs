@@ -26,7 +26,7 @@ public class Executer : MonoBehaviour
         {//Para cada uno de los archivos con extension json
             string codeEffect = File.ReadAllText(address);//Lee el archivo
             EffectDeclaration effectDeclaration = EffectParser.ProcessCode(codeEffect);//Convierte el string en json a un objeto 
-            if (effectDeclaration != null) { createdEffects.Add(effectDeclaration.Name, effectDeclaration); }
+            if (effectDeclaration != null) { createdEffects.Add(effectDeclaration.Name.Evaluate(), effectDeclaration); }
             else { Errors.Write("No se pudo procesar el texto del efecto en: " + address); failedAtLoadingAnyEffect = true; }
         }
     }

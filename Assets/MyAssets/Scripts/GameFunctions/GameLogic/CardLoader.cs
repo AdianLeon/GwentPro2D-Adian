@@ -10,6 +10,16 @@ public class CardLoader : MonoBehaviour
     public GameObject CardPrefab;//Referencia al prefab CardPrefab
     private static bool failedAtInterpretingAnyCard = false;
     private static int instantiatedCardsCount;//Cuenta de las cartas instanciadas
+    private Dictionary<string, string> cardTypes = new Dictionary<string, string>()
+    {
+        {"Oro","GoldCard"},
+        {"Plata","SilverCard"},
+        {"Clima","WeatherCard"},
+        {"Despeje","ClearWeatherCard"},
+        {"Aumento","BoostCard"},
+        {"Senuelo","BaitCard"},
+        {"Lider","LeaderCard"}
+    };
     private static IEnumerable<string> allLoadedEffects;
     public void LoadCards(IEnumerable<string> loadedEffects)
     {
@@ -28,7 +38,7 @@ public class CardLoader : MonoBehaviour
         {//Para cada uno de los archivos con extension json
             string codeCard = File.ReadAllText(address);//Lee el archivo
             CardDeclaration cardDeclaration = CardParser.ProcessCode(codeCard);//Convierte el string en json a un objeto CardSave
-            if (cardDeclaration != null) { for (int i = cardDeclaration.TotalCopies; i > 0; i--) { ImportCardTo(cardDeclaration, deckPlace); } }
+            if (cardDeclaration != null) { for (int i = cardDeclaration.TotalCopies.Evaluate(); i > 0; i--) { ImportCardTo(cardDeclaration, deckPlace); } }
             else { Errors.Write("No se pudo procesar el texto de la carta en: " + address); failedAtInterpretingAnyCard = true; }
         }
         errorScreen.SetActive(Executer.FailedAtLoadingAnyEffect || failedAtInterpretingAnyCard);
@@ -39,23 +49,24 @@ public class CardLoader : MonoBehaviour
     {
         GameObject newCard;
         Player player = deckPlace.Field();
+        string cardType = cardTypes[cardDeclaration.Type.Evaluate()];
         //Instanciando la carta
         newCard = Instantiate(CardPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         //Si la carta es lider se envia a la zona de lideres, si no se envia a el contenedor de cartas
-        if (cardDeclaration.Type == "LeaderCard") { newCard.transform.SetParent(GameObject.Find("LeaderZone" + player).transform); }
+        if (cardType == "Lider") { newCard.transform.SetParent(GameObject.Find("LeaderZone" + player).transform); }
         else { newCard.transform.SetParent(deckPlace.transform); }
         instantiatedCardsCount++;
         newCard.name = cardDeclaration.Name + "(" + instantiatedCardsCount + ")";//Se le cambia el nombre a uno que sera unico: el nombre de la carta junto con la cantidad de cartas instanciadas
 
         //Anadiendo scripts
-        newCard.AddComponent(Type.GetType(cardDeclaration.Type));
+        newCard.AddComponent(Type.GetType(cardType));
         newCard.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);//Resetea la escala porque cuando se instancia esta desproporcional al resto de objetos
 
         //Card Properties
-        newCard.GetComponent<Card>().Faction = cardDeclaration.Faction;
-        newCard.GetComponent<Card>().CardName = cardDeclaration.Name;
+        newCard.GetComponent<Card>().Faction = cardDeclaration.Faction.Evaluate();
+        newCard.GetComponent<Card>().CardName = cardDeclaration.Name.Evaluate();
         newCard.GetComponent<Card>().Owner = player;
-        newCard.GetComponent<Card>().Description = cardDeclaration.Description;
+        newCard.GetComponent<Card>().Description = cardDeclaration.Description.Evaluate();
 
         //Sprites
         newCard.GetComponent<UnityEngine.UI.Image>().sprite = Resources.Load<Sprite>(cardDeclaration.Faction + "/" + cardDeclaration.Name);//Carga el sprite en Assets/Resources/sourceImage en la carta

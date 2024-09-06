@@ -81,6 +81,8 @@ public static class LexerUtils
         {"Name",TokenType.assignment},{"Params",TokenType.assignment},{"Action",TokenType.assignment},{"Type",TokenType.assignment},{"Effect",TokenType.assignment},{"Description",TokenType.assignment},
         {"Selector",TokenType.assignment},{"Source",TokenType.assignment},{"Single",TokenType.assignment},{"Predicate",TokenType.assignment},{"PostAction",TokenType.assignment},
         {"Faction",TokenType.assignment},{"Power",TokenType.assignment},{"Range",TokenType.assignment},{"OnActivation",TokenType.assignment},{"TotalCopies",TokenType.assignment},
+        //Bool
+        {"true",TokenType.boolean},{"false",TokenType.boolean},
         //Cycle
         {"for",TokenType.cycle},{"while",TokenType.cycle},{"in",TokenType.cycle},
         //VariableTypes

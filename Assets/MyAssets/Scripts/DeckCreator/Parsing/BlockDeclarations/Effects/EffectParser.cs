@@ -14,7 +14,7 @@ public class EffectParser : Parser
     public override INode ParseTokens()
     {
         HashSet<string> propertiesToDeclare = new HashSet<string> { "Name", "Action" };
-        string name = "";
+        IExpression<string> name = new StringValueExpression("");
         EffectAction effectAction = null;
         if (!Next().Is("{", true)) { hasFailed = true; return null; }
         bool expectingDeclaration = true;
@@ -29,7 +29,8 @@ public class EffectParser : Parser
                 case "Name":
                     if (!propertiesToDeclare.Contains("Name")) { Errors.Write("La propiedad 'Name' ya ha sido declarada", key); hasFailed = true; return null; }
                     if (!Current.Is(TokenType.literal, true)) { hasFailed = true; return null; }
-                    name = Current.Text;
+                    name = (IExpression<string>)new StringExpressionsParser().ParseTokens(); Next(-1);
+                    if (hasFailed) { return null; }
                     propertiesToDeclare.Remove("Name");
                     break;
                 case "Action":
