@@ -9,7 +9,7 @@ public static class ContextUtils
     private static string GetContainerName(ContainerReference container) => container.ContainerName + GetPlayer(container.Owner);
     private static string GetPlayer(IReference owner)
     {
-        if (owner is VariableReference) { return GetPlayer(Executer.scopes.GetValue((owner as VariableReference).VarName)); }
+        if (owner is VariableReference) { return GetPlayer(((VariableReference)owner).VarName.ScopeValue()); }
         if (owner is PlayerReference)
         {
             string player = "";
@@ -19,22 +19,14 @@ public static class ContextUtils
         }
         else if (owner is CardPropertyReference)
         {
-            IReference reference = ((CardPropertyReference)owner).CardReference;
-            while (reference is VariableReference) { reference = Executer.scopes.GetValue(((VariableReference)reference).VarName); }
+            IReference reference = ((CardPropertyReference)owner).CardReference.DeReference();
             if (reference is CardReference) { return ((CardReference)reference).Owner.ToString(); }
             else if (reference is ContextPopMethod) { return new CardReference(PopContainer((ContextPopMethod)reference)).Owner.ToString(); }
             else { throw new NotImplementedException("Evaluacion no implementada"); }
         }
         else { throw new NotImplementedException("Evaluacion de posible owner no implementado"); }
     }
-    public static void AssignMethod(ContextMethod method)
-    {
-        if (method is ContextShuffleMethod) { ShuffleContainer((ContextShuffleMethod)method); }
-        else if (method is ContextPopMethod) { PopContainer((ContextPopMethod)method); }
-        else if (method is ContextCardParameterMethod) { DoActionForCardParameterMethod((ContextCardParameterMethod)method); }
-        else { throw new NotImplementedException("El metodo no esta definido como ejecutable"); }
-    }
-    private static void ShuffleContainer(ContextShuffleMethod shuffleMethod)
+    public static void ShuffleContainer(ContextShuffleMethod shuffleMethod)
     {
         string containerName = GetContainerName(shuffleMethod.Container);
         Dictionary<string, Action> assigner = new Dictionary<string, Action>
@@ -55,7 +47,7 @@ public static class ContextUtils
         if (gameObject.transform.childCount == 0) { return; }
         foreach (Transform child in gameObject.transform) { child.SetSiblingIndex(UnityEngine.Random.Range(0, gameObject.transform.childCount)); }
     }
-    private static DraggableCard PopContainer(ContextPopMethod contextPopMethod)
+    public static DraggableCard PopContainer(ContextPopMethod contextPopMethod)
     {
         DraggableCard card;
         string containerName = GetContainerName(contextPopMethod.Container);
@@ -73,10 +65,9 @@ public static class ContextUtils
         else { card = assigner[containerName].Last(); card.Disappear(); }
         return card;
     }
-    private static void DoActionForCardParameterMethod(ContextCardParameterMethod method)
+    public static void DoActionForCardParameterMethod(ContextCardParameterMethod method)
     {
-        IReference cardReference = method.Card;
-        while (cardReference is VariableReference) { cardReference = Executer.scopes.GetValue((cardReference as VariableReference).VarName); }
+        IReference cardReference = method.Card.DeReference();
         DraggableCard cardToPerformActionOn;
         if (cardReference is ContextPopMethod) { cardToPerformActionOn = PopContainer((ContextPopMethod)cardReference); }
         else if (cardReference is CardReference) { cardToPerformActionOn = ((CardReference)cardReference).Card; }

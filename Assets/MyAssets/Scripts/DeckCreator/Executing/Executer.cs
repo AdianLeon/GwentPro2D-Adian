@@ -11,7 +11,6 @@ public class Executer : MonoBehaviour
     public static bool FailedAtLoadingAnyEffect => failedAtLoadingAnyEffect;
     private static bool failedAtLoadingAnyEffect;
     private static Dictionary<string, EffectDeclaration> createdEffects;
-    public static VariableScopes scopes;
     public static void LoadEffectsAndCards()
     {
         failedAtLoadingAnyEffect = false;
@@ -55,55 +54,10 @@ public class Executer : MonoBehaviour
     }
     private static void ExecuteEffect(CreatedEffectCall effectCall, List<DraggableCard> targets)
     {
-        scopes = new VariableScopes();
-        scopes.AddNewScope();
-        scopes.AddNewVar("targets", new CardReferenceList(targets));
-        ProcessActionStatements(createdEffects[effectCall.EffectName.Evaluate()].EffectAction.ActionStatements);
+        VariableScopes.Reset();
+        VariableScopes.AddNewVar("targets", new CardReferenceList(targets));
+        createdEffects[effectCall.EffectName.Evaluate()].EffectAction.ActionStatements.ForEach(action => action.PerformAction());
     }
-    private static void ProcessActionStatements(IEnumerable<IActionStatement> actionStatements)
-    {
-        foreach (IActionStatement actionStatement in actionStatements)
-        {
-            if (actionStatement is VariableDeclaration) { scopes.AddNewVar((VariableDeclaration)actionStatement); }
-            else if (actionStatement is PrintAction) { UserRead.Write((actionStatement as PrintAction).Message.Evaluate()); }
-            else if (actionStatement is ContextMethod) { ContextUtils.AssignMethod((ContextMethod)actionStatement); }
-            else if (actionStatement is CardPowerSetting) { SetPower((CardPowerSetting)actionStatement); }
-            else if (actionStatement is ForEachCycle) { DoForEachCycle((ForEachCycle)actionStatement); }
-            else { throw new Exception("La accion no esta definida"); }
-        }
-    }
-
-    private static void DoForEachCycle(ForEachCycle forEachCycle)
-    {
-        List<DraggableCard> cards;
-        if (forEachCycle.CardReferences is VariableReference)
-        {
-            IReference reference = forEachCycle.CardReferences;
-            while (reference is VariableReference) { reference = scopes.GetValue(((VariableReference)reference).VarName); }
-            if (reference is not CardReferenceList) { throw new Exception("La variable llamada: '" + ((VariableReference)forEachCycle.CardReferences).VarName + "' no contiene una CardReferenceList"); }
-            cards = ((CardReferenceList)reference).Cards;
-        }
-        else { throw new NotImplementedException("No se ha anadido la forma de evaluar demandada"); }
-        scopes.AddNewScope();
-        foreach (DraggableCard card in cards)
-        {
-            scopes.AddNewVar(forEachCycle.IteratorVarName, new CardReference(card));
-            ProcessActionStatements(forEachCycle.ActionStatements);
-        }
-        scopes.PopLastScope();
-    }
-
-    private static void SetPower(CardPowerSetting actionStatement)
-    {
-        IReference reference = actionStatement.CardReference;
-        Debug.Log("Antes del while");
-        while (reference is VariableReference) { Debug.Log("Obteniendo el valor de: " + ((VariableReference)reference).VarName); reference = scopes.GetValue(((VariableReference)reference).VarName); }
-        Debug.Log("Despues del while");
-        Debug.Log("reference is VarReference: " + (reference is VariableReference));
-        if (reference is CardReference) { ((CardReference)reference).Power = actionStatement.NewPower.Evaluate(); }
-        else { throw new Exception("La referencia no era hacia una carta"); }
-    }
-
     private static List<DraggableCard> SelectTargets(EffectSelector selector)
     {
         if (selector == null) { throw new Exception("El selector no existe"); }

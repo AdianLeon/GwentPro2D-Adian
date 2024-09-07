@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EffectActionParser : Parser
 {
-    protected static VariableScopes scopes;
     public override INode ParseTokens()
     {
         if (!Current.Is("(", true)) { hasFailed = true; }
@@ -17,9 +16,8 @@ public class EffectActionParser : Parser
         if (hasFailed) { return null; }
 
         EffectAction effectAction = new EffectAction();
-        scopes = new VariableScopes();
-        scopes.AddNewScope();
-        scopes.AddNewVar("targets", new FutureReference(VarType.CardList));
+        VariableScopes.Reset();
+        VariableScopes.AddNewVar("targets", new FutureReference(VarType.CardList));
         while (!Next().Is("}"))
         {
             effectAction.ActionStatements.Add(ActionStatementParser());
@@ -48,14 +46,14 @@ public class EffectActionParser : Parser
     }
     private IActionStatement ParseVariableAction(Token varToken)
     {
-        if (!scopes.ContainsVar(varToken.Text)) { Errors.Write("La variable: '" + varToken.Text + "' no ha sido declarada", varToken); hasFailed = true; return null; }
-        else if (scopes.GetValue(varToken.Text).Type == VarType.Container)
+        if (!VariableScopes.ContainsVar(varToken.Text)) { Errors.Write("La variable: '" + varToken.Text + "' no ha sido declarada", varToken); hasFailed = true; return null; }
+        else if (varToken.Text.ScopeValue().Type == VarType.Container)
         {
-            Next(-1); INode hopefullyActionStatement = new ContextParser().ContextContainerMethodParser((ContainerReference)scopes.GetValue(varToken.Text));
+            Next(-1); INode hopefullyActionStatement = new ContextParser().ContextContainerMethodParser((ContainerReference)varToken.Text.ScopeValue());
             if (hopefullyActionStatement is IActionStatement) { return (IActionStatement)hopefullyActionStatement; }
             else { Errors.Write("Se esperaba una accion a realizar sobre la variable '" + varToken.Text + "'", varToken); hasFailed = true; return null; }
         }
-        else if (scopes.GetValue(varToken.Text).Type == VarType.Card) { return ParseCardPowerSetting(varToken); }
+        else if (varToken.Text.ScopeValue().Type == VarType.Card) { return ParseCardPowerSetting(varToken); }
         else { Errors.Write("El tipo de variable de '" + varToken.Text + "' no admite ningun operador '.'", Current); hasFailed = true; return null; }
     }
     private IActionStatement ParseCardPowerSetting(Token varToken)
@@ -65,35 +63,35 @@ public class EffectActionParser : Parser
         Next();
         IExpression<int> newPower = (IExpression<int>)new ArithmeticExpressionsParser().ParseTokens();
         if (hasFailed) { return null; }
-        return new CardPowerSetting(new VariableReference(varToken.Text, scopes.GetValue(varToken.Text).Type), newPower);
+        return new CardPowerSetting(new VariableReference(varToken.Text, varToken.Text.ScopeValue().Type), newPower);
     }
     private VariableDeclaration ParseVariableDeclaration(Token varToken)
     {
         VariableDeclaration varDeclaration;
         if (Next().Is("context"))
         {
-            INode varValue = new ContextParser().Parse();
-            if (varValue is IReference) { varDeclaration = new VariableDeclaration(varToken.Text, (IReference)varValue); scopes.AddNewVar(varDeclaration); }
+            INode varValue = new ContextParser().ParseTokens();
+            if (varValue is IReference) { varDeclaration = new VariableDeclaration(varToken.Text, (IReference)varValue); VariableScopes.AddNewVar(varDeclaration); }
             else { Errors.Write("El valor asignado a la variable '" + varToken.Text + "' no es una referencia", varToken); hasFailed = true; return null; }
         }
         else if (Current.Is(TokenType.identifier))
         {
-            if (scopes.ContainsVar(Current.Text))
+            if (VariableScopes.ContainsVar(Current.Text))
             {
-                if (Peek().Is(".") && scopes.GetValue(Current.Text).Type == VarType.Card)
+                if (Peek().Is(".") && Current.Text.ScopeValue().Type == VarType.Card)
                 {
                     VariableReference cardReference = new VariableReference(Current.Text, VarType.Card);
                     Next(); varDeclaration = new VariableDeclaration(varToken.Text, ParseCardProperty(cardReference));
-                    scopes.AddNewVar(varDeclaration);
+                    VariableScopes.AddNewVar(varDeclaration);
                 }
-                else { varDeclaration = new VariableDeclaration(varToken.Text, new VariableReference(Current.Text, scopes.GetValue(Current.Text).Type)); scopes.AddNewVar(varDeclaration); }
+                else { varDeclaration = new VariableDeclaration(varToken.Text, new VariableReference(Current.Text, Current.Text.ScopeValue().Type)); VariableScopes.AddNewVar(varDeclaration); }
             }
             else { Errors.Write("El valor asignado a la variable '" + varToken.Text + "' es una referencia a otra variable '" + Current.Text + "' la cual no existe en este contexto", Current); hasFailed = true; return null; }
         }
         else { Errors.Write("No se pudo asignar a la variable '" + varToken.Text + "' el valor '" + Current.Text + "'", Current); hasFailed = true; return null; }
         return varDeclaration;
     }
-    protected CardPropertyReference ParseCardProperty(IReference cardReference)
+    public CardPropertyReference ParseCardProperty(IReference cardReference)
     {
         if (Next().Is("Owner")) { return new CardPropertyReference(cardReference, Current.Text); }
         else { Errors.Write("No existe una propiedad de carta definida como '" + Current.Text + "'", Current); hasFailed = true; return null; }
@@ -102,16 +100,16 @@ public class EffectActionParser : Parser
     {
         if (!Next().Is(TokenType.identifier, true)) { hasFailed = true; return null; }
         string iteratorVarName = Current.Text;
-        scopes.AddNewScope();
-        scopes.AddNewVar(iteratorVarName, new FutureReference(VarType.Card));
+        VariableScopes.AddNewScope();
+        VariableScopes.AddNewVar(iteratorVarName, new FutureReference(VarType.Card));
         if (!Next().Is("in", true)) { hasFailed = true; return null; }
         IReference cardReferenceList;
         if (Next().Is(TokenType.identifier))
         {
             string cardListName = Current.Text;
-            if (!scopes.ContainsVar(Current.Text)) { Errors.Write("La variable: '" + Current.Text + "' no existe en este contexto", Current); hasFailed = true; return null; }
-            IReference reference = scopes.GetValue(Current.Text);
-            while (reference is VariableReference) { reference = scopes.GetValue(((VariableReference)reference).VarName); }
+            if (!VariableScopes.ContainsVar(Current.Text)) { Errors.Write("La variable: '" + Current.Text + "' no existe en este contexto", Current); hasFailed = true; return null; }
+            IReference reference = Current.Text.ScopeValue();
+            while (reference is VariableReference) { reference = ((VariableReference)reference).VarName.ScopeValue(); }
             if (reference.Type != VarType.CardList  /*&& reference.Type is not VarType.Container*/) { Errors.Write("La variable: '" + Current.Text + "' no guarda una referencia a una lista de cartas", Current); hasFailed = true; return null; }
             cardReferenceList = new VariableReference(cardListName, VarType.CardList);
         }
@@ -124,12 +122,12 @@ public class EffectActionParser : Parser
             foreachStatements.Add(ActionStatementParser());
             if (hasFailed) { return null; }
         }
-        scopes.PopLastScope();
+        VariableScopes.PopLastScope();
         return new ForEachCycle(iteratorVarName, cardReferenceList, foreachStatements);
     }
     private IActionStatement ParseContextAction()
     {
-        INode hopefullyIActionStatement = new ContextParser().Parse();
+        INode hopefullyIActionStatement = new ContextParser().ParseTokens();
         if (hopefullyIActionStatement is IActionStatement) { return (IActionStatement)hopefullyIActionStatement; }
         else { Errors.Write("La declaracion no es una accion", Current); hasFailed = true; return null; }
     }

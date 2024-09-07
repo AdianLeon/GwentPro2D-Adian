@@ -1,8 +1,8 @@
 using System;
 
-public class ContextParser : EffectActionParser
+public class ContextParser : Parser
 {
-    public INode Parse()
+    public override INode ParseTokens()
     {//Parsea cualquier declaracion que sea de acceso al context
         if (!Current.Is("context", true)) { hasFailed = true; return null; }
         if (!Next().Is(".", true)) { hasFailed = true; return null; }
@@ -24,10 +24,10 @@ public class ContextParser : EffectActionParser
             if (!Next().Is("(", true)) { hasFailed = true; return null; }
             INode hopefullyPlayerReference;
 
-            if (Next().Is("context")) { hopefullyPlayerReference = Parse(); }
+            if (Next().Is("context")) { hopefullyPlayerReference = ParseTokens(); }
             else if (Current.Is(TokenType.identifier))
             {
-                if (scopes.ContainsVar(Current.Text) && scopes.GetValue(Current.Text).Type == VarType.Player) { hopefullyPlayerReference = new VariableReference(Current.Text, scopes.GetValue(Current.Text).Type); }
+                if (VariableScopes.ContainsVar(Current.Text) && Current.Text.ScopeValue().Type == VarType.Player) { hopefullyPlayerReference = new VariableReference(Current.Text, Current.Text.ScopeValue().Type); }
                 else { Errors.Write("La variable: '" + Current.Text + "' no existe en este contexto", Current); hasFailed = true; return null; }
             }
             else { hopefullyPlayerReference = null; }
@@ -51,7 +51,7 @@ public class ContextParser : EffectActionParser
         {
             if (!Next().Is("(", true) || !Next().Is(")", true)) { hasFailed = true; return null; }
             if (Peek(-2).Is("Shuffle")) { return new ContextShuffleMethod(container); }
-            else if (Peek(-2).Is("Pop")) { if (Peek().Is(".")) { Next(); return ParseCardProperty(new ContextPopMethod(container)); } return new ContextPopMethod(container); }
+            else if (Peek(-2).Is("Pop")) { if (Peek().Is(".")) { Next(); return new EffectActionParser().ParseCardProperty(new ContextPopMethod(container)); } return new ContextPopMethod(container); }
             else { throw new NotImplementedException(); }
         }
         else if (Current.Is("Push") || Current.Is("SendBottom") || Current.Is("Remove"))
@@ -63,10 +63,10 @@ public class ContextParser : EffectActionParser
             if (!Next().Is("(", true)) { hasFailed = true; return null; }
             IReference cardReference;
             INode hopefullyCardReference = null;
-            if (Next().Is("context")) { hopefullyCardReference = Parse(); }
+            if (Next().Is("context")) { hopefullyCardReference = ParseTokens(); }
             else if (Current.Is(TokenType.identifier))
             {
-                if (scopes.ContainsVar(Current.Text)) { hopefullyCardReference = new VariableReference(Current.Text, scopes.GetValue(Current.Text).Type); }
+                if (VariableScopes.ContainsVar(Current.Text)) { hopefullyCardReference = new VariableReference(Current.Text, Current.Text.ScopeValue().Type); }
                 else { Errors.Write("La variable: '" + Current.Text + "' no existe en este contexto", Current); hasFailed = true; return null; }
             }
             if (hopefullyCardReference is IReference && ((IReference)hopefullyCardReference).Type == VarType.Card) { cardReference = (IReference)hopefullyCardReference; }
