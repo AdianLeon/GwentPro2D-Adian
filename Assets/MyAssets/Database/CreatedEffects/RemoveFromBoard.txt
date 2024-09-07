@@ -1,8 +1,0 @@
-effect {
-	Name: "RemoveFromBoard",
-	Action: (targets, context) => {
-		for target in targets {
-			context.Board.Remove(target);
-		};
-	}
-}

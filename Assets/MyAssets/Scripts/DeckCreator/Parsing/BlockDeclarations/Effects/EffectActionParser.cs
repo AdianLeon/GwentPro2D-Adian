@@ -62,8 +62,10 @@ public class EffectActionParser : Parser
     {
         if (!Next().Is("Power")) { Errors.Write("La unica propiedad sobre la cual se puede realizar una accion es 'Power' y se intento acceder a: '" + Current.Text + "'"); hasFailed = true; return null; }
         if (!Next().Is("=")) { Errors.Write("Se esperaba token de asignacion '=' para modificar la propiedad 'Power'. Cualquier otro intento de acceso a propiedad de carta no es valido como accion"); hasFailed = true; return null; }
-        if (!Next().Is(TokenType.number, true)) { hasFailed = true; return null; }
-        return new CardPowerSetting(new VariableReference(varToken.Text, scopes.GetValue(varToken.Text).Type), int.Parse(Current.Text));
+        Next();
+        IExpression<int> newPower = (IExpression<int>)new ArithmeticExpressionsParser().ParseTokens();
+        if (hasFailed) { return null; }
+        return new CardPowerSetting(new VariableReference(varToken.Text, scopes.GetValue(varToken.Text).Type), newPower);
     }
     private VariableDeclaration ParseVariableDeclaration(Token varToken)
     {
@@ -135,9 +137,10 @@ public class EffectActionParser : Parser
     {
         PrintAction printAction;
         if (!Next().Is("(", true)) { hasFailed = true; return null; }
-        if (Next().Is(TokenType.literal)) { printAction = new PrintAction(Current.Text); }
-        // else if (Current.Is(TokenType.identifier)) { }
-        else { Errors.Write("Token inesperado: '" + Current.Text + "'. Se esperaba 'literal'", Current); hasFailed = true; return null; }
+        Next();
+        IExpression<string> message = (IExpression<string>)new StringExpressionsParser().ParseTokens();
+        if (hasFailed) { return null; }
+        printAction = new PrintAction(message);
         if (!Next().Is(")", true)) { hasFailed = true; return null; }
         return printAction;
     }

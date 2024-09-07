@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using System.Data;
+
 public interface INode { }
 public class FullDeclaration : INode
 {
@@ -20,20 +20,14 @@ public class CardDeclaration : BlockDeclaration
     public UnitCardZone Range;
     public OnActivation OnActivation;
 
-    public CardDeclaration(IExpression<string> name, IExpression<string> type, IExpression<string> description, IExpression<int> totalCopies, IExpression<string> faction, IExpression<int> power, UnitCardZone range, OnActivation onActivation)
-    {
-        Name = name;
-        Type = type;
-        Description = description;
-        TotalCopies = totalCopies;
-        Faction = faction;
-        Power = power;
-        Range = range;
-        OnActivation = onActivation;
-    }
+    public CardDeclaration(IExpression<string> name, IExpression<string> type, IExpression<string> description, IExpression<int> totalCopies, IExpression<string> faction, IExpression<int> power, UnitCardZone range, OnActivation onActivation) { Name = name; Type = type; Description = description; TotalCopies = totalCopies; Faction = faction; Power = power; Range = range; OnActivation = onActivation; }
 }
 public class EffectDeclaration : BlockDeclaration
 {
     public EffectAction EffectAction;
     public EffectDeclaration(IExpression<string> name, EffectAction effectAction) { Name = name; EffectAction = effectAction; }
+}
+public class EffectAction : INode
+{
+    public List<IActionStatement> ActionStatements = new List<IActionStatement>();
 }

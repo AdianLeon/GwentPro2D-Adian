@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using TMPro;
 using UnityEditor;
-using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class ModifyDeckFunctions : MonoBehaviour
@@ -67,7 +67,10 @@ public class ModifyDeckFunctions : MonoBehaviour
     {
         dropdown.options.Add(new TMP_Dropdown.OptionData("Ninguna"));
         dropdown.options.Add(new TMP_Dropdown.OptionData("Todas"));
-        dropdown.SetValueWithoutNotify(dropdown.options.Count - 1);
+        if (code.transform.parent.name.ToString() == "ModifyDeck") { dropdown.SetValueWithoutNotify(dropdown.options.Count - 1); }
+        else if (code.transform.parent.name.ToString() == "EliminateDeck") { dropdown.SetValueWithoutNotify(dropdown.options.Count - 2); }
+        else { throw new NotImplementedException("Nombre de menu: '" + code.transform.parent.name.ToString() + "'"); }
+
         dropdown.onValueChanged.AddListener(delegate { UpdateCode(); });
     }
     private void SetCardDropdown()

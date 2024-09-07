@@ -1,0 +1,28 @@
+using System;
+
+public class NumberExpression : IExpression<int>
+{
+    public VarType Type => VarType.Number;
+    private int value;
+    public int Evaluate() => value;
+    public NumberExpression(string number) { value = int.Parse(number); }
+    public override string ToString() => Evaluate().ToString();
+}
+public class ArithmeticExpression : BinaryExpression<int, int>
+{
+    public override VarType Type => VarType.Number;
+    public ArithmeticExpression(IExpression<int> left, Token op, IExpression<int> right) : base(left, op, right) { }
+    public override int Evaluate()
+    {
+        int left = Left.Evaluate(); int right = Right.Evaluate();
+        switch (Operator.Text)
+        {
+            case "+": return left + right;
+            case "-": return left - right;
+            case "*": return left * right;
+            case "/": return left / (right == 0 ? throw new Exception("Division por 0, si desea ignorar esta excepcion descomente el codigo siguiente")/*int.MaxValue*/ : right);
+            case "^": return (int)Math.Pow(left, right);
+            default: throw new NotImplementedException("El operador: '" + Operator.Text + "' no esta definido");
+        }
+    }
+}

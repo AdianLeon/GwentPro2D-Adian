@@ -1,10 +1,9 @@
 card{
-	Description:"Randomiza los contenedores propios",
+	Description:"Esta carta no tiene efecto :(",
 	Type: "Oro",
 	Name: "Ash",
 	Faction: "Northern Realms",
 	Range:["Melee"],
-	Power: 30,
-	OnActivation: [{Effect: "TestingEffect"}],
+	Power: 30,
 	TotalCopies:10
 }

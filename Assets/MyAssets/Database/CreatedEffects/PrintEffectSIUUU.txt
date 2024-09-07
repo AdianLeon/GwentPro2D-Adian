@@ -1,6 +1,0 @@
-effect{
-	Name: "PrintEffectSIUUU",
-	Action: (targets,context)=>{
-		Print("SIUUUUUU");
-	}
-}

@@ -1,7 +1,7 @@
 
 public class BooleanExpressionsParser : Parser
 {
-     public override INode ParseTokens() => ParseOperation();
+     public override INode ParseTokens() { IExpression<bool> expression = ParseOperation(); Next(-1); return expression; }
      private IExpression<bool> ParseOperation()
      {
           IExpression<bool> left = ParseBoolValue(); if (hasFailed) { return null; }
@@ -24,8 +24,7 @@ public class BooleanExpressionsParser : Parser
                if (!Current.Is(")", true)) { hasFailed = true; return null; }
                Next();
           }
-          else { Errors.Write(Current); hasFailed = true; return null; }
-
+          else { Errors.Write("Se esperaba una expresion booleana en vez de " + Current.Text, Current); hasFailed = true; return null; }
           return left;
      }
 }

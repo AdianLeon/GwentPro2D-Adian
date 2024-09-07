@@ -18,6 +18,7 @@ public class EffectParser : Parser
         EffectAction effectAction = null;
         if (!Next().Is("{", true)) { hasFailed = true; return null; }
         bool expectingDeclaration = true;
+
         while (expectingDeclaration)
         {
             Token key = Next();
@@ -29,7 +30,7 @@ public class EffectParser : Parser
                 case "Name":
                     if (!propertiesToDeclare.Contains("Name")) { Errors.Write("La propiedad 'Name' ya ha sido declarada", key); hasFailed = true; return null; }
                     if (!Current.Is(TokenType.literal, true)) { hasFailed = true; return null; }
-                    name = (IExpression<string>)new StringExpressionsParser().ParseTokens(); Next(-1);
+                    name = (IExpression<string>)new StringExpressionsParser().ParseTokens();
                     if (hasFailed) { return null; }
                     propertiesToDeclare.Remove("Name");
                     break;
@@ -44,6 +45,7 @@ public class EffectParser : Parser
             }
             expectingDeclaration = Next().Is(",");
         }
+
         if (propertiesToDeclare.Count > 0) { Errors.Write("Han faltado por declarar las siguientes propiedades: " + propertiesToDeclare.GetText(), Current); hasFailed = true; return null; }
         if (!Current.Is("}")) { Errors.Write("Se esperaba '}' en vez de '" + Current.Text + "', puede ser que hayas olvidado la coma antes de la declaracion"); hasFailed = true; return null; }
         return new EffectDeclaration(name, effectAction);

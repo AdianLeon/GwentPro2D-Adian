@@ -7,12 +7,14 @@ using UnityEngine;
 public class Executer : MonoBehaviour
 {
     public GameObject errorScreen;
+    public static GameObject ErrorScreen => GameObject.Find("Canvas").GetComponent<Executer>().errorScreen;
     public static bool FailedAtLoadingAnyEffect => failedAtLoadingAnyEffect;
-    private static bool failedAtLoadingAnyEffect = false;
+    private static bool failedAtLoadingAnyEffect;
     private static Dictionary<string, EffectDeclaration> createdEffects;
     public static VariableScopes scopes;
     public static void LoadEffectsAndCards()
     {
+        failedAtLoadingAnyEffect = false;
         GameObject.Find("Canvas").GetComponent<Executer>().LoadEffects();
         GameObject.Find("Canvas").GetComponent<CardLoader>().LoadCards(createdEffects.Keys);
     }
@@ -38,13 +40,13 @@ public class Executer : MonoBehaviour
             if (effectCall == null) { return; }
             else if (effectCall is ScriptEffectCall)
             {
-                Type effectType = Type.GetType(effectCall.EffectName);
+                Type effectType = Type.GetType(effectCall.EffectName.Evaluate());
                 ICardEffect effectScript = (ICardEffect)card.GetComponent(effectType);
                 effectScript.TriggerEffect();
             }
             else if (effectCall is CreatedEffectCall)
             {
-                if (!createdEffects.ContainsKey(effectCall.EffectName)) { return; }
+                if (!createdEffects.ContainsKey(effectCall.EffectName.Evaluate())) { return; }
                 List<DraggableCard> targets = SelectTargets(((CreatedEffectCall)effectCall).EffectSelector);
                 ExecuteEffect((CreatedEffectCall)effectCall, targets);
             }
@@ -56,38 +58,39 @@ public class Executer : MonoBehaviour
         scopes = new VariableScopes();
         scopes.AddNewScope();
         scopes.AddNewVar("targets", new CardReferenceList(targets));
-        ProcessActionStatements(createdEffects[effectCall.EffectName].EffectAction.ActionStatements);
+        ProcessActionStatements(createdEffects[effectCall.EffectName.Evaluate()].EffectAction.ActionStatements);
     }
     private static void ProcessActionStatements(IEnumerable<IActionStatement> actionStatements)
     {
         foreach (IActionStatement actionStatement in actionStatements)
         {
             if (actionStatement is VariableDeclaration) { scopes.AddNewVar((VariableDeclaration)actionStatement); }
-            else if (actionStatement is PrintAction) { UserRead.Write((actionStatement as PrintAction).Message); }
+            else if (actionStatement is PrintAction) { UserRead.Write((actionStatement as PrintAction).Message.Evaluate()); }
             else if (actionStatement is ContextMethod) { ContextUtils.AssignMethod((ContextMethod)actionStatement); }
             else if (actionStatement is CardPowerSetting) { SetPower((CardPowerSetting)actionStatement); }
-            else if (actionStatement is ForEachCycle)
-            {
-                ForEachCycle forEachCycle = (ForEachCycle)actionStatement;
-                List<DraggableCard> cards;
-                if (forEachCycle.CardReferences is VariableReference)
-                {
-                    IReference reference = forEachCycle.CardReferences;
-                    while (reference is VariableReference) { reference = scopes.GetValue(((VariableReference)reference).VarName); }
-                    if (reference is not CardReferenceList) { throw new Exception("La variable llamada: '" + ((VariableReference)forEachCycle.CardReferences).VarName + "' no contiene una CardReferenceList"); }
-                    cards = ((CardReferenceList)reference).Cards;
-                }
-                else { throw new NotImplementedException("No se ha anadido la forma de evaluar demandada"); }
-                scopes.AddNewScope();
-                foreach (DraggableCard card in cards)
-                {
-                    scopes.AddNewVar(forEachCycle.IteratorVarName, new CardReference(card));
-                    ProcessActionStatements(forEachCycle.ActionStatements);
-                }
-                scopes.PopLastScope();
-            }
+            else if (actionStatement is ForEachCycle) { DoForEachCycle((ForEachCycle)actionStatement); }
             else { throw new Exception("La accion no esta definida"); }
         }
+    }
+
+    private static void DoForEachCycle(ForEachCycle forEachCycle)
+    {
+        List<DraggableCard> cards;
+        if (forEachCycle.CardReferences is VariableReference)
+        {
+            IReference reference = forEachCycle.CardReferences;
+            while (reference is VariableReference) { reference = scopes.GetValue(((VariableReference)reference).VarName); }
+            if (reference is not CardReferenceList) { throw new Exception("La variable llamada: '" + ((VariableReference)forEachCycle.CardReferences).VarName + "' no contiene una CardReferenceList"); }
+            cards = ((CardReferenceList)reference).Cards;
+        }
+        else { throw new NotImplementedException("No se ha anadido la forma de evaluar demandada"); }
+        scopes.AddNewScope();
+        foreach (DraggableCard card in cards)
+        {
+            scopes.AddNewVar(forEachCycle.IteratorVarName, new CardReference(card));
+            ProcessActionStatements(forEachCycle.ActionStatements);
+        }
+        scopes.PopLastScope();
     }
 
     private static void SetPower(CardPowerSetting actionStatement)
@@ -97,7 +100,7 @@ public class Executer : MonoBehaviour
         while (reference is VariableReference) { Debug.Log("Obteniendo el valor de: " + ((VariableReference)reference).VarName); reference = scopes.GetValue(((VariableReference)reference).VarName); }
         Debug.Log("Despues del while");
         Debug.Log("reference is VarReference: " + (reference is VariableReference));
-        if (reference is CardReference) { ((CardReference)reference).Power = actionStatement.NewPower; }
+        if (reference is CardReference) { ((CardReference)reference).Power = actionStatement.NewPower.Evaluate(); }
         else { throw new Exception("La referencia no era hacia una carta"); }
     }
 
@@ -105,7 +108,7 @@ public class Executer : MonoBehaviour
     {
         if (selector == null) { throw new Exception("El selector no existe"); }
         List<DraggableCard> cards;
-        switch (selector.Source)
+        switch (selector.Source.Evaluate())
         {
             case "board": cards = Field.PlayedFieldCards.Cast<DraggableCard>().ToList(); break;
             case "field": cards = Field.PlayerCards.Cast<DraggableCard>().ToList(); break;
@@ -118,8 +121,8 @@ public class Executer : MonoBehaviour
         }
         //Filter with predicate
         //if(selector.CardPredicate!=null){foreach(DraggableCard card in cards){if(!selector.CardPredicate.EvaluateCard(new CardReference(card))){cards.Remove(card);}}}
-        if (cards.Count == 0) { return cards; }
-        if (selector.Single) { return new List<DraggableCard> { cards[0] }; }
+        if (cards.Count == 0) { return new List<DraggableCard>(); }
+        if (selector.Single.Evaluate()) { return new List<DraggableCard> { cards[0] }; }
         return cards;
     }
 }

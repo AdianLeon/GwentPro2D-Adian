@@ -1,7 +1,7 @@
 
 public class ArithmeticExpressionsParser : Parser
-{//(2+4)*2/3+6-5*4+1==-9
-    public override INode ParseTokens() => ParseSum();
+{
+    public override INode ParseTokens() { IExpression<int> expression = ParseSum(); Next(-1); return expression; }
     private IExpression<int> ParseSum()
     {
         IExpression<int> left = ParseMultiplication(); if (hasFailed) { return null; }
