@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using UnityEngine.Rendering;
+using UnityEngine;
 
 public abstract class Parser
 {
@@ -15,4 +14,22 @@ public abstract class Parser
     protected static Token Peek(int forward = 1) => tokens[index + forward];
     protected static Token Next(int forward = 1) { index += forward; return tokens[index]; }
     public abstract INode ParseTokens();
+    protected INode GenericParse()
+    {
+        Debug.Log("Analyzing the token: " + Current);
+        switch (Current.Text)
+        {
+            case "context": return new ContextParser().ParseTokens();
+            case "Print": return new EffectActionParser().ParsePrintAction();
+            case "for": return new EffectActionParser().ParseForEachCycle();
+        }
+        if (Current.Is(TokenType.identifier)) { return new VariableParser().ParseTokens(); }
+        else { Debug.Log("Token no reconocido: " + Current); Errors.Write(Current); hasFailed = true; return null; }
+    }
+    protected bool TryParse<T>(out T aux) where T : INode
+    {
+        INode node = GenericParse();
+        if (node is T) { aux = (T)node; return true; }
+        else { aux = default; return false; }
+    }
 }

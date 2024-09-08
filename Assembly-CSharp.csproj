@@ -112,6 +112,7 @@
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GameLogic\StateManager.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GFDeclarations\GFClasses.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Parsing\VariableParser.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Parsing\ExpressionsParsers\ArithmeticExpressionsParser.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Parsing\BlockDeclarations\Effects\EffectParser.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
@@ -143,7 +144,6 @@
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardContainers\Field.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Parsing\ExpressionsParsers\StringExpressionsParser.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Parsing\ExpressionsParsers\BooleanExpressionsParser.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Parsing\VariableParser.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\MyAssets\Database\Decks\Northern Realms\Ash.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />

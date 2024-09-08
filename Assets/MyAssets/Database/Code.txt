@@ -1,10 +1,9 @@
-card{
-	Description:"Roba una carta jugada del enemigo y la coloca en la mano propia",
-	Type: "Pla"@"ta",
-	Name: "Ma"@"tum"@"bo",
-	Faction: "Northern"@@"Realms",
-	Range:["Melee","Ranged","Siege"],
-	Power: (2^4)*2/3+6-5*4+1,
-	OnActivation: [{Effect: "EnemyFieldStealEffect"}],
-	TotalCopies:20
+effect {
+	Name: "Silence",
+	Action: (targets, context) => {
+		for target in targets {
+			target.Power=0;
+		};
+	}
 }
+

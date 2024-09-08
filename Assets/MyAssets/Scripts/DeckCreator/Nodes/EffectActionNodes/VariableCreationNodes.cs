@@ -18,7 +18,7 @@ public static class VariableScopes
     }
     public static IReference ScopeValue(this string varName)
     {
-        foreach (Dictionary<string, IReference> scope in scopes) { if (scope.ContainsKey(varName)) { return scope[varName]; } }
+        foreach (Dictionary<string, IReference> scope in scopes) { if (scope.ContainsKey(varName)) { return scope[varName].DeReference(); } }
         throw new Exception("La variable llamada: '" + varName + "' no ha sido declarada en este contexto");
     }
     public static IReference DeReference(this IReference possiblyVariableReference)
