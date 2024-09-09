@@ -16,7 +16,7 @@ public class BooleanExpressionsParser : Parser
      private IExpression<bool> ParseBoolValue()
      {
           IExpression<bool> left;
-          if (Current.Is(TokenType.boolean)) { left = new BooleanValueExpression(Current.Text); Next(); }
+          if (Current.Is("true") || Current.Is("false")) { left = new BooleanValueExpression(Current.Text); Next(); }
           else if (Current.Is("("))
           {
                Next();
@@ -24,7 +24,7 @@ public class BooleanExpressionsParser : Parser
                if (!Current.Is(")", true)) { hasFailed = true; return null; }
                Next();
           }
-          else { Errors.Write("Se esperaba una expresion booleana en vez de " + Current.Text, Current); hasFailed = true; return null; }
+          else { hasFailed = true; return null; }
           return left;
      }
 }

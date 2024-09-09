@@ -16,10 +16,9 @@ public class VariableParser : Parser
           }
           else if (Current.Is("."))
           {
-               Debug.Log("Analizando a variable: '" + varToken.Text + "' despues del .");
                if (!VariableScopes.ContainsVar(varToken.Text)) { Errors.Write("No es posible acceder a propiedades de la variable '" + varToken.Text + "' ya que no existe en el contexto actual", Current); hasFailed = true; return null; }
-               else if (varToken.Text.ScopeValue().Type == VarType.Card) { Debug.Log("Carta"); return ParseCardPropertyOrAction(new VariableReference(varToken.Text, VarType.Card), varToken); }
-               else if (varToken.Text.ScopeValue().Type == VarType.Container) { Debug.Log("Container"); return new ContextParser().ContextContainerMethodParser((ContainerReference)varToken.Text.ScopeValue()); }
+               else if (varToken.Text.ScopeValue().Type == VarType.Card) { return ParseCardPropertyOrAction(new VariableReference(varToken.Text, VarType.Card)); }
+               else if (varToken.Text.ScopeValue().Type == VarType.Container) { return new ContextParser().ContextContainerMethodParser((ContainerReference)varToken.Text.ScopeValue()); }
                else { throw new NotImplementedException(); }
           }
           else
@@ -37,7 +36,7 @@ public class VariableParser : Parser
           if (hasFailed) { return null; }
           return new CardPowerSetting(cardReference, newPower);
      }
-     public INode ParseCardPropertyOrAction(IReference cardReference, Token varToken)
+     public INode ParseCardPropertyOrAction(IReference cardReference)
      {
           if (Peek().Is("Power") && Peek(2).Is("=")) { return ParseCardPowerSetting(cardReference); }
           else if (Next().Is("Power")) { return new CardPropertyReference(cardReference, Current.Text); }

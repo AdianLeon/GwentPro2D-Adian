@@ -1,6 +1,11 @@
 effect{
 	Name: "EnemyFieldStealEffect",
 	Action: (targets,context)=>{
-		context.Hand.Push(context.OtherField.Pop());
+		hand=context.Hand;
+		card=hand.Pop();
+		hand.Push(card);
+		while(true){
+			Print("Iteracion");
+		};
 	}
 }

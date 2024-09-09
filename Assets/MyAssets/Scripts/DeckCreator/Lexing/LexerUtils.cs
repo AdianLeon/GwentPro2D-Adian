@@ -33,7 +33,6 @@ public enum TokenType
     assignment,// Name Params Action Type Effect Selector Source Single Predicate Faction Power Range OnActivation PostAction ScriptEffect
     cycle,// for in while
     varType,// Number String Bool
-    blockDeclaration,//card effect
 
     //Simples
     punctuator,// : ; , . " '
@@ -75,8 +74,6 @@ public static class LexerUtils
     };
     public static Dictionary<string, TokenType> ReservedWords = new Dictionary<string, TokenType>
     {
-        //BlockDeclaration
-        {"card",TokenType.blockDeclaration},{"effect",TokenType.blockDeclaration},
         //Assignments
         {"Name",TokenType.assignment},{"Params",TokenType.assignment},{"Action",TokenType.assignment},{"Type",TokenType.assignment},{"Effect",TokenType.assignment},{"Description",TokenType.assignment},
         {"Selector",TokenType.assignment},{"Source",TokenType.assignment},{"Single",TokenType.assignment},{"Predicate",TokenType.assignment},{"PostAction",TokenType.assignment},

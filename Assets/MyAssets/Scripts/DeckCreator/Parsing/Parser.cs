@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -22,14 +23,32 @@ public abstract class Parser
             case "context": return new ContextParser().ParseTokens();
             case "Print": return new EffectActionParser().ParsePrintAction();
             case "for": return new EffectActionParser().ParseForEachCycle();
+            case "while": return new EffectActionParser().ParseWhileCycle();
         }
         if (Current.Is(TokenType.identifier)) { return new VariableParser().ParseTokens(); }
-        else { Debug.Log("Token no reconocido: " + Current); Errors.Write(Current); hasFailed = true; return null; }
+        IReference reference = ParseExpression();
+        if (reference != null) { return reference; }
+
+        Debug.Log("Token no reconocido: " + Current); Errors.Write(Current); hasFailed = true; return null;
     }
     protected bool TryParse<T>(out T aux) where T : INode
     {
         INode node = GenericParse();
         if (node is T) { aux = (T)node; return true; }
         else { aux = default; return false; }
+    }
+    protected IReference ParseExpression()
+    {
+        List<Func<INode>> expressionParsers = new() { new ArithmeticExpressionsParser().ParseTokens, new BooleanExpressionsParser().ParseTokens, new StringExpressionsParser().ParseTokens, new ComparisonExpressionsParser().ParseTokens };
+        int startingIndex = index;
+        foreach (Func<INode> parser in expressionParsers)
+        {
+            Debug.Log("Trying parsing the expression: " + parser + " in token: " + Current);
+            IReference expressionResultant = (IReference)parser();
+            if (expressionResultant != null && !hasFailed) { Debug.Log("Success!!"); return expressionResultant; }
+            hasFailed = false;
+            index = startingIndex;
+        }
+        hasFailed = true; return null;
     }
 }

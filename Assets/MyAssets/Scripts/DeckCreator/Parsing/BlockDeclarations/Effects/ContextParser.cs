@@ -42,7 +42,7 @@ public class ContextParser : Parser
         {
             if (!Next().Is("(", true) || !Next().Is(")", true)) { hasFailed = true; return null; }
             if (Peek(-2).Is("Shuffle")) { return new ContextShuffleMethod(container); }
-            else if (Peek(-2).Is("Pop")) { if (Peek().Is(".")) { Next(); return new VariableParser().ParseCardPropertyOrAction(new ContextPopMethod(container), null); } return new ContextPopMethod(container); }
+            else if (Peek(-2).Is("Pop")) { if (Peek().Is(".")) { Next(); return new VariableParser().ParseCardPropertyOrAction(new ContextPopMethod(container)); } return new ContextPopMethod(container); }
             else { throw new NotImplementedException(); }
         }
         else if (Current.Is("Push") || Current.Is("SendBottom") || Current.Is("Remove"))

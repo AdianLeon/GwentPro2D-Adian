@@ -36,7 +36,7 @@ public class ArithmeticExpressionsParser : Parser
             if (!Current.Is(")", true)) { hasFailed = true; return null; }
             Next();
         }
-        else { Errors.Write(Current); hasFailed = true; return null; }
+        else { hasFailed = true; return null; }
 
         while (Current.Is("^"))
         {

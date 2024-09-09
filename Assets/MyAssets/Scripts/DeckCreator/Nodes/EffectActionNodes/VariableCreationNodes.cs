@@ -33,7 +33,6 @@ public class VariableDeclaration : IActionStatement
     public string VarName;
     public IReference VarValue;
     public VariableDeclaration(string varName, IReference varValue) { VarName = varName; VarValue = varValue; }
-
     public void PerformAction() => VariableScopes.AddNewVar(this);
 }
 public class VariableReference : IReference

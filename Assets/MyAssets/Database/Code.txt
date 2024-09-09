@@ -1,9 +1,11 @@
-effect {
-	Name: "Silence",
-	Action: (targets, context) => {
-		for target in targets {
-			target.Power=0;
+effect{
+	Name: "EnemyFieldStealEffect",
+	Action: (targets,context)=>{
+		hand=context.Hand;
+		card=hand.Pop();
+		hand.Push(card);
+		while(true){
+			Print("Iteracion");
 		};
 	}
 }
-

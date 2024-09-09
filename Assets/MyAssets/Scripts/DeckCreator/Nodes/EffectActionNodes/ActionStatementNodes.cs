@@ -12,7 +12,6 @@ public class PrintAction : IActionStatement
 public abstract class ContextMethod : IActionStatement
 {
     public ContainerReference Container;
-
     public abstract void PerformAction();
 }
 public class ContextCardParameterMethod : ContextMethod
@@ -47,8 +46,7 @@ public class CardPowerSetting : IActionStatement
 
     public void PerformAction()
     {
-        IReference reference = CardReference;
-        while (reference is VariableReference) { reference = ((VariableReference)reference).VarName.ScopeValue(); }
+        IReference reference = CardReference.DeReference();
         if (reference is CardReference) { ((CardReference)reference).Power = NewPower.Evaluate(); }
     }
 }
@@ -76,5 +74,17 @@ public class ForEachCycle : IActionStatement
             ActionStatements.ForEach(action => action.PerformAction());
         }
         VariableScopes.PopLastScope();
+    }
+}
+public class WhileCycle : IActionStatement
+{
+    public IExpression<bool> Condition;
+    public List<IActionStatement> ActionStatements = new List<IActionStatement>();
+    public WhileCycle(IExpression<bool> condition, List<IActionStatement> actionStatements) { Condition = condition; ActionStatements = actionStatements; }
+    public void PerformAction()
+    {
+        int count = 0; int limit = 100000;
+        while (Condition.Evaluate() && ((++count) < limit)) { ActionStatements.ForEach(action => action.PerformAction()); }
+        if (count >= limit) { throw new Exception("La cantidad de iteraciones de un ciclo while fue de: " + count + " lo cual no esta permitido"); }
     }
 }

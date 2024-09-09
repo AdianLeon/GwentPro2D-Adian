@@ -63,6 +63,25 @@ public class EffectActionParser : Parser
         VariableScopes.PopLastScope();
         return new ForEachCycle(iteratorVarName, cardReferenceList, foreachStatements);
     }
+    public WhileCycle ParseWhileCycle()
+    {
+        if (!Current.Is("while", true)) { hasFailed = true; return null; }
+        VariableScopes.AddNewScope();
+        if (!Next().Is("(", true)) { hasFailed = true; return null; }
+        Next();
+        IExpression<bool> booleanExpression;
+        if (!TryParse(out booleanExpression)) { Errors.Write("Se esperaba una expresion booleana", Current); hasFailed = true; return null; }
+        if (!Next().Is(")", true)) { hasFailed = true; return null; }
+        if (!Next().Is("{", true)) { hasFailed = true; return null; }
+        List<IActionStatement> actionStatements = new List<IActionStatement>();
+        while (!Next().Is("}"))
+        {
+            actionStatements.Add(ActionStatementParser());
+            if (hasFailed) { return null; }
+        }
+        VariableScopes.PopLastScope();
+        return new WhileCycle(booleanExpression, actionStatements);
+    }
     public PrintAction ParsePrintAction()
     {
         PrintAction printAction;
