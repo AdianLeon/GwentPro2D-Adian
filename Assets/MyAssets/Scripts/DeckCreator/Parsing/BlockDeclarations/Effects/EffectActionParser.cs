@@ -29,7 +29,7 @@ public class EffectActionParser : Parser
     {//Parsea una linea de codigo dentro del Action: (targets, contexts) => {...}
         IActionStatement actionStatement;
         Debug.Log("Parsing actionStatement in: " + Current);
-        if (!TryParse(out actionStatement)) { Errors.Write("Se esperaba una accion", Current); hasFailed = true; return null; }
+        if (!Try(ParseGeneric, out actionStatement)) { Errors.Write("Se esperaba una accion", Current); hasFailed = true; return null; }
         if (actionStatement is VariableDeclaration) { actionStatement.PerformAction(); }
         if (!Next().Is(";", true)) { hasFailed = true; return null; }
         return actionStatement;
@@ -70,7 +70,7 @@ public class EffectActionParser : Parser
         if (!Next().Is("(", true)) { hasFailed = true; return null; }
         Next();
         IExpression<bool> booleanExpression;
-        if (!TryParse(out booleanExpression)) { Errors.Write("Se esperaba una expresion booleana", Current); hasFailed = true; return null; }
+        if (!Try(ParseExpression, true, out booleanExpression)) { Errors.Write("Se esperaba una expresion booleana", Current); hasFailed = true; return null; }
         if (!Next().Is(")", true)) { hasFailed = true; return null; }
         if (!Next().Is("{", true)) { hasFailed = true; return null; }
         List<IActionStatement> actionStatements = new List<IActionStatement>();

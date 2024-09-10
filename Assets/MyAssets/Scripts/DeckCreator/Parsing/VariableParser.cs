@@ -11,8 +11,8 @@ public class VariableParser : Parser
           {
                IReference value;
                Next();
-               if (!TryParse(out value)) { Errors.Write("Se esperaba un valor valido para asignar a la variable '" + varToken.Text + "'", Current); hasFailed = true; return null; }
-               return new VariableDeclaration(varToken.Text, value);
+               if (Try(ParseExpression, true, out value) || Try(ParseSemiGeneric, out value)) { Errors.Clean(); hasFailed = false; return new VariableDeclaration(varToken.Text, value); }
+               else { Errors.Write("Se esperaba una referencia para asignar a la variable '" + varToken.Text + "'", Current); hasFailed = true; return null; }
           }
           else if (Current.Is("."))
           {
@@ -23,7 +23,7 @@ public class VariableParser : Parser
           }
           else
           {
-               if (VariableScopes.ContainsVar(varToken.Text)) { Next(-1); return new VariableReference(varToken.Text, varToken.Text.ScopeValue().Type); }
+               if (VariableScopes.ContainsVar(varToken.Text)) { Next(-1); Debug.Log("Referencia a la var: '" + varToken + "' devuelta"); return new VariableReference(varToken.Text, varToken.Text.ScopeValue().Type); }
                else { Errors.Write("La variable '" + varToken.Text + "' no existe en el contexto actual pero se esta intentando acceder a ella", Current); hasFailed = true; return null; }
           }
      }

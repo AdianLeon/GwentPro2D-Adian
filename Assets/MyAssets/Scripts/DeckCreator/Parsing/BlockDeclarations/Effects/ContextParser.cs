@@ -25,7 +25,7 @@ public class ContextParser : Parser
             if (!Next().Is("(", true)) { hasFailed = true; return null; }
             IReference playerReference;
             Next();
-            if (!TryParse(out playerReference)) { hasFailed = true; }
+            if (!Try(ParseGeneric, out playerReference)) { hasFailed = true; }
             if (hasFailed || playerReference.Type != VarType.Player) { Errors.Write("Se esperaba una referencia a algun jugador", Current); }
             container = new ContainerReference(containerName, playerReference);
             if (!Next().Is(")", true)) { hasFailed = true; return null; }

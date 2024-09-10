@@ -8,6 +8,17 @@ public class NumberExpression : IExpression<int>
     public NumberExpression(string number) { value = int.Parse(number); }
     public override string ToString() => Evaluate().ToString();
 }
+public class NumberVariableReference : IExpression<int>
+{
+    public VarType Type => VarType.Number;
+    private string varName;
+    public int Evaluate() => ((IExpression<int>)varName.ScopeValue()).Evaluate();
+    public NumberVariableReference(VariableReference variableReference)
+    {
+        if (variableReference.DeReference() is not IExpression<int>) { throw new Exception("La variable no guarda una expresion aritmetica"); }
+        varName = variableReference.VarName;
+    }
+}
 public class ArithmeticExpression : BinaryExpression<int, int>
 {
     public override VarType Type => VarType.Number;
@@ -20,7 +31,7 @@ public class ArithmeticExpression : BinaryExpression<int, int>
             case "+": return left + right;
             case "-": return left - right;
             case "*": return left * right;
-            case "/": return left / (right == 0 ? throw new Exception("Division por 0, si desea ignorar esta excepcion descomente el codigo siguiente")/*int.MaxValue*/ : right);
+            case "/": return left / (right == 0 ? throw new Exception("Division por 0") : right);
             case "^": return (int)Math.Pow(left, right);
             default: throw new NotImplementedException("El operador: '" + Operator.Text + "' no esta definido");
         }

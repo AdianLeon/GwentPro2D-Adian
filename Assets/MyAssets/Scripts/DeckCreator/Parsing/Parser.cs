@@ -15,9 +15,31 @@ public abstract class Parser
     protected static Token Peek(int forward = 1) => tokens[index + forward];
     protected static Token Next(int forward = 1) { index += forward; return tokens[index]; }
     public abstract INode ParseTokens();
-    protected INode GenericParse()
+    protected bool Try<T>(Func<INode> parser, out T aux) where T : INode
+    {
+        INode node = parser();
+        if (node is T) { aux = (T)node; return true; }
+        else { aux = default; return false; }
+    }
+    protected bool Try<T>(Func<bool, INode> parser, bool param, out T aux) where T : INode
+    {
+        INode node = parser(param);
+        if (node is T) { aux = (T)node; return true; }
+        else { aux = default; return false; }
+    }
+    protected INode ParseGeneric()
     {
         Debug.Log("Analyzing the token: " + Current);
+        INode node = ParseSemiGeneric();
+        if (node != null && !hasFailed) { return node; }
+        hasFailed = false;
+        IReference reference = ParseExpression();
+        if (reference != null) { return reference; }
+
+        Errors.Write("Se intento procesar pero no hay ninguna definicion correspondiente", Current); hasFailed = true; return null;
+    }
+    protected INode ParseSemiGeneric()
+    {
         switch (Current.Text)
         {
             case "context": return new ContextParser().ParseTokens();
@@ -26,20 +48,12 @@ public abstract class Parser
             case "while": return new EffectActionParser().ParseWhileCycle();
         }
         if (Current.Is(TokenType.identifier)) { return new VariableParser().ParseTokens(); }
-        IReference reference = ParseExpression();
-        if (reference != null) { return reference; }
-
-        Debug.Log("Token no reconocido: " + Current); Errors.Write(Current); hasFailed = true; return null;
+        hasFailed = true; return null;
     }
-    protected bool TryParse<T>(out T aux) where T : INode
+    protected IReference ParseExpression(bool includeComparison = true)
     {
-        INode node = GenericParse();
-        if (node is T) { aux = (T)node; return true; }
-        else { aux = default; return false; }
-    }
-    protected IReference ParseExpression()
-    {
-        List<Func<INode>> expressionParsers = new() { new ArithmeticExpressionsParser().ParseTokens, new BooleanExpressionsParser().ParseTokens, new StringExpressionsParser().ParseTokens, new ComparisonExpressionsParser().ParseTokens };
+        List<Func<INode>> expressionParsers = new() { new ArithmeticExpressionsParser().ParseTokens, new BooleanExpressionsParser().ParseTokens, new StringExpressionsParser().ParseTokens };
+        if (includeComparison) { expressionParsers.Insert(0, new ComparisonExpressionsParser().ParseTokens); }
         int startingIndex = index;
         foreach (Func<INode> parser in expressionParsers)
         {

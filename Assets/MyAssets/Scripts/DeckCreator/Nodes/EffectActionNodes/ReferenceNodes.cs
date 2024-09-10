@@ -24,7 +24,7 @@ public class ContainerReference : IReference
     public IReference Owner;
     public ContainerReference(string containerName, IReference owner = null)
     {
-        if (owner.Type != VarType.Player) { throw new Exception("El tipo de variable debe ser Player"); }
+        if (owner != null && owner.Type != VarType.Player) { throw new Exception("El tipo de variable debe ser Player"); }
         Owner = owner;
         ContainerName = containerName;
     }

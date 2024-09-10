@@ -8,6 +8,17 @@ public class StringValueExpression : IExpression<string>
     public StringValueExpression(string str) { value = str; }
     public override string ToString() => Evaluate();
 }
+public class StringVariableReference : IExpression<string>
+{
+    public VarType Type => VarType.String;
+    private string varName;
+    public string Evaluate() => ((IExpression<string>)varName.ScopeValue()).Evaluate();
+    public StringVariableReference(VariableReference variableReference)
+    {
+        if (variableReference.DeReference() is not IExpression<string>) { throw new Exception("La variable no guarda una expresion de string"); }
+        varName = variableReference.VarName;
+    }
+}
 public class StringExpression : BinaryExpression<string, string>
 {
     public override VarType Type => VarType.String;

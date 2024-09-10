@@ -24,7 +24,15 @@ public class BooleanExpressionsParser : Parser
                if (!Current.Is(")", true)) { hasFailed = true; return null; }
                Next();
           }
-          else { hasFailed = true; return null; }
+          else if (Current.Is(TokenType.identifier) && VariableScopes.ContainsVar(Current.Text) && Current.Text.ScopeValue().Type == VarType.Boolean)
+          {
+               VariableReference variableReference;
+               if (!Try(new VariableParser().ParseTokens, out variableReference)) { throw new System.Exception("Se suponia que existia una referencia a un booleano"); }
+               left = new BooleanVariableReference(variableReference);
+               Next();
+          }
+          else if (!Try(ParseSemiGeneric, out left)) { hasFailed = true; return null; }
+
           return left;
      }
 }

@@ -4,8 +4,11 @@ effect{
 		hand=context.Hand;
 		card=hand.Pop();
 		hand.Push(card);
-		while(true){
-			Print("Iteracion");
+		num=0;
+		message="Wasta";
+		while(num<5){
+			Print(message);
+			num=num+1;
 		};
 	}
 }

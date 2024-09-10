@@ -10,17 +10,20 @@ public class ComparisonExpressionsParser : Parser
         if (Current.Is("==") || Current.Is("!=") || Current.Is("<") || Current.Is(">") || Current.Is("<=") || Current.Is(">="))
         {
             Token op = Current; Next();
+            Debug.Log("Recibido operador: " + op);
             IExpression<IReference> right = ParseComparisonValue(); if (hasFailed) { return null; }
-            if (left.GetType() != right.GetType()) { Debug.Log("Comparison Expression with mismatching types"); }
+            if (left.GetType() != right.GetType()) { throw new Exception("Comparison Expression with mismatching types"); }
             return new ComparisonExpression(left, op, right);
         }
-        else { Errors.Write("Se esperaba operador de comparacion, en cambio se encontro '" + Current.Text + "'", Current); hasFailed = true; return null; }
+        else { hasFailed = true; return null; }
     }
     private IExpression<IReference> ParseComparisonValue()
     {
-        IReference reference;
-        if (!TryParse(out reference) || reference is IReference) { Errors.Write("Se esperaba una referencia"); hasFailed = true; return null; }
+        Debug.Log("Comienzo a parsear expresion para comparar");
+        IReference reference = ParseExpression(false);
+        if (hasFailed) { Debug.Log("Se esperaba una referencia. Token: " + Current); return null; }
         Next();
+        Debug.Log("Termino de parsear expresion para comparar");
         return new ComparisonValueExpression(reference);
     }
 }
