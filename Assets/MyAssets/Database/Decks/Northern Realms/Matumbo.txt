@@ -5,6 +5,16 @@ card{
 	Faction: "Nort"@"hern"@@"Realms",
 	Range:["Melee","Ranged","Siege"],
 	Power: -8-(2^4)*2/3+6-5*4+1,
-	OnActivation: [{Effect: "EnemyFieldStealEffect"}],
+	OnActivation: [
+		{
+			Effect: "StealEffect",
+			Selector:{
+				Source:"board"
+			},
+			PostAction:{
+				Effect:"PrintPostEffect"
+			}
+		}
+	],
 	TotalCopies:20
 }

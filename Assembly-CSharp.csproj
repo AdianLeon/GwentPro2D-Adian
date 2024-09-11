@@ -189,6 +189,7 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Stuart.txt" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+     <None Include="Assets\MyAssets\Database\CreatedEffects\PrintPostEffect.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Muchas Bananas.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
      <None Include="Assets\MyAssets\Database\CreatedEffects\Draw.txt" />

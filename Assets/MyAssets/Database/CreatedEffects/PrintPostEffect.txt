@@ -1,0 +1,6 @@
+effect{
+	Name: "PrintPostEffect",
+	Action: (targets,context)=>{
+		Print("PostActionEjecutandose");
+	}
+}

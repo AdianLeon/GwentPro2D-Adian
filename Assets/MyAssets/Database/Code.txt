@@ -9,8 +9,10 @@ card{
 		{
 			Effect: "StealEffect",
 			Selector:{
-				Source:"board",
-				Predicate:(unit)=>unit.Power<30
+				Source:"board"
+			},
+			PostAction:{
+				Effect:"PrintPostEffect"
 			}
 		}
 	],

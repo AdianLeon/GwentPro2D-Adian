@@ -37,40 +37,48 @@ public class Executer : MonoBehaviour
         foreach (EffectCall effectCall in card.OnActivation.effectCalls)
         {
             if (effectCall == null) { return; }
-            else if (effectCall is ScriptEffectCall)
-            {
-                Type effectType = Type.GetType(effectCall.EffectName.Evaluate());
-                ICardEffect effectScript = (ICardEffect)card.GetComponent(effectType);
-                effectScript.TriggerEffect();
-            }
-            else if (effectCall is CreatedEffectCall)
-            {
-                if (!createdEffects.ContainsKey(effectCall.EffectName.Evaluate())) { return; }
-                List<DraggableCard> targets = SelectTargets(((CreatedEffectCall)effectCall).EffectSelector);
-                ExecuteEffect((CreatedEffectCall)effectCall, targets);
-            }
-            else { throw new NotImplementedException("El EffectCall no es ScriptEffectCall ni CreatedEffectCall"); }
+            ExecuteEffectCall(card, effectCall);
         }
     }
-    private static void ExecuteEffect(CreatedEffectCall effectCall, List<DraggableCard> targets)
+    private static void ExecuteEffectCall(Card card, EffectCall effectCall)
     {
+        if (effectCall is ScriptEffectCall)
+        {
+            Type effectType = Type.GetType(effectCall.EffectName.Evaluate());
+            ICardEffect effectScript = (ICardEffect)card.GetComponent(effectType);
+            effectScript.TriggerEffect();
+        }
+        else if (effectCall is CreatedEffectCall)
+        {
+            if (!createdEffects.ContainsKey(effectCall.EffectName.Evaluate())) { return; }
+            ExecuteCreatedEffect(card, (CreatedEffectCall)effectCall);
+        }
+        else { throw new NotImplementedException("El EffectCall no es ScriptEffectCall ni CreatedEffectCall"); }
+    }
+    private static void ExecuteCreatedEffect(Card card, CreatedEffectCall effectCall)
+    {
+        List<DraggableCard> targets = SelectTargets(effectCall);
         VariableScopes.Reset();
         VariableScopes.AddNewVar("targets", new CardReferenceList(targets));
         createdEffects[effectCall.EffectName.Evaluate()].EffectAction.ActionStatements.ForEach(action => action.PerformAction());
+
+        if (effectCall.EffectPostAction != null) { ExecuteEffectCall(card, effectCall.EffectPostAction); }
     }
-    private static List<DraggableCard> SelectTargets(EffectSelector selector)
+    private static List<DraggableCard> SelectTargets(CreatedEffectCall effectCall)
     {
+        EffectSelector selector = effectCall.EffectSelector;
         if (selector == null) { throw new Exception("El selector no existe"); }
         List<DraggableCard> cards;
         switch (selector.Source.Evaluate())
         {
-            case "board": cards = Field.PlayedFieldCards.Cast<DraggableCard>().ToList(); break;
+            case "board": cards = Field.PlayedFieldCards.Cast<DraggableCard>().Randomize().ToList(); break;
             case "field": cards = Field.PlayerCards.Cast<DraggableCard>().ToList(); break;
             case "otherField": cards = Field.EnemyCards.Cast<DraggableCard>().ToList(); break;
             case "hand": cards = Hand.PlayerCards.ToList(); break;
             case "otherHand": cards = Hand.EnemyCards.ToList(); break;
             case "deck": cards = Deck.PlayerCards.ToList(); break;
             case "otherDeck": cards = Deck.EnemyCards.ToList(); break;
+            case "parent": if (effectCall is EffectPostAction) { cards = SelectTargets(((EffectPostAction)effectCall).Parent); } else { throw new Exception(":("); }; break;
             default: throw new NotImplementedException();
         }
         if (selector.CardPredicate != null) { foreach (DraggableCard card in cards) { if (!selector.CardPredicate.EvaluateCard(new CardReference(card))) { cards.Remove(card); } } }

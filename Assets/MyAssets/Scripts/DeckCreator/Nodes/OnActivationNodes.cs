@@ -17,7 +17,13 @@ public class CreatedEffectCall : EffectCall
 {
     public EffectSelector EffectSelector;
     public EffectPostAction EffectPostAction;
-    public CreatedEffectCall(IExpression<string> effectName, EffectSelector effectSelector) { EffectName = effectName; EffectSelector = effectSelector; }
+    public CreatedEffectCall(IExpression<string> effectName, EffectSelector effectSelector, EffectPostAction effectPostAction) { EffectName = effectName; EffectSelector = effectSelector; EffectPostAction = effectPostAction; }
+}
+public class EffectPostAction : CreatedEffectCall
+{
+    public CreatedEffectCall Parent;
+    public EffectPostAction(CreatedEffectCall postAction, CreatedEffectCall parent) : base(postAction.EffectName, postAction.EffectSelector, postAction.EffectPostAction)
+    { Parent = parent; }
 }
 public class EffectSelector
 {
@@ -39,7 +45,4 @@ public class CardPredicate
         return fulfillsPredicate;
     }
     public CardPredicate(string parameterName, IExpression<bool> predicate) { cardParameterName = parameterName; filter = predicate; }
-}
-public class EffectPostAction
-{
 }
