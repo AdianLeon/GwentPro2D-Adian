@@ -26,7 +26,7 @@ public class Executer : MonoBehaviour
         foreach (string address in addressesOfEffects)
         {//Para cada uno de los archivos con extension json
             string codeEffect = File.ReadAllText(address);//Lee el archivo
-            EffectDeclaration effectDeclaration = EffectParser.ProcessCode(codeEffect);//Convierte el string en json a un objeto 
+            EffectDeclaration effectDeclaration = Parser.ProcessEffectCode(codeEffect);//Convierte el string en json a un objeto 
             if (effectDeclaration != null) { createdEffects.Add(effectDeclaration.Name.Evaluate(), effectDeclaration); }
             else { Errors.Write("No se pudo procesar el texto del efecto en: " + address); failedAtLoadingAnyEffect = true; }
         }
@@ -73,8 +73,7 @@ public class Executer : MonoBehaviour
             case "otherDeck": cards = Deck.EnemyCards.ToList(); break;
             default: throw new NotImplementedException();
         }
-        //Filter with predicate
-        //if(selector.CardPredicate!=null){foreach(DraggableCard card in cards){if(!selector.CardPredicate.EvaluateCard(new CardReference(card))){cards.Remove(card);}}}
+        if (selector.CardPredicate != null) { foreach (DraggableCard card in cards) { if (!selector.CardPredicate.EvaluateCard(new CardReference(card))) { cards.Remove(card); } } }
         if (cards.Count == 0) { return new List<DraggableCard>(); }
         if (selector.Single.Evaluate()) { return new List<DraggableCard> { cards[0] }; }
         return cards;

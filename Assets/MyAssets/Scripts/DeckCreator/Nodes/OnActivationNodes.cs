@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 public class OnActivation : INode
@@ -27,6 +28,17 @@ public class EffectSelector
 }
 public class CardPredicate
 {
+    private string cardParameterName;
+    private IExpression<bool> filter;
+    public bool EvaluateCard(CardReference cardReference)
+    {
+        VariableScopes.Reset();
+        VariableScopes.AddNewVar(cardParameterName, cardReference);
+        bool fulfillsPredicate = filter.Evaluate();
+        VariableScopes.PopLastScope();
+        return fulfillsPredicate;
+    }
+    public CardPredicate(string parameterName, IExpression<bool> predicate) { cardParameterName = parameterName; filter = predicate; }
 }
 public class EffectPostAction
 {

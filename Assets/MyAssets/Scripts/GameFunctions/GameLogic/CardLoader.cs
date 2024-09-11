@@ -36,7 +36,7 @@ public class CardLoader : MonoBehaviour
         foreach (string address in addressesOfCards)
         {//Para cada uno de los archivos con extension .txt
             string codeCard = File.ReadAllText(address);//Lee el archivo
-            CardDeclaration cardDeclaration = CardParser.ProcessCode(codeCard);//Convierte el string en json a un objeto CardSave
+            CardDeclaration cardDeclaration = Parser.ProcessCardCode(codeCard);//Convierte el string en json a un objeto CardSave
             if (cardDeclaration != null) { for (int i = cardDeclaration.TotalCopies.Evaluate(); i > 0; i--) { ImportCardTo(cardDeclaration, deckPlace); } }
             else { Errors.Write("No se pudo procesar el texto de la carta en: " + address); failedAtInterpretingAnyCard = true; }
         }

@@ -24,29 +24,30 @@ public class Token
 }
 public enum TokenType
 {//Tipos de tokens
+    unexpected,
     number,// ... -3 -2 -1 0 1 2 3 ...
     boolean,// true false
     literal,// "Un string"
 
     //Identificadores
     identifier,
-    assignment,// Name Params Action Type Effect Selector Source Single Predicate Faction Power Range OnActivation PostAction ScriptEffect
+    // assignment,// Name Params Action Type Effect Selector Source Single Predicate Faction Power Range OnActivation PostAction ScriptEffect
     cycle,// for in while
     varType,// Number String Bool
 
     //Simples
     punctuator,// : ; , . " '
     limitator,// ( ) [ ] { }
+    operatorToken,
     //Operators
-    booleanOp,// == != < > <= >= && ||
-    arithmeticOp,// + - * / ^ += -= *= /= ^=
-    concatenationOp,// @ @@
-    asignationOp,//=
-    unaryOp,// ++ --
-    lambdaOp,// =>
+    // booleanOp,// == != < > <= >= && ||
+    // arithmeticOp,// + - * / ^ += -= *= /= ^=
+    // concatenationOp,// @ @@
+    // asignationOp,//=
+    // unaryOp,// ++ --
+    // lambdaOp,// =>
     //Otros
-    end,// $ 
-    unexpected// ?
+    end// $ 
 };
 public static class LexerUtils
 {
@@ -58,26 +59,26 @@ public static class LexerUtils
         //Limitators
         {"(",TokenType.limitator},{")",TokenType.limitator},{"[",TokenType.limitator},{"]",TokenType.limitator},{"{",TokenType.limitator},{"}",TokenType.limitator},
         //BooleanOperators
-        {"==",TokenType.booleanOp},{"!=",TokenType.booleanOp},{"<",TokenType.booleanOp},{">",TokenType.booleanOp},{"<=",TokenType.booleanOp},{">=",TokenType.booleanOp},
-        {"&&",TokenType.booleanOp},{"||",TokenType.booleanOp},
+        {"==",TokenType.operatorToken},{"!=",TokenType.operatorToken},{"<",TokenType.operatorToken},{">",TokenType.operatorToken},{"<=",TokenType.operatorToken},{">=",TokenType.operatorToken},
+        {"&&",TokenType.operatorToken},{"||",TokenType.operatorToken},
         //ArithmeticOperators
-        {"+",TokenType.arithmeticOp},{"-",TokenType.arithmeticOp},{"*",TokenType.arithmeticOp},{"/",TokenType.arithmeticOp},{"^",TokenType.arithmeticOp},
-        {"+=",TokenType.arithmeticOp},{"-=",TokenType.arithmeticOp},{"*=",TokenType.arithmeticOp},{"/=",TokenType.arithmeticOp},{"^=",TokenType.arithmeticOp},
+        {"+",TokenType.operatorToken},{"-",TokenType.operatorToken},{"*",TokenType.operatorToken},{"/",TokenType.operatorToken},{"^",TokenType.operatorToken},
+        {"+=",TokenType.operatorToken},{"-=",TokenType.operatorToken},{"*=",TokenType.operatorToken},{"/=",TokenType.operatorToken},{"^=",TokenType.operatorToken},
         //ConcatenationOperators
-        {"@",TokenType.concatenationOp},{"@@",TokenType.concatenationOp},
+        {"@",TokenType.operatorToken},{"@@",TokenType.operatorToken},
         //AssignationOperator
-        {"=",TokenType.asignationOp},
+        {"=",TokenType.operatorToken},
         //UnaryOperators
-        {"++",TokenType.unaryOp},{"--",TokenType.unaryOp},
+        {"++",TokenType.operatorToken},{"--",TokenType.operatorToken},
         //LambdaOperator
-        {"=>",TokenType.lambdaOp},
+        {"=>",TokenType.operatorToken},
     };
     public static Dictionary<string, TokenType> ReservedWords = new Dictionary<string, TokenType>
     {
         //Assignments
-        {"Name",TokenType.assignment},{"Params",TokenType.assignment},{"Action",TokenType.assignment},{"Type",TokenType.assignment},{"Effect",TokenType.assignment},{"Description",TokenType.assignment},
-        {"Selector",TokenType.assignment},{"Source",TokenType.assignment},{"Single",TokenType.assignment},{"Predicate",TokenType.assignment},{"PostAction",TokenType.assignment},
-        {"Faction",TokenType.assignment},{"Power",TokenType.assignment},{"Range",TokenType.assignment},{"OnActivation",TokenType.assignment},{"TotalCopies",TokenType.assignment},
+        // {"Name",TokenType.assignment},{"Params",TokenType.assignment},{"Action",TokenType.assignment},{"Type",TokenType.assignment},{"Effect",TokenType.assignment},{"Description",TokenType.assignment},
+        // {"Selector",TokenType.assignment},{"Source",TokenType.assignment},{"Single",TokenType.assignment},{"Predicate",TokenType.assignment},{"PostAction",TokenType.assignment},
+        // {"Faction",TokenType.assignment},{"Power",TokenType.assignment},{"Range",TokenType.assignment},{"OnActivation",TokenType.assignment},{"TotalCopies",TokenType.assignment},
         //Bool
         {"true",TokenType.boolean},{"false",TokenType.boolean},
         //Cycle
@@ -85,7 +86,7 @@ public static class LexerUtils
         //VariableTypes
         {"Number",TokenType.varType},{"String",TokenType.varType},{"Bool",TokenType.varType},
         //Added
-        {"ScriptEffect",TokenType.assignment}
+        // {"ScriptEffect",TokenType.assignment}
     };
     public static int NewLineCounter(string code, int index)
     {//Dados el codigo y la posicion cuenta la cantidad de saltos de linea

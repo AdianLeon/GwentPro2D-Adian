@@ -1,15 +1,15 @@
 using System.Collections.Generic;
 
-public class FullDeclarationParser : Parser
+public static partial class Parser
 {
-    public override INode ParseTokens()
+    public static FullDeclaration ParseFullDeclaration()
     {
         FullDeclaration fullDeclaration = new FullDeclaration();
         while (!Current.Is("$"))
         {
             fullDeclaration.PositionsInCode.Enqueue(Current.Position);
-            if (Current.Is("card")) { fullDeclaration.BlockDeclarations.Add((BlockDeclaration)new CardParser().ParseTokens()); }
-            else if (Current.Is("effect")) { fullDeclaration.BlockDeclarations.Add((BlockDeclaration)new EffectParser().ParseTokens()); }
+            if (Current.Is("card")) { fullDeclaration.BlockDeclarations.Add(ParseCard()); }
+            else if (Current.Is("effect")) { fullDeclaration.BlockDeclarations.Add(ParseEffect()); }
             else { Errors.Write("Se esperaba 'card' o 'effect' en vez de: '" + Current.Text + "'", Current); hasFailed = true; return null; }
             if (hasFailed) { return null; }
             fullDeclaration.PositionsInCode.Enqueue(Current.Position);

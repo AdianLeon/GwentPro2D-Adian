@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
 
-public interface IReference/*<T>*/ : INode
+public interface IReference : INode
 {
     public VarType Type { get; }
-    /*public T Value { get; }*/
 }
 public class FutureReference : IReference
 {

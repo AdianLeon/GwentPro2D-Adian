@@ -1,10 +1,11 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class ComparisonExpressionsParser : Parser
+public partial class Parser
 {
-    public override INode ParseTokens() { IExpression<bool> expression = ParseOperation(); Next(-1); return expression; }
-    private IExpression<bool> ParseOperation()
+    private static IExpression<bool> ParseComparisonExpression() { IExpression<bool> expression = ParseComparisonOperation(); Next(-1); return expression; }
+    private static IExpression<bool> ParseComparisonOperation()
     {
         IExpression<IReference> left = ParseComparisonValue(); if (hasFailed) { return null; }
         if (Current.Is("==") || Current.Is("!=") || Current.Is("<") || Current.Is(">") || Current.Is("<=") || Current.Is(">="))
@@ -17,11 +18,14 @@ public class ComparisonExpressionsParser : Parser
         }
         else { hasFailed = true; return null; }
     }
-    private IExpression<IReference> ParseComparisonValue()
+    private static IExpression<IReference> ParseComparisonValue()
     {
         Debug.Log("Comienzo a parsear expresion para comparar");
-        IReference reference = ParseExpression(false);
-        if (hasFailed) { Debug.Log("Se esperaba una referencia. Token: " + Current); return null; }
+        IReference reference;
+        if (!Try(ParseBooleanExpression, out reference, false) && !Try(ParseArithmeticExpression, out reference, false) && !Try(ParseStringExpression, out reference, false))
+        {
+            Debug.Log("Se esperaba una referencia. Token: " + Current); hasFailed = true; return null;
+        }
         Next();
         Debug.Log("Termino de parsear expresion para comparar");
         return new ComparisonValueExpression(reference);

@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EffectActionParser : Parser
+public static partial class Parser
 {
-    public override INode ParseTokens()
+    private static INode ParseEffectAction()
     {
         if (!Current.Is("(", true)) { hasFailed = true; }
         if (!Next().Is("targets", true)) { hasFailed = true; }
@@ -18,23 +18,29 @@ public class EffectActionParser : Parser
         EffectAction effectAction = new EffectAction();
         VariableScopes.Reset();
         VariableScopes.AddNewVar("targets", new FutureReference(VarType.CardList));
+        VariableScopes.AddNewVar("context", new FutureReference(VarType.None));
         while (!Next().Is("}"))
         {
             effectAction.ActionStatements.Add(ActionStatementParser());
             if (hasFailed) { return null; }
         }
+        VariableScopes.PopLastScope();
         return effectAction;
     }
-    private IActionStatement ActionStatementParser()
+    private static IActionStatement ActionStatementParser()
     {//Parsea una linea de codigo dentro del Action: (targets, contexts) => {...}
         IActionStatement actionStatement;
         Debug.Log("Parsing actionStatement in: " + Current);
-        if (!Try(ParseGeneric, out actionStatement)) { Errors.Write("Se esperaba una accion", Current); hasFailed = true; return null; }
+        if (Current.Text == "Print") { actionStatement = ParsePrintAction(); }
+        else if (Current.Text == "for") { actionStatement = ParseForEachCycle(); }
+        else if (Current.Text == "while") { actionStatement = ParseWhileCycle(); }
+        else if (!Try(ParseVariable, out actionStatement)) { Errors.Write("Se esperaba una accion", Current); hasFailed = true; return null; }
+
         if (actionStatement is VariableDeclaration) { actionStatement.PerformAction(); }
         if (!Next().Is(";", true)) { hasFailed = true; return null; }
         return actionStatement;
     }
-    public ForEachCycle ParseForEachCycle()
+    private static ForEachCycle ParseForEachCycle()
     {
         if (!Next().Is(TokenType.identifier, true)) { hasFailed = true; return null; }
         string iteratorVarName = Current.Text;
@@ -63,14 +69,14 @@ public class EffectActionParser : Parser
         VariableScopes.PopLastScope();
         return new ForEachCycle(iteratorVarName, cardReferenceList, foreachStatements);
     }
-    public WhileCycle ParseWhileCycle()
+    private static WhileCycle ParseWhileCycle()
     {
         if (!Current.Is("while", true)) { hasFailed = true; return null; }
         VariableScopes.AddNewScope();
         if (!Next().Is("(", true)) { hasFailed = true; return null; }
         Next();
         IExpression<bool> booleanExpression;
-        if (!Try(ParseExpression, true, out booleanExpression)) { Errors.Write("Se esperaba una expresion booleana", Current); hasFailed = true; return null; }
+        if (!Try(ParseExpressions, out booleanExpression)) { Errors.Write("Se esperaba una expresion booleana", Current); hasFailed = true; return null; }
         if (!Next().Is(")", true)) { hasFailed = true; return null; }
         if (!Next().Is("{", true)) { hasFailed = true; return null; }
         List<IActionStatement> actionStatements = new List<IActionStatement>();
@@ -82,12 +88,12 @@ public class EffectActionParser : Parser
         VariableScopes.PopLastScope();
         return new WhileCycle(booleanExpression, actionStatements);
     }
-    public PrintAction ParsePrintAction()
+    private static PrintAction ParsePrintAction()
     {
         PrintAction printAction;
         if (!Next().Is("(", true)) { hasFailed = true; return null; }
         Next();
-        IExpression<string> message = (IExpression<string>)new StringExpressionsParser().ParseTokens();
+        IExpression<string> message = (IExpression<string>)ParseStringExpression();
         if (hasFailed) { return null; }
         printAction = new PrintAction(message);
         if (!Next().Is(")", true)) { hasFailed = true; return null; }

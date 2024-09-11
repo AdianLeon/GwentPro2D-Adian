@@ -1,10 +1,9 @@
-
 using UnityEngine;
 
-public class ArithmeticExpressionsParser : Parser
+public static partial class Parser
 {
-    public override INode ParseTokens() { IExpression<int> expression = ParseSum(); Next(-1); return expression; }
-    private IExpression<int> ParseSum()
+    private static IExpression<int> ParseArithmeticExpression() { IExpression<int> expression = ParseSum(); Next(-1); Debug.Log("Returns arithmetic expression!"); return expression; }
+    private static IExpression<int> ParseSum()
     {
         IExpression<int> left = ParseMultiplication(); if (hasFailed) { return null; }
         while (Current.Is("+") || Current.Is("-"))
@@ -15,7 +14,7 @@ public class ArithmeticExpressionsParser : Parser
         }
         return left;
     }
-    private IExpression<int> ParseMultiplication()
+    private static IExpression<int> ParseMultiplication()
     {
         IExpression<int> left = ParseNumber(); if (hasFailed) { return null; }
         while (Current.Is("*") || Current.Is("/"))
@@ -26,7 +25,7 @@ public class ArithmeticExpressionsParser : Parser
         }
         return left;
     }
-    private IExpression<int> ParseNumber()
+    private static IExpression<int> ParseNumber()
     {
         IExpression<int> left;
         if (Current.Is("-") && Peek().Is(TokenType.number)) { left = new NumberExpression(Current.Text + Next().Text); Next(); }
@@ -41,11 +40,11 @@ public class ArithmeticExpressionsParser : Parser
         else if (Current.Is(TokenType.identifier) && VariableScopes.ContainsVar(Current.Text) && Current.Text.ScopeValue().Type == VarType.Number)
         {
             VariableReference variableReference;
-            if (!Try(new VariableParser().ParseTokens, out variableReference)) { throw new System.Exception("Se suponia que existia una referencia a un numero"); }
+            if (!Try(ParseVariable, out variableReference)) { throw new System.Exception("Se suponia que existia una referencia a un numero"); }
             left = new NumberVariableReference(variableReference);
             Next();
         }
-        else if (!Try(ParseSemiGeneric, out left)) { hasFailed = true; return null; }
+        else if (!Try(ParseVariable, out left)) { hasFailed = true; return null; }
 
         while (Current.Is("^"))
         {

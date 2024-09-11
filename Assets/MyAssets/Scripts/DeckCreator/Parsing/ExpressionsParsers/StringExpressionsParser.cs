@@ -1,10 +1,9 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class StringExpressionsParser : Parser
+public static partial class Parser
 {
-    public override INode ParseTokens() { IExpression<string> expression = ParseOperation(); Next(-1); return expression; }
-    private IExpression<string> ParseOperation()
+    private static IExpression<string> ParseStringExpression() { IExpression<string> expression = ParseStringOperation(); Next(-1); return expression; }
+    private static IExpression<string> ParseStringOperation()
     {
         IExpression<string> left = ParseStringValue(); if (hasFailed) { return null; }
         while (Current.Is("@") || Current.Is("@@"))
@@ -15,21 +14,18 @@ public class StringExpressionsParser : Parser
         }
         return left;
     }
-    private IExpression<string> ParseStringValue()
+    private static IExpression<string> ParseStringValue()
     {
-        Debug.Log("Parseando string");
         IExpression<string> left;
         if (Current.Is(TokenType.literal)) { left = new StringValueExpression(Current.Text); Next(); }
         else if (Current.Is(TokenType.identifier) && VariableScopes.ContainsVar(Current.Text) && Current.Text.ScopeValue().Type == VarType.String)
         {
-            Debug.Log("Variable declarada que contiene a string");
             VariableReference variableReference;
-            if (!Try(new VariableParser().ParseTokens, out variableReference)) { throw new System.Exception("Se suponia que existia una referencia a un string"); }
+            if (!Try(ParseVariable, out variableReference)) { throw new System.Exception("Se suponia que existia una referencia a un string"); }
             left = new StringVariableReference(variableReference);
             Next();
         }
-        else if (!Try(ParseSemiGeneric, out left)) { hasFailed = true; return null; }
-        Debug.Log("Terminando de parsear string: " + Current);
+        else if (!Try(ParseVariable, out left)) { hasFailed = true; return null; }
         return left;
     }
 }

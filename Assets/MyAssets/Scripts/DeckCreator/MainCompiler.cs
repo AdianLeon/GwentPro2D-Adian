@@ -21,7 +21,7 @@ public static class MainCompiler
         if (tokens == null) { Errors.Write("No se pudo tokenizar el codigo!"); return null; }
         // Debug.Log("Resultado del lexer:"); tokens.ForEach(token => Debug.Log(token.ToString())); Debug.Log("Fin del resultado del lexer...");
         Parser.StartParsing(tokens);
-        FullDeclaration fullDeclaration = (FullDeclaration)new FullDeclarationParser().ParseTokens();
+        FullDeclaration fullDeclaration = Parser.ParseFullDeclaration();
         if (Parser.HasFailed) { Errors.Write("No se pudo parsear el codigo"); return null; } else { Errors.PureWrite("El codigo se ha compilado exitosamente"); }
         return fullDeclaration;
     }

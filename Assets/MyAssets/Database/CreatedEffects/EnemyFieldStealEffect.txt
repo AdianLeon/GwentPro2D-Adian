@@ -1,14 +1,13 @@
 effect{
 	Name: "EnemyFieldStealEffect",
 	Action: (targets,context)=>{
-		hand=context.Hand;
-		card=hand.Pop();
-		hand.Push(card);
+		enemyField=context.OtherField;
+		card=enemyField.Pop();
+		context.Hand.Push(card);
 		num=0;
 		message="Wasta";
 		while(num<5){
 			Print(message);
-			num=num+1;
 		};
 	}
 }

@@ -3,10 +3,10 @@ using UnityEngine;
 using System.Reflection;
 using System;
 using System.Linq;
-//
-public class OnActivationParser : Parser
+
+public static partial class Parser
 {
-    public override INode ParseTokens()
+    private static INode ParseOnActivation()
     {
         OnActivation onActivation = new OnActivation();
         if (!Current.Is("[", true)) { hasFailed = true; return null; }
@@ -30,7 +30,7 @@ public class OnActivationParser : Parser
                         if (!Next().Is(":", true)) { hasFailed = true; return null; }
                         if (Next().Is(TokenType.literal))
                         {
-                            effectName = (IExpression<string>)new StringExpressionsParser().ParseTokens();
+                            effectName = (IExpression<string>)ParseStringExpression();
                             if (hasFailed) { return null; }
                         }
                         else if (Current.Is("{"))
@@ -38,7 +38,7 @@ public class OnActivationParser : Parser
                             //Do a while(expecting) and load the effect as soon as the name is declared, if that effect has parameters start expecting them, for that purpose create a set expectedDeclarations that initially only expects the Name
                             if (!Next().Is("Name", true)) { hasFailed = true; return null; }
                             if (!Next().Is(":", true)) { hasFailed = true; return null; }
-                            effectName = (IExpression<string>)new StringExpressionsParser().ParseTokens();
+                            effectName = (IExpression<string>)ParseStringExpression();
                             if (hasFailed) { return null; }
                             if (!Next().Is("}", true)) { hasFailed = true; return null; }
                         }
@@ -58,7 +58,7 @@ public class OnActivationParser : Parser
                                 {
                                     if (source == null)
                                     {
-                                        source = (IExpression<string>)new StringExpressionsParser().ParseTokens();
+                                        source = (IExpression<string>)ParseStringExpression();
                                         if (hasFailed) { return null; }
                                     }
                                     else { Errors.Write("La propiedad 'Source' ya ha sido declarada"); hasFailed = true; return null; }
@@ -69,8 +69,25 @@ public class OnActivationParser : Parser
                             {
                                 if (!Next().Is(":", true)) { hasFailed = true; return null; }
                                 Next();
-                                single = (IExpression<bool>)new BooleanExpressionsParser().ParseTokens();
+                                if (!Try(ParseExpressions, out single)) { Errors.Write("Se esperaba una expresion booleana", Current); hasFailed = true; return null; }
                                 if (hasFailed) { return null; }
+                            }
+                            else if (Current.Is("Predicate"))
+                            {
+                                if (cardPredicate != null) { Errors.Write("La propiedad 'Predicate' ya ha sido declarada"); hasFailed = true; return null; }
+                                if (!Next().Is(":", true)) { hasFailed = true; return null; }
+                                if (!Next().Is("(", true)) { hasFailed = true; return null; }
+                                if (!Next().Is(TokenType.identifier, true)) { hasFailed = true; return null; }
+                                string cardParameterName = Current.Text;
+                                VariableScopes.Reset();
+                                VariableScopes.AddNewVar(cardParameterName, new FutureReference(VarType.Card));
+                                if (!Next().Is(")", true)) { hasFailed = true; return null; }
+                                if (!Next().Is("=>", true)) { hasFailed = true; return null; }
+                                Next();
+                                IExpression<bool> filter;
+                                if (!Try(ParseExpressions, out filter)) { Errors.Write("Se esperaba una expresion booleana", Current); hasFailed = true; return null; }
+                                if (hasFailed) { return null; }
+                                cardPredicate = new CardPredicate(cardParameterName, filter);
                             }
                             else { Errors.Write("Se esperaba alguna de las propiedades del 'Selector': 'Source', 'Single' o 'Predicate'", Current); hasFailed = true; return null; }
                             expectingSelectorProperty = Next().Is(",");
@@ -92,12 +109,12 @@ public class OnActivationParser : Parser
         if (!Current.Is("]", true)) { hasFailed = true; return null; }
         return onActivation;
     }
-    private ScriptEffectCall ParseScriptEffect()
+    private static ScriptEffectCall ParseScriptEffect()
     {
         if (!Next().Is("ScriptEffect")) { hasFailed = true; return null; }
         if (!Next().Is(":", true)) { hasFailed = true; return null; }
         Next();
-        IExpression<string> scriptEffectName = (IExpression<string>)new StringExpressionsParser().ParseTokens();
+        IExpression<string> scriptEffectName = (IExpression<string>)ParseStringExpression();
         if (hasFailed) { return null; }
         IEnumerable<string> allTypesNames = Assembly.GetExecutingAssembly().GetTypes().Where(type => typeof(ICardEffect).IsAssignableFrom(type) && !type.IsInterface && !type.IsAbstract).Select(type => type.Name);
         if (!allTypesNames.Contains(scriptEffectName.Evaluate())) { Errors.Write("El efecto de script indicado no existe", Current); hasFailed = true; return null; }

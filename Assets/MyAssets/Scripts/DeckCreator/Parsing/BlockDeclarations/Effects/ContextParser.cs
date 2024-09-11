@@ -1,19 +1,16 @@
 using System;
 using UnityEngine;
 
-public class ContextParser : Parser
+public static partial class Parser
 {
-    public override INode ParseTokens()
+    private static INode ParseContext()
     {//Parsea cualquier declaracion que sea de acceso al context
-        if (!Current.Is("context", true)) { hasFailed = true; return null; }
-        if (!Next().Is(".", true)) { hasFailed = true; return null; }
-
-        if (Next().Is("Board") || Current.Text.Contains("Hand") || Current.Text.Contains("Deck") || Current.Text.Contains("Field") || Current.Text.Contains("Graveyard")) { return ContextContainerParser(); }
+        if (Next().Is("Board") || Current.Text.Contains("Hand") || Current.Text.Contains("Deck") || Current.Text.Contains("Field") || Current.Text.Contains("Graveyard")) { return ParseContextContainer(); }
         else if (Current.Is("TriggerPlayer")) { return new PlayerReference("Self"); }
         else if (Current.Is("TriggerEnemy")) { return new PlayerReference("Other"); }
         else { Errors.Write("No existe la propiedad del contexto: '" + Current.Text + "'"); hasFailed = true; return null; }
     }
-    public INode ContextContainerParser()
+    private static INode ParseContextContainer()
     {
         ContainerReference container;
         if (Current.Is("Board")) { container = new ContainerReference(Current.Text, new PlayerReference()); }
@@ -25,24 +22,23 @@ public class ContextParser : Parser
             if (!Next().Is("(", true)) { hasFailed = true; return null; }
             IReference playerReference;
             Next();
-            if (!Try(ParseGeneric, out playerReference)) { hasFailed = true; }
+            if (!Try(ParseVariable, out playerReference)) { hasFailed = true; }
             if (hasFailed || playerReference.Type != VarType.Player) { Errors.Write("Se esperaba una referencia a algun jugador", Current); }
             container = new ContainerReference(containerName, playerReference);
             if (!Next().Is(")", true)) { hasFailed = true; return null; }
         }
         else { Errors.Write("No existe la propiedad del contexto: '" + Current.Text + "'", Current); hasFailed = true; return null; }
 
-        if (Peek().Is(".")) { Next(); return ContextContainerMethodParser(container); }
+        if (Peek().Is(".")) { Next(); return ParseContextContainerMethod(container); }
         return container;
     }
-    public INode ContextContainerMethodParser(ContainerReference container)
+    private static INode ParseContextContainerMethod(ContainerReference container)
     {
-        // if (!Next().Is(".", true)) { hasFailed = true; return null; }
         if (Next().Is("Shuffle") || Current.Is("Pop"))
         {
             if (!Next().Is("(", true) || !Next().Is(")", true)) { hasFailed = true; return null; }
             if (Peek(-2).Is("Shuffle")) { return new ContextShuffleMethod(container); }
-            else if (Peek(-2).Is("Pop")) { if (Peek().Is(".")) { Next(); return new VariableParser().ParseCardPropertyOrAction(new ContextPopMethod(container)); } return new ContextPopMethod(container); }
+            else if (Peek(-2).Is("Pop")) { if (Peek().Is(".")) { Next(); return ParseCardPropertyOrAction(new ContextPopMethod(container)); } return new ContextPopMethod(container); }
             else { throw new NotImplementedException(); }
         }
         else if (Current.Is("Push") || Current.Is("SendBottom") || Current.Is("Remove"))
@@ -54,7 +50,7 @@ public class ContextParser : Parser
             if (!Next().Is("(", true)) { hasFailed = true; return null; }
             IReference cardReference;
             INode hopefullyCardReference = null;
-            if (Next().Is("context")) { hopefullyCardReference = ParseTokens(); }
+            if (Next().Is("context")) { hopefullyCardReference = ParseVariable(); }
             else if (Current.Is(TokenType.identifier))
             {
                 if (VariableScopes.ContainsVar(Current.Text)) { hopefullyCardReference = new VariableReference(Current.Text, Current.Text.ScopeValue().Type); }

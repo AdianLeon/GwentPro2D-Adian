@@ -1,0 +1,8 @@
+effect{
+	Name: "StealEffect",
+	Action: (targets,context)=>{
+		for target in targets {
+			context.Hand.Push(target);
+		};
+	}
+}

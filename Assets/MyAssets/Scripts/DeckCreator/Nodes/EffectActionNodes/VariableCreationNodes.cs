@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public enum VarType { Number, Boolean, String, Card, Player, Container, CardList }
+public enum VarType { None, Number, Boolean, String, Card, Player, Container, CardList }
 public static class VariableScopes
 {
     private static Stack<Dictionary<string, IReference>> scopes;

@@ -164,6 +164,7 @@
      <None Include="Assets\MyAssets\Database\Decks\Northern Realms\Fachon.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Agnes.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Kyle.txt" />
+     <None Include="Assets\MyAssets\Database\CreatedEffects\StealEffect.txt" />
      <None Include="Assets\MyAssets\Database\CreatedEffects\ShuffleBoardEffect.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Kevin.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
