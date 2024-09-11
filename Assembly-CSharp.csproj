@@ -168,6 +168,7 @@
      <None Include="Assets\MyAssets\Database\CreatedEffects\ShuffleBoardEffect.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Kevin.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+     <None Include="Assets\MyAssets\Database\CreatedEffects\PrintEffect.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\El Macho.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Rayo Congelador.txt" />
      <None Include="Assets\MyAssets\Database\CreatedEffects\ShuffleOtherEffect.txt" />

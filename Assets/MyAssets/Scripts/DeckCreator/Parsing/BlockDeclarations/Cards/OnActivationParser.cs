@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Reflection;
 using System;
 using System.Linq;
+using System.IO;
 
 public static partial class Parser
 {
@@ -29,6 +30,7 @@ public static partial class Parser
         else
         {
             IExpression<string> effectName = null;
+            List<(string, IReference)> parameters = null;
             EffectPostAction effectPostAction = null;
             bool expectingEffectProperty = true;
             while (expectingEffectProperty)
@@ -41,15 +43,41 @@ public static partial class Parser
                     {
                         effectName = ParseStringExpression();
                         if (hasFailed) { return null; }
+                        List<(string, VarType)> demandedParameters = GetDemandedParameters(effectName.Evaluate());
+                        if (demandedParameters != null && demandedParameters.Count > 0)
+                        {
+                            Errors.Write("Existen parametros para el efecto: '" + effectName.Evaluate() + "', debes declarar los siguientes: " + demandedParameters.Select(parameter => parameter.Item1).FlattenText(), Current);
+                            hasFailed = true; return null;
+                        }
                     }
                     else if (Current.Is("{"))
                     {
-                        //Do a while(expecting) and load the effect as soon as the name is declared, if that effect has parameters start expecting them, for that purpose create a set expectedDeclarations that initially only expects the Name
                         if (!Next().Is("Name", true)) { hasFailed = true; return null; }
                         if (!Next().Is(":", true)) { hasFailed = true; return null; }
+                        Next();
                         effectName = ParseStringExpression();
                         if (hasFailed) { return null; }
-                        if (!Next().Is("}", true)) { hasFailed = true; return null; }
+                        List<(string, VarType)> demandedParameters = GetDemandedParameters(effectName.Evaluate());
+                        if (!Next().Is("}") && !Current.Is(",")) { Errors.Write("Se esperaba '}' o ',' (para declarar parametros)", Current); hasFailed = true; return null; }
+                        else if (Current.Is(","))
+                        {
+                            if (parameters != null) { Errors.Write("Los parametros del efecto ya han sido declarados", Current); hasFailed = true; return null; }
+                            parameters = new List<(string, IReference)>();
+                            List<string> allDeclaredParameters = demandedParameters.Select(parameter => parameter.Item1).ToList();
+                            bool expectingParameterDeclaration = true;
+                            while (expectingParameterDeclaration)
+                            {
+                                parameters.Add(ParseParameterCall(allDeclaredParameters, demandedParameters, effectName.Evaluate()));
+                                expectingParameterDeclaration = Next().Is(",");
+                            }
+                            if (!Current.Is("}", true)) { Errors.Write("Puede ser que hayas olvidado el token ',' entre declaraciones"); hasFailed = true; return null; }
+                            if (allDeclaredParameters.Count > 0) { Errors.Write("Quedaron por declarar los siguientes parametros para el efecto: '" + effectName.Evaluate() + "': " + demandedParameters.Select(parameter => parameter.Item1).FlattenText(), Current); hasFailed = true; return null; }
+                        }
+                        else if (demandedParameters.Count > 0)
+                        {
+                            Errors.Write("Existen parametros para el efecto: '" + effectName.Evaluate() + "', debes declarar los siguientes: " + demandedParameters.Select(parameter => parameter.Item1).FlattenText(), Current);
+                            hasFailed = true; return null;
+                        }
                     }
                     else { Errors.Write("Se esperaba el nombre del efecto o '{'", Current); hasFailed = true; return null; }
                 }
@@ -101,7 +129,7 @@ public static partial class Parser
                     if (effectName == null || effectName.Evaluate().Trim() == "") { Errors.Write("El efecto padre del PostAction debe tener declarado al menos el nombre", Current); hasFailed = true; return null; }
                     if (!Next().Is(":", true)) { hasFailed = true; return null; }
                     EffectCall effectCall = ParseEffectCall(selector, true); if (hasFailed) { return null; }
-                    if (effectCall is CreatedEffectCall) { effectPostAction = new EffectPostAction((CreatedEffectCall)effectCall, new CreatedEffectCall(effectName, selector, effectPostAction)); }
+                    if (effectCall is CreatedEffectCall) { effectPostAction = new EffectPostAction((CreatedEffectCall)effectCall, new CreatedEffectCall(effectName, parameters, selector, effectPostAction)); }
                     else { throw new Exception("No es valido crear un PostAction con un ScriptEffectCall"); }
                     if (!Next().Is("}", true)) { hasFailed = true; return null; }
                 }
@@ -112,9 +140,37 @@ public static partial class Parser
                 if (expectingEffectProperty) { Next(); }
             }
             if (effectName == null || effectName.Evaluate().Trim() == "") { Errors.Write("El efecto no tiene nombre", Current); hasFailed = true; return null; }
-            return new CreatedEffectCall(effectName, selector, effectPostAction);
+            return new CreatedEffectCall(effectName, parameters, selector, effectPostAction);
         }
     }
+
+    private static (string, IReference) ParseParameterCall(List<string> allDeclaredParameters, List<(string, VarType)> demandedParameters, string effectName)
+    {
+        if (!Next().Is(TokenType.identifier, true)) { hasFailed = true; return default; }
+        string parameterName = Current.Text;
+        if (!allDeclaredParameters.Contains(parameterName)) { Errors.Write("El parametro '" + parameterName + "' no fue declarado en el efecto: '" + effectName + "' o ya fue declarado anteriormente"); hasFailed = true; return default; }
+        allDeclaredParameters.Remove(parameterName);
+        if (!Next().Is(":", true)) { hasFailed = true; return default; }
+        VarType parameterType = demandedParameters.Single(parameter => parameter.Item1 == parameterName).Item2;
+        IReference parameterValue;
+        Next();
+        if (parameterType == VarType.Number) { parameterValue = ParseArithmeticExpression(); }
+        else if (parameterType == VarType.Bool) { parameterValue = ParseBooleanExpression(); }
+        else if (parameterType == VarType.String) { parameterValue = ParseStringExpression(); }
+        else { throw new Exception("La variable no contenia un tipo aceptable"); }
+        return new(parameterName, parameterValue);
+    }
+
+    private static List<(string, VarType)> GetDemandedParameters(string effectName)
+    {
+        if (!File.Exists(Application.dataPath + "/MyAssets/Database/CreatedEffects/" + effectName + ".txt")) { Errors.Write("El efecto '" + effectName + "' no existe en la base de datos", Current); hasFailed = true; return null; }
+        string effectCode = File.ReadAllText(Application.dataPath + "/MyAssets/Database/CreatedEffects/" + effectName + ".txt");
+        ParsingOrder parsingOrder = new ParsingOrder(tokens, index, hasFailed);
+        List<(string, VarType)> effectDeclaration = ProcessEffectCode(effectCode).Parameters;
+        ResumeParsing(parsingOrder);
+        return effectDeclaration;
+    }
+
     private static CardPredicate ParseCardPredicate()
     {
         if (!Next().Is("(", true)) { hasFailed = true; return null; }

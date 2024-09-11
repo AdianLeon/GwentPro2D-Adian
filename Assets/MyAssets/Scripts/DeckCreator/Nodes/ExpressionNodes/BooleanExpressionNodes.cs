@@ -2,7 +2,7 @@ using System;
 
 public class BooleanValueExpression : IExpression<bool>
 {
-    public VarType Type => VarType.Boolean;
+    public VarType Type => VarType.Bool;
     private bool value;
     public bool Evaluate() => value;
     public BooleanValueExpression(string boolean) { value = bool.Parse(boolean); }
@@ -10,7 +10,7 @@ public class BooleanValueExpression : IExpression<bool>
 }
 public class BooleanVariableReference : IExpression<bool>
 {
-    public VarType Type => VarType.Boolean;
+    public VarType Type => VarType.Bool;
     private string varName;
     public bool Evaluate() => ((IExpression<bool>)varName.ScopeValue()).Evaluate();
     public BooleanVariableReference(VariableReference variableReference)
@@ -21,7 +21,7 @@ public class BooleanVariableReference : IExpression<bool>
 }
 public class BooleanExpression : BinaryExpression<bool, bool>
 {
-    public override VarType Type => VarType.Boolean;
+    public override VarType Type => VarType.Bool;
     public BooleanExpression(IExpression<bool> left, Token op, IExpression<bool> right) : base(left, op, right) { }
     public override bool Evaluate()
     {

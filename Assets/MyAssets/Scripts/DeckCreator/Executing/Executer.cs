@@ -60,6 +60,7 @@ public class Executer : MonoBehaviour
         List<DraggableCard> targets = SelectTargets(effectCall);
         VariableScopes.Reset();
         VariableScopes.AddNewVar("targets", new CardReferenceList(targets));
+        if (effectCall.Parameters != null) { effectCall.Parameters.ForEach(parameter => VariableScopes.AddNewVar(parameter.Item1, parameter.Item2)); }
         createdEffects[effectCall.EffectName.Evaluate()].EffectAction.ActionStatements.ForEach(action => action.PerformAction());
 
         if (effectCall.EffectPostAction != null) { ExecuteEffectCall(card, effectCall.EffectPostAction); }

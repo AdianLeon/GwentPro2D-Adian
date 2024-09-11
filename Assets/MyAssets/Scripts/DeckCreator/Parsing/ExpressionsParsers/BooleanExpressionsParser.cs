@@ -28,7 +28,7 @@ public static partial class Parser
           else if (Current.Is(TokenType.identifier))
           {
                IReference variableReference;
-               if (!Try(ParseVariable, out variableReference) || variableReference.Type != VarType.Boolean) { Errors.Write("Se esperaba una referencia a un valor booleano"); hasFailed = true; return null; }
+               if (!Try(ParseVariable, out variableReference) || variableReference.Type != VarType.Bool) { Errors.Write("Se esperaba una referencia a un valor booleano"); hasFailed = true; return null; }
                if (variableReference is not VariableReference) { throw new NotImplementedException("Se hallo una referencia booleana que es una variable"); }
                left = new BooleanVariableReference((VariableReference)variableReference);
                Next();

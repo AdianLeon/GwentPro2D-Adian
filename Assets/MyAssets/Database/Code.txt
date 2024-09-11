@@ -8,11 +8,17 @@ card{
 	OnActivation: [
 		{
 			Effect: "StealEffect",
-			Selector:{
+			Selector:
+			{
 				Source:"board"
 			},
-			PostAction:{
-				Effect:"PrintPostEffect"
+			PostAction:
+			{
+				Effect:
+				{
+					Name:"PrintEffect",
+					message:"Mmgvo digo gluglugluglu"
+				}
 			}
 		}
 	],

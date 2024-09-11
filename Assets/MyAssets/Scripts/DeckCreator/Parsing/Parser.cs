@@ -5,6 +5,7 @@ using UnityEngine;
 public static partial class Parser
 {
     public static void StartParsing(List<Token> tokens) { Parser.tokens = tokens; index = 0; hasFailed = false; }
+    private static void ResumeParsing(ParsingOrder parsingOrder) { tokens = parsingOrder.SavedTokens; index = parsingOrder.SavedIndex; hasFailed = parsingOrder.HadFailed; }
     public static bool HasFailed => hasFailed;
     private static bool hasFailed;
     private static List<Token> tokens;
@@ -36,4 +37,12 @@ public static partial class Parser
         }
         hasFailed = true; return null;
     }
+}
+public class ParsingOrder
+{
+    public List<Token> SavedTokens;
+    public int SavedIndex;
+    public bool HadFailed;
+
+    public ParsingOrder(List<Token> tokens, int index, bool hasFailed) { SavedTokens = tokens; SavedIndex = index; HadFailed = hasFailed; }
 }

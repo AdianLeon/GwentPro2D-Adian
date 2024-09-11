@@ -5,7 +5,7 @@ public static partial class Parser
 {
      private static INode ParseVariable()
      {
-          if (!Current.Is(TokenType.identifier)) { Errors.Write("Se esperaba la mencion a una variable o el acceso a la propiedad de alguna variable"); hasFailed = true; return null; }
+          if (!Current.Is(TokenType.identifier)) { Errors.Write("Se esperaba la mencion a una variable o el acceso a la propiedad de alguna variable, se encontro: '" + Current.Text + "'", Current); hasFailed = true; return null; }
           string varName = Current.Text;
           if (Next().Is("="))
           {

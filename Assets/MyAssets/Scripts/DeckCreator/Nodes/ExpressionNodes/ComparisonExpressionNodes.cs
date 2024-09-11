@@ -4,7 +4,7 @@ using UnityEditor.Macros;
 
 public class ComparisonValueExpression : IExpression<IReference>
 {
-    public VarType Type => VarType.Boolean;
+    public VarType Type => VarType.Bool;
     private IReference value;
     public IReference Evaluate() => value;
     public ComparisonValueExpression(IReference reference) { value = reference; }
@@ -12,7 +12,7 @@ public class ComparisonValueExpression : IExpression<IReference>
 }
 public class ComparisonExpression : BinaryExpression<IReference, bool>
 {
-    public override VarType Type => VarType.Boolean;
+    public override VarType Type => VarType.Bool;
     public ComparisonExpression(IExpression<IReference> left, Token op, IExpression<IReference> right) : base(left, op, right) { }
     public override bool Evaluate()
     {

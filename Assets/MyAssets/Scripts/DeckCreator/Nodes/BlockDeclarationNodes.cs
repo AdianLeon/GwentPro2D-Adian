@@ -25,7 +25,8 @@ public class CardDeclaration : BlockDeclaration
 public class EffectDeclaration : BlockDeclaration
 {
     public EffectAction EffectAction;
-    public EffectDeclaration(IExpression<string> name, EffectAction effectAction) { Name = name; EffectAction = effectAction; }
+    public List<(string, VarType)> Parameters;
+    public EffectDeclaration(IExpression<string> name, List<(string, VarType)> parameters, EffectAction effectAction) { Name = name; Parameters = parameters; EffectAction = effectAction; }
 }
 public class EffectAction : INode
 {

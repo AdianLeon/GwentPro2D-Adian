@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static partial class Parser
 {
-    private static INode ParseEffectAction()
+    private static INode ParseEffectAction(List<(string, VarType)> parameters)
     {
         if (!Current.Is("(", true)) { hasFailed = true; }
         if (!Next().Is("targets", true)) { hasFailed = true; }
@@ -14,11 +14,11 @@ public static partial class Parser
         if (!Next().Is("=>", true)) { hasFailed = true; }
         if (!Next().Is("{", true)) { hasFailed = true; }
         if (hasFailed) { return null; }
-
         EffectAction effectAction = new EffectAction();
         VariableScopes.Reset();
         VariableScopes.AddNewVar("targets", new FutureReference(VarType.CardList));
         VariableScopes.AddNewVar("context", new FutureReference(VarType.None));
+        if (parameters != null) { parameters.ForEach(parameter => VariableScopes.AddNewVar(parameter.Item1, new FutureReference(parameter.Item2))); }
         while (!Next().Is("}"))
         {
             effectAction.ActionStatements.Add(ActionStatementParser());
@@ -93,7 +93,7 @@ public static partial class Parser
         PrintAction printAction;
         if (!Next().Is("(", true)) { hasFailed = true; return null; }
         Next();
-        IExpression<string> message = (IExpression<string>)ParseStringExpression();
+        IExpression<string> message = ParseStringExpression();
         if (hasFailed) { return null; }
         printAction = new PrintAction(message);
         if (!Next().Is(")", true)) { hasFailed = true; return null; }

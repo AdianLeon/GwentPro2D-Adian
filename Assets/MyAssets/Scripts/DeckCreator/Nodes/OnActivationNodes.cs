@@ -15,14 +15,15 @@ public class ScriptEffectCall : EffectCall
 }
 public class CreatedEffectCall : EffectCall
 {
+    public List<(string, IReference)> Parameters;
     public EffectSelector EffectSelector;
     public EffectPostAction EffectPostAction;
-    public CreatedEffectCall(IExpression<string> effectName, EffectSelector effectSelector, EffectPostAction effectPostAction) { EffectName = effectName; EffectSelector = effectSelector; EffectPostAction = effectPostAction; }
+    public CreatedEffectCall(IExpression<string> effectName, List<(string, IReference)> parameters, EffectSelector effectSelector, EffectPostAction effectPostAction) { EffectName = effectName; Parameters = parameters; EffectSelector = effectSelector; EffectPostAction = effectPostAction; }
 }
 public class EffectPostAction : CreatedEffectCall
 {
     public CreatedEffectCall Parent;
-    public EffectPostAction(CreatedEffectCall postAction, CreatedEffectCall parent) : base(postAction.EffectName, postAction.EffectSelector, postAction.EffectPostAction)
+    public EffectPostAction(CreatedEffectCall postAction, CreatedEffectCall parent) : base(postAction.EffectName, postAction.Parameters, postAction.EffectSelector, postAction.EffectPostAction)
     { Parent = parent; }
 }
 public class EffectSelector
