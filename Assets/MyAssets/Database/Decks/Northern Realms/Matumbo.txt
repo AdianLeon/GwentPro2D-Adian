@@ -10,14 +10,15 @@ card{
 			Effect: "StealEffect",
 			Selector:
 			{
-				Source:"board"
+				Source:"board",
+				Single:true
 			},
 			PostAction:
 			{
 				Effect:
 				{
 					Name:"PrintEffect",
-					message:"Mmgvo digo gluglugluglu"
+					message:"PARAMETRO"
 				}
 			}
 		}

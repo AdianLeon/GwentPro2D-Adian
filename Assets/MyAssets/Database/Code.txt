@@ -1,26 +1,12 @@
-card{
-	Description:"Roba una carta jugada del enemigo y la coloca en la mano propia",
-	Type: "Plata",
-	Name: "Ma"@"tum"@"bo",
-	Faction: "Nort"@"hern"@@"Realms",
-	Range:["Melee","Ranged","Siege"],
-	Power: -8-(2^4)*2/3+6-5*4+1,
-	OnActivation: [
-		{
-			Effect: "StealEffect",
-			Selector:
-			{
-				Source:"board"
-			},
-			PostAction:
-			{
-				Effect:
-				{
-					Name:"PrintEffect",
-					message:"Mmgvo digo gluglugluglu"
-				}
-			}
-		}
-	],
-	TotalCopies:20
+effect{
+	Name: "PrintEffect",
+	Params:{
+		message:String
+	},
+	Action: (targets,context)=>{
+		for caar in targets
+			Print("T:"@@caar.Name);
+		
+		Print(message);
+	}
 }

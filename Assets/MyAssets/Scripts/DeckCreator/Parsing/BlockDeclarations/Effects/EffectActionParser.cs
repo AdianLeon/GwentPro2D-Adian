@@ -28,16 +28,20 @@ public static partial class Parser
         return effectAction;
     }
     private static IActionStatement ActionStatementParser()
-    {//Parsea una linea de codigo dentro del Action: (targets, contexts) => {...}
-        IActionStatement actionStatement;
+    {//Parsea una linea de codigo dentro del Action: (targets, contexts) => {...} (incluye ';')
+        IActionStatement actionStatement = ParseActionStatement();
+        if (actionStatement is VariableDeclaration) { actionStatement.PerformAction(); }
+        if (!Next().Is(";", true)) { hasFailed = true; return null; }
+        return actionStatement;
+    }
+    private static IActionStatement ParseActionStatement()
+    {//Solo parsea la accion dentro del Action (excluye ';')
         Debug.Log("Parsing actionStatement in: " + Current);
+        IActionStatement actionStatement;
         if (Current.Text == "Print") { actionStatement = ParsePrintAction(); }
         else if (Current.Text == "for") { actionStatement = ParseForEachCycle(); }
         else if (Current.Text == "while") { actionStatement = ParseWhileCycle(); }
         else if (!Try(ParseVariable, out actionStatement)) { Errors.Write("Se esperaba una accion", Current); hasFailed = true; return null; }
-
-        if (actionStatement is VariableDeclaration) { actionStatement.PerformAction(); }
-        if (!Next().Is(";", true)) { hasFailed = true; return null; }
         return actionStatement;
     }
     private static ForEachCycle ParseForEachCycle()
@@ -53,19 +57,14 @@ public static partial class Parser
             string cardListName = Current.Text;
             if (!VariableScopes.ContainsVar(Current.Text)) { Errors.Write("La variable: '" + Current.Text + "' no existe en este contexto", Current); hasFailed = true; return null; }
             IReference reference = Current.Text.ScopeValue();
-            while (reference is VariableReference) { reference = ((VariableReference)reference).VarName.ScopeValue(); }
-            if (reference.Type != VarType.CardList  /*&& reference.Type is not VarType.Container*/) { Errors.Write("La variable: '" + Current.Text + "' no guarda una referencia a una lista de cartas", Current); hasFailed = true; return null; }
+            if (reference.Type != VarType.CardList  /*&& reference.Type != VarType.Container*/) { Errors.Write("La variable: '" + Current.Text + "' no guarda una referencia a una lista de cartas", Current); hasFailed = true; return null; }
             cardReferenceList = new VariableReference(cardListName, VarType.CardList);
         }
-        // else if(Current.Is("context")){}//Se pueden usar las propiedades del context como FutureCardReferenceList(), modificar la herencia de los ContainerReference para que sean FutureCardReferenceList()
         else { Errors.Write("Se esperaba una lista de cartas", Current); hasFailed = true; return null; }
-        if (!Next().Is("{", true)) { hasFailed = true; return null; }
+
         List<IActionStatement> foreachStatements = new List<IActionStatement>();
-        while (!Next().Is("}"))
-        {
-            foreachStatements.Add(ActionStatementParser());
-            if (hasFailed) { return null; }
-        }
+        AddStatements(foreachStatements); if (hasFailed) { return null; }
+
         VariableScopes.PopLastScope();
         return new ForEachCycle(iteratorVarName, cardReferenceList, foreachStatements);
     }
@@ -78,15 +77,20 @@ public static partial class Parser
         IExpression<bool> booleanExpression;
         if (!Try(ParseExpressions, out booleanExpression)) { Errors.Write("Se esperaba una expresion booleana", Current); hasFailed = true; return null; }
         if (!Next().Is(")", true)) { hasFailed = true; return null; }
-        if (!Next().Is("{", true)) { hasFailed = true; return null; }
+
         List<IActionStatement> actionStatements = new List<IActionStatement>();
-        while (!Next().Is("}"))
-        {
-            actionStatements.Add(ActionStatementParser());
-            if (hasFailed) { return null; }
-        }
+        AddStatements(actionStatements); if (hasFailed) { return null; }
+
         VariableScopes.PopLastScope();
         return new WhileCycle(booleanExpression, actionStatements);
+    }
+    private static void AddStatements(List<IActionStatement> actionStatements)
+    {
+        if (Next().Is("{"))
+        {
+            while (!Next().Is("}")) { actionStatements.Add(ActionStatementParser()); if (hasFailed) { return; } }
+        }
+        else { actionStatements.Add(ParseActionStatement()); if (hasFailed) { return; } }
     }
     private static PrintAction ParsePrintAction()
     {

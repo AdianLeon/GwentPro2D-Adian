@@ -40,8 +40,7 @@ public static partial class Parser
      private static INode ParseCardPropertyOrAction(IReference cardReference)
      {
           if (Peek().Is("Power") && Peek(2).Is("=")) { return ParseCardPowerSetting(cardReference); }
-          else if (Next().Is("Power")) { return new CardPropertyReference(cardReference, Current.Text); }
-          else if (Current.Is("Owner")) { return new CardPropertyReference(cardReference, Current.Text); }
+          else if (Next().Is("Power") || Current.Is("Owner") || Current.Is("Name") || Current.Is("Faction")) { return new CardPropertyReference(cardReference, Current.Text); }
           else { Errors.Write("No existe una propiedad de carta definida como '" + Current.Text + "'", Current); hasFailed = true; return null; }
      }
 }

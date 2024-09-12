@@ -38,7 +38,6 @@ public class CardReference : IReference
 {
     public VarType Type => VarType.Card;
     public DraggableCard Card;
-    public string CardType { get { return ""; } }
     public string Name => Card.CardName;
     public string Faction => Card.Faction;
     public int Power
@@ -56,12 +55,15 @@ public class CardPropertyReference : IReference
     public string PropertyAccessed;
     public CardPropertyReference(IReference cardReference, string propertyAccessed)
     {
+        if (cardReference.Type != VarType.Card) { throw new Exception(); }
         CardReference = cardReference;
         PropertyAccessed = propertyAccessed;
         switch (propertyAccessed)
         {
             case "Power": Type = VarType.Number; break;
             case "Owner": Type = VarType.Player; break;
+            case "Name":
+            case "Faction": Type = VarType.String; break;
             default: throw new NotImplementedException("Se ha intentado construir una referencia a la propiedad de carta: " + propertyAccessed);
         }
     }

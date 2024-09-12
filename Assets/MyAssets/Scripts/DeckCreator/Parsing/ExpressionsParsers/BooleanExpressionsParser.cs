@@ -3,9 +3,9 @@ using UnityEngine;
 public static partial class Parser
 {
      private static IExpression<bool> ParseBooleanExpression() { IExpression<bool> expression = ParseBooleanOperation(); Next(-1); return expression; }
-     private static IExpression<bool> ParseBooleanOperation()
+     private static IExpression<bool> ParseBooleanOperation(IExpression<bool> left = null)
      {
-          IExpression<bool> left = ParseBoolValue(); if (hasFailed) { return null; }
+          if (left == null) { left = ParseBoolValue(); if (hasFailed) { return null; } }
           while (Current.Is("&&") || Current.Is("||"))
           {
                Token op = Current; Next();
@@ -27,10 +27,9 @@ public static partial class Parser
           }
           else if (Current.Is(TokenType.identifier))
           {
-               IReference variableReference;
-               if (!Try(ParseVariable, out variableReference) || variableReference.Type != VarType.Bool) { Errors.Write("Se esperaba una referencia a un valor booleano"); hasFailed = true; return null; }
-               if (variableReference is not VariableReference) { throw new NotImplementedException("Se hallo una referencia booleana que es una variable"); }
-               left = new BooleanVariableReference((VariableReference)variableReference);
+               VariableReference variableReference;
+               if (!Try(ParseVariable, out variableReference) || variableReference.Type != VarType.Bool) { Errors.Write("Se esperaba una referencia a un valor booleano", Current); hasFailed = true; return null; }
+               left = new BooleanVariableReference(variableReference);
                Next();
           }
           else { hasFailed = true; return null; }

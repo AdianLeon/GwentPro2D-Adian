@@ -15,7 +15,6 @@ public class StringVariableReference : IExpression<string>
     public string Evaluate() => ((IExpression<string>)varName.ScopeValue()).Evaluate();
     public StringVariableReference(VariableReference variableReference)
     {
-        // if (variableReference.DeReference() is not IExpression<string>) { throw new Exception("La variable no guarda una expresion de string"); }
         varName = variableReference.VarName;
     }
 }

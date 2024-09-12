@@ -4,6 +4,9 @@ effect{
 		message:String
 	},
 	Action: (targets,context)=>{
+		for caar in targets
+			Print("T:"@@caar.Name);
+		
 		Print(message);
 	}
 }
