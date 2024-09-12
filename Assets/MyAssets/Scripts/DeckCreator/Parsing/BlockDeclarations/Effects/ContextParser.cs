@@ -66,7 +66,8 @@ public static partial class Parser
             if (!Next().Is("(", true)) { hasFailed = true; return null; }
             CardPredicate cardPredicate = ParseCardPredicate();
             if (!Next().Is(")", true)) { hasFailed = true; return null; }
-            return new ContextFindMethod(container,cardPredicate);
+            if (Peek().Is("[")) { Next(); return ParseCardListIndexation(new ContextFindMethod(container, cardPredicate)); }
+            return new ContextFindMethod(container, cardPredicate);
         }
         else { Errors.Write("El metodo del contenedor " + container.ContainerName + ": '" + Current.Text + "' no esta definido", Current); hasFailed = true; return null; }
     }

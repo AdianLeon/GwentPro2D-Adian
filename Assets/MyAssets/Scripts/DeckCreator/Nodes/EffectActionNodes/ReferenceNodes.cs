@@ -68,3 +68,10 @@ public class CardPropertyReference : IReference
         }
     }
 }
+public class CardListIndexation : IReference
+{
+    public VarType Type => VarType.Card;
+    public IReference CardListReference;
+    public IExpression<int> Index;
+    public CardListIndexation(IReference cardListReference, IExpression<int> index) { if (cardListReference.Type != VarType.CardList) { throw new Exception(); } CardListReference = cardListReference; Index = index; }
+}

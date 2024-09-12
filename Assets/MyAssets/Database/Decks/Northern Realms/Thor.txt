@@ -5,10 +5,7 @@ card{
 	Faction: "Northern Realms",
 	OnActivation: [
 		{
-			Effect: "ReturnToHand",
-			Selector:{
-				Source:"board"
-			}
+			Effect: "MakeOneAshComeBack"
 		}
 	]
 }

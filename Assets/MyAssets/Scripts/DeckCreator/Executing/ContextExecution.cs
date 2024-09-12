@@ -71,6 +71,7 @@ public static class ContextExecution
         DraggableCard cardToPerformActionOn;
         if (cardReference is ContextPopMethod) { cardToPerformActionOn = PopContainer((ContextPopMethod)cardReference); }
         else if (cardReference is CardReference) { cardToPerformActionOn = ((CardReference)cardReference).Card; }
+        else if (cardReference is CardListIndexation) { cardToPerformActionOn = IndexingResult((CardListIndexation)cardReference); }
         else { throw new Exception("No se ha definido la forma de evaluar la ICardReference"); }
 
         if (method.ActionType == "Push" || method.ActionType == "SendBottom")
@@ -97,6 +98,15 @@ public static class ContextExecution
             if (cardToRemove != null) { cardToRemove.Disappear(); }
         }
         else { throw new Exception("No se ha definido la evaluacion de la accion: " + method.ActionType); }
+    }
+    private static DraggableCard IndexingResult(CardListIndexation indexationOrder)
+    {
+        List<DraggableCard> cards;
+        if (indexationOrder.CardListReference is ContextFindMethod) { cards = FindCards((ContextFindMethod)indexationOrder.CardListReference); }
+        else { throw new NotImplementedException("No se ha definido la forma de evaluar la lista de cartas a indexar"); }
+        int index = indexationOrder.Index.Evaluate();
+        if (index < 0 || index >= cards.Count) { throw new Exception("Indice:" + index + " no valido"); /*Executer.RaiseErrorScreen(); */}
+        return cards[index];
     }
     public static List<DraggableCard> FindCards(ContextFindMethod findMethod)
     {

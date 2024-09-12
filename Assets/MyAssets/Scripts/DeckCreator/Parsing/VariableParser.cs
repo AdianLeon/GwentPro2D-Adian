@@ -33,11 +33,24 @@ public static partial class Parser
                Token op = Current;
                return new VariableAlteration(varName, op, new NumberExpression("1"));
           }
+          else if (Current.Is("["))
+          {
+               if (varName.ScopeValue().Type != VarType.CardList) { Errors.Write(""); hasFailed = true; return null; }
+               return ParseCardListIndexation(varName.ScopeValue());
+          }
           else
           {
                if (VariableScopes.ContainsVar(varName)) { Next(-1); Debug.Log("Referencia a la var: '" + varName + "' devuelta"); return new VariableReference(varName, varName.ScopeValue().Type); }
                else { Errors.Write("La variable '" + varName + "' no existe en el contexto actual pero se esta intentando acceder a ella", Current); hasFailed = true; return null; }
           }
+     }
+     private static CardListIndexation ParseCardListIndexation(IReference cardListReference)
+     {
+          if (!Current.Is("[", true)) { hasFailed = true; return null; }
+          Next();
+          IExpression<int> index = ParseArithmeticExpression();
+          if (!Next().Is("]", true)) { hasFailed = true; return null; }
+          return new CardListIndexation(cardListReference, index);
      }
      private static IActionStatement ParseCardPowerSetting(IReference cardReference)
      {
