@@ -9,7 +9,7 @@ public static partial class Parser
         left = ParseMultiplication(); if (hasFailed) { return null; }
         while (Current.Is("+") || Current.Is("-"))
         {
-            Token op = Current; Next();
+            string op = Current.Text; Next();
             var right = ParseMultiplication(); if (hasFailed) { return null; }
             left = new ArithmeticExpression(left, op, right);
         }
@@ -20,7 +20,7 @@ public static partial class Parser
         if (left == null) { left = ParseNumber(); if (hasFailed) { return null; } }
         while (Current.Is("*") || Current.Is("/"))
         {
-            Token op = Current; Next();
+            string op = Current.Text; Next();
             IExpression<int> right = ParseNumber(); if (hasFailed) { return null; }
             left = new ArithmeticExpression(left, op, right);
         }
@@ -51,7 +51,7 @@ public static partial class Parser
 
         while (Current.Is("^"))
         {
-            Token op = Current; Next();
+            string op = Current.Text; Next();
             IExpression<int> right = ParseNumber(); if (hasFailed) { return null; }
             left = new ArithmeticExpression(left, op, right);
         }

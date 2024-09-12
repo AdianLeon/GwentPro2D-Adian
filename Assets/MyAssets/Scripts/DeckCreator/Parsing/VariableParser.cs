@@ -22,6 +22,17 @@ public static partial class Parser
                else if (varName.ScopeValue().Type == VarType.Container) { return ParseContextContainerMethod((ContainerReference)varName.ScopeValue()); }
                else { throw new NotImplementedException(); }
           }
+          else if (Current.Is("+=") || Current.Is("-=") || Current.Is("*=") || Current.Is("/=") || Current.Is("^="))
+          {
+               Token op = Current; Next();
+               IExpression<int> right = ParseArithmeticExpression();
+               return new VariableAlteration(varName, op, right);
+          }
+          else if (Current.Is("++") || Current.Is("--"))
+          {
+               Token op = Current;
+               return new VariableAlteration(varName, op, new NumberExpression("1"));
+          }
           else
           {
                if (VariableScopes.ContainsVar(varName)) { Next(-1); Debug.Log("Referencia a la var: '" + varName + "' devuelta"); return new VariableReference(varName, varName.ScopeValue().Type); }

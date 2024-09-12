@@ -10,7 +10,7 @@ public partial class Parser
         if (left == null) { left = ParseComparisonValue(); if (hasFailed) { return null; } }
         if (Current.Is("==") || Current.Is("!=") || Current.Is("<") || Current.Is(">") || Current.Is("<=") || Current.Is(">="))
         {
-            Token op = Current; Next();
+            string op = Current.Text; Next();
             Debug.Log("Recibido operador: " + op);
             IExpression<IReference> right = ParseComparisonValue(); if (hasFailed) { return null; }
             if (left.Evaluate().Type != right.Evaluate().Type) { Errors.Write("Se esperaba una comparacion entre referencias del mismo tipo", Current); hasFailed = true; return null; }

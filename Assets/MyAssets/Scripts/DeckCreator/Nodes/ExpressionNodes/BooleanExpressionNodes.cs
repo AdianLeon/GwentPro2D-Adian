@@ -22,15 +22,15 @@ public class BooleanVariableReference : IExpression<bool>
 public class BooleanExpression : BinaryExpression<bool, bool>
 {
     public override VarType Type => VarType.Bool;
-    public BooleanExpression(IExpression<bool> left, Token op, IExpression<bool> right) : base(left, op, right) { }
+    public BooleanExpression(IExpression<bool> left, string op, IExpression<bool> right) : base(left, op, right) { }
     public override bool Evaluate()
     {
         bool left = Left.Evaluate(); bool right = Right.Evaluate();
-        switch (Operator.Text)
+        switch (Operator)
         {// == != < > <= >= && ||
             case "&&": return left && right;
             case "||": return left || right;
-            default: throw new NotImplementedException("El operador: '" + Operator.Text + "' no esta definido");
+            default: throw new NotImplementedException("El operador: '" + Operator + "' no esta definido");
         }
     }
 }

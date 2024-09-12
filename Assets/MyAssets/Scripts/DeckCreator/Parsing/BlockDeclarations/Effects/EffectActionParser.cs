@@ -31,7 +31,7 @@ public static partial class Parser
     {//Parsea una linea de codigo dentro del Action: (targets, contexts) => {...} (incluye ';')
         IActionStatement actionStatement = ParseActionStatement();
         if (actionStatement is VariableDeclaration) { actionStatement.PerformAction(); }
-        if (!Next().Is(";", true)) { hasFailed = true; return null; }
+        if (!Next().Is(";")) { Errors.Write("Has olvidado terminar la declaracion de accion con el caracter ';'", Current); hasFailed = true; return null; }
         return actionStatement;
     }
     private static IActionStatement ParseActionStatement()

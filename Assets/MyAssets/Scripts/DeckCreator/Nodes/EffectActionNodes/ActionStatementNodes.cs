@@ -99,3 +99,17 @@ public class WhileCycle : IActionStatement
         if (count >= limit) { throw new Exception("La cantidad de iteraciones de un ciclo while fue de: " + count + " lo cual no esta permitido"); }
     }
 }
+public class VariableAlteration : IActionStatement
+{
+    public string VarName;
+    public Token Operation;
+    public IExpression<int> Right;
+    public void PerformAction()
+    {
+        if (VarName.ScopeValue() is not IExpression<int>) { throw new Exception("No es expresion aritmetica"); }
+        IExpression<int> Left = (IExpression<int>)VarName.ScopeValue();
+        IExpression<int> result = new ArithmeticExpression(Left, Operation.Text[0].ToString(), Right);
+        VariableScopes.AddNewVar(VarName, result);
+    }
+    public VariableAlteration(string varName, Token operation, IExpression<int> right) { VarName = varName; Operation = operation; Right = right; }
+}

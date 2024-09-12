@@ -8,7 +8,7 @@ public static partial class Parser
         if (left == null) { left = ParseStringValue(); if (hasFailed) { return null; } }
         while (Current.Is("@") || Current.Is("@@"))
         {
-            Token op = Current; Next();
+            string op = Current.Text; Next();
             var right = ParseStringValue(); if (hasFailed) { return null; }
             left = new StringExpression(left, op, right);
         }

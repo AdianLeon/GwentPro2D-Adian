@@ -1,9 +1,14 @@
 card{
-	Description:"Actualiza su poder con el promedio de poder del campo",
+	Description:"Enumera el poder de todas las cartas del campo",
 	Type: "Plata",
 	Name: "Hunga",
 	Faction: "Northern Realms",
 	Range:["Siege"],
 	Power: 25,
-	OnActivation: [{ScriptEffect: "PromEffect"}]
+	OnActivation: [
+		{
+			Effect: "CountPowerEffect"
+		}
+	],
+	TotalCopies:10
 }

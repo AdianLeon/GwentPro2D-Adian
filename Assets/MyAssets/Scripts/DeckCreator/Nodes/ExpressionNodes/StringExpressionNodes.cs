@@ -21,15 +21,15 @@ public class StringVariableReference : IExpression<string>
 public class StringExpression : BinaryExpression<string, string>
 {
     public override VarType Type => VarType.String;
-    public StringExpression(IExpression<string> left, Token op, IExpression<string> right) : base(left, op, right) { }
+    public StringExpression(IExpression<string> left, string op, IExpression<string> right) : base(left, op, right) { }
     public override string Evaluate()
     {
         string left = Left.Evaluate(); string right = Right.Evaluate();
-        switch (Operator.Text)
+        switch (Operator)
         {
             case "@": return left + right;
             case "@@": return left + " " + right;
-            default: throw new NotImplementedException("El operador: '" + Operator.Text + "' no esta definido");
+            default: throw new NotImplementedException("El operador: '" + Operator + "' no esta definido");
         }
     }
 }

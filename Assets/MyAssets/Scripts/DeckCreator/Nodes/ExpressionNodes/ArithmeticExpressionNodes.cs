@@ -22,18 +22,18 @@ public class NumberVariableReference : IExpression<int>
 public class ArithmeticExpression : BinaryExpression<int, int>
 {
     public override VarType Type => VarType.Number;
-    public ArithmeticExpression(IExpression<int> left, Token op, IExpression<int> right) : base(left, op, right) { }
+    public ArithmeticExpression(IExpression<int> left, string op, IExpression<int> right) : base(left, op, right) { }
     public override int Evaluate()
     {
         int left = Left.Evaluate(); int right = Right.Evaluate();
-        switch (Operator.Text)
+        switch (Operator)
         {
             case "+": return left + right;
             case "-": return left - right;
             case "*": return left * right;
             case "/": return left / (right == 0 ? throw new Exception("Division por 0") : right);
             case "^": return (int)Math.Pow(left, right);
-            default: throw new NotImplementedException("El operador: '" + Operator.Text + "' no esta definido");
+            default: throw new NotImplementedException("El operador: '" + Operator + "' no esta definido");
         }
     }
 }

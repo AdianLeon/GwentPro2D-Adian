@@ -15,8 +15,8 @@ public static class VariableScopes
     public static void AddNewVar(VariableDeclaration declaration) => AddNewVar(declaration.VarName, declaration.VarValue);
     public static void AddNewVar(string varName, IReference varValue)
     {
-        if (ContainsVar(varName)) { scopes.Peek().Remove(varName); }
-        scopes.Peek().Add(varName, varValue);
+        if (ContainsVar(varName)) { scopes.Single(scope => scope.ContainsKey(varName))[varName] = varValue; }
+        else { scopes.Peek().Add(varName, varValue); }
     }
     public static IReference ScopeValue(this string varName)
     {

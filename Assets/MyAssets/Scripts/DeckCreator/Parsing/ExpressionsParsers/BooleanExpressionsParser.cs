@@ -8,7 +8,7 @@ public static partial class Parser
           if (left == null) { left = ParseBoolValue(); if (hasFailed) { return null; } }
           while (Current.Is("&&") || Current.Is("||"))
           {
-               Token op = Current; Next();
+               string op = Current.Text; Next();
                var right = ParseBoolValue(); if (hasFailed) { return null; }
                left = new BooleanExpression(left, op, right);
           }
