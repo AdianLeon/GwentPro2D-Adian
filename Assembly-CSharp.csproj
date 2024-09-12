@@ -51,7 +51,7 @@
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\GFDeclarations\GFUtils.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\DropZones\DropZone.cs" />
      <Compile Include="Assets\MyAssets\Scripts\GameFunctions\CardTypes\WeatherCard.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Executing\ContextExecutionUtils.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Executing\ContextExecution.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
      <Compile Include="Assets\MyAssets\Scripts\DeckCreator\Nodes\BlockDeclarationNodes.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
@@ -159,6 +159,7 @@
      <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
      <None Include="Assets\MyAssets\Database\PdfCode\Code.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
+     <None Include="Assets\MyAssets\Database\CreatedEffects\KyleStealEffect.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Doctor Nefario.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
      <None Include="Assets\MyAssets\Database\Decks\Northern Realms\Fachon.txt" />

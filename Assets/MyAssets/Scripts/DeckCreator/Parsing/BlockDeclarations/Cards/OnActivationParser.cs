@@ -176,13 +176,15 @@ public static partial class Parser
         if (!Next().Is("(", true)) { hasFailed = true; return null; }
         if (!Next().Is(TokenType.identifier, true)) { hasFailed = true; return null; }
         string cardParameterName = Current.Text;
-        VariableScopes.Reset();
+        bool wasEmpty = false;
+        if (VariableScopes.IsEmpty()) { VariableScopes.AddNewScope(); wasEmpty = true; }
         VariableScopes.AddNewVar(cardParameterName, new FutureReference(VarType.Card));
         if (!Next().Is(")", true)) { hasFailed = true; return null; }
         if (!Next().Is("=>", true)) { hasFailed = true; return null; }
         Next();
         IExpression<bool> filter;
         if (!Try(ParseExpressions, out filter)) { Errors.Write("Se esperaba una expresion booleana", Current); hasFailed = true; return null; }
+        if (wasEmpty) { VariableScopes.PopLastScope(); }
         return new CardPredicate(cardParameterName, filter);
     }
     private static ScriptEffectCall ParseScriptEffect()

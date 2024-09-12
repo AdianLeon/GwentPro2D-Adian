@@ -36,7 +36,7 @@ public enum TokenType
     varType,// Number String Bool
 
     //Simples
-    punctuator,// : ; , . " '
+    punctuator,// : ; , .
     limitator,// ( ) [ ] { }
     operatorToken,
     //Operators
@@ -55,7 +55,7 @@ public static class LexerUtils
     public static Dictionary<string, TokenType> Simples = new Dictionary<string, TokenType>
     {
         // Punctuators
-        {":",TokenType.punctuator},{";",TokenType.punctuator},{",",TokenType.punctuator},{".",TokenType.punctuator},{"'",TokenType.punctuator},
+        {":",TokenType.punctuator},{";",TokenType.punctuator},{",",TokenType.punctuator},{".",TokenType.punctuator},
         //Limitators
         {"(",TokenType.limitator},{")",TokenType.limitator},{"[",TokenType.limitator},{"]",TokenType.limitator},{"{",TokenType.limitator},{"}",TokenType.limitator},
         //BooleanOperators
@@ -75,18 +75,12 @@ public static class LexerUtils
     };
     public static Dictionary<string, TokenType> ReservedWords = new Dictionary<string, TokenType>
     {
-        //Assignments
-        // {"Name",TokenType.assignment},{"Params",TokenType.assignment},{"Action",TokenType.assignment},{"Type",TokenType.assignment},{"Effect",TokenType.assignment},{"Description",TokenType.assignment},
-        // {"Selector",TokenType.assignment},{"Source",TokenType.assignment},{"Single",TokenType.assignment},{"Predicate",TokenType.assignment},{"PostAction",TokenType.assignment},
-        // {"Faction",TokenType.assignment},{"Power",TokenType.assignment},{"Range",TokenType.assignment},{"OnActivation",TokenType.assignment},{"TotalCopies",TokenType.assignment},
         //Bool
         {"true",TokenType.boolean},{"false",TokenType.boolean},
         //Cycle
         {"for",TokenType.cycle},{"while",TokenType.cycle},{"in",TokenType.cycle},
         //VariableTypes
-        {"Number",TokenType.varType},{"String",TokenType.varType},{"Bool",TokenType.varType},
-        //Added
-        // {"ScriptEffect",TokenType.assignment}
+        {"Number",TokenType.varType},{"String",TokenType.varType},{"Bool",TokenType.varType}
     };
     public static int NewLineCounter(string code, int index)
     {//Dados el codigo y la posicion cuenta la cantidad de saltos de linea

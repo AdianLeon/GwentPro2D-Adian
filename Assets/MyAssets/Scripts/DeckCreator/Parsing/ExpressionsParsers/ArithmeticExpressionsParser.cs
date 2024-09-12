@@ -2,7 +2,7 @@ using UnityEngine;
 
 public static partial class Parser
 {
-    private static IExpression<int> ParseArithmeticExpression() { IExpression<int> expression = ParseArithmeticOperation(); Next(-1); Debug.Log("Returns arithmetic expression!"); return expression; }
+    private static IExpression<int> ParseArithmeticExpression() { IExpression<int> expression = ParseArithmeticOperation(); Next(-1); return expression; }
     private static IExpression<int> ParseArithmeticOperation(IExpression<int> left = null) => ParseSum(left);
     private static IExpression<int> ParseSum(IExpression<int> left = null)
     {

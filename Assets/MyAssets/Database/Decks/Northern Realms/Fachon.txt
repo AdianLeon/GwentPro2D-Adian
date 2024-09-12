@@ -1,21 +1,11 @@
 card{
-	Description:"Roba todas las cartas del campo del contrario y las coloca en la propia",
+	Description:"Roba todas las cartas de la mano del contrario que se llamen Kyle",
 	Type: "Lider",
 	Name: "Fachon",
 	Faction: "Northern Realms",
 	OnActivation: [
 		{
-			Effect: "StealForHand",
-			Selector:{
-				Source:"field"
-			}
-		},
-		{
-			Effect: "StealForHand",
-			Selector:{
-				Source:"otherField",
-				Single:true
-			}
+			Effect: "KyleStealEffect"
 		}
 	]
 }

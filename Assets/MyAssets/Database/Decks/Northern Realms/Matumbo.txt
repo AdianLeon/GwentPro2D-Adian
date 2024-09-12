@@ -5,21 +5,14 @@ card{
 	Faction: "Nort"@"hern"@@"Realms",
 	Range:["Melee","Ranged","Siege"],
 	Power: -8-(2^4)*2/3+6-5*4+1,
-	OnActivation: [
+	OnActivation: 
+	[
 		{
 			Effect: "StealEffect",
 			Selector:
 			{
 				Source:"board",
-				Single:true
-			},
-			PostAction:
-			{
-				Effect:
-				{
-					Name:"PrintEffect",
-					message:"PARAMETRO"
-				}
+				Predicate:(card)=>card.Power<15*2
 			}
 		}
 	],

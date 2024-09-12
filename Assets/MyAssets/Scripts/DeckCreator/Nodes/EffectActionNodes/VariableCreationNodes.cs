@@ -1,13 +1,15 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 using System.Linq;
 
 public enum VarType { None, Number, Bool, String, Card, Player, Container, CardList }
 public static class VariableScopes
 {
+    public static bool IsEmpty() => scopes.Count == 0;
     private static Stack<Dictionary<string, IReference>> scopes;
     public static void Reset() { scopes = new Stack<Dictionary<string, IReference>>(); AddNewScope(); }
-    public static bool ContainsVar(string varName) => scopes.Any(dict => dict.ContainsKey(varName));
+    public static bool ContainsVar(string varName) { return scopes.Any(dict => dict.ContainsKey(varName)); }
     public static void AddNewScope() => scopes.Push(new Dictionary<string, IReference>());
     public static void PopLastScope() => scopes.Pop();
     public static void AddNewVar(VariableDeclaration declaration) => AddNewVar(declaration.VarName, declaration.VarValue);

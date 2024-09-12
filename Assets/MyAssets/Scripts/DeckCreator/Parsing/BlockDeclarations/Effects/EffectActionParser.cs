@@ -52,15 +52,9 @@ public static partial class Parser
         VariableScopes.AddNewVar(iteratorVarName, new FutureReference(VarType.Card));
         if (!Next().Is("in", true)) { hasFailed = true; return null; }
         IReference cardReferenceList;
-        if (Next().Is(TokenType.identifier))
-        {
-            string cardListName = Current.Text;
-            if (!VariableScopes.ContainsVar(Current.Text)) { Errors.Write("La variable: '" + Current.Text + "' no existe en este contexto", Current); hasFailed = true; return null; }
-            IReference reference = Current.Text.ScopeValue();
-            if (reference.Type != VarType.CardList  /*&& reference.Type != VarType.Container*/) { Errors.Write("La variable: '" + Current.Text + "' no guarda una referencia a una lista de cartas", Current); hasFailed = true; return null; }
-            cardReferenceList = new VariableReference(cardListName, VarType.CardList);
-        }
-        else { Errors.Write("Se esperaba una lista de cartas", Current); hasFailed = true; return null; }
+        if (!Next().Is(TokenType.identifier)) { Errors.Write("Se esperaba una referencia a una lista de cartas", Current); hasFailed = true; return null; }
+
+        if (!Try(ParseVariable, out cardReferenceList) && cardReferenceList.Type == VarType.CardList) { Errors.Write("Se esperaba una referencia a una lista de cartas"); hasFailed = true; return null; }
 
         List<IActionStatement> foreachStatements = new List<IActionStatement>();
         AddStatements(foreachStatements); if (hasFailed) { return null; }

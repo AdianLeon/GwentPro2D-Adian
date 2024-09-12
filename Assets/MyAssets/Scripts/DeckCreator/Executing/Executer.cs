@@ -82,7 +82,7 @@ public class Executer : MonoBehaviour
             case "parent": if (effectCall is EffectPostAction) { cards = SelectTargets(((EffectPostAction)effectCall).Parent); } else { throw new Exception(":("); }; break;
             default: throw new NotImplementedException();
         }
-        if (selector.CardPredicate != null) { foreach (DraggableCard card in cards) { if (!selector.CardPredicate.EvaluateCard(new CardReference(card))) { cards.Remove(card); } } }
+        if (selector.CardPredicate != null) { cards = cards.Where(card => selector.CardPredicate.EvaluateCard(new CardReference(card))).ToList(); }
         if (cards.Count == 0) { return new List<DraggableCard>(); }
         if (selector.Single.Evaluate()) { return new List<DraggableCard> { cards[0] }; }
         return cards;

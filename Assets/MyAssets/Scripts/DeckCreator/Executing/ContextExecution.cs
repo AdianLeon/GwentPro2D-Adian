@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public static class ContextUtils
+public static class ContextExecution
 {
     private static string GetContainerName(ContainerReference container) => container.ContainerName + GetPlayer(container.Owner);
     private static string GetPlayer(IReference owner)
@@ -97,5 +97,23 @@ public static class ContextUtils
             if (cardToRemove != null) { cardToRemove.Disappear(); }
         }
         else { throw new Exception("No se ha definido la evaluacion de la accion: " + method.ActionType); }
+    }
+    public static List<DraggableCard> FindCards(ContextFindMethod findMethod)
+    {
+        List<DraggableCard> cards;
+        string containerName = GetContainerName(findMethod.Container);
+        Dictionary<string, IEnumerable<DraggableCard>> assigner = new Dictionary<string, IEnumerable<DraggableCard>>
+        {
+            {"Board", Field.PlayedFieldCards.Cast<DraggableCard>().Randomize()},
+            {"HandP1", GameObject.Find("HandP1").GetComponent<Hand>().GetCards}, { "HandP2", GameObject.Find("HandP2").GetComponent<Hand>().GetCards},
+            { "FieldP1", GameObject.Find("FieldP1").GetComponent<Field>().GetCards.Randomize()}, { "FieldP2", GameObject.Find("FieldP2").GetComponent<Field>().GetCards.Randomize()},
+            { "DeckP1", GameObject.Find("DeckP1").GetComponent<Deck>().GetCards}, { "DeckP2", GameObject.Find("DeckP2").GetComponent<Deck>().GetCards},
+            { "GraveyardP1", GameObject.Find("GraveyardP1").GetComponent<Graveyard>().GetCards}, { "GraveyardP2", GameObject.Find("GraveyardP2").GetComponent<Graveyard>().GetCards}
+        };
+        if (!assigner.ContainsKey(containerName)) { throw new Exception("El nombre del contenedor a .Find(): '" + containerName + "' no esta entre los definidos."); }
+        else if (assigner[containerName].Count() == 0) { return new List<DraggableCard> { }; }
+        cards = assigner[containerName].ToList();
+        cards = cards.Where(card => findMethod.CardPredicate.EvaluateCard(new CardReference(card))).ToList();
+        return cards;
     }
 }

@@ -14,10 +14,18 @@ public abstract class ContextMethod : IActionStatement
     public ContainerReference Container;
     public abstract void PerformAction();
 }
+public class ContextFindMethod : ContextMethod, IReference
+{
+    public VarType Type => VarType.CardList;
+    public CardPredicate CardPredicate;
+    public ContextFindMethod(ContainerReference container, CardPredicate cardPredicate) { Container = container; CardPredicate = cardPredicate; }
+    public override void PerformAction() => ContextExecution.FindCards(this);
+}
 public class ContextCardParameterMethod : ContextMethod
 {
     public string ActionType;
     public IReference Card;
+
     public ContextCardParameterMethod(ContainerReference container, string actionType, IReference card)
     {
         Container = container;
@@ -25,18 +33,18 @@ public class ContextCardParameterMethod : ContextMethod
         if (card.Type != VarType.Card) { throw new Exception("El tipo de parametro de un metodo de contexto con parametro carta no es carta"); }
         Card = card;
     }
-    public override void PerformAction() => ContextUtils.DoActionForCardParameterMethod(this);
+    public override void PerformAction() => ContextExecution.DoActionForCardParameterMethod(this);
 }
 public class ContextPopMethod : ContextMethod, IReference
 {
     public VarType Type => VarType.Card;
     public ContextPopMethod(ContainerReference container) { Container = container; }
-    public override void PerformAction() => ContextUtils.PopContainer(this);
+    public override void PerformAction() => ContextExecution.PopContainer(this);
 }
 public class ContextShuffleMethod : ContextMethod
 {
     public ContextShuffleMethod(ContainerReference container) { Container = container; }
-    public override void PerformAction() => ContextUtils.ShuffleContainer(this);
+    public override void PerformAction() => ContextExecution.ShuffleContainer(this);
 }
 public class CardPowerSetting : IActionStatement
 {
@@ -61,10 +69,13 @@ public class ForEachCycle : IActionStatement
         List<DraggableCard> cards;
         if (CardReferences is VariableReference)
         {
-            IReference reference = CardReferences;
-            while (reference is VariableReference) { reference = ((VariableReference)reference).VarName.ScopeValue(); }
+            IReference reference = CardReferences.DeReference();
             if (reference is not CardReferenceList) { throw new Exception("La variable llamada: '" + ((VariableReference)CardReferences).VarName + "' no contiene una CardReferenceList"); }
             cards = ((CardReferenceList)reference).Cards;
+        }
+        else if (CardReferences is ContextFindMethod)
+        {
+            cards = ContextExecution.FindCards((ContextFindMethod)CardReferences);
         }
         else { throw new NotImplementedException("No se ha anadido la forma de evaluar demandada"); }
         VariableScopes.AddNewScope();

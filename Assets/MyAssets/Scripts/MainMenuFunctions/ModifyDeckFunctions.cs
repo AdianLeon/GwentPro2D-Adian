@@ -19,12 +19,12 @@ public class ModifyDeckFunctions : MonoBehaviour
     public void OnConfirmEliminationButtonClick()
     {
         Errors.Clean();
-        if (GetText(effectsChoice) == "Todas") { Errors.PureWrite("Se intentaron borrar todos los efectos del juego"); /*Directory.GetFiles(Application.dataPath + "/MyAssets/Database/CreatedEffects/", "*.txt").ForEach(address => File.Delete(address));*/ }
+        if (GetText(effectsChoice) == "Todas") { Errors.PureWrite("Se intentaron borrar todos los efectos del juego, esta accion no esta permitida"); /*Directory.GetFiles(Application.dataPath + "/MyAssets/Database/CreatedEffects/", "*.txt").ForEach(address => File.Delete(address));*/ }
         else if (GetText(effectsChoice) != "Ninguna") { File.Delete(Application.dataPath + "/MyAssets/Database/CreatedEffects/" + GetText(effectsChoice) + ".txt"); }
 
         if (GetText(cardsChoice) == "Todas")
         {
-            if (GetText(decksChoice) == "Todas") { Errors.PureWrite("Se intentaron borrar todas las cartas del juego"); /*Directory.GetFiles(Application.dataPath + "/MyAssets/Database/Decks/", "*.txt", SearchOption.AllDirectories).ForEach(address => File.Delete(address));*/ }
+            if (GetText(decksChoice) == "Todas") { Errors.PureWrite("Se intentaron borrar todas las cartas del juego, esta accion no esta permitida"); /*Directory.GetFiles(Application.dataPath + "/MyAssets/Database/Decks/", "*.txt", SearchOption.AllDirectories).ForEach(address => File.Delete(address));*/ }
             else if (GetText(decksChoice) != "Ninguna") { File.Delete(Application.dataPath + "/MyAssets/Database/Decks/" + GetText(decksChoice) + ".meta"); Directory.Delete(Application.dataPath + "/MyAssets/Database/Decks/" + GetText(decksChoice), true); AssetDatabase.Refresh(); }
         }
         else if (GetText(cardsChoice) != "Ninguna")

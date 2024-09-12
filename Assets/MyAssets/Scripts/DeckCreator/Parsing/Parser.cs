@@ -25,13 +25,14 @@ public static partial class Parser
     }
     private static IReference ParseExpressions()
     {
+        if (hasFailed) { throw new Exception("Se llamo a parsear expresion pero ya se fallo anteriormente"); }
         List<Func<IReference>> expressionParsers = new List<Func<IReference>>() { ParseComparisonExpression, ParseBooleanExpression, ParseArithmeticExpression, ParseStringExpression };
         int startingIndex = index;
         foreach (Func<IReference> parser in expressionParsers)
         {
             Debug.Log("Trying parsing the expression: " + parser.Method.Name + " in token: " + Current);
             IReference expressionResultant = parser();
-            if (expressionResultant != null && !hasFailed) { Debug.Log("Success!!"); return expressionResultant; }
+            if (expressionResultant != null && !hasFailed && !Peek().Is(TokenType.operatorToken)) { Debug.Log("Success!!"); return expressionResultant; }
             hasFailed = false;
             index = startingIndex;
         }
