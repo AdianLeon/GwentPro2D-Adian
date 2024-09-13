@@ -2,9 +2,7 @@ effect{
 	Name: "Draw",
 	Action: (targets, context) => {
 		topCard = context.Deck.Pop();
-		player=context.TriggerPlayer;
-		hand=context.HandOfPlayer(player);
-		hand.SendBottom(topCard);
-		hand.Shuffle(); 
+		context.Hand.Push(topCard);
+		context.Hand.Shuffle(); 
 	}
 }

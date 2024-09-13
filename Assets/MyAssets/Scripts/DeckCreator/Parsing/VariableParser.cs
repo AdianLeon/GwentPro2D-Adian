@@ -52,19 +52,19 @@ public static partial class Parser
           if (!Next().Is("]", true)) { hasFailed = true; return null; }
           return new CardListIndexation(cardListReference, index);
      }
-     private static IActionStatement ParseCardPowerSetting(IReference cardReference)
+     private static IActionStatement ParseCardPowerAlteration(IReference cardReference)
      {
-          if (!Next().Is("Power")) { Errors.Write("La unica propiedad sobre la cual se puede realizar una accion es 'Power' y se intento acceder a: '" + Current.Text + "'", Current); hasFailed = true; return null; }
-          if (!Next().Is("=")) { Errors.Write("Se esperaba token de asignacion '=' para modificar la propiedad 'Power'. Cualquier otro intento de acceso a propiedad de carta no es valido como accion", Current); hasFailed = true; return null; }
+          if (Next().Is("++") || Current.Is("--")) { return new CardPowerAlteration(cardReference, Current.Text); }
+          if (!(Current.Is("=") || Current.Is("+=") || Current.Is("-=") || Current.Is("*=") || Current.Is("/=") || Current.Is("^="))) { Errors.Write("La operacion '" + Current.Text + "' no esta definida", Current); hasFailed = true; return null; }
+          string operation = Current.Text;
           Next();
-          IExpression<int> newPower = ParseArithmeticExpression();
-          if (hasFailed) { return null; }
-          return new CardPowerSetting(cardReference, newPower);
+          IExpression<int> newPower = ParseArithmeticExpression(); if (hasFailed) { return null; }
+          return new CardPowerAlteration(cardReference, operation, newPower);
      }
      private static INode ParseCardPropertyOrAction(IReference cardReference)
      {
-          if (Peek().Is("Power") && Peek(2).Is("=")) { return ParseCardPowerSetting(cardReference); }
-          else if (Next().Is("Power") || Current.Is("Owner") || Current.Is("Name") || Current.Is("Faction")) { return new CardPropertyReference(cardReference, Current.Text); }
+          if (Next().Is("Power") && (Peek().Is("=") || Peek().Is("+=") || Peek().Is("-=") || Peek().Is("*=") || Peek().Is("/=") || Peek().Is("^=") || Peek().Is("++") || Peek().Is("--"))) { return ParseCardPowerAlteration(cardReference); }
+          else if (Current.Is("Power") || Current.Is("Owner") || Current.Is("Name") || Current.Is("Faction")) { return new CardPropertyReference(cardReference, Current.Text); }
           else { Errors.Write("No existe una propiedad de carta definida como '" + Current.Text + "'", Current); hasFailed = true; return null; }
      }
 }

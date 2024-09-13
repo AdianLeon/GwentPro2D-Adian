@@ -15,7 +15,7 @@ public static partial class Parser
         bool expectingEffectCall = true;
         while (expectingEffectCall)
         {
-            onActivation.effectCalls.Add(ParseEffectCall(new EffectSelector(new StringValueExpression("board"), new BooleanValueExpression("false"), null), false));
+            onActivation.effectCalls.Add(ParseEffectCall(false));
             if (hasFailed) { return null; }
             if (!Next().Is("}", true)) { hasFailed = true; return null; }
             expectingEffectCall = Next().Is(",");
@@ -23,7 +23,7 @@ public static partial class Parser
         if (!Current.Is("]", true)) { hasFailed = true; return null; }
         return onActivation;
     }
-    private static EffectCall ParseEffectCall(EffectSelector selector, bool isPostActionCalling)
+    private static EffectCall ParseEffectCall(bool isPostActionCalling)
     {
         if (!Next().Is("{", true)) { hasFailed = true; return null; }
         if (Peek().Is("ScriptEffect")) { return ParseScriptEffect(); }
@@ -31,6 +31,7 @@ public static partial class Parser
         {
             IExpression<string> effectName = null;
             List<(string, IReference)> parameters = null;
+            EffectSelector selector = new EffectSelector(new StringValueExpression("board"), new BooleanValueExpression("false"), null);
             EffectPostAction effectPostAction = null;
             bool expectingEffectProperty = true;
             while (expectingEffectProperty)
@@ -43,7 +44,7 @@ public static partial class Parser
                     {
                         effectName = ParseStringExpression();
                         if (hasFailed) { return null; }
-                        List<(string, VarType)> demandedParameters = GetDemandedParameters(effectName.Evaluate());
+                        List<(string, VarType)> demandedParameters = GetDemandedParameters(effectName.Evaluate()); if (hasFailed) { return null; }
                         if (demandedParameters != null && demandedParameters.Count > 0)
                         {
                             Errors.Write("Existen parametros para el efecto: '" + effectName.Evaluate() + "', debes declarar los siguientes: " + demandedParameters.Select(parameter => parameter.Item1).FlattenText(), Current);
@@ -57,7 +58,7 @@ public static partial class Parser
                         Next();
                         effectName = ParseStringExpression();
                         if (hasFailed) { return null; }
-                        List<(string, VarType)> demandedParameters = GetDemandedParameters(effectName.Evaluate());
+                        List<(string, VarType)> demandedParameters = GetDemandedParameters(effectName.Evaluate()); if (hasFailed) { return null; }
                         if (!Next().Is("}") && !Current.Is(",")) { Errors.Write("Se esperaba '}' o ',' (para declarar parametros)", Current); hasFailed = true; return null; }
                         else if (Current.Is(","))
                         {
@@ -101,7 +102,7 @@ public static partial class Parser
                                 if (hasFailed) { return null; }
                                 declaredSourceProperty = true;
                             }
-                            else { Errors.Write("El 'Source' no es valido. Intenta con: 'board', 'hand', 'otherHand', 'deck', 'otherDeck', 'field' u 'otherField'", Current); hasFailed = true; return null; }
+                            else { Errors.Write("El 'Source' no es valido. Intenta con: 'board', 'hand', 'otherHand', 'deck', 'otherDeck', 'field' u 'otherField' (tambien 'parent' que es valido para un 'PostAction')", Current); hasFailed = true; return null; }
                         }
                         else if (Current.Is("Single"))
                         {
@@ -128,8 +129,8 @@ public static partial class Parser
                 {
                     if (effectName == null || effectName.Evaluate().Trim() == "") { Errors.Write("El efecto padre del PostAction debe tener declarado al menos el nombre", Current); hasFailed = true; return null; }
                     if (!Next().Is(":", true)) { hasFailed = true; return null; }
-                    EffectCall effectCall = ParseEffectCall(selector, true); if (hasFailed) { return null; }
-                    if (effectCall is CreatedEffectCall) { effectPostAction = new EffectPostAction((CreatedEffectCall)effectCall, new CreatedEffectCall(effectName, parameters, selector, effectPostAction)); }
+                    EffectCall postActionCall = ParseEffectCall(true); if (hasFailed) { return null; }
+                    if (postActionCall is CreatedEffectCall) { effectPostAction = new EffectPostAction((CreatedEffectCall)postActionCall, new CreatedEffectCall(effectName, parameters, selector, effectPostAction)); }
                     else { throw new Exception("No es valido crear un PostAction con un ScriptEffectCall"); }
                     if (!Next().Is("}", true)) { hasFailed = true; return null; }
                 }

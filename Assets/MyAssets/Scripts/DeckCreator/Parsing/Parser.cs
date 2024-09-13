@@ -44,6 +44,5 @@ public class ParsingOrder
     public List<Token> SavedTokens;
     public int SavedIndex;
     public bool HadFailed;
-
     public ParsingOrder(List<Token> tokens, int index, bool hasFailed) { SavedTokens = tokens; SavedIndex = index; HadFailed = hasFailed; }
 }

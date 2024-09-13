@@ -1,20 +1,9 @@
 card{
-	Description:"Roba una carta jugada del enemigo y la coloca en la mano propia",
+	Description:"Esta carta no tiene efecto",
 	Type: "Plata",
 	Name: "Ma"@"tum"@"bo",
 	Faction: "Nort"@"hern"@@"Realms",
 	Range:["Melee","Ranged","Siege"],
 	Power: -8-(2^4)*2/3+6-5*4+1,
-	OnActivation: 
-	[
-		{
-			Effect: "StealEffect",
-			Selector:
-			{
-				Source:"board",
-				Predicate:(card)=>card.Power<15*2
-			}
-		}
-	],
-	TotalCopies:20
+	TotalCopies:5
 }

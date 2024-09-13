@@ -54,7 +54,7 @@ public static partial class Parser
         IReference cardReferenceList;
         if (!Next().Is(TokenType.identifier)) { Errors.Write("Se esperaba una referencia a una lista de cartas", Current); hasFailed = true; return null; }
 
-        if (!Try(ParseVariable, out cardReferenceList) && cardReferenceList.Type == VarType.CardList) { Errors.Write("Se esperaba una referencia a una lista de cartas"); hasFailed = true; return null; }
+        if (!Try(ParseVariable, out cardReferenceList) || cardReferenceList == null || cardReferenceList.Type != VarType.CardList) { Errors.Write("Se esperaba una referencia a una lista de cartas"); hasFailed = true; return null; }
 
         List<IActionStatement> foreachStatements = new List<IActionStatement>();
         AddStatements(foreachStatements); if (hasFailed) { return null; }

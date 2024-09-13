@@ -2,8 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Rendering;
-
+//Describe las acciones que se pueden realizar en el context
 public static class ContextExecution
 {
     private static string GetContainerName(ContainerReference container) => container.ContainerName + GetPlayer(container.Owner);
@@ -105,7 +104,7 @@ public static class ContextExecution
         if (indexationOrder.CardListReference is ContextFindMethod) { cards = FindCards((ContextFindMethod)indexationOrder.CardListReference); }
         else { throw new NotImplementedException("No se ha definido la forma de evaluar la lista de cartas a indexar"); }
         int index = indexationOrder.Index.Evaluate();
-        if (index < 0 || index >= cards.Count) { throw new Exception("Indice:" + index + " no valido"); /*Executer.RaiseErrorScreen(); */}
+        if (index < 0 || index >= cards.Count) { throw new Exception("Indice:" + index + " no valido"); }
         return cards[index];
     }
     public static List<DraggableCard> FindCards(ContextFindMethod findMethod)

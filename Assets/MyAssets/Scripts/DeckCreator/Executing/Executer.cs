@@ -67,6 +67,7 @@ public class Executer : MonoBehaviour
     }
     private static List<DraggableCard> SelectTargets(CreatedEffectCall effectCall)
     {
+        Debug.Log("Seleccionando targets:");
         EffectSelector selector = effectCall.EffectSelector;
         if (selector == null) { throw new Exception("El selector no existe"); }
         List<DraggableCard> cards;
@@ -79,7 +80,7 @@ public class Executer : MonoBehaviour
             case "otherHand": cards = Hand.EnemyCards.ToList(); break;
             case "deck": cards = Deck.PlayerCards.ToList(); break;
             case "otherDeck": cards = Deck.EnemyCards.ToList(); break;
-            case "parent": if (effectCall is EffectPostAction) { cards = SelectTargets(((EffectPostAction)effectCall).Parent); } else { throw new Exception(":("); }; break;
+            case "parent": if (effectCall is EffectPostAction) { cards = SelectTargets(((EffectPostAction)effectCall).Parent); } else { throw new Exception("Se uso la fuente 'parent' sin ser PostAction"); }; break;
             default: throw new NotImplementedException();
         }
         if (selector.CardPredicate != null) { cards = cards.Where(card => selector.CardPredicate.EvaluateCard(new CardReference(card))).ToList(); }

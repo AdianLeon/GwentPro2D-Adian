@@ -193,6 +193,7 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Stuart.txt" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+     <None Include="Assets\MyAssets\Database\CreatedEffects\Damage.txt" />
      <None Include="Assets\MyAssets\Database\CreatedEffects\PrintPostEffect.txt" />
      <None Include="Assets\MyAssets\Database\Decks\Minions\Muchas Bananas.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
@@ -213,6 +214,7 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
      <None Include="Assets\MyAssets\Database\CreatedEffects\PopEnemyFieldEffect.txt" />
      <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
+     <None Include="Assets\MyAssets\Database\Decks\Northern Realms\Beluga.txt" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.24f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

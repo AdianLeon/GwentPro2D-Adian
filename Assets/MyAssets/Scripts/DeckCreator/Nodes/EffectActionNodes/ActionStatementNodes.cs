@@ -46,16 +46,41 @@ public class ContextShuffleMethod : ContextMethod
     public ContextShuffleMethod(ContainerReference container) { Container = container; }
     public override void PerformAction() => ContextExecution.ShuffleContainer(this);
 }
-public class CardPowerSetting : IActionStatement
+public class CardPowerAlteration : IActionStatement
 {
     public IReference CardReference;
-    public IExpression<int> NewPower;
-    public CardPowerSetting(IReference cardReference, IExpression<int> newPower) { if (cardReference.Type != VarType.Card) { throw new Exception("El tipo de parametro de un metodo de contexto con parametro carta no es carta"); } CardReference = cardReference; NewPower = newPower; }
-
+    public string Operation;
+    public IExpression<int> Right;
+    public CardPowerAlteration(IReference cardReference, string operation)
+    {
+        if (cardReference.Type != VarType.Card) { throw new Exception("El tipo de parametro de un metodo de contexto con parametro carta no es carta"); }
+        if (operation != "++" && operation != "--") { throw new Exception("Se debe usar el otro constructor para proporcionar la expresion derecha"); }
+        CardReference = cardReference; Operation = operation;
+    }
+    public CardPowerAlteration(IReference cardReference, string operation, IExpression<int> right)
+    {
+        if (cardReference.Type != VarType.Card) { throw new Exception("El tipo de parametro de un metodo de contexto con parametro carta no es carta"); }
+        CardReference = cardReference; Operation = operation; Right = right;
+    }
     public void PerformAction()
     {
         IReference reference = CardReference.DeReference();
-        if (reference is CardReference) { ((CardReference)reference).Power = NewPower.Evaluate(); }
+        if (reference is CardReference)
+        {
+            switch (Operation)
+            {
+                case "=": ((CardReference)reference).Power = Right.Evaluate(); break;
+                case "+=": ((CardReference)reference).Power += Right.Evaluate(); break;
+                case "-=": ((CardReference)reference).Power -= Right.Evaluate(); break;
+                case "*=": ((CardReference)reference).Power *= Right.Evaluate(); break;
+                case "/=": ((CardReference)reference).Power /= Right.Evaluate(); break;
+                case "^=": Math.Pow(((CardReference)reference).Power, Right.Evaluate()); break;
+                case "++": ((CardReference)reference).Power++; break;
+                case "--": ((CardReference)reference).Power--; break;
+                default: throw new NotImplementedException("Operacion no definida");
+            }
+        }
+        else { throw new NotImplementedException(); }
     }
 }
 public class ForEachCycle : IActionStatement
