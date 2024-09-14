@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-
+//Definiciones generales de los nodos principales
 public interface INode { }
 public class FullDeclaration : INode
 {
@@ -28,7 +28,4 @@ public class EffectDeclaration : BlockDeclaration
     public List<(string, VarType)> Parameters;
     public EffectDeclaration(IExpression<string> name, List<(string, VarType)> parameters, EffectAction effectAction) { Name = name; Parameters = parameters; EffectAction = effectAction; }
 }
-public class EffectAction : INode
-{
-    public List<IActionStatement> ActionStatements = new List<IActionStatement>();
-}
+public class EffectAction : INode { public List<IActionStatement> ActionStatements = new List<IActionStatement>(); }

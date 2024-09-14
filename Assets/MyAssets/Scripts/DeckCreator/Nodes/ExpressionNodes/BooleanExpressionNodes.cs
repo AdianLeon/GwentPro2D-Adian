@@ -1,5 +1,5 @@
 using System;
-
+//Expresiones booleanas
 public class BooleanValueExpression : IExpression<bool>
 {
     public VarType Type => VarType.Bool;

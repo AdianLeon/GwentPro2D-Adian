@@ -4,8 +4,8 @@ using UnityEngine;
 
 public partial class Parser
 {
-    private static IExpression<bool> ParseComparisonExpression() { IExpression<bool> expression = ParseComparisonOperation(); Next(-1); return expression; }
-    private static IExpression<bool> ParseComparisonOperation(IExpression<IReference> left = null)
+    private IExpression<bool> ParseComparisonExpression() { IExpression<bool> expression = ParseComparisonOperation(); Next(-1); return expression; }
+    private IExpression<bool> ParseComparisonOperation(IExpression<IReference> left = null)
     {
         if (left == null) { left = ParseComparisonValue(); if (hasFailed) { return null; } }
         if (Current.Is("==") || Current.Is("!=") || Current.Is("<") || Current.Is(">") || Current.Is("<=") || Current.Is(">="))
@@ -18,7 +18,7 @@ public partial class Parser
         }
         else { hasFailed = true; return null; }
     }
-    private static IExpression<IReference> ParseComparisonValue()
+    private IExpression<IReference> ParseComparisonValue()
     {
         IReference reference;
         if (!Try(ParseBooleanExpression, out reference, false) && !Try(ParseArithmeticExpression, out reference, false) && !Try(ParseStringExpression, out reference, false)) { Errors.Write("Se esperaba una referencia", Current); hasFailed = true; return null; }

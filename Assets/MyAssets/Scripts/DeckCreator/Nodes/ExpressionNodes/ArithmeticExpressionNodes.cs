@@ -1,5 +1,5 @@
 using System;
-
+//Expresiones aritmeticas
 public class NumberExpression : IExpression<int>
 {
     public VarType Type => VarType.Number;
@@ -13,11 +13,7 @@ public class NumberVariableReference : IExpression<int>
     public VarType Type => VarType.Number;
     private string varName;
     public int Evaluate() => ((IExpression<int>)varName.ScopeValue()).Evaluate();
-    public NumberVariableReference(VariableReference variableReference)
-    {
-        // if (variableReference.DeReference() is not IExpression<int>) { throw new Exception("La variable no guarda una expresion aritmetica"); }
-        varName = variableReference.VarName;
-    }
+    public NumberVariableReference(VariableReference variableReference) { varName = variableReference.VarName; }
 }
 public class ArithmeticExpression : BinaryExpression<int, int>
 {

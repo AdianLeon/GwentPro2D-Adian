@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEditor.Macros;
-
+//Expresiones de comparacion
 public class ComparisonValueExpression : IExpression<IReference>
 {
     public VarType Type => VarType.Bool;

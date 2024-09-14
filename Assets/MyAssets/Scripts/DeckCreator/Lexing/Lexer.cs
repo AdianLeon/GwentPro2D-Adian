@@ -1,18 +1,21 @@
 using System.Collections.Generic;
+using System.Linq;
 //Script para transformar texto a tokens
-public static class Lexer
+public class Lexer
 {
-    private static List<Token> tokenList;//Lista de tokens 
-    public static List<Token> TokenizeCode(string code)
+    public Lexer(string text) { code = text; }
+    private string code;
+    private List<Token> tokenList;//Lista de tokens 
+    public List<Token> TokenizeCode()
     {//Transforma el string code a una lista de tokens
         tokenList = new List<Token>();
         if (code.Length == 0) { Errors.Write("No hay codigo"); return null; }//Si no hay texto
         code += "$";
         Tokenize(code, 0);//Comenzamos a tokenizar
-        if (!Errors.CheckUnexpectedTokens(tokenList)) { return null; }//Si hay errores no devolvemos lista
+        if (tokenList.Any(token => token.Is(TokenType.unexpected))) { return null; }//Si hay errores no devolvemos lista
         return tokenList;
     }
-    private static void Tokenize(string code, int i)
+    private void Tokenize(string code, int i)
     {
         //EndToken---------------------------------------------------------------------------------------------------------
         if (i >= code.Length || code[i] == '$') { tokenList.Add(new Token(code, i, "$", TokenType.end)); return; }
@@ -31,7 +34,7 @@ public static class Lexer
         //Inesperado---------------------------------------------------------------------------------------------------------
         else { tokenList.Add(new Token(code, i, code[i].ToString())); }
     }
-    private static void MakeNumberToken(string code, int start)
+    private void MakeNumberToken(string code, int start)
     {//Crea un token numerico
         int end = start;
         while (end < code.Length && char.IsDigit(code[end])) { end++; }//Incrementa el largo del numero mientras se obtengan numeros
@@ -39,7 +42,7 @@ public static class Lexer
         tokenList.Add(new Token(code, start, code.Substring(start, end - start), TokenType.number));
         Tokenize(code, end);
     }
-    private static void MakeIdentifierToken(string code, int start)
+    private void MakeIdentifierToken(string code, int start)
     {//Crea un token identificador
         int end = start;
         while (end < code.Length && (char.IsLetter(code[end]) || char.IsDigit(code[end]))) { end++; }//Mientras el caracter sea una letra o un numero sigue avanzando
@@ -50,7 +53,7 @@ public static class Lexer
         tokenList.Add(new Token(code, start, identifierText, identifierType));
         Tokenize(code, end);
     }
-    private static void MakeLiteralToken(string code, int start)
+    private void MakeLiteralToken(string code, int start)
     {//Crea un token string
         int end = start + 1;
         while (code[end] != '"')

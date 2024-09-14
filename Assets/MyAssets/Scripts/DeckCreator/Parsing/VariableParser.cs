@@ -1,9 +1,9 @@
 using System;
 using UnityEngine;
 
-public static partial class Parser
+public partial class Parser
 {
-     private static INode ParseVariable()
+     private INode ParseVariable()
      {
           if (!Current.Is(TokenType.identifier)) { Errors.Write("Se esperaba la mencion a una variable o el acceso a la propiedad de alguna variable, se encontro: '" + Current.Text + "'", Current); hasFailed = true; return null; }
           string varName = Current.Text;
@@ -44,7 +44,7 @@ public static partial class Parser
                else { Errors.Write("La variable '" + varName + "' no existe en el contexto actual pero se esta intentando acceder a ella", Current); hasFailed = true; return null; }
           }
      }
-     private static CardListIndexation ParseCardListIndexation(IReference cardListReference)
+     private CardListIndexation ParseCardListIndexation(IReference cardListReference)
      {
           if (!Current.Is("[", true)) { hasFailed = true; return null; }
           Next();
@@ -52,7 +52,7 @@ public static partial class Parser
           if (!Next().Is("]", true)) { hasFailed = true; return null; }
           return new CardListIndexation(cardListReference, index);
      }
-     private static IActionStatement ParseCardPowerAlteration(IReference cardReference)
+     private IActionStatement ParseCardPowerAlteration(IReference cardReference)
      {
           if (Next().Is("++") || Current.Is("--")) { return new CardPowerAlteration(cardReference, Current.Text); }
           if (!(Current.Is("=") || Current.Is("+=") || Current.Is("-=") || Current.Is("*=") || Current.Is("/=") || Current.Is("^="))) { Errors.Write("La operacion '" + Current.Text + "' no esta definida", Current); hasFailed = true; return null; }
@@ -61,7 +61,7 @@ public static partial class Parser
           IExpression<int> newPower = ParseArithmeticExpression(); if (hasFailed) { return null; }
           return new CardPowerAlteration(cardReference, operation, newPower);
      }
-     private static INode ParseCardPropertyOrAction(IReference cardReference)
+     private INode ParseCardPropertyOrAction(IReference cardReference)
      {
           if (Next().Is("Power") && (Peek().Is("=") || Peek().Is("+=") || Peek().Is("-=") || Peek().Is("*=") || Peek().Is("/=") || Peek().Is("^=") || Peek().Is("++") || Peek().Is("--"))) { return ParseCardPowerAlteration(cardReference); }
           else if (Current.Is("Power") || Current.Is("Owner") || Current.Is("Name") || Current.Is("Faction")) { return new CardPropertyReference(cardReference, Current.Text); }

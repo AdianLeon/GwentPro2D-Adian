@@ -1,16 +1,15 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-
-public interface IActionStatement : INode { public void PerformAction(); }
+//Nodos de declaracion de accion
+public interface IActionStatement : INode { public void PerformAction(); }//Cada declaracion de accion describe como ejecutar su accion
 public class PrintAction : IActionStatement
-{
+{//Escribe el mensaje en el UserRead
     public IExpression<string> Message;
     public PrintAction(IExpression<string> message) { Message = message; }
     public void PerformAction() => UserRead.Write(Message.Evaluate());
 }
 public abstract class ContextMethod : IActionStatement
-{
+{//Clase abstracta para todos los metodos de accion del contexto
     public ContainerReference Container;
     public abstract void PerformAction();
 }

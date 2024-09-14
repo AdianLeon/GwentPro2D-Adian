@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
 
-public enum VarType { None, Number, Bool, String, Card, Player, Container, CardList }
+public enum VarType { None, Number, Bool, String, Card, Player, Container, CardList }//Tipos de variable
 public static class VariableScopes
-{
+{//Clase estatica para representar la declaracion de variables
     public static bool IsEmpty() => scopes.Count == 0;
     private static Stack<Dictionary<string, IReference>> scopes;
     public static void Reset() { scopes = new Stack<Dictionary<string, IReference>>(); AddNewScope(); }

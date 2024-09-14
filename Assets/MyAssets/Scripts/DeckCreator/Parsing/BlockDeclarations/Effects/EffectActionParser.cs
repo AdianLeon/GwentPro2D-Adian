@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static partial class Parser
+public partial class Parser
 {
-    private static INode ParseEffectAction(List<(string, VarType)> parameters)
+    private INode ParseEffectAction(List<(string, VarType)> parameters)
     {
         if (!Current.Is("(", true)) { hasFailed = true; }
         if (!Next().Is("targets", true)) { hasFailed = true; }
@@ -27,14 +27,14 @@ public static partial class Parser
         VariableScopes.PopLastScope();
         return effectAction;
     }
-    private static IActionStatement ActionStatementParser()
+    private IActionStatement ActionStatementParser()
     {//Parsea una linea de codigo dentro del Action: (targets, contexts) => {...} (incluye ';')
         IActionStatement actionStatement = ParseActionStatement();
         if (actionStatement is VariableDeclaration) { actionStatement.PerformAction(); }
         if (!Next().Is(";")) { Errors.Write("Has olvidado terminar la declaracion de accion con el caracter ';'", Current); hasFailed = true; return null; }
         return actionStatement;
     }
-    private static IActionStatement ParseActionStatement()
+    private IActionStatement ParseActionStatement()
     {//Solo parsea la accion dentro del Action (excluye ';')
         Debug.Log("Parsing actionStatement in: " + Current);
         IActionStatement actionStatement;
@@ -44,7 +44,7 @@ public static partial class Parser
         else if (!Try(ParseVariable, out actionStatement)) { Errors.Write("Se esperaba una accion", Current); hasFailed = true; return null; }
         return actionStatement;
     }
-    private static ForEachCycle ParseForEachCycle()
+    private ForEachCycle ParseForEachCycle()
     {
         if (!Next().Is(TokenType.identifier, true)) { hasFailed = true; return null; }
         string iteratorVarName = Current.Text;
@@ -62,7 +62,7 @@ public static partial class Parser
         VariableScopes.PopLastScope();
         return new ForEachCycle(iteratorVarName, cardReferenceList, foreachStatements);
     }
-    private static WhileCycle ParseWhileCycle()
+    private WhileCycle ParseWhileCycle()
     {
         if (!Current.Is("while", true)) { hasFailed = true; return null; }
         VariableScopes.AddNewScope();
@@ -78,7 +78,7 @@ public static partial class Parser
         VariableScopes.PopLastScope();
         return new WhileCycle(booleanExpression, actionStatements);
     }
-    private static void AddStatements(List<IActionStatement> actionStatements)
+    private void AddStatements(List<IActionStatement> actionStatements)
     {
         if (Next().Is("{"))
         {
@@ -86,7 +86,7 @@ public static partial class Parser
         }
         else { actionStatements.Add(ParseActionStatement()); if (hasFailed) { return; } }
     }
-    private static PrintAction ParsePrintAction()
+    private PrintAction ParsePrintAction()
     {
         PrintAction printAction;
         if (!Next().Is("(", true)) { hasFailed = true; return null; }

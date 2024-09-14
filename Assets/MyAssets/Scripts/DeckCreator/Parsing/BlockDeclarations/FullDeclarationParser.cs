@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 
-public static partial class Parser
+public  partial class Parser
 {
-    public static FullDeclaration ParseFullDeclaration()
+    public  FullDeclaration ParseFullDeclaration()
     {
         FullDeclaration fullDeclaration = new FullDeclaration();
         while (!Current.Is("$"))

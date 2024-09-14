@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public static partial class Parser
+public partial class Parser
 {
     public static CardDeclaration ProcessCardCode(string code)
     {
-        StartParsing(Lexer.TokenizeCode(code));
-        INode cardDeclaration = ParseCard();
-        if (!hasFailed && cardDeclaration != null) { return (CardDeclaration)cardDeclaration; }
+        Parser parser = new Parser(new Lexer(code).TokenizeCode());
+        INode cardDeclaration = parser.ParseCard();
+        if (!parser.hasFailed && cardDeclaration != null) { return (CardDeclaration)cardDeclaration; }
         return null;
     }
-    private static CardDeclaration ParseCard()
+    private CardDeclaration ParseCard()
     {
         HashSet<string> propertiesToDeclare = new HashSet<string> { "Type", "Name", "Faction" };
         IExpression<string> type = new StringValueExpression("");
@@ -92,7 +92,7 @@ public static partial class Parser
         if (!Current.Is("}")) { Errors.Write("Se esperaba '}' en vez de '" + Current.Text + "', puede ser que hayas olvidado la coma antes de la declaracion"); hasFailed = true; return null; }
         return new CardDeclaration(name, type, description, totalCopies, faction, power, range, onActivation);
     }
-    private static UnitCardZone GetRange()
+    private UnitCardZone GetRange()
     {
         if (!Current.Is("[", true)) { hasFailed = true; return default; }
         string rangeText = "";

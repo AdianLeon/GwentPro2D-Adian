@@ -25,6 +25,40 @@ public static class ContextExecution
         }
         else { throw new NotImplementedException("Evaluacion de posible owner no implementado"); }
     }
+    private static IEnumerable<DraggableCard> GetCardsOfContainer(ContainerReference container)
+    {
+        string containerName = GetContainerName(container);
+        Dictionary<string, IEnumerable<DraggableCard>> assigner = new Dictionary<string, IEnumerable<DraggableCard>>
+        {
+            {"Board", Field.PlayedFieldCards.Cast<DraggableCard>().Randomize()},
+            {"HandP1", GameObject.Find("HandP1").GetComponent<Hand>().GetCards}, { "HandP2", GameObject.Find("HandP2").GetComponent<Hand>().GetCards},
+            { "FieldP1", GameObject.Find("FieldP1").GetComponent<Field>().GetCards.Randomize()}, { "FieldP2", GameObject.Find("FieldP2").GetComponent<Field>().GetCards.Randomize()},
+            { "DeckP1", GameObject.Find("DeckP1").GetComponent<Deck>().GetCards}, { "DeckP2", GameObject.Find("DeckP2").GetComponent<Deck>().GetCards},
+            { "GraveyardP1", GameObject.Find("GraveyardP1").GetComponent<Graveyard>().GetCards}, { "GraveyardP2", GameObject.Find("GraveyardP2").GetComponent<Graveyard>().GetCards}
+        };
+        if (!assigner.ContainsKey(containerName)) { throw new Exception("El contenedor: '" + containerName + "' no existe"); }
+        return assigner[containerName];
+    }
+    public static List<DraggableCard> FindCards(ContextFindMethod findMethod)
+    {
+        List<DraggableCard> cards = GetCardsOfContainer(findMethod.Container).ToList();
+        if (cards.Count() == 0) { return new List<DraggableCard> { }; }
+        cards = cards.Where(card => findMethod.CardPredicate.EvaluateCard(new CardReference(card))).ToList();
+        return cards;
+    }
+    public static DraggableCard PopContainer(ContextPopMethod contextPopMethod)
+    {
+        DraggableCard card;
+        string containerName = GetContainerName(contextPopMethod.Container);
+        if (containerName == "DeckP1" || containerName == "DeckP2") { card = GameObject.Find(containerName).GetComponent<Deck>().DrawTopCard(); card.Disappear(); }
+        else
+        {
+            IEnumerable<DraggableCard> cards = GetCardsOfContainer(contextPopMethod.Container);
+            if (cards.Count() == 0) { return null; }
+            card = cards.Last(); card.Disappear();
+        }
+        return card;
+    }
     public static void ShuffleContainer(ContextShuffleMethod shuffleMethod)
     {
         string containerName = GetContainerName(shuffleMethod.Container);
@@ -45,24 +79,6 @@ public static class ContextExecution
         GameObject gameObject = GameObject.Find(gameObjectName) ?? throw new Exception("No se encontro el gameObject nombrado: '" + gameObjectName + "'");
         if (gameObject.transform.childCount == 0) { return; }
         foreach (Transform child in gameObject.transform) { child.SetSiblingIndex(UnityEngine.Random.Range(0, gameObject.transform.childCount)); }
-    }
-    public static DraggableCard PopContainer(ContextPopMethod contextPopMethod)
-    {
-        DraggableCard card;
-        string containerName = GetContainerName(contextPopMethod.Container);
-        Dictionary<string, IEnumerable<DraggableCard>> assigner = new Dictionary<string, IEnumerable<DraggableCard>>
-        {
-            {"Board", Field.PlayedFieldCards.Cast<DraggableCard>().Randomize()},
-            {"HandP1", GameObject.Find("HandP1").GetComponent<Hand>().GetCards}, { "HandP2", GameObject.Find("HandP2").GetComponent<Hand>().GetCards},
-            { "FieldP1", GameObject.Find("FieldP1").GetComponent<Field>().GetCards.Randomize()}, { "FieldP2", GameObject.Find("FieldP2").GetComponent<Field>().GetCards.Randomize()},
-            { "DeckP1", GameObject.Find("DeckP1").GetComponent<Deck>().GetCards}, { "DeckP2", GameObject.Find("DeckP2").GetComponent<Deck>().GetCards},
-            { "GraveyardP1", GameObject.Find("GraveyardP1").GetComponent<Graveyard>().GetCards}, { "GraveyardP2", GameObject.Find("GraveyardP2").GetComponent<Graveyard>().GetCards}
-        };
-        if (!assigner.ContainsKey(containerName)) { throw new Exception("El nombre del contenedor a .Pop(): '" + containerName + "' no esta entre los definidos."); }
-        else if (assigner[containerName].Count() == 0) { return null; }
-        else if (containerName == "DeckP1" || containerName == "DeckP2") { card = GameObject.Find(containerName).GetComponent<Deck>().DrawTopCard(); card.Disappear(); }
-        else { card = assigner[containerName].Last(); card.Disappear(); }
-        return card;
     }
     public static void DoActionForCardParameterMethod(ContextCardParameterMethod method)
     {
@@ -104,25 +120,7 @@ public static class ContextExecution
         if (indexationOrder.CardListReference is ContextFindMethod) { cards = FindCards((ContextFindMethod)indexationOrder.CardListReference); }
         else { throw new NotImplementedException("No se ha definido la forma de evaluar la lista de cartas a indexar"); }
         int index = indexationOrder.Index.Evaluate();
-        if (index < 0 || index >= cards.Count) { throw new Exception("Indice:" + index + " no valido"); }
+        if (index < 0 || index >= cards.Count) { Executer.RaiseError("Indice:" + index + " no valido, la lista solo tenia: " + cards.Count + " elementos"); return null; }
         return cards[index];
-    }
-    public static List<DraggableCard> FindCards(ContextFindMethod findMethod)
-    {
-        List<DraggableCard> cards;
-        string containerName = GetContainerName(findMethod.Container);
-        Dictionary<string, IEnumerable<DraggableCard>> assigner = new Dictionary<string, IEnumerable<DraggableCard>>
-        {
-            {"Board", Field.PlayedFieldCards.Cast<DraggableCard>().Randomize()},
-            {"HandP1", GameObject.Find("HandP1").GetComponent<Hand>().GetCards}, { "HandP2", GameObject.Find("HandP2").GetComponent<Hand>().GetCards},
-            { "FieldP1", GameObject.Find("FieldP1").GetComponent<Field>().GetCards.Randomize()}, { "FieldP2", GameObject.Find("FieldP2").GetComponent<Field>().GetCards.Randomize()},
-            { "DeckP1", GameObject.Find("DeckP1").GetComponent<Deck>().GetCards}, { "DeckP2", GameObject.Find("DeckP2").GetComponent<Deck>().GetCards},
-            { "GraveyardP1", GameObject.Find("GraveyardP1").GetComponent<Graveyard>().GetCards}, { "GraveyardP2", GameObject.Find("GraveyardP2").GetComponent<Graveyard>().GetCards}
-        };
-        if (!assigner.ContainsKey(containerName)) { throw new Exception("El nombre del contenedor a .Find(): '" + containerName + "' no esta entre los definidos."); }
-        else if (assigner[containerName].Count() == 0) { return new List<DraggableCard> { }; }
-        cards = assigner[containerName].ToList();
-        cards = cards.Where(card => findMethod.CardPredicate.EvaluateCard(new CardReference(card))).ToList();
-        return cards;
     }
 }

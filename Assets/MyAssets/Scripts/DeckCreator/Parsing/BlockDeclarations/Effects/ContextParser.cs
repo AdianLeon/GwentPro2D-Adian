@@ -1,16 +1,16 @@
 using System;
 using UnityEngine;
 
-public static partial class Parser
+public partial class Parser
 {
-    private static INode ParseContext()
+    private INode ParseContext()
     {//Parsea cualquier declaracion que sea de acceso al context
         if (Next().Is("Board") || Current.Text.Contains("Hand") || Current.Text.Contains("Deck") || Current.Text.Contains("Field") || Current.Text.Contains("Graveyard")) { return ParseContextContainer(); }
         else if (Current.Is("TriggerPlayer")) { return new PlayerReference("Self"); }
         else if (Current.Is("TriggerEnemy")) { return new PlayerReference("Other"); }
         else { Errors.Write("No existe la propiedad del contexto: '" + Current.Text + "'"); hasFailed = true; return null; }
     }
-    private static INode ParseContextContainer()
+    private INode ParseContextContainer()
     {
         ContainerReference container;
         if (Current.Is("Board")) { container = new ContainerReference(Current.Text, new PlayerReference()); }
@@ -32,7 +32,7 @@ public static partial class Parser
         if (Peek().Is(".")) { Next(); return ParseContextContainerMethod(container); }
         return container;
     }
-    private static INode ParseContextContainerMethod(ContainerReference container)
+    private INode ParseContextContainerMethod(ContainerReference container)
     {
         if (Next().Is("Shuffle") || Current.Is("Pop"))
         {

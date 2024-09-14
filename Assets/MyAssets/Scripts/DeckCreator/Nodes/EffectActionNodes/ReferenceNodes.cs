@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
-
+//Nodos de referencia
 public interface IReference : INode
-{
+{//Todas las referencias deben especificar su tipo
     public VarType Type { get; }
 }
 public class FutureReference : IReference
-{
+{//Para crear aquellas referencias que solo existen en ejecucion
     public VarType Type { get; }
     public FutureReference(VarType varType) { Type = varType; }
 }

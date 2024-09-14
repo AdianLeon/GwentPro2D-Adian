@@ -1,9 +1,9 @@
 using System;
 using UnityEngine;
-public static partial class Parser
+public partial class Parser
 {
-     private static IExpression<bool> ParseBooleanExpression() { IExpression<bool> expression = ParseBooleanOperation(); Next(-1); return expression; }
-     private static IExpression<bool> ParseBooleanOperation(IExpression<bool> left = null)
+     private IExpression<bool> ParseBooleanExpression() { IExpression<bool> expression = ParseBooleanOperation(); Next(-1); return expression; }
+     private IExpression<bool> ParseBooleanOperation(IExpression<bool> left = null)
      {
           if (left == null) { left = ParseBoolValue(); if (hasFailed) { return null; } }
           while (Current.Is("&&") || Current.Is("||"))
@@ -14,7 +14,7 @@ public static partial class Parser
           }
           return left;
      }
-     private static IExpression<bool> ParseBoolValue()
+     private IExpression<bool> ParseBoolValue()
      {
           IExpression<bool> left;
           if (Current.Is("true") || Current.Is("false")) { left = new BooleanValueExpression(Current.Text); Next(); }

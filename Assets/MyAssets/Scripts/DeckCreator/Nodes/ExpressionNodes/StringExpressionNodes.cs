@@ -1,5 +1,5 @@
 using System;
-
+//Expresiones de strings
 public class StringValueExpression : IExpression<string>
 {
     public VarType Type => VarType.String;

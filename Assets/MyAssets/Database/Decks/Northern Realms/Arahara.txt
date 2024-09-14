@@ -3,7 +3,7 @@ card{
 	Type: "Aumento",
 	Name: "Arahara",
 	Faction: "Northern Realms",
-	Power: 100,
+	Power: 20,
 	OnActivation: [{Effect: "ShuffleOtherEffect"}],
 	TotalCopies:10
 

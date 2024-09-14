@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public static partial class Parser
+public partial class Parser
 {
-    private static IExpression<string> ParseStringExpression() { IExpression<string> expression = ParseStringOperation(); Next(-1); return expression; }
-    private static IExpression<string> ParseStringOperation(IExpression<string> left = null)
+    private IExpression<string> ParseStringExpression() { IExpression<string> expression = ParseStringOperation(); Next(-1); return expression; }
+    private IExpression<string> ParseStringOperation(IExpression<string> left = null)
     {
         if (left == null) { left = ParseStringValue(); if (hasFailed) { return null; } }
         while (Current.Is("@") || Current.Is("@@"))
@@ -14,7 +14,7 @@ public static partial class Parser
         }
         return left;
     }
-    private static IExpression<string> ParseStringValue()
+    private IExpression<string> ParseStringValue()
     {
         IExpression<string> left;
         if (Current.Is(TokenType.literal)) { left = new StringValueExpression(Current.Text); Next(); }

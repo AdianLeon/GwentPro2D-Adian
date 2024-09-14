@@ -1,8 +1,6 @@
 
 using System;
-using System.Runtime.InteropServices;
-using Unity.VisualScripting;
-
+//Expresiones genericas y de carta
 public interface IExpression<out T> : IReference { public T Evaluate(); }
 public abstract class BinaryExpression<MemberType, ReturnType> : IExpression<ReturnType>
 {

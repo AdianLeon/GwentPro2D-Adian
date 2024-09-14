@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-
+//Nodos de la propiedad OnActivation
 public class OnActivation : INode
 {
     public List<EffectCall> effectCalls = new List<EffectCall>();

@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public static partial class Parser
+public partial class Parser
 {
-    private static IExpression<int> ParseArithmeticExpression() { IExpression<int> expression = ParseArithmeticOperation(); Next(-1); return expression; }
-    private static IExpression<int> ParseArithmeticOperation(IExpression<int> left = null) => ParseSum(left);
-    private static IExpression<int> ParseSum(IExpression<int> left = null)
+    private IExpression<int> ParseArithmeticExpression() { IExpression<int> expression = ParseArithmeticOperation(); Next(-1); return expression; }
+    private IExpression<int> ParseArithmeticOperation(IExpression<int> left = null) => ParseSum(left);
+    private IExpression<int> ParseSum(IExpression<int> left = null)
     {
         left = ParseMultiplication(); if (hasFailed) { return null; }
         while (Current.Is("+") || Current.Is("-"))
@@ -15,7 +15,7 @@ public static partial class Parser
         }
         return left;
     }
-    private static IExpression<int> ParseMultiplication(IExpression<int> left = null)
+    private IExpression<int> ParseMultiplication(IExpression<int> left = null)
     {
         if (left == null) { left = ParseNumber(); if (hasFailed) { return null; } }
         while (Current.Is("*") || Current.Is("/"))
@@ -26,7 +26,7 @@ public static partial class Parser
         }
         return left;
     }
-    private static IExpression<int> ParseNumber()
+    private IExpression<int> ParseNumber()
     {
         IExpression<int> left;
         if (Current.Is("-") && Peek().Is(TokenType.number)) { left = new NumberExpression(Current.Text + Next().Text); Next(); }

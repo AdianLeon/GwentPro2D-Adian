@@ -5,9 +5,9 @@ using System;
 using System.Linq;
 using System.IO;
 
-public static partial class Parser
+public partial class Parser
 {
-    private static INode ParseOnActivation()
+    private INode ParseOnActivation()
     {
         OnActivation onActivation = new OnActivation();
         if (!Current.Is("[", true)) { hasFailed = true; return null; }
@@ -23,7 +23,7 @@ public static partial class Parser
         if (!Current.Is("]", true)) { hasFailed = true; return null; }
         return onActivation;
     }
-    private static EffectCall ParseEffectCall(bool isPostActionCalling)
+    private EffectCall ParseEffectCall(bool isPostActionCalling)
     {
         if (!Next().Is("{", true)) { hasFailed = true; return null; }
         if (Peek().Is("ScriptEffect")) { return ParseScriptEffect(); }
@@ -145,7 +145,7 @@ public static partial class Parser
         }
     }
 
-    private static (string, IReference) ParseParameterCall(List<string> allDeclaredParameters, List<(string, VarType)> demandedParameters, string effectName)
+    private (string, IReference) ParseParameterCall(List<string> allDeclaredParameters, List<(string, VarType)> demandedParameters, string effectName)
     {
         if (!Next().Is(TokenType.identifier, true)) { hasFailed = true; return default; }
         string parameterName = Current.Text;
@@ -162,17 +162,15 @@ public static partial class Parser
         return new(parameterName, parameterValue);
     }
 
-    private static List<(string, VarType)> GetDemandedParameters(string effectName)
+    private List<(string, VarType)> GetDemandedParameters(string effectName)
     {
         if (!File.Exists(Application.dataPath + "/MyAssets/Database/CreatedEffects/" + effectName + ".txt")) { Errors.Write("El efecto '" + effectName + "' no existe en la base de datos", Current); hasFailed = true; return null; }
         string effectCode = File.ReadAllText(Application.dataPath + "/MyAssets/Database/CreatedEffects/" + effectName + ".txt");
-        ParsingOrder parsingOrder = new ParsingOrder(tokens, index, hasFailed);
         List<(string, VarType)> effectDeclaration = ProcessEffectCode(effectCode).Parameters;
-        ResumeParsing(parsingOrder);
         return effectDeclaration;
     }
 
-    private static CardPredicate ParseCardPredicate()
+    private CardPredicate ParseCardPredicate()
     {
         if (!Next().Is("(", true)) { hasFailed = true; return null; }
         if (!Next().Is(TokenType.identifier, true)) { hasFailed = true; return null; }
@@ -188,7 +186,7 @@ public static partial class Parser
         if (wasEmpty) { VariableScopes.PopLastScope(); }
         return new CardPredicate(cardParameterName, filter);
     }
-    private static ScriptEffectCall ParseScriptEffect()
+    private ScriptEffectCall ParseScriptEffect()
     {
         if (!Next().Is("ScriptEffect")) { hasFailed = true; return null; }
         if (!Next().Is(":", true)) { hasFailed = true; return null; }

@@ -1,19 +1,18 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-
-public static partial class Parser
+//Script principal de la clase Parser distribuida por varios archivos
+public partial class Parser
 {
-    public static void StartParsing(List<Token> tokens) { Parser.tokens = tokens; index = 0; hasFailed = false; }
-    private static void ResumeParsing(ParsingOrder parsingOrder) { tokens = parsingOrder.SavedTokens; index = parsingOrder.SavedIndex; hasFailed = parsingOrder.HadFailed; }
-    public static bool HasFailed => hasFailed;
-    private static bool hasFailed;
-    private static List<Token> tokens;
-    private static int index;
-    private static Token Current => tokens[index];
-    private static Token Peek(int forward = 1) => tokens[index + forward];
-    private static Token Next(int forward = 1) { index += forward; return tokens[index]; }
-    private static bool Try<T>(Func<INode> parser, out T aux, bool showErrorMessage = true) where T : INode
+    public Parser(List<Token> tokensList) { tokens = tokensList; index = 0; hasFailed = false; }
+    public bool HasFailed => hasFailed;
+    private bool hasFailed;
+    private List<Token> tokens;
+    private int index;
+    private Token Current => tokens[index];
+    private Token Peek(int forward = 1) => tokens[index + forward];
+    private Token Next(int forward = 1) { index += forward; return tokens[index]; }
+    private bool Try<T>(Func<INode> parser, out T aux, bool showErrorMessage = true) where T : INode
     {
         int startingIndex = index;
         INode node = parser();
@@ -23,7 +22,7 @@ public static partial class Parser
         if (node is T) { aux = (T)node; return true; }
         else { aux = default; index = startingIndex; return false; }
     }
-    private static IReference ParseExpressions()
+    private IReference ParseExpressions()
     {
         if (hasFailed) { throw new Exception("Se llamo a parsear expresion pero ya se fallo anteriormente"); }
         List<Func<IReference>> expressionParsers = new List<Func<IReference>>() { ParseComparisonExpression, ParseBooleanExpression, ParseArithmeticExpression, ParseStringExpression };
@@ -38,11 +37,4 @@ public static partial class Parser
         }
         hasFailed = true; return null;
     }
-}
-public class ParsingOrder
-{
-    public List<Token> SavedTokens;
-    public int SavedIndex;
-    public bool HadFailed;
-    public ParsingOrder(List<Token> tokens, int index, bool hasFailed) { SavedTokens = tokens; SavedIndex = index; HadFailed = hasFailed; }
 }

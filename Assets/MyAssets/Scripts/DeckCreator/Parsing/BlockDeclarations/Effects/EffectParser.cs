@@ -1,19 +1,16 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEngine;
 
-public static partial class Parser
+public partial class Parser
 {
     public static EffectDeclaration ProcessEffectCode(string code)
     {
-        StartParsing(Lexer.TokenizeCode(code));
-        INode effectDeclaration = ParseEffect();
-        if (!hasFailed && effectDeclaration != null) { return (EffectDeclaration)effectDeclaration; }
+        Parser parser = new Parser(new Lexer(code).TokenizeCode());
+        INode effectDeclaration = parser.ParseEffect();
+        if (!parser.hasFailed && effectDeclaration != null) { return (EffectDeclaration)effectDeclaration; }
         return null;
     }
-    private static EffectDeclaration ParseEffect()
+    private EffectDeclaration ParseEffect()
     {
         HashSet<string> propertiesToDeclare = new HashSet<string> { "Name", "Action" };
         IExpression<string> name = new StringValueExpression("");

@@ -1,7 +1,10 @@
 # GwentPro2D-Adian
- -Cuando se inicia la aplicacion se abre la primera escena (Main Menu), el menu principal, desde aqui se puede ajustar el volumen del juego y se puede acceder a varios menus diferentes.
- -Si se entra a Deck se accede a un apartado donde se ven todas las cartas y sus efectos. 
+ -Cuando se inicia la aplicacion se abre la primera escena (Main Menu), el menu principal, desde aqui se puede ajustar el volumen del juego, seleccionar los decks a utilizar y se puede acceder a varios menus diferentes.
+ -Si se desea activar el modo un solo jugador se debe marcar la casilla a la izquierda del menu principal.
+ -Si se entra a Crear Deck se accede a un apartado donde se pueden crear cartas y sus efectos usando un lenguaje de proposito especifico cuya descripcion se encuentra dentro del menu Instrucciones. 
  -Cuando se presiona en Instrucciones se accede a otro menu donde se explica detalladamente como jugar y las reglas del juego, desde aqui tambien se puede acceder a otro submenu que describe la interfaz grafica del juego.
+ -El menu Modificar Deck permite visualizar y modificar cualquier carta o efecto previamente creada.
+ -El menu Eliminar Deck permite eliminar cualquier efecto, deck o carta indeseado.  
  -El boton de salir termina la ejecucion de la aplicacion.
  -Si se hace click en el boton Jugar se cargara la proxima escena (Game), en esta se desarrolla el juego.
  -El primer turno siempre es del jugador con el campo inferior (P1). Mas detalles del inicio del juego y de las reglas del mismo se describen en el menu Instrucciones.
