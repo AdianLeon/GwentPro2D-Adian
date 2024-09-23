@@ -10,7 +10,6 @@ public abstract class Card : MonoBehaviour, IGlow, IPointerEnterHandler, IPointe
     public string CardName;//Nombre de la carta
     public string Description;//Descripcion de la carta
     public OnActivation OnActivation;//Descripcion de acciones (efectos) para cuando la carta se active
-    public Sprite Artwork;//Imagen para mostrar en el CardView
     public Player Owner;//Jugador dueno de la carta
     public virtual void LoadInfo()
     {//Esta funcion es especifica para cada tipo de carta, pero todas comparten lo siguiente
@@ -22,7 +21,7 @@ public abstract class Card : MonoBehaviour, IGlow, IPointerEnterHandler, IPointe
         if (GetComponent<ISpecialCard>() != null && Description == "") { GameObject.Find("EffectDescription").GetComponent<TextMeshProUGUI>().text = GetComponent<ISpecialCard>().GetEffectDescription; }
         //Quality, Image
         GameObject.Find("Quality").GetComponent<Image>().sprite = Resources.Load<Sprite>("BlankImage");
-        GameObject.Find("CardPreview").GetComponent<Image>().sprite = Artwork;
+        GameObject.Find("CardPreview").GetComponent<Image>().sprite = gameObject.GetComponent<Image>().sprite;
         //Colores
         GameObject.Find("BackGroundCard").GetComponent<Image>().color = CardViewColor;
         GameObject.Find("Type").GetComponent<TextMeshProUGUI>().color = CardViewColor;

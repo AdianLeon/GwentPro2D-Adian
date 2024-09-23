@@ -7,6 +7,7 @@ using System.Linq;
 public class CardLoader : MonoBehaviour
 {
     public GameObject CardPrefab;//Referencia al prefab CardPrefab
+    private static Sprite[] randomImages => Resources.LoadAll<Sprite>("RandomImages");
     private static bool failedAtInterpretingAnyCard = false;
     private static int instantiatedCardsCount;//Cuenta de las cartas instanciadas
     private Dictionary<string, string> cardTypes = new Dictionary<string, string>()
@@ -24,13 +25,9 @@ public class CardLoader : MonoBehaviour
     {
         allLoadedEffects = loadedEffects;
         instantiatedCardsCount = 0;
-        Debug.Log(PlayerPrefs.GetString("P1PrefDeck"));
-        Debug.Log(PlayerPrefs.GetString("P2PrefDeck"));
-        Debug.Log("LoadingP1");
         ImportDeckTo(PlayerPrefs.GetString("P1PrefDeck"), GameObject.Find("CardsP1"), GameObject.Find("DeckP1"));
-        Debug.Log("LoadingP2");
         ImportDeckTo(PlayerPrefs.GetString("P2PrefDeck"), GameObject.Find("CardsP2"), GameObject.Find("DeckP2"));
-        Debug.Log("FinishedLoading");
+        Executer.ErrorScreen.SetActive(Executer.FailedAtLoadingAnyEffect || failedAtInterpretingAnyCard);
         allLoadedEffects = null;
     }
     public void ImportDeckTo(string faction, GameObject deckPlace, GameObject Deck)
@@ -40,15 +37,13 @@ public class CardLoader : MonoBehaviour
 
         foreach (string address in addressesOfCards)
         {//Para cada uno de los archivos con extension .txt
-            Debug.Log("Loading One Card");
             string codeCard = File.ReadAllText(address);//Lee el archivo
             CardDeclaration cardDeclaration = Parser.ProcessCardCode(codeCard);//Convierte el string en json a un objeto CardSave
             if (cardDeclaration != null) { for (int i = cardDeclaration.TotalCopies.Evaluate(); i > 0; i--) { ImportCardTo(cardDeclaration, deckPlace); } }
             else { Errors.Write("No se pudo procesar el texto de la carta en: " + address); failedAtInterpretingAnyCard = true; }
         }
-        Executer.ErrorScreen.SetActive(Executer.FailedAtLoadingAnyEffect || failedAtInterpretingAnyCard);
         //Asignando la imagen del deck
-        Deck.GetComponent<UnityEngine.UI.Image>().sprite = Resources.Load<Sprite>(faction + "/DeckImage");
+        Deck.GetComponent<UnityEngine.UI.Image>().sprite = LoadSprite(Application.persistentDataPath + "/Images/" + faction + "/DeckImage.png");
     }
     public void ImportCardTo(CardDeclaration cardDeclaration, GameObject deckPlace)
     {
@@ -73,19 +68,9 @@ public class CardLoader : MonoBehaviour
         newCard.GetComponent<Card>().Owner = player;
         newCard.GetComponent<Card>().Description = cardDeclaration.Description.Evaluate();
 
-        //Sprites
-        newCard.GetComponent<UnityEngine.UI.Image>().sprite = Resources.Load<Sprite>(cardDeclaration.Faction + "/" + cardDeclaration.Name);//Carga el sprite en Assets/Resources/sourceImage en la carta
-        newCard.GetComponent<Card>().Artwork = Resources.Load<Sprite>(cardDeclaration.Faction + "/" + cardDeclaration.Name + "Image");//Carga el sprite en Assets/Resources/artwork en la carta
-
-        if (newCard.GetComponent<UnityEngine.UI.Image>().sprite == null)
-        {//Si no se encontro una imagen se selecciona una random
-            int max = Directory.GetFiles(Application.dataPath + "/Resources/RandomImages", "*.png").Length;
-            newCard.GetComponent<UnityEngine.UI.Image>().sprite = Resources.Load<Sprite>("RandomImages/" + UnityEngine.Random.Range(1, max + 1).ToString());
-        }
-        if (newCard.GetComponent<Card>().Artwork == null)
-        {//Si no se encontro artwork se selecciona la propia imagen
-            newCard.GetComponent<Card>().Artwork = newCard.GetComponent<UnityEngine.UI.Image>().sprite;
-        }
+        //Sprite
+        newCard.GetComponent<UnityEngine.UI.Image>().sprite = LoadSprite(Application.persistentDataPath + "/Images/" + cardDeclaration.Faction + "/" + cardDeclaration.Name + ".png");//Carga el sprite
+        if (newCard.GetComponent<UnityEngine.UI.Image>().sprite == null) { newCard.GetComponent<UnityEngine.UI.Image>().sprite = randomImages.RandomElement(); }//Si no se encontro una imagen se selecciona una random
         //Power || Damage || Boost
         if (newCard.GetComponent<PowerCard>() != null) { newCard.GetComponent<PowerCard>().Power = cardDeclaration.Power.Evaluate(); }
         else if (newCard.GetComponent<WeatherCard>() != null) { newCard.GetComponent<WeatherCard>().Damage = cardDeclaration.Power.Evaluate(); }
@@ -110,5 +95,12 @@ public class CardLoader : MonoBehaviour
                 }
             }
         }
+    }
+    private Sprite LoadSprite(string filePath)
+    {
+        if (!File.Exists(filePath)) { Debug.Log("No se encontro el archivo: " + filePath); return null; }
+        Texture2D texture = new Texture2D(1, 1);
+        texture.LoadImage(File.ReadAllBytes(filePath));
+        return Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
     }
 }
