@@ -8,10 +8,7 @@ public class Executer : MonoBehaviour
 {
     public GameObject errorScreen;//Referencia a el objeto que mostrara los errores de compilacion o de ejecucion
     public static GameObject ErrorScreen => GameObject.Find("Canvas").GetComponent<Executer>().errorScreen;
-    public static void RaiseError(string errorMessage)
-    {//Activa la pantalla de errores y muestra el error
-        GameObject.Find("Canvas").GetComponent<Executer>().errorScreen.SetActive(true); Errors.Write(errorMessage);
-    }
+    public static void RaiseError(string errorMessage) { ErrorScreen.SetActive(true); Errors.Write(errorMessage); }//Activa la pantalla de errores y muestra el error
     public static bool FailedAtLoadingAnyEffect => failedAtLoadingAnyEffect;
     private static bool failedAtLoadingAnyEffect;
     private static Dictionary<string, EffectDeclaration> createdEffects;//Diccionario donde se guardaran todos los efectos compilados correctamente

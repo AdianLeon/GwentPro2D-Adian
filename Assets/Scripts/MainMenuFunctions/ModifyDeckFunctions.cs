@@ -19,13 +19,13 @@ public class ModifyDeckFunctions : MonoBehaviour
     public void OnConfirmEliminationButtonClick()
     {
         Errors.Clean();
-        if (GetText(effectsChoice) == "Todas") { Errors.PureWrite("Se intentaron borrar todos los efectos del juego, esta accion no esta permitida"); /*Directory.GetFiles(Application.persistentDataPath+"/CreatedEffects/", "*.txt").ForEach(address => File.Delete(address));*/ }
+        if (GetText(effectsChoice) == "Todas") { Directory.GetFiles(Application.persistentDataPath + "/CreatedEffects/", "*.txt").ForEach(address => File.Delete(address)); }
         else if (GetText(effectsChoice) != "Ninguna") { File.Delete(Application.persistentDataPath + "/CreatedEffects/" + GetText(effectsChoice) + ".txt"); }
 
         if (GetText(cardsChoice) == "Todas")
         {
-            if (GetText(decksChoice) == "Todas") { Errors.PureWrite("Se intentaron borrar todas las cartas del juego, esta accion no esta permitida"); /*Directory.GetFiles(Application.persistentDataPath+"/Decks/", "*.txt", SearchOption.AllDirectories).ForEach(address => File.Delete(address));*/ }
-            else if (GetText(decksChoice) != "Ninguna") { File.Delete(Application.persistentDataPath + "/Decks/" + GetText(decksChoice) + ".meta"); Directory.Delete(Application.persistentDataPath + "/Decks/" + GetText(decksChoice), true); }
+            if (GetText(decksChoice) == "Todas") { Directory.GetFiles(Application.persistentDataPath + "/Decks/", "*.txt", SearchOption.AllDirectories).ForEach(address => File.Delete(address)); }
+            else if (GetText(decksChoice) != "Ninguna") { Directory.Delete(Application.persistentDataPath + "/Decks/" + GetText(decksChoice), true); }
         }
         else if (GetText(cardsChoice) != "Ninguna")
         {

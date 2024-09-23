@@ -1,0 +1,8 @@
+Things left to do in the Gwent-Pro Project:
+     -Change all the PlayerPrefs to a custom static class that holds all of the important info
+     -Change the public accesors in Card and all Card scripts
+     -Check through the whole project changing all non settable fields to properties and initialize them inside a constructor
+     -Compiler does not admits the access to properties of cards if they are not variables example code: power=context.Hand.Pop().Power;
+     -Make the foreach accept the context's lists of cards as the collection to iterate from
+     -Eliminate the ambiguity container/cardList
+     -Comparisons and boolean expressions are not recursive, which means (3<5)&&(2==3) aren't compiled, but (true==true) are
