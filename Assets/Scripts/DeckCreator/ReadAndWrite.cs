@@ -1,0 +1,22 @@
+using UnityEngine;
+using System.IO;
+using TMPro;
+using System;
+//Script para escribir y leer en el txt Code
+public class ReadAndWrite : MonoBehaviour
+{
+    public TMP_InputField inputField;
+    public void LoadTxtToCodeEditor() => inputField.text = File.ReadAllText(Application.persistentDataPath + "/Code.txt");//Se llama cuando se activa el menu Crear Deck
+    public void SaveTextToFile() => File.WriteAllText(Application.persistentDataPath + "/Code.txt", inputField.text);//Guarda el texto del editor de codigo a el txt, se llama cuando se pulsa el boton
+    public void ReadTextFromFile()
+    {//Obtiene el texto del txt, se llama cuando se pulsa el boton (despues de SaveTextFile)
+        string allText = File.ReadAllText(Application.persistentDataPath + "/Code.txt");
+        MainCompiler.ProcessTextAndSave(allText);
+    }
+    public void RestoreDefaultDeck() => CreateDefaultDeck();
+    public static void CreateDefaultDeck()
+    {
+        string minionsDeck = "card{\n\tType: \"Senuelo\",\n\tName: \"Agnes\",\n\tFaction: \"Minions\"\n}\n\ncard{\n\tType: \"Aumento\",\n\tName: \"Banana\",\n\tFaction: \"Minions\",\n\tPower: 25\n}\n\ncard{\n\tDescription: \"Cuando esta carta es jugada su poder se convierte en el promedio del poder de todas las cartas jugadas en el campo\",\n\tTotalCopies: 3,\n\tType: \"Plata\",\n\tName: \"Bob\",\n\tFaction: \"Minions\",\n\tRange:[\"Ranged\"],\n\tPower: 0,\n\tOnActivation: [{ScriptEffect: \"PromEffect\"}]\n}\n\ncard{\n\tTotalCopies: 2,\n\tType: \"Plata\",\n\tName: \"Doctor Nefario\",\n\tFaction: \"Minions\",\n\tRange:[\"Ranged\",\"Siege\"],\n\tPower: 25\n}\n\ncard{\n\tDescription: \"Cuando esta carta es jugada elimina a la carta de mayor poder jugada en el campo\",\n\tType: \"Oro\",\n\tName: \"El Macho\",\n\tFaction: \"Minions\",\n\tRange:[\"Melee\"],\n\tPower: 35,\n\tOnActivation: [{ScriptEffect: \"MostPowerEffect\"}]\n}\n\ncard{\n\tDescription: \"Ordena a los minions a que roben dos cartas de la mano enemiga, aunque conociendo a los minions eso puede salir mal\",\n\tType: \"Lider\",\n\tName: \"Gru\",\n\tFaction: \"Minions\",\n\tOnActivation: [{ScriptEffect: \"GruEffect\"}]\n}\n\ncard{\n\tType: \"Aumento\",\n\tName: \"Inyeccion de minion purpura\",\n\tFaction: \"Minions\",\n\tPower: 20\n}\n\ncard{\n\tTotalCopies: 3,\n\tDescription: \"Cuando esta carta es jugada su poder se convierte en el promedio del poder de todas las cartas jugadas en el campo\",\n\tType: \"Plata\",\n\tName: \"Kevin\",\n\tFaction: \"Minions\",\n\tRange:[\"Melee\"],\n\tPower: 0,\n\tOnActivation: [{ScriptEffect: \"PromEffect\"}]\n}\n\ncard{\n\tTotalCopies: 3,\n\tDescription: \"Cuando esta carta es jugada convierte su poder en la cantidad de Kyles que se encuentren en el campo\",\n\tType: \"Plata\",\n\tName: \"Kyle\",\n\tFaction: \"Minions\",\n\tRange:[\"Melee\",\"Siege\"],\n\tPower: 10,\n\tOnActivation: [{ScriptEffect: \"MultiplyEffect\"}]\n}\n\ncard{\n\tType: \"Aumento\",\n\tName: \"Manzana\",\n\tFaction: \"Minions\",\n\tPower: 20\n}\n\ncard{\n\tType: \"Senuelo\",\n\tName: \"Minion Bebe\",\n\tFaction: \"Minions\"\n}\n\ncard{\n\tType: \"Despeje\",\n\tName: \"Muchas Bananas\",\n\tFaction: \"Minions\"\n}\n\ncard{\n\tTotalCopies: 2,\n\tType: \"Plata\",\n\tName: \"Ninas\",\n\tFaction: \"Minions\",\n\tRange:[\"Melee\",\"Ranged\"],\n\tPower: 20\n}\n\ncard{\n\tType: \"Clima\",\n\tName: \"Peluche\",\n\tFaction: \"Minions\",\n\tPower: 25\n}\n\ncard{\n\tType: \"Clima\",\n\tName: \"Rayo Congelador\",\n\tFaction: \"Minions\",\n\tPower: 30\n}\n\ncard{\n\tDescription: \"Cuando esta carta es jugada se roba una carta del deck\",\n\tType: \"Oro\",\n\tName: \"Scarlett Overkill\",\n\tFaction: \"Minions\",\n\tRange:[\"Melee\",\"Ranged\",\"Siege\"],\n\tPower: 30,\n\tOnActivation: [{ScriptEffect: \"DrawOneEffect\"}]\n}\n\ncard{\n\tTotalCopies: 3,\n\tDescription: \"Cuando esta carta es jugada su poder se convierte en el promedio del poder de todas las cartas jugadas en el campo\",\n\tType: \"Plata\",\n\tName: \"Stuart\",\n\tFaction: \"Minions\",\n\tRange:[\"Siege\"],\n\tPower: 0,\n\tOnActivation: [{ScriptEffect: \"PromEffect\"}]\n}\n\ncard{\n\tDescription: \"Cuando esta carta es jugada elimina a la carta de menor poder jugada en el campo\",\n\tType: \"Oro\",\n\tName: \"Vector\",\n\tFaction: \"Minions\",\n\tRange:[\"Ranged\",\"Siege\"],\n\tPower: 30,\n\tOnActivation: [{ScriptEffect: \"LessPowerEffect\"}]\n}";
+        MainCompiler.ProcessTextAndSave(minionsDeck);
+    }
+}

@@ -1,7 +1,0 @@
-effect{
-	Name: "KyleStealEffect",
-	Action: (targets,context)=>{
-		for t in context.OtherHand.Find((c)=>c.Name=="Kyle")
-			context.Hand.Push(t);
-	}
-}

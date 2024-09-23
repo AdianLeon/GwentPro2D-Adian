@@ -1,7 +1,0 @@
-effect{
-	Name: "MakeOneAshComeBack",
-	Action: (targets,context)=>{
-		ash=context.Field.Find((card)=>card.Name=="Ash")[0];
-		context.Hand.Push(ash);
-	}
-}

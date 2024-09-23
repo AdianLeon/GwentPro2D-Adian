@@ -1,6 +1,0 @@
-effect{
-	Name: "HandStealEffect",
-	Action: (targets,context)=>{
-		context.Hand.Push(context.OtherHand.Pop());
-	}
-}

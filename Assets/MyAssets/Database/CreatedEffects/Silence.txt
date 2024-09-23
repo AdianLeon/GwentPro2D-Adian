@@ -1,8 +1,0 @@
-effect {
-	Name: "Silence",
-	Action: (targets, context) => {
-		for target in targets {
-			target.Power=0;
-		};
-	}
-}

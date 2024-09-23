@@ -1,9 +1,0 @@
-card{
-	Description:"Esta carta no tiene efecto",
-	Type: "Plata",
-	Name: "Ma"@"tum"@"bo",
-	Faction: "Nort"@"hern"@@"Realms",
-	Range:["Melee","Ranged","Siege"],
-	Power: -8-(2^4)*2/3+6-5*4+1,
-	TotalCopies:5
-}

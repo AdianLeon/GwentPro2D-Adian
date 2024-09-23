@@ -1,5 +1,0 @@
-card{
-	Type: "Senuelo",
-	Name: "Agnes",
-	Faction: "Minions"
-}

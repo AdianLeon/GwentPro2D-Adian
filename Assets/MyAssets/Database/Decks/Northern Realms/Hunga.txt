@@ -1,14 +1,0 @@
-card{
-	Description:"Enumera el poder de todas las cartas del campo",
-	Type: "Plata",
-	Name: "Hunga",
-	Faction: "Northern Realms",
-	Range:["Siege"],
-	Power: 25,
-	OnActivation: [
-		{
-			Effect: "CountPowerEffect"
-		}
-	],
-	TotalCopies:10
-}

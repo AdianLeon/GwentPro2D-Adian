@@ -1,7 +1,0 @@
-effect{
-	Name: "ShuffleHandEffect",
-	Action: (targets,context)=>{
-		Print("ShufflingHand");
-		context.Hand.Shuffle();		
-	}
-}

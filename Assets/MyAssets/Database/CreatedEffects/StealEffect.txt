@@ -1,9 +1,0 @@
-effect{
-	Name: "StealEffect",
-	Action: (targets,context)=>{
-		for target in targets {
-			context.Hand.Push(target);
-			Print("Carta robada a la mano: "@target.Name);
-		};
-	}
-}

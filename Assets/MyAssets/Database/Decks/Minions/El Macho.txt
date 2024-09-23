@@ -1,9 +1,0 @@
-card{
-	Description: "Cuando esta carta es jugada elimina a la carta de mayor poder jugada en el campo",
-	Type: "Oro",
-	Name: "El Macho",
-	Faction: "Minions",
-	Range:["Melee"],
-	Power: 35,
-	OnActivation: [{ScriptEffect: "MostPowerEffect"}]
-}

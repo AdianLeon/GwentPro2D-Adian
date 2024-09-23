@@ -1,9 +1,0 @@
-card{
-	Description: "Cuando esta carta es jugada elimina a la carta de menor poder jugada en el campo",
-	Type: "Oro",
-	Name: "Vector",
-	Faction: "Minions",
-	Range:["Ranged","Siege"],
-	Power: 30,
-	OnActivation: [{ScriptEffect: "LessPowerEffect"}]
-}

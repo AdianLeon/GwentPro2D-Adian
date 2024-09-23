@@ -1,9 +1,0 @@
-effect{
-	Name: "PrintPostEffect",
-	Params:{
-		message:String
-	},
-	Action: (targets,context)=>{
-		Print(message);
-	}
-}

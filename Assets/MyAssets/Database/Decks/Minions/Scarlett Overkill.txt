@@ -1,9 +1,0 @@
-card{
-	Description: "Cuando esta carta es jugada se roba una carta del deck",
-	Type: "Oro",
-	Name: "Scarlett Overkill",
-	Faction: "Minions",
-	Range:["Melee","Ranged","Siege"],
-	Power: 30,
-	OnActivation: [{ScriptEffect: "DrawOneEffect"}]
-}

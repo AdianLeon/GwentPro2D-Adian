@@ -1,8 +1,0 @@
-card{
-	TotalCopies: 2,
-	Type: "Plata",
-	Name: "Doctor Nefario",
-	Faction: "Minions",
-	Range:["Ranged","Siege"],
-	Power: 25
-}
